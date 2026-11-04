@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Driven keys: corrections keyed to a bone angle instead of time (plan 3, "Driven keys"; the
  * idea of corrective shapes driven by a joint, as in pose-space deformation and Moho's smart

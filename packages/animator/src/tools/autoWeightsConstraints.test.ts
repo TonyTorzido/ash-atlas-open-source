@@ -1,5 +1,5 @@
 /*
- * Plan 4d-4j3 (review of 4d-4j/4d-4j2, docs/plans/research/phase-4d4j.md): the
+ * Plan: the
  * reproductions of the constraint, pruning, ambiguity and clamp findings, each failing on c658bce33.
  */
 import { describe, expect, it } from "vitest";
@@ -29,7 +29,7 @@ const hubTree = (): WeightTree => ({
 
 const has = (list: readonly Influence[], b: number) => list.some((inf) => inf.bone === b && inf.weight > 0);
 
-describe("auto-weights constraints (plan 4d-4j3)", () => {
+describe("auto-weights constraints ()", () => {
   it("an excluded hub gets zero weight on an 81-vertex grid (parent insertion respects the domain)", () => {
     const mesh = grid();
     expect(mesh.points.length / 2).toBe(81);
@@ -64,7 +64,7 @@ describe("auto-weights constraints (plan 4d-4j3)", () => {
   });
 });
 
-describe("influence-cap pruning (plan 4d-4j3)", () => {
+describe("influence-cap pruning ()", () => {
   const { pruneByName, PruneStats } = weightsModule as unknown as {
     pruneByName: (w: Influence[][], bones: { name: string }[], max: number, min: number, stats?: unknown) => Influence[][];
     PruneStats: new (bones: unknown[], points: ArrayLike<number>, limitPx: number) => { summary(): { maxDiscarded: number; maxErrorPx: number; overVertices: number[] } };
@@ -108,7 +108,7 @@ describe("influence-cap pruning (plan 4d-4j3)", () => {
   });
 });
 
-describe("weight diagnostics (plan 4d-4j3)", () => {
+describe("weight diagnostics ()", () => {
   it("an adjacent runner-up does not hide a non-adjacent competitor; ambiguities name vertex and top-3 bones", () => {
     // Owner `a` (3.4 px), runner-up its own child `a2` (3.54, adjacent), then sibling branch `b` (3.6, not adjacent).
     const tree: WeightTree = {

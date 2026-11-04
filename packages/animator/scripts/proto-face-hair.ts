@@ -17,7 +17,7 @@ import { writeAtlas } from "../src/tools/surface/output.js";
 import { texturesFromAtlas } from "../src/tools/validate.js";
 
 const [rigPath, outDir, gameArg] = process.argv.slice(2) as [string, string, string?];
-const GAME = resolve(gameArg ?? "C:/Users/dev/Documents/game");
+const GAME = resolve(gameArg ?? "C:/Users/dev/Documents/ash-atlas");
 const ART = join(GAME, "packages/player-renderer/src/assets/player-appearance");
 // [slot, files, canvas dy]: the live renderer moves the face layers by its face anchor (catalog body pose), not by the
 // shared canvas; the dy values place them as the live reference render shows them on this head (measured on

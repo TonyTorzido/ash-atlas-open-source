@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Swag rules pack (packages/animator/swag-rules): the colour-in guide and the allowed-area data
  * the swag checks read. The garment is the body-derived surface of a declared domain
@@ -63,7 +63,7 @@ export const STANDARD_BACKGROUND: [number, number, number] = [255, 255, 255];
 /**
  * Euclidean-ish distance (chamfer) from each pixel to the nearest 1 pixel of `mask` (0 on the mask).
  * Only real mask pixels are sources: outside the canvas counts as far away, so the canvas border is
- * never "near" the mask, and an empty mask gives Infinity everywhere (review 4d-4n #10).
+ * never "near" the mask, and an empty mask gives Infinity everywhere (review #10).
  */
 export function distOutside(mask: Uint8Array, w: number, h: number): Float32Array {
   const d = new Float32Array(w * h);
@@ -145,7 +145,7 @@ export function loadSwagContext(opts: SwagContextOptions): SwagContext {
     const keep = only ? new Set([...only].map((n) => sk.getSlot(n))) : null;
     // the slots left out neither draw nor trim the kept strokes: the resting arm covers the top of the
     // flank stroke below the armpit seam, and a stroke trimmed there left the guide 5-6 px short of the
-    // garment's own outline (armour round 11; the arm uncovers it on a raise)
+    // garment's own outline (armour; the arm uncovers it on a raise)
     if (keep) for (const s of sk.slots) if (!keep.has(s)) (s.color as { a: number }).a = 0;
     sk.updateWorldTransform("none");
     return softRender(sk, tex, { width, height, left: -ox, top: -oy, ...(background ? { background } : {}), ...(keep ? { slotFilter: (s) => keep.has(s) } : {}) }).image;

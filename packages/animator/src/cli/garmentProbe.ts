@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4l (part b): the garment probe (4d-4k review, section 3). Diagnostic assets on
+ * Plan (part b): the garment probe. Diagnostic assets on
  * the merged upper body, made with the document's own garment machinery and procedural textures:
  * - a sleeved tunic: one mesh embedded in the welded skin (every vertex a skin vertex or a point of
  *   the skin triangle under it, so it moves bit for bit with the surface), clipped from the skin's
@@ -48,7 +48,7 @@ type Key = { t: number; pose: Pose; breathe?: number; label?: string };
 type EmbedPoint = number | [number, number, number, number, number];
 
 /**
- * Declared before judging (record submitted geometry; raising a count is not evidence).
+ * Declared before judging.
  * Part c re-declares tunicVertices 260 -> 280 on the measured cost, not to make the gate pass: 211
  * of the 280 vertices are the sparse skin's own vertices (the tunic shares them exactly; dropping
  * one leaves a tunic triangle spanning several skin triangles, i.e. off the embedding) and the 69
@@ -197,7 +197,7 @@ async function main() {
     groupsWanted[g] = { slot: "tunic_sleeve_l", clipBy: g === distal ? cuffHalf(cuffL) : null };
     groupsWanted[mirror.slots[g] as string] = { slot: "tunic_sleeve_r", clipBy: g === distal ? cuffHalf(cuffR) : null };
   }
-  // The promise (4d-4l review 6), from the declared regions only: skin triangles of the wanted
+  // The promise, from the declared regions only: skin triangles of the wanted
   // groups lying wholly outside the declared neck hole and before the declared cuff plane, by the
   // tunic slot that promises them. Built from the skin, never from the tunic mesh under test.
   const promiseTris: { t: number; slot: string }[] = [];
@@ -469,7 +469,7 @@ async function main() {
     const edgeSlotOf = (u: number, v: number) => [...(edgeSlots.get(ek(u, v)) ?? new Set<string>())][0] ?? "tunic";
     const byLoop = loops.map((l) => l.map((h) => remap.get(h) as number));
     const contoursRaw: Record<string, Record<string, unknown>> = (raw.skins[skinKey].contours ??= {});
-    // The tunic's ink is the body's outline ink (the skin-bound contours' colour). 4d-4l close: the
+    // The tunic's ink is the body's outline ink (the skin-bound contours' colour). close: the
     // former 2b2626 equalled the 2b2b2b review backdrop and the painted open-edge band, so the
     // browser renders drew the stroke but it read as background / texture (no runtime fault).
     const bodyInk = Object.values(contoursRaw as Record<string, Record<string, any>>)
@@ -607,7 +607,7 @@ async function main() {
   const atlasPath = join(rigDir, `${atlasName}.atlas.json`);
   const docPath = (c: string) => join(rigDir, `${preset.name}-probe-${c}.anim.json`);
   for (const [c, cfg] of Object.entries(configs)) writeFileSync(docPath(c), `${JSON.stringify(docFor(cfg))}\n`);
-  // The bare body (no garment at all): render-only evidence for the missing body contours (4d-4l debt).
+  // The bare body (no garment at all): render-only evidence for the missing body contours (debt).
   writeFileSync(docPath("bare"), `${JSON.stringify(docFor({ [garment0]: null, tunic: null, pauldron_l: null, pauldron_r: null }))}\n`);
   writeFileSync(docPath("layered"), `${JSON.stringify(docFor({ [garment0]: GARMENT0, tunic: "tunic", pauldron_l: "pauldron_l", pauldron_r: "pauldron_r" }))}\n`);
 
@@ -894,7 +894,7 @@ async function main() {
     poseSk(dSk, {}, 0);
     const dBind = dWorld();
     const boundary = new Set(loops.flat().map((h) => remap.get(h) as number));
-    // Samples (4d-4l review 7): every left tunic vertex, each left tunic triangle's edge
+    // Samples: every left tunic vertex, each left tunic triangle's edge
     // midpoints and centroid, and every dense skin vertex inside a tunic triangle; each carried by
     // its tunic triangle (sparse) and by its dense triangle (dense).
     type Sample = { tt: number[]; tw: number[]; t: number; w: [number, number, number]; edge: boolean; label: string };

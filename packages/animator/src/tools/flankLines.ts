@@ -1,12 +1,12 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Doubled flank line (the importer's flankSingleLine gate, round 20c). The defect the gate exists for
+ * Doubled flank line (the importer's flankSingleLine gate). The defect the gate exists for
  * is a second LINE beside the torso's side outline below the armpit: a thin dark run that follows the
- * outline's direction close to it, so the side reads as a doubled outline (owner review 4d-4n round 2).
+ * outline's direction close to it, so the side reads as a doubled outline.
  * The earlier metric flagged any texel darker than the fabric within 3 stroke widths, which also
  * caught the design itself reaching the outline (a belt, quilt seams, mail rings) and pushed the art
- * to leave a blank strip on each flank (owner round 20: "you just filled the sides with empty green").
+ * to leave a blank strip on each flank.
  *
  * Here a dark texel counts only when it lies on a thin run (at most maxThick px across the local
  * outline direction) that runs at least minLen px ALONG the local outline direction (one-texel
@@ -118,7 +118,7 @@ export function flankParallelLines(win: FlankWindow, o: FlankLineOptions): Flank
   }
   // flagged texels -> lines: texels within G px join (8-connected when G = 1). A line passing a trim band or art
   // touching it reads wide there and breaks into pieces; a gap along the outline no longer than a line may be thick
-  // (maxThick), at the same distance from the outline, does not end it; scattered flecks around a stud do not join (round 21: a parallel stroke crossing a belt's edge was dropped as two stubs, the control unfound)
+  // (maxThick), at the same distance from the outline, does not end it; scattered flecks around a stud do not join (a parallel stroke crossing a belt's edge was dropped as two stubs, the control unfound)
   const G = Math.max(1, Math.round(o.bridge ?? 1));
   const seen = new Uint8Array(W * H);
   const lines: FlankLine[] = [];
@@ -183,7 +183,7 @@ export function withParallelStroke(win: FlankWindow, offset: number, thick: numb
 }
 
 /**
- * The outline stroke alone (round 21b): the stroke-coloured texels that survive an opening by a disk of `radius` px.
+ * The outline stroke alone: the stroke-coloured texels that survive an opening by a disk of `radius` px.
  * The outline is a full stroke width across; trim lines painted in the stroke colour inside the garment (a belt's
  * or band's dark edge lines, 2 to 4 px) do not survive, so they neither bend the local outline direction nor count
  * as the outline the damaged control is painted beside. They are paint (see flankDarkMask).
@@ -210,7 +210,7 @@ export function outlineStroke(stroke: Uint8Array, width: number, height: number,
 }
 
 /**
- * Dark paint relative to the LOCAL tone (round 21b): a paint texel is dark when its luminance lies more than `delta`
+ * Dark paint relative to the LOCAL tone: a paint texel is dark when its luminance lies more than `delta`
  * below the median luminance of the paint texels within `radius` px (about 1.5 stroke widths). Against the
  * garment-wide median a darker material at the flank (Mirror's lamellar plates) read dark everywhere, and the
  * damaged control merged into one wide blob there; against the local tone only a line darker than what surrounds

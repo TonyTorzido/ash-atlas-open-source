@@ -1,4 +1,4 @@
-# Atlas Animator multi-view swag (docs/plans/atlas-animator-views.md): shared measurement code for the design spec
+# Atlas Animator multi-view swag (packages/animator/README.md): shared measurement code for the design spec
 # (spec_extract.py), the structure maps (structure_map.py) and the view polish + consistency gates (view_polish.py).
 # Every measurement works on a garment PNG on the rig canvas (1086x1448 RGBA, alpha = the garment).
 import json

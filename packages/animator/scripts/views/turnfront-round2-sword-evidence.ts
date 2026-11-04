@@ -55,7 +55,7 @@ async function main() {
       writePng(join(DIR, "turn15-chop-every-frame-view040.png"), grid(ims.map((im, i) => ({ image: crop(im, bb), label: `TURN15 f${i}${LBL[i] ?? ""}` })), 9, undefined, true));
     }
   }
-  console.log("wrote turned-front round 2 sword evidence");
+  console.log("wrote turned-front  sword evidence");
 }
 main().catch((e) => {
   console.error(e);

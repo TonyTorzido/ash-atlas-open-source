@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The keyable values of constraints, per skeleton. Clips key them (IK mix, softness and flags,
  * transform mixes, physics mix and resets); setToSetupPose restores the document's values. The
@@ -59,6 +59,8 @@ export function resetTransformPose(pose: TransformPose, data: TransformConstrain
   pose.mixShearY = data.mixShearY;
   return pose;
 }
+
+export { createPathPose, resetPathPose, type PathPose } from "./pathConstraint.js";
 
 export function createPhysicsPose(data: PhysicsConstraintData): PhysicsPose {
   return { mix: data.mix, resetRequested: false };

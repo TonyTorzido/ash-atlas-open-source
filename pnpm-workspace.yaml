@@ -5,3 +5,6 @@ allowBuilds:
   cbor-extract: false
   electron-winstaller: true
   esbuild: true
+
+# The editor tooling must not trigger an install before every script run (pnpm 11 aborts without a TTY).
+verifyDepsBeforeRun: false

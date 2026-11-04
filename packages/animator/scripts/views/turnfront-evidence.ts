@@ -1,4 +1,4 @@
-// Turned-front PREVIEW evidence (docs/plans/atlas-animator-demos/views/turned-front/README.md). Run from
+// Turned-front PREVIEW evidence (packages/animator/README.md). Run from
 // packages/animator after `python scripts/views/turnfront.py` has written the turned rigs into turned-front/rig:
 //   npx tsx scripts/views/turnfront-evidence.ts
 // Writes into docs/plans/atlas-animator-demos/views/turned-front/:

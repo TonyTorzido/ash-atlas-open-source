@@ -1,10 +1,10 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Renders a rig's setup pose with the CPU review rasteriser (softRender) on a transparent canvas,
  * canvas size and origin as the document says, scale 1:
  *   tsx browser-tests/tools/cpuRender.ts <doc.anim.json> <atlas.json> <out.png>
- * The browser tests compare it with the Pixi page (plan 4d-4i: the fox misregistration).
+ * The browser tests compare it with the Pixi page (the fox misregistration).
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";

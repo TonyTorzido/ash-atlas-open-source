@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Certification helpers for the mirrored body (plan 4d-4l; 4d-4l review 2, 8; 11):
+ * Certification helpers for the mirrored body:
  * the half baseline's companion carries the projected poses (the validator prefers companion poses),
  * geometry findings are compared per pose and per triangle (not by totals), the skin-alone weld
  * document, and the whole-body vertex budget against the per-dressed-character figure.
@@ -9,9 +9,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { GeometryFinding } from "./validateGeometry.js";
 
-/** Plan 4d-4f (review consult): submitted vertices per complete dressed character. */
+/** Plan: submitted vertices per complete dressed character. */
 export const DRESSED_CHARACTER_VERTICES = 2500;
-/** The probe tunic's vertex budget: declared before judging (4d-4l part b), re-declared on the measured cost (part c). */
+/** The probe tunic's vertex budget: declared before judging (part b), re-declared on the measured cost (part c). */
 export const TUNIC_VERTEX_BUDGET = { declared: 260, redeclared: 280 } as const;
 
 /** The half companion for a baseline run on `poses`: the validator evaluates companion poses first, so they must be these. */

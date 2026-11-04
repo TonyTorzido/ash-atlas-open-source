@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * AnimationState: plays clips on tracks and mixes them into a skeleton's pose.
  *
@@ -64,8 +64,7 @@
  * entry fires events; an entry being mixed out fires a key only if the newer entry's mix fraction,
  * at the moment the old entry reaches that key, is at or below the old entry's `eventThreshold`
  * (default 0: never). Eligibility is computed at the key's own position within the fade, so it does
- * not depend on how the elapsed time is split into updates (F5). Boundary rule (runtime review
- * item 6): the old entry's key at track time t fires iff t <= T_b + EVENT_EPSILON, where T_b is
+ * not depend on how the elapsed time is split into updates (F5). Boundary rule: the old entry's key at track time t fires iff t <= T_b + EVENT_EPSILON, where T_b is
  * the old entry's track time when the newer mix reaches the threshold, computed in the step where
  * that happens (it may round past the old entry's own track time; the window then extends to it,
  * and the next scan starts after it, so a key fires once and none later than the epsilon). Physics reset keys follow the
@@ -231,7 +230,7 @@ let entrySerial = 0;
 export const HELD_PHASES = 2;
 
 /**
- * The held phase of a character with id or instance seed `seed` (plan 4d-4f): a hash of the seed
+ * The held phase of a character with id or instance seed `seed`: a hash of the seed
  * onto the HELD_PHASES slots, so a character keeps its phase across reloads, clients and creation
  * order (no module-global counter). A crowd with distinct seeds splits about evenly.
  */
@@ -271,7 +270,7 @@ const DEV_ASSERTS = (() => {
 const HELD_EPSILON = 1e-6;
 
 /**
- * Clip time of the frame the held-frame cache displays at `trackTime` (plan 4d-4f): frame
+ * Clip time of the frame the held-frame cache displays at `trackTime`: frame
  * k = floor(trackTime * fps) shows clip time k / fps (wrapped for a loop); a non-looping clip
  * shows its end pose once the track time reaches the duration. Mirrors the validator's
  * displayedFrameTimes, so every displayed pose is a certified one.
@@ -495,15 +494,14 @@ export class AnimationState {
   readonly data: AnimationStateData;
   private speed = 1;
   /**
-   * Held-frame playback (plan 4d-4f, owner decision 2026-10-14: clips play at their `fps`, default
-   * 30, on a 60 Hz display). When true, apply() samples every entry at its displayed frame
+   * Held-frame playback. When true, apply() samples every entry at its displayed frame
    * (heldClipTime) and steps crossfade fractions on the same 1 / fps grid, so the pose is a function
    * of `poseVersion`: AnimatorCharacter.updateHeld skips all pose work while it is unchanged.
    * False (default, for tools and tests): exact continuous sampling.
    */
   heldFrames = false;
   /**
-   * Where this state's held frames switch, as a fraction of a held frame in [0, 1) (plan 4d-4f,
+   * Where this state's held frames switch, as a fraction of a held frame in [0, 1) (
    * iPhone run 1: 50 characters switching on the same display frame spiked CPU). The switch from
    * frame k to k + 1 happens `heldPhase` of a frame early; every displayed pose is still a frame
    * k / fps of the clip (certified) and shown for exactly 1 / fps, so only the work moves.
@@ -777,6 +775,7 @@ export class AnimationState {
       }
       this.applyPlan(skeleton, track.plan);
     }
+    skeleton.limitsEnforced = this.allLooping();
     const resets = this.pendingResets;
     for (let i = 0; i < resets.length; i++) {
       if (resets[i] === 1) {
@@ -784,6 +783,16 @@ export class AnimationState {
         resets[i] = 0;
       }
     }
+  }
+
+  /** True when every posed entry loops (bone rotation limits clamp the pose); a non-looping clip lifts them. */
+  private allLooping(): boolean {
+    for (let i = 0; i < this.tracks.length; i++) {
+      const plan = (this.tracks[i] as Track).plan;
+      if (!plan || !(this.tracks[i] as Track).current) continue;
+      for (let k = 0; k < plan.levels.length; k++) if (!(plan.levels[k] as TrackEntry).loop) return false;
+    }
+    return true;
   }
 
   // -------------------------------------------------------------------------------------------
@@ -845,7 +854,7 @@ export class AnimationState {
         winner = k;
         winnerKey = key;
       }
-      if (winner >= 0) (plan.discreteTimelines[row + winner] as DiscreteTimeline).applyKey(skeleton, winnerKey);
+      if (winner >= 0) (plan.discreteTimelines[row + winner] as DiscreteTimeline).applyKey(skeleton, winnerKey, plan.clipTime, winner);
     }
   }
 
@@ -1054,7 +1063,8 @@ export class AnimationState {
     if (!entry.loop || duration <= 0) {
       for (let i = 0; i < events.length; i++) {
         const event = events[i] as AnimationEvent;
-        if (event.time > from && event.time <= to) this.enqueue(QueueType.Event, entry, event);
+        const at = event.time > 0 ? event.time - EVENT_TIME_SLACK : event.time;
+        if (at > from && at <= to) this.enqueue(QueueType.Event, entry, event);
       }
       num[N_BASE] = 0;
       this.scanResets(clip, mask);
@@ -1073,7 +1083,7 @@ export class AnimationState {
       const base = (last - count + i) * duration;
       for (let i = 0; i < events.length; i++) {
         const event = events[i] as AnimationEvent;
-        const at = base + event.time;
+        const at = base + (event.time > 0 ? event.time - EVENT_TIME_SLACK : 0);
         if (at > from && at <= to) this.enqueue(QueueType.Event, entry, event);
       }
       num[N_BASE] = base;
@@ -1095,7 +1105,7 @@ export class AnimationState {
       if (mask && !mask.includes(timeline.maskBone)) continue;
       const times = timeline.times;
       for (let i = 0; i < times.length; i++) {
-        const at = base + (times[i] as number);
+        const at = base + ((times[i] as number) > 0 ? (times[i] as number) - EVENT_TIME_SLACK : 0);
         if (at > from && at <= to) {
           this.pendingResets[timeline.constraint] = 1;
           this.resetSerial++;
@@ -1109,7 +1119,7 @@ export class AnimationState {
   // -------------------------------------------------------------------------------------------
 
   /*
-   * Transactional (runtime review item 5): each operation validates every option and builds
+   * Transactional: each operation validates every option and builds
    * its entry (the TrackEntry constructor validates alpha, timeScale and thresholds; newEntry the
    * mix) before it touches the queue, a chain or a track, so a rejected call changes nothing.
    */
@@ -1307,6 +1317,13 @@ const N_A = 5; // angular blend: from (and the result)
 const N_B = 6; // angular blend: to
 const N_W = 7; // angular blend: weight
 const NUM_SLOTS = 8;
+
+/**
+ * An event (or physics reset) is reached when the clock is within this many seconds before it. A clock built by summing 1/30 s steps
+ * lands a few ulps (about 1e-16 s) short of an exact frame time such as 6/30, which would fire a frame-6 event on frame 7; 1e-9 s
+ * absorbs that and is far below any authored spacing. (Stepped keys use the larger KEY_TIME_EPSILON for 5-decimal files.)
+ */
+const EVENT_TIME_SLACK = 1e-9;
 
 /** Most loop cycles one update scans for events, completes and physics resets (long-pause catch-up bound). */
 export const MAX_CATCHUP_CYCLES = 1000;

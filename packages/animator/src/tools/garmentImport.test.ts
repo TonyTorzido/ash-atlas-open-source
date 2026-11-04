@@ -6,13 +6,13 @@ import { simplifyLoop, traceLoops } from "./garmentImport.js";
 import { OUTLINE_TURN_MAX_DEG, buildGarmentSurface, contourGate, correspondenceGate, lengthenHemDomain, outlineZigDeg } from "./garmentSurface.js";
 
 /*
- * Plan 4d-4n: garment helpers and the body-derived garment surface (construction pass 1). The
+ * Plan: garment helpers and the body-derived garment surface (construction pass 1). The
  * committed jacket rig must be exactly what the committed domain builds, with nonnegative
  * parent-triangle bindings (the one runtime embed convention, core/attachments.ts buildEmbed) and
  * one stroke per boundary; the gates fail on a wrong binding and a broken contour.
  */
-const RIG = new URL("../../../../docs/plans/atlas-animator-demos/phase-4d4n/jacket/rig/template7-shoulder-legs-jacket.anim.json", import.meta.url);
-const BODY = new URL("../../../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/template7-shoulder-legs.anim.json", import.meta.url);
+const RIG = new URL("../../fixtures/test-rigs/jacket/template7-shoulder-legs-jacket.anim.json", import.meta.url);
+const BODY = new URL("../../fixtures/test-rigs/body/template7-shoulder-legs.anim.json", import.meta.url);
 const DOMAIN = new URL("../../fixtures/garments/kungfu-jacket.domain.json", import.meta.url);
 
 describe("garment import", () => {
@@ -127,7 +127,7 @@ describe("garment import", () => {
     expect(corr.restMismatchMax).toBeLessThan(0.01);
     const cg = contourGate(g, Object.fromEntries(Object.entries(contours).filter(([s]) => s === "jacket" || s.startsWith("jacket_"))), build.paintedEdges);
     expect(cg).toMatchObject({ unstroked: 0, doubled: 0, interiorStroked: 0, painted: 0 });
-    // owner review round 9: every cut is stroked; the neckline inside the garment (barycentric points,
+    // design review 9: every cut is stroked; the neckline inside the garment (barycentric points,
     // checked geometrically), with end pieces above the head; without it its edges are unstroked
     expect(build.paintedEdges).toEqual([]);
     expect(cg.inset).toBeGreaterThan(0);

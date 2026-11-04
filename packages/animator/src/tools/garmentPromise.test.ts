@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { denseAgreementOk, promisedCoverage } from "./garmentPromise.js";
 
-/* 4d-4l review 6 / 7: coverage on an independent promised domain; dense agreement needs every bound. */
+/* review 6 / 7: coverage on an independent promised domain; dense agreement needs every bound. */
 describe("garment promise verdicts", () => {
   const W = 12;
   const H = 12;

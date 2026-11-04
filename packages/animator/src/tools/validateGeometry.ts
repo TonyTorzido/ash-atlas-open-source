@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Unified geometry evaluator (plan 4d-4g, milestone review 3 section 3): the one source of
+ * Unified geometry evaluator: the one source of
  * truth for triangle deformation, called by `animator validate` (validate.ts) and by the surface
  * gates (surface/gates.ts) on poses run through the final runtime (`Skeleton`).
  *
@@ -122,7 +122,7 @@ function fnv(text: string): string {
 /**
  * Hash of everything in the rig but its clips: a companion is valid for any clip on the same rig.
  * Hashed on the normalized (parsed, defaults-filled, schema key order) document, so a raw document
- * and its loaded form hash alike (4d-4l review 3: the certify hashed raw, validation parsed).
+ * and its loaded form hash alike.
  */
 export function rigHash(doc: AnimDocument | Record<string, unknown>): string {
   const parsed = animDocumentSchema.safeParse(doc);

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The contract between `animator render` (Node) and the headless render page (browser). Plain
  * types only, so both sides compile it.

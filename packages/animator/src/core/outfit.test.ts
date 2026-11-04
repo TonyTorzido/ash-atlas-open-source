@@ -34,7 +34,7 @@ const outfitSections: Sections = {
 
 function shown(skeleton: Skeleton): Record<string, string | null> {
   return Object.fromEntries(
-    skeleton.slots.map((slot) => [slot.data.name, slot.attachment && slot.attachment.type !== "point" ? slot.attachment.path : null])
+    skeleton.slots.map((slot) => [slot.data.name, slot.attachment && (slot.attachment.type === "region" || slot.attachment.type === "mesh") ? slot.attachment.path : null])
   );
 }
 

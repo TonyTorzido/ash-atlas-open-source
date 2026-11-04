@@ -1,11 +1,11 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Asset commands of the CLI (plan 4d-4i): any sprite, template or mob from PNGs, no hand JSON.
+ * Asset commands of the CLI: any sprite, template or mob from PNGs, no hand JSON.
  *
  *   animator atlas import <doc> <png...> [--skin body] [--bone root] [--scale 1] [--padding 2]
- *     Packs the PNGs, with every region of the existing atlas kept (plan 4d-4j2), into a new,
- *     immutable asset bundle beside the document (plan 4d-4j3): `<doc stem>.b<V>.N.png` pages and
+ * Packs the PNGs, with every region of the existing atlas kept, into a new,
+ * immutable asset bundle beside the document: `<doc stem>.b<V>.N.png` pages and
  *     `<doc stem>.b<V>.atlas.json`, written temp-then-rename and never over an existing file, only
  *     after every option and the batch validate, never on --dry-run. The document commit points at
  *     the bundle (its `atlas.pages` name the versioned pages), so undo and redo return to the
@@ -16,6 +16,12 @@
  *     (attachment.add, which creates the skin when missing), all one logged, undoable batch.
  *     A PNG the canvas size is a part drawn in place: it is cropped to its opaque pixels and keeps
  *     its place. Any other PNG is cropped the same way and stands on the canvas origin (bottom centre).
+ *     --swaps (cut-out swap sets): a PNG named `<slot>__<attachment>.png` becomes attachment
+ *     <attachment> of slot <slot> (the slot is created on --bone when missing), so one slot holds a
+ *     set of drawings to swap between. A sidecar `<same name>.pivot.json`, {"pivot": [x, y],
+ *     "angle": deg}, imports a piece drawn in its own frame: image pixel `pivot` (in the PNG as
+ *     given) sits on the slot bone's start and the drawn direction `angle` (canvas degrees, y down)
+ *     lies along the bone's setup direction.
  *   animator outline trace <doc> <png> --slot S [--skin body] [--name N] [--target 320 | --spacing P] [--tolerance 2.5] [--components all|largest]
  *     Traces the PNG's opaque outline (tools/outline.ts) and turns the slot's region into a mesh
  *     with that hull (mesh.generate, logged). The PNG is the one imported for the slot: the same
@@ -71,7 +77,7 @@ export function trimPng(input: string, output: string, pad: number): { width: nu
  * keeps everything else. The part also gets an `overlap` band on the other side of the line made
  * of its own texels extruded across the cut: hidden when the part draws behind the rest, it fills
  * the seam when the part moves. Both outputs keep the input's size (canvas-size parts).
- * Approved by the owner for appendages (2026-10-15); whole-creature AI-filled splits stay out.
+ * Intended for appendages; whole-creature filled splits stay out.
  */
 export function splitPng(input: string, line: [number, number, number, number], seed: [number, number], restOut: string, partOut: string, overlap = 14): { part: number; rest: number; band: number } {
   const image = readPng(input);
@@ -177,7 +183,7 @@ export interface AssetPlan {
   commands: Command[];
   /**
    * Asset files (atlas pages and manifest) the plan needs written. Planning never writes
-   * (plan 4d-4j2): the CLI validates the commands first, writes nothing on --dry-run, and writes
+   *: the CLI validates the commands first, writes nothing on --dry-run, and writes
    * these only once the batch is known to apply.
    */
   files: { path: string; bytes: Uint8Array }[];
@@ -247,7 +253,7 @@ function nextBundleVersion(docPath: string): number {
 }
 
 /**
- * Makes the pointer manifest match the document's committed bundle (plan 4d-4j3): after an import
+ * Makes the pointer manifest match the document's committed bundle: after an import
  * commit, an undo or a redo. A document without an atlas has no pointer (the bundles stay). An
  * unversioned atlas uses its snapshot `b0` when one was taken. Returns what it did, or null.
  */
@@ -280,7 +286,7 @@ export function syncAtlasPointer(docPath: string): string | null {
  * is rejected.
  */
 export function atlasImport(docPath: string, rawDoc: Record<string, unknown>, pngs: readonly string[], flags: Flags): AssetPlan {
-  if (pngs.length === 0) throw new Error("usage: animator atlas import <doc> <png...> [--skin body] [--bone root] [--scale 1]");
+  if (pngs.length === 0) throw new Error("usage: animator atlas import <doc> <png...> [--skin body] [--bone root] [--scale 1] [--swaps]");
   const skin = text(flags, "skin") ?? "body";
   const explicitBone = text(flags, "bone");
   const scale = num(flags, "scale") ?? 1;
@@ -288,9 +294,19 @@ export function atlasImport(docPath: string, rawDoc: Record<string, unknown>, pn
   const canvas = rawDoc["canvas"] as { width: number; height: number; originX: number; originY: number };
   const skeleton = setupSkeleton(rawDoc);
   const slotBones = new Map(((rawDoc["slots"] as { name: string; bone: string }[] | undefined) ?? []).map((s) => [s.name, s.bone]));
+  const swaps = flags.has("swaps");
   const parts = pngs.map((file) => {
     const image = readPng(file);
-    const name = partName(file);
+    const stemName = partName(file);
+    const split = swaps ? stemName.indexOf("__") : -1;
+    if (swaps && split <= 0) throw new Error(`--swaps: '${basename(file)}' is not named <slot>__<attachment>.png`);
+    const name = split > 0 ? stemName.slice(0, split) : stemName;
+    const attachment = split > 0 ? stemName.slice(split + 2) : stemName;
+    const sidecar = file.replace(/\.png$/i, ".pivot.json");
+    const pivot = existsSync(sidecar) ? (JSON.parse(readFileSync(sidecar, "utf8")) as { pivot: [number, number]; angle: number }) : null;
+    if (pivot && !(Array.isArray(pivot.pivot) && pivot.pivot.length === 2 && pivot.pivot.every(Number.isFinite) && Number.isFinite(pivot.angle))) {
+      throw new Error(`${sidecar}: needs {"pivot": [x, y], "angle": deg}`);
+    }
     const existing = slotBones.get(name);
     if (existing !== undefined && explicitBone !== undefined && existing !== explicitBone) {
       throw new Error(`slot '${name}' exists on bone '${existing}', not --bone '${explicitBone}': move the slot first or drop --bone`);
@@ -298,13 +314,14 @@ export function atlasImport(docPath: string, rawDoc: Record<string, unknown>, pn
     const bone = existing ?? explicitBone ?? "root";
     const frame = skeleton.findBone(bone);
     if (!frame) throw new Error(`no bone '${bone}'`);
-    return { name, image, place: partPlacement(image, canvas), path: `${skin}/${name}`, bone, frame, isNew: existing === undefined };
+    return { name, attachment, pivot, image, place: partPlacement(image, canvas), path: `${skin}/${stemName}`, bone, frame, isNew: existing === undefined };
   });
-  const names = parts.map((p) => p.name);
+  const names = parts.map((p) => `${p.name}/${p.attachment}`);
   if (new Set(names).size !== names.length) throw new Error(`two PNGs give the same part name: ${names.join(", ")}`);
+  const newSlots = new Set<string>();
   const stem = docStem(docPath);
   const dir = dirname(docPath);
-  // Plan 4d-4j3: the kept regions come from the document's own committed bundle (the pointer only
+  // Plan: the kept regions come from the document's own committed bundle (the pointer only
   // for an unversioned atlas); the import writes a new bundle version.
   const currentVersion = bundleVersionOf(docPath, rawDoc);
   const manifestPath = currentVersion !== null && currentVersion > 0 ? bundleManifestPath(docPath, currentVersion) : pointerManifestPath(docPath);
@@ -343,16 +360,30 @@ export function atlasImport(docPath: string, rawDoc: Record<string, unknown>, pn
   if (currentVersion === 0 && existsSync(manifestPath) && !existsSync(bundleManifestPath(docPath, 0))) files.push({ path: bundleManifestPath(docPath, 0), bytes: readFileSync(manifestPath) });
   const commands: Command[] = [{ op: "doc.set", atlas: { pages: packed.pages.map((page) => page.file), scale } }];
   for (const part of parts) {
-    if (part.isNew) commands.push({ op: "slot.add", name: part.name, bone: part.bone, attachment: part.name });
-    const centre = { x: part.place.canvas.x + part.place.canvas.width / 2, y: part.place.canvas.y + part.place.canvas.height / 2 };
+    if (part.isNew && !newSlots.has(part.name)) {
+      commands.push({ op: "slot.add", name: part.name, bone: part.bone, attachment: part.attachment });
+      newSlots.add(part.name);
+    }
+    let centre = { x: part.place.canvas.x + part.place.canvas.width / 2, y: part.place.canvas.y + part.place.canvas.height / 2 };
+    let rotation = -part.frame.worldRotationX;
+    if (part.pivot) {
+      // drawn in its own frame: the pivot pixel on the bone's start, the drawn direction along the bone
+      const turn = part.frame.worldRotationX - part.pivot.angle;
+      const r = (turn * Math.PI) / 180;
+      const src = part.place.source;
+      const dx = src.x + src.width / 2 - part.pivot.pivot[0];
+      const dy = src.y + src.height / 2 - part.pivot.pivot[1];
+      centre = { x: part.frame.world.x + dx * Math.cos(r) - dy * Math.sin(r), y: part.frame.world.y + dx * Math.sin(r) + dy * Math.cos(r) };
+      rotation = turn - part.frame.worldRotationX;
+      rotation = ((((rotation + 180) % 360) + 360) % 360) - 180;
+    }
     const local = { x: 0, y: 0 };
     part.frame.worldToLocal(centre.x, centre.y, local);
-    const rotation = -part.frame.worldRotationX;
     commands.push({
       op: "attachment.add",
       skin,
       slot: part.name,
-      name: part.name,
+      name: part.attachment,
       attachment: { type: "region", path: part.path, x: round(local.x), y: round(local.y), ...(Math.abs(rotation) > 1e-9 ? { rotation: round(rotation) } : {}), width: part.place.canvas.width, height: part.place.canvas.height }
     });
   }
@@ -372,7 +403,7 @@ export function outlineTrace(rawDoc: Record<string, unknown>, png: string | unde
   if (source.width !== attachment["width"] || source.height !== attachment["height"]) {
     throw new Error(`the PNG's part is ${source.width}x${source.height} but ${skin}/${slot}/${name} is ${String(attachment["width"])}x${String(attachment["height"])}: trace the PNG it was imported from`);
   }
-  // Plan 4d-4j2: disconnected artwork is never dropped silently. --components all (default): each
+  // Plan: disconnected artwork is never dropped silently. --components all (default): each
   // component is its own hull, the largest on this attachment and every other one on a new slot
   // `<slot>_partN` (same bone, same texture region, its own mesh); --components largest keeps
   // only the largest. Either way the notes list every component (and specks under 16 px).

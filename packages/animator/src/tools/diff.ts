@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Semantic diff of two `atlas-anim@1` documents: what changed in rig terms (bones, slots, skins,
  * attachments, constraints, driven sets, events, clips and their keys), not raw JSON lines.

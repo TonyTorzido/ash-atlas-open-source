@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Test helpers for the generality fixtures (plan 4d-4j2): sibling-order shuffles of a weight tree
+ * Test helpers for the generality fixtures: sibling-order shuffles of a weight tree
  * and name-keyed weight comparison. Not exported from the package index.
  */
 import type { Influence, WeightTree } from "./autoWeights.js";

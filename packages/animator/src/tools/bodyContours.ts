@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Clothing model, body side (plan 4d-4l close): the body carries its own outline, independent of
+ * Clothing model, body side (close): the body carries its own outline, independent of
  * any garment. Every run of the skin mesh's hull that no skin-bound contour of that skin strokes
  * yet gets a derived body contour (flanks, waist, shoulder tops, neck top), styled like the skin's
  * existing outline, round-capped so they join the authored arm contours without ticks at the

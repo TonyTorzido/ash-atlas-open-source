@@ -18,7 +18,7 @@ function rig() {
 const key = (bone: string, time: number, value: number): Command => ({ op: "key.set", clip: "swing", bone, timeline: "rotate", time, value });
 const swing: Command[] = [key("upper", 0, 0), key("upper", 0.5, 97), key("upper", 1, 0), key("fore", 0, 0), key("fore", 0.5, 60), key("fore", 1, 0)];
 
-describe("live pose limits (4d-4h)", () => {
+describe("live pose limits ()", () => {
   it("projects onto the polygon", () => {
     expect(outsideDistance(POLYGON, [0, 0])).toBeLessThanOrEqual(0);
     expect(outsideDistance(POLYGON, [97, 60])).toBeGreaterThan(0);

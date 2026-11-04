@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Combined pose limits (plan 4d-3 pass 3d-1, `poseLimits`): convex polygons in driver space
+ * Combined pose limits (pass 3d-1, `poseLimits`): convex polygons in driver space
  * (degrees, offsets from setup) over named driver pairs, AND-ed (`auto` polygons are convex; a declared
  * polygon may be any simple polygon, e.g. the elbow-inward Z region). A pose is reachable when its
  * (x, y) driver values lie inside every polygon. The `auto` form samples a declared collision on
@@ -142,7 +142,7 @@ export function shrinkToFree(rect: Pt[], free: readonly Pt[], blocked: readonly 
  * combined limit's drivers lean one way (leanSplitOk: the only splits the auto sampling covers).
  */
 /**
- * Evidence refit (plan 4d-4l close, decision A: the smaller clavicle-held range is accepted): the
+ * Evidence refit (close, decision A: the smaller clavicle-held range is accepted): the
  * pose scaled toward rest on the limits' own axes (every bone a limit reads) until it is inside;
  * other channels (lean, breathing scale) are kept. Returns `pose` itself when already inside.
  */

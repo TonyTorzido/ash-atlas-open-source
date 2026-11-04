@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Layered-parts pipeline (plan 4d-4k): the files of a layer folder, and the pixel operations of
+ * Layered-parts pipeline: the files of a layer folder, and the pixel operations of
  * `layers extract` and `layers enforce`.
  *
  *   <dir>/plan.json                    the plan (parts, joints, probes, outline measurements)
@@ -308,7 +308,7 @@ export function enforceFile(manifestPath: string, partId: string, generatedPath:
   let registration: Registration | null = null;
   const sizeDiffers = generated.width !== source.width || generated.height !== source.height;
   if (options.register || sizeDiffers) {
-    // A returned drawing may change the canvas size or shift the part: fit it before enforcing.
+    // An image model may change the canvas size or shift the part: fit it before enforcing.
     const trusted = { width: source.width, height: source.height, data: visibleMask.data.map((v, i) => (v && !uncertainMask.data[i] ? 1 : 0)) };
     const fitted = registerToTarget(generated, readPng(resolveRef(dir, part.image)), trusted);
     generated = fitted.image;
@@ -348,7 +348,7 @@ export interface Registration {
 }
 
 /**
- * Returned drawings rarely keep the canvas: a generated part may come back at another size or
+ * Image models rarely keep the canvas: a generated part may come back at another size or
  * shifted. Fits a scale and translation (no rotation) that best lays the generated image over the
  * target's trusted pixels (colour difference, transparent counts as 255), coarse then fine, and
  * resamples it (bilinear, premultiplied) onto the source canvas. The trusted pixels themselves are

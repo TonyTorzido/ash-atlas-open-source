@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Physics constraint: a damped spring on one bone (capes, hair, skirts, pouches, trailing wing
  * edges). Cosmetic only, never networked. A chain is one constraint per bone, listed parents
@@ -473,8 +473,10 @@ export class PhysicsConstraint {
     const gravity = data.gravity;
     const wind = data.wind;
     if (data.x > 0 || data.y > 0) {
-      if (!channelAtRest(this.velocityX, wind - strength * this.offsetX, strength, step, accel, 1)) return false;
-      if (!channelAtRest(this.velocityY, gravity - strength * this.offsetY, strength, step, accel, 1)) return false;
+      restArgs[0] = this.velocityX; restArgs[1] = wind - strength * this.offsetX; restArgs[2] = strength; restArgs[3] = step; restArgs[4] = accel; restArgs[5] = 1;
+      if (!channelAtRest()) return false;
+      restArgs[0] = this.velocityY; restArgs[1] = gravity - strength * this.offsetY;
+      if (!channelAtRest()) return false;
     }
     const turns = data.rotate > 0 || data.shearX > 0;
     const scales = data.scaleX > 0;
@@ -484,8 +486,15 @@ export class PhysicsConstraint {
       const sin = Math.sin(base + this.rotateOffset);
       const torque = length > MIN_LENGTH ? (gravity * cos - wind * sin) / length : 0;
       const pull = length > MIN_LENGTH ? (wind * cos + gravity * sin) / length : 0;
-      if (turns && !channelAtRest(this.rotateVelocity, torque - strength * this.rotateOffset, strength, step, accel, lever)) return false;
-      if (scales && !channelAtRest(this.scaleVelocity, pull - strength * this.scaleOffset, strength, step, accel, lever)) return false;
+      restArgs[2] = strength; restArgs[3] = step; restArgs[4] = accel; restArgs[5] = lever;
+      if (turns) {
+        restArgs[0] = this.rotateVelocity; restArgs[1] = torque - strength * this.rotateOffset;
+        if (!channelAtRest()) return false;
+      }
+      if (scales) {
+        restArgs[0] = this.scaleVelocity; restArgs[1] = pull - strength * this.scaleOffset;
+        if (!channelAtRest()) return false;
+      }
     }
     return true;
   }
@@ -494,8 +503,21 @@ export class PhysicsConstraint {
 /** Motion (px) below which an asleep constraint ignores its input and stays asleep. */
 const WAKE_PIXELS = 1e-6;
 
-/** One channel of the sleep criterion (PhysicsConstraint.resting); `lever` converts to tip pixels. */
-function channelAtRest(velocity: number, residual: number, strength: number, step: number, accel: number, lever: number): boolean {
+/**
+ * Inputs of channelAtRest: velocity, residual, strength, step, accel, lever. Passed through an array
+ * because doubles handed to a call that V8 does not inline are boxed on the heap every frame
+ * (src/pixi/allocation.test.ts).
+ */
+const restArgs = new Float64Array(6);
+
+/** One channel of the sleep criterion (PhysicsConstraint.resting), reading restArgs; `lever` converts to tip pixels. */
+function channelAtRest(): boolean {
+  const velocity = restArgs[0] as number;
+  const residual = restArgs[1] as number;
+  const strength = restArgs[2] as number;
+  const step = restArgs[3] as number;
+  const accel = restArgs[4] as number;
+  const lever = restArgs[5] as number;
   if (!(Math.abs(velocity) * step * lever < SETTLE_PIXELS)) return false;
   if (!(Math.abs(residual) * accel * step * lever < SETTLE_PIXELS)) return false;
   const distance = strength > 0 ? Math.abs(residual) / strength : Math.abs(residual) > 0 ? Infinity : 0;

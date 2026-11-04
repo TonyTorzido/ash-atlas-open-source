@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Full-body composition (phase 2b milestones 2-3): the independently built parts of a full-body
  * preset (tools/surface/fullBody.ts) merged into one document by name, never mirrored.

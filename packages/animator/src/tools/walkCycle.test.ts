@@ -5,7 +5,7 @@ import { liftCurve, walkFrames, type WalkParams } from "./walkCycle.js";
 
 const params = JSON.parse(readFileSync(fileURLToPath(new URL("../../fixtures/clips/walk-front-chibi.json", import.meta.url)), "utf8")) as WalkParams;
 
-describe("walk template: light front-facing step (plan 4d-4m r5)", () => {
+describe("walk template: light front-facing step (r5)", () => {
   const frames = walkFrames(params);
   it("cycles in 0.9..1.0 s at 30 fps with no holds", () => {
     expect(frames.length / params.fps).toBeGreaterThanOrEqual(0.9);

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Runtime attachments, built once per document and shared by every skeleton made from it.
  *
@@ -24,6 +24,10 @@ import {
   type LinkedMeshAttachmentData,
   type MeshAttachmentData,
   type PointAttachmentData,
+  type ClippingAttachmentData,
+  type BoundingBoxAttachmentData,
+  type PathAttachmentData,
+  type SequenceData,
   type RegionAttachmentData
 } from "./format.js";
 import { DEG_TO_RAD } from "./math.js";
@@ -126,6 +130,8 @@ interface AttachmentBase extends AttachmentAddress {
 export interface RegionAttachment extends AttachmentBase {
   readonly type: "region";
   readonly path: string;
+  /** Image sequence (frames are `path` + padded number), or null for a single image. */
+  readonly sequence: SequenceData | null;
   /** Image size in canvas pixels. */
   readonly width: number;
   readonly height: number;
@@ -146,6 +152,7 @@ export interface RegionAttachment extends AttachmentBase {
 export interface MeshAttachment extends AttachmentBase {
   readonly type: "mesh";
   readonly path: string;
+  readonly sequence: SequenceData | null;
   readonly width: number;
   readonly height: number;
   readonly geometry: MeshGeometryData;
@@ -166,11 +173,51 @@ export interface PointAttachment extends AttachmentBase {
   readonly rotation: number;
 }
 
-export type Attachment = RegionAttachment | MeshAttachment | PointAttachment;
+/** A clipping mask: cuts the slots after its own up to `endSlot` (null = the end of the draw order). */
+export interface ClippingAttachment extends AttachmentBase {
+  readonly type: "clipping";
+  /** x, y pairs in the slot bone's space. */
+  readonly vertices: Float64Array;
+  readonly endSlot: string | null;
+}
+
+/** A hit box: never drawn; see computeBoundingBoxWorld / boundingBoxContains in core/skinning.ts. */
+export interface BoundingBoxAttachment extends AttachmentBase {
+  readonly type: "boundingbox";
+  readonly vertices: Float64Array;
+}
+
+/** A bezier path for path constraints: 3 vertices per control point (handle in, point, handle out). Never drawn. */
+export interface PathAttachment extends AttachmentBase {
+  readonly type: "path";
+  readonly closed: boolean;
+  readonly constantSpeed: boolean;
+  readonly vertexCount: number;
+  /** Unweighted: x, y per vertex in the slot bone's space. Weighted: the mesh encoding (see pathAttachmentSchema). */
+  readonly vertices: Float64Array;
+  /** Bone names the weighted encoding indexes, or null. */
+  readonly bones: readonly string[] | null;
+}
+
+export type Attachment = RegionAttachment | MeshAttachment | PointAttachment | ClippingAttachment | BoundingBoxAttachment | PathAttachment;
 export type DrawableAttachment = RegionAttachment | MeshAttachment;
 
 export function isDrawable(attachment: Attachment | null | undefined): attachment is DrawableAttachment {
-  return attachment !== null && attachment !== undefined && attachment.type !== "point";
+  return attachment !== null && attachment !== undefined && (attachment.type === "region" || attachment.type === "mesh");
+}
+
+/** Texture path of frame `index` of a sequence (Spine: path + number zero-padded to `digits`). */
+export function sequenceFramePath(path: string, sequence: SequenceData | null, index: number): string {
+  if (!sequence) return path;
+  const frame = Math.min(Math.max(Math.trunc(index), 0), sequence.count - 1);
+  return path + String(sequence.start + frame).padStart(sequence.digits, "0");
+}
+
+/** Every texture path a drawable attachment can show (all sequence frames, or its one path). */
+export function attachmentTexturePaths(attachment: DrawableAttachment): string[] {
+  const sequence = attachment.sequence;
+  if (!sequence) return [attachment.path];
+  return Array.from({ length: sequence.count }, (_, i) => sequenceFramePath(attachment.path, sequence, i));
 }
 
 /** The parts of a document attachments are built from. */
@@ -202,6 +249,7 @@ export class AttachmentLibrary {
         ...base(address, attachments.length, data.color),
         type: "mesh",
         path: data.path,
+        sequence: data.sequence ?? null,
         width: data.width,
         height: data.height,
         geometry: geometryOf(data),
@@ -226,7 +274,16 @@ export class AttachmentLibrary {
           if (data.type === "mesh") addMesh(address, data);
           else if (data.type === "linkedMesh") linked.push([address, data]);
           else {
-            const attachment = data.type === "region" ? buildRegion(address, attachments.length, data) : buildPoint(address, attachments.length, data);
+            const attachment =
+              data.type === "region"
+                ? buildRegion(address, attachments.length, data)
+                : data.type === "clipping"
+                  ? buildClipping(address, attachments.length, data)
+                  : data.type === "boundingbox"
+                    ? buildBoundingBox(address, attachments.length, data)
+                    : data.type === "path"
+                      ? buildPath(address, attachments.length, data)
+                      : buildPoint(address, attachments.length, data);
             attachments.push(attachment);
             byAddress.set(addressKey(address), attachment);
           }
@@ -242,6 +299,7 @@ export class AttachmentLibrary {
         ...base(address, attachments.length, data.color),
         type: "mesh",
         path: data.path,
+        sequence: data.sequence ?? null,
         width: data.width,
         height: data.height,
         geometry: source.geometry,
@@ -273,7 +331,7 @@ export class AttachmentLibrary {
     this.attachments = attachments;
     this.deformOwners = owners;
     this.byAddress = byAddress;
-    this.texturePaths = [...new Set(attachments.flatMap((a) => (a.type === "point" ? [] : [a.path])))];
+    this.texturePaths = [...new Set(attachments.flatMap((a) => (isDrawable(a) ? attachmentTexturePaths(a) : [])))];
   }
 
   /** The attachment stored at skins[skin].attachments[slot][name]. */
@@ -319,6 +377,7 @@ function buildRegion(address: AttachmentAddress, id: number, data: RegionAttachm
     ...base(address, id, data.color),
     type: "region",
     path: data.path,
+    sequence: data.sequence ?? null,
     width: data.width,
     height: data.height,
     offsets,
@@ -333,6 +392,26 @@ function buildRegion(address: AttachmentAddress, id: number, data: RegionAttachm
 
 function buildPoint(address: AttachmentAddress, id: number, data: PointAttachmentData): PointAttachment {
   return { ...base(address, id, data.color), type: "point", x: data.x, y: data.y, rotation: data.rotation };
+}
+
+function buildClipping(address: AttachmentAddress, id: number, data: ClippingAttachmentData): ClippingAttachment {
+  return { ...base(address, id, data.color), type: "clipping", vertices: Float64Array.from(data.vertices), endSlot: data.end ?? null };
+}
+
+function buildPath(address: AttachmentAddress, id: number, data: PathAttachmentData): PathAttachment {
+  return {
+    ...base(address, id, data.color),
+    type: "path",
+    closed: data.closed,
+    constantSpeed: data.constantSpeed,
+    vertexCount: data.vertexCount,
+    vertices: Float64Array.from(data.vertices),
+    bones: data.bones ?? null
+  };
+}
+
+function buildBoundingBox(address: AttachmentAddress, id: number, data: BoundingBoxAttachmentData): BoundingBoxAttachment {
+  return { ...base(address, id, data.color), type: "boundingbox", vertices: Float64Array.from(data.vertices) };
 }
 
 function buildGroups(data: MeshAttachmentData): MeshGroupData[] | null {

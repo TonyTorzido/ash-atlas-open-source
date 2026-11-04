@@ -1,4 +1,4 @@
-# Interior seam polish for body-derived garments (armour round 14/15).
+# Interior seam polish for body-derived garments (armour /15).
 #
 #   python polish-seam-ink.py polish in.png out.png [--rows 600:860] [--mask mask.png]
 #   python polish-seam-ink.py check texture.png mask.png --rect L,T,W,H [--fabric r,g,b] [--ink r,g,b] [--domain d.json]
@@ -7,12 +7,12 @@
 # surrounding fabric; the silhouette outline (within SIL px of transparency) and line work outside --rows (collar, belt)
 # are kept. The ink colour is the art's own silhouette outline colour (mode of the outline band), not a fixed value.
 # Shading that HUGS a removed seam (a darker band drawn against the seam line, the artist's shadow of it) is treated
-# like the seam itself (round 15, owner review: a dark smudge at the top of each armhole): within HUG px of the
+# like the seam itself: within HUG px of the
 # removed line, darker-than-fabric paint is eased toward the fabric, fully at the line and back to the art's own
 # shade at HUG px (smoothstep), so no shade island remains where the line was. Then every seam texel takes the colour
 # of the nearest kept fabric texel. --mask writes the removed seam texels (white) for the check.
 #
-# check: garment-interior darkness near removed seams, per material (round 16; --fabric = the single-material form). For the painted texture (garmentImport's <name>-texture.png,
+# check: garment-interior darkness near removed seams, per material (--fabric = the single-material form). For the painted texture (garmentImport's <name>-texture.png,
 # rect = the report's paint rect in canvas px), the luminance deficit below the fabric is averaged in windows of
 # WIN px slid along the removed seam (texels within NEAR px of it), and compared with the same mean over the whole
 # garment interior. Fails (exit 1) when a window is darker than the interior mean by more than TOL: shading left
@@ -77,7 +77,7 @@ def polish(src, dst, rows=(600, 860), mask_out=None):
         Image.fromarray((seam * 255).astype(np.uint8)).save(mask_out)
 
 
-MAT_SHARE = 0.05  # a colour covering at least this share of the interior is a material base or tone (round 16: 0.15 left the breastplate side-shade tone out, so its 1-2 px edge with the steel read as darkness; both smudge controls fail unchanged at 0.05)
+MAT_SHARE = 0.05  # a colour covering at least this share of the interior is a material base or tone (0.15 left the breastplate side-shade tone out, so its 1-2 px edge with the steel read as darkness; both smudge controls fail unchanged at 0.05)
 BLEND = 10.0     # RGB distance: a texel this close to the segment between two material bases may be their edge blend
 BLEND_PX = 2     # px: ... if it also lies this close to texels of both materials (an antialiased edge, not a band)
 
@@ -117,7 +117,7 @@ def materials(tex, interior):
 
 
 def domain_seam_config(path):
-    """The domain's "seamCheck" block (round 20c): {"ink": [r,g,b] (the item's outline colour), "materials":
+    """The domain's "seamCheck" block (): {"ink": [r,g,b] (the item's outline colour), "materials":
     [{"name", "rgb": [r,g,b] (the material's nominal base colour), "pattern": "plain" | "dark"}]}. "dark" marks a
     material whose own pattern is dark line work (mail rings, lamellar plate rows): the ink override does not apply
     there, its texels at luminance <= 60 stay out of the interior as in the default mode. "plain" materials (cloth,
@@ -130,15 +130,15 @@ def domain_seam_config(path):
 
 
 def check(texture, mask, rect, fabric=None, ink=None, mats=None):
-    """Seam darkness. Default (round 16): per material. The interior is split into materials (colour
+    """Seam darkness. Default (): per material. The interior is split into materials (colour
     clusters, see materials()); each material's near-seam texels are compared with that SAME material's
     interior (its own base luminance and its own mean deficit), so a two-material item (steel plate over
     cloth sleeves meeting on the seam) is judged steel against steel and cloth against cloth, and a dark
-    band on either side still fails. --fabric r,g,b keeps the single-material check (round 15).
-    --ink r,g,b (round 18, dark items): line work is the texels within INK_TOL (sum of abs RGB) of that colour,
+    band on either side still fails. --fabric r,g,b keeps the single-material check ().
+    --ink r,g,b (dark items): line work is the texels within INK_TOL (sum of abs RGB) of that colour,
     instead of everything at luminance <= 60, so a near-black fabric (the kung-fu jacket, lum 47) is measured
     instead of skipped. Without it the check warns when it cannot see most of the interior.
-    mats (--domain, the domain's seamCheck materials, round 20c): the ink override applies per material, only on
+    mats (-domain, the domain's seamCheck materials): the ink override applies per material, only on
     "plain" materials; texels within PATTERN_REACH px of paint whose nearest configured material is a "dark" pattern
     (mail, lamellar) are read in the default mode (luminance > 60), so the rings' own dark gaps are not counted as
     seam darkness."""

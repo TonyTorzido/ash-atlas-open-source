@@ -128,7 +128,7 @@ describe("auto-weights", () => {
   });
 });
 
-// A side-view quadruped (plan 4d-4i, the fox finding): body 40..220 along y = 60, a neck and head
+// A side-view quadruped (the fox finding): body 40..220 along y = 60, a neck and head
 // up and forward from the chest end, a front and a back leg down. One mesh, a branched tree.
 function quadruped() {
   const image = paintShapes(280, 190, [

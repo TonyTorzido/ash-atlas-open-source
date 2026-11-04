@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * `tsx src/cli/plateImport.ts <rig.anim.json> <left-plate.png> <out dir> --plate <spec.plate.json>
  *  [--bare <bare.anim.json>] [--no-render]`
@@ -14,7 +14,7 @@
  * - onShoulder: each plate caps its shoulder joint in every frame: the joint (the arm bone's origin)
  *   stays inside the posed plate outline, and the plate's area centroid never passes the joint toward
  *   the body's midline by more than the spec's maxCentreInsideJointPx (default 6), so it cannot slide
- *   onto the upper chest beside the neck when the arm raises (owner review 4d-4n round 10);
+ *   onto the upper chest beside the neck when the arm raises;
  * - overflowDeclared: the plate's paint past the worn rig's rest silhouette lies inside the spec's declared
  *   overflow zones (none declared: the plate stays on the body);
  * - drawOrder: each plate is drawn after its anchor slot and before the head in every frame;
@@ -71,7 +71,7 @@ export async function plateImportCommand(positional: readonly string[], flags: M
   const W = raw.canvas.width as number;
   const H = raw.canvas.height as number;
   const checks = runPlateChecks(art, spec, axis);
-  // past the worn rig's rest outline only inside declared overflow (STYLE.md hard-plate, round 15)
+  // past the worn rig's rest outline only inside declared overflow (STYLE.md hard-plate)
   const overflow = checkPlateOverflow(art, rigRestSilhouette(rigPath), spec, axis);
   const pieces = buildPlates(raw, spec, art);
   const left = pieces.filter((p) => p.side === "l");

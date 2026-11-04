@@ -1,10 +1,10 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * `animator surface <preset.json> --out <dir> [--demos <dir>] [--quick] [--calibrate-width <k>]`:
  * builds a continuous skin surface from a preset (src/tools/surface), writes the rig (document,
  * atlas, source SVG), runs the geometric contract gates over every sweep, and with --demos renders
- * every sweep through the game's Pixi renderer in two views (plan 4d-3 review, item 6): the joint
+ * every sweep through the game's Pixi renderer in two views (review, item 6): the joint
  * crop (the preset `frame`; game size DPR 1 shown 3x nearest, and the true 3x through DPR 3) and
  * the full figure (posed bounds + 20 canvas px; DPR 1 and DPR 3), on dark and light backgrounds,
  * fractional offsets and a saturated background; contact sheets and MP4s with every tile tagged
@@ -34,7 +34,7 @@ import { checkPoseLimits, type ValidationIssue } from "../tools/validate.js";
 import { insideLimits, type PoseLimit } from "../tools/surface/limits.js";
 
 export interface SurfaceOptions {
-  /** Plan 4d-4e: reduce to the sparse runtime rig and gate that (the dense rig is the reference). */
+  /** Plan: reduce to the sparse runtime rig and gate that (the dense rig is the reference). */
   sparse?: boolean;
   /** With sparse: frames to time per rig in headless Chromium (relative frame cost). */
   bench?: number;
@@ -53,16 +53,16 @@ const dist = (a: readonly number[], b: readonly number[]) => Math.hypot((a[0] as
 const BACKGROUNDS = { dark: 0x1e2430, light: 0xf2f2f2, saturated: 0x2a7de1 } as const;
 type Rect = { left: number; top: number; right: number; bottom: number };
 
-/** One row of the plan's 4d-3 pass 3 gate table. */
+/** One row of the plan's pass 3 gate table. */
 export interface GateRow {
   gate: string;
   /** The sub-pass whose exit requires the row green. */
-  subpass: "3a" | "3b" | "3c" | "3d" | "4d-4" | "4d-4a" | "4d-4c" | "all";
+  subpass: "3a" | "3b" | "3c" | "3d" | "" | "" | "" | "all";
   status: "pass" | "fail" | "not measured";
   detail: string;
 }
 
-/** The gate table (plan 4d-3 pass 3): geometric and raster sections, separate pass/fail. */
+/** The gate table (pass 3): geometric and raster sections, separate pass/fail. */
 export function gateTable(geo: GeometryReport, structure: StructureReport, images: Record<string, unknown> | undefined, bake?: BakeReport, limits?: LimitsReport): { geometric: GateRow[]; raster: GateRow[] } {
   const row = (gate: string, subpass: GateRow["subpass"], ok: boolean | null, detail: string): GateRow => ({ gate, subpass, status: ok === null ? "not measured" : ok ? "pass" : "fail", detail });
   const conn = structure.connectivity;
@@ -147,20 +147,20 @@ export function gateTable(geo: GeometryReport, structure: StructureReport, image
     ...geo.kinks.hard.map((h) =>
       row(
         `visible kink, hard: ${h.contour} (<= ${h.turn} deg over ${KINK_WINDOW} game px outside declared corners${Object.keys(h.when).length ? `, at ${Object.entries(h.when).map(([b, [lo, hi]]) => `${b} ${lo}..${hi}`).join(", ")}` : ""})`,
-        "4d-4",
+        "",
         h.checked > 0 && h.violations === 0,
         `${h.checked} window checks, ${h.violations} over; worst ${h.worst} (excess ${((h.maxExcess * 180) / Math.PI).toFixed(1)} deg); worst turn per sweep: ${Object.entries(h.bySweep).map(([sw, v]) => `${sw} ${v.worst} deg at ${v.at}${v.violations ? ` (${v.violations} over)` : ""}`).join(", ")}`
       )
     ),
     row(
-      "junction (4d-4a: added concave turn at the limb/strap junction over the rest art, per-raise limit from the references, <= 35 deg / 3 game px)",
-      "4d-4a",
+      "junction (added concave turn at the limb/strap junction over the rest art, per-raise limit from the references, <= 35 deg / 3 game px)",
+      "",
       geo.junctions.junction.violations === 0,
       `${geo.junctions.junction.checked} frame checks, ${geo.junctions.junction.violations} over${geo.junctions.junction.first.length ? ` (${geo.junctions.junction.first.join(" | ")})` : ""}; worst ${geo.junctions.junction.worst} (margin ${(-geo.junctions.junction.maxExcess).toFixed(1)} deg)`
     ),
     row(
-      "strap/neck curve (turn within its allowance of the rest art; shrug neckline is 4d-4c)",
-      "4d-4c",
+      "strap/neck curve (turn within its allowance of the rest art; shrug neckline is)",
+      "",
       geo.junctions.neck.violations === 0,
       `${geo.junctions.neck.checked} frame checks, ${geo.junctions.neck.violations} over${geo.junctions.neck.first.length ? ` (${geo.junctions.neck.first.join(" | ")})` : ""}; worst ${geo.junctions.neck.worst}`
     ),
@@ -329,7 +329,7 @@ export async function runSurface(options: SurfaceOptions): Promise<{ ok: boolean
   let rig = buildRig(preset, dirname(presetPath));
   let sparse: ReturnType<typeof sparseReport> | undefined;
   if (options.sparse) {
-    // Plan 4d-4e: the dense rig is the offline reference (written to <out>/dense for comparison);
+    // Plan: the dense rig is the offline reference (written to <out>/dense for comparison);
     // everything below (files, gates, demos) runs on the sparse runtime rig.
     const dense = rig;
     const reduced = buildSparseRig(dense);
@@ -357,7 +357,7 @@ export async function runSurface(options: SurfaceOptions): Promise<{ ok: boolean
   const structure = structureGates(rig.built);
   const summary: Record<string, unknown> = { preset: preset.name, generatedBy: generatingCommit(), ...(sparse ? { sparse } : {}), build: rig.report, buildSeconds: Number((rig.buildMs / 1000).toFixed(1)), bake: rig.bake, files, ...(options.calibrateWidth ? { calibrateWidth: options.calibrateWidth } : {}) };
   const failures: string[] = [];
-  if (sparse && sparse.visibleDistortion.sparse.errors) failures.push(`visible distortion (hard from 4d-4e): ${sparse.visibleDistortion.sparse.errors} findings on ${sparse.visibleDistortion.sparse.triangles} triangles (dense: ${sparse.visibleDistortion.dense.errors} on ${sparse.visibleDistortion.dense.triangles}) outside the declared openings; worst ${sparse.visibleDistortion.sparse.worst}`);
+  if (sparse && sparse.visibleDistortion.sparse.errors) failures.push(`visible distortion (hard from): ${sparse.visibleDistortion.sparse.errors} findings on ${sparse.visibleDistortion.sparse.triangles} triangles (dense: ${sparse.visibleDistortion.dense.errors} on ${sparse.visibleDistortion.dense.triangles}) outside the declared openings; worst ${sparse.visibleDistortion.sparse.worst}`);
   if (sparse && sparse.visibleDistortion.sparse.opening.errors) failures.push(`visible distortion parked in declared openings (texture debt, not passing): ${sparse.visibleDistortion.sparse.opening.errors} findings on ${sparse.visibleDistortion.sparse.opening.triangles} triangles; worst ${sparse.visibleDistortion.sparse.opening.worst}`);
   if (sparse && !sparse.silhouette.pass) failures.push(`sparse silhouette vs dense: ${sparse.silhouette.maxGamePx} game px > 0.25 (${sparse.silhouette.worstAt})`);
   if (geo.weightErrors.length) failures.push(`weights: ${geo.weightErrors.length} errors`);
@@ -431,7 +431,7 @@ async function renderDemos(rig: SurfaceRig, geo: GeometryReport, dir: string, qu
   // Overlay invisibility: the same frames with every overlay merged back into its garment.
   const mergedDoc = join(rigDir, `${name}.overlays-merged.anim.json`);
   if (rig.built.overlays.length) writeFileSync(mergedDoc, JSON.stringify(mergeOverlays(rig.built, rig.raw)));
-  // Width gate underlay (plan 4d-3 pass 3d-2): every measured render is paired with the same frame
+  // Width gate underlay (pass 3d-2): every measured render is paired with the same frame
   // rendered without contours; numerical acceptance covers DPR 3, DPR 1, fractional offsets and the
   // saturated background.
   const bareDoc = join(rigDir, `${name}.no-contours.anim.json`);
@@ -550,7 +550,7 @@ ${tag(r3.scale, 3, jc.joint)}` })), 8);
     }
     // Alpha gaps (transparent background) on every frame at DPR 1 and 3.
     // Motion frames: pixels on a transient sub-pixel crack (clearance rule, judged by its time cap) are explained.
-    // Motion frames: pixels on a sub-display-px overlap seam (coordinator decision, pass 3d-1) are excused
+    // Motion frames: pixels on a sub-display-px overlap seam are excused
     // too, but the seamed frames form streaks under the same degree time cap; held/end poses stay strict.
     let gaps = 0;
     let explained = 0;
@@ -604,7 +604,7 @@ ${tag(r3.scale, 3, jc.joint)}` })), 8);
     const step = dpr === 1 ? 1 : Math.max(1, Math.ceil(frames.length / 32));
     sheet(`${first}-saturated-joint-${dpr === 1 ? "x3nearest" : "dpr3"}`, frames.filter((_, i) => i % step === 0).map((im, k) => ({ image: dpr === 1 ? nearest(jointCrop(im, r.scale), 3) : jointCrop(im, r.scale), label: `#${k * step}\n${tag(r.scale, dpr, dpr === 1 ? "joint x3 nearest" : "joint")}` })), dpr === 1 ? 12 : 8);
   }
-  // Calibration pair (plan 4d-3 review, item 4): the same measure on the first sweep at DPR 3 (dark),
+  // Calibration pair (review, item 4): the same measure on the first sweep at DPR 3 (dark),
   // as is and with every contour width x1.5. The gate is trusted only when it separates them.
   const badDoc = join(rigDir, `${name}.width-x${BAD_WIDTH_SCALE}.anim.json`);
   writeFileSync(badDoc, JSON.stringify(scaleWidths(rig.raw, BAD_WIDTH_SCALE)));

@@ -1,12 +1,12 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Clips compiled for playback: animated properties, timelines and the per-document library.
  *
  * Properties. Everything a clip can key is an "animated property" with a stable integer id per
  * document: each bone's rotate / translate / scale / shear, each slot's colour and attachment,
  * each IK constraint's mix+softness and its flags, each transform constraint's mixes, each
- * physics constraint's mix, each deform owner's offsets, and the draw order. AnimationState mixes
+ * physics constraint's mix, each deform the user's offsets, and the draw order. AnimationState mixes
  * clips property by property (animationState.ts).
  *
  * Continuous properties carry numbers and a value rule that says what a key means and how the
@@ -39,11 +39,11 @@
 import { attachmentLibraryFor, type AttachmentLibrary, type MeshAttachment } from "./attachments.js";
 import { parseRgba } from "./color.js";
 import { CurveSet, curveForChannel } from "./curves.js";
-import { DEFAULT_CLIP_FPS, type AnimDocument, type ClipData, type CurveSpec } from "./format.js";
+import { DEFAULT_CLIP_FPS, type AnimDocument, type ClipData, type CurveSpec, type SequenceMode } from "./format.js";
 import type { Skeleton } from "./skeleton.js";
 
 /** The parts of a document clips are compiled from. */
-export type AnimationDocument = Pick<AnimDocument, "bones" | "slots" | "skins" | "ik" | "transform" | "physics" | "animations" | "events">;
+export type AnimationDocument = Pick<AnimDocument, "bones" | "slots" | "skins" | "ik" | "transform" | "physics" | "animations" | "events"> & Partial<Pick<AnimDocument, "path">>;
 
 export type ValueRule = "angle" | "relative" | "scale" | "absolute";
 
@@ -230,6 +230,31 @@ class TransformMixProperty extends ContinuousProperty {
   }
 }
 
+export const PATH_CHANNELS = ["position", "spacing", "mixRotate", "mixX", "mixY"] as const;
+
+class PathProperty extends ContinuousProperty {
+  constructor(id: number, name: string, readonly constraint: number, maskBone: number) {
+    super(id, `path ${name}`, "absolute", 5, maskBone);
+  }
+  read(skeleton: Skeleton, out: Float64Array): void {
+    const pose = skeleton.pathPoses[this.constraint] as Skeleton["pathPoses"][number];
+    out[0] = pose.position;
+    out[1] = pose.spacing;
+    out[2] = pose.mixRotate;
+    out[3] = pose.mixX;
+    out[4] = pose.mixY;
+  }
+  setup(): void {}
+  write(skeleton: Skeleton, values: Float64Array): void {
+    const pose = skeleton.pathPoses[this.constraint] as Skeleton["pathPoses"][number];
+    pose.position = values[0] as number;
+    pose.spacing = values[1] as number;
+    pose.mixRotate = Math.min(1, Math.max(0, values[2] as number));
+    pose.mixX = Math.min(1, Math.max(0, values[3] as number));
+    pose.mixY = Math.min(1, Math.max(0, values[4] as number));
+  }
+}
+
 class PhysicsMixProperty extends ContinuousProperty {
   constructor(id: number, name: string, readonly constraint: number, maskBone: number) {
     super(id, `physics ${name} mix`, "absolute", 1, maskBone);
@@ -249,7 +274,7 @@ class DeformProperty extends ContinuousProperty {
     super(id, `deform ${owner.skin}/${owner.slot}/${owner.name}`, "relative", owner.geometry.deformLength, maskBone);
   }
   read(skeleton: Skeleton, out: Float64Array): void {
-    // Activates (zero-filled) the owner's animation deform for this frame; it is written below.
+    // Activates (zero-filled) the user's animation deform for this frame; it is written below.
     const deform = skeleton.animationDeformFor(this.owner);
     for (let i = 0; i < this.channels; i++) out[i] = deform[i] as number;
   }
@@ -273,9 +298,12 @@ export class AnimationProperties {
   /** Most channels any continuous property has (sizes mixing scratch buffers). */
   readonly maxChannels: number;
   readonly drawOrder: DiscreteProperty;
+  /** Slot index -> its image-sequence property (appended after the draw order; only slots showing a sequence). */
+  private readonly sequenceProps = new Map<number, DiscreteProperty>();
   private readonly slotBase: number;
   private readonly ikBase: number;
   private readonly transformBase: number;
+  private readonly pathBase: number;
   private readonly physicsBase: number;
   private readonly deformBase: number;
 
@@ -300,6 +328,8 @@ export class AnimationProperties {
     });
     this.transformBase = all.length;
     doc.transform.forEach((t, i) => all.push(new TransformMixProperty(all.length, t.name, i, boneIndex.get(t.bones[0] as string) ?? -1)));
+    this.pathBase = all.length;
+    (doc.path ?? []).forEach((p, i) => all.push(new PathProperty(all.length, p.name, i, boneIndex.get(p.bones[0] as string) ?? -1)));
     this.physicsBase = all.length;
     doc.physics.forEach((p, i) => all.push(new PhysicsMixProperty(all.length, p.name, i, boneIndex.get(p.bone) ?? -1)));
     this.deformBase = all.length;
@@ -309,6 +339,13 @@ export class AnimationProperties {
     }
     this.drawOrder = new DiscreteProperty(all.length, "draw order", -1);
     all.push(this.drawOrder);
+    const sequenceSlots = new Set(library.attachments.filter((a) => (a.type === "region" || a.type === "mesh") && a.sequence).map((a) => slotIndex.get(a.slot)));
+    doc.slots.forEach((slot, s) => {
+      if (!sequenceSlots.has(s)) return;
+      const property = new DiscreteProperty(all.length, `slot ${slot.name} sequence`, slotBone[s] as number);
+      this.sequenceProps.set(s, property);
+      all.push(property);
+    });
     this.all = all;
     this.maxChannels = all.reduce((max, p) => (p.discrete ? max : Math.max(max, p.channels)), 1);
   }
@@ -322,6 +359,10 @@ export class AnimationProperties {
   slotAttachment(slot: number): DiscreteProperty {
     return this.all[this.slotBase + slot * 2 + 1] as DiscreteProperty;
   }
+  /** The image-sequence property of a slot, or undefined when no attachment of that slot is a sequence. */
+  slotSequence(slot: number): DiscreteProperty | undefined {
+    return this.sequenceProps.get(slot);
+  }
   ikMix(constraint: number): ContinuousProperty {
     return this.all[this.ikBase + constraint * 2] as ContinuousProperty;
   }
@@ -330,6 +371,9 @@ export class AnimationProperties {
   }
   transformMix(constraint: number): ContinuousProperty {
     return this.all[this.transformBase + constraint] as ContinuousProperty;
+  }
+  pathProperty(constraint: number): ContinuousProperty {
+    return this.all[this.pathBase + constraint] as ContinuousProperty;
   }
   physicsMix(constraint: number): ContinuousProperty {
     return this.all[this.physicsBase + constraint] as ContinuousProperty;
@@ -343,6 +387,13 @@ export class AnimationProperties {
 // Timelines
 // ---------------------------------------------------------------------------------------------
 
+/**
+ * Stepped keys (attachment swaps, IK flags, draw order), events and physics resets count as reached when the clock is within this many
+ * seconds before them. Key times are written with 5 decimals (frame 4 at 30 fps is 0.13333, frame 5 is 0.16667), so a frame's own exact
+ * time (5 / 30) can sit up to 5e-6 s before a key that belongs to it; 1e-4 s is far below a frame (0.033 s) and absorbs that.
+ */
+export const KEY_TIME_EPSILON = 1e-4;
+
 /** Index of the last key at or before `time`, or -1 when `time` is before the first key. */
 export function keyAtOrBefore(times: Float64Array, time: number): number {
   sampleClock[0] = time;
@@ -350,8 +401,8 @@ export function keyAtOrBefore(times: Float64Array, time: number): number {
 }
 
 /** keyAtOrBefore with the time read from clock[index] (no number argument to box). */
-function keyAtClock(times: Float64Array, clock: Float64Array, index: number): number {
-  const time = clock[index] as number;
+function keyAtClock(times: Float64Array, clock: Float64Array, index: number, epsilon = 0): number {
+  const time = (clock[index] as number) + epsilon;
   const last = times.length - 1;
   if (last < 0 || time < (times[0] as number)) return -1;
   if (time >= (times[last] as number)) return last;
@@ -451,15 +502,37 @@ export abstract class DiscreteTimeline {
 
   /** The key in effect at `time`, or -1 before the first key. */
   keyAt(time: number): number {
-    return keyAtOrBefore(this.times, time);
+    return keyAtOrBefore(this.times, time + KEY_TIME_EPSILON);
   }
 
   /** keyAt() for the playback hot path: the clip time is read from clock[index] (no boxing). */
   keyAtClock(clock: Float64Array, index: number): number {
-    return keyAtClock(this.times, clock, index);
+    return keyAtClock(this.times, clock, index, KEY_TIME_EPSILON);
   }
 
-  abstract applyKey(skeleton: Skeleton, key: number): void;
+  /** The clip time the key was found at is clock[index] (sequence keys advance with it; read there so no number is boxed per call). */
+  abstract applyKey(skeleton: Skeleton, key: number, clock: Float64Array, index: number): void;
+}
+
+/** Image-sequence keys of one slot: mode, start frame and delay from each key on. */
+export class SequenceTimeline extends DiscreteTimeline {
+  constructor(
+    property: DiscreteProperty,
+    times: Float64Array,
+    readonly slot: number,
+    readonly keys: readonly { readonly mode: SequenceMode; readonly index: number; readonly delay: number }[]
+  ) {
+    super(property, times);
+  }
+  applyKey(skeleton: Skeleton, key: number, clock: Float64Array, index: number): void {
+    const slot = skeleton.slots[this.slot] as Skeleton["slots"][number];
+    const k = this.keys[key];
+    if (!k) return;
+    slot.sequenceMode = k.mode;
+    slot.sequenceIndex = k.index;
+    slot.sequenceDelay = k.delay;
+    slot.sequenceElapsed = Math.max(0, (clock[index] as number) - (this.times[key] as number));
+  }
 }
 
 export class AttachmentTimeline extends DiscreteTimeline {
@@ -521,6 +594,8 @@ export interface AnimationEvent {
   readonly int: number;
   readonly float: number;
   readonly string: string;
+  /** Sound name ("" for none). */
+  readonly audio: string;
 }
 
 /** Physics reset keys of one physics constraint. */
@@ -602,6 +677,7 @@ class ClipCompiler {
   private readonly ikIndex: Map<string, number>;
   private readonly transformIndex: Map<string, number>;
   private readonly physicsIndex: Map<string, number>;
+  private readonly pathIndex: Map<string, number>;
 
   constructor(
     private readonly doc: AnimationDocument,
@@ -614,6 +690,7 @@ class ClipCompiler {
     this.ikIndex = indexOf(doc.ik);
     this.transformIndex = indexOf(doc.transform);
     this.physicsIndex = indexOf(doc.physics);
+    this.pathIndex = indexOf(doc.path ?? []);
   }
 
   compile(name: string, clip: ClipData): Clip {
@@ -642,6 +719,11 @@ class ClipCompiler {
             return [c.r, c.g, c.b, c.a];
           })
         );
+      }
+      if (timelines.sequence && timelines.sequence.length > 0) {
+        const property = props.slotSequence(slot);
+        if (!property) throw new Error(`clip '${name}': slot '${slotName}' shows no image sequence, so it cannot have sequence keys`);
+        discrete.push(new SequenceTimeline(property, times(timelines.sequence), slot, timelines.sequence.map((key) => ({ mode: key.mode, index: key.index, delay: key.delay }))));
       }
       if (timelines.attachment) {
         discrete.push(
@@ -672,6 +754,12 @@ class ClipCompiler {
       const index = this.lookup(this.transformIndex, transformName, "transform constraint", name);
       const setup = doc.transform[index] as AnimDocument["transform"][number];
       continuous.push(build(props.transformMix(index), keys, TRANSFORM_MIX_CHANNELS, (key) => TRANSFORM_MIX_CHANNELS.map((c) => key[c] ?? setup[c])));
+    }
+
+    for (const [pathName, keys] of Object.entries(clip.path ?? {})) {
+      const index = this.lookup(this.pathIndex, pathName, "path constraint", name);
+      const setup = (doc.path ?? [])[index] as NonNullable<AnimDocument["path"]>[number];
+      continuous.push(build(props.pathProperty(index), keys, PATH_CHANNELS, (key) => PATH_CHANNELS.map((c) => key[c] ?? setup[c])));
     }
 
     const physicsResets: PhysicsResetTimeline[] = [];
@@ -726,7 +814,8 @@ class ClipCompiler {
           time: key.time,
           int: key.int ?? declared?.int ?? 0,
           float: key.float ?? declared?.float ?? 0,
-          string: key.string ?? declared?.string ?? ""
+          string: key.string ?? declared?.string ?? "",
+          audio: key.audio ?? declared?.audio ?? ""
         });
         return { event, order };
       })

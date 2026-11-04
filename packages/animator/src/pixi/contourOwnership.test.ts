@@ -11,7 +11,7 @@ import { DynamicAtlas } from "./dynamicAtlas.js";
 import { packedAtlasImages } from "./partImages.js";
 
 /*
- * Plan 4d-4l part c: garment-owned outlines. A contour draws only while its owning attachment is
+ * Plan part c: garment-owned outlines. A contour draws only while its owning attachment is
  * displayed (the bound mesh, or `owner`), in the core rule (Skeleton.isContourVisible), the Pixi
  * renderer and the software renderer; a garment swap switches the outline sets in the same frame.
  */
@@ -57,7 +57,7 @@ function make(skins: string[], tunicShown = true) {
 const drawn = (s: Skeleton) => s.activeContours.filter((k) => s.isContourVisible(k)).map((k) => `${k.slot}/${k.name}`);
 const visibleMeshes = (c: AnimatorCharacter) => c.contourMeshes.map((m) => m.visible);
 
-describe("contour ownership (4d-4l part c)", () => {
+describe("contour ownership (part c)", () => {
   it("garment shown: its outline draws; hidden: it does not; the body outline is untouched", () => {
     const { c, skeleton } = make(["body", "tunic"]);
     c.update();
@@ -69,7 +69,7 @@ describe("contour ownership (4d-4l part c)", () => {
     expect(visibleMeshes(off.c)).toEqual([true, false]);
   });
 
-  it("a slot hide of the owner hides the outline even though another slot owns its draw position", () => {
+  it("a slot hide of the user hides the outline even though another slot owns its draw position", () => {
     const { skeleton } = make(["body", "tunic"]);
     skeleton.setToSetupPose();
     skeleton.updateWorldTransform("none");

@@ -1,10 +1,10 @@
-# Deterministic polish of untouched source drawings -> registered garment PNGs on the rig canvas.
+# Deterministic polish of untouched generated art -> registered garment PNGs on the rig canvas.
 #   python polish.py <concept-id> [<concept-id> ...]
 # For each output/gen-*.png: downscale the 1536x1024 crop back to canvas px (x3/8), find the small
 # translation/scale that best registers the painted garment on the template's allowed mask, place it on
 # the 1086x1448 canvas, alpha = allowed mask (0/255), and repaint a solid 9 px outline band on the mask
 # edge in the generation's own outline colour. No colour snapping, no flattening.
-# Repo copy (round 20): packages/animator/scripts/swag/polish.py, a standalone script (the swag:make pipeline may call
+# Repo copy: packages/animator/scripts/swag/polish.py, a standalone script (the swag:make pipeline may call
 # it). Concept folders live in $SWAG_ROOT (default ART_DROPS/swag-chinese-concepts-01): <id>/output/gen-*.png ->
 # <id>/final/gen-*-garment.png; each id's template (simple|medium) comes from $SWAG_ROOT/tools/concepts.json.
 import os
@@ -25,10 +25,9 @@ CLAMP = True
 FIT = True     # waist fit: per-row horizontal remap of each mask segment's edges onto the template mask edges
 FIT_BAND = 60  # px over which an edge offset is eased back to 0 toward the segment's middle
 FIT_MAX = 30   # px largest edge move (bigger = a mismatch, left alone)
-CUT_SMOOTH = 6  # rows: half-window for smoothing closed-gap cut positions and drawn gap ends along their track (round 20)
-EDGE_MEAN = 4   # rows: half-window of the mean pass after the edge-offset median (no stepped, blocky edges; round 20)
-# (round 20c: the plain flank strip that lifted dark paint below each armpit is gone; owner: "you just filled the sides
-# with empty green and didn't continue the design till the edges". The drawing runs to the outline everywhere.)
+CUT_SMOOTH = 6  # rows: half-window for smoothing closed-gap cut positions and drawn gap ends along their track ()
+EDGE_MEAN = 4   # rows: half-window of the mean pass after the edge-offset median (no stepped, blocky edges)
+# (the plain flank strip that lifted dark paint below each armpit is gone. The drawing runs to the outline everywhere.)
 
 
 def lum(a):
@@ -88,7 +87,7 @@ def segments(row, minlen=3):
 
 def _track_smooth(rows, half):
     # rows: {y: [value, ...]}; per (y, j), the median of the j-th value of the rows within +-half that have the same
-    # count of values and whose value is within 12 px, then the mean of those medians over the same window (round 20:
+    # count of values and whose value is within 12 px, then the mean of those medians over the same window (
     # cut positions and drawn gap ends picked per row jumped, so the closed gap and the edges it moves went jagged)
     def pass_(src, fn):
         out = {}
@@ -104,7 +103,7 @@ def _track_smooth(rows, half):
 
 
 def fit_rows(rgb, painted, mask):
-    # Waist fit (owner round 20, "they don't follow the waist"): the drawing's own edge often sits inside
+    # Waist fit: the drawing's own edge often sits inside
     # the template mask (a pinched waist beside the sash/belt, short sleeves at the gap). Per row, each
     # mask segment [L,R] (shoulders-and-sleeves above the armpits; sleeve / torso / sleeve below) is
     # matched with the painted run(s) over it [l,r]; each edge is moved onto the mask edge by a
@@ -237,7 +236,7 @@ def fit_rows(rgb, painted, mask):
 
 def warm_highlights(rgb, alpha):
     # Skin-safe highlights (importer coverageEveryFrame reads r>170, r-b>60, r-g>20 as skin): only pixels that
-    # would actually read as skin are scaled (same hue) to r = 170. Round 22 (Jacket B, swag-kungfu-02
+    # would actually read as skin are scaled (same hue) to r = 170. (Jacket B, swag-kungfu-02
     # tools/polish_kf.py folded in): the former rule (r>170 within 6 px of any warm paint) also hit a cream
     # trim's warm shade and turned it blotchy grey-tan.
     f = rgb.astype(float)
@@ -246,7 +245,7 @@ def warm_highlights(rgb, alpha):
     return int(sel.sum())
 
 
-BAND_EXTEND = True  # round 21c: belt / sash ends that stop short of the torso side outline run on to it
+BAND_EXTEND = True  #: belt / sash ends that stop short of the torso side outline run on to it
 BAND_REACH = 40     # px: largest fabric gap between a band end and the side outline that is closed
 BAND_H = (12, 100)  # rows: band height range (thinner = an ink line, taller = a plate or a mail field)
 
@@ -396,7 +395,7 @@ def _band_side(rgb, alpha, tl, rows, e, nd, ink, borrow=None):
 
 
 def extend_bands(rgb, alpha, mask):
-    # Round 21c (owner: "the belt here doesn't go to the sides. the other armors do"): a dark horizontal band (belt,
+    #: a dark horizontal band (belt,
     # dark sash) whose rounded ends stop short of the torso's side outline is continued out to that outline from its
     # own body rows near the cap (top/bottom edges, inner shading and trim lines, sagging with the band), and the end
     # cap is removed, so it runs under the outline like a belt wrapping round. Studs, buckle and centre detail stay.
@@ -500,7 +499,7 @@ def polish(gen_path, kind, out_path):
     canvas = Image.new("RGB", (W, H), (255, 255, 255))
     canvas.paste(g, (ox, oy))
     rgb = np.array(canvas)
-    # silhouette = allowed mask AND the drawing's own painted area (where the drawing left the template's
+    # silhouette = allowed mask AND the generation's own painted area (where the image generator left the template's
     # white / faint body inside the mask, e.g. an inset arm-gap edge, the item stops at its own outline)
     f = rgb.astype(float)
     bgish = (lum(f) > 215) & ((f.max(-1) - f.min(-1)) < 22)

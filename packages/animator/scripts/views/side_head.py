@@ -1,6 +1,6 @@
-# Atlas Animator multi-view (docs/plans/atlas-animator-views.md): the TURNED-SIDE HEAD art (face + hair), replacing
+# Atlas Animator multi-view (packages/animator/README.md): the TURNED-SIDE HEAD art (face + hair), replacing
 # the shared front head that stood in on the side rig.
-#   python side_head.py guide  <out dir>              the reference inputs (ref/) for one side-head draw
+#   python side_head.py guide  <out dir>              the generated inputs (ref/) for one side-head draw
 #   python side_head.py polish <gen.png> <out dir>    polish one returned draw onto the rig canvas (layers/head.turned.png)
 # Drawn at the polish scale: a square output (asked 1024x1024; the tool may return 1254x1254) covers the canvas crop HEAD_CROP (780x780 canvas px: hair top
 # to the shoulders), so the returned art is only ever downsampled (780/size) onto the 1086x1448 canvas, never enlarged.
@@ -29,7 +29,7 @@ CANON = HERE / "fixtures/canonical/body-side"
 SHARED = CANON / "layers/head.shared.png"
 OUT_LAYER = CANON / "layers/head.turned.png"
 BODY = DROPS / "views-body-side/body-side.png"
-GAME = Path("C:/Users/dev/Documents/game/packages/player-renderer/src/assets/player-appearance")
+GAME = Path("C:/Users/dev/Documents/ash-atlas/packages/player-renderer/src/assets/player-appearance")
 # live face + hair (scripts/proto-face-hair.ts: canvas dy on the front head), moved onto the side head joint (+22, 0)
 LIVE = [("eyes/browneyes.png", 22, -74), ("hair/soldiercrophairmale.png", 22, -138)]
 HEAD_CROP = (200, 20, 980, 800)  # canvas px, 780x780 -> 1024x1024

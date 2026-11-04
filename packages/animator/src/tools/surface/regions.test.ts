@@ -12,7 +12,7 @@ import { FLANK_TOLERANCE, garmentPieces, geometryGates, meshTopology, pieceDepth
 import { dist, distanceToPolyline, pointInPolygon, type Pt } from "./geometry.js";
 
 /*
- * Phase 4d-3 pass 3a: preset regions and hard support masks, polygon draw groups, conform
+ * Phase pass 3a: preset regions and hard support masks, polygon draw groups, conform
  * garments, junction-trimmed contours and their gates, proved on both presets from data alone.
  */
 
@@ -192,7 +192,7 @@ describe("pass 3a review fixes", () => {
       if (c.v * sign < -built.preset.skin.topology.halfWidth / 2) openReach = Math.max(openReach, d);
     });
     expect(openReach).toBeLessThanOrEqual(elbow.band + 1e-9);
-    // Compact hinge (3c owner review): the closing band covers the crease (r tan(70/2) ~ 28 px) and stays under half the limb width.
+    // Compact hinge: the closing band covers the crease (r tan(70/2) ~ 28 px) and stays under half the limb width.
     expect(foldReach).toBeGreaterThan(elbow.band);
     expect(foldReach).toBeLessThanOrEqual(elbow.foldBand + 1e-9);
     expect(elbow.foldBand).toBeLessThan(built.preset.skin.topology.halfWidth);

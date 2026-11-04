@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Offline atlas packer (plan 3, Tools): part images are box-downscaled to the page scale (0.5 of
  * the canvas by default) and shelf-packed onto pages of at most 2048 x 2048, tallest first. The

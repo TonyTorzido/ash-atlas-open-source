@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Auto-mesh (plan 4.6 step 2): an outline becomes a skinning mesh with evenly sized, well shaped
  * triangles and a vertex count inside the part's budget.

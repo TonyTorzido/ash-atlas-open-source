@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Authoring metadata (plan 4d-4j2, from the 4d-4i review): the document's optional `authoring`
+ * Authoring metadata (from the review): the document's optional `authoring`
  * block states what inference can only guess.
  *
  * - chains: ids, ordered bones (each the skeleton parent of the next), the chain each one branches
@@ -250,7 +250,7 @@ export function validateAuthoring(doc: AnimDocument): AuthoringIssue[] {
     if (counts.size > 1) error(`symmetry group '${group}': chains have different bone counts (${members.map((c) => `${c.id} ${c.bones.length}`).join(", ")})`);
   }
   // Declared chains replace inference for their bones; an uncovered deforming bone is posed only by
-  // an inferred fallback chain (plan 4d-4j3), so it is reported.
+  // an inferred fallback chain, so it is reported.
   if (chains.length > 0) {
     const unchained = [...deformingBones(doc)].filter((bone) => !owner.has(bone)).sort();
     if (unchained.length > 0) warn(`deforming bone(s) outside every declared chain (posed only by inferred fallback chains; declare them): ${unchained.map((b) => `'${b}'`).join(", ")}`);

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * A small CPU rasteriser for the Node tools: draws a posed skeleton's slots (textured triangles,
  * bilinear sampling, straight-alpha "over") into an RGBA image, and optionally records for every
@@ -9,17 +9,18 @@
  * It is deliberately independent of Pixi so validators run in plain Node; videos and goldens that
  * must match the game use the Pixi renderer in headless Chromium (plan Phase 5).
  *
- * Joint-ready body (plan 4d-2): a grouped mesh draws per group at each group's slot (from the one
+ * Joint-ready body: a grouped mesh draws per group at each group's slot (from the one
  * skinned result, as in the game), and each visible contour draws after its owner slot as a flat
- * stroke polygon (the same stroke geometry, no anti-aliasing ramp) whose pixels carry the owner
+ * stroke polygon (the same stroke geometry, no anti-aliasing ramp) whose pixels carry the user
  * slot in `topSlot` (texel -1), so ownership, gap and buried-ink checks can read contours. Stroke
  * width and anti-aliasing are measured on Pixi captures, not here.
  */
-import { isGroupedMesh, type MeshAttachment, type RegionAttachment } from "../core/attachments.js";
+import { isDrawable, isGroupedMesh, sequenceFramePath, type MeshAttachment, type RegionAttachment } from "../core/attachments.js";
 import type { Rgba } from "../core/color.js";
 import { buildStroke, type CompiledContour } from "../core/contours.js";
 import { buildTrimmedStroke, filletCapacity, joinedEndMask, trimmedStrokeCapacity } from "../core/coverage.js";
 import type { Skeleton } from "../core/skeleton.js";
+import { pointInPolygon } from "../core/skinning.js";
 import type { Slot } from "../core/slot.js";
 import { blendPixel, createImage, type MutableImage, type RgbaImage } from "./image.js";
 
@@ -107,6 +108,10 @@ export function softRender(skeleton: Skeleton, textures: ReadonlyMap<string, Rgb
     contoursBySlot.set(index, list);
   }
 
+  // Clipping (Spine): the polygon, in output pixels, that later slots are cut to until the mask's end slot.
+  let clip: Float64Array | null = null;
+  const clipped = (px: number, py: number): boolean => clip !== null && !pointInPolygon(clip, clip.length / 2, px + 0.5, py + 0.5);
+
   const drawSlot = (slot: Slot): void => {
     let attachment: MeshAttachment | RegionAttachment;
     let uvs: ArrayLike<number>;
@@ -123,12 +128,12 @@ export function softRender(skeleton: Skeleton, textures: ReadonlyMap<string, Rgb
       count = skeleton.computeGroupWorldVertices(slot, (world = scratch(skeleton, slot)));
     } else {
       const own = slot.attachment;
-      if (!own || own.type === "point" || isGroupedMesh(own)) return;
+      if (!own || !isDrawable(own) || isGroupedMesh(own)) return;
       attachment = own;
       ({ uvs, triangles } = geometryOf(own));
       count = skeleton.computeSlotWorldVertices(slot, (world = scratch(skeleton, slot)));
     }
-    const texture = textures.get(attachment.path);
+    const texture = textures.get(attachment.sequence ? sequenceFramePath(attachment.path, attachment.sequence, slot.sequenceFrame) : attachment.path);
     const colors = group ? null : options.vertexColors?.(slot) ?? null;
     const tint = {
       r: slot.color.r * attachment.color.r,
@@ -151,6 +156,7 @@ export function softRender(skeleton: Skeleton, textures: ReadonlyMap<string, Rgb
         sx,
         sy,
         (px, py, w0, w1, w2, i0, i1, i2) => {
+          if (clipped(px, py)) return;
           const u = w0 * (uvs[i0 * 2] as number) + w1 * (uvs[i1 * 2] as number) + w2 * (uvs[i2 * 2] as number);
           const v = w0 * (uvs[i0 * 2 + 1] as number) + w1 * (uvs[i1 * 2 + 1] as number) + w2 * (uvs[i2 * 2 + 1] as number);
           const sample = texture ? bilinear(texture, u, v) : [255, 0, 255, 255];
@@ -224,6 +230,7 @@ export function softRender(skeleton: Skeleton, textures: ReadonlyMap<string, Rgb
         sx,
         sy,
         (px, py, w0, w1, w2, i0, i1, i2) => {
+          if (clipped(px, py)) return;
           const p = py * width + px;
           if (plotted[p]) return;
           // A trimmed run end fades along the stroke (fade 0 at the trim, 1 one feather inside).
@@ -246,10 +253,23 @@ export function softRender(skeleton: Skeleton, textures: ReadonlyMap<string, Rgb
     }
   };
 
+  let clipEnd: string | null = null;
   for (const slot of skeleton.drawOrder) {
-    if (options.slotFilter && !options.slotFilter(slot)) continue;
-    drawSlot(slot);
-    for (const contour of contoursBySlot.get(slot.index) ?? []) drawContour(slot, contour);
+    const own = slot.attachment;
+    if (own && own.type === "clipping" && !slot.hidden) {
+      const polygon = skeleton.slotPolygonWorld(slot);
+      clip = polygon && polygon.length >= 6 ? polygon.map((v, i) => (i % 2 === 0 ? (v - left) * scale : (v - top) * scale)) : null;
+      clipEnd = own.endSlot;
+      continue;
+    }
+    if (!options.slotFilter || options.slotFilter(slot)) {
+      drawSlot(slot);
+      for (const contour of contoursBySlot.get(slot.index) ?? []) drawContour(slot, contour);
+    }
+    if (clip && clipEnd !== null && slot.data.name === clipEnd) {
+      clip = null;
+      clipEnd = null;
+    }
   }
   const result: SoftRenderResult = { image };
   if (topSlot) result.topSlot = topSlot;

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * The `atlas-anim@1` document schema (docs/plans/atlas-animator.md section 4.4).
+ * The `atlas-anim@1` document schema (packages/animator/README.md).
  *
  * One document describes one rig: canvas, bones, slots, skins with their attachments, constraints,
  * driven keys, events, clips and atlas pages. Coordinates are canvas pixels with y down; angles are
@@ -9,10 +9,11 @@
  * this bone exist, is that key inside the clip) live in formatReferences.ts, and loading,
  * versioning and migrations live in formatLoader.ts.
  *
- * Deliberately absent (plan section 1 skip list): path constraints/attachments, clipping and
- * bounding-box attachments, tint-black, frame sequences, multiply/screen blends, inherit keys.
+ * Deliberately absent (plan section 1 skip list): path constraints/attachments, tint-black,
+ * multiply/screen blends, inherit keys. Clipping, bounding-box attachments and image sequences
+ * arrived with Batch 12a.
  *
- * Joint-ready body (plan Phase 4d-2, all optional so older documents load unchanged): mesh `groups`
+ * Joint-ready body (plan Phase, all optional so older documents load unchanged): mesh `groups`
  * (draw groups as triangle partitions of one skinned mesh), skin `contours` (stroke centrelines
  * bound to a mesh or to bones, stroked after deformation), skin `coverage` (named triangle regions
  * and the regions an item covers) and `drivenGrids` (two-driver corrective grids).
@@ -33,7 +34,7 @@ export const MAX_CONTOUR_POINTS = 256;
 /**
  * Most keys (columns x rows) of one two-driver corrective grid: 4 x 3 by default (plan 4d); a grid
  * whose smooth target a 4 x 3 lattice cannot hold may grow to 6 x 5 when its preset declares it
- * (plan 4d-3 pass 3d-1, coordinator decision).
+ * (pass 3d-1).
  */
 export const MAX_GRID_KEYS = 30;
 export const MAX_GRID_AXIS_KEYS = 6;
@@ -118,12 +119,16 @@ export const boneSchema = z
     inherit: inheritSchema.default("normal"),
     limits: limitsSchema.optional(),
     /**
-     * Semantic role for rig-agnostic review poses (plan 4d-4i): spine, limb, head, tail or other.
+     * Semantic role for rig-agnostic review poses: spine, limb, head, tail or other.
      * Inherited by descendants that declare none; omitted = inferred from the hierarchy.
      */
     role: z.enum(["spine", "limb", "head", "tail", "other"]).optional(),
     /** Skin bone: active only while a skin that lists it (or a descendant) is active. */
-    skin: z.boolean().default(false)
+    skin: z.boolean().default(false),
+    /** Editor only: the bone overlay colour (rrggbbaa). Never read by the runtime. */
+    color: colorSchema.optional(),
+    /** Editor only: a helper bone (IK or constraint target, guide), dimmed or hidden in the editor overlay. Never read by the runtime. */
+    helper: z.boolean().optional()
   })
   .strict();
 
@@ -166,10 +171,31 @@ export const slotSchema = slotObjectSchema.superRefine((slot, ctx) => {
 /** Triangle ranges `[start, end)` in triangle numbers (triangle t uses indices 3t..3t+2). */
 export const triangleRangesSchema = z.array(z.tuple([index(), index()]));
 
+/** Most frames one image sequence may have. */
+export const MAX_SEQUENCE_FRAMES = 256;
+
+/**
+ * Image sequence (Spine 4.x `sequence`): a region or mesh shows `count` images named
+ * `path` + the frame number (start + i) zero-padded to `digits`. `setup` is the frame shown when no
+ * sequence key is in effect.
+ */
+export const sequenceSchema = z
+  .object({
+    count: z.number().int().min(1).max(MAX_SEQUENCE_FRAMES),
+    start: z.number().int().min(0).default(1),
+    digits: z.number().int().min(0).max(8).default(0),
+    setup: z.number().int().min(0).default(0)
+  })
+  .strict()
+  .superRefine((s, ctx) => {
+    if (s.setup >= s.count) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["setup"], message: `setup frame ${s.setup} is outside the ${s.count} frames` });
+  });
+
 export const regionAttachmentSchema = z
   .object({
     type: z.literal("region"),
     path: texturePathSchema,
+    sequence: sequenceSchema.optional(),
     /** Centre of the image in the slot bone's local space. */
     x: finite().default(0),
     y: finite().default(0),
@@ -180,7 +206,7 @@ export const regionAttachmentSchema = z
     height: finite().positive(),
     color: colorSchema.default(WHITE),
     /**
-     * Clothing model (plan 4d-4l close): the outline of the image's opaque area as u, v pairs in
+     * Clothing model (close): the outline of the image's opaque area as u, v pairs in
      * 0..1 of the image (u right, v down): a simple polygon, either winding, convex or concave
      * (ear-clipped; core/opaqueOutline.ts). A rigid plate covers (trims) the strokes under this
      * polygon instead of under its whole rectangle. Absent: the rectangle. Incomplete pairs, fewer
@@ -211,6 +237,7 @@ export const meshAttachmentSchema = z
   .object({
     type: z.literal("mesh"),
     path: texturePathSchema,
+    sequence: sequenceSchema.optional(),
     uvs: z.array(unit()),
     triangles: z.array(index()),
     vertices: z.array(finite()),
@@ -228,7 +255,7 @@ export const meshAttachmentSchema = z
      */
     groups: z.record(nameSchema, triangleRangesSchema.min(1)).optional(),
     /**
-     * Embedded vertices (plan 4d-3, garments that lie on a skin): each vertex in `vertices` is
+     * Embedded vertices (garments that lie on a skin): each vertex in `vertices` is
      * posed as `points[i]` of another mesh of the same skin (`slot`/`attachment`), a vertex index
      * or `[a, b, c, wa, wb]` = wa * a + wb * b + (1 - wa - wb) * c of that mesh's posed vertices
      * (deform and correctives included), so it moves bit for bit with the surface under it. The
@@ -242,7 +269,7 @@ export const meshAttachmentSchema = z
         vertices: z.array(index()).min(1),
         points: z.array(z.union([index(), z.tuple([index(), index(), index(), finite().min(-2).max(3), finite().min(-2).max(3)])])),
         /**
-         * Boundary offset vertices (plan 4d-4n, the body-derived garment margin): vertex
+         * Boundary offset vertices (the body-derived garment margin): vertex
          * `vertices[i]` is posed after the embedded ones as `points[i]` = [anchor, prev, next, d]:
          * the anchor's posed position moved by d (world units) along the outward miter normal of
          * the posed boundary polyline prev -> anchor -> next (prev or next = anchor at a branch
@@ -279,6 +306,7 @@ export const linkedMeshAttachmentSchema = z
   .object({
     type: z.literal("linkedMesh"),
     path: texturePathSchema,
+    sequence: sequenceSchema.optional(),
     source: z.object({ skin: nameSchema, slot: nameSchema, attachment: nameSchema }).strict(),
     /** Deform keys and driven deforms made for the source also move this mesh. */
     inheritDeform: z.boolean().default(true),
@@ -299,15 +327,91 @@ export const pointAttachmentSchema = z
   })
   .strict();
 
+/** Polygon vertices as x, y pairs in the slot bone's space (at least a triangle). */
+const polygonVerticesSchema = z.array(finite()).superRefine((v, ctx) => {
+  if (v.length % 2 !== 0) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "vertices are x, y pairs: an odd number of values" });
+  else if (v.length < 6) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "a polygon needs at least 3 points (6 values)" });
+  else if (v.length > 2 * 256) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "a polygon may have at most 256 points" });
+});
+
+/**
+ * A clipping mask (Spine clipping): while drawing, the slots after this one up to and including
+ * `end` (or all later slots in draw order when `end` is omitted) are cut to the polygon. Vertices
+ * are in the slot bone's space; the polygon should be convex (concave ones are triangulated).
+ */
+export const clippingAttachmentSchema = z
+  .object({
+    type: z.literal("clipping"),
+    vertices: polygonVerticesSchema,
+    /** Last slot the mask applies to; omitted = the end of the draw order. */
+    end: nameSchema.optional(),
+    color: colorSchema.default("ce3a3aff")
+  })
+  .strict();
+
+/** A hit box (Spine bounding box): never drawn; the runtime answers point-in-polygon queries. */
+export const boundingBoxAttachmentSchema = z
+  .object({
+    type: z.literal("boundingbox"),
+    vertices: polygonVerticesSchema,
+    color: colorSchema.default("60f000ff")
+  })
+  .strict();
+
+/**
+ * A path (Spine path): a cubic bezier spline a path constraint moves bones along. `vertices` holds,
+ * per control point, three vertices in this order: handle in, point, handle out (so an open path
+ * of n curves has n + 1 control points and 3 * (n + 1) vertices, its first handle in and last handle
+ * out being unused anchors the editor still shows; a closed path of n curves has n control points).
+ * Unweighted: 2 values per vertex in the slot bone's space. Weighted (`bones` present): the mesh
+ * encoding, per vertex a count then (influence, x, y, weight) groups, `influence` indexing `bones`.
+ */
+export const pathAttachmentSchema = z
+  .object({
+    type: z.literal("path"),
+    closed: z.boolean().default(false),
+    /** True = bones move at an even speed along the curve; false = by curve parameter (cheaper, uneven). */
+    constantSpeed: z.boolean().default(true),
+    /** Vertices (3 per control point), not values. */
+    vertexCount: z.number().int().min(6).max(3 * 256),
+    vertices: z.array(finite()),
+    bones: z.array(nameSchema).min(1).optional(),
+    color: colorSchema.default("ff7f00ff")
+  })
+  .strict();
+
+/** Structure checks of a path attachment (run by attachmentSchema; a discriminated union takes no effects). */
+function checkPathStructure(
+  path: { closed: boolean; vertexCount: number; vertices: number[]; bones?: string[] | undefined },
+  ctx: z.RefinementCtx
+): void {
+  {
+    const issue = (message: string, at: (string | number)[] = []) => ctx.addIssue({ code: z.ZodIssueCode.custom, path: at, message });
+    if (path.vertexCount % 3 !== 0) issue(`vertexCount ${path.vertexCount} must be a multiple of 3 (handle in, point, handle out per control point)`, ["vertexCount"]);
+    const points = path.vertexCount / 3;
+    if (points < (path.closed ? 3 : 2)) issue(`a ${path.closed ? "closed" : "open"} path needs at least ${path.closed ? 3 : 2} control points (got ${points})`, ["vertexCount"]);
+    if (!path.bones) {
+      if (path.vertices.length !== path.vertexCount * 2) issue(`unweighted vertices hold 2 values per vertex: expected ${path.vertexCount * 2}, got ${path.vertices.length}`, ["vertices"]);
+    } else {
+      const scan = scanWeightedVertices(path.vertices, path.vertexCount, path.bones.length);
+      if (!scan.ok) issue(scan.message, ["vertices", scan.at]);
+    }
+  }
+}
+
 export const attachmentSchema = z
   .discriminatedUnion("type", [
     regionAttachmentSchema,
     meshAttachmentSchema,
     linkedMeshAttachmentSchema,
-    pointAttachmentSchema
+    pointAttachmentSchema,
+    clippingAttachmentSchema,
+    boundingBoxAttachmentSchema,
+    pathAttachmentSchema
   ])
   .superRefine((attachment, ctx) => {
     if (attachment.type === "mesh") checkMeshStructure(attachment, ctx);
+    else if (attachment.type === "path") checkPathStructure(attachment, ctx);
   });
 
 // ---------------------------------------------------------------------------------------------
@@ -334,7 +438,7 @@ export const contourVisibilitySchema = z
 /**
  * A dynamic outline (plan 4d, dynamic contours): a centreline deformed with the body and stroked
  * after deformation with round joins and one coverage-ramp anti-aliasing, so its width stays
- * constant however the skin bends. Stored under skins[skin].contours[owner slot][name]; the owner
+ * constant however the skin bends. Stored under skins[skin].contours[owner slot][name]; the user
  * slot gives the draw position (drawn just above the slot's own drawing), colour and visibility.
  *
  * Binding, exactly one of:
@@ -345,7 +449,7 @@ export const contourVisibilitySchema = z
  * `width` is the full stroke width in canvas pixels. Every `visible` rule must hold. `extend`
  * ([start, end], canvas px, open contours only) prolongs the centreline past its first and last
  * bound point along the posed end tangent, so an end can meet another stroke with overlap.
- * Ownership (plan 4d-4l part c): a contour draws only while its owning attachment is displayed:
+ * Ownership (part c): a contour draws only while its owning attachment is displayed:
  * `owner` (skin defaults to the contour's skin), else the bound mesh (`mesh`); a bone-bound contour
  * without `owner` has no attachment gate. Displayed = the slot is not hidden and currently shows
  * that attachment (or, for a mesh, a mesh sharing its deform: a linked mesh of it). So hiding or
@@ -367,13 +471,13 @@ export const contourSchema = z
     owner: z.object({ skin: nameSchema.optional(), slot: nameSchema, attachment: nameSchema }).strict().optional(),
     /**
      * Clothing model: the stroke is trimmed by pieces drawn after this slot instead of after its
-     * owner slot (plan 4d-4n round 8: a limb joint handed to the later limb's contour keeps being
+     * owner slot (a limb joint handed to the later limb's contour keeps being
      * trimmed by what covers the earlier limb, e.g. a sleeve piece drawn between the two).
      */
     coverFrom: nameSchema.optional(),
     /**
      * Arm layer (closing edge over an under-sheet): the stroke is also trimmed where this slot covers
-     * its centreline, although that slot draws before the owner. A shoulder cap's closing edge is
+     * its centreline, although that slot draws before the user. A shoulder cap's closing edge is
      * then inked only where it leaves the torso sheet (buried: no line; exposed: the silhouette).
      */
     coverUnder: nameSchema.optional(),
@@ -384,7 +488,7 @@ export const contourSchema = z
      */
     coverTight: z.boolean().optional(),
     /**
-     * Clothing model (armour round 14): a rigid coverer (a region: the head, a fist, a plate) trims
+     * Clothing model (armour): a rigid coverer (a region: the head, a fist, a plate) trims
      * this stroke only where its centreline lies under the coverer's opaque outline, without the
      * half-width reach along that outline that body lines get (core/coverage.ts). For strokes that
      * ink a garment's own fill edge: the fill reaches the centreline, so a stroke trimmed while its
@@ -407,7 +511,7 @@ export const coverageRegionSchema = z
 /**
  * Coverage (plan 4d, swag coverage): the regions a skin declares on its own meshes, and the
  * regions (of any skin, normally the body) this skin covers opaquely while active. Format only in
- * 4d-2; the equipment-coverage gate that reads it is 4d-5.
+ *; the equipment-coverage gate that reads it is.
  */
 export const coverageSchema = z
   .object({
@@ -433,7 +537,7 @@ export const skinSchema = z
     /** owner slot -> contour name -> contour (dynamic outlines). */
     contours: z.record(nameSchema, z.record(nameSchema, contourSchema)).optional(),
     /**
-     * Contour contacts (4d-4e closeout): pairs of this skin's contours (owner slot + name) drawn as
+     * Contour contacts (closeout): pairs of this skin's contours (owner slot + name) drawn as
      * one merged line where they touch. Where the two run near-parallel (within `angle` degrees) with
      * an ink gap under `gap` canvas px, each centreline moves toward the other so the inks overlap by
      * `overlap` (default `gap`): no background sliver, no sub-pixel seam (contours.ts applyContact).
@@ -455,7 +559,7 @@ export const skinSchema = z
       )
       .optional(),
     /**
-     * Contour joins (plan 4d-4n round 8): pairs of open contour ends that read as one line across a
+     * Contour joins: pairs of open contour ends that read as one line across a
      * joint where the two ride different bones (a limb stroke cut by a rigid region and the region's
      * own outline continuing it). Per frame (contours.ts applyJoin): where the two centrelines cross
      * within `reach` canvas px of the ends (the inner side of a bend), both are cut at the crossing;
@@ -482,7 +586,7 @@ export const skinSchema = z
 // ---------------------------------------------------------------------------------------------
 
 /** Kind default when `order` is omitted. */
-export const DEFAULT_CONSTRAINT_ORDER = { ik: 0, transform: 1, physics: 2 } as const;
+export const DEFAULT_CONSTRAINT_ORDER = { ik: 0, transform: 1, path: 2, physics: 3 } as const;
 
 /**
  * Execution position. Constraints run sorted by (order, kind: ik < transform < physics, list
@@ -534,6 +638,39 @@ export const transformConstraintSchema = z
     mixScaleX: unit().default(1),
     mixScaleY: unit().default(1),
     mixShearY: unit().default(1),
+    order: constraintOrder(),
+    skin: z.boolean().default(false)
+  })
+  .strict();
+
+export const PATH_POSITION_MODES = ["fixed", "percent"] as const;
+export const PATH_SPACING_MODES = ["length", "fixed", "percent", "proportional"] as const;
+export const PATH_ROTATE_MODES = ["tangent", "chain", "chainScale"] as const;
+export type PathPositionMode = (typeof PATH_POSITION_MODES)[number];
+export type PathSpacingMode = (typeof PATH_SPACING_MODES)[number];
+export type PathRotateMode = (typeof PATH_ROTATE_MODES)[number];
+
+/**
+ * Places the constrained bones along the path attachment shown by the target slot (Spine path
+ * constraint). `position` is a distance along the path (fixed) or a 0..1 share of its length
+ * (percent); `spacing` is the gap between bones (length: added to each bone's length, fixed:
+ * a distance, percent: a share of the path, proportional: bones share the path by length).
+ */
+export const pathConstraintSchema = z
+  .object({
+    name: nameSchema,
+    bones: z.array(nameSchema).min(1),
+    /** Slot whose current attachment is the path. */
+    target: nameSchema,
+    positionMode: z.enum(PATH_POSITION_MODES).default("percent"),
+    spacingMode: z.enum(PATH_SPACING_MODES).default("length"),
+    rotateMode: z.enum(PATH_ROTATE_MODES).default("tangent"),
+    offsetRotation: finite().default(0),
+    position: finite().default(0),
+    spacing: finite().default(0),
+    mixRotate: unit().default(1),
+    mixX: unit().default(1),
+    mixY: unit().default(1),
     order: constraintOrder(),
     skin: z.boolean().default(false)
   })
@@ -676,12 +813,12 @@ export const drivenGridSchema = z
   });
 
 /**
- * Combined pose limits (plan 4d-3 pass 3d-1): a convex polygon in the driver space of two bones
+ * Combined pose limits (pass 3d-1): a convex polygon in the driver space of two bones
  * (their driver values in degrees, as for driven keys). Authoring and validation data only: the
  * validator flags clip poses outside any polygon; the runtime never clamps to it.
  */
 /**
- * A contact band (plan 4d-4e closeout): grid cells of a driver plane where two contours pass within
+ * A contact band (closeout): grid cells of a driver plane where two contours pass within
  * one display pixel; motion may cross it, holds and keys may not sit in it (authoring data only).
  */
 export const contactBandSchema = z
@@ -697,7 +834,7 @@ export const contactBandSchema = z
      */
     when: z.record(nameSchema, z.tuple([finite(), finite()])).optional(),
     /**
-     * The contour pair the band was measured between (each `ownerSlot/name`, plan 4d-4l part c):
+     * The contour pair the band was measured between (each `ownerSlot/name`, part c):
      * the band gates a pose only while both contours draw (a hidden garment's band does not fire).
      */
     contours: z.tuple([z.string().min(1), z.string().min(1)]).optional()
@@ -710,7 +847,7 @@ export const poseLimitSchema = z
     x: nameSchema,
     y: nameSchema,
     /**
-     * Drivers whose values add to y (plan 4d-4l part b): the limit's y coordinate is y plus each of
+     * Drivers whose values add to y (part b): the limit's y coordinate is y plus each of
      * these (degrees), so one polygon bounds a combined lean (neck + head against a raised arm).
      */
     plus: z.array(nameSchema).min(1).optional(),
@@ -723,7 +860,7 @@ export const poseLimitSchema = z
 // ---------------------------------------------------------------------------------------------
 
 export const eventDefinitionSchema = z
-  .object({ int: z.number().int().default(0), float: finite().default(0), string: z.string().default("") })
+  .object({ int: z.number().int().default(0), float: finite().default(0), string: z.string().default(""), audio: z.string().default("") })
   .strict();
 
 // ---------------------------------------------------------------------------------------------
@@ -791,12 +928,20 @@ export const boneTimelinesSchema = z
 
 export const attachmentKeySchema = z.object({ time: keyTime(), name: nameSchema.nullable() }).strict();
 
+export const SEQUENCE_MODES = ["hold", "once", "loop", "pingpong"] as const;
+export type SequenceMode = (typeof SEQUENCE_MODES)[number];
+
+/** From `time` on: play from frame `index` in `mode`, advancing one frame every `delay` seconds (0 = hold the frame). */
+export const sequenceKeySchema = z
+  .object({ time: keyTime(), mode: z.enum(SEQUENCE_MODES), index: z.number().int().min(0), delay: nonNegative().default(0) })
+  .strict();
+
 export const colorKeySchema = z
   .object({ time: keyTime(), color: colorSchema, curve: curveFor(["r", "g", "b", "a"]).default("linear") })
   .strict();
 
 export const slotTimelinesSchema = z
-  .object({ attachment: z.array(attachmentKeySchema).optional(), color: continuousKeys(colorKeySchema).optional() })
+  .object({ attachment: z.array(attachmentKeySchema).optional(), sequence: z.array(sequenceKeySchema).optional(), color: continuousKeys(colorKeySchema).optional() })
   .strict();
 
 export const ikKeySchema = z
@@ -821,6 +966,18 @@ export const transformKeySchema = z
     mixScaleY: unit().optional(),
     mixShearY: unit().optional(),
     curve: curveFor(["mixRotate", "mixX", "mixY", "mixScaleX", "mixScaleY", "mixShearY"]).default("linear")
+  })
+  .strict();
+
+export const pathKeySchema = z
+  .object({
+    time: keyTime(),
+    position: finite().optional(),
+    spacing: finite().optional(),
+    mixRotate: unit().optional(),
+    mixX: unit().optional(),
+    mixY: unit().optional(),
+    curve: curveFor(["position", "spacing", "mixRotate", "mixX", "mixY"]).default("linear")
   })
   .strict();
 
@@ -851,11 +1008,13 @@ export const eventKeySchema = z
     name: nameSchema,
     int: z.number().int().optional(),
     float: finite().optional(),
-    string: z.string().optional()
+    string: z.string().optional(),
+    /** Sound name played with the event (a name the game or a runtime resolves; the editor keeps clip audio in the data folder). */
+    audio: z.string().optional()
   })
   .strict();
 
-/** Default held-frame playback rate of a clip (owner decision 2026-10-14: 30 fps held-frame, 30 Hz pose cache, 60 Hz display). */
+/** Default held-frame playback rate of a clip. */
 export const DEFAULT_CLIP_FPS = 30;
 
 export const clipSchema = z
@@ -872,6 +1031,7 @@ export const clipSchema = z
     slots: z.record(nameSchema, slotTimelinesSchema).default({}),
     ik: z.record(nameSchema, continuousKeys(ikKeySchema)).default({}),
     transform: z.record(nameSchema, continuousKeys(transformKeySchema)).default({}),
+    path: z.record(nameSchema, continuousKeys(pathKeySchema)).default({}),
     physics: z.record(nameSchema, physicsTimelinesSchema).default({}),
     deform: byAttachment(continuousKeys(deformKeySchema)).default({}),
     drawOrder: z.array(drawOrderKeySchema).default([]),
@@ -892,7 +1052,7 @@ export const atlasSchema = z
   .strict();
 
 /**
- * Rig budgets (plan 4d-4i): declared by the document (written from the body preset that built it,
+ * Rig budgets: declared by the document (written from the body preset that built it,
  * or by hand for a mob); the validator uses them over its generic defaults. Vertex budgets have no
  * generic default (undeclared = not judged, with a warning). `chains`: summed one-way limits
  * between two bones (the chains check). `bend`: the cumulative bend cap per chain role, degrees,
@@ -915,7 +1075,7 @@ export const budgetsSchema = z
 export type RigBudgetsData = z.output<typeof budgetsSchema>;
 
 /**
- * Authoring metadata (plan 4d-4j2, tools/authoring.ts): explicit chains, deformation domains,
+ * Authoring metadata (tools/authoring.ts): explicit chains, deformation domains,
  * connection semantics and validation probes. Optional: without it, roles and chains are inferred
  * (a suggestion); with it, review poses, `weights.auto` and the validator follow it.
  */
@@ -1007,6 +1167,7 @@ export const animDocumentSchema = z
     drawOrder: z.array(nameSchema).optional(),
     ik: z.array(ikConstraintSchema).default([]),
     transform: z.array(transformConstraintSchema).default([]),
+    path: z.array(pathConstraintSchema).default([]),
     physics: z.array(physicsConstraintSchema).default([]),
     driven: z.array(drivenSchema).default([]),
     drivenGrids: z.array(drivenGridSchema).optional(),
@@ -1032,10 +1193,16 @@ export type MeshAttachmentData = z.output<typeof meshAttachmentSchema>;
 export type RegionAttachmentData = z.output<typeof regionAttachmentSchema>;
 export type LinkedMeshAttachmentData = z.output<typeof linkedMeshAttachmentSchema>;
 export type PointAttachmentData = z.output<typeof pointAttachmentSchema>;
+export type ClippingAttachmentData = z.output<typeof clippingAttachmentSchema>;
+export type BoundingBoxAttachmentData = z.output<typeof boundingBoxAttachmentSchema>;
+export type SequenceData = z.output<typeof sequenceSchema>;
+export type SequenceKeyData = z.output<typeof sequenceKeySchema>;
 export type DrawOrderOffsetData = z.output<typeof drawOrderOffsetSchema>;
 export type IkConstraintData = AnimDocument["ik"][number];
 export type TransformConstraintData = AnimDocument["transform"][number];
+export type PathConstraintData = AnimDocument["path"][number];
 export type PhysicsConstraintData = AnimDocument["physics"][number];
+export type PathAttachmentData = z.output<typeof pathAttachmentSchema>;
 export type DrivenData = AnimDocument["driven"][number];
 export type DrivenGridData = z.output<typeof drivenGridSchema>;
 export type PoseLimitData = z.output<typeof poseLimitSchema>;

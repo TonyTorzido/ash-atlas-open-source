@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 /*
- * Generality gate (plan 4d-4i, extended in 4d-4j): library and CLI source (core, tools, pixi, cli)
+ * Generality gate (extended in): library and CLI source (core, tools, pixi, cli)
  * names no body template. No template file name (template7), no humanoid bone, slot or part name,
  * no test-mob name (the fox) and no literal canvas coordinate (a crop or frame at a fixed canvas
  * x/y) outside body-preset modules and fixtures. Rig-agnostic code takes such names and crops from
@@ -19,7 +19,7 @@ const PRESETS = ["tools/humanoid.ts", "tools/surface/preset.ts"];
 /** Fixtures: tests and the test-figure / test-rig builders. */
 const FIXTURES = [/\.test\.ts$/, /^tools\/testFigures\.ts$/, /^tools\/surface\/test[A-Z]\w*\.ts$/];
 /**
- * Debt listed apart so it stays visible. Emptied in 4d-4j: the raster rig builder (tools/rig.ts) and
+ * Debt listed apart so it stays visible. Emptied in: the raster rig builder (tools/rig.ts) and
  * its joint pieces (tools/jointPieces.ts) were deleted; review crops moved to HUMANOID_BODY.
  */
 const RETIRING_IN_4D_4J: string[] = [];
@@ -41,7 +41,7 @@ function walk(dir: string): string[] {
   });
 }
 
-describe("generality: no template names in library source (plan 4d-4i)", () => {
+describe("generality: no template names in library source ()", () => {
   const files = SCANNED.flatMap((dir) => walk(join(SRC, dir))).map((path) => relative(SRC, path).split("\\").join("/"));
   const allowed = (file: string) => PRESETS.includes(file) || RETIRING_IN_4D_4J.includes(file) || FIXTURES.some((re) => re.test(file));
 

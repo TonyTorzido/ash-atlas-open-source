@@ -1,4 +1,4 @@
-// PROTOTYPE (side sword round 2): evidence for swings A (raised in front) and B (horizontal slash) on the dressed
+// PROTOTYPE (side sword): evidence for swings A (raised in front) and B (horizontal slash) on the dressed
 // turned-side rig with the turned head. Run from packages/animator after scripts/views/side-sword-v2-clips.ts and the
 // held import into views/side-sword/v2 (see its README):
 //   npx tsx scripts/views/side-sword-v2-evidence.ts

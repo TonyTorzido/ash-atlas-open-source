@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The runtime skeleton: bones built from a validated document, slots and their attachments, the
  * active skins (outfit), per-instance deform offsets, driven keys, the update order, and the
@@ -20,7 +20,7 @@
  * Tests can replace a constraint kind's solver (SkeletonOptions.solvers) to exercise the update
  * order in isolation.
  *
- * Joint-ready body (plan 4d-2): a mesh with draw groups is skinned once per frame (meshWorldVertices
+ * Joint-ready body: a mesh with draw groups is skinned once per frame (meshWorldVertices
  * caches the result per updateWorldTransform) and each group slot reads its vertices from that one
  * buffer (computeGroupWorldVertices), so group boundaries are identical by construction. Contours of
  * the active skins (activeContours) evaluate their centrelines from the same cache. Driven grids
@@ -31,7 +31,8 @@ import { applyContacts, applyJoin, compileContours, computeBoneContourPoints, co
 import { Bone } from "./bone.js";
 import { contourCappedEndsOf, contourFilletsOf, contourHandoverRunsOf, contourRunsOf } from "./coverageRuns.js";
 import { AnchoredDrawOrder } from "./drawOrder.js";
-import { createIkPose, createPhysicsPose, createTransformPose, resetIkPose, resetPhysicsPose, resetTransformPose, type IkPose, type PhysicsPose, type TransformPose } from "./constraintPose.js";
+import { createIkPose, createPathPose, createPhysicsPose, createTransformPose, resetIkPose, resetPathPose, resetPhysicsPose, resetTransformPose, type IkPose, type PathPose, type PhysicsPose, type TransformPose } from "./constraintPose.js";
+import { PathConstraint } from "./pathConstraint.js";
 import { CompiledDriven, DrivenState, drivenValue, evaluateDriven } from "./driven.js";
 import { IkConstraint } from "./ikConstraint.js";
 import { MAX_FRAME_DELTA, PhysicsConstraint, type PhysicsClock, type PhysicsMode } from "./physicsConstraint.js";
@@ -40,11 +41,13 @@ import {
   DEFAULT_CONSTRAINT_ORDER,
   type AnimDocument,
   type IkConstraintData,
+  type PathConstraintData,
   type PhysicsConstraintData,
   type TransformConstraintData
 } from "./format.js";
 import { copyLocalTransform } from "./math.js";
-import { computeEmbeddedVertices, computeGeometryWorldVertices, computeMeshWorldVertices, computeRegionWorldVertices, type NumberArray } from "./skinning.js";
+import { sequenceFrame } from "./sequence.js";
+import { computePolygonWorld, pointInPolygon, computeEmbeddedVertices, computeGeometryWorldVertices, computeMeshWorldVertices, computeRegionWorldVertices, type NumberArray } from "./skinning.js";
 import { Slot } from "./slot.js";
 import {
   CONSTRAINT_KINDS,
@@ -57,7 +60,7 @@ import {
 
 /** The parts of a document a skeleton is built from (slots, draw order and driven keys optional). */
 export type SkeletonDocument = Pick<AnimDocument, "bones" | "skins" | "ik" | "transform" | "physics"> &
-  Partial<Pick<AnimDocument, "slots" | "drawOrder" | "driven" | "drivenGrids">>;
+  Partial<Pick<AnimDocument, "slots" | "drawOrder" | "driven" | "drivenGrids" | "path">>;
 
 /** Runs one constraint step. `index` is the constraint's index within its kind's list. */
 export type ConstraintSolver = (skeleton: Skeleton, index: number) => void;
@@ -98,6 +101,11 @@ export class Skeleton implements PhysicsClock {
   readonly drawOrderOffsets: Int32Array;
   /** Every constraint in execution order: sorted by (order, kind, list index). */
   readonly constraints: readonly ConstraintInfo[];
+  /**
+   * Whether bone rotation limits clamp the pose. AnimationState.apply sets it: on for a looping pose,
+   * off while a non-looping (one-shot, combat) clip is posed, where the swing is judged by the editor gates instead.
+   */
+  limitsEnforced = true;
   /** World position of skeleton space (0, 0). */
   x = 0;
   y = 0;
@@ -111,6 +119,7 @@ export class Skeleton implements PhysicsClock {
   /** Constraint runtimes, one per document entry, in document order. */
   readonly ikConstraints: readonly IkConstraint[];
   readonly transformConstraints: readonly TransformConstraint[];
+  readonly pathConstraints: readonly PathConstraint[];
   readonly physicsConstraints: readonly PhysicsConstraint[];
 
   private readonly bonesByName: ReadonlyMap<string, Bone>;
@@ -132,6 +141,7 @@ export class Skeleton implements PhysicsClock {
    */
   readonly ikPoses: readonly IkPose[];
   readonly transformPoses: readonly TransformPose[];
+  readonly pathPoses: readonly PathPose[];
   readonly physicsPoses: readonly PhysicsPose[];
 
   // Draw order: anchored resolution, combined offsets, the order last published.
@@ -147,7 +157,7 @@ export class Skeleton implements PhysicsClock {
   private readonly driven: CompiledDriven;
   private readonly drivenState: DrivenState;
 
-  // Draw groups and contours (plan 4d-2).
+  // Draw groups and contours.
   private readonly contourData: CompiledContours;
   /** Contours of the active skins, in skin merge order. Rebuilt when the active skins change. */
   private active: readonly CompiledContour[] = [];
@@ -155,7 +165,7 @@ export class Skeleton implements PhysicsClock {
   private readonly contourSlots: Int32Array;
   /** Per contour: the slot index of its owning attachment (-1: no attachment gate). */
   private readonly contourOwnerSlots: Int32Array;
-  /** Per contour id: the slot whose alpha fades the stroke (its owner's, when elsewhere), or -1. */
+  /** Per contour id: the slot whose alpha fades the stroke (its the user's, when elsewhere), or -1. */
   readonly contourFaderSlots: Int32Array;
   /** Per contour id: the deform owner indices whose animation deform moves its centreline (contourHasAnimatedDeform). */
   private readonly contourDeformOwners: Int32Array[];
@@ -209,6 +219,8 @@ export class Skeleton implements PhysicsClock {
     this.ikPoses = doc.ik.map(createIkPose);
     this.transformPoses = doc.transform.map(createTransformPose);
     this.physicsPoses = doc.physics.map(createPhysicsPose);
+    const pathData = doc.path ?? [];
+    this.pathPoses = pathData.map(createPathPose);
     const boneOf = (name: string, owner: string) => bones[indexOf(name, owner)] as Bone;
     this.ikConstraints = doc.ik.map(
       (c, i) => new IkConstraint(c, this.ikPoses[i] as IkPose, c.bones.map((b) => boneOf(b, c.name)), boneOf(c.target, c.name))
@@ -217,6 +229,11 @@ export class Skeleton implements PhysicsClock {
       (c, i) =>
         new TransformConstraint(c, this.transformPoses[i] as TransformPose, c.bones.map((b) => boneOf(b, c.name)), boneOf(c.target, c.name), this)
     );
+    this.pathConstraints = pathData.map((c, i) => {
+      const slot = this.slotsByName.get(c.target);
+      if (!slot) throw new Error(`${c.name}: unknown slot '${c.target}'`);
+      return new PathConstraint(c, this.pathPoses[i] as PathPose, c.bones.map((b) => boneOf(b, c.name)), slot, this);
+    });
     this.physicsConstraints = doc.physics.map(
       (c, i) => new PhysicsConstraint(c, this.physicsPoses[i] as PhysicsPose, boneOf(c.bone, c.name), this)
     );
@@ -304,6 +321,20 @@ export class Skeleton implements PhysicsClock {
             target: -1
           })
         );
+      } else if (kind === "path") {
+        pathData.forEach((c, index) => {
+          const slot = this.slotsByName.get(c.target) as Slot;
+          constraints.push({
+            kind,
+            index,
+            name: c.name,
+            order: c.order ?? DEFAULT_CONSTRAINT_ORDER[kind],
+            skin: c.skin,
+            bones: c.bones.map((bone) => indexOf(bone, c.name)),
+            target: slot.bone.index,
+            reads: this.pathReadBones(c.target)
+          });
+        });
       } else {
         doc[kind].forEach((c, index) =>
           constraints.push({
@@ -323,13 +354,28 @@ export class Skeleton implements PhysicsClock {
     constraints.sort((a, b) => a.order - b.order);
     this.orderConstraints = constraints;
     this.constraints = constraints.map(({ kind, index, name, order }) => ({ kind, index, name, order }));
-    const positions: Record<ConstraintKind, number[]> = { ik: [], transform: [], physics: [] };
+    const positions: Record<ConstraintKind, number[]> = { ik: [], transform: [], path: [], physics: [] };
     constraints.forEach((c, position) => {
       positions[c.kind][c.index] = position;
     });
     this.constraintPositions = positions;
     this.plan = this.buildPlan();
     this.buildOutfit();
+  }
+
+  /** Bone indices every weighted path attachment of `slot` (any skin) is bound to: read by a path constraint on that slot. */
+  private pathReadBones(slot: string): number[] {
+    const found = new Set<number>();
+    for (const skin of Object.values(this.document.skins)) {
+      for (const attachment of Object.values(skin.attachments[slot] ?? {})) {
+        if (attachment.type !== "path" || !attachment.bones) continue;
+        for (const name of attachment.bones) {
+          const bone = this.bonesByName.get(name);
+          if (bone) found.add(bone.index);
+        }
+      }
+    }
+    return [...found];
   }
 
   findBone(name: string): Bone | undefined {
@@ -388,7 +434,7 @@ export class Skeleton implements PhysicsClock {
     return this.outfit[slot.index]?.get(placeholder);
   }
 
-  /** Contours of the active skins (plan 4d-2), in skin merge order. */
+  /** Contours of the active skins, in skin merge order. */
   get activeContours(): readonly CompiledContour[] {
     return this.active;
   }
@@ -400,7 +446,7 @@ export class Skeleton implements PhysicsClock {
 
   /**
    * Whether a contour draws this frame (before colour and level of detail): its owner slot is not
-   * hidden and its bone is active, its owning attachment is displayed (plan 4d-4l part c: the slot
+   * hidden and its bone is active, its owning attachment is displayed (part c: the slot
    * of `owner` / the bound mesh is not hidden and shows that attachment or a mesh sharing its
    * deform), and every visibility rule holds.
    */
@@ -424,8 +470,8 @@ export class Skeleton implements PhysicsClock {
   }
 
   /**
-   * Effective opacity of a contour's owner (clothing model, plan 4d-4l close): the owner slot's
-   * alpha x driven alpha x attachment alpha when the owner sits in another slot than the one the
+   * Effective opacity of a contour's owner (clothing model, close): the user slot's
+   * alpha x driven alpha x attachment alpha when the user sits in another slot than the one the
    * stroke draws in (a garment fading in its own slot fades its strokes too); 1 otherwise.
    * Renderers multiply it into the stroke alpha.
    */
@@ -434,7 +480,7 @@ export class Skeleton implements PhysicsClock {
     return holder ? holder.color.a * holder.drivenAlpha * (contour.ownerAttachment as Attachment).color.a : 1;
   }
 
-  /** The owner's slot when it is not the slot the stroke draws in (its alpha fades the stroke), else null. */
+  /** The user's slot when it is not the slot the stroke draws in (its alpha fades the stroke), else null. */
   contourOwnerHolder(contour: CompiledContour): Slot | null {
     const index = this.contourFaderSlots[contour.id] as number;
     return index >= 0 ? (this.slots[index] as Slot) : null;
@@ -442,7 +488,7 @@ export class Skeleton implements PhysicsClock {
 
 
   /**
-   * Clothing model (plan 4d-4l close, core/coverage.ts): the visible runs of a contour's stroke this
+   * Clothing model (close, core/coverage.ts): the visible runs of a contour's stroke this
    * frame, or null when nothing covers it (draw it whole). Coverers are the pieces drawn after the
    * contour's slot (attachments and draw groups) that are shown, opaque enough (COVER_ALPHA) and not
    * the contour's own mesh family. A coverer riding the contour's surface (same root mesh, fully
@@ -468,7 +514,7 @@ export class Skeleton implements PhysicsClock {
   }
 
   /**
-   * Line junctions (arm layer round 7): per visible run, bit 0 / bit 1 when its start / end is a
+   * Line junctions (arm layer): per visible run, bit 0 / bit 1 when its start / end is a
    * trim on another visible line of the same width: drawn with full ink and its round cap (a round
    * join with that line, or hidden under it) instead of a feather. Null when there is none.
    * Owned and reused, like contourRuns.
@@ -478,7 +524,7 @@ export class Skeleton implements PhysicsClock {
   }
 
   /**
-   * Hand-over bridges (arm layer round 8, core/trimFillet.ts appendHandover): the visible runs to
+   * Hand-over bridges (arm layer, core/trimFillet.ts appendHandover): the visible runs to
    * draw, with each end that hands over to the line it meets at a wide corner cut back to the
    * bridge (the over line's contourFillets carries the bridge piece, contourCappedEnds marks the
    * cut ends). Null when there is none: draw contourRuns. Owned and reused.
@@ -643,6 +689,8 @@ export class Skeleton implements PhysicsClock {
     for (let i = 0; i < this.transformPoses.length; i++) {
       resetTransformPose(this.transformPoses[i] as TransformPose, doc.transform[i] as TransformConstraintData);
     }
+    const pathData = doc.path ?? [];
+    for (let i = 0; i < this.pathPoses.length; i++) resetPathPose(this.pathPoses[i] as PathPose, pathData[i] as PathConstraintData);
     for (let i = 0; i < this.physicsPoses.length; i++) resetPhysicsPose(this.physicsPoses[i] as PhysicsPose, doc.physics[i] as PhysicsConstraintData);
   }
 
@@ -767,6 +815,7 @@ export class Skeleton implements PhysicsClock {
       if (solver) solver(this, step.index);
       else if (step.kind === "ik") (this.ikConstraints[step.index] as IkConstraint).update();
       else if (step.kind === "transform") (this.transformConstraints[step.index] as TransformConstraint).update();
+      else if (step.kind === "path") (this.pathConstraints[step.index] as PathConstraint).update();
       else (this.physicsConstraints[step.index] as PhysicsConstraint).update();
     }
     evaluateDriven(this.driven, this.bones, this.skinGate, this.drivenState);
@@ -815,6 +864,34 @@ export class Skeleton implements PhysicsClock {
     return 0;
   }
 
+  /**
+   * Hit boxes (bounding-box attachments) shown this frame that contain the world point, topmost
+   * (last in draw order) first. Call after updateWorldTransform; hidden slots and inactive bones
+   * never hit. Allocates the result array only.
+   */
+  hitBoundingBoxes(x: number, y: number): { slot: string; name: string }[] {
+    const hits: { slot: string; name: string }[] = [];
+    for (let i = this.drawOrder.length - 1; i >= 0; i--) {
+      const slot = this.drawOrder[i] as Slot;
+      const attachment = slot.attachment;
+      if (!attachment || attachment.type !== "boundingbox") continue;
+      const count = computePolygonWorld(attachment, slot.bone, (this.polygonScratch.length >= attachment.vertices.length ? this.polygonScratch : (this.polygonScratch = new Float64Array(attachment.vertices.length))));
+      if (pointInPolygon(this.polygonScratch, count, x, y)) hits.push({ slot: slot.data.name, name: attachment.name });
+    }
+    return hits;
+  }
+
+  /** World polygon (x, y pairs) of the bounding box or clipping attachment a slot shows, or null. */
+  slotPolygonWorld(slot: Slot): Float64Array | null {
+    const attachment = slot.attachment;
+    if (!attachment || (attachment.type !== "boundingbox" && attachment.type !== "clipping")) return null;
+    const out = new Float64Array(attachment.vertices.length);
+    computePolygonWorld(attachment, slot.bone, out);
+    return out;
+  }
+
+  private polygonScratch = new Float64Array(0);
+
   private resolveAttachments(): void {
     const placeholders = this.drivenState.placeholders;
     for (const slot of this.slots) {
@@ -826,6 +903,8 @@ export class Skeleton implements PhysicsClock {
       slot.groupMesh = null;
       slot.groupIndex = -1;
       slot.groupOwner = null;
+      const sequence = slot.attachment && (slot.attachment.type === "region" || slot.attachment.type === "mesh") ? slot.attachment.sequence : null;
+      slot.sequenceFrame = !sequence ? 0 : slot.sequenceMode === null ? sequence.setup : sequenceFrame(slot.sequenceMode, slot.sequenceIndex, slot.sequenceDelay, sequence.count, slot.sequenceElapsed);
     }
     if (this.groupSlots.size === 0) return;
     for (const slot of this.slots) {

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Draws the fixture atlas page of the hand-made three-part test rig
  * (fixtures/rigs/three-part.atlas.png, regions in three-part.atlas.json). Deterministic: rerun

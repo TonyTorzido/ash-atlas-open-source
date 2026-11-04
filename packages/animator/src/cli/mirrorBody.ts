@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4l (part b): the whole upper body from the certified half rig.
+ * Plan (part b): the whole upper body from the certified half rig.
  * `tsx src/cli/mirrorBody.ts <half rig dir> <preset.json> <out dir> [--no-render]`
  * mirrors the half (tools/mirrorRig.ts), welds one skin, adds the evidence clips, writes the rig
  * and atlas, and certifies the merged rig: bind and pose symmetry, the centreline weld (raster
@@ -48,7 +48,7 @@ async function main() {
   const asym = new Set(preset.mirror.asymmetric ?? []);
   for (const r of preset.regions) centre[r.texture] = { image: readPng(resolve(dirname(resolve(presetPath)), r.image)), crop: r.crop, keep: r.keep, asymmetric: asym.has(r.name) };
   const m = mirrorRig(raw, textures, preset.mirror, centre);
-  // Clothing model, body side (plan 4d-4l close): the body's own contours on every hull run no
+  // Clothing model, body side (close): the body's own contours on every hull run no
   // skin contour strokes yet, and a bare-skin texture without garment-era shading.
   const bodySkinKey = Object.keys(m.doc.skins).find((k) => m.doc.skins[k].attachments?.[preset.skin.slot]?.[preset.skin.attachment]) as string;
   const bodyContours = deriveBodyContours(m.doc, bodySkinKey, preset.skin.slot, preset.skin.attachment);
@@ -91,7 +91,7 @@ async function main() {
   probe.getBone(NECK).pose.rotation += 10;
   probe.updateWorldTransform("none");
   const toLeft = probe.getBone(HEAD).world.x < 0 + (preset.mirror.x - (m.doc.canvas.originX as number)) ? 1 : -1;
-  // Head leans stay inside the combined head x arm limits (plan 4d-4l b): scale the neck/head lean down until inside.
+  // Head leans stay inside the combined head x arm limits (b): scale the neck/head lean down until inside.
   const limits = ((m.doc.poseLimits ?? []) as PoseLimit[]).map((l) => ({ ...l, source: "" }));
   const fitLean = (p: Pose): Pose => {
     if (insideLimits(limits, p)) return p;
@@ -185,7 +185,7 @@ async function main() {
   const ox = doc.canvas.originX;
   const oy = doc.canvas.originY;
   // The weld raster runs on the skin alone (its slot and draw groups, no strokes): a dressed render
-  // could hide a skin crack under the tank or the head (4d-4l review 8).
+  // could hide a skin crack under the tank or the head.
   const skAlone = new Skeleton(loadAnimDocument(skinAloneDoc(m.doc, preset.skin.slot, preset.skin.attachment)));
   skAlone.setActiveSkins(Object.keys(doc.skins));
   const poseSk = (p: Pose, target: Skeleton = sk) => {
@@ -307,7 +307,7 @@ async function main() {
   // The half baseline: every combined pose projected onto the left side (right drivers dropped).
   const halfPoses = poses.map((p) => ({ ...p, rotate: Object.fromEntries(Object.entries(p.rotate).filter(([b]) => !rightBones.has(b))) }));
   // The half companion carries the projected poses: the validator prefers companion poses, so the
-  // original half companion would evaluate its own 1,526 sweep poses instead (4d-4l review 2).
+  // original half companion would evaluate its own 1,526 sweep poses instead.
   const halfV = validateRig(raw, { companion: companionWithPoses(half, halfPoses), textures, tears: true, poses: halfPoses });
   const halfErrors = halfV.issues.filter((i) => i.severity === "error");
   const halfByCheck: Record<string, number> = {};
@@ -331,7 +331,7 @@ async function main() {
     firstErrors: [...errors.filter((i) => i.check !== "geometry"), ...errors.filter((i) => i.check === "geometry")].slice(0, 40).map((i) => `${i.check}: ${i.message}`),
     halfFirstErrors: halfErrors.filter((i) => i.check !== "geometry").slice(0, 10).map((i) => `${i.check}: ${i.message}`)
   };
-  // Whole-body runtime budget re-derived against the per-dressed-character figure (4d-4l review 11).
+  // Whole-body runtime budget re-derived against the per-dressed-character figure.
   report.budget = bodyBudget(m.doc, preset.runtime?.budget, SKIN, m.meshes[SKIN]?.centre.length ?? 0);
   writeFileSync(join(outDir, `${rigName}.certify.json`), `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify({ symmetry: report.symmetry, weld: report.weld, budget: report.budget, validator: { ...(report.validator as any), firstErrors: undefined } }, null, 1)}\n`);

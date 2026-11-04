@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * World vertices of attachments: linear blend skinning on the CPU.
  *
@@ -18,7 +18,7 @@
  *
  * Every function writes into a caller-owned array and allocates nothing.
  */
-import type { MeshAttachment, MeshEmbedData, MeshGeometryData, PointAttachment, RegionAttachment } from "./attachments.js";
+import type { BoundingBoxAttachment, ClippingAttachment, MeshAttachment, MeshEmbedData, MeshGeometryData, PointAttachment, RegionAttachment } from "./attachments.js";
 import type { Bone } from "./bone.js";
 import { DEG_TO_RAD, RAD_TO_DEG } from "./math.js";
 
@@ -117,6 +117,32 @@ export function computeRegionWorldVertices(
   }
 }
 
+/** World vertices (x, y pairs) of a clipping or bounding-box polygon on its bone. Writes 2 floats per vertex into `out`. */
+export function computePolygonWorld(polygon: ClippingAttachment | BoundingBoxAttachment, bone: Bone, out: NumberArray): number {
+  const { a, b, c, d, x: tx, y: ty } = bone.world;
+  const v = polygon.vertices;
+  for (let i = 0; i < v.length; i += 2) {
+    const x = v[i] as number;
+    const y = v[i + 1] as number;
+    out[i] = a * x + b * y + tx;
+    out[i + 1] = c * x + d * y + ty;
+  }
+  return v.length / 2;
+}
+
+/** Even-odd point-in-polygon test of x, y pairs `world[0 .. count * 2)` (either winding, convex or concave). */
+export function pointInPolygon(world: ArrayLike<number>, count: number, x: number, y: number): boolean {
+  let inside = false;
+  for (let i = 0, j = count - 1; i < count; j = i++) {
+    const xi = world[i * 2] as number;
+    const yi = world[i * 2 + 1] as number;
+    const xj = world[j * 2] as number;
+    const yj = world[j * 2 + 1] as number;
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
+
 export interface PointWorld {
   x: number;
   y: number;
@@ -140,7 +166,7 @@ export function computePointWorld(point: PointAttachment, bone: Bone, out: Point
 
 /**
  * Overwrites the embedded vertices of `world` (2 floats per vertex) with their points on the
- * source mesh's posed vertices `source` (plan 4d-3): a posed-triangle embedding, evaluated exactly
+ * source mesh's posed vertices `source`: a posed-triangle embedding, evaluated exactly
  * like a mesh-bound contour point, so an embedded vertex and the surface point under it agree bit
  * for bit.
  */
@@ -171,7 +197,7 @@ export function computeEmbeddedVertices(embed: MeshEmbedData, source: ArrayLike<
 /** Longest miter of a boundary offset vertex, in offset distances (a sharper corner is a bounded join). */
 export const OFFSET_MITER_LIMIT = 2;
 /**
- * Offset chains (plan 4d-4n, notch fix): the boundary offset entries in walk order, one chain per
+ * Offset chains (notch fix): the boundary offset entries in walk order, one chain per
  * boundary run. `order` lists entry indices chain by chain, chain c being order[starts[c] ..
  * starts[c + 1]); `cyclic[c]` = 1 when its last entry links back to its first.
  */
@@ -206,7 +232,7 @@ export const OFFSET_FLAG_CLIPPED = 1;
 export const OFFSET_FLAG_MITER = 4;
 const OFFSET_FLAG_CELL = 2; // internal: the cell from this entry to the next one is inside a clip
 /**
- * Concave joins (plan 4d-4n, notch fix): a cell (anchors i -> i+1 and their offset points) is folded
+ * Concave joins (notch fix): a cell (anchors i -> i+1 and their offset points) is folded
  * when either of its two strip triangles keeps less than this fraction of the straight cell's area
  * (or turns over). Folded cells are joined into a clip.
  */
@@ -218,7 +244,7 @@ export const OFFSET_CLIP_REACH = 4;
 const OFFSET_OUT = new Float64Array(2);
 
 /**
- * The boundary offset point of anchor vertex `a` (plan 4d-4n): the posed polyline p -> a -> n (p or n
+ * The boundary offset point of anchor vertex `a`: the posed polyline p -> a -> n (p or n
  * = a at a branch end) offset by `d` along the miter of its two edge normals (right of the walk
  * direction for d > 0, y-up), so the offset polyline keeps distance d from both edges; the miter is
  * bounded at OFFSET_MITER_LIMIT. The offset is never shortened: on the concave side of a turn it is
@@ -260,7 +286,7 @@ function area2(px: number, py: number, qx: number, qy: number, rx: number, ry: n
 }
 
 /**
- * All boundary offset points of a mesh (plan 4d-4n, notch fix), 2 floats per entry into `out`:
+ * All boundary offset points of a mesh (notch fix), 2 floats per entry into `out`:
  * entry i = offsetPoint of refs [3i] (anchor), [3i+1] (prev), [3i+2] (next) at dist[i]. Then, per
  * chain, cells whose offset points crossed or nearly met (a concave turn whose miter slides exceed
  * the short edges between them: the shoulder top on a raise) are joined into clips. A clip's points

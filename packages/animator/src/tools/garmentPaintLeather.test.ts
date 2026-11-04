@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Armour round 12: on the leather cuirass fixture, the belt strap (trim between two paints, within reach of
+ * Armour: on the leather cuirass fixture, the belt strap (trim between two paints, within reach of
  * the hem stroke) survives the painter, and every kept trim line texel leaves it unchanged.
  */
 import { existsSync, readFileSync } from "node:fs";
@@ -11,11 +11,11 @@ import { buildGarmentSurface, type GarmentDomain } from "./garmentSurface.js";
 import { readPng } from "./png.js";
 import { DEFAULT_BODY_RIG } from "./swagTypes.js";
 
-// the round 13 capped leather domain (tools/garmentCaps.ts, ABANDONED round 14), kept frozen for this test
+// the capped leather domain (tools/garmentCaps.ts, ABANDONED), kept frozen for this test
 const DOMAIN = "fixtures/garments/leather-caps-r13-abandoned.domain.json";
 const ART = "fixtures/garments/art/leather-cuirass-03.png";
 
-// armour round 14: the jerkin on the shirt template; its belt edges touch a pale metal buckle (read as cream),
+// armour: the jerkin on the shirt template; its belt edges touch a pale metal buckle (read as cream),
 // which put the whole edge lines under the cream rule and dropped the strap
 const JERKIN_DOMAIN = "fixtures/garments/stock-leather.domain.json";
 const JERKIN_ART = "fixtures/garments/art/leather-jerkin-05.png";

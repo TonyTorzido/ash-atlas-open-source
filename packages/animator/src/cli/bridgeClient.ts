@@ -1,8 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The CLI's client for the Appearance Studio bridge (plan 4.3): when the Studio is open, edits go
- * through `POST /api/animator/commands` so the owner sees them land live; the bridge applies them
+ * through `POST /api/animator/commands` so the user sees them land live; the bridge applies them
  * with the same command bus and log as the CLI's direct path. Authenticates like the Studio UI:
  * reads the session (origin + CSRF token) from `GET /api/session`, then sends both on writes.
  */

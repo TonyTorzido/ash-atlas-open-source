@@ -1,4 +1,4 @@
-// Turned-front round 2 evidence (docs/plans/atlas-animator-demos/views/turned-front/round2/README.md). Run from
+// Turned-front evidence (packages/animator/README.md). Run from
 // packages/animator after scripts/views/turnfront-round2-rigs.sh:
 //   npx tsx scripts/views/turnfront-round2-evidence.ts
 // Writes into views/turned-front/round2/ (view040 = the 0.4 phone-size review view, view0471 = max in-game zoom):
@@ -7,11 +7,11 @@
 // - combos-view{040,0471}.png: four face + hair combos at 0 / 15 / 20 (rest), head crops at max zoom;
 // - hair-shift-vs-flip-view0471.png: per hair (A soldier crop, B layered bob, C spikey, D page cut): FRONT, 15 shifted,
 //   15 shifted + flipped, 20 shifted, 20 shifted + flipped (head crops);
-// - feet-round1-vs-round2-view0471.png: the feet at 15 / 20, round 1 (at the camera) vs round 2 (toed toward the turn).
-// Round 2b (owner pick: 15 deg, the face projected on the head at the body angle), `npx tsx ... 2b`, into round2/2b/:
-// - combos-front-old15-new15-view0471.png: per combo FRONT | OLD 15 (round 2 slide, 1.6x) | NEW 15 (projected), heads;
+// - feet-round1-vs-round2-view0471.png: the feet at 15 / 20, (at the camera) vs (toed toward the turn).
+//, `npx tsx... 2b`, into round2/2b/:
+// - combos-front-old15-new15-view0471.png: per combo FRONT | OLD 15 (slide, 1.6x) | NEW 15 (projected), heads;
 // - walk15-view{040,0471}-30fps.gif (+ -mirrored): FRONT 0 | NEW 15 walking, combo A, hair shifted.
-// Round 2c (`... 2c`, into round2/2c/): combos-front-2b15-new15-view0471.png and the same walk GIFs on the 2c rig.
+// (`... 2c`, into round2/2c/): combos-front-2b15-new15-view0471.png and the same walk GIFs on the 2c rig.
 import { join } from "node:path";
 import { mkdirSync } from "node:fs";
 import { renderFrames, writeGif, type RenderResult } from "../../src/cli/render.js";
@@ -130,7 +130,7 @@ async function main() {
         hrows.push({ title: `hair ${title.split("/")[1]}`, tiles: t });
       }
       writePng(join(DIR, `hair-shift-vs-flip-view${tag}.png`), sheet(hrows));
-      // 4. feet: round 1 vs round 2
+      // 4. feet: vs 
       const ft: [string, RgbaImage][] = [["FRONT", feetCrop(await rest(RIG("body-turn00"), v), v)]];
       for (const a of ["15", "20"]) {
         ft.push([`${a} ROUND 1`, feetCrop(await rest(R1(`body-turn${a}`), v), v)]);
@@ -141,9 +141,9 @@ async function main() {
       writePng(join(DIR, `feet-round1-vs-round2-view${tag}.png`), sheet([{ title: "feet (facing screen-left)", tiles: ft }]));
     }
   }
-  console.log("wrote turned-front round 2 evidence");
+  console.log("wrote turned-front  evidence");
 }
-/** Round 2b ("2b": FRONT | OLD 15 slid | NEW 15 projected) and 2c ("2c": FRONT | 2B 15 | NEW 15 clamped). */
+/** ("2b": FRONT | OLD 15 slid | NEW 15 projected) and 2c ("2c": FRONT | 2B 15 | NEW 15 clamped). */
 async function main2b(round: "2b" | "2c") {
   const OUT = join(DIR, round);
   mkdirSync(OUT, { recursive: true });

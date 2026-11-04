@@ -319,7 +319,7 @@ test.describe("phase 3: physics cape swings and settles", () => {
   });
 });
 
-test.describe("phase 4d-2: dynamic contours", () => {
+test.describe(": dynamic contours", () => {
   /**
    * Coverage-aware local width along the deformed centreline, read from the anti-aliased edge
    * pixels themselves: a pixel whose coverage c is strictly between 0 and 1 lies in the 1-pixel
@@ -430,7 +430,7 @@ test.describe("phase 4d-2: dynamic contours", () => {
     expect(result.rebuildsPerFrame.animated).toBeCloseTo(result.contoursPerCharacter, 5);
     expect(result.rebuildsPerFrame.still).toBe(0);
     expect(result.drawCalls).toBe(1);
-    // The 4d-2 exit gate on the desktop SwiftShader proxy: <= 0.3 ms per character for the contours,
+    // The exit gate on the desktop SwiftShader proxy: <= 0.3 ms per character for the contours,
     // counting both the stroke rebuild/sync (update) and the extra render (batching) they cause.
     const total = contourCost + summary.renderCostMsPerCharacter;
     expect(total, `contour cost ${contourCost.toFixed(4)} update + ${summary.renderCostMsPerCharacter.toFixed(4)} render ms per character`).toBeLessThanOrEqual(0.3);

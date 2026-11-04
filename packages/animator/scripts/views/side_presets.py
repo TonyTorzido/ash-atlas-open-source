@@ -1,4 +1,4 @@
-# Atlas Animator multi-view, phase 2b (docs/plans/atlas-animator-views.md): the TURNED-SIDE full-body presets.
+# Atlas Animator multi-view, phase 2b (packages/animator/README.md): the TURNED-SIDE full-body presets.
 #   python side_presets.py
 # Writes fixtures/canonical/body-side/*.json (data only) from the front full-body test parts and landmarks measured
 # on the approved side art (ART_DROPS/views-body-side/body-side.png, copied next to the presets):
@@ -395,7 +395,7 @@ def arm(src, suffix_from, suffix, slots, land, fist, texture, name, carrier, lay
     d["skin"]["texture"] = texture
     d["regions"] = [{"name": "fist", "slot": slots.get("hand", f"hand{suffix}") if "hand" in slots else names.get("hand_b", f"hand{suffix}"), "bone": f"hand{suffix}", "texture": f"{texture}-fist", "image": "body-side.png", "crop": fist["crop"], "keep": fist["keep"]}]
     if carrier and front_head:
-        # the shared head (phase 2b session 7 decision): the front head stands in as a real head region of the side
+        # the shared head (phase 2b session 7 root decision): the front head stands in as a real head region of the side
         # rig, attached the way the front body attaches it (a region of the torso carrier on the head bone, drawn last),
         # at the same bone-local placement; it covers the neck's cut top in every gate and build until a turned head exists
         d["regions"].append(shared_head(front_head, front_head_at))

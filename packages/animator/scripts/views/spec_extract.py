@@ -1,4 +1,4 @@
-# Atlas Animator multi-view swag, step 1 (docs/plans/atlas-animator-views.md): the design spec extractor.
+# Atlas Animator multi-view swag, step 1 (packages/animator/README.md): the design spec extractor.
 #   python spec_extract.py <item.json> [<out design.json>]
 # <item.json> (authored, fixtures/views/<item>.item.json): the approved front PNG, its domain and the design facts
 # measurement cannot know (the per-view presence table, mirror policy). Writes <item>.design.json with:
@@ -84,7 +84,7 @@ def calibrate_palette(a, pal, m):
                 worst = max(worst, de00(m1[k]["lab"], m2[k]["lab"]))
     # dE00 3 when the front passes it with >= 1.5x margin, otherwise the front's own spread x 1.5
     thr = 3.0 if worst * 1.5 <= 3.0 else round(worst * 1.5, 1)
-    return dict(frontSpreadDE00=round(worst, 2), thresholdDE00=thr, rule="dE00 3 if the front's own half/half and torso/sleeve role spread x1.5 fits under it, else spread x1.5; dE76 6 reported alongside")
+    return dict(frontSpreadDE00=round(worst, 2), thresholdDE00=thr, rule="dE00 3 if the front's own half/half and torso/sleeve role spread x1.5 fits under it, else spread x1.5)
 
 
 def extract(item_path):

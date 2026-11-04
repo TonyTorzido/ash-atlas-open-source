@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Arm layer gates (docs/plans/research/arm-layer.md, milestones 1-3): the layered body's
+ * Arm layer gates: the layered body's
  * contract measured on the final runtime (Skeleton), on the mirrored whole upper body.
  * - sheets: the declared sheet inventory, each one valid connected surface (one edge-connected
  *   component whose boundary is exactly its hull loop);
@@ -383,7 +383,7 @@ export function capCoverageGate(doc: AnimDocument, connections: readonly Connect
  * plus 1 px must be trimmed; outside the under sheet by more than 1 px must be inked. And the arm's
  * side contours (`keep`) are never trimmed by the under sheet (an arm in front of the chest keeps
  * its outline).
- * `buried` (round 6): the arm's other edges that leave the torso (the outer edge over the shoulder
+ * `buried`: the arm's other edges that leave the torso (the outer edge over the shoulder
  * when raised, the underside): wherever one is visible and buried in the torso like a closure
  * point, it must be trimmed (no stray line inside the shoulder).
  */
@@ -489,7 +489,7 @@ export function paintGate(doc: AnimDocument, textures: ReadonlyMap<string, RgbaI
 }
 
 /**
- * Gate 7 (coordinator review 2026-10-16): arm-edge outline continuity over the torso. In every
+ * Gate 7 (review): arm-edge outline continuity over the torso. In every
  * across pose, each arm edge chain (the outer edge, the inner edge) is inked at full opacity and one
  * width wherever it lies over the under sheet (deeper than half its width + 1 px), except under the
  * arm's own later piece (`skip`: the fist slot, its posed quad). A missing, faded, trimmed or
@@ -564,7 +564,7 @@ export function edgeContinuityGate(doc: AnimDocument, textures: ReadonlyMap<stri
 }
 
 /**
- * Gate 8 (coordinator review 2026-10-16): the torso silhouette outline. In every pose, each point
+ * Gate 8 (review): the torso silhouette outline. In every pose, each point
  * of the torso's outline contours that is exposed (no other piece drawn over it there: the arms,
  * fists, head; rendered without the torso) is inked at full opacity, so the torso keeps its outline
  * wherever an arm swings away and hands over to the arm's own outline where the arm covers it.
@@ -626,7 +626,7 @@ export function torsoOutlineGate(doc: AnimDocument, textures: ReadonlyMap<string
 }
 
 /**
- * Gate 9 (owner review 2026-10-16): the wrist / fist join. Per pose and arm, within `radius` canvas
+ * Gate 9: the wrist / fist join. Per pose and arm, within `radius` canvas
  * px of the wrist (the hand bone's pivot): (a) no open stroke end: every visible run end of the
  * arm's and fist's strokes lies on another visible stroke of that arm (within half a width); (b) no
  * exposed skin: rendering the arm and fist alone, no skin pixel (opaque, light) touches transparency
@@ -736,7 +736,7 @@ export function wristGate(doc: AnimDocument, textures: ReadonlyMap<string, RgbaI
 }
 
 /**
- * Gate 10 (coordinator review 2026-10-16): crossed arms. When the arms overlap, the front arm (its
+ * Gate 10 (review): crossed arms. When the arms overlap, the front arm (its
  * sheet, strokes and fist; `front` slot names) draws wholly in front of the back arm (`back`): inside
  * the front arm's own footprint (rendered alone), the full render equals the render without the
  * back arm (no back stroke or fist art shows through or over it).
@@ -794,7 +794,7 @@ export function crossedArmsGate(doc: AnimDocument, textures: ReadonlyMap<string,
 }
 
 /**
- * Gate 11 (coordinator review of bare-4x, round 7): line ends. Where a stroke ends over the body, it
+ * Gate 11 (review): line ends. Where a stroke ends over the body, it
  * must join the line it meets at full ink or be wholly hidden: no visible feathered (partial
  * alpha) ink end. Per pose, the final render around each shoulder pivot (radius `radius` canvas px,
  * all slots drawn) records the feather of the topmost stroke per pixel (softRender partialInk); a
@@ -835,7 +835,7 @@ export function lineEndGate(doc: AnimDocument, textures: ReadonlyMap<string, Rgb
 }
 
 /**
- * Gate 12 (inward elbow fold, round 10): open line ends. Within `radius` of each pivot (the
+ * Gate 12 (inward elbow fold): open line ends. Within `radius` of each pivot (the
  * elbows), every end of a visible run of a full-ink open contour (a contour end or a trim end) must
  * meet another visible full-ink line (within half a width + 1.5 px of its centreline: a chain
  * continuation, a join, a hand-over or a T against a line) or lie outside every skin (at the

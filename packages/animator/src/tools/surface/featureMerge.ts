@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Near-coincident feature merge (plan 4d-4g): before a conform garment clips the skin
+ * Near-coincident feature merge: before a conform garment clips the skin
  * triangulation, its outline is merged with skin features closer than a declared tolerance (canvas
  * px), so the clip retessellates through the skin's own vertices instead of leaving sliver
  * triangles between a skin vertex and an outline crossing a hair away from it. No minimum-angle
@@ -90,7 +90,7 @@ export function minAngles(points: readonly Pt[], triangles: readonly number[]): 
 }
 
 /**
- * Lines and outlines merged into the skin's own features (plan 4d-4g follow-up) instead of running
+ * Lines and outlines merged into the skin's own features (follow-up) instead of running
  * a hair beside them: first merged with skin vertices like an outline, then a vertex within
  * `tolerance` of a skin edge (away from its ends) is dropped when its neighbours' chord stays within
  * `tolerance` of it (else kept), so the clip leaves no sliver between the edge and a vertex next to it. Open lines keep their ends. Shape change <= `tolerance`.

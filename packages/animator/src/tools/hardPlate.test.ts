@@ -132,7 +132,7 @@ describe("hard plate", () => {
   });
 });
 
-describe("hard plate declared overflow (round 15)", () => {
+describe("hard plate declared overflow ()", () => {
   it("passes plate paint past the body only inside a declared zone, and fails it outside", () => {
     const spec = loadPlateSpec(SPEC);
     const w = 1086;

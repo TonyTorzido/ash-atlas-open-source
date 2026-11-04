@@ -10,7 +10,8 @@ import { DynamicAtlas } from "./dynamicAtlas.js";
 import { packedAtlasImages } from "./partImages.js";
 
 /*
- * Physics scheduling apart from the draw cache (runtime review item 1): a cached run (updateHeld hits whenever it may) and an uncached run (invalidate() before
+ * Physics scheduling apart from the draw cache (the design notes
+ * item 1): a cached run (updateHeld hits whenever it may) and an uncached run (invalidate() before
  * every frame) over the same time sequence give the same skeleton, at simulation rates of 1, 2, 3,
  * 30 and 60 steps/s.
  */

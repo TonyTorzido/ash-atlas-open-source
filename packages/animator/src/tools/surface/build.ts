@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Continuous-surface builder (plan 4d-3; consult: one canonical connected skin surface with
+ * Continuous-surface builder (consult: one canonical connected skin surface with
  * designed joint topology, garments that own their openings, contours with one owner, angle-driven
  * correctives seeded at chosen angles plus two-driver grids). Input is a preset (data, see
  * preset.ts): bones by world pivots, a bone chain, authored vector paths for the skin silhouette,
@@ -140,12 +140,12 @@ export interface BuiltSurface {
   overlays: { name: string; garment: string; slot: string; above: string; contours: string[]; fillBand: number; clearance: number; half: number; bands: Pt[][]; range: [number, number] }[];
   /** Root groups (`under`): drawn just below the garment, hidden under its hull by >= clearance at every pose. */
   roots: { slot: string; garment: string; clearance: number }[];
-  /** Runtime reduction applied (plan 4d-4e): kept dense skin vertices and kept garment outline samples. */
+  /** Runtime reduction applied: kept dense skin vertices and kept garment outline samples. */
   reduced?: SurfaceReduction;
 }
 
 /**
- * Runtime reduction (plan 4d-4e, sparse.ts): the dense skin vertices to keep (indices into the
+ * Runtime reduction (sparse.ts): the dense skin vertices to keep (indices into the
  * unreduced build's skin points; hull vertices, row ends and apexes the rows need must be kept)
  * and, per garment name, the outline samples to keep (indices into its sampled path).
  */
@@ -156,9 +156,9 @@ export interface SurfaceReduction {
 
 const WHITE = "ffffffff";
 
-/** Triangle area floor (plan 4d-3 review): no triangle may shrink below this share of its bind area. */
+/** Triangle area floor (review): no triangle may shrink below this share of its bind area. */
 export const AREA_FLOOR = 0.2;
-/** Conform garments: outline features within this many game px of a skin vertex merge onto it (plan 4d-4g). */
+/** Conform garments: outline features within this many game px of a skin vertex merge onto it. */
 export const CONFORM_MERGE_GAME_PX = 0.05;
 /** Overlay band lines (interior fill-band boundaries, never drawn as a stroke) merge into skin features within this (game px). */
 export const BAND_MERGE_GAME_PX = 0.15;
@@ -170,8 +170,7 @@ const signedTriangleArea = (a: Pt, b: Pt, c: Pt) => ((b[0] - a[0]) * (c[1] - a[1
 // ---------------------------------------------------------------------------------------------
 
 /**
- * Bind transforms of the preset's bones, derived with the runtime's inheritance semantics (review
- * 4d-4k review, item 2): `onlyTranslation` and `noRotation` take their position from the parent
+ * Bind transforms of the preset's bones, derived with the runtime's inheritance semantics: `onlyTranslation` and `noRotation` take their position from the parent
  * but not its rotation, so their local rotation is their world rotation at bind (bind scales are 1;
  * `noScale` and `noScaleOrReflection` inherit rotation exactly like `normal` there).
  */
@@ -212,7 +211,7 @@ export function boneTable(preset: SurfacePreset) {
 const round = (x: number, digits = 4) => Number(x.toFixed(digits));
 
 /**
- * Plan 4d-4k: the preset's bone tree. Every branch hangs from an earlier skeleton bone and lists its
+ * Plan: the preset's bone tree. Every branch hangs from an earlier skeleton bone and lists its
  * bones parent to child; no bone sits in two branches or in the limb chain. Returns the branch bones.
  */
 export function checkBranches(preset: SurfacePreset): string[] {
@@ -235,7 +234,7 @@ export function checkBranches(preset: SurfacePreset): string[] {
   return out;
 }
 
-/** Plan 4d-4k: the share of a vertex's `from` weight a bend zone moves to `to` (0..1). */
+/** Plan: the share of a vertex's `from` weight a bend zone moves to `to` (0..1). */
 export function bendShare(bend: Bend, p: Pt): number {
   const ax = bend.b[0] - bend.a[0];
   const ay = bend.b[1] - bend.a[1];
@@ -362,7 +361,7 @@ function cutRows(hull: Pt[], chain: ChainFrame, rows: number[], topo: SurfacePre
     for (let i = 0; i < hull.length; i++) {
       if (skip.has(i)) continue;
       const x = segmentCross(a, b, hull[i] as Pt, hull[(i + 1) % hull.length] as Pt);
-      if (x && x.t > 1e-6 && (j < 0 || x.t < 1 - 1e-6)) return false;
+      if (x && x.t > 1e-6 && x.t < 1 - 1e-6) return false;
     }
     return true;
   };
@@ -734,7 +733,7 @@ export function conformToSkin(outline: readonly Pt[], meshPoints: readonly Pt[],
 }
 
 // ---------------------------------------------------------------------------------------------
-// Garment overlays (plan 4d-3 3d-1 fix review, the sandwich)
+// Garment overlays (3d-1 fix review, the sandwich)
 // ---------------------------------------------------------------------------------------------
 
 /** Offset (miter, capped at 2x) of a polyline on a closed outline; positive = away from the outline's interior. */
@@ -924,7 +923,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
   }
   points.push(...lattice(hull, points, skin.lattice, skin.minDistance).filter((p) => !nearConstraint(p, skin.minDistance * 0.4)));
   if (reduce?.skin) {
-    // Runtime reduction (plan 4d-4e): the same build on a subset of the dense vertices (order kept,
+    // Runtime reduction: the same build on a subset of the dense vertices (order kept,
     // so the hull stays first); rows keep their ends, their dropped samples become straight chords.
     const keep = [...new Set(reduce.skin)].sort((a, b) => a - b);
     if (keep.some((v) => v < 0 || v >= points.length)) fail(`runtime reduction: a kept vertex is outside the dense skin (${points.length} vertices)`);
@@ -945,7 +944,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
   const sv = points.map((p) => chain.coords(p));
 
   // --- draw groups ----------------------------------------------------------------------------
-  // Explicit regions (plan 4d-3 pass 3a): a triangle belongs to the last group whose polygon and
+  // Explicit regions (pass 3a): a triangle belongs to the last group whose polygon and
   // chain range contain its centroid; the first group takes the rest.
   const groupOf = (t: number): number => {
     const c: Pt = [0, 0];
@@ -982,14 +981,14 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
   });
   const partition = vertexGroups.flatMap((s, i) => (s.size > 1 ? [i] : []));
 
-  // --- regions and support masks (plan 4d-3 pass 3a) ---------------------------------------------
+  // --- regions and support masks (pass 3a) ---------------------------------------------
   // Joint patches (inner/outer boundary-chain ramps at the chain root, hinge bands distally), rigid
   // cores and fixed body regions. Their bone lists are hard support masks: applied after every
   // influence is generated, a forbidden influence is exactly zero.
   const H = hull.length;
   const girdle = preset.girdle;
   const meshBones = [preset.base, ...(girdle ? [girdle.bone] : []), ...chainBones];
-  // Trunk influences (plan 4d-4k): branch bones named by a bend zone, appended after the limb
+  // Trunk influences: branch bones named by a bend zone, appended after the limb
   // chain so the limb's influence indices (and its correctives' layout) are unchanged.
   const bendSpecs = skin.regions.bends ?? [];
   for (const bend of bendSpecs) {
@@ -1015,7 +1014,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
   // across the notch is not in the tube even when its chain v is small).
   // Past the last joint (the distal extremity: hand, foot, paw) the limb may be wider than the
   // tube (a foot's toe and heel): any point that sees the axis is in the tube there, so it takes
-  // the distal bone's weights instead of falling back to the first chain bone (plan 4d-4m r3).
+  // the distal bone's weights instead of falling back to the first chain bone (r3).
   const lastJoint = Math.max(-Infinity, ...topo.joints.map((j) => j.s));
   const seesFrom = (i: number, q: Pt, j = -1) => {
     const p = points[i] as Pt;
@@ -1316,7 +1315,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
     if (!girdle) return 0;
     const dx = p[0] - girdle.center[0];
     const dy = (p[1] - girdle.center[1]) * (p[1] > girdle.center[1] ? girdle.belowScale : 1);
-    // Mirror rule (plan 4d-4l): the girdle ends before the centreline (trunk weights only there).
+    // Mirror rule: the girdle ends before the centreline (trunk weights only there).
     const mid = preset.mirror ? smoothstep(0, preset.mirror.feather, Math.abs(p[0] - preset.mirror.x)) : 1;
     return (1 - smoothstep(girdle.r0, girdle.r1, Math.hypot(dx, dy))) * featherOf(p) * mid;
   };
@@ -1337,7 +1336,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
     return kept.map(([b, w]) => [b, w / sum]);
   };
   const weights = points.map((p, i) => weightsFor(p, rawAlphas.map((a) => a[i] as number), support[i]?.allowed));
-  // Trunk bends (plan 4d-4k): near-rigid regions joined by local bends, applied over the limb
+  // Trunk bends: near-rigid regions joined by local bends, applied over the limb
   // weights: only the `from` share moves, so the limb's and girdle's shares stay exactly as built.
   const fixedVertexSet = new Set(support.flatMap((x, i) => (x && fixedPolys.some((f) => f.spec.name === x.region) ? [i] : [])));
   for (const bend of bendSpecs) {
@@ -1350,7 +1349,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
       const k = inf.findIndex(([b]) => b === from);
       if (k < 0) return;
       if (fixedVertexSet.has(i)) fail(`bend '${bend.name}' reaches fixed-region vertex ${i} at (${p[0].toFixed(1)}, ${p[1].toFixed(1)}): a fixed region follows its bone alone (end it before the bend)`);
-      // Hard support masks hold through bends (4d-4k review, item 3): a bend may not hand a
+      // Hard support masks hold through bends: a bend may not hand a
       // share to a bone the vertex's patch, core or apex mask forbids (end the bend before it).
       const sup = support[i];
       if (sup && !sup.allowed.has(to)) fail(`bend '${bend.name}' reaches vertex ${i} at (${p[0].toFixed(1)}, ${p[1].toFixed(1)}) in support region '${sup.region}', which does not allow '${bend.to}' (end the bend before it)`);
@@ -1434,7 +1433,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
     if (g.conform) {
       // Close-fitting garment: the skin triangulation clipped to the garment outline (overlay band
       // inner lines as extra constraints).
-      // Near-coincident outline/skin features merged first (plan 4d-4g): no sliver triangles, no
+      // Near-coincident outline/skin features merged first: no sliver triangles, no
       // minimum-angle floor, conformity exact (the outline moves onto skin vertices).
       const merge = (CONFORM_MERGE_GAME_PX * preset.figureHeight) / preset.gamePixels;
       const c = conformToSkin(mergeLineIntoMesh(gh, points, triangles, merge, true), points, triangles, 0.05, bands.flatMap((b) => b.lines.map((l) => mergeLineIntoMesh(simplifyLine(l.inner, (BAND_MERGE_GAME_PX * preset.figureHeight) / preset.gamePixels), points, triangles, (BAND_MERGE_GAME_PX * preset.figureHeight) / preset.gamePixels))));
@@ -1539,8 +1538,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
   });
 
   // --- arm layer: detached under-sheets ---------------------------------------------------------
-  // Built beside the skin, not cut from it (review arm-layer step 2: a post-build cut of the solved
-  // web would keep the wrong shoulder weights): own silhouette and lattice, trunk weights only
+  // Built beside the skin, not cut from it: own silhouette and lattice, trunk weights only
   // (base, girdle, trunk bends), never a chain joint, so moving an arm cannot pull the torso.
   const sheetSpecs = preset.assembly?.sheets ?? [];
   const sheets: BuiltMesh[] = sheetSpecs.map((sh) => {
@@ -1682,7 +1680,7 @@ export function buildSurface(preset: SurfacePreset, reduce?: SurfaceReduction): 
   skin.groups.forEach((g) => slotBone.set(g.slot, g.bone));
   preset.garments.forEach((g) => slotBone.set(g.slot, g.bone));
   sheetSpecs.forEach((g) => slotBone.set(g.slot, preset.base));
-  // Fader slots (contour `fade`): a point attachment on the owner's bone, drawn right after the owner.
+  // Fader slots (contour `fade`): a point attachment on the user's bone, drawn right after the user.
   const fades: BuiltSurface["fades"] = [];
   for (const c of [...skin.contours, ...sheetSpecs.flatMap((s) => s.contours)]) {
     if (!c.fade) continue;

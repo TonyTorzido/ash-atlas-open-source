@@ -1,9 +1,9 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Layered-parts pipeline (plan 4d-4k): shared pixel helpers. Masks are the image.ts `Mask`
+ * Layered-parts pipeline: shared pixel helpers. Masks are the image.ts `Mask`
  * (1 byte per pixel); mask PNGs are opaque black/white (white = inside) so any viewer and any
- * artist reads them the same way. Coordinates are source pixels, top-left origin, y down.
+ * image model reads them the same way. Coordinates are source pixels, top-left origin, y down.
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";

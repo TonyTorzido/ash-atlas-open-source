@@ -1,10 +1,10 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Cross-reference rules of `atlas-anim@1` that a per-field schema cannot express: names resolve,
  * bones are listed parents-first, keys are sorted and inside their clip, deform data fits its
  * mesh, draw-order changes stay inside the slot list. Every issue carries the document path of
- * the offending value so a loader error points straight at it. Phase 4d-2 adds mesh groups,
+ * the offending value so a loader error points straight at it. Phase adds mesh groups,
  * contours, coverage regions and driven grids.
  */
 import type {
@@ -56,6 +56,7 @@ interface DocumentIndex {
   slots: Map<string, number>;
   ik: Set<string>;
   transform: Set<string>;
+  path: Set<string>;
   physics: Set<string>;
   /**
    * Unanchored slot -> position among the unanchored slots in setup draw order (the list that
@@ -82,11 +83,11 @@ function buildIndex(doc: AnimDocument, report: Report): DocumentIndex {
 
   // Constraint names share one namespace because skins list them by name.
   const constraintNames = new Set<string>();
-  const collect = (kind: "ik" | "transform" | "physics"): Set<string> => {
+  const collect = (kind: "ik" | "transform" | "path" | "physics"): Set<string> => {
     const names = new Set<string>();
     doc[kind].forEach((constraint, i) => {
       if (constraintNames.has(constraint.name)) {
-        report([kind, i, "name"], `duplicate constraint name '${constraint.name}' (ik, transform and physics share one namespace)`);
+        report([kind, i, "name"], `duplicate constraint name '${constraint.name}' (ik, transform, path and physics share one namespace)`);
       }
       constraintNames.add(constraint.name);
       names.add(constraint.name);
@@ -95,6 +96,7 @@ function buildIndex(doc: AnimDocument, report: Report): DocumentIndex {
   };
   const ik = collect("ik");
   const transform = collect("transform");
+  const path = collect("path");
   const physics = collect("physics");
 
   const placeholders = new Map<string, Set<string>>();
@@ -113,7 +115,7 @@ function buildIndex(doc: AnimDocument, report: Report): DocumentIndex {
   for (const slot of doc.slots) {
     if (!anchored.has(slot.name) && !drawPosition.has(slot.name)) drawPosition.set(slot.name, drawPosition.size);
   }
-  return { bones, slots, ik, transform, physics, drawPosition, placeholders, anchored };
+  return { bones, slots, ik, transform, path, physics, drawPosition, placeholders, anchored };
 }
 
 function checkBones(doc: AnimDocument, report: Report): void {
@@ -218,13 +220,22 @@ function issuesAreErrors(doc: AnimDocument, index: DocumentIndex): boolean {
 }
 
 function checkSkins(doc: AnimDocument, index: DocumentIndex, report: Report): void {
-  const constraintExists = (name: string) => index.ik.has(name) || index.transform.has(name) || index.physics.has(name);
+  const constraintExists = (name: string) => index.ik.has(name) || index.transform.has(name) || index.path.has(name) || index.physics.has(name);
   for (const [skinName, skin] of Object.entries(doc.skins)) {
     const base = ["skins", skinName] as const;
     for (const [slot, attachments] of Object.entries(skin.attachments)) {
       if (!index.slots.has(slot)) report([...base, "attachments", slot], `unknown slot '${slot}'`);
       for (const [name, attachment] of Object.entries(attachments)) {
         checkAttachment(attachment, [...base, "attachments", slot, name], doc, index, report);
+        if (attachment.type === "clipping" && attachment.end !== undefined) {
+          const endPath = [...base, "attachments", slot, name, "end"];
+          if (!index.slots.has(attachment.end)) report(endPath, `unknown end slot '${attachment.end}'`);
+          else {
+            const from = index.drawPosition.get(slot);
+            const to = index.drawPosition.get(attachment.end);
+            if (from !== undefined && to !== undefined && to < from) report(endPath, `end slot '${attachment.end}' is drawn before the clipping slot '${slot}': the mask clips nothing`, "warning");
+          }
+        }
         if (attachment.type === "mesh" && attachment.groups) checkGroups(slot, attachment.groups, [...base, "attachments", slot, name, "groups"], doc, index, report);
         if (attachment.type === "mesh" && attachment.embed) {
           const embed = attachment.embed;
@@ -284,7 +295,7 @@ function checkAttachment(
   index: DocumentIndex,
   report: Report
 ): void {
-  if (attachment.type === "mesh" && attachment.bones) {
+  if ((attachment.type === "mesh" || attachment.type === "path") && attachment.bones) {
     attachment.bones.forEach((bone, i) => {
       if (!index.bones.has(bone)) report([...path, "bones", i], `unknown bone '${bone}'`);
     });
@@ -363,7 +374,7 @@ function checkConstraints(doc: AnimDocument, index: DocumentIndex, report: Repor
     }
     return false;
   };
-  const checkBoneList = (bones: readonly string[], target: string, path: IssuePath) => {
+  const checkBoneList = (bones: readonly string[], target: string | null, path: IssuePath) => {
     bones.forEach((bone, i) => {
       if (!index.bones.has(bone)) report([...path, "bones", i], `unknown bone '${bone}'`);
     });
@@ -382,6 +393,7 @@ function checkConstraints(doc: AnimDocument, index: DocumentIndex, report: Repor
         report([...path, "bones", i], `'${bone}' must be listed after its parent '${parent}' (parents first)`);
       }
     });
+    if (target === null) return;
     if (!index.bones.has(target)) report([...path, "target"], `unknown bone '${target}'`);
     else if (bones.includes(target)) report([...path, "target"], `target '${target}' is also constrained by this constraint`);
     else {
@@ -400,6 +412,16 @@ function checkConstraints(doc: AnimDocument, index: DocumentIndex, report: Repor
     }
   });
   doc.transform.forEach((transform, i) => checkBoneList(transform.bones, transform.target, ["transform", i]));
+  doc.path.forEach((constraint, i) => {
+    checkBoneList(constraint.bones, null, ["path", i]);
+    if (!index.slots.has(constraint.target)) report(["path", i, "target"], `unknown slot '${constraint.target}'`);
+    else if (!(index.placeholders.get(constraint.target) ?? new Set<string>()).size || !Object.values(doc.skins).some((skin) => Object.values(skin.attachments[constraint.target] ?? {}).some((a) => a.type === "path"))) {
+      report(["path", i, "target"], `slot '${constraint.target}' has no path attachment in any skin, so the constraint does nothing`, "warning");
+    }
+    const slotBone = doc.slots[index.slots.get(constraint.target) ?? -1]?.bone;
+    const above = slotBone === undefined ? undefined : constraint.bones.find((bone) => bone === slotBone || isBelow(slotBone, bone));
+    if (above !== undefined) report(["path", i, "target"], `the path's slot sits on '${slotBone}', which is constrained by this constraint (or below '${above}'), so the path would move after being read`);
+  });
   doc.physics.forEach((physics, i) => {
     if (!index.bones.has(physics.bone)) report(["physics", i, "bone"], `unknown bone '${physics.bone}'`);
     // Spring stability for our integrator, mass and step size included (runtime contract F7; see
@@ -516,6 +538,21 @@ function checkClip(name: string, clip: ClipData, doc: AnimDocument, index: Docum
   for (const [slot, timelines] of Object.entries(clip.slots)) {
     if (!index.slots.has(slot)) report([...base, "slots", slot], `unknown slot '${slot}'`);
     if (timelines.color) checkKeys(timelines.color, [...base, "slots", slot, "color"]);
+    if (timelines.sequence) {
+      const path = [...base, "slots", slot, "sequence"] as const;
+      checkKeys(timelines.sequence, path);
+      const counts: number[] = [];
+      for (const skin of Object.values(doc.skins)) {
+        for (const a of Object.values(skin.attachments[slot] ?? {})) if ((a.type === "region" || a.type === "mesh" || a.type === "linkedMesh") && a.sequence) counts.push(a.sequence.count);
+      }
+      if (counts.length === 0) report(path, `slot '${slot}' has no image-sequence attachment`);
+      else {
+        const most = Math.max(...counts);
+        timelines.sequence.forEach((key, i) => {
+          if (key.index >= most) report([...path, i, "index"], `frame ${key.index} is outside the ${most} frames of the sequence`);
+        });
+      }
+    }
     if (timelines.attachment) {
       const path = [...base, "slots", slot, "attachment"] as const;
       checkKeys(timelines.attachment, path);
@@ -529,6 +566,10 @@ function checkClip(name: string, clip: ClipData, doc: AnimDocument, index: Docum
       if (!known.has(constraint)) report([...base, kind, constraint], `unknown ${kind} constraint '${constraint}'`);
       checkKeys(keys, [...base, kind, constraint]);
     }
+  }
+  for (const [constraint, keys] of Object.entries(clip.path)) {
+    if (!index.path.has(constraint)) report([...base, "path", constraint], `unknown path constraint '${constraint}'`);
+    checkKeys(keys, [...base, "path", constraint]);
   }
   for (const [constraint, timelines] of Object.entries(clip.physics)) {
     if (!index.physics.has(constraint)) report([...base, "physics", constraint], `unknown physics constraint '${constraint}'`);

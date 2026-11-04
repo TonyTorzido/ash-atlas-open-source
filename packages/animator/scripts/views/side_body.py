@@ -1,11 +1,11 @@
-# Atlas Animator multi-view swag, phase 2 step 1 (docs/plans/atlas-animator-views.md): the TURNED-SIDE body art.
-#   python side_body.py guide  <out dir>              the reference inputs (ref/) for one side-body draw
+# Atlas Animator multi-view swag, phase 2 step 1 (packages/animator/README.md): the TURNED-SIDE body art.
+#   python side_body.py guide  <out dir>              the generated inputs (ref/) for one side-body draw
 #   python side_body.py polish <gen.png> <out dir>    register + polish one returned draw onto the rig canvas
 # The side body is drawn ONE view per draw at the polish scale (8/3 canvas px per px, the front's draw scale): a
 # portrait 1024x1536 output covers the canvas crop SIDE_CROP (384x576 canvas px: neck to below the feet), so the
 # returned art is only ever downsampled (x3/8) onto the 1086x1448 canvas, never enlarged.
 # Guide = code-built construction on the canvas: the approved turned pose (threeview-test-01 step3a panel 2, the
-# owner's pick) registered to the front body by the front panel's own fit (scale + offset: panel 1 vs the front
+# the user's pick) registered to the front body by the front panel's own fit (scale + offset: panel 1 vs the front
 # body's alpha box), shown as a faint pose shape, plus the front body's landmark rows as thin cyan lines (neck under
 # the head, shoulder top, fist bottom, shorts waist, shorts leg hem, ground). The front body at the same scale is the
 # style reference. Every number is measured from the front body PNG and the reference; nothing is hand placed.
@@ -163,7 +163,7 @@ def guide(out):
         for x0 in range(0, fbi.width, 24):
             fd.line([(x0, Y), (x0 + 14, Y)], fill=CYAN, width=3)
     fbi.save(ref / "front-body.png")
-    # the owner's turned pick, panel 2 alone, at its native size (pose and turn reference only; never pasted)
+    # the turned pick, panel 2 alone, at its native size (pose and turn reference only; never pasted)
     Image.open(TURNED_REF).convert("RGB").crop((512, 0, 1024, 1024)).save(ref / "turned-pick.png")
     save_json(out / "guide.json", dict(crop=SIDE_CROP, scale=K, outSize=OUT_SIZE, landmarks=lm, rowsInOutput={k: round(to_out(0, y)[1], 1) for k, y in rows.items()}, turnedRegistration=reg))
     print(json.dumps(dict(landmarks=lm, reg=reg)))

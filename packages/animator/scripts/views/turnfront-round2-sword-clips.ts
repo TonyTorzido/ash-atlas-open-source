@@ -1,4 +1,4 @@
-// PROTOTYPE (turned-front round 2, 2026-10-19): the chop toward the facing side on the 15-deg turned ARM-LAYER body
+// PROTOTYPE (turned-front, 2026-10-19): the chop toward the facing side on the 15-deg turned ARM-LAYER body
 // (separate arm meshes, upper-arm raise to ~128 deg; views/turned-front/round2/rig/armlayer-turn15-face-shift, made by
 // turnfront.py + turnfront_face.py from attacks/sword-chop/body/rig/template7-armlayer-legs). The live sword in the
 // FAR hand (hand_l, the facing side). Writes fixtures/garments/sword-turnfront-r2.held.json (sword-live spec, grip.at =
@@ -130,7 +130,7 @@ const spec = {
   ...held,
   name: "sword",
   grip: { ...held.grip, at: [gx, gy], angle: GRIP_ANGLE },
-  source: { note: `PROTOTYPE (turned-front round 2, 2026-10-19): fixtures/garments/sword-live.held.json (live sprite, same art and size) on ${RIG.split("/").pop()}: grip.at = the front chop's grip point moved with the left hand, grip.angle solved by scripts/views/turnfront-round2-sword-clips.ts so the ready blade is ${READY_ALPHA} deg off vertical, out.` }
+  source: { note: `PROTOTYPE (turned-front, 2026-10-19): fixtures/garments/sword-live.held.json (live sprite, same art and size) on ${RIG.split("/").pop()}: grip.at = the front chop's grip point moved with the left hand, grip.angle solved by scripts/views/turnfront-round2-sword-clips.ts so the ready blade is ${READY_ALPHA} deg off vertical, out.` }
 };
 
 const LUNGE = -50; // canvas px toward the target (screen-left)

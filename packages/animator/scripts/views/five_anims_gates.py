@@ -1,8 +1,8 @@
-# Five stock-body animations: gates G1-G8 (docs/plans/atlas-animator-demos/views/turned-front/five-anims/five-anims-PLAN.md).
+# Five stock-body animations: gates G1-G8 (packages/animator/README.md).
 # Run from packages/animator after five-anims-rigs.sh and five-anims-evidence.ts (which writes gates-render.json):
 #   python scripts/views/five_anims_gates.py
 # Writes five-anims/gates.json. Rig-side gates are measured here (rigs, face.json, the back hair layers rebuilt with
-# turnback_hair.build, `animator validate`); render-side ones (G2 framing, G3 idle vs round 2, G6 flip(flip), G7 loops,
+# turnback_hair.build, `animator validate`); render-side ones (G2 framing, G3 idle vs, G6 flip(flip), G7 loops,
 # G8 swim) come from gates-render.json.
 # `--set jacketb` (2026-10-20): the front clips 01-03 from five-anims/jacketb/rig (Jacket B on the refined stock,
 # five-anims-jacketb-rigs.sh), gates written to five-anims/jacketb/gates.json; the back gates (parked) still read the
@@ -62,7 +62,7 @@ def anim_hash(p: Path) -> str:
 
 SHIPPED = ("walk_in_place", "idle_weight_shift")  # the clips the five-anims GIFs play
 LOCKED = [c for c in CLIPS if c[2] == "front"]  # refine: 01-03 are locked, 04-05 (back) are parked
-STRESS_BASELINE = 241  # round 2c front L15 (round2/rig/body-turn15-face2c-shift) total validate errors
+STRESS_BASELINE = 241  #  front L15 (round2/rig/body-turn15-face2c-shift) total validate errors
 
 
 def validate_counts(paths):
@@ -118,7 +118,7 @@ def g1():
         stress = v["errors"] - n_tears
         res["validate"][t] = {"errors": v["errors"], "warnings": v["warnings"], "summary": v["summary"],
                               "clipTears": n_tears, "clipTearIssues": v["clipTears"],
-                              "stressErrors (not blocking)": stress, "stressBaseline (round 2c front L15)": STRESS_BASELINE,
+                              "stressErrors (not blocking)": stress, "stressBaseline (front L15)": STRESS_BASELINE,
                               "stressAtOrBelowBaseline": stress <= STRESS_BASELINE, "pass": n_tears == 0}
         ok &= n_tears == 0
     res["validateStockFront"] = {k: v for k, v in stock.items() if k != "clipTears"} | {"clipTears": sum(len(x) for x in stock["clipTears"].values())}
@@ -142,7 +142,7 @@ def g3(render):
         ok &= p_ok
     idle = render.get("g3IdleVsRound2", {})
     # refine P4: the fringe is clipped clear of the eyelids (REFINE-PLAN item 5), so the idle head now differs from
-    # round 2 by design; recorded, not blocking. The eyes never widen: kx above; the face layers are not edited.
+    # by design; recorded, not blocking. The eyes never widen: kx above; the face layers are not edited.
     res["idleVsRound2Front0 (informational since P4 fringe clear)"] = {**idle, "limitBeforeP4": "max <= 4/255 and mean <= 0.01"}
     fr = {rig: load(R / f"{rig}.face.json").get("fringeClear", {}) for rig in ("front-turn00-faceA", "front-turn15-faceA", "front-turn15-faceA-mirin")}
     res["fringeClear"] = {**fr, "pass": all(v.get("gapPx", 0) >= 3 for v in fr.values())}
@@ -163,7 +163,7 @@ def g3(render):
         split = load(R / f"{rig}.face.json").get("faceParts (P7)", {})
         r_ok = (b.get("maxGrowthPx") == 0 and {"eyes_blink_half", "eyes_blink_closed"} <= set(atts)
                 and closes == 1 and names[-1:] == ["eyes"] and set(sl) == {"eyes"} and "face" not in skin
-                # no nose by default (owner 2026-10-19): a part left out of the combo has no slot and is not required
+                # no nose by default: a part left out of the combo has no slot and is not required
                 and all(k in skin for k in ("eyes", "brows", "nose", "mouth", "hair")
                         if not (k == "nose" and load(R / f"{rig}.face.json")["combo"].get("nose") == "none"))
                 and split.get("maxDiffVsBaked255", 99) <= 1)
@@ -196,7 +196,7 @@ def g4():
         m = lay[..., 3] > 0.5
         holes[k] = int((ndimage.binary_fill_holes(m) & ~m).sum())
     res["holes"] = {**holes, "pass": all(v == 0 for v in holes.values())}
-    # nape skin (round 2, drawn hair): on the egg's lower half, the widest run of uncovered egg SKIN (the egg inset by
+    # nape skin (drawn hair): on the egg's lower half, the widest run of uncovered egg SKIN (the egg inset by
     # its outline) is at most the neck width (+2): only a neck-wide strip of skin shows
     rows_, _ = bd.head_geom(rig0)
     skin = bd.egg_fill(rows_, inset=bd.egg_ink(rows_))
@@ -204,9 +204,9 @@ def g4():
     nape = {k: bd.skin_strip_width(lay[..., 3], skin, rows_) for k, lay in (("0", l0), ("15", l15))}
     res["napeSkin"] = {**{f"widestSkinRunPx{k}": v for k, v in nape.items()}, "neckWidthPx": 2 * frames["neckHalf"],
                        "pass": all(v <= 2 * frames["neckHalf"] + 2 for v in nape.values())}
-    # interior ink (round 1's generated fill only): the drawn hair separates its locks with ink by design
+    # interior ink ('s generated fill only): the drawn hair separates its locks with ink by design
     if si.get("style") == "drawn":
-        res["interiorInk"] = {"skipped": "drawn hair: locks are separated by ink (owner: like the front)", "pass": True}
+        res["interiorInk"] = {"skipped": "drawn hair: locks are separated by ink", "pass": True}
     ink = {}
     for k, lay in (() if si.get("style") == "drawn" else (("0", l0), ("15", l15))):
         m = lay[..., 3] > 0.5
@@ -359,7 +359,7 @@ G10_MAX_ROWS = 4  # the P5 crack scored 6 (L15 f7-f9, near arm); a narrow open V
 
 
 def sliver_rows(im: np.ndarray, y0: int, y1: int, x0: int, x1: int, tol: int = 40) -> int:
-    """Refine P6 (G10, owner 2026-10-19: "some detachment here"): the longest vertical run of rows in which a background
+    """Refine P6 (G10, "some detachment here"): the longest vertical run of rows in which a background
     run at most 2 px wide sits between two non-background pixels (the crack where an outswung arm's inner outline and
     the tank flank part) inside the armpit band. The open V below a hanging arm widens at >= 1 px a row and so
     scores 1-3 rows; a crack running up between the two outlines scores more."""
@@ -412,7 +412,7 @@ def g10():
 
 
 def g11():
-    """Refine P6 (owner 2026-10-19): on the turned face rigs each eye's outer-corner gap to the head silhouette is
+    """Refine P6: on the turned face rigs each eye's outer-corner gap to the head silhouette is
     >= EYE_CLEAR_MIN x its straight-front gap (measured by turnfront_face.edge_clearance, recorded in face.json)."""
     from turnfront_face import EYE_CLEAR_MIN
     out = {"min": EYE_CLEAR_MIN}

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Garment coverage and dense-agreement verdicts for the garment probe (4d-4l review 6, 7).
+ * Garment coverage and dense-agreement verdicts for the garment probe.
  * Coverage is judged on a promised domain built independently of the garment under test: the
  * declared body regions the garment promises (skin groups minus declared openings), rendered from the
  * skin with slot ids. Inside it, the promised skin part itself may never be the top surface, and the

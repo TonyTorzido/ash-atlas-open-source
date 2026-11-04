@@ -1,5 +1,5 @@
 // Geometric arm/torso seam mask for the seam-darkness check (polish-seam-ink.py check), generated from a garment
-// domain on the committed body rig (round 20). The rest footprints of the torso group and of each upper-arm group
+// domain on the committed body rig. The rest footprints of the torso group and of each upper-arm group
 // are rasterised on the canvas; the interface between them (the arm/torso seam the runtime draws no line on), smoothed
 // along its rows (the mesh boundary zigzags with the strip triangles), is drawn as a WIDTH px band, kept SIL px inside
 // the garment silhouette (the silhouette outline band is not a seam).
@@ -23,7 +23,7 @@ const args = process.argv.slice(2);
 const rigAt = args.indexOf("--rig");
 const outAt = args.indexOf("--outset");
 const OUTSET = outAt >= 0 ? Number(args[outAt + 1]) : OUTSET_DEFAULT;
-const rig = rigAt >= 0 ? (args[rigAt + 1] as string) : "../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/template7-shoulder-legs.anim.json";
+const rig = rigAt >= 0 ? (args[rigAt + 1] as string) : "fixtures/test-rigs/body/template7-shoulder-legs.anim.json";
 const flagged = new Set([rigAt, outAt].filter((v) => v >= 0).flatMap((v) => [v, v + 1]));
 const [domainPath, outPath] = args.filter((_, i) => !flagged.has(i)) as [string, string];
 const raw = JSON.parse(readFileSync(rig, "utf8"));

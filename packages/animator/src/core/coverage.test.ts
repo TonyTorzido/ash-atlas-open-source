@@ -7,7 +7,7 @@ import { Skeleton } from "./skeleton.js";
 import type { CompiledContour } from "./contours.js";
 
 /*
- * Clothing model (plan 4d-4l close): local coverage intervals. Geometry first (synthetic), then the
+ * Clothing model (close): local coverage intervals. Geometry first (synthetic), then the
  * probe rig: bare body, tunic over tank, pauldron over the arm stroke, a garment fading in another
  * slot, and a swap while posed.
  */
@@ -80,7 +80,7 @@ describe("coverage intervals (geometry)", () => {
   });
 
   it("a joined end with a covered tail shorter than a feather keeps its capped end; an unjoined one stays trimmed", () => {
-    // 4d-4n: a forearm line joined to the fist, its last px under the head (no room for the fade).
+    //: a forearm line joined to the fist, its last px under the head (no room for the fade).
     const pts = [0, 0, 50, 0, 100, 0];
     const runs = visibleRuns([1.96, 2], 3, false) as number[]; // last 2 px covered, feather 2.4 px
     const build = (joinedEnds: number) => {
@@ -100,7 +100,7 @@ describe("coverage intervals (geometry)", () => {
 });
 
 // --- the probe rig ------------------------------------------------------------------------------
-const rigDir = new URL("../../../../docs/plans/atlas-animator-demos/phase-4d4l/probe/rig/", import.meta.url);
+const rigDir = new URL("../../fixtures/test-rigs/probe/", import.meta.url);
 const probeDoc = (config: string) => JSON.parse(readFileSync(new URL(`template7-shoulder-probe-${config}.anim.json`, rigDir), "utf8"));
 const haveProbe = existsSync(new URL("template7-shoulder-probe-layered.anim.json", rigDir));
 

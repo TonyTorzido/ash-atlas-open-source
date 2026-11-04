@@ -1,5 +1,5 @@
 /*
- * Atlas Animator multi-view, phase 2b evidence (docs/plans/atlas-animator-views.md): the rest pose of the front body
+ * Atlas Animator multi-view, phase 2b evidence (packages/animator/README.md): the rest pose of the front body
  * rig, the turned-side rig and the side rig flipped (the other facing), side by side at 0.4 and 1x canvas scale.
  *   npx tsx scripts/views/side-evidence.ts <front anim.json> <side anim.json> <out dir>
  */

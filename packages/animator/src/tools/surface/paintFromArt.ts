@@ -1,8 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Paint the rig from the art (rest fidelity), moved out of cli/legsBody.ts (phase 2b,
- * docs/plans/atlas-animator-views.md) so the mirrored body and the full-body (turned side) build
+ * packages/animator/README.md) so the mirrored body and the full-body (turned side) build
  * share it. The skin and garment textures are canvas projections. Draw items are rasterised at the
  * setup pose in draw order (mesh groups in their slots, regions as rigid quads); the topmost item
  * owns each canvas pixel and takes the art there; texels hidden at rest (skin under a garment) keep
@@ -97,7 +97,7 @@ export function paintFromArt(ctx: PaintFromArtContext): Record<string, number> {
   const layout = () => {
     items.length = 0;
     owner.fill(-1);
-    // The resolved setup draw list (4d-4m review, bug 3): only each slot's active (setup)
+    // The resolved setup draw list: only each slot's active (setup)
     // attachment, mesh draw groups in the slot they name, rigid regions as their posed quads; a
     // piece owns a canvas pixel only where its own texture is opaque there (alpha >= 128).
     const slotBoneOf = (name: string) => (doc.slots as any[]).find((x) => x.name === name)?.bone as string;
@@ -155,7 +155,7 @@ export function paintFromArt(ctx: PaintFromArtContext): Record<string, number> {
     });
   };
   layout();
-  // --- outline fit (round 4): every visible skin hull vertex moves onto the centre of the art's
+  // --- outline fit: every visible skin hull vertex moves onto the centre of the art's
   // outline along its normal (<= HULL_FIT px), on each side independently (the art is not
   // symmetric: the far arm gets its own outline, not the mirror), smoothed along the hull and
   // fading into the interior; uvs follow (canvas projection), contours ride the hull indices.
@@ -364,13 +364,13 @@ export function paintFromArt(ctx: PaintFromArtContext): Record<string, number> {
       }
     }
   }
-  // Garment ink belongs to the garment (4d-4m review, material ownership): the art's dark
+  // Garment ink belongs to the garment: the art's dark
   // line pixels within GARMENT_INK_REACH px of a garment's rest coverage are the garment's painted
   // outline even where the rig's garment mesh stops short of them, so skin texels there keep the
   // built skin (the bare body and a removed garment leave no ink; the body's own outline is a stroke).
   const GARMENT_INK_REACH = 10;
   const garmentInk = new Uint8Array(cw0 * ch0);
-  // Round 4 (jacket review, bare skin): faint garment lines on the skin near a garment (the tank's
+  // (jacket review, bare skin): faint garment lines on the skin near a garment (the tank's
   // neckline and armhole rims, lighter than the ink cutoff) are completed from the surrounding skin:
   // a 7x7 median over the visible or hidden skin texels within GARMENT_LINE_REACH px of the garment's rest
   // coverage, applied only where a texel stands out from that median (a thin line; broad shading
@@ -702,7 +702,7 @@ export function paintFromArt(ctx: PaintFromArtContext): Record<string, number> {
     }
     bakeReport.farRegionTexels = rebaked;
     bakeReport.regionVSign = vSign;
-    // Rigid extremities (owner review 4d-4n round 4): a region that cut a limb's strokes (the fists)
+    // Rigid extremities: a region that cut a limb's strokes (the fists)
     // gets a runtime outline continuing them: one bone-bound open contour from one cut stroke end
     // around the region's silhouette (inset half a stroke width) to the other end, same width and
     // colour, drawn above the region; the soft painted ring under it is completed with the region's
@@ -756,7 +756,7 @@ export function paintFromArt(ctx: PaintFromArtContext): Record<string, number> {
         const ly = v * r.att.height * (r.att.scaleY ?? 1);
         return [(r.att.x ?? 0) + lx * Math.cos(ra) - ly * Math.sin(ra), (r.att.y ?? 0) + lx * Math.sin(ra) + ly * Math.cos(ra)];
       };
-      // tangent joins (round 5): from each stroke end a quadratic curve leaves along the stroke's own
+      // tangent joins: from each stroke end a quadratic curve leaves along the stroke's own
       // direction and lands on the silhouette path, so the line has no kink where the limb's stroke
       // hands over to the region's outline (just past the cuff on a dressed arm)
       const join = (e: (typeof ends)[number], t: { x: number; y: number }, land: readonly number[]): [number, number][] => {
@@ -782,7 +782,7 @@ export function paintFromArt(ctx: PaintFromArtContext): Record<string, number> {
       const attName = Object.entries(sk0[r.slot] ?? {}).find(([, a]) => a === r.att)?.[0] as string;
       (contours[r.slot] ??= {}).outline = { bones: [boneOf(r.slot)], vertices, closed: false, width, color: ends[0]?.color, caps: "round", owner: { slot: r.slot, attachment: attName } };
       extremityOutlines[r.slot] = pts.length;
-      // round 8: each limb stroke end and the outline's end beside it are one line at any wrist angle
+      //: each limb stroke end and the outline's end beside it are one line at any wrist angle
       // (runtime contour join: cut at the crossing on the inner side of a bend, bridged on the outer)
       const arc = (q: [number, number][]) => q.reduce((s2, p, i) => (i ? s2 + Math.hypot(p[0] - (q[i - 1] as [number, number])[0], p[1] - (q[i - 1] as [number, number])[1]) : 0), 0);
       const joins = ((doc.skins[skinKey].contourJoins ??= []) as any[]);
@@ -792,7 +792,7 @@ export function paintFromArt(ctx: PaintFromArtContext): Record<string, number> {
         const reach = Number((JOIN_REACH_SCALE * Math.max(arc(bridge), width)).toFixed(2));
         joins.push({ a: { slot: e.slot, name: e.name, end: e.end }, b: { slot: r.slot, name: "outline", end: k ? "end" : "start" }, reach });
       });
-      // round 8 (owner: dense dark spots on the fist outline, skin past the line at a sharp wrist):
+      //:
       // the region's art ends at the outline's centreline. Texels outside the closed outline (the
       // stroke path, closed across the cut OVERLAP + 2 px beyond it) are cleared, so no painted ink
       // or skin corner shows past the stroke; inside, any texel darker than the skin within a stroke

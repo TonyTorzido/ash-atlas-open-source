@@ -576,7 +576,7 @@
   "color": "2b2420ff"
  },
  "source": {
-  "from": "fixtures/garments/kungfu-jacket.domain.json, copied verbatim (round 16 stock armour, simple template): identical body-derived core, neckline (same drop), hem and cuff cuts, seeds, gaps, margin and cut details",
+  "from": "fixtures/garments/kungfu-jacket.domain.json, copied verbatim (stock armour, simple template): identical body-derived core, neckline (same drop), hem and cuff cuts, seeds, gaps, margin and cut details",
   "changed": "name, stroke colour 2b2420",
   "note": "stock cloth armour: padded quilted tunic, long sleeves (the jacket long cuff), dark brown-grey outline",
   "copiedSource": {

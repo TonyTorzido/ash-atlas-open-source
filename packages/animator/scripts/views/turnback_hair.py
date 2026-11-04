@@ -1,5 +1,5 @@
-# Atlas Animator lineup test (2026-10-19): HAIR on the BACK view, straight and turned 15 deg, deterministic.
-# docs/plans/atlas-animator-demos/views/turned-front/lineup/README.md.
+# Atlas Animator lineup test (2026-10-19): HAIR on the BACK view, straight and turned 15 deg, deterministic, no image generation.
+# packages/animator/README.md.
 #
 #   python scripts/views/turnback_hair.py <back rig.anim.json> <out dir> <out stem> --deg 15 [--hair soldier-crop-hair]
 #       [--style fill|cap] [--mirror-inputs] [--layer hair.npy] [--preview head.png]
@@ -34,10 +34,8 @@
 #    growing from the crown.
 # 5. Nape ink along the arc in the MEASURED outline colour (median of the hair's darkest 5 %) and width (median top
 #    edge ink run, column scans).
-# --style drawn (DEFAULT, five-anims round 2, 2026-10-19; owner: the fill "is kinda fucked up", a bowl over a skin
-# crescent): the DRAWN back hair, views/body-back-drawn/hair-back-canvas.png (hand drawing registered by
-# back_drawn.py: front frame, 0 deg, already in the back orientation; alpha outside the egg = the mirrored live front
-# hair's, so the silhouette ends match the 0 deg hair). The turn is the fill's: the 2c warp + pin taper, shift
+# --style drawn (DEFAULT, five-anims, 2026-10-19; the fill a bowl over a skin
+# crescent): the DRAWN back hair, views/body-back-drawn/hair-back-canvas.png. The turn is the fill's: the 2c warp + pin taper, shift
 # R sin(theta) with R = the egg half-width at the NAPE_CENTRE row; pin-holes closed the same way.
 # --mirror-inputs: the finished 0 deg layer is mirrored about the head axis before the turn (walk up-right is an image
 # flip of that render, which puts the parting back on its side).
@@ -351,7 +349,7 @@ def build(rig_path: Path, deg: float, hair_id: str, style: str = "drawn", mirror
         paste(back, crop_img(cap, (0, 0, 1086, 1448)), 0, 0)
         paste(back, crop_img(hair, (0, 0, 1086, 1448)), 0, 0)
         shift_r = egg_half
-    elif style == "drawn":  # five-anims round 2: the drawn back hair (back_drawn.py register), front frame at 0 deg
+    elif style == "drawn":  # five-anims: the drawn back hair (back_drawn.py register), front frame at 0 deg
         back = np.asarray(Image.open(DRAWN).convert("RGBA")).astype(np.float32) / 255
         nape_row = egg_top + NAPE_CENTRE * (egg_bot - egg_top)
         style_info = {"style": "drawn", "art": DRAWN.relative_to(DRAWN.parents[5]).as_posix(), "napeRowAxis": round(float(nape_row), 1),

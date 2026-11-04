@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * From-canvas import (plan Phase 6, skins panel): a part drawn on the template canvas (a PNG the
  * size of the canvas with the part in place) is cropped to its opaque pixels and packed into the

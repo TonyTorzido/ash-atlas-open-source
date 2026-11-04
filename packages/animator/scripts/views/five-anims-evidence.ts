@@ -1,4 +1,4 @@
-// Five stock-body animations: evidence (docs/plans/atlas-animator-demos/views/turned-front/five-anims/five-anims-PLAN.md).
+// Five stock-body animations: evidence (packages/animator/README.md).
 // Run from packages/animator after `bash scripts/views/five-anims-rigs.sh`:
 //   npx tsx scripts/views/five-anims-evidence.ts
 // then `python scripts/views/five_anims_gates.py` (reads gates-render.json written here, writes gates.json).
@@ -10,7 +10,7 @@
 // Writes into five-anims/: 0N-<name>-view{040,0471}-30fps.gif, five-up-view{040,0471}-30fps.mp4 (the LCM of the clip lengths: 672 f for 96 + 28)
 // and five-up-view{040,0471}-30fps.gif when that GIF is <= 25 MB, else five-up-walks-view{040,0471}-30fps.gif (30 f), sheet-0N-<name>.png (8 frames per row, a row per scale),
 // joints/0N-<name>-view0471.png + -4x-diagnostic.png, backhair-heads-view0471.png, feet-back-heel-vs-toe-view0471.png,
-// gates-render.json (the render-side gate measurements: G2 framing, G3 idle vs round 2, G6 flip, G7 loops, G8 swim,
+// gates-render.json (the render-side gate measurements: G2 framing, G3 idle vs, G6 flip, G7 loops, G8 swim,
 // G9 enclosed background holes, and the per-frame motion table: head top, lowest foot row, hand centroids).
 // Refine (REFINE-PLAN item 11): `--clips 1,2,3` (default; the locked clips) renders only those clips; the multi-up
 // files are then named three-up-*; the back-only sheets (back hair heads, back body, feet) render only with 4 or 5.
@@ -41,7 +41,7 @@ const GIF_LIMIT = 25 * 1024 * 1024;
 
 type Clip = { n: number; name: string; label: string; rig: string; clip: string; frames: number; flip: boolean; back: boolean; sheetFrames: number[] };
 const WALK_SHEET = [0, 4, 8, 12, 16, 20, 23, 27]; // includes f8 and f23 (legacy 30 f walk: the parked back clips)
-// refine P2 (owner D1): the front walks are the template light-step walk, 28 f; contacts f0 / f14 (the lowest pelvis),
+// refine P2 (design review): the front walks are the template light-step walk, 28 f; contacts f0 / f14 (the lowest pelvis),
 // passing f7 / f21 (the highest)
 const WALK28_SHEET = [0, 3, 7, 10, 14, 17, 21, 24];
 const CLIPS: Clip[] = [
@@ -320,10 +320,10 @@ async function main() {
         writePng(join(DIR, "joints", `${tag(c)}-view0471.png`), sheet(rows1, 8, 1));
         writePng(join(DIR, "joints", `${tag(c)}-4x-diagnostic.png`), sheet(rows4, 8, 2));
       });
-      // G3: idle (front 0) head vs round 2 FRONT 0 (same face/hair; the body differs only in the shorts colour)
+      // G3: idle (front 0) head vs FRONT 0 (same face/hair; the body differs only in the shorts colour)
       const a = img(await renderFrames({ document: RIG("front-turn00-faceA"), fps: 30, frames: 1, ...v }), 0);
       const b = img(await renderFrames({ document: ROUND2, fps: 30, frames: 1, ...v }), 0);
-      // refine P1: rows above the shoulders (the shoulder strap ink is body brown now, owner D2; first differing row 405 at 0.471)
+      // refine P1: rows above the shoulders (the shoulder strap ink is body brown now, design review; first differing row 405 at 0.471)
       const neckRow = Math.round(v.y - 300 * scale);
       G.g3IdleVsRound2 = { headRows: [0, neckRow], ...maxDiffRegion(a, b, 0, neckRow) };
       // G8: hair (and face) rigid on the head bone: per frame, |hair centroid - head centroid| constant (the rigid-fit
@@ -374,7 +374,7 @@ async function main() {
       }
       rmSync(join(DIR, "rig", "tmp"), { recursive: true, force: true });
       if (WITH_BACK) {
-      // back hair: round 1's generated fill vs the drawn hair (both on the drawn body), at 0 and 15, heads at 1:1 and x2
+      // back hair: 's generated fill vs the drawn hair (both on the drawn body), at 0 and 15, heads at 1:1 and x2
       const head = async (doc: string) => {
         const im = img(await renderFrames({ document: doc, fps: 30, frames: 1, ...v }), 0);
         const w = Math.round(700 * scale), h = Math.round(640 * scale);
@@ -393,7 +393,7 @@ async function main() {
         { title: `back hair  view ${scale}  1:1`, tiles: ht },
         { title: "x2 nearest", tiles: ht.slice(0, 4).map(([l, i]) => [l, upscale(i, 2)] as [string, RgbaImage]) }
       ]));
-      // back body: round 1 (generated back art, old body + fill hair) vs round 2 (drawn body + drawn hair), toe feet
+      // back body: (generated back art, old body + fill hair) vs (drawn body + drawn hair), toe feet
       const bodyTile = async (doc: string) => {
         const im = img(await renderFrames({ document: doc, fps: 30, frames: 1, ...v }), 0);
         const w = Math.round(700 * scale), h = Math.round(1180 * scale);
@@ -407,11 +407,11 @@ async function main() {
       const bt: [string, RgbaImage][] = [];
       for (const [label, doc] of bodies) bt.push([label, await bodyTile(doc)]);
       writePng(join(DIR, "back-body-before-after-view0471.png"), sheet([
-        { title: `back body  view ${scale}  1:1  (before = round 1 generated back art; after = drawn)`, tiles: bt },
+        { title: `back body  view ${scale}  1:1  (before =  generated back art; after = drawn)`, tiles: bt },
         { title: "torso x2 nearest", tiles: bt.map(([l, i]) => [l, torso(i)] as [string, RgbaImage]) }
       ]));
-      // back feet: heel (-, round 1 default) / flat (0) / toe (+, the clips since round 2)
-      const feet: [string, string][] = [["- HEEL (round 1)", "feet/back-heel-turn15-hair"], ["0 FLAT", "feet/back-flat-turn15-hair"], ["+ TOE (clips)", "back-turn15-hair"]];
+      // back feet: heel (, default) / flat (0) / toe (+, the clips since)
+      const feet: [string, string][] = [["- HEEL ()", "feet/back-heel-turn15-hair"], ["0 FLAT", "feet/back-flat-turn15-hair"], ["+ TOE (clips)", "back-turn15-hair"]];
       const ft: [string, RgbaImage][] = [], fz: [string, RgbaImage][] = [];
       for (const [label, rig] of feet) {
         const im = img(await renderFrames({ document: RIG(rig), fps: 30, frames: 1, ...v }), 0);

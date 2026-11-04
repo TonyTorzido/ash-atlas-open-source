@@ -1,13 +1,13 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * IK reach (plan 4d-4m, owner decisions 2026-10-15): clips keep every active two-bone target within
+ * IK reach: clips keep every active two-bone target within
  * MAX_IK_REACH of the chain's posed reach; IK softness only in the last IK_SOFT_SHARE of the reach
  * (no knee pop near extension). Live limits and the validator flag a target past MAX_IK_REACH.
  */
 import type { Skeleton } from "../core/skeleton.js";
 
-/** Round 4 (2026-10-15): reach allowed up to 0.995; IK softness covers the last 2% (IK_SOFT_SHARE). */
+/** (2026-10-15): reach allowed up to 0.995; IK softness covers the last 2% (IK_SOFT_SHARE). */
 export const MAX_IK_REACH = 0.995;
 export const IK_SOFT_SHARE = 0.02;
 

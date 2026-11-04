@@ -1,4 +1,4 @@
-// Sword walk (Phase 2 key poses, docs/plans/player-sword-keyposes/README.md): the live walk_in_place with the sword
+// Sword walk (Phase 2 key poses, packages/animator/README.md): the live walk_in_place with the sword
 // arm held out low and forward like drawn pose 00-ready (the walk-ready preview's 8 / 28 / 0 deg), the blade at the
 // ready pose's angle (keyposes.json 00-ready deg). Shared by gather-clips-jacketb.ts (Jacket B sheets + the grip
 // transform) and garment-layer-sheets.ts (the stock body + armour layers), so both derive the same clip.

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4m round 3: the rest fidelity gate. The rig at its setup pose must reproduce the source
+ * Plan: the rest fidelity gate. The rig at its setup pose must reproduce the source
  * art. `tsx src/cli/restFidelity.ts <rig.anim.json> <source.png> <out prefix> [--controls]`
  * renders the setup pose 1:1 through the game's Pixi page (canvas size, DPR 1) transparent and on
  * three backdrops (dark, light, saturated) and runs four independent checks against the source:

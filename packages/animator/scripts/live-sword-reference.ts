@@ -2,7 +2,7 @@
 // to frames, a key-time sheet and GIFs, as the reference for the Atlas Animator sword clips.
 // Run from packages/animator:
 //   npx tsx scripts/live-sword-reference.ts <game repo checkout> [outDir]
-// default game repo C:/Users/dev/Documents/game, default out
+// default game repo C:/Users/dev/Documents/ash-atlas, default out
 // ../../docs/plans/atlas-animator-demos/attacks/sword/live-reference.
 // A throwaway page is written into <game>/packages/player-renderer/.live-sword-ref (deleted afterwards), built with
 // Vite and opened in headless Chromium with SwiftShader, like src/cli/render.ts. The page drives the renderer with
@@ -15,7 +15,7 @@ import { SWIFTSHADER_ARGS, writeGif, type RenderResult } from "../src/cli/render
 import { decodePng, writePng } from "../src/tools/png.js";
 import { grid } from "../src/tools/review.js";
 
-const GAME = resolve(process.argv[2] ?? "C:/Users/dev/Documents/game");
+const GAME = resolve(process.argv[2] ?? "C:/Users/dev/Documents/ash-atlas");
 const OUT = resolve(process.argv[3] ?? "../../docs/plans/atlas-animator-demos/attacks/sword/live-reference");
 const SIDE = (process.env.LIVE_SIDE ?? "left") as "left" | "right";
 const ORIGIN = "http://live.ref";

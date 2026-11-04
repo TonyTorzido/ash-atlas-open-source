@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Inverse kinematics: one bone aims at a target, or a parent/child pair bends so the child's tip
  * reaches it (law of cosines).

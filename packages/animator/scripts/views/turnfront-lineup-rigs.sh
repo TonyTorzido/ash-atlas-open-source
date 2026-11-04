@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Lineup rigs (docs/plans/atlas-animator-demos/views/turned-front/lineup/README.md). Run from packages/animator:
+# Lineup rigs (packages/animator/README.md). Run from packages/animator:
 #   bash scripts/views/turnfront-lineup-rigs.sh
-# 1. Jacket B front at 0 and 15 (turnfront.py, round 2 feet) + face combo A (turnfront_face.py, round 2c default:
+# 1. Jacket B front at 0 and 15 (turnfront.py, feet) + face combo A (turnfront_face.py, default:
 #    projected, clamped, hair shift from the projection).
 # 2. BACK at 0 and 15 (turnfront.py --back: the back surface turns the other way, the spine line shifts away from the
 #    facing side, the screen-right side is far) for Jacket B's back and the bare back body, + the stand-in back hair

@@ -1,6 +1,6 @@
 {
   "name": "template7-leg",
-  "description": "Humanoid preset, template7 body (plan 4d-4m): the screen-left leg as one continuous skin surface from the pelvis (hidden under the shorts) through a near-rigid thigh, knee, shin, ankle and foot, plus the shorts garment riding the skin (side, hem cuff, inseam and crotch outlines). Built once and mirrored about x = 542; the welded midline under the shorts is the crotch closure.",
+  "description": "Humanoid preset, template7 body (): the screen-left leg as one continuous skin surface from the pelvis (hidden under the shorts) through a near-rigid thigh, knee, shin, ankle and foot, plus the shorts garment riding the skin (side, hem cuff, inseam and crotch outlines). Built once and mirrored about x = 542; the welded midline under the shorts is the crotch closure.",
   "canvas": {
     "width": 1086,
     "height": 1448,

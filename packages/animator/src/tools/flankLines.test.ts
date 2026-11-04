@@ -18,7 +18,7 @@ function flank(slope = 0, paint?: (x: number, y: number, sx: number) => boolean)
   }
   return { width: W, height: H, dark, stroke, inside };
 }
-// the importer's options at stroke width 10 (bridge: round 21)
+// the importer's options at stroke width 10 (bridge)
 const opts = { minLen: 24, maxThick: 10, reach: 30, bridge: 10 };
 
 describe("flank parallel lines (flankSingleLine)", () => {
@@ -36,7 +36,7 @@ describe("flank parallel lines (flankSingleLine)", () => {
     expect(flankParallelLines(w, opts).lines).toHaveLength(0);
     expect(flankParallelLines(withParallelStroke(w, 6, 3), opts).lines.length).toBeGreaterThan(0);
   });
-  it("finds the control stroke where it crosses a trim band and art touching it (round 21, Wrap obi)", () => {
+  it("finds the control stroke where it crosses a trim band and art touching it (Wrap obi)", () => {
     // a 5 px horizontal trim band across the window and short dark flecks beside the control's path: the control
     // reads wide there and breaks into pieces shorter than minLen; joined across up to maxThick px it is one line
     const w = flank(0.1, (x, y, sx) => (y >= 19 && y < 24) || (y >= 30 && y < 34 && x - sx >= 7 && x - sx < 17));
@@ -72,7 +72,7 @@ describe("flank parallel lines (flankSingleLine)", () => {
 });
 
 /**
- * Round 21b: a 60 x 52 window by luminance. A 10 px outline stroke (lum 26) near the left edge; paint to its right
+ *: a 60 x 52 window by luminance. A 10 px outline stroke (lum 26) near the left edge; paint to its right
  * at `tone(x, y)`; stroke-coloured trim lines where `trim(x, y)`. Builds the window the importer builds.
  */
 function lumWindow(tone: (x: number, y: number) => number, trim: (x: number, y: number) => boolean = () => false): FlankWindow {
@@ -88,7 +88,7 @@ function lumWindow(tone: (x: number, y: number) => number, trim: (x: number, y: 
   return { width: W, height: H, stroke, inside, dark: flankDarkMask(lum, inside, new Uint8Array(N), W, H, 15, 10) };
 }
 
-describe("flank window by local tone (round 21b, Mirror's lamellar flank)", () => {
+describe("flank window by local tone (Mirror's lamellar flank)", () => {
   // lamellar plates: tone 70 (the garment median elsewhere ~150), 2 px gaps at 50 between 8 px plates in staggered
   // rows 6 px apart
   const lamellar = (x: number, y: number) => ((x + (Math.floor(y / 6) % 2) * 5) % 10 < 2 || y % 6 === 0 ? 50 : 70);

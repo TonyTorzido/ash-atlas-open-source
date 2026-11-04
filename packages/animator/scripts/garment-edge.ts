@@ -1,5 +1,5 @@
 /**
- * Round 22 (owner decision: the inner sleeve edge players see is the runtime outline): the runtime silhouette
+ *: the runtime silhouette
  * of a garment domain at rest, for art edge-fit passes (scripts/swag/fit-sleeve-fill.py). Builds the surface
  * the importer builds (cli/garmentImport.ts: the domain with its committed details, necklines dropped) and
  * writes, per boundary anchor with an offset vertex: the rest point (canvas = art px), the outward unit

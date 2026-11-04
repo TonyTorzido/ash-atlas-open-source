@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4n: raster and outline helpers for garments made from art aligned with the rig canvas
+ * Plan: raster and outline helpers for garments made from art aligned with the rig canvas
  * (traced mask loops, simplification, distance fields, smooth centrelines, silhouette roughness)
  * and the rest/bind positions of a mesh. The fitted-garment construction itself is the
  * body-derived surface in tools/garmentSurface.ts (construction pass 1); the old art-driven fitted
@@ -188,7 +188,7 @@ export function smoothLoop(loop: readonly Pt[], radius = 5, step = 5, maxPoints 
 
 
 /**
- * Edge roughness of a rendered silhouette (round 3 check): the outer loop of the pixels whose alpha
+ * Edge roughness of a rendered silhouette (check): the outer loop of the pixels whose alpha
  * is at least half (the AA midpoint), resampled at 1 px, minus its own smooth version (three passes
  * of a +-3 px moving average); returns the RMS and p99 of that residual in output px, over the whole
  * loop. A smooth anti-aliased stroke edge and a jagged or spiky texture edge differ here at once; the

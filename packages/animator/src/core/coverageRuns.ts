@@ -1,11 +1,11 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Clothing model, skeleton side (plan 4d-4l close): which pieces cover a contour this frame and its
+ * Clothing model, skeleton side (close): which pieces cover a contour this frame and its
  * visible runs (core/coverage.ts does the geometry). Kept out of the Skeleton class: its state lives
  * in a per-skeleton holder (more Skeleton fields cost the hot paths, src/pixi/allocation.test.ts).
  */
-import { isGroupedMesh, type Attachment, type MeshAttachment } from "./attachments.js";
+import { isDrawable, isGroupedMesh, type Attachment, type MeshAttachment } from "./attachments.js";
 import type { CompiledContour } from "./contours.js";
 import { COVER_ALPHA, coverIntervals, mergeIntervals, visibleRuns } from "./coverage.js";
 import { Skeleton } from "./skeleton.js";
@@ -13,7 +13,7 @@ import type { Slot } from "./slot.js";
 import { appendHandover, appendTrimFillet, handoverCut, MAX_FILLETS } from "./trimFillet.js";
 
 /*
- * Buffers (runtime review item 3): `posed` holds the contour's posed points for the rigid
+ * Buffers: `posed` holds the contour's posed points for the rigid
  * coverers of one call (kept for the whole call); `setup` the setup-pose points of a skin-space
  * cache fill and `world` coverer vertices (both temporary: overwritten by the next coverer). They
  * never alias, so a cache fill in the middle of a call cannot change the points later coverers use.
@@ -51,6 +51,71 @@ interface CoverState {
 }
 
 const states = new WeakMap<Skeleton, CoverState>();
+
+/*
+ * Skin-space intervals by content. A rebuilt skeleton (every Setup edit remounts the rig) starts with
+ * a cold per-skeleton cache, and filling it dominates the commit; but the intervals are a pure function
+ * of the contour's setup points, the coverer's setup world vertices and triangles, and the reach, so
+ * an edit that leaves those alone (a weights stroke keeps the setup pose) finds them here. Keys hash
+ * the exact float bits twice (two independent 32-bit mixes) plus the sizes.
+ */
+let memoOn = false;
+/** Turns the content memo on or off. Off by default: the per-frame playback path allocates nothing (allocation.test.ts); an editor in a static-pose mode (Setup) turns it on. */
+export function setCoverMemo(on: boolean): void {
+  memoOn = on;
+  if (!on) intervalMemo.clear();
+}
+const intervalMemo = new Map<string, readonly number[]>();
+const INTERVAL_MEMO_MAX = 6000;
+const bitsF = new Float64Array(1);
+const bitsU = new Uint32Array(bitsF.buffer);
+
+function hashInto(h: Uint32Array, data: ArrayLike<number>, count: number): void {
+  let a = h[0] as number;
+  let b = h[1] as number;
+  for (let i = 0; i < count; i++) {
+    bitsF[0] = data[i] as number;
+    a = Math.imul(a ^ (bitsU[0] as number), 0x01000193);
+    a = Math.imul(a ^ (bitsU[1] as number), 0x01000193);
+    b = Math.imul((b + (bitsU[0] as number)) ^ (b >>> 15), 0x85ebca6b);
+    b = Math.imul((b ^ (bitsU[1] as number)) + 0x9e3779b9, 0xc2b2ae35);
+  }
+  h[0] = a;
+  h[1] = b;
+}
+
+const hashScratch = new Uint32Array(2);
+function intervalKey(points: ArrayLike<number>, pointCount: number, closed: boolean, reach: number, world: ArrayLike<number>, tris: ArrayLike<number>, any: boolean): string {
+  // Only the vertices the triangles name matter (the world buffer may be a larger scratch with stale data past them).
+  let top = 0;
+  for (let i = 0; i < tris.length; i++) if ((tris[i] as number) > top) top = tris[i] as number;
+  const used = Math.min(world.length, top * 2 + 2);
+  hashScratch[0] = 0x811c9dc5;
+  hashScratch[1] = 0x1234567;
+  hashInto(hashScratch, points, pointCount * 2);
+  hashInto(hashScratch, world, used);
+  hashInto(hashScratch, tris, tris.length);
+  hashInto(hashScratch, [reach], 1);
+  return `${pointCount}:${closed ? 1 : 0}:${any ? 1 : 0}:${used}:${tris.length}:${hashScratch[0]}:${hashScratch[1]}`;
+}
+
+/** coverIntervals for the skin-space cache fill, reusing an earlier identical computation (see intervalMemo). */
+function coverIntervalsMemo(points: ArrayLike<number>, pointCount: number, closed: boolean, reach: number, world: ArrayLike<number>, tris: ArrayLike<number>, out: number[], any = false): void {
+  if (!memoOn) {
+    coverIntervals(points, pointCount, closed, reach, world, tris, out, any);
+    return;
+  }
+  const key = intervalKey(points, pointCount, closed, reach, world, tris, any);
+  const hit = intervalMemo.get(key);
+  if (hit) {
+    for (let i = 0; i < hit.length; i++) out.push(hit[i] as number);
+    return;
+  }
+  const mark = out.length;
+  coverIntervals(points, pointCount, closed, reach, world, tris, out, any);
+  if (intervalMemo.size >= INTERVAL_MEMO_MAX) intervalMemo.clear();
+  intervalMemo.set(key, out.slice(mark));
+}
 const newState = (): CoverState => ({ drawPositionVersion: -1, drawPosition: new Int32Array(0), cache: new Map(), material: new Map(), skins: null, posed: new Float32Array(64), setup: new Float32Array(64), world: new Float32Array(256), scratch: [], rigid: [], opaque: new Float32Array(64), bind: null, memo: [], fillets: [], capped: [], partner: new Float32Array(64), hand: [], bridges: [], dropped: [], handRuns: [], handPartner: new Float32Array(64) });
 
 /** A private skeleton of the same document at the setup pose (skin-space coverage). */
@@ -99,10 +164,10 @@ export function contourRunsOf(sk: Skeleton, contour: CompiledContour, points?: A
       if (slot.hidden || !slot.bone.active) continue;
       const group = slot.groupMesh;
       const attachment: Attachment | null = group ?? slot.attachment;
-      if (!attachment || attachment.type === "point" || (!group && isGroupedMesh(attachment))) continue;
+      if (!attachment || !isDrawable(attachment) || (!group && isGroupedMesh(attachment))) continue;
       if (slot.color.a * slot.drivenAlpha * attachment.color.a < COVER_ALPHA) continue;
       // A joined partner's slot (the fist whose outline continues this stroke) never trims it: the
-      // join meets the partner's line, and a trim there opens a gap at the join (plan 4d-4n round 8).
+      // join meets the partner's line, and a trim there opens a gap at the join.
       if (joinedSlot(contour, slot.data.name)) continue;
       if (mesh && attachment.type === "mesh" && (attachment === mesh || attachment.deformOwner === mesh.deformOwner)) continue;
       // The surface a contour rides never trims it: its other regions slide over it (an arm over the
@@ -137,7 +202,7 @@ export function contourRunsOf(sk: Skeleton, contour: CompiledContour, points?: A
           }
           world = st.world;
         }
-        coverIntervals(st.setup, contour.pointCount, contour.closed, reach, world, tris, iv);
+        coverIntervalsMemo(st.setup, contour.pointCount, contour.closed, reach, world, tris, iv);
         st.cache.set(key, iv);
       }
       if (!iv) {
@@ -158,7 +223,7 @@ export function contourRunsOf(sk: Skeleton, contour: CompiledContour, points?: A
           world = opaqueWorld(world, attachment.opaque, st.opaque);
         }
         const rigid = attachment.type === "region";
-        coverIntervals(pts, contour.pointCount, contour.closed, (rigid && contour.trimAtOutline) || slot === under || contour.coverTight ? 0 : reach, world, tris, iv, rigid);
+        coverIntervalsMemo(pts, contour.pointCount, contour.closed, (rigid && contour.trimAtOutline) || slot === under || contour.coverTight ? 0 : reach, world, tris, iv, rigid);
       }
       for (let k = 0; k < iv.length; k++) covered.push(iv[k] as number);
     }
@@ -336,7 +401,7 @@ export function contourCappedEndsOf(sk: Skeleton, contour: CompiledContour, poin
   // A tight contour (coverTight: trimmed at each coverer's outline, mesh or opaque region) caps every
   // trim end: the run stops on the coverer's edge, the cap's far half lies under the coverer drawn
   // later, and no feather is left beside an edge the coverer's art may not fill to (the torso line
-  // under the head's neck, round 8 line-end gate).
+  // under the head's neck, line-end gate).
   if (contour.coverTight) {
     for (let r = 0; r + 1 < runs.length; r += 2) {
       if ((runs[r] as number) > 1e-9) out[r / 2] = (out[r / 2] as number) | 1;
@@ -411,7 +476,7 @@ function pointX(points: ArrayLike<number>, count: number, t: number): number {
 }
 
 /**
- * Material coverage (plan 4d-4n, pitfall 2): a coverer that shares the contour's surface root
+ * Material coverage: a coverer that shares the contour's surface root
  * keeps its setup-pose interval in every pose only when it rides the contour's own material, i.e.
  * every surface vertex its (group's) embedded vertices reference belongs to the root's draw group
  * drawn in the contour's slot. A coverer of other material (a sleeve over the torso flank at rest)

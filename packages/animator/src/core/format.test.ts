@@ -64,7 +64,7 @@ describe("valid fixtures", () => {
     expect(doc.skins["tunic"]?.attachments["torso_cloth"]?.["torso_cloth"]).toMatchObject({ type: "linkedMesh", inheritDeform: true });
     expect(doc.physics[0]).toMatchObject({ fps: 60, limit: 5000, mass: 1, skin: true });
     expect(doc.transform[0]?.offset).toEqual({ rotation: 0, x: 0, y: -40, scaleX: 0, scaleY: 0, shearY: 0 });
-    expect(doc.events["hit"]).toEqual({ int: 0, float: 0, string: "" });
+    expect(doc.events["hit"]).toEqual({ int: 0, float: 0, string: "", audio: "" });
     expect(doc.animations["idle"]?.bones["chest"]?.translate?.[1]?.curve).toBe("linear");
   });
 });

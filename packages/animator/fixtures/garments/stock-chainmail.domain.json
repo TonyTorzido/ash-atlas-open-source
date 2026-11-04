@@ -575,7 +575,7 @@
   "color": "1d2128ff"
  },
  "source": {
-  "from": "fixtures/garments/test-shirt.domain.json, copied verbatim (round 16 stock armour, simple template): identical body-derived core, neckline (same drop), hem and cuff cuts, seeds, gaps, margin and cut details",
+  "from": "fixtures/garments/test-shirt.domain.json, copied verbatim (stock armour, simple template): identical body-derived core, neckline (same drop), hem and cuff cuts, seeds, gaps, margin and cut details",
   "changed": "name, stroke colour 1d2128",
   "note": "stock chainmail armour: mail shirt, elbow sleeves (the shirt cuff), dark steel outline",
   "copiedSource": {
@@ -586,7 +586,7 @@
     "p50": 5.656854152679443,
     "p90": 14.142133712768555
    },
-   "note": "round 10: the kung-fu jacket domain (the test shirt was drawn on its guide) with its own neckline settings (default drop)"
+   "note": ": the kung-fu jacket domain (the test shirt was drawn on its guide) with its own neckline settings (default drop)"
   },
   "cuffToWrist": {
    "rule": "scripts/cuff-to-wrist.ts: forearm cuff cuts on the bare wrist dip (tools/cuffGap.ts wristDip at rest, both arms at their average), square to the extremity bone, ends at the limb edge",

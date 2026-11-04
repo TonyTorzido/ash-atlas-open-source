@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Junction gates (plan 4d-4a), relative to the rest art. Along the skin outline of a cap patch that
+ * Junction gates, relative to the rest art. Along the skin outline of a cap patch that
  * declares an `arc`:
  * - `junction`: from the run's body anchor (the strap corner) `arc.region` canvas px along the run
  *   (the limb's top edge into the strap): the net CONCAVE turn over any JUNCTION_WINDOW game px

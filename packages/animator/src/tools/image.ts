@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Image and mask helpers for the rigging tools: straight-alpha RGBA images, binary masks from an
  * alpha threshold, square dilation, connected components, crops. Pure functions over typed

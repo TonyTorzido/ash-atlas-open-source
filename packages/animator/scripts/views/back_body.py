@@ -1,4 +1,4 @@
-# Atlas Animator multi-view swag, step 2 (docs/plans/atlas-animator-views.md): the BACK body.
+# Atlas Animator multi-view swag, step 2 (packages/animator/README.md): the BACK body.
 #   python back_body.py            (run from packages/animator)
 # The back reuses the front body's mesh, skeleton, weights and garment domain VERBATIM (the back silhouette equals
 # the front; the domain binds to triangle ids, so every front garment domain is valid on the back). Only the body

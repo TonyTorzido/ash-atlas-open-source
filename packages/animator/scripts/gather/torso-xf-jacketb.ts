@@ -1,4 +1,4 @@
-// Jacket B torso transforms (2026-10-20, back sword: docs/plans/player-sword-keyposes/README.md "Sheathed on the back").
+// Jacket B torso transforms (2026-10-20, back sword: packages/animator/README.md "Sheathed on the back").
 // Plays the body clips the client ships (scripts/copy-jacket-rig.mjs CLIPS) through the AnimationState like the
 // render and the sword_walk grip export (gather-clips-jacketb.ts), and writes the chest bone's per-frame transform
 // relative to its setup pose:

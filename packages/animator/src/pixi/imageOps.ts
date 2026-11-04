@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Pixel operations for the dynamic atlas. Pure functions on RGBA byte arrays (no DOM, no Pixi),
  * so they run and are tested in Node.

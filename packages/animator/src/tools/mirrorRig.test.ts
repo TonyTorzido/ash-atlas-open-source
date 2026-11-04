@@ -10,8 +10,8 @@ import { resolve } from "node:path";
 
 vi.setConfig({ testTimeout: 300_000, hookTimeout: 300_000 });
 
-/* Plan 4d-4l: the mirrored, welded whole upper body from the canonical template7 half rig. */
-describe("mirrorRig (plan 4d-4l)", () => {
+/* Plan: the mirrored, welded whole upper body from the canonical template7 half rig. */
+describe("mirrorRig ()", () => {
   const rig = canonicalRig("template7-shoulder");
   const preset = rig.built.preset;
   const rule = preset.mirror as NonNullable<typeof preset.mirror>;
@@ -93,8 +93,8 @@ describe("mirrorRig (plan 4d-4l)", () => {
   });
 });
 
-/* 4d-4l review: conditional contours, draw anchors, skin contacts, skin-keyed meshes, owners, rejected inputs. */
-describe("mirrorRig inputs (4d-4l review fixes)", () => {
+/* / review: conditional contours, draw anchors, skin contacts, skin-keyed meshes, owners, rejected inputs. */
+describe("mirrorRig inputs (review fixes)", () => {
   const rig = canonicalRig("template7-shoulder");
   const preset = rig.built.preset;
   const rule = preset.mirror as NonNullable<typeof preset.mirror>;

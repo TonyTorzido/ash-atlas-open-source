@@ -1,8 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4n, construction pass 2 (docs/plans/research/garment-construction.md, sections 3
- * and 5): the painted art on the body-derived garment surface.
+ * Plan, construction pass 2: the painted art on the body-derived garment surface.
  * - UVs stay frozen from the garment's rest canvas positions (a strip vertex at its own rest offset
  *   position, not its inner anchor); the texture is the art's canvas rectangle under the mesh.
  * - Painting: the visible fabric, the cream trim, the closures and the interior shading are kept.
@@ -31,16 +30,16 @@ import { FLANK_BAND, FLANK_CUT_CLEAR, flankBandGate, type FlankField } from "./f
 type Pt = [number, number];
 /** Ink within this many px of cream edges the trim or a closure (kept). */
 export const TRIM_INK = 6;
-/** Trim ink this close (px) past a boundary stroke's edge repeats that outline: removed (round 2). */
+/** Trim ink this close (px) past a boundary stroke's edge repeats that outline: removed. */
 export const INK_BESIDE_STROKE = 4;
-/** A removed ink texel with kept line work on both sides within this many px along one axis is part of it (round 21b). */
+/** A removed ink texel with kept line work on both sides within this many px along one axis is part of it. */
 export const GAP_FILL = 2;
 /** Share of an interior ink line's texels within TRIM_INK of cream above which it is a cream edge (the cream rule). */
 export const CREAM_EDGE_SHARE = 0.5;
 /** Band (stroke widths past the stroke's edge) in which darker painted shading is eased to fabric. */
 export const SHADE_BESIDE_STROKE = 2;
 /** Inside the beside-stroke band, painted shading stays at most this much (luminance) below the fabric
- * median; past the band it returns to the art over one more band width (armour round 11: the leather's
+ * median; past the band it returns to the art over one more band width (armour: the leather's
  * dark flank side panels, eased only in the band's first fifth, read as a soft second line). */
 export const BESIDE_SHADE_CAP = 6;
 /** A darker region with at least this share of its border on kept trim line work is trim (exempt from the cap). */
@@ -52,7 +51,7 @@ export const besideHold = (strokeWidth: number) => Math.max(strokeWidth * SHADE_
 export const PAD = 4;
 /** Contact-shadow easing radius around the declared underarm taper (px). */
 export const SHADOW_R = 16;
-/** The tone reference beside a stroke sits this many stroke widths past the stroke edge (round 21): the art just
+/** The tone reference beside a stroke sits this many stroke widths past the stroke edge: the art just
  * inward of the outline band, so the art's broad form shading carries to the ink and only darker paint hugging the
  * stroke (a line, a side panel) is lifted. */
 export const REF_STROKES = 2;
@@ -63,7 +62,7 @@ export const TONE_AREA_MIN = 0.2;
 
 const isCream = (r: number, g: number, b: number) => r > 175 && g > 155 && b > 130;
 // Ink is found by position (tools/garmentInk.ts): the outline band of the art's silhouette and line
-// work in the outline's own ink; never by a colour family (round 9: brown leather was stripped as ink).
+// work in the outline's own ink; never by a colour family (brown leather was stripped as ink).
 const lum = (r: number, g: number, b: number) => 0.3 * r + 0.59 * g + 0.11 * b;
 
 function segDist(p: Pt, s: Pt, e: Pt): number {
@@ -88,7 +87,7 @@ const HEM_ZONE = 40;
 const HEM_INSERT_ABOVE = 4;
 
 /**
- * The art for a hem lengthened by `dy` px (owner review 4d-4n round 3; lengthenHemDomain): a
+ * The art for a hem lengthened by `dy` px: a
  * deterministic edit, no squashing. Within the hem's columns, one insertion row g is taken a few
  * rows above the median top of the bottom trim zone (the run of cream/ink texels ending at the
  * art's bottom edge in that column); every texel at or below g moves `dy` down (the cream trim keeps
@@ -149,11 +148,11 @@ export interface PaintReport {
   inkKeptPx: number;
   emptyFilledPx: number;
   shadowEasedPx: number;
-  /** Darker painted shading eased beside a boundary stroke (round 2: no doubled outline). */
+  /** Darker painted shading eased beside a boundary stroke (no doubled outline). */
   besideStrokeShadeEasedPx: number;
-  /** Refilled texels of the removed outline strip beside a run stroke given the art's texture mirrored inward (round 21). */
+  /** Refilled texels of the removed outline strip beside a run stroke given the art's texture mirrored inward. */
   stripExtrudedPx: number;
-  /** Texture and tone continuity across the last FLANK_BAND px inside the side outline (round 21, tools/flankBand.ts); null without a trunk. */
+  /** Texture and tone continuity across the last FLANK_BAND px inside the side outline (tools/flankBand.ts); null without a trunk. */
   flankBand: { windows: number; failed: number; worstDarkDelta: number; worstTexRatio: number | null; at: string[]; texturedWindows: number; controlDarkFailed: number; controlFlatFailed: number; controlsFail: boolean; artPlainWindows: string[]; ok: boolean };
   padPx: number;
   restOverlapPx: number;
@@ -218,9 +217,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
   for (const c of build.insetCuts ?? []) for (let k = 0; k + 1 < c.points.length; k++) edges.push([restOf(c.points[k] as number), restOf(c.points[k + 1] as number)]);
   const bdist = new Float32Array(W * H).fill(Infinity);
   const half = opts.strokeWidth / 2;
-  // the field reaches past every band that reads it (review #7: it stopped at half + TRIM_INK + 4 =
-  // 15 px while the beside-stroke easing reads out to half + SHADE_BESIDE_STROKE widths = 25 px, a
-  // hard step where the easing ended early)
+  // the field reaches past every band that reads it
   const reach = half + Math.max(TRIM_INK + 4, INK_BESIDE_STROKE, besideHold(opts.strokeWidth) + opts.strokeWidth * SHADE_BESIDE_STROKE, 2) + 2;
   for (const [s, e] of edges) {
     const r = reach;
@@ -268,7 +265,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
       const x1 = Math.min(W - 1, Math.ceil(Math.max(S[0], E[0]) + reach - left));
       const y0 = Math.max(0, Math.floor(Math.min(S[1], E[1]) - reach - top));
       const y1 = Math.min(H - 1, Math.ceil(Math.max(S[1], E[1]) + reach - top));
-      // the side flank (round 21 flank band gate): a trunk cell running more down than across
+      // the side flank (flank band gate): a trunk cell running more down than across
       const flankSeg = !!opts.trunk && run.cellGroup[Math.min(k, run.cellGroup.length - 1)] === opts.trunk && Math.abs(E[1] - S[1]) > Math.abs(E[0] - S[0]);
       for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
         const dd = segDist([x + left + 0.5, y + top + 0.5], S, E);
@@ -317,7 +314,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
     return cx >= 0 && cy >= 0 && cx < art.width && cy < art.height ? (ink.trimComp[cy * art.width + cx] as number) : -1;
   };
   // A line counts as a cream edge only where it mostly edges cream: a belt edge that merely touches a pale
-  // metal buckle (armour round 14, leather -05: buckle 184,185,177 reads as cream) is still a belt edge, and
+  // metal buckle (armour, leather -05: buckle 184,185,177 reads as cream) is still a belt edge, and
   // under the cream rule everything past TRIM_INK of the buckle was removed (the strap vanished).
   const compTotal = new Map<number, number>();
   const compNearCream = new Map<number, number>();
@@ -357,14 +354,14 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
     if (al < 250) { cls[i] = 3; empty++; continue; }
     if (isCream(r, g, b)) creamPx++;
     // under or beside a runtime stroke, a texel in the outline ink colour is the painted copy of that
-    // outline even where the position detector missed it (armour round 11: the jacket's neckline, a
-    // stroked boundary since round 10 item 4, kept 65,29,16 texels that then seeded the completion)
+    // outline even where the position detector missed it (armour: the jacket's neckline, a
+    // stroked boundary since item 4, kept 65,29,16 texels that then seeded the completion)
     const strokeInk = (bdist[i] as number) <= half + INK_BESIDE_STROKE && isOutlineInkColour(ink, r, g, b);
     if (inkAt(i % W, Math.floor(i / W)) || strokeInk) {
-      // owner review 4d-4n round 2: trim ink between the cream and the boundary stroke (within
+      // trim ink between the cream and the boundary stroke (within
       // INK_BESIDE_STROKE of its edge) is the painted copy of that outline (the collar crescent): removed
       // an interior trim line (a belt edge) runs on up to the stroke it meets: removing its stroke-side end left a
-      // gap the completion refilled with ink-dark paint (armour round 14); cream-edge ink keeps the wider clearance
+      // gap the completion refilled with ink-dark paint (armour); cream-edge ink keeps the wider clearance
       const keep = ((creamD[i] as number) <= TRIM_INK && (bdist[i] as number) > half + INK_BESIDE_STROKE) || (trimLineAt(i % W, Math.floor(i / W)) && (bdist[i] as number) > half);
       if (keep) { inkKept++; cls[i] = 1; } else { inkRemoved++; cls[i] = 2; }
     } else cls[i] = 1;
@@ -372,7 +369,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
   }
   // (gapKept: these texels count as the kept line from here on: the halo skips them, the residual ink report too)
   const gapKept = new Uint8Array(W * H);
-  // gaps in kept line work (round 21b, Jade C belt edges): a removed ink texel past the stroke's reach with kept trim
+  // gaps in kept line work (Jade C belt edges): a removed ink texel past the stroke's reach with kept trim
   // line ink on both sides within GAP_FILL px along one axis is a texel of that kept line the trim vote missed
   // (its own sides read the line's shading, no vote); removing it refilled fabric between kept texels and the
   // belt's edge read as dark ticks. A piece-edge line inside one material has no kept ink beside it: unchanged.
@@ -408,7 +405,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
   // Removed ink (class 2) is refilled only from paint that is not ink-dark (garmentInk isInkDark: the outline, its
   // blends and near-ink shading such as a dark strap shade), and never to an ink-dark colour: when the neighbour
   // average lands ink-dark (near-ink shades on two sides of the outline colour average back into it), the
-  // neighbour farthest from the ink is taken instead (round 20, Jade C strap edge against the mail). A removed
+  // neighbour farthest from the ink is taken instead (Jade C strap edge against the mail). A removed
   // texel with no such neighbour waits for the fill to reach it; one that never gets one (an art that is ink-dark
   // throughout) takes the nearest kept paint that is not ink-dark (a removed line inside a near-ink strap shade:
   // the fabric beside the strap), and only an art with no such paint at all falls back to the plain average.
@@ -426,7 +423,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
         for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
           const X = x + dx;
           const Y = y + dy;
-          if (X < 0 || Y < 0 || X >= W || Y >= H || nearestClean[Y * W + X] >= 0) continue;
+          if (X < 0 || Y < 0 || X >= W || Y >= H || (nearestClean[Y * W + X] as number) >= 0) continue;
           nearestClean[Y * W + X] = nearestClean[i] as number;
           nq.push(Y * W + X);
         }
@@ -479,9 +476,9 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
       front = next;
     }
   }
-  // light smoothing of the completed texels (two 3x3 box passes, reading everything but kept ink: armour round 14,
+  // light smoothing of the completed texels (two 3x3 box passes, reading everything but kept ink: armour,
   // kept belt edge ink smeared outline-dark paint into the completed end of the line). Refilled removed ink reads
-  // no ink-dark paint and keeps its fill when the smoothed colour would be ink-dark (round 20).
+  // no ink-dark paint and keeps its fill when the smoothed colour would be ink-dark.
   const cleanFill = new Uint8Array(W * H);
   for (const i of filled) if (cls[i] === 2 && !darkAt(i)) cleanFill[i] = 1;
   for (let pass = 0; pass < 2; pass++) {
@@ -500,7 +497,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
     }
   }
   // the removed outline strip beside a run stroke has no art of its own: the completion's neighbour average left
-  // a flat smear there (round 21, Jade C flank). The art's texture continues outward along the stroke normal
+  // a flat smear there (Jade C flank). The art's texture continues outward along the stroke normal
   // instead: each refilled texel within the strip takes the art texel mirrored across the edge of the kept paint
   // (the walk follows the run-distance gradient inward), so quilting and shading run on up to the stroke.
   const gradStep = (field: Float32Array, x: number, y: number): [number, number] | null => {
@@ -547,10 +544,10 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
       stripExtruded++;
     }
   }
-  // Tone near the outline (contact shadow around the declared underarm taper, round 7; the beside-stroke cap, owner
-  // review 4d-4n round 2 / armour round 11). Both used to pull darker paint toward the garment's single fabric
+  // Tone near the outline (contact shadow around the declared underarm taper, the beside-stroke cap, owner
+  // review / armour). Both used to pull darker paint toward the garment's single fabric
   // median, which on a patterned, multi-material piece flattened the art's texture and swapped its hue for the
-  // median's (round 21, Jade C: a grey-green band with no quilting down both flanks). Both now lift the LOCAL tone
+  // median's (Jade C: a grey-green band with no quilting down both flanks). Both now lift the LOCAL tone
   // only: the reference is the art's own tone just past the eased zone (the box-blurred luminance there, reached
   // along the stroke-distance gradient), the lift is a gain on the texel's colour computed from its blurred
   // luminance, so the texture's relative contrast and the art's hue carry on up to the ink. A darker painted line
@@ -567,7 +564,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
   const lumAt = (i: number) => lum(col[i * 3] as number, col[i * 3 + 1] as number, col[i * 3 + 2] as number);
   // darker than the fabric median by more than the cap: the trim-region and crossing tests (unchanged)
   const darker = (i: number) => !!cls[i] && cls[i] !== 4 && !!foot[i] && !keptTrim(i) && medLum - lumAt(i) > BESIDE_SHADE_CAP;
-  // trim survives the cap (armour round 12: the cap flattened the leather's belt strap and its edge lines,
+  // trim survives the cap (armour: the cap flattened the leather's belt strap and its edge lines,
   // within reach of the hem stroke). Kept trim line work is never eased. A darker region is judged as a
   // beside a cut stroke (hem, neckline, cuff) as a whole: capped unless trim-bounded (a belt strap, a collar
   // band: most of its border is kept trim line); beside a silhouette run stroke per texel (crossesInward).
@@ -599,7 +596,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
     }
   }
   // a band of darker paint between two kept trim lines (a belt strap between its edge lines) is trim, even where
-  // its region touches a darker side panel and so fails the region's border share (armour round 14, leather -05):
+  // its region touches a darker side panel and so fails the region's border share (armour, leather -05):
   // walking up and down (or left and right) through darker paint reaches kept trim line work on both sides
   {
     const reachBand = 4 * opts.strokeWidth;
@@ -651,9 +648,9 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
   // (not the trim-bound regions: on a quilted piece the whole darker fabric field is bounded by its kept quilting
   // lines; ink-dark paint, a belt or a strap, is left out instead)
   const toneSrc = (i: number) => !!cls[i] && cls[i] !== 4 && !!foot[i] && !keptTrim(i) && (creamD[i] as number) > TRIM_INK && !isCream(col[i * 3] as number, col[i * 3 + 1] as number, col[i * 3 + 2] as number) && !darkAt(i);
-  // round 21 follow-up: the base never straddles a tone edge running BESIDE the stroke. A plain box there (a side
+  // follow-up: the base never straddles a tone edge running BESIDE the stroke. A plain box there (a side
   // panel's inner edge) gave the panel's last texels a lighter base (lifted too little: a dark line) and the fabric's
-  // first texels a darker one (lifted though not darker: a light line), the doubled line of armour round 11. Three
+  // first texels a darker one (lifted though not darker: a light line), the doubled line of armour. Three
   // means per texel over the tone-source paint: B, the box; E, the box over the texel's own tone area only (texels
   // within TONE_EDGE of it; a tone area under TONE_AREA_MIN of the window, a line or a fleck, is texture and keeps B);
   // T, a line of the same length tangent to the stroke-distance field. Where a tone edge runs beside the stroke the
@@ -756,7 +753,7 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
   }
   const gains: [number, number][] = [];
   for (let i = 0; i < W * H; i++) {
-    // (contact-shadow texels too: round 7, the underarm taper now ends at the apex, so its shadow
+    // (contact-shadow texels too: the underarm taper now ends at the apex, so its shadow
     // easing fades out within the beside-stroke band and left a darker row beside the flank stroke)
     if (!cand[i]) continue;
     const [r, g, b] = [col[i * 3] as number, col[i * 3 + 1] as number, col[i * 3 + 2] as number];
@@ -800,13 +797,13 @@ export function paintGarmentTexture(build: GarmentBuild, art: RgbaImage, opts: {
     if (f && isOutlineInkColour(ink, ...rgb)) { if ((bdist[i] as number) <= half) residualSil++; if ((creamD[i] as number) > TRIM_INK && !(cls[i] === 1 && (trimLineAt(i % W, Math.floor(i / W)) || gapKept[i]))) residualOcc++; }
     if (f && cls[i] === 1) { const [r, g, b] = px(i % W, Math.floor(i / W)); if (isCream(r, g, b)) creamKept++; }
     // every texel of the art's interior trim lines that are not cream edges (outside the strokes' reach), not only
-    // the ones the painter chose to keep: a dropped belt edge counts as lost (armour round 14). Cream-edge lines
+    // the ones the painter chose to keep: a dropped belt edge counts as lost (armour). Cream-edge lines
     // are judged by the cream rule (their painted outline copies past TRIM_INK are removed on purpose).
     if (f && (keptTrim(i) || (trimLineAt(i % W, Math.floor(i / W)) && (bdist[i] as number) > half + INK_BESIDE_STROKE + 2))) { trimLinePx++; const [r, g, b] = px(i % W, Math.floor(i / W)); if (Math.abs(rgb[0] - r) + Math.abs(rgb[1] - g) + Math.abs(rgb[2] - b) <= 6) trimLineKept++; }
     const c = cls[i] === 4 ? [150, 150, 150] : cls[i] === 3 ? [60, 90, 255] : cls[i] === 2 ? [255, 40, 40] : shadowMask[i] ? [255, 220, 0] : isOutlineInkColour(ink, ...rgb) ? [40, 200, 60] : rgb.map((v) => Math.round(v * 0.6 + 60));
     classes.data.set([...(c as number[]), 255], i * 4);
   }
-  // the flank band gate (round 21): the side flank texels between the arms' and the cuts' reach
+  // the flank band gate: the side flank texels between the arms' and the cuts' reach
   const flankField: FlankField = { width: W, height: H, dist: new Float32Array(W * H).fill(NaN), side: new Int16Array(W * H).fill(-1) };
   for (let i = 0; i < W * H; i++) {
     // fabric only (trim and cream are design elements, judged by their own gates), on the trunk's side of the

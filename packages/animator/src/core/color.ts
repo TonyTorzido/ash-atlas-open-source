@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * RGBA colours as four floats in 0..1, parsed from the document's "rrggbbaa" hex strings.
  */

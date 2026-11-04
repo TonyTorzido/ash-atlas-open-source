@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Layered-parts pipeline (plan 4d-4k): the rig seen from the source image. A rig document's
+ * Layered-parts pipeline: the rig seen from the source image. A rig document's
  * canvas need not be the source image's size: a source imported whole (`atlas import` of a PNG
  * that is not canvas-sized) has its opaque bounds placed at (originX - w/2, originY - h), exactly
  * as `partPlacement` does, so source pixel + offset = rig canvas pixel. Bone geometry here is in

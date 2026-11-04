@@ -1,6 +1,6 @@
 {
   "name": "template7-armlayer",
-  "description": "Arm layer (option A, milestones 1-3): the template7 screen-left torso as a detached under-sheet and the arm as its own skin sheet with a rounded shoulder cap drawn over it; flat colour, bare body (no garments). The single-sheet template7-shoulder preset stays the shipped body until the migration (plan step 6).",
+  "description": "Arm layer: the template7 screen-left torso as a detached under-sheet and the arm as its own skin sheet with a rounded shoulder cap drawn over it; flat colour, bare body (no garments). The single-sheet template7-shoulder preset stays the shipped body until the migration (plan step 6).",
   "canvas": {
     "width": 1086,
     "height": 1448,

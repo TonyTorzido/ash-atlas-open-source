@@ -1,8 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * `animator layers pack` (plan 4d-4k; consult 07, step 2): one completion request per part
- * that has a hidden-completion area, for an artist who takes reference images but no mask
+ * `animator layers pack`: one completion request per part
+ * that has a hidden-completion area, for an image model that takes reference images but no mask
  * argument. Each request folder holds explicit, hashed files (never "the image above"):
  *
  *   reference.png  the approved source (identity and style)
@@ -105,27 +105,6 @@ export function writeCompletionPacks(manifestPath: string, options: { out?: stri
       `Return only this complete ${label} layer, without labels or other body parts.`
     ].join(" ");
     writeFileSync(join(folder, "prompt.txt"), `${prompt}\n`);
-    // BRIEF.md: the brief for the artist working inside this folder (it only draws and saves).
-    writeFileSync(
-      join(folder, "BRIEF.md"),
-      [
-        `# Completion request: ${label}`,
-        "",
-        "Your only job: paint one image by hand and save it. Do not use scripts to make or edit pixels.",
-        "",
-        "Reference images in this folder, in this order:",
-        "1. `reference.png`: the approved art (identity and style).",
-        "2. `target.png`: the current layer of this part, full canvas, original position.",
-        "3. `guide.png`: the same canvas; magenta marks the hidden area to complete, cyan the existing edge band.",
-        "",
-        "Instruction:",
-        "",
-        `> ${prompt}`,
-        "",
-        `Save the result as \`output/${part.id}.png\`: ${w}x${h} pixels, RGBA with a transparent background, the part in exactly the same position and scale as in target.png. Only this part: no magenta, no cyan, no guide marks, no labels.`,
-        ""
-      ].join("\n")
-    );
     const ref = (file: string) => ({ path: file, sha256: sha256File(join(folder, file)) });
     writeJson(join(folder, "request.json"), {
       part: part.id,

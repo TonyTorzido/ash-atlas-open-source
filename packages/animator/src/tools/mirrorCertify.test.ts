@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { bodyBudget, compareFindings, companionWithPoses, skinAloneDoc } from "./mirrorCertify.js";
 import type { GeometryFinding } from "./validateGeometry.js";
 
-/* 4d-4l review 2 / 8, 11: the half baseline's poses, per-pose/per-triangle comparison, skin-alone weld, budget. */
+/* review 2 / 8, 11: the half baseline's poses, per-pose/per-triangle comparison, skin-alone weld, budget. */
 const f = (id: string, pose: string): GeometryFinding => ({ id, kind: id.split("/")[0] as GeometryFinding["kind"], severity: "error", pose, mesh: "torso/skin", region: "r", value: 2, absGamePx: 1 });
 
 describe("mirror certification helpers", () => {

@@ -267,7 +267,7 @@ describe("merging skin documents into a rig", () => {
   });
 });
 
-describe("skin documents: driven grids (Phase 4d-2)", () => {
+describe("skin documents: driven grids (Phase)", () => {
   const grid = { name: "pauldron.combo", x: { bone: "chest", at: [0, 90] }, y: { bone: "hand_r", at: [0, 45] }, keys: [{}, {}, {}, { deform: { body: { torso: { torso: { vertices: [4, 0] } } } } }] };
 
   it("merge gated on the item's skin, so the correction applies only while it is worn", () => {

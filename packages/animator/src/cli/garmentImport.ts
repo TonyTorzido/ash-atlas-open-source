@@ -1,9 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4n: `animator garment import <rig.anim.json> <art.png> <out dir> [flags]` (also
- * `tsx src/cli/garmentImport.ts ...`). Construction pass 1 (docs/plans/research/
- * garment-construction.md): the garment is the body-derived surface of a declared domain
+ * Plan: `animator garment import <rig.anim.json> <art.png> <out dir> [flags]` (also
+ * `tsx src/cli/garmentImport.ts ...`). Construction pass 1: the garment is the body-derived surface of a declared domain
  * (tools/garmentSurface.ts) with flat fabric. Writes:
  * - `<name>.domain.json` (the domain in body material coordinates), derived from the art's cut
  *   lines when missing or with `--derive-domain`; `--domain <path>` reads/writes it elsewhere;
@@ -283,7 +282,7 @@ export function farRootFrame(sk: Skeleton, raw: any, C: GarmentBuild, torso: Mes
 export function armRaiseClip(arm: [string, string], elbow: [string, string], raise = 100, bendRaise = 58, bend = 68, sides: ArmClipSides = MIRROR_SIDES): any {
   const keys = (pairs: [number, number][], i: number) => pairs.map(([time, value]) => ({ time, value: sideValue(sides, i, value) }));
   const up: [number, number][] = [[0, 0], [0.4, 0], [1.4, raise], [1.8, raise], [2.6, bendRaise], [3.0, bendRaise], [3.6, 30], [4.4, 0], [4.8, 0]];
-  // Elbows never fold outward (owner rule, elbow_never_outward): the bend is undone before the arm is back below 45 deg.
+  // Elbows never fold outward (pose rule, elbow_never_outward): the bend is undone before the arm is back below 45 deg.
   const el: [number, number][] = [[0, 0], [1.8, 0], [2.6, bend], [3.0, bend], [3.6, 30], [4.0, 0], [4.8, 0]];
   return {
     duration: 4.8,
@@ -298,7 +297,7 @@ export function armRaiseClip(arm: [string, string], elbow: [string, string], rai
   };
 }
 
-/** The flex pose (owner review, round 3): both arms raised with the elbows bent, held. */
+/** The flex pose: both arms raised with the elbows bent, held. */
 export function flexClip(arm: [string, string], elbow: [string, string], raise = 58, bend = 68, sides: ArmClipSides = MIRROR_SIDES): any {
   const hold = (i: number, v: number) => { const x = sideValue(sides, i, v); return [{ time: 0, value: x }, { time: 0.5, value: x }]; };
   return { duration: 0.5, loop: true, fps: FPS, bones: { [arm[0]]: { rotate: hold(0, raise) }, [arm[1]]: { rotate: hold(1, raise) }, [elbow[0]]: { rotate: hold(2, bend) }, [elbow[1]]: { rotate: hold(3, bend) } } };
@@ -392,12 +391,12 @@ export async function garmentImportCommand(positional: readonly string[], flags:
   const base = flag(flags, "base");
   let domain: GarmentDomain;
   if (flags.has("derive-domain") || !existsSync(domainPath)) {
-    domain = deriveDomainFromArt(raw, art, { name, skin: { slot: skinEntry.slot, attachment: skinEntry.attachment }, ...(base ? { base: readPng(base) } : {}), artPath: artPath.replace(/\\/g, "/").replace(/^.*art-drops\//, "ART_DROPS/") });
+    domain = deriveDomainFromArt(raw, art, { name, skin: { slot: skinEntry.slot, attachment: skinEntry.attachment }, ...(base ? { base: readPng(base) } : {}), artPath: artPath.replace(/\\/g, "/").replace(/^.*ash-atlas-art-drops\//, "ART_DROPS/") });
     mkdirSync(dirname(domainPath), { recursive: true });
     writeFileSync(domainPath, `${JSON.stringify(domain, null, 1)}\n`);
     process.stdout.write(`derived domain -> ${domainPath} (${domain.cuts.map((c) => `${c.name}:${c.points.length}`).join(", ")}; margin ${domain.margin})\n`);
   } else domain = JSON.parse(readFileSync(domainPath, "utf8"));
-  // --lengthen-hem <px> (owner review 4d-4n round 3): a longer-hem variant of the committed domain
+  // --lengthen-hem <px>: a longer-hem variant of the committed domain
   // and art, built in memory (the domain file is not rewritten): hem cuts moved down the body's
   // material, the art's hem trim moved with them and the fabric continued above it
   let hemEdit: { dy: number; insertRow: number; columns: [number, number] } | null = null;
@@ -412,7 +411,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
   }
   const margin = flag(flags, "margin") !== undefined ? Number(flag(flags, "margin")) : domain.margin;
   // declared overflow (canvas rectangles) has no garment geometry, binding or draw layer behind it: the
-  // body-derived surface would silently drop that paint, so such an import is refused (review 4d-4n #8)
+  // body-derived surface would silently drop that paint, so such an import is refused (review #8)
   const overflow = (domain as GarmentDomain & { overflow?: unknown[] }).overflow ?? [];
   if (overflow.length) {
     process.stderr.write(`unsupported: the domain declares ${overflow.length} overflow zone(s); overflow parts have no garment geometry yet (a rigid part past the body is a hard plate: swag:template --type hard-plate)\n`);
@@ -442,7 +441,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     writeFileSync(domainPath, `${JSON.stringify(domain, null, 1)}\n`);
     process.stdout.write(`derived cut details -> ${domainPath}: ${JSON.stringify(domain.details)}\n`);
   }
-  // each neckline sits its own `drop` (default NECKLINE_DROP) px below the art's top edge (round 9), in memory
+  // each neckline sits its own `drop` (default NECKLINE_DROP) px below the art's top edge, in memory
   const necklineDrop = domain.cuts.filter((c) => c.kind === "neckline").map((c) => c.drop ?? NECKLINE_DROP);
   domain = dropNecklines(raw, domain);
   const C = buildGarmentSurface(raw, domain, { name, margin, strokeWidth, strokeColor, fabric, hides });
@@ -595,7 +594,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     }
   }
 
-  // --- per-frame coverage (owner review 4d-4n): EVERY frame of every clip at 30 fps, pixel exact: a
+  // --- per-frame coverage: EVERY frame of every clip at 30 fps, pixel exact: a
   // pixel whose top texel is covered skin material (coveredTexelMask, read through the renderer's top
   // texel) is skin showing. Hits are cropped (3x, hits magenta) into coverage/, and the arm raise
   // gets per-frame elbow sheets (both elbows, every frame) to look at.
@@ -629,9 +628,9 @@ export async function garmentImportCommand(positional: readonly string[], flags:
   };
   const frameClips = ["arm_raise", "flex", docC.animations.walk_flat ? "walk_flat" : "walk_in_place", "idle_weight_shift", "sweep"].filter((c) => docC.animations[c]);
   // the production renderer too (pixi, the game's): skin colour it draws where the soft render (the
-  // same frame, 1 px tolerance) has none is skin the runtime shows and the gates cannot see (the 4d-4n
+  // same frame, 1 px tolerance) has none is skin the runtime shows and the gates cannot see (the 
   // elbow sliver was a stale batch layout of a contour mesh)
-  // (item 7, gate scope: restored to the original 1 px tolerance)
+  //
   const PROD_TOL = 1;
   const PROD_CLUMP = 8;
   const prodClips = new Set(["arm_raise", "flex", docC.animations.walk_flat ? "walk_flat" : "walk_in_place"]);
@@ -660,7 +659,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     }
     if (flagged) t.flagged++;
   };
-  // every frame (round 17): no flipped garment triangle (folds), and the arm/torso clearance read with each
+  // every frame: no flipped garment triangle (folds), and the arm/torso clearance read with each
   // anchor's own margin (armGapClearance) at least the bound, in every 30 fps frame of every clip
   const bulk = mediumBulk(domain);
   const armGapBound = bulk?.armGapMinPx ?? ARM_GAP_MIN;
@@ -956,11 +955,11 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     }
     return n;
   })();
-  // doubled flank line at rest (owner review 4d-4n round 2): across each flank anchor (a trunk/limb
+  // doubled flank line at rest: across each flank anchor (a trunk/limb
   // partition anchor inside the declared underarm taper), the rest render's window within 3 stroke
   // widths of the anchor holds no second LINE beside the outline: a thin dark run (paint darker than
   // the fabric median, not the stroke or its antialiased edge) running FLANK_LINE_MIN_LEN px or more
-  // along the local outline direction (tools/flankLines.ts, round 20c; the earlier "any dark texel"
+  // along the local outline direction (tools/flankLines.ts, the earlier "any dark texel"
   // rule also failed belts, quilting and mail reaching the outline). Damaged control: a 3 px stroke
   // FLANK_CONTROL_OFFSET px inside the outline in every window must be found.
   const STROKE_EDGE_TOL = 8;
@@ -979,7 +978,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     const garmentSlotSet = new Set([C.ownerSlot, ...C.slots.map((s) => s.name)].map((n) => skC.getSlot(n)));
     // (the left-out slots do not trim the garment's strokes either: the resting arm covers the top of
     // the flank stroke, and a stroke trimmed under an arm that is not drawn read as a faded half-alpha
-    // stroke over the fabric, armour round 11)
+    // stroke over the fabric, armour)
     const restAlpha = skC.slots.filter((s) => !garmentSlotSet.has(s)).map((s) => [s, s.color.a] as const);
     for (const [s] of restAlpha) (s.color as { a: number }).a = 0;
     const RG = softRender(skC, outC.tex, { ...ropts, slotFilter: (s) => garmentSlotSet.has(s) });
@@ -991,7 +990,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     rmSync(join(outDir, "flank"), { recursive: true, force: true });
     if (!paint) return out;
     // the stroke's own antialiased edge: a texel beside a stroke texel whose colour lies on the blend
-    // between the stroke colour and the fabric median (round 10, item 6: on the near-black jacket a
+    // between the stroke colour and the fabric median (item 6: on the near-black jacket a
     // half-covered edge texel of the flank stroke, 35,32,32, read as a second dark line at y825)
     const sRgb = [sc >> 16, (sc >> 8) & 255, sc & 255] as const;
     const fRgb = paint.report.fabricMedian;
@@ -1006,9 +1005,9 @@ export async function garmentImportCommand(positional: readonly string[], flags:
       return false;
     };
     // the band beside the stroke the paint eases (SHADE_BESIDE_STROKE widths past its edge), measured
-    // from the outline itself (the smoothed outer vertex; round 7): a darker texel further out is the
+    // from the outline itself (the smoothed outer vertex): a darker texel further out is the
     // art's own fold shading, not a second outline
-    // (item 7, gate scope: the original 3 stroke widths, beyond the eased band's 2.5)
+    //
     const reach = Math.max(3 * strokeWidth, Math.ceil(strokeWidth / 2 + strokeWidth * SHADE_BESIDE_STROKE));
     // a domain whose cut runs down the armpit seam (a capped vest: the cut divides trunk and limb) has no
     // trunk/limb partition on the flank; there the flank starts at that cut's end on the trunk run
@@ -1032,7 +1031,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
       const g0 = run.cellGroup[i - 1];
       const g1 = run.cellGroup[i];
       if (piece && !(piece.role === "sheet" ? backAnchors.has(`${ri}:${i}`) : g0 && g1 && g0 !== g1)) return;
-      // a capped limb (a cuff cut on the limb group itself: short caps, round 13): below the apex the bare
+      // a capped limb (a cuff cut on the limb group itself: short caps): below the apex the bare
       // arm and its own outline sit in the scan window, as beside a seam end; read the garment alone too
       const capped = [g0, g1].some((g) => g && g !== trunk && cappedLimbs.has(g));
       const atSeam = (!run.cyclic && (i === 0 || i === run.anchors.length - 1) && (g0 ?? g1) === trunk && seamEnds.some((p) => Math.hypot((gw[v * 2] as number) + ox - p[0], (gw[v * 2 + 1] as number) + oy - p[1]) < 8));
@@ -1047,7 +1046,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
       const wy0 = Math.max(0, cy + Math.round(strokeWidth)), wy1 = Math.min(height - 1, cy + 6 * strokeWidth);
       if (wy1 < wy0) return;
       const ww = wx1 - wx0 + 1, wh = wy1 - wy0 + 1;
-      // (round 21b, root option a: the outline is the stroke-coloured texels a full stroke across, outlineStroke; a belt's
+      // (root option a: the outline is the stroke-coloured texels a full stroke across, outlineStroke; a belt's
       // or band's dark trim lines are paint. Dark = darker than the LOCAL paint tone over 1.5 stroke widths,
       // flankDarkMask: against the garment median Mirror's lamellar plates read dark everywhere and the damaged
       // control merged into a wide blob at the left flank)
@@ -1067,7 +1066,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
       for (let k = 0; k < N; k++) inside[k] = opaqueM[k] && !stroke[k] ? 1 : 0;
       const dark = flankDarkMask(lum, inside, edgeM, ww, wh, FLANK_LOCAL_TONE * strokeWidth, FLANK_DARK_DELTA);
       const win = { width: ww, height: wh, dark, stroke, inside };
-      // (round 21: flagged texels up to a line's allowed thickness apart are one line, so a line crossing a trim band
+      // (flagged texels up to a line's allowed thickness apart are one line, so a line crossing a trim band
       // is not dropped as stubs; the damaged control crossing Wrap's obi edge went unfound)
       const opts = { minLen: FLANK_LINE_MIN_LEN, maxThick: Math.round(strokeWidth), reach, bridge: Math.round(strokeWidth) };
       const res = flankParallelLines(win, opts);
@@ -1093,7 +1092,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     }));
     return out;
   })();
-  // garment closure (owner review round 13): what the player sees inside the garment's promised
+  // garment closure: what the player sees inside the garment's promised
   // coverage, at the 0.4 view and at 1x, over the pose envelope: no garment edge without a line
   // (silhouette stroke gaps, body skin drawn over the garment with no outline of its own), no
   // garment stroke ending in open space, no body line inside the garment; plus the damaged controls
@@ -1137,7 +1136,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
 `);
     return { scales, controlsFail, ok };
   })();
-  // round 22 (owner: "the jackets/shirt don't go all the way to the hand"): every forearm cuff reaches the bare
+  //: every forearm cuff reaches the bare
   // wrist dip on both sides in every pose (tools/cuffGap.ts: no limb or fist skin above the dip line), and the
   // short-cuff control (the dressed ids with the last 6 px above the dip handed to the fist) on the rest frame fails
   const cuffGap = (() => {
@@ -1180,10 +1179,10 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     correspondence: corrC.noParent === 0 && corrC.negativeWeights === 0 && corrC.restMismatchMax <= 0.01 && corrB.noParent === 0 && corrB.negativeWeights === 0,
     zeroMargin001: agg.zeroMarginMaxGamePx <= 0.01 && agg.core0SilhouetteDiffPx === 0,
     offset025: agg.offsetDevMaxGamePx <= 0.25,
-    // bounded joins (miter-limited or reversed offsets) get their own bound (review #6)
+    // bounded joins (miter-limited or reversed offsets) get their own bound
     joinDevBounded: agg.joinDevMaxGamePx <= JOIN_DEV_MAX_GAME_PX,
     noFlips: agg.flipsCore === 0 && agg.flipsStrip === 0,
-    // round 17: no fold (flipped garment triangle) in any 30 fps frame, and the arm/torso gap open in every frame
+    //: no fold (flipped garment triangle) in any 30 fps frame, and the arm/torso gap open in every frame
     noFlipsEveryFrame: everyFrame.frames > 0 && everyFrame.flips === 0,
     // (a full-body view's pieces: the near pair's cross-piece gap, the far piece's root under-join; phase 2c)
     armGapEveryFrame: !piece ? everyFrame.armGapPairs > 0 && everyFrame.armGapMin >= armGapBound
@@ -1208,13 +1207,13 @@ export async function garmentImportCommand(positional: readonly string[], flags:
       inkReplaced: paint.report.residualSilhouetteInk === 0 && paint.report.residualOcclusionInk === 0 && contours.unstroked === 0 && contours.doubled === 0,
       artworkTrim: paint.report.creamPreserved >= 0.98 && paint.report.trimLinePreserved >= 0.98,
       artworkCutEnds: cutEndRes.every((r) => silOk(r.residual)),
-      // round 21: texture and tone continuity across the last FLANK_BAND px inside the side outline (tools/flankBand.ts,
+      //: texture and tone continuity across the last FLANK_BAND px inside the side outline (tools/flankBand.ts,
       // computed by the painter on the texture against the art's own outline band; damaged flat/dark controls must fail)
       flankTexture: !paint || paint.report.flankBand.ok,
       flankSingleLine: flankDoubled.anchors > 0 && flankDoubled.rows > 0 && flankDoubled.doubledRows === 0 && flankDoubled.controlFails
     } : {})
   };
-  // --swag-checks: the swag checks (tools/swagChecks.ts) on the art, next to the gates
+  // --swag-checks: the Swag checks (tools/swagChecks.ts) on the art, next to the gates
   const swagChecks = flags.has("swag-checks") ? swagImportChecks(rigPath, domainPath, hides, art) : null;
   if (swagChecks) Object.assign(gates, { swagChecks: swagChecks.passed });
   const report = {
@@ -1241,7 +1240,7 @@ export async function garmentImportCommand(positional: readonly string[], flags:
     cuffGap,
     gates
   };
-  // certification (review 4d-4n #1): every gate must be present and true; a failed gate is a nonzero exit
+  // certification (review #1): every gate must be present and true; a failed gate is a nonzero exit
   // (1), after the report (and the renders) are written, so scripts with `set -e` enforce acceptance
   const failedGates = Object.entries(gates).filter(([, v]) => v !== true).map(([k]) => k);
   const certified = failedGates.length === 0;

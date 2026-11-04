@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Test helper: the canonical surface rigs, built once per process. A canonical build blocks for
  * tens of seconds; the surface test files run in one fork without isolation (vitest.config.ts,

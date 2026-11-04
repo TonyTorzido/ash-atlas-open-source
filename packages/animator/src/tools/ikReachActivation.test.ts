@@ -5,7 +5,7 @@ import { describeViolations, limitDocument, newViolations } from "./liveLimits.j
 import { checkPoseLimits, type ValidationIssue } from "./validate.js";
 
 /*
- * Live and batch IK reach checks share the skeleton's constraint-activation rules (runtime review item 2): an active overextended chain is found by both, an inactive skin chain by
+ * Live and batch IK reach checks share the skeleton's constraint-activation rules: an active overextended chain is found by both, an inactive skin chain by
  * neither, IK-only documents reach the live check, and a correction is offered only when it
  * resolves the violation.
  */

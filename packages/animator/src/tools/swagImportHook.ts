@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The importer's hook into the swag checks (cli/garmentImport.ts `--swag-checks`): loads the guide
  * data for the rig and domain the importer is running on and checks the art. Kept out of the importer

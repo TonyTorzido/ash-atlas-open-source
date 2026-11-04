@@ -50,7 +50,7 @@ const quiet = async (argv: string[]) => {
   }
 };
 
-describe("atlas import (plan 4d-4j2 item 3)", () => {
+describe("atlas import (item 3)", () => {
   it("plans without writing; --dry-run writes nothing at all", async () => {
     const { dir, doc } = workspace();
     const png = blocks(join(dir, "body.png"), [[20, 20, 10, 10]]);
@@ -102,7 +102,51 @@ describe("atlas import (plan 4d-4j2 item 3)", () => {
   });
 });
 
-describe("atlas import transaction (plan 4d-4j3, review item 6)", () => {
+describe("atlas import --swaps and pivot sidecars (cut-out swap sets, 2026-10-22)", () => {
+  it("imports <slot>__<attachment>.png files as a swap set on one slot", () => {
+    const { dir, doc } = workspace({ slots: [{ name: "hand", bone: "arm" }] });
+    const raw = JSON.parse(readFileSync(doc, "utf8"));
+    const a = blocks(join(dir, "hand__fist.png"), [[30, 30, 4, 4]]);
+    const b = blocks(join(dir, "hand__guard.png"), [[28, 30, 6, 4]]);
+    const plan = atlasImport(doc, raw, [a, b], new Map([["swaps", true]]));
+    const adds = plan.commands.filter((c) => c.op === "attachment.add") as unknown as { slot: string; name: string; attachment: { path: string } }[];
+    expect(adds.map((c) => `${c.slot}/${c.name}`)).toEqual(["hand/fist", "hand/guard"]);
+    expect(adds.map((c) => c.attachment.path)).toEqual(["body/hand__fist", "body/hand__guard"]);
+    expect(plan.commands.some((c) => c.op === "slot.add")).toBe(false);
+    expect(() => atlasImport(doc, raw, [blocks(join(dir, "plain.png"), [[1, 1, 2, 2]])], new Map([["swaps", true]]))).toThrow(/<slot>__<attachment>/);
+  });
+
+  it("a new swap slot is added once, showing its first drawing", () => {
+    const { dir, doc } = workspace();
+    const raw = JSON.parse(readFileSync(doc, "utf8"));
+    const a = blocks(join(dir, "hand__fist.png"), [[30, 30, 4, 4]]);
+    const b = blocks(join(dir, "hand__guard.png"), [[28, 30, 6, 4]]);
+    const plan = atlasImport(doc, raw, [a, b], new Map<string, string | true>([["swaps", true], ["bone", "arm"]]));
+    const slots = plan.commands.filter((c) => c.op === "slot.add") as unknown as { name: string; attachment: string }[];
+    expect(slots).toEqual([expect.objectContaining({ name: "hand", attachment: "fist" })]);
+  });
+
+  it("a .pivot.json sidecar puts the pivot pixel on the bone start and the drawn direction along the bone", () => {
+    const { dir, doc } = workspace({ slots: [{ name: "hand", bone: "arm" }] });
+    const raw = JSON.parse(readFileSync(doc, "utf8"));
+    // a 20x10 piece drawn pointing screen-right, its pivot at the middle of its left edge
+    const image: MutableImage = createImage(20, 10);
+    for (let i = 0; i < 200; i++) image.data.set([200, 100, 50, 255], i * 4);
+    const png = join(dir, "hand__guard.png");
+    writePng(png, image);
+    writeFileSync(join(dir, "hand__guard.pivot.json"), JSON.stringify({ pivot: [0, 5], angle: 0 }));
+    const plan = atlasImport(doc, raw, [png], new Map([["swaps", true]]));
+    const add = plan.commands.find((c) => c.op === "attachment.add") as unknown as { attachment: { x: number; y: number; rotation?: number } };
+    // the arm bone points straight down (90 deg): the piece turns to point down, its centre 10 px along the bone
+    expect(add.attachment.x).toBeCloseTo(10, 6);
+    expect(add.attachment.y).toBeCloseTo(0, 6);
+    expect(add.attachment.rotation ?? 0).toBeCloseTo(0, 6);
+    writeFileSync(join(dir, "hand__guard.pivot.json"), JSON.stringify({ pivot: [0] }));
+    expect(() => atlasImport(doc, raw, [png], new Map([["swaps", true]]))).toThrow(/needs \{"pivot"/);
+  });
+});
+
+describe("atlas import transaction", () => {
   const listing = (dir: string) => readdirSync(dir).sort();
   const regionWidth = (dir: string) => {
     const manifest = JSON.parse(readFileSync(join(dir, "mob.atlas.json"), "utf8")) as { pages: { file: string; regions: Record<string, { w?: number; width?: number }> }[] };
@@ -150,7 +194,7 @@ describe("atlas import transaction (plan 4d-4j3, review item 6)", () => {
   });
 });
 
-describe("outline trace components (plan 4d-4j2 item 4)", () => {
+describe("outline trace components (item 4)", () => {
   it("traces every disconnected component by default, each its own hull, and lists them", () => {
     const { dir, doc } = workspace();
     const png = blocks(join(dir, "pair.png"), [

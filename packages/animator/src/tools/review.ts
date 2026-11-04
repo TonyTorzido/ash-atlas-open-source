@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Review images for the reviewer (plan 4.6 step 5, Phase 4 review): weight heat
+ * Review images for the user and the reviewer (plan 4.6 step 5, Phase 4 review): weight heat
  * overlays per bone, a weights overview, and contact sheets of bent poses at the joint limits
  * (full figure, and 1x close-ups of shoulders, elbows and hips). Drawn with the CPU rasteriser,
  * not the game's Pixi renderer: every tile's label says so, with its scale (output px per canvas
@@ -24,11 +24,11 @@ import { softRender, worldScratch } from "./softRender.js";
 export interface ReviewPose {
   name: string;
   rotate: Record<string, number>;
-  /** Plan 4d-4j2 probes: scale factors per bone (over setup), translation per bone (local px), slot attachment changes (null hides). */
+  /** Plan probes: scale factors per bone (over setup), translation per bone (local px), slot attachment changes (null hides). */
   scale?: Record<string, { x: number; y: number }>;
   translate?: Record<string, { x: number; y: number }>;
   attachments?: Record<string, string | null>;
-  /** IK mix for every constraint (plan 4d-4m r3: generated poses run with IK released, 0); default the document's. */
+  /** IK mix for every constraint (r3: generated poses run with IK released, 0); default the document's. */
   ikMix?: number;
 }
 
@@ -249,7 +249,7 @@ export function weightOverview(
   doc: AnimDocument,
   textures: ReadonlyMap<string, RgbaImage>,
   skins: readonly string[] = ["body"],
-  /** Plan 4d-4j3: vertices to mark per slot (the ambiguous vertices of `weights.auto`). */
+  /** Plan: vertices to mark per slot (the ambiguous vertices of `weights.auto`). */
   markers?: ReadonlyMap<string, readonly number[]>
 ): MutableImage {
   const skeleton = poseSkeleton(doc, skins, null);

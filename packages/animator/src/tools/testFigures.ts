@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Test helpers for the tool tests (not exported from the package): synthetic sprites, and the path
  * of the live body template the game renders today.

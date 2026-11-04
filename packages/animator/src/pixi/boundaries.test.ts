@@ -32,7 +32,7 @@ describe("pixi adapter module boundaries", () => {
     });
 
     it(`${file} carries the original-implementation header`, () => {
-      expect(readSource(file).startsWith("/*\n * Atlas Animator: original implementation (clean-room")).toBe(true);
+      expect(readSource(file).startsWith("/*\n * Atlas Animator: original implementation")).toBe(true);
     });
   }
 });

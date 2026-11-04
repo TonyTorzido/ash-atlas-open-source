@@ -4,7 +4,7 @@
 #   bash scripts/views/five-anims-jacketb-rigs.sh
 # 1. stock_jacketb.py: the certified Jacket B (jacket-b/jacket/rig, its existing front art) dressed onto the refined
 #    stock (black pants, brown silhouette ink, polished fists/feet, template walk, idle breath); tank hidden; jacket
-#    silhouette ink in body brown (owner D2).
+#    silhouette ink in body brown (design review).
 # 2. turnfront.py at 0 and 15 (the same transform as the stock clips; no new drawings).
 # 3. turnfront_face.py: the same face combo A and flags as five-anims-rigs.sh (dash-h nose, blink, mirrored inputs).
 set -euo pipefail

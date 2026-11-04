@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Arm layer evidence renders from an already built upper rig (no rebuild, no gates):
  * `tsx src/cli/armLayerRender.ts <upper rig dir> <out.png> --preset <preset.json> --sheet raise-sweep`

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator, plan 4d-4n (owner review of the final kung-fu jacket, 2026-10-16): the long-cuff
+ * Atlas Animator, the long-cuff
  * variant. The approved jacket with longer sleeves: each forearm cuff cut moves down the forearm (along
  * the forearm bone at rest) to just above the fist, keeping its approved orientation (parallel to the
  * fist plate's top edge, which rides the same bone), and the approved art follows with a
@@ -10,7 +10,7 @@
  * Writes the domain (committed) and the edited art (ART_DROPS, outside the repo):
  *   npx tsx scripts/kungfu-longcuff.ts [--dy 15]
  * Inputs: the committed body rig, fixtures/garments/kungfu-jacket-shortcuff.domain.json (the short-cuff jacket) and the v3 art.
- * Output: fixtures/garments/kungfu-jacket.domain.json, the DEFAULT jacket since the long cuff was approved (2026-10-16).
+ * Output: fixtures/garments/kungfu-jacket.domain.json, the DEFAULT jacket since approved the long cuff (2026-10-16).
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -25,7 +25,7 @@ import type { RgbaImage } from "../src/tools/image.js";
 type Pt = [number, number];
 const HERE = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ART_DROPS = process.env.ART_DROPS ?? "C:/Users/dev/Documents/art-drops";
-const RIG = join(HERE, "../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/template7-shoulder-legs.anim.json");
+const RIG = join(HERE, "../fixtures/test-rigs/body/template7-shoulder-legs.anim.json");
 const BASE_DOMAIN = join(HERE, "fixtures/garments/kungfu-jacket-shortcuff.domain.json");
 const OUT_DOMAIN = join(HERE, "fixtures/garments/kungfu-jacket.domain.json");
 const ART_IN = "swag-kungfu-01/v3/output/kungfu-jacket-a.png";

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * A runtime bone: three transforms and the math between them.
  *
@@ -52,6 +52,8 @@ import {
 export interface SkeletonFrame {
   readonly x: number;
   readonly y: number;
+  /** False: bone rotation limits are not applied (AnimationState.apply turns them off while a non-looping clip is posed). Absent counts as true. */
+  readonly limitsEnforced?: boolean;
 }
 
 // Scratch space: bones are updated one at a time on one thread, so shared temporaries are safe
@@ -103,7 +105,7 @@ export class Bone {
     // Works on `applied` in place rather than forwarding seven numbers to
     // updateWorldTransformWith: numbers passed to a call the engine does not inline are boxed,
     // and this runs for every bone every frame (src/pixi/allocation.test.ts).
-    const limits = this.data.limits;
+    const limits = this.frame.limitsEnforced === false ? undefined : this.data.limits;
     if (limits) {
       const applied = this.applied;
       const delta = applied.rotation - this.data.rotation;
@@ -127,7 +129,7 @@ export class Bone {
     shearX: number,
     shearY: number
   ): void {
-    const limits = this.data.limits;
+    const limits = this.frame.limitsEnforced === false ? undefined : this.data.limits;
     if (limits) rotation = clampRotationToLimits(rotation, this.data.rotation, limits.min, limits.max);
 
     const applied = this.applied;
@@ -303,7 +305,7 @@ export class Bone {
    */
   enforceLimits(): void {
     this.updateAppliedTransform();
-    const limits = this.data.limits;
+    const limits = this.frame.limitsEnforced === false ? undefined : this.data.limits;
     if (!limits) return;
     const applied = this.applied;
     const setup = this.data.rotation;

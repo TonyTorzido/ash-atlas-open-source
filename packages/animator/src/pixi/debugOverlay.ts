@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Debug overlays for the editor, the CLI's contact sheets and tests: bones, mesh wireframes,
  * point attachments and a weights heat map for one bone. Drawn with Pixi Graphics in the same
@@ -9,12 +9,17 @@
 import { Container, Graphics } from "pixi.js";
 import type { MeshAttachment } from "../core/attachments.js";
 import { computePointWorld, type PointWorld } from "../core/skinning.js";
+import { computePathWorld, evalPathCurve, pathCurveCount } from "../core/pathConstraint.js";
 import type { Skeleton } from "../core/skeleton.js";
 
 export interface DebugOverlayOptions {
   bones?: boolean;
   wireframe?: boolean;
   points?: boolean;
+  /** Draw the polygons of bounding-box (hit box) attachments (default true). */
+  boxes?: boolean;
+  /** Draw the polygons of clipping attachments (default true). */
+  clips?: boolean;
   /** Bone name whose weights to show as a heat map (blue 0 -> red 1), or null for none. */
   weightsFor?: string | null;
   /** Line width in skeleton pixels (default 1.5). */
@@ -24,6 +29,9 @@ export interface DebugOverlayOptions {
 const BONE_COLOR = 0xffc83c;
 const WIRE_COLOR = 0x3cc8ff;
 const POINT_COLOR = 0xff3cc8;
+const PATH_COLOR = 0xff7f00;
+const BOX_COLOR = 0x60f000;
+const CLIP_COLOR = 0xce3a3a;
 
 export class AnimatorDebugOverlay extends Container {
   private readonly graphics = new Graphics();
@@ -45,12 +53,38 @@ export class AnimatorDebugOverlay extends Container {
     for (const slot of skeleton.drawOrder) {
       const attachment = slot.attachment;
       if (!attachment) continue;
+      if (attachment.type === "clipping" || attachment.type === "boundingbox") {
+        if ((attachment.type === "boundingbox" ? options.boxes : options.clips) !== false) {
+          const world = skeleton.slotPolygonWorld(slot);
+          if (world && world.length >= 6) {
+            const color = attachment.type === "boundingbox" ? BOX_COLOR : CLIP_COLOR;
+            g.poly(Array.from(world)).fill({ color, alpha: 0.18 }).stroke({ width, color });
+          }
+        }
+        continue;
+      }
       if (attachment.type === "point") {
         if (options.points !== false) {
           const p = computePointWorld(attachment, slot.bone, this.point);
           const r = (p.rotation * Math.PI) / 180;
           g.circle(p.x, p.y, 3 * width).stroke({ width, color: POINT_COLOR });
           g.moveTo(p.x, p.y).lineTo(p.x + Math.cos(r) * 12 * width, p.y + Math.sin(r) * 12 * width).stroke({ width, color: POINT_COLOR });
+        }
+        continue;
+      }
+      if (attachment.type === "path") {
+        if (options.points !== false) {
+          const w = new Float64Array(attachment.vertexCount * 2);
+          computePathWorld(skeleton, attachment, slot.bone, w);
+          const tmp = new Float64Array(3);
+          for (let c = 0; c < pathCurveCount(attachment); c++) {
+            for (let s = 0; s <= 24; s++) {
+              evalPathCurve(w, attachment.vertexCount, c, s / 24, tmp, 0);
+              if (s === 0) g.moveTo(tmp[0] as number, tmp[1] as number);
+              else g.lineTo(tmp[0] as number, tmp[1] as number);
+            }
+          }
+          g.stroke({ width, color: PATH_COLOR });
         }
         continue;
       }

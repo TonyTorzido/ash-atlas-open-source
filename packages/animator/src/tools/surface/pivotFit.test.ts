@@ -4,7 +4,7 @@ import { fitArmChain, fitCircle, migrateChain, type FitReference, type Pt } from
 
 const at = (c: Pt, r: number, deg: number): Pt => [c[0] + r * Math.cos((deg * Math.PI) / 180), c[1] + r * Math.sin((deg * Math.PI) / 180)];
 
-describe("pivot fit (plan 4d-3r checkpoint 1)", () => {
+describe("pivot fit (checkpoint 1)", () => {
   it("recovers a circle from points and lines together", () => {
     const c: Pt = [440, 715];
     const points = [10, 60, 120, 170].map((d) => at(c, 110, d));

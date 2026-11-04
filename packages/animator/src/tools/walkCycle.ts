@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * A reusable front-facing walk-in-place template (plan 4d-4m r5): parameters in data (game px,
+ * A reusable front-facing walk-in-place template (r5): parameters in data (game px,
  * degrees, seconds; fixtures/clips/*.json), sampled per frame into rig-neutral intents (pelvis
  * offset, per-foot lift and toe tilt, torso and head tilt, arm/elbow/hand swing) that an assembler
  * turns into keys with its leg stance policy. Design: a light chibi step, not a stamp. A low lift

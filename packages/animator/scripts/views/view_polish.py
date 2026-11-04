@@ -1,4 +1,4 @@
-# Atlas Animator multi-view swag, step 4 (docs/plans/atlas-animator-views.md): view polish additions + consistency gates.
+# Atlas Animator multi-view swag, step 4 (packages/animator/README.md): view polish additions + consistency gates.
 #   python view_polish.py polish <gen.png> <allowed-mask.png> <design.json> <view> <out garment.png>
 #   python view_polish.py gates <garment.png> <design.json> <view> [<report.json>]
 #   python view_polish.py selftest <design.json> [<report.json>]

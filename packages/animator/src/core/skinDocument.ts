@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Skin documents (`atlas-skin@1`, files named `<item>.skin.json`): one swag item, authored
  * separately from the rig it was made for, and the merge that adds items to a rig.

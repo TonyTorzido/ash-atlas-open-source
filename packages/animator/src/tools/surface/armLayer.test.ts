@@ -13,7 +13,7 @@ import { pointInPolygon } from "./geometry.js";
 
 const preset = loadPreset(resolve(__dirname, "../../../fixtures/canonical/template7-armlayer.preset.json"));
 
-describe("arm layer (option A, milestones 1-3)", () => {
+describe("arm layer", () => {
   const built = buildSurface(preset);
   it("builds the torso as a detached sheet with trunk weights only", () => {
     expect(built.sheets).toHaveLength(1);
@@ -67,7 +67,7 @@ describe("arm layer (option A, milestones 1-3)", () => {
     const bad = structuredClone(m.doc);
     delete bad.skins.body.contours.upper_arm.cap.coverUnder;
     expect(inkGate(loadAnimDocument(bad), con, ["upper_arm/outline_front"], poses).ok).toBe(false);
-    // Round 6: the raised arm's outer edge must not run on over the shoulder (raise 105 stray line).
+    //: the raised arm's outer edge must not run on over the shoulder (raise 105 stray line).
     const raised = [90, 105].map((a) => ({ name: `${a}`, rotate: { upper_arm_l: a, clavicle_l: 6 } }));
     expect(inkGate(anim, con, [], raised, ["upper_arm/outline", "upper_arm/underside"]).ok).toBe(true);
     const stray = structuredClone(m.doc);

@@ -166,7 +166,7 @@ describe("debug overlay", () => {
   });
 });
 
-describe("AnimatorCharacter held-pose cache (plan 4d-4f)", () => {
+describe("AnimatorCharacter held-pose cache ()", () => {
   const raw = JSON.parse(readFileSync(fixture("three-part.anim.json"), "utf8"));
   raw.animations = {
     sway: { duration: 1, loop: true, bones: { chest: { rotate: [{ time: 0, value: 0 }, { time: 0.5, value: 30 }, { time: 1, value: 0 }] } } },

@@ -5,7 +5,7 @@ import { parseAnimDocument, loadAnimDocument } from "./formatLoader.js";
 import { Skeleton } from "./skeleton.js";
 
 /*
- * Phase 4d-2: mesh draw groups, contours, two-driver corrective grids and coverage regions (format,
+ * Phase: mesh draw groups, contours, two-driver corrective grids and coverage regions (format,
  * references and core runtime). The Pixi side and the 3x width golden live in src/pixi and
  * browser-tests.
  */
@@ -184,7 +184,7 @@ describe("draw groups", () => {
     expect(checked).toBe(7 * 3 * 2);
   });
 
-  it("a hidden or inactive group shows nothing: the owner slot showing no mesh clears every group", () => {
+  it("a hidden or inactive group shows nothing: the user slot showing no mesh clears every group", () => {
     const skeleton = new Skeleton(loadAnimDocument(stripRaw()));
     skeleton.setActiveSkins(["body"]);
     const upper = skeleton.getSlot("upper");

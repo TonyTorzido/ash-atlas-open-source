@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * File-backed documents and the append-only command log (plan 4.3). Every write to a document
  * goes through `applyToFile` (or undo/redo), which appends one log entry per batch to
@@ -143,9 +143,9 @@ export interface WriteResult {
   doc: JsonObject;
   text: string;
   repaired: OpenResult["repaired"];
-  /** Pose-limit warnings of the batch (options.limits "warn"; plan 4d-4h). */
+  /** Pose-limit warnings of the batch (options.limits "warn"). */
   limitWarnings?: string[];
-  /** Command notes of the batch (plan 4d-4j; `weights.auto` domains and ambiguity). */
+  /** Command notes of the batch (`weights.auto` domains and ambiguity). */
   notes?: CommandNote[];
 }
 

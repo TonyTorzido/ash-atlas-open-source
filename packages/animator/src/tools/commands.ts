@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The command bus (plan 4.3): one vocabulary of JSON commands (`{"op": "bone.add", ...}`) for the
  * CLI, the editor console and the editor UI. A command compiles to an RFC 6902 patch on the raw
@@ -30,11 +30,14 @@ import {
   inheritSchema,
   nameSchema,
   physicsConstraintSchema,
+  pathConstraintSchema,
+  pathKeySchema,
   transformConstraintSchema,
   transformKeySchema,
   valueKeySchema,
   vectorKeySchema,
   attachmentKeySchema,
+  sequenceKeySchema,
   contourSchema,
   CONTOUR_CAPS,
   contourVisibilitySchema,
@@ -53,6 +56,7 @@ import type { Bone } from "../core/bone.js";
 import { adjacency, autoWeightsTree, normalizeInfluences, pruneWeights, smoothWeights, weightsAtPoint, weldWeights, type Influence, type WeightBone, type WeightTree } from "./autoWeights.js";
 import { chainBones, domainFor } from "./authoring.js";
 import { autoMesh } from "./autoMesh.js";
+import { checkMeshEditable, MeshEditError, oldToNewMap, planDeformRemap, planReferenceRemap, remapDeform, type DeformGeom, type PlannedWrite } from "./meshEdit.js";
 import { clipsTouched, describeViolations, keyedTimes, limitDocument, newViolations, type LimitMode, type LimitViolation } from "./liveLimits.js";
 import { polygonArea, segmentDistance, type Point } from "./outline.js";
 import {
@@ -90,11 +94,11 @@ const fail = (message: string): never => {
 // Edit: applies primitive patch operations to a working document and records forward + inverse
 // ---------------------------------------------------------------------------------------------
 
-/** A diagnostic a command reports beside its patch (plan 4d-4j: `weights.auto` ambiguity and domains). */
+/** A diagnostic a command reports beside its patch (`weights.auto` ambiguity and domains). */
 export interface CommandNote {
   level: "info" | "warning";
   message: string;
-  /** Vertex IDs the note is about (plan 4d-4j3: `weights.auto` ambiguous vertices, for overlays). */
+  /** Vertex IDs the note is about (`weights.auto` ambiguous vertices, for overlays). */
   vertices?: number[];
 }
 
@@ -263,9 +267,15 @@ const round = (value: number) => Math.round(value * 1e4) / 1e4 + 0;
 
 /** The setup pose of the document as the runtime builds it (every skin active). */
 function setupSkeleton(doc: JsonObject): Skeleton {
-  const parsed = parseAnimDocument(doc);
-  if (!parsed.ok) fail(`the document has errors, fix them before editing geometry:\n  ${parsed.issues.map(formatIssue).join("\n  ")}`);
-  const document = (parsed as { document: AnimDocument }).document;
+  // The batch's input document, parsed when an earlier batch returned it: valid only while this command has not edited it.
+  const hint = parseHint;
+  let document: AnimDocument;
+  if (hint && hint.edit.doc === doc && hint.edit.patch.length === 0) document = hint.document;
+  else {
+    const parsed = parseAnimDocument(doc);
+    if (!parsed.ok) fail(`the document has errors, fix them before editing geometry:\n  ${parsed.issues.map(formatIssue).join("\n  ")}`);
+    document = (parsed as { document: AnimDocument }).document;
+  }
   const skeleton = new Skeleton(document);
   skeleton.setActiveSkins(Object.keys(document.skins));
   skeleton.updateWorldTransform("none");
@@ -351,7 +361,7 @@ function selectVertices(selection: number[] | "all" | undefined, count: number):
 // ---------------------------------------------------------------------------------------------
 
 const BONE_TIMELINES = ["rotate", "translate", "scale", "shear"] as const;
-const SLOT_TIMELINES = ["attachment", "color"] as const;
+const SLOT_TIMELINES = ["attachment", "color", "sequence"] as const;
 const PHYSICS_TIMELINES = ["mix", "reset"] as const;
 
 const deformAddressSchema = z.object({ skin: nameSchema, slot: nameSchema, attachment: nameSchema }).strict();
@@ -363,6 +373,7 @@ const addressShape = {
   ik: nameSchema.optional(),
   transform: nameSchema.optional(),
   physics: nameSchema.optional(),
+  path: nameSchema.optional(),
   deform: deformAddressSchema.optional(),
   drawOrder: z.literal(true).optional(),
   /** bone: rotate|translate|scale|shear; slot: attachment|color; physics: mix|reset. */
@@ -379,8 +390,8 @@ interface Timeline {
 }
 
 function resolveTimeline(address: Address): Timeline {
-  const given = (["bone", "slot", "ik", "transform", "physics", "deform", "drawOrder"] as const).filter((key) => address[key] !== undefined);
-  if (given.length !== 1) fail(`give exactly one of bone, slot, ik, transform, physics, deform, drawOrder (got ${given.length ? given.join(", ") : "none"})`);
+  const given = (["bone", "slot", "ik", "transform", "path", "physics", "deform", "drawOrder"] as const).filter((key) => address[key] !== undefined);
+  if (given.length !== 1) fail(`give exactly one of bone, slot, ik, transform, path, physics, deform, drawOrder (got ${given.length ? given.join(", ") : "none"})`);
   const timeline = address.timeline;
   const need = <T extends readonly string[]>(allowed: T, what: string): T[number] => {
     if (!timeline || !allowed.includes(timeline)) fail(`${what} keys need timeline ${allowed.join("|")} (got ${timeline ?? "none"})`);
@@ -392,7 +403,7 @@ function resolveTimeline(address: Address): Timeline {
   }
   if (address.slot !== undefined) {
     const kind = need(SLOT_TIMELINES, "slot");
-    return { tokens: ["slots", address.slot, kind], key: kind === "color" ? colorKeySchema : attachmentKeySchema, label: `slot ${address.slot} ${kind}` };
+    return { tokens: ["slots", address.slot, kind], key: kind === "color" ? colorKeySchema : kind === "sequence" ? sequenceKeySchema : attachmentKeySchema, label: `slot ${address.slot} ${kind}` };
   }
   if (address.physics !== undefined) {
     const kind = need(PHYSICS_TIMELINES, "physics");
@@ -401,6 +412,7 @@ function resolveTimeline(address: Address): Timeline {
   if (timeline !== undefined) fail(`'timeline' only applies to bone, slot and physics keys`);
   if (address.ik !== undefined) return { tokens: ["ik", address.ik], key: ikKeySchema, label: `ik ${address.ik}` };
   if (address.transform !== undefined) return { tokens: ["transform", address.transform], key: transformKeySchema, label: `transform ${address.transform}` };
+  if (address.path !== undefined) return { tokens: ["path", address.path], key: pathKeySchema, label: `path ${address.path}` };
   if (address.deform !== undefined) {
     const d = address.deform;
     return { tokens: ["deform", d.skin, d.slot, d.attachment], key: deformKeySchema, label: `deform ${d.skin}/${d.slot}/${d.attachment}` };
@@ -439,6 +451,7 @@ function clipTimelines(clip: JsonObject): { tokens: string[]; keys: JsonObject[]
   walk(clip["slots"], ["slots"], 2);
   walk(clip["ik"], ["ik"], 1);
   walk(clip["transform"], ["transform"], 1);
+  walk(clip["path"], ["path"], 1);
   walk(clip["physics"], ["physics"], 2);
   walk(clip["deform"], ["deform"], 3);
   walk(clip["drawOrder"], ["drawOrder"], 0);
@@ -447,7 +460,7 @@ function clipTimelines(clip: JsonObject): { tokens: string[]; keys: JsonObject[]
 }
 
 function addressedTimelines(clip: JsonObject, address: Address): { tokens: string[]; keys: JsonObject[] }[] {
-  const any = (["bone", "slot", "ik", "transform", "physics", "deform", "drawOrder"] as const).some((key) => address[key] !== undefined);
+  const any = (["bone", "slot", "ik", "transform", "path", "physics", "deform", "drawOrder"] as const).some((key) => address[key] !== undefined);
   if (!any) return clipTimelines(clip);
   const timeline = resolveTimeline(address);
   const keys = getAt(clip, pointer(...timeline.tokens));
@@ -514,9 +527,11 @@ const boneFieldShape = {
   shearY: finite().optional(),
   inherit: inheritSchema.optional(),
   role: z.enum(["spine", "limb", "head", "tail", "other"]).optional(),
-  skin: z.boolean().optional()
+  skin: z.boolean().optional(),
+  color: colorSchema.nullable().optional(),
+  helper: z.boolean().nullable().optional()
 };
-const BONE_FIELDS = ["length", "x", "y", "rotation", "scaleX", "scaleY", "shearX", "shearY", "inherit", "limits", "role", "skin"] as const;
+const BONE_FIELDS = ["length", "x", "y", "rotation", "scaleX", "scaleY", "shearX", "shearY", "inherit", "limits", "role", "skin", "color", "helper"] as const;
 const placement = { before: nameSchema.optional(), after: nameSchema.optional() };
 
 // --- doc.* -------------------------------------------------------------------------------------
@@ -677,11 +692,11 @@ define("bone.rename", "Renames a bone and every reference to it (slots, constrai
   arrayAt(edit.doc, "slots").forEach((slot, i) => {
     if (slot["bone"] === from) edit.set(pointer("slots", i, "bone"), p.to);
   });
-  for (const kind of ["ik", "transform"] as const) {
+  for (const kind of ["ik", "transform", "path"] as const) {
     arrayAt(edit.doc, kind).forEach((constraint, i) => {
       const list = constraint["bones"] as string[];
       if (list.includes(from)) edit.set(pointer(kind, i, "bones"), list.map((bone) => rename(bone) as string));
-      if (constraint["target"] === from) edit.set(pointer(kind, i, "target"), p.to);
+      if (kind !== "path" && constraint["target"] === from) edit.set(pointer(kind, i, "target"), p.to);
     });
   }
   arrayAt(edit.doc, "physics").forEach((constraint, i) => {
@@ -1236,7 +1251,7 @@ function weightTreeSpec(doc: JsonObject, p: { bones?: string[] | undefined; chai
   return { names, parents, radii, chainOf };
 }
 
-// Plan 4d-4j2: no authoring caps on chain length, chain count or tree size beyond the engine's own
+// Plan: no authoring caps on chain length, chain count or tree size beyond the engine's own
 // (a weighted mesh's bone table is unbounded; each vertex keeps at most MAX_VERTEX_INFLUENCES).
 const weightChainSchema = z.object({ bones: z.array(nameSchema).min(1), parent: nameSchema.optional(), radius: finite().positive().optional() }).strict();
 
@@ -1264,7 +1279,7 @@ define(
     const segments = spec.names.map((name) => weightBone(skeleton, name, 1));
     const hull = Math.min(Number(mesh["hull"] ?? world.length), world.length) || world.length;
     const distances: number[][] = segments.map(() => []);
-    // Plan 4d-4j3: a hull sample equidistant from several segments (coincident siblings) is shared
+    // Plan: a hull sample equidistant from several segments (coincident siblings) is shared
     // by all of them, never given to the first listed, so radii do not depend on sibling order.
     for (let v = 0; v < hull; v++) {
       const at = world[v] as { x: number; y: number };
@@ -1275,9 +1290,9 @@ define(
         if (dk <= bestDistance + tolerance) (distances[k] as number[]).push(bestDistance);
       });
     }
-    // Plan 4d-4j2: the mesh's authoring domain (allowed influences, radius overrides, transition
+    // Plan: the mesh's authoring domain (allowed influences, radius overrides, transition
     // widths) and the authoring connections between chains are enforced inside the solve.
-    // An authoring block that fails to parse is an error, never silently ignored (plan 4d-4j3).
+    // An authoring block that fails to parse is an error, never silently ignored.
     const parsed = parseAnimDocument(edit.doc);
     if (!parsed.ok && (edit.doc as { authoring?: unknown }).authoring !== undefined) {
       fail(`weights.auto: the document has an authoring block but does not parse, so its domains and connections cannot be applied: ${parsed.issues
@@ -1330,7 +1345,7 @@ define(
     const where = `${p.skin}/${p.slot}/${p.name}`;
     edit.notes.push({ level: "info", message: `weights.auto ${where}: domains ${spec.names.map((name, k) => `${name} ${counts[k]}`).join(", ")}` });
     if (result.ambiguous > 0) {
-      // Plan 4d-4j3: vertex IDs and the competing bones (top three non-adjacent), not only a count.
+      // Plan: vertex IDs and the competing bones (top three non-adjacent), not only a count.
       const listed = result.diagnostics.ambiguities
         .slice(0, 12)
         .map((a) => `v${a.vertex} ${spec.names[a.owner]} vs ${a.competitors.map((c) => spec.names[c.bone]).join("/")}`)
@@ -1531,14 +1546,153 @@ define(
   }
 );
 
+// --- mesh.edit and weights.table (plan MESH-WEIGHTS-PLAN D1) ---------------------------------------
+
+function guarded<T>(run: () => T): T {
+  try {
+    return run();
+  } catch (error) {
+    if (error instanceof MeshEditError) return fail(error.message);
+    throw error;
+  }
+}
+
+function geomOf(mesh: JsonObject, slotBone: string): DeformGeom {
+  return { count: (mesh["uvs"] as number[]).length / 2, vertices: mesh["vertices"] as number[], bones: mesh["bones"] as string[] | undefined, slotBone };
+}
+
+/** Applies the deform and reference rewrites a layout or topology change owes (all in the caller's patch). */
+function applyPlanned(edit: Edit, writes: readonly PlannedWrite[]): void {
+  for (const write of writes) edit.set(pointer(...write.path), write.value);
+}
+
+define(
+  "mesh.edit",
+  "Replaces a mesh's topology in one step: `points` (image pixels, x y per vertex), `triangles`, `hull` (leading outline vertices), optional `edges`, and `origin` (old index of each new vertex, -1 = new). Recomputes UVs and setup positions; new vertices take interpolated weights; deform keys (clips, correctives, grids), contour vertex references and other meshes' embed references follow `origin`. Refuses meshes with draw groups, coverage regions or an own embedding, and references to deleted vertices.",
+  {
+    ...meshAddressShape,
+    points: z.array(finite()).min(6),
+    triangles: z.array(z.number().int().nonnegative()),
+    hull: z.number().int().nonnegative(),
+    edges: z.array(z.number().int().nonnegative()).optional(),
+    origin: z.array(z.number().int().min(-1))
+  },
+  { skin: "body", slot: "core", name: "core", points: [0, 0, 60, 0, 60, 120, 0, 120], triangles: [0, 1, 2, 0, 2, 3], hull: 4, origin: [0, 5, 9, 4] },
+  (edit, p) => {
+    guarded(() => {
+      const mesh = requireMesh(edit.doc, p);
+      checkMeshEditable(edit.doc, p, mesh);
+      const count = p.points.length / 2;
+      if (!Number.isInteger(count)) fail("points needs two values (x, y) per vertex");
+      if (p.origin.length !== count) fail(`origin needs one entry per vertex (${count}), got ${p.origin.length}`);
+      const oldCount = (mesh["uvs"] as number[]).length / 2;
+      for (const old of p.origin) if (old >= oldCount) fail(`origin names old vertex ${old}, but the mesh has ${oldCount} vertices`);
+      const width = Number(mesh["width"]);
+      const height = Number(mesh["height"]);
+      const skeleton = setupSkeleton(edit.doc);
+      const slotBone = slotBoneOf(edit.doc, p.slot);
+      const toWorld = imageToWorld(skeleton, edit.doc, p, mesh);
+      const old = weightedState(edit, p, skeleton);
+      const oldUvs = mesh["uvs"] as number[];
+      const oldGeom = geomOf(mesh, slotBone);
+      const oldMesh = { points: old.world.flatMap(({ x, y }) => [x, y]), triangles: mesh["triangles"] as number[] };
+      const clampUnit = (value: number) => Math.min(1, Math.max(0, value));
+      const uvs: number[] = [];
+      const world: { x: number; y: number }[] = [];
+      const weights: Influence[][] = [];
+      for (let v = 0; v < count; v++) {
+        const x = Math.min(width, Math.max(0, p.points[2 * v] as number));
+        const y = Math.min(height, Math.max(0, p.points[2 * v + 1] as number));
+        uvs.push(Number(clampUnit(x / width).toFixed(6)), Number(clampUnit(y / height).toFixed(6)));
+        const from = p.origin[v] as number;
+        const unmoved = from >= 0 && Math.abs((oldUvs[2 * from] as number) * width - x) < 1e-3 && Math.abs((oldUvs[2 * from + 1] as number) * height - y) < 1e-3;
+        const at = unmoved ? (old.world[from] as { x: number; y: number }) : toWorld(x, y);
+        world.push(at);
+        weights.push(from >= 0 ? (old.weights[from] as Influence[]).map((inf) => ({ ...inf })) : weightsAtPoint(oldMesh, old.weights, at.x, at.y));
+      }
+      const tokens = attachmentTokens(p);
+      const oldEdges = mesh["edges"] as number[] | undefined;
+      const newOf = oldToNewMap(p.origin);
+      let edges = p.edges;
+      if (!edges && oldEdges) {
+        edges = [];
+        for (let i = 0; i + 1 < oldEdges.length; i += 2) {
+          const a = newOf.get(oldEdges[i] as number);
+          const b = newOf.get(oldEdges[i + 1] as number);
+          if (a !== undefined && b !== undefined) edges.push(a, b);
+        }
+      }
+      setFields(edit, tokens, { uvs, triangles: p.triangles, hull: p.hull });
+      if (edges && edges.length > 0) edit.set(pointer(...tokens, "edges"), edges);
+      else edit.remove(pointer(...tokens, "edges"));
+      if (mesh["bones"]) {
+        writeWeights(edit, p, skeleton, { table: old.table, weights, world });
+      } else {
+        const bone = skeleton.getBone(slotBone);
+        edit.set(
+          pointer(...tokens, "vertices"),
+          world.flatMap(({ x, y }) => {
+            const local = toLocal(bone, x, y);
+            return [round(local.x), round(local.y)];
+          })
+        );
+      }
+      const newGeom = geomOf(requireMesh(edit.doc, p), slotBone);
+      applyPlanned(edit, planDeformRemap(edit.doc, p, remapDeform(oldGeom, newGeom, p.origin, skeleton)));
+      applyPlanned(edit, planReferenceRemap(edit.doc, p, p.origin));
+    });
+  }
+);
+
+define(
+  "weights.table",
+  "Writes a whole weight table in one step: `influences` lists B bones (the table's columns) and `weights` holds vertices x B values row-major. Rebuilds the setup skeleton once, prunes to `max` influences (default and ceiling 4) and weights under `min` (default 0.02), normalises, and re-encodes the mesh's deform keys when a vertex's influences change so each keeps its setup-pose world offset.",
+  {
+    ...meshAddressShape,
+    influences: z.array(nameSchema).min(1),
+    weights: z.array(finite().min(0)),
+    max: z.number().int().min(1).max(MAX_VERTEX_INFLUENCES).optional(),
+    min: finite().min(0).max(0.5).optional()
+  },
+  { skin: "body", slot: "core", name: "core", influences: ["base_a", "upper_a"], weights: [1, 0, 1, 0, 0.5, 0.5, 0, 1, 0, 1, 0, 1, 0, 1, 0.5, 0.5, 1, 0, 1, 0] },
+  (edit, p) => {
+    guarded(() => {
+      const mesh = requireMesh(edit.doc, p);
+      const columns = p.influences.length;
+      if (new Set(p.influences).size !== columns) fail("a bone is listed twice in influences");
+      for (const name of p.influences) indexByName(edit.doc, "bones", name, "bone");
+      const skeleton = setupSkeleton(edit.doc);
+      const state = weightedState(edit, p, skeleton);
+      const count = state.world.length;
+      if (p.weights.length !== count * columns) fail(`weights needs ${count} vertices x ${columns} bones = ${count * columns} values, got ${p.weights.length}`);
+      const oldGeom = geomOf(mesh, slotBoneOf(edit.doc, p.slot));
+      const rows: Influence[][] = [];
+      for (let v = 0; v < count; v++) {
+        const list: Influence[] = [];
+        for (let b = 0; b < columns; b++) {
+          const weight = p.weights[v * columns + b] as number;
+          if (weight > 0) list.push({ bone: b, weight });
+        }
+        if (list.length === 0) fail(`vertex ${v} has no weight on any listed bone`);
+        rows.push(list);
+      }
+      const capped = pruneWeights(rows, p.max ?? MAX_VERTEX_INFLUENCES, p.min ?? 0.02);
+      writeWeights(edit, p, skeleton, { table: [...p.influences], weights: capped, world: state.world });
+      const newGeom = geomOf(requireMesh(edit.doc, p), oldGeom.slotBone);
+      const identity = Array.from({ length: count }, (_, v) => v);
+      applyPlanned(edit, planDeformRemap(edit.doc, p, remapDeform(oldGeom, newGeom, identity, skeleton)));
+    });
+  }
+);
+
 // --- constraint.* ------------------------------------------------------------------------------
 
-const CONSTRAINT_KINDS = { ik: ikConstraintSchema, transform: transformConstraintSchema, physics: physicsConstraintSchema } as const;
-const constraintKind = z.enum(["ik", "transform", "physics"]);
+const CONSTRAINT_KINDS = { ik: ikConstraintSchema, transform: transformConstraintSchema, path: pathConstraintSchema, physics: physicsConstraintSchema } as const;
+const constraintKind = z.enum(["ik", "transform", "path", "physics"]);
 
 define(
   "constraint.add",
-  "Adds an ik, transform or physics constraint (`constraint` holds its fields, including name).",
+  "Adds an ik, transform, path or physics constraint (`constraint` holds its fields, including name).",
   { kind: constraintKind, constraint: z.record(z.unknown()) },
   { kind: "physics", constraint: { name: "cape_1", bone: "cape_1", rotate: 1, inertia: 0.6, strength: 60, damping: 0.85, gravity: 60 } },
   (edit, p) => {
@@ -1564,6 +1718,41 @@ define(
 define("constraint.remove", "Removes a constraint.", { kind: constraintKind, name: nameSchema }, { kind: "ik", name: "tip_b" }, (edit, p) => {
   edit.apply({ op: "remove", path: pointer(p.kind, indexByName(edit.doc, p.kind, p.name, `${p.kind} constraint`)) });
 });
+
+// --- joint.* -----------------------------------------------------------------------------------
+
+/** Runs another command's handler inside this one (same edit: one logged, undoable step). */
+function runOp(edit: Edit, command: Record<string, unknown>): void {
+  const spec = specs.find((s) => s.op === command["op"]);
+  if (spec === undefined) return fail(`internal: no command '${String(command["op"])}'`);
+  spec.run(edit, spec.params.parse(command) as never);
+}
+
+define(
+  "joint.add",
+  "Adds a cut-out disc joint between two rigid segments in one step: a joint bone `name` under `parent` at the child's pivot that turns `mix` (default 0.5) of the child's bend (a local relative transform constraint `<name>_half`), and a slot `<slot>` (default `<name>_joint`) on it drawn before `before` (default: before the parent's first slot), for a disc drawing centred on the pivot. The disc sits under both segments: inscribed in the straight limb, it shows only as the outer arc of the bend.",
+  { name: nameSchema, parent: nameSchema, child: nameSchema, slot: nameSchema.optional(), before: nameSchema.optional(), mix: finite().min(0).max(1).optional(), length: finite().positive().optional() },
+  { name: "elbow_a", parent: "upper_a", child: "lower_a", before: "upper_a" },
+  (edit, p) => {
+    const bones = arrayAt(edit.doc, "bones");
+    const child = bones[indexByName(edit.doc, "bones", p.child, "bone")] as JsonObject;
+    indexByName(edit.doc, "bones", p.parent, "bone");
+    if (child["parent"] !== p.parent) fail(`joint.add: '${p.child}' hangs from '${String(child["parent"])}', not '${p.parent}'`);
+    runOp(edit, { op: "bone.add", name: p.name, parent: p.parent, x: Number(child["x"] ?? 0), y: Number(child["y"] ?? 0), rotation: Number(child["rotation"] ?? 0), length: p.length ?? 24 });
+    runOp(edit, {
+      op: "constraint.add",
+      kind: "transform",
+      constraint: { name: `${p.name}_half`, bones: [p.name], target: p.child, local: true, relative: true, mixRotate: p.mix ?? 0.5, mixX: 0, mixY: 0, mixScaleX: 0, mixScaleY: 0, mixShearY: 0 }
+    });
+    let before = p.before;
+    if (before === undefined) {
+      const order = (edit.get("/drawOrder") as string[] | undefined) ?? arrayAt(edit.doc, "slots").map((s) => String(s["name"]));
+      const slotBone = new Map(arrayAt(edit.doc, "slots").map((s) => [String(s["name"]), String(s["bone"])]));
+      before = order.find((name) => slotBone.get(name) === p.parent);
+    }
+    runOp(edit, { op: "slot.add", name: p.slot ?? `${p.name}_joint`, bone: p.name, ...(before ? { before } : {}) });
+  }
+);
 
 // --- driven.* ----------------------------------------------------------------------------------
 
@@ -1783,19 +1972,19 @@ define(
 
 // --- event.* -----------------------------------------------------------------------------------
 
-const eventValueShape = { int: z.number().int().optional(), float: finite().optional(), string: z.string().optional() };
+const eventValueShape = { int: z.number().int().optional(), float: finite().optional(), string: z.string().optional(), audio: z.string().optional() };
 
 define("event.add", "Defines an event with default int/float/string payload.", { name: nameSchema, ...eventValueShape }, { name: "hit", int: 1 }, (edit, p) => {
   if (!isObject(edit.doc["events"])) edit.set("/events", {});
   requireFree(Object.keys(recordAt(edit.doc["events"])), p.name, "event");
-  const definition = pick(p, ["int", "float", "string"]);
+  const definition = pick(p, ["int", "float", "string", "audio"]);
   eventDefinitionSchema.parse(definition);
   edit.apply({ op: "add", path: pointer("events", p.name), value: definition });
 });
 
 define("event.set", "Sets an event definition's default payload.", { name: nameSchema, ...eventValueShape }, { name: "hit", float: 0.5 }, (edit, p) => {
   requireKey(recordAt(edit.doc["events"]), p.name, "event");
-  setFields(edit, ["events", p.name], pick(p, ["int", "float", "string"]));
+  setFields(edit, ["events", p.name], pick(p, ["int", "float", "string", "audio"]));
 });
 
 define("event.remove", "Removes an event definition (keys using it are rejected by the check).", { name: nameSchema }, { name: "hit" }, (edit, p) => {
@@ -1810,7 +1999,7 @@ define(
   { clip: "attack", time: 0.35, name: "hit" },
   (edit, p) => {
     requireClip(edit.doc, p.clip);
-    const key = { time: roundTime(p.time), name: p.name, ...pick(p, ["int", "float", "string"]) };
+    const key = { time: roundTime(p.time), name: p.name, ...pick(p, ["int", "float", "string", "audio"]) };
     eventKeySchema.parse(key);
     writeKeys(edit, ["animations", p.clip, "events"], [key], true);
   }
@@ -2023,7 +2212,7 @@ export interface ApplyOptions {
    */
   check?: "command" | "end" | "none";
   /**
-   * Live pose limits (plan 4d-4h) for key and clip commands: their keyed poses and the sampled
+   * Live pose limits for key and clip commands: their keyed poses and the sampled
    * in-betweens are checked against the document's `poseLimits`. "off" (default here; the CLI
    * defaults to warn, the editor to reject); "warn": applied, reported in `limitWarnings`;
    * "reject": the command (check "command") or the batch (check "end") is refused, naming the key,
@@ -2034,6 +2223,8 @@ export interface ApplyOptions {
 
 export interface BatchResult {
   doc: JsonObject;
+  /** The result document already parsed and validated (when valid): hand it to the loader instead of parsing `doc` again. */
+  parsed?: AnimDocument | undefined;
   /** Forward patch of the whole batch (concatenated). */
   patch: PatchOperation[];
   /** Undoes the whole batch. */
@@ -2043,24 +2234,42 @@ export interface BatchResult {
   limitWarnings: string[];
   /** The raw findings behind `limitWarnings`. */
   limitViolations: LimitViolation[];
-  /** Every command's notes, prefixed `command N (op): ` (plan 4d-4j). */
+  /** Every command's notes, prefixed `command N (op): `. */
   notes: CommandNote[];
 }
 
-/** Error messages of a document (multiset of strings, paths left out because indices shift). */
-function errorSet(doc: JsonValue): Map<string, number> {
-  const result = parseAnimDocument(doc);
-  const counts = new Map<string, number>();
-  if (result.ok) return counts;
-  for (const issue of result.issues) {
-    if (issue.severity !== "error") continue;
-    counts.set(issue.message, (counts.get(issue.message) ?? 0) + 1);
-  }
-  return counts;
+/** One parse of a document: its error multiset and the parse result (the document, when valid). */
+interface Analysis {
+  counts: Map<string, number>;
+  result: ReturnType<typeof parseAnimDocument>;
 }
 
-function newErrors(doc: JsonValue, before: Map<string, number>): string[] {
+/**
+ * Error counts of documents that applyCommands returned, by identity: a commit's result document is
+ * the next commit's input, so its errors are counted once. Only returned documents are keyed (they
+ * are never mutated afterwards); the working copy inside a batch is edited in place and never cached.
+ */
+const returnedCounts = new WeakMap<object, Map<string, number>>();
+/** The parse a returned document came with (the editor may have attached clips to it, which setup-pose reads ignore). */
+const returnedParse = new WeakMap<object, AnimDocument>();
+/** The parse of the document the running command has not touched yet (see setupSkeleton). */
+let parseHint: { edit: Edit; document: AnimDocument } | null = null;
+
+function analyse(doc: JsonValue): Analysis {
   const result = parseAnimDocument(doc);
+  const counts = new Map<string, number>();
+  if (!result.ok) {
+    for (const issue of result.issues) {
+      if (issue.severity !== "error") continue;
+      counts.set(issue.message, (counts.get(issue.message) ?? 0) + 1);
+    }
+  }
+  return { counts, result };
+}
+
+/** Errors of `after` that `before` did not have (multiset difference), formatted. */
+function newErrors(after: Analysis, before: Map<string, number>): string[] {
+  const result = after.result;
   if (result.ok) return [];
   const seen = new Map<string, number>();
   const out: string[] = [];
@@ -2101,8 +2310,11 @@ export function parseCommand(input: unknown): { spec: CommandSpec<never>; params
 export function applyCommands(doc: JsonValue, commands: readonly unknown[], options: ApplyOptions = {}): BatchResult {
   const check = options.check ?? "command";
   let working = cloneJson(doc) as JsonObject;
-  let before = check === "command" ? errorSet(working) : new Map<string, number>();
-  const startErrors = check === "end" ? errorSet(working) : before;
+  const inputCounts = (): Map<string, number> => (typeof doc === "object" && doc !== null ? returnedCounts.get(doc) : undefined) ?? analyse(doc).counts;
+  const startCounts = check === "none" ? new Map<string, number>() : inputCounts();
+  let before = check === "command" ? startCounts : new Map<string, number>();
+  const startErrors = check === "end" ? startCounts : before;
+  let lastAnalysis: Analysis | null = null;
   const applied: AppliedCommand[] = [];
   const patch: PatchOperation[] = [];
   const inverse: PatchOperation[] = [];
@@ -2125,11 +2337,19 @@ export function applyCommands(doc: JsonValue, commands: readonly unknown[], opti
       if (touched.length && check !== "end" && prior === undefined) prior = limitDocument(working);
       if (!touched.length) prior = undefined;
       const edit = new Edit(working);
-      spec.run(edit, params);
+      const hinted = index === 0 && typeof doc === "object" && doc !== null ? returnedParse.get(doc) : undefined;
+      parseHint = hinted ? { edit, document: hinted } : null;
+      try {
+        spec.run(edit, params);
+      } finally {
+        parseHint = null;
+      }
       if (check === "command") {
-        const added = newErrors(edit.doc, before);
+        const analysis = analyse(edit.doc);
+        const added = newErrors(analysis, before);
         if (added.length) fail(`the result would be invalid:\n  ${added.join("\n  ")}`);
-        before = errorSet(edit.doc);
+        before = analysis.counts;
+        lastAnalysis = analysis;
       }
       if (touched.length && check !== "end") {
         const after = limitDocument(edit.doc);
@@ -2158,7 +2378,9 @@ export function applyCommands(doc: JsonValue, commands: readonly unknown[], opti
     }
   });
   if (check === "end") {
-    const added = newErrors(working, startErrors);
+    const analysis = analyse(working);
+    const added = newErrors(analysis, startErrors);
+    lastAnalysis = analysis;
     if (added.length) throw new CommandError(`the batch would leave the document invalid:\n  ${added.join("\n  ")}`);
   }
   if (endClips.length) {
@@ -2171,12 +2393,16 @@ export function applyCommands(doc: JsonValue, commands: readonly unknown[], opti
       limitViolations.push(...found);
     }
   }
-  return { doc: working, patch, inverse, applied, limitWarnings, limitViolations, notes };
+  const last = lastAnalysis as Analysis | null;
+  if (last) returnedCounts.set(working, last.counts);
+  if (last && last.result.ok) returnedParse.set(working, last.result.document);
+  const parsed = last && last.result.ok ? last.result.document : undefined;
+  return { doc: working, parsed, patch, inverse, applied, limitWarnings, limitViolations, notes };
 }
 
 /** A key command in rig terms for limit messages: `key.set lower_a rotate t 0.45s`. */
 function describeKey(command: Record<string, unknown>): string {
-  const address = ["bone", "slot", "ik", "transform", "physics"].map((k) => command[k]).find((v) => typeof v === "string");
+  const address = ["bone", "slot", "ik", "transform", "path", "physics"].map((k) => command[k]).find((v) => typeof v === "string");
   const time = typeof command["time"] === "number" ? ` t ${command["time"]}s` : "";
   return [String(command["op"]), address, command["timeline"]].filter((v) => typeof v === "string").join(" ") + time;
 }

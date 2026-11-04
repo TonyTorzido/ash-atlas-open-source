@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * `tsx src/cli/heldImport.ts <rig.anim.json> <held.png> <out dir> [--held <spec.held.json>]
  *  [--clips a.json,b.json] [--also <rig2.anim.json>,...] [--no-render]`

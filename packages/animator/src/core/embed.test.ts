@@ -4,7 +4,7 @@ import { parseAnimDocument, loadAnimDocument } from "./formatLoader.js";
 import { Skeleton } from "./skeleton.js";
 
 /*
- * Phase 4d-3: embedded mesh vertices (a garment vertex posed as a barycentric point of the skin
+ * Phase: embedded mesh vertices (a garment vertex posed as a barycentric point of the skin
  * triangle under it, so the garment and the skin agree bit for bit at every pose).
  */
 
@@ -125,7 +125,7 @@ describe("embedded mesh vertices", () => {
   });
 });
 
-describe("contour geometry dependencies (4d-4f review, held-pose cache)", () => {
+describe("contour geometry dependencies (review, held-pose cache)", () => {
   /** The band contour plus a strip-top contour (hidden when `lower` turns past 30) in contact with it; a clip deforming the strip. */
   function dependencyDoc() {
     const doc = raw(EMBED, true) as ReturnType<typeof raw> & { animations?: unknown };

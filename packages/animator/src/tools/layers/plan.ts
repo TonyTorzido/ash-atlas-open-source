@@ -1,8 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * `animator layers plan` (plan 4d-4k, consult 07 "preservation-first layer pipeline" step 1
- * and 3): visible-pixel ownership, hidden-completion and uncertain masks per part, sized from the
+ * `animator layers plan`: visible-pixel ownership, hidden-completion and uncertain masks per part, sized from the
  * rig's motion, before any art is generated.
  *
  * - Silhouette: the source alpha (ownership covers every pixel with alpha > 0, so antialiasing is

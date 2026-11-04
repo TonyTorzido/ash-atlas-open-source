@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * `animator ref-compare <pose-refs.json> --refs <dir> --rig <rig.anim.json> --out <dir>` (plan 4d-3
+ * `animator ref-compare <pose-refs.json> --refs <dir> --rig <rig.anim.json> --out <dir>` (
  * item 5, pass 3d-1 item 4): compares the rig against pose reference drawings. Report only, not a
  * gate: the drawings are style ground truth, not pixel truth.
  *
@@ -82,7 +82,7 @@ export async function refCompareCommand(positional: string[], flags: Map<string,
     const piv = bodyPivots(image);
     const s = (restPivots.crotch - restPivots.chin) / (piv.crotch - piv.chin);
     const map = (p: Pt): Pt => [(p[0] - piv.mid) * s + restPivots.mid, (p[1] - piv.chin) * s + restPivots.chin];
-    // Arm pivots (plan 4d-3r): the reference's `fit` data when it is a fit reference
+    // Arm pivots: the reference's `fit` data when it is a fit reference
     // (canvas px; a straight arm's elbow on its drawn axis at the rig's upper-arm length from the
     // fitted shoulder); else hand-marked pivots (reference px, mapped); else the nominal pose.
     const upperLen = Math.hypot(R.elbow[0] - R.shoulder[0], R.elbow[1] - R.shoulder[1]);
@@ -209,7 +209,7 @@ export async function refCompareCommand(positional: string[], flags: Map<string,
     });
     process.stdout.write(`${tag} (measured ${JSON.stringify(p.measured)}): silhouette mean ${refToRig.mean}/${rigToRef.mean} p95 ${refToRig.p95}/${rigToRef.p95} canvas px\n`);
   }
-  // The combined sheet is rebuilt from this run's rig tiles (plan 4d-3 overlay review: it once stayed
+  // The combined sheet is rebuilt from this run's rig tiles (overlay review: it once stayed
   // byte-identical to an older run): the stale file goes first, and the rig tiles' content hash is
   // recorded and checked against the per-pose shoulder sheets written above.
   const combined = join(resolve(out), "ref-compare-shoulders-x3.png");
@@ -218,6 +218,6 @@ export async function refCompareCommand(positional: string[], flags: Map<string,
   const rigTiles = allTiles.filter((_, i) => i % 2 === 1).map((t) => createHash("sha256").update(t.image.data).digest("hex").slice(0, 16));
   const written = decodePng(readFileSync(combined));
   if (written.width === 0 || statSync(combined).mtimeMs < started) throw new Error("ref-compare: the combined sheet was not rewritten");
-  writeFileSync(join(resolve(out), "ref-compare.json"), `${JSON.stringify({ note: "report, not a gate (plan 4d-3 item 5): drawings are style ground truth, not pixel truth", gameScale: s1, rig: resolve(rigDoc), combinedSheet: { file: "ref-compare-shoulders-x3.png", rigTileSha256: rigTiles }, references: report }, null, 2)}\n`);
+  writeFileSync(join(resolve(out), "ref-compare.json"), `${JSON.stringify({ note: "report, not a gate (item 5): drawings are style ground truth, not pixel truth", gameScale: s1, rig: resolve(rigDoc), combinedSheet: { file: "ref-compare-shoulders-x3.png", rigTileSha256: rigTiles }, references: report }, null, 2)}\n`);
   return 0;
 }

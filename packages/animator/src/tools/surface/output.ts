@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Writes a built surface: the document (with correctives and sweep clips), an atlas-pack@1 page
  * of its fill textures and rigid regions, and an SVG view of the authored source (silhouette,
@@ -34,7 +34,7 @@ export interface SurfaceRig {
   targets: Record<string, PoseTarget[]>;
   /** Rig build wall time (ms): surface, target solve, bake, sweep targets. */
   buildMs: number;
-  /** Resolved combined pose limits (plan 4d-3 pass 3d-1) and the sweep frames they removed. */
+  /** Resolved combined pose limits (pass 3d-1) and the sweep frames they removed. */
   limits: PoseLimit[];
   /** Clip-only limits (preset `scope: "clips"`): in the document's poseLimits, never a build bound. */
   clipLimits: PoseLimit[];
@@ -44,7 +44,7 @@ export interface SurfaceRig {
 }
 
 /**
- * Side patches with a width range (plan 4d-3 pass 3b): the shortest transition in the declared
+ * Side patches with a width range (pass 3b): the shortest transition in the declared
  * range whose solved targets reach both root limits (every limit pose solvable: validity, boundary,
  * area). The search runs the real solver, not a pure-rotation blend; when no ratio is feasible the
  * best one (highest worst determinant) is kept and reported infeasible.
@@ -196,7 +196,7 @@ export function writeRig(rig: SurfaceRig, dir: string): { document: string; atla
   writeFileSync(document, `${JSON.stringify(rig.raw)}\n`);
   const atlas = writeAtlas(rig.textures, dir, name);
   writeFileSync(join(dir, `${name}.source.svg`), sourceSvg(rig));
-  // Validation regions, allowances, exceptions and poses, hash-checked by `animator validate` (4d-4g).
+  // Validation regions, allowances, exceptions and poses, hash-checked by `animator validate`.
   writeFileSync(join(dir, `${name}.validation.json`), `${JSON.stringify(validationCompanion(rig))}
 `);
   mkdirSync(dirname(document), { recursive: true });

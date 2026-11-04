@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Layered-parts pipeline (plan 4d-4k) on a small synthetic creature: a body bar and a leg drawn
+ * Layered-parts pipeline on a small synthetic creature: a body bar and a leg drawn
  * in front of it, each with a 2 px dark outline and an antialiased rim.
  */
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";

@@ -1,4 +1,4 @@
-# Atlas Animator, round 18 (owner review 2026-10-16: the standard kung-fu jacket wins over the premium one; "clean it up"):
+# Atlas Animator,
 # a deterministic edit of the approved long-cuff jacket art (no new art, like scripts/kungfu-longcuff.ts):
 #   1. the cream centre placket runs all the way up to the cream collar band: the placket's straight cross-section
 #      (ink | cream | ink, taken from the first straight row below its rounded cap) is repeated up over the cap, the

@@ -4,7 +4,7 @@ import { Skeleton } from "./skeleton.js";
 import { testDocument } from "./testHelpers.js";
 
 /*
- * Rejected playback changes leave state intact (runtime review item 5): every option is
+ * Rejected playback changes leave state intact: every option is
  * validated before the queue, the chain or the track changes.
  */
 

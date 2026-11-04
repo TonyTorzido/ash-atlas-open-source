@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Arm layer, milestones 1-3 (docs/plans/research/arm-layer.md):
+ * Arm layer, milestones 1-3:
  * `tsx src/cli/armLayer.ts <preset.json> <out dir> [--evidence <dir>] [--current <upper rig dir>]`
  * builds the layered half body (surface builder: the arm skin plus the torso sheet), checks the
  * frozen required poses (inside every build and clip limit, mirrored), mirrors it (the torso welds,
@@ -194,7 +194,7 @@ async function main() {
     foldPoses.push({ name: `right raise ${a} fold ${e}`, rotate: { [mirrorOf(root)]: -a, [mirrorOf(elbow)]: -e } });
   }
   inkPoses.push(...foldPoses.filter((p) => !p.name.startsWith("both")));
-  // Arm edges over the torso (coordinator review): one arm at a time, every across pose, shrug and lean.
+  // Arm edges over the torso (review): one arm at a time, every across pose, shrug and lean.
   const acrossPoses: ArmLayerPose[] = [];
   for (let a = -20; a >= rootLim[0] - 1e-9; a -= 5) for (const g of [-6, 0, 6]) for (const lean of [-10, 0, 10]) {
     acrossPoses.push({ name: `left across ${a} shrug ${g} lean ${lean}`, rotate: { [root]: a, [girdle]: g, chest: lean } });
@@ -217,7 +217,7 @@ async function main() {
   });
   const textures = m.textures;
   // The always-inked across-body edges (outline_front, underside_front; `outline` and `underside` are
-  // trimmed where buried in the torso: the raised arm's outer edge over the shoulder, round 6).
+  // trimmed where buried in the torso: the raised arm's outer edge over the shoulder).
   const keep = [`${preset.skin.slot}/underside_front`, `${preset.skin.slot}/outline_front`, `${farSlot}/underside_front`, `${farSlot}/outline_front`];
   const results: GateResult[] = [
     required,
@@ -322,7 +322,7 @@ async function main() {
     const fold4: { image: RgbaImage; label: string }[] = [];
     for (const e of folds) fold4.push({ image: render(doc, textures, { name: `fold ${e}`, rotate: { [elbow]: e } }, [330, 740, 520, 930], 4), label: `left elbow ${e} (4x)` });
     writePng(join(evidence, "inward-fold-4x.png"), grid(fold4, 2, 3));
-    // Fists at 4x (owner review): one arm and both arms at -20 / -40 / -60, crop centred on the fist(s).
+    // Fists at 4x: one arm and both arms at -20 / -40 / -60, crop centred on the fist(s).
     const fists: { image: RgbaImage; label: string }[] = [];
     const handBone = preset.chain.bones[2] as string;
     for (const sideName of ["left", "right", "both"] as const) {

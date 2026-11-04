@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Builds the per-frame update list: which bones are active for the current skins, which
  * constraints are active, and the order to update them in.
@@ -10,8 +10,8 @@
  * 3. Everything below a constrained bone is computed (again) after the constraint, so children
  *    follow the solved pose.
  * 4. Constraints run in the order given to planUpdateOrder. The skeleton sorts them by
- *    (order, kind, list index); `order` defaults to 0 for IK, 1 for transform and 2 for physics,
- *    so by default all IK runs first, then transform, then physics (which then simulates the
+ *    (order, kind, list index); `order` defaults to 0 for IK, 1 for transform, 2 for path and 3
+ *    for physics, so by default all IK runs first, then transform, then path, then physics (which then simulates the
  *    fully constrained pose). A transform constraint that places an IK target sets order -1.
  *
  * A bone may appear more than once (once before a constraint that reads it, once after a
@@ -26,7 +26,7 @@
  * This module is pure (index-based input, plain output) so it can be tested in isolation.
  */
 
-export const CONSTRAINT_KINDS = ["ik", "transform", "physics"] as const;
+export const CONSTRAINT_KINDS = ["ik", "transform", "path", "physics"] as const;
 export type ConstraintKind = (typeof CONSTRAINT_KINDS)[number];
 
 export type UpdateStep =
@@ -49,6 +49,8 @@ export interface OrderConstraint {
   readonly bones: readonly number[];
   /** Bone the constraint reads, or -1 (physics reads only its own bone). */
   readonly target: number;
+  /** Further bones the constraint reads (the bones a weighted path is bound to). */
+  readonly reads?: readonly number[];
 }
 
 export interface Activation {
@@ -88,7 +90,8 @@ export function planUpdateOrder(
     (constraint) =>
       (!constraint.skin || activation.constraints.has(constraint.name)) &&
       constraint.bones.every((bone) => boneActive[bone] === true) &&
-      (constraint.target < 0 || boneActive[constraint.target] === true)
+      (constraint.target < 0 || boneActive[constraint.target] === true) &&
+      (constraint.reads ?? []).every((bone) => boneActive[bone] === true)
   );
 
   const children: number[][] = bones.map(() => []);
@@ -118,6 +121,7 @@ export function planUpdateOrder(
   constraints.forEach((constraint, i) => {
     if (!constraintActive[i]) return;
     place(constraint.target);
+    for (const bone of constraint.reads ?? []) place(bone);
     for (const bone of constraint.bones) place(bone);
     steps.push({ kind: constraint.kind, index: constraint.index });
     for (const bone of constraint.bones) unplaceBelow(bone);

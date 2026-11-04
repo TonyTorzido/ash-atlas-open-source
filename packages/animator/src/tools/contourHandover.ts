@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Chain joint handover (plan 4d-4n round 8, owner review: elbow crease step and specks). Two
+ * Chain joint handover. Two
  * contours of one mesh chained end to start are one ink, but each draws after its own owner slot.
  * When the later-drawn contour's slot also draws a group of the mesh (the forearm), that group's
  * skin is painted over the earlier contour's stroke (the upper arm's) wherever the posed group comes

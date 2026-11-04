@@ -89,8 +89,8 @@
     }
   },
   "files": {
-    "document": "C:\\Users\\dev\\Documents\\worktrees\\atlas-animator__t1511\\packages\\animator\\fixtures\\canonical\\creature-leg\\creature-leg.anim.json",
-    "atlas": "C:\\Users\\dev\\Documents\\worktrees\\atlas-animator__t1511\\packages\\animator\\fixtures\\canonical\\creature-leg\\creature-leg.atlas.json"
+    "document": "C:\\Users\\dev\\Documents\\ash-atlas\\packages\\animator\\fixtures\\canonical\\creature-leg\\creature-leg.anim.json",
+    "atlas": "C:\\Users\\dev\\Documents\\ash-atlas\\packages\\animator\\fixtures\\canonical\\creature-leg\\creature-leg.atlas.json"
   },
   "geometry": {
     "frames": 252,

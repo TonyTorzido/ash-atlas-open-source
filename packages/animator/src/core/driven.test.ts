@@ -86,7 +86,7 @@ function sleeveDeform(skeleton: Skeleton): number[] | null {
 const order = (skeleton: Skeleton) => skeleton.drawOrder.map((slot) => slot.data.name);
 const glove = (skeleton: Skeleton) => {
   const attachment = skeleton.getSlot("glove").attachment;
-  return attachment && attachment.type !== "point" ? attachment.path : null;
+  return attachment && (attachment.type === "region" || attachment.type === "mesh") ? attachment.path : null;
 };
 
 describe("driven keys", () => {

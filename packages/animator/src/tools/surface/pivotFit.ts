@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Pivot fit (plan 4d-3r checkpoint 1, addendum): the rig's chain pivots and bone lengths fitted to
+ * Pivot fit (checkpoint 1, addendum): the rig's chain pivots and bone lengths fitted to
  * pose reference drawings. Pure data in, data out: the `fit` blocks of a `<preset>.pose-refs.json`
  * (canvas px, already aligned to the rest drawing) and its `restFit`.
  *

@@ -1,9 +1,8 @@
 # One concept sheet per piece: the approved jacket + each option ON THE REAL RIG, at rest. Every tile is the Atlas
 # Animator's own render (renderFrames at scale 0.4, via render-rest.ts): top row the 0.4 figure, bottom row the
-# torso of that same 0.4 render at x3 (nearest). No downscaled art tiles (owner round 20: the old sheet's jacket tile,
-# a LANCZOS downscale of the flat art, looked like junk next to the real one). Plus the live bandit mob as the bar.
+# torso of that same 0.4 render at x3 (nearest). No downscaled art tiles. Plus the live bandit mob as the bar.
 #   python sheet.py <piece> <label> <name>=<rig.anim.json> ...      (an option needs an import before it gets a tile)
-# Repo copy (round 20): packages/animator/scripts/swag/sheet.py; renders with render-rest.ts next to it on this
+# Repo copy: packages/animator/scripts/swag/sheet.py; renders with render-rest.ts next to it on this
 # checkout's animator; sheets go to $SWAG_ROOT/sheets (default ART_DROPS/swag-chinese-concepts-01/sheets).
 import os, subprocess, sys, tempfile
 from pathlib import Path
@@ -13,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 DROPS = Path(os.environ.get("ART_DROPS", r"C:\Users\dev\Documents\art-drops"))
 ROOT = Path(os.environ.get("SWAG_ROOT", str(DROPS / "swag-chinese-concepts-01")))
 WT = Path(os.environ.get("ANIMATOR", str(Path(__file__).resolve().parents[2])))
-JACKET = WT / "../../docs/plans/atlas-animator-demos/phase-4d4n/jacket/rig/template7-shoulder-legs-jacket.anim.json"
+JACKET = WT / "fixtures/test-rigs/jacket/template7-shoulder-legs-jacket.anim.json"
 BANDIT = DROPS / "smooth-full-02/final/bandit.png"
 S = 0.4
 FIG = (30, 30, 405, 550)    # figure box in the 0.4 render

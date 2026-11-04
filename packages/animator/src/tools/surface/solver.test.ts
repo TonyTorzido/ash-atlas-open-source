@@ -47,7 +47,7 @@ const minLinearBlend = (points: Pt[], triangles: number[], moved: (p: Pt, u: num
   return min;
 };
 
-describe("interior solver (plan 4d-3 pass 3b)", () => {
+describe("interior solver (pass 3b)", () => {
   it("never lets a triangle fall below the determinant floor where linear blending flips", () => {
     const nx = 8;
     const ny = 2;
@@ -106,7 +106,7 @@ describe("interior solver (plan 4d-3 pass 3b)", () => {
   });
 });
 
-describe("residual baking (plan 4d-3 pass 3b)", () => {
+describe("residual baking (pass 3b)", () => {
   const rig = canonicalRig("creature-leg");
 
   it("single-driver keys reproduce the solved target exactly; with the grids on top they stay within the silhouette tolerance", () => {

@@ -13,7 +13,7 @@ import { segmentCross, type Pt } from "./geometry.js";
 import { CONFORM_MERGE_GAME_PX, topologyRows } from "./build.js";
 
 /*
- * Phase 4d-3 pass 2 (design review items 1, 2 and 8): the apex fan topology and embedded garment
+ * Phase pass 2 (design review items 1, 2 and 8): the apex fan topology and embedded garment
  * vertices, proved on both presets (a humanoid shoulder and a creature hip), from data alone.
  */
 
@@ -108,21 +108,21 @@ describe("topologyRows", () => {
 });
 
 /*
- * Plan 4d-3 3d-1 fix review (the sandwich): a garment overlay is a band of the conform garment mesh
+ * Plan 3d-1 fix review (the sandwich): a garment overlay is a band of the conform garment mesh
  * drawn right after its `above` group; it owns its trim; the draw order is derived from data.
  */
 describe("garment overlays", () => {
   it("template7: the armhole overlay draws after the upper arm and before the forearm, owns the trim and stays in its band", () => {
     const { built } = rigOf("template7-shoulder");
-    expect(built.drawOrder).toEqual(["torso", "tank", "upper_arm", "tank_armhole", "forearm", "hand", "head"]); // 4d-4m r3: the art fist region
+    expect(built.drawOrder).toEqual(["torso", "tank", "upper_arm", "tank_armhole", "forearm", "hand", "head"]); //  r3: the art fist region
     const o = built.overlays[0] as (typeof built.overlays)[number];
     expect(o).toMatchObject({ name: "tank_armhole", garment: "tank", above: "upper_arm", contours: ["edge"], fillBand: 8 });
     const tank = built.garments[0] as (typeof built.garments)[number];
     expect(Object.keys(tank.groups ?? {})).toEqual(["tank", "tank_armhole"]);
     expect(o.range[1] - o.range[0]).toBeGreaterThan(10);
-    expect(built.contours.filter((c) => c.mesh === "tank").map((c) => `${c.owner}/${c.name}`)).toEqual(["tank/hem", "tank/flank", "tank_armhole/edge", "tank/neckline"]); // 4d-4m: the tank owns its hem stroke (over the shorts waistband)
+    expect(built.contours.filter((c) => c.mesh === "tank").map((c) => `${c.owner}/${c.name}`)).toEqual(["tank/hem", "tank/flank", "tank_armhole/edge", "tank/neckline"]); //: the tank owns its hem stroke (over the shorts waistband)
     // Every overlay vertex lies within the trim's half width plus the fill band of the trim centreline,
-    // plus the near-coincident merge (4d-4g): the drawn centreline is the merged outline, which may sit
+    // plus the near-coincident merge: the drawn centreline is the merged outline, which may sit
     // up to the merge tolerance from the sampled one the band was offset from.
     const merge = (CONFORM_MERGE_GAME_PX * built.preset.figureHeight) / built.preset.gamePixels;
     const edge = (built.contours.find((c) => c.owner === "tank_armhole") as (typeof built.contours)[number]).points.map((i) => tank.points[i] as Pt);
@@ -150,7 +150,7 @@ describe("garment overlays", () => {
   });
 });
 
-describe("bone trees in the surface builder (plan 4d-4k)", () => {
+describe("bone trees in the surface builder ()", () => {
   const creature = () => loadPreset(resolve(dirname(fileURLToPath(import.meta.url)), "../../../fixtures/canonical/creature-leg.preset.json"));
 
   it("refuses a malformed tree by name: a limb-chain bone in a branch, a broken parent link", async () => {

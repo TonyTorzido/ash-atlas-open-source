@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Pose-space shape targets for a continuous skin surface (plan 4d-3 pass 3b; consult 2, sections
+ * Pose-space shape targets for a continuous skin surface (pass 3b; consult 2, sections
  * 3, 4 and 6): procedural boundary curves plus a constrained interior solve.
  *
  * - Handles. Every skin vertex outside the joint patches that has no chain influence, every rigid
@@ -595,8 +595,7 @@ export function runTargets(run: BoundaryRun, A: Pt, B: Pt, linA: [number, number
 }
 
 /**
- * Hinge path of a run inside a 'both' hinge patch (plan 4d-3 pass 3c, owner review: a bent limb is a
- * cartoon hinge, not a bend of the whole limb). The run's anchor edges stay straight lines (the rigid
+ * Hinge path of a run inside a 'both' hinge patch. The run's anchor edges stay straight lines (the rigid
  * cores' edges carried by their bones); between them the opening side is a circular arc about the
  * joint pivot (the rounded outer elbow/knee point) and the closing side is the two edge lines meeting
  * at the crease point (their intersection, on the pivot's bisector) with a small fillet. Returns the
@@ -606,7 +605,7 @@ export function hingePath(A: Pt, B: Pt, tA: Pt, tB: Pt, P: Pt, fillet: number): 
   // Near straight the two sides differ (the opening side steps between offset edge lines through the
   // pivot's feet, the closing side cuts across at the crease point), so a hinge passing through
   // straight (the creature's knee at shin 44) switched paths and its vertices jumped along them
-  // (plan 4d-3 pass 3d-2, temporal). Within HINGE_BLEND of straight the path is the arc-length
+  // (pass 3d-2, temporal). Within HINGE_BLEND of straight the path is the arc-length
   // blend of both sides, half and half at straight: continuous through the switch.
   const phi = Math.atan2(tA[0] * tB[1] - tA[1] * tB[0], tA[0] * tB[0] + tA[1] * tB[1]);
   const side = Math.sign(tA[0] * (P[1] - A[1]) - tA[1] * (P[0] - A[0])) || 1;
@@ -650,7 +649,7 @@ function hingeSide(A: Pt, B: Pt, tA: Pt, tB: Pt, P: Pt, fillet: number, opening:
   if (opening) {
     // Straight to the pivot's foot, an arc about the pivot (radius blended rA -> rB), straight to B.
     // A foot behind its anchor (the pivot projects outside the run) would make the walk double back
-    // and flip the path frame of the samples there (plan 4d-3 pass 3d-2, the creature's knee jump):
+    // and flip the path frame of the samples there (pass 3d-2, the creature's knee jump):
     // the arc then starts (ends) at the anchor itself, which is continuous as the foot crosses it.
     const kA = (P[0] - A[0]) * tA[0] + (P[1] - A[1]) * tA[1];
     const kB = (P[0] - B[0]) * tB[0] + (P[1] - B[1]) * tB[1];
@@ -701,7 +700,7 @@ function hingeSide(A: Pt, B: Pt, tA: Pt, tB: Pt, P: Pt, fillet: number, opening:
 }
 
 /**
- * Crease path of a root run ending on a notch apex (plan 4d-3 pass 3d-1, the pose references: a
+ * Crease path of a root run ending on a notch apex (pass 3d-1, the pose references: a
  * straight limb underside into a tight crease at the body). From the limb anchor B along the limb
  * edge line (direction `d`, towards the apex K) while K lies below that line (on the side away from
  * the limb, by g > 0), the path leaves the line at T, g / tan(CREASE_DESCENT) before K's foot, with a
@@ -767,7 +766,7 @@ function softMin3(a: number, b: number, c: number): number {
 }
 
 /**
- * Opening crease curve (plan 4d-4 underside crimp; patch `creaseArc`): one cubic from the limb
+ * Opening crease curve (underside crimp; patch `creaseArc`): one cubic from the limb
  * anchor B, tangent to the limb edge line `d`, to the apex K, arriving along `e` (the web's own
  * direction into the apex, so the skin kept at the armpit matches the web path). The web's turn
  * is spread over the whole run (G1 into the hinge band, no fillet corner); handles are a third of
@@ -847,7 +846,7 @@ export const smoothMax = (a: number, b: number, k: number): number => {
 };
 
 /**
- * Cap envelope of an outer root run (plan 4d-3 pass 3d-1): `body` (posed without the chain, walk
+ * Cap envelope of an outer root run (pass 3d-1): `body` (posed without the chain, walk
  * order from the run's body anchor) and `arm` (rigid with the joint bone, walk order to the limb
  * anchor) in polar coordinates about the posed pivot P. Along the walk the polar angle runs one way
  * (`sense`); the boundary is r(angle) = the smooth maximum of the two sides where both are defined
@@ -855,7 +854,7 @@ export const smoothMax = (a: number, b: number, k: number): number => {
  * linear radius ramp across a gap between them (an arc about the pivot: the rounded cap). Near the
  * two anchors the envelope blends into the anchor's own side so it starts and ends on them.
  * Returns the polyline, or null when a side does not run monotonically in angle. With `arc` (plan
- * 4d-4a) and a positive `arcWeight` the stretch about the crossover is one shoulder arc (`shoulderArc`).
+ *) and a positive `arcWeight` the stretch about the crossover is one shoulder arc (`shoulderArc`).
  */
 export function capEnvelope(P: Pt, body: readonly Pt[], arm: readonly Pt[], sense: number, refBody: readonly number[], refArm: readonly number[], k: number, arc?: CapArc, arcWeight = 0, through?: readonly Pt[], throughWeight = 0): Pt[] | null {
   const polar = (pts: readonly Pt[], ref: readonly number[]) =>
@@ -918,7 +917,7 @@ export function capEnvelope(P: Pt, body: readonly Pt[], arm: readonly Pt[], sens
   return shaped.map((q, i) => [q[0] + ((ridden[i] as Pt)[0] - q[0]) * throughWeight, q[1] + ((ridden[i] as Pt)[1] - q[1]) * throughWeight] as Pt);
 }
 
-/** A declared shoulder arc (preset patch `arc`, plan 4d-4a). */
+/** A declared shoulder arc (preset patch `arc`). */
 export interface CapArc {
   /** Body hand-off: canvas px along the envelope from the run's body anchor (0 = the strap corner itself). */
   from: number;
@@ -952,7 +951,7 @@ export interface CapArc {
 }
 
 /**
- * Shoulder arc (plan 4d-4a): the envelope `env` (a polyline running about P in direction `sense`,
+ * Shoulder arc: the envelope `env` (a polyline running about P in direction `sense`,
  * from the body anchor to the limb anchor, crossover sample `at` where the limb side reaches the
  * body side) gets ONE curve from a body hand-off (`from` px from the strap corner) to a limb
  * hand-off (`to` px past the crossover, on the limb's top edge): a cubic Hermite matching the
@@ -1174,7 +1173,7 @@ function placeOnPath(path: readonly Pt[] | readonly Seg[], params: readonly numb
  * Driver degrees over which a crease-led apex ride is gated in from the driver ramp. The shrug
  * turns the limb like a raise does, so the ride's and the blend's fronts run diagonally in
  * raise x shrug; wide transitions (gate 40 degrees, lead over 2 x the allowance, crease blend
- * 40 px) keep their curvature low enough for the bilinear grid (plan 4d-3 pass 3d-1, pass 3).
+ * 40 px) keep their curvature low enough for the bilinear grid (pass 3d-1, pass 3).
  */
 const RIDE_GATE = 40;
 
@@ -1666,7 +1665,7 @@ export class SurfaceSolver {
       unridden.set(v, base[v] as Pt);
       base[v] = [(base[v] as Pt)[0] + dir[0] * move, (base[v] as Pt)[1] + dir[1] * move];
     }
-    // Strap rides (plan 4d-4a): one curve from the strap/neck side onto the raised limb's top edge.
+    // Strap rides: one curve from the strap/neck side onto the raised limb's top edge.
     const throughs = new Map<number, { curve: Pt[]; w: number }>();
     for (let ri = 0; ri < this.runs.length; ri++) {
       const shape = this.shapes[ri];
@@ -1779,7 +1778,7 @@ export class SurfaceSolver {
         const fade = 1 - smooth01(Math.abs(c.turn - shape.bindTurn) / CREASE_DETAIL_FADE);
         const cpath = shape.apexAtB ? c.segs : reverseSegs(c.segs);
         const crease = placeOnPath(cpath, homeParams(run, shape.bindLength, segsLength(cpath), shape.homeA), shape.detail, fade);
-        // Opening crease curve (patch `creaseArc`, plan 4d-4 underside crimp): ramped in over the
+        // Opening crease curve (patch `creaseArc`, underside crimp): ramped in over the
         // joint's rotation, the run becomes one cubic tangent to the limb edge at B and to the web
         // at the apex (G1 into the hinge band, no fillet corner); with `spread` its vertices move from their
         // home spacing to even arc-length fractions, so no long chord runs into the apex.

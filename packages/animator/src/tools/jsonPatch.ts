@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * RFC 6902 JSON Patch over plain JSON values, with an inverse recorded at apply time (plan 4.3:
  * every edit is a forward patch plus the patch that undoes it). Pure module (no Node, no DOM) so

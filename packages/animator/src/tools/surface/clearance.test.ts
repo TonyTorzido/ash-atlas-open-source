@@ -1,6 +1,6 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
- * Stroke clearance rule (plan 4d-3 pass 3d-1, coordinator redefinition): only sub-pixel cracks
+ * Atlas Animator: original implementation.
+ * Stroke clearance rule (redefined): only sub-pixel cracks
  * (< 1 display px at DPR 1) between near-parallel contours count; never at held or end poses; in
  * motion a crack may last at most `transientDegrees` of the moving joint.
  */
@@ -60,7 +60,7 @@ describe("strokeClearance", () => {
   });
 });
 
-describe("overlap seams (alpha in motion, coordinator decision 1)", () => {
+describe("overlap seams (alpha in motion)", () => {
   it("collects near-parallel inks overlapping by less than one display px, not deeper overlaps or crossings", () => {
     const seamsOf = (a: Pt[], b: Pt[], covered = () => false) => {
       const seams: Pt[] = [];
@@ -138,7 +138,7 @@ describe("clearance on template7 (reverted geometry)", () => {
     const here = dirname(fileURLToPath(import.meta.url));
     const path = resolve(here, "../../../fixtures/canonical/template7-shoulder.preset.json");
     const preset = loadPreset(path);
-    // (Shrug range +-6 since 4d-4b: the shrug-down hold, and so the pass-through point, is clavicle -6.)
+    // (Shrug range +-6 since: the shrug-down hold, and so the pass-through point, is clavicle -6.)
     // Revert: the held elbow inside the 34..39 degree pass-through of the hand past the flank, and
     // the head limits that let the forearm end raise_shrug_up a sub-pixel crack from the tank strap.
     preset.sweeps = preset.sweeps.map((s) => (s.name === "raise_shrug_down_elbow40" ? { ...s, name: "raise_shrug_down_elbow35", hold: { ...s.hold, forearm_l: 35 } } : s));
@@ -155,7 +155,7 @@ describe("clearance on template7 (reverted geometry)", () => {
     // starts under the strap trim, which the clearance measure now reaches first; the limits stay.)
     // The declared pass-through flags the reverted hold on its own (data, before any crack is measured).
     expect(geo.clearance.passThroughHolds.some((h) => h.startsWith("raise_shrug_down_elbow35 frame 0 (hold): forearm_l 35"))).toBe(true);
-    // No time cap since 4d-4e (stepped playback holds every shown frame): this reverted preset declares
+    // No time cap since (stepped playback holds every shown frame): this reverted preset declares
     // no contact band, so the same contacts in motion fail as well; a declared band would make them
     // crossings (the canonical preset declares them).
     expect(geo.clearance.violations.some((v) => !v.at.includes("(hold)"))).toBe(true);

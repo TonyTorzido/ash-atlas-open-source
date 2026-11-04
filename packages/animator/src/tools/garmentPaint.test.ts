@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4n (review #7): the paint's stroke-distance field covers every band that reads it, so the
+ * Plan: the paint's stroke-distance field covers every band that reads it, so the
  * beside-stroke shading easing fades out smoothly instead of stopping at a hard step.
  */
 import { describe, expect, it } from "vitest";
@@ -10,7 +10,7 @@ import { BESIDE_SHADE_CAP, paintGarmentTexture } from "./garmentPaint.js";
 import type { GarmentBuild } from "./garmentSurface.js";
 
 describe("garment paint", () => {
-  it("eases shading beside a straight stroke without a step (review #7)", () => {
+  it("eases shading beside a straight stroke without a step", () => {
     // a 100 x 80 px rectangle garment (two triangles), fabric blue-grey with a broad darker band along its left edge
     // (the art's own form shading) and a still darker 8 px line hugging the stroke inside it
     const W = 100;
@@ -30,7 +30,7 @@ describe("garment paint", () => {
     const steps = row.slice(1).map((v, i) => Math.abs(v - (row[i] as number)));
     // the easing changes gradually from the stroke edge across the eased zone (no step of its own)
     expect(Math.max(...steps)).toBeLessThanOrEqual(8);
-    // round 21 (local reference): the line hugging the stroke is lifted to within BESIDE_SHADE_CAP of the fabric just
+    // (local reference): the line hugging the stroke is lifted to within BESIDE_SHADE_CAP of the fabric just
     // inward (the band), not to the garment-wide median: the band's own shade and hue carry on up to the stroke
     const band = 0.299 * 60 + 0.587 * 75 + 0.114 * 110;
     const median = 0.299 * report.fabricMedian[0] + 0.587 * report.fabricMedian[1] + 0.114 * report.fabricMedian[2];
@@ -39,8 +39,8 @@ describe("garment paint", () => {
     expect(Math.abs((texture.data[(40 * W + 20) * 4 + 2] as number) - 110)).toBeLessThanOrEqual(4);
   });
 
-  it("holds a dark side panel beside the stroke within BESIDE_SHADE_CAP of the fabric (armour round 11)", () => {
-    // tan leather with a dark 20 px side panel hugging the left edge (the leather cuirass flank). The round 11 defect:
+  it("holds a dark side panel beside the stroke within BESIDE_SHADE_CAP of the fabric (armour)", () => {
+    // tan leather with a dark 20 px side panel hugging the left edge (the leather cuirass flank). The defect:
     // the panel half-eased, a dark ramp ending in a hard step back to the fabric, read as a second outline beside the
     // flank stroke (flankSingleLine's doubled rows); a lift whose base blurs across the panel's inner edge gives the
     // same, a dark line on the panel side and a light one on the fabric side
@@ -65,12 +65,12 @@ describe("garment paint", () => {
     // darker than the fabric by more than the cap, lighter than it by more than the cap, or a step over the cap
     const doubled = (r: number[]) => r.slice(5, 41).some((v, k) => v < fabric - BESIDE_SHADE_CAP - 1 || v > fabric + BESIDE_SHADE_CAP + 1 || Math.abs(v - (r[k + 4] as number)) > BESIDE_SHADE_CAP);
     expect(doubled(row)).toBe(false);
-    // damaged control: the round 11 defect, the panel's inner 5 px left at the art's panel shade
+    // damaged control: the defect, the panel's inner 5 px left at the art's panel shade
     const damaged = row.map((v, x) => (x >= 15 && x < 20 ? lumOf(panel) : v));
     expect(doubled(damaged)).toBe(true);
   });
 
-  it("keeps a belt strap and its trim lines beside a stroke (armour round 12)", () => {
+  it("keeps a belt strap and its trim lines beside a stroke (armour)", () => {
     // tan leather, a dark outline ring, and a dark strap edged by outline-coloured lines 8-25 px above the
     // bottom edge (the hem stroke): trim between two paints, inside the beside-stroke cap's reach
     const W = 120;
@@ -102,7 +102,7 @@ describe("garment paint", () => {
     expect(report.trimLinePreserved).toBeGreaterThanOrEqual(0.98);
   });
 
-  it("never refills removed ink from near-ink shading (round 20, Jade C strap edge)", () => {
+  it("never refills removed ink from near-ink shading (Jade C strap edge)", () => {
     // mail fabric with an outline ring; an interior piece-edge ink line (same paint on both sides: removed) runs
     // through a patch of near-ink shading whose two halves sit on opposite sides of the outline colour, each just
     // outside the line tolerance (not ink themselves) but averaging back into the ink colour
@@ -129,7 +129,7 @@ describe("garment paint", () => {
     }
     // damaged control: the plain 3x3 mean beside the line where the two shades meet is ink-coloured (within the
     // line tolerance of the outline), so a refill that reads the shading puts the ink back
-    const mean = [0, 1, 2].map((k) => { let s = 0; for (const [dx, dy] of [[-1, -1], [-1, 0], [-1, 1]]) s += art.data[((100 + dy) * W + 118 + dx) * 4 + k] as number; return s / 3; });
+    const mean = [0, 1, 2].map((k) => { let s = 0; for (const [dx, dy] of [[-1, -1], [-1, 0], [-1, 1]] as [number, number][]) s += art.data[((100 + dy) * W + 118 + dx) * 4 + k] as number; return s / 3; });
     expect(Math.hypot(mean[0]! - O[0]!, mean[1]! - O[1]!, mean[2]! - O[2]!)).toBeLessThanOrEqual(30);
     const { texture, report } = paintGarmentTexture(build, art, { strokeWidth: 10, margin: 4 });
     expect(report.inkRemovedPx).toBeGreaterThan(0);

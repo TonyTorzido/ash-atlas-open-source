@@ -1,8 +1,7 @@
-# Atlas Animator five-anims refine (2026-10-19, REFINE-PLAN item 1, owner decision D1): the locked clips use the
-# owner-default template light-step walk (flat, 28 f / 0.933 s, fixtures/clips/walk-front-chibi.json, owner decision
-# 2026-10-15) instead of legsBody's legacy 30 f walk_in_place ("stomping"). The arm read is raised for the front view in
-# fixtures/clips/walk-front-chibi-stock.json (elbow 4 -> 8, hand 2 -> 4; refine P6: arm 3 deg, elbow 7, hand 4 (owner: waving too much); refine P5 was: shoulder swing arm 2 -> 5 deg,
-# elbow 8 -> 12, hand 4 -> 6, since +-2 deg barely read at view 0.4); lift and bob are as the owner saw them.
+# Atlas Animator five-anims refine: the locked clips use the
+# default template light-step walk instead of legsBody's legacy 30 f walk_in_place ("stomping"). The arm read is raised for the front view in
+# fixtures/clips/walk-front-chibi-stock.json (elbow 4 -> 8, hand 2 -> 4; refine P6: arm 3 deg, elbow 7, hand 4; refine P5 was: shoulder swing arm 2 -> 5 deg,
+# elbow 8 -> 12, hand 4 -> 6, since +-2 deg barely read at view 0.4); lift and bob are as the user saw them.
 #
 # legsBody takes ~8 min, so the generated clip is extracted once and committed; the rig build only transplants it:
 #   1. npx tsx src/cli/legsBody.ts ../../docs/plans/atlas-animator-demos/phase-4d4m/leg/rig \

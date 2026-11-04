@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * `animator layers check` (plan 4d-4k; consult 07, step 6 gates). Proposed initial project
+ * `animator layers check`. Proposed initial project
  * thresholds, not universal standards:
  *
  * - Rest assembly: the layers composited back to front at native resolution against the source,

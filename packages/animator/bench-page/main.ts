@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4f phone bench: N characters (?count=N; default runs 50 and 20) through the shipping Pixi adapter with the held-pose cache
+ * Plan phone bench: N characters (?count=N; default runs 50 and 20) through the shipping Pixi adapter with the held-pose cache
  * (30 fps held frames, 60 Hz display), at production game scale (template7 figure = 140 game px)
  * and the device's real DPR. Built into ONE self-contained HTML file by bench-page/build.mjs (Pixi,
  * the runtime, both rigs and their atlas pages inline; no network). Results go to
@@ -20,7 +20,7 @@
  * rule: on a disjoint event every outstanding query is discarded. Long mode: one sustained
  * scenario (moving crowd + repeated transitions + zoom) for 5 min at 20 characters.
  *
- * CSP-safe (sandboxed hosted pages run without 'unsafe-eval' and with connect-src 'none'): Pixi's
+ * CSP-safe (sandboxed pages run without 'unsafe-eval' and with connect-src 'none'): Pixi's
  * eval-free shader/uniform paths come from pixi.js/unsafe-eval, and the inline atlas pages are
  * decoded from their data URLs without fetch. The page's static UI renders without this script;
  * build.mjs adds an error handler that prints any failure on the page.
@@ -464,7 +464,7 @@ async function runScenario(
     cpuMs: dist(samples.map((s) => s.cpu)),
     split: {
       poseMs: dist(samples.map((s) => s.pose)),
-      // Per-stage timing counters (runtime review item 8; measured, nothing optimized):
+      // Per-stage timing counters:
       // sampling + constraints = pose, skinning = embed, contours = stroke.
       stages: {
         samplingMs: dist(samples.map((s) => s.sample)),
@@ -617,7 +617,7 @@ async function start(mode: Mode): Promise<unknown> {
   }
   app.destroy(true, { children: true });
   const json = {
-    bench: "atlas-animator phase 4d-4f",
+    bench: "atlas-animator ",
     build: window.BENCH_BUILD,
     mode,
     secondsPerScenario: seconds,

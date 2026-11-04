@@ -11,7 +11,7 @@
 #   - the jacketb attachment and every jacket contour (incl. the collar tucks the jacket rig files under `head`);
 #   - tank, tank_armhole, tank_armhole_r hidden (the jacket rig's --hides);
 #   - the garment/jacketb atlas region appended below the stock atlas page (stock texels untouched).
-# Ink (owner D2, as stock_pants.py): jacket contour runs on the OUTER silhouette (setup pose, jacket on, tank off) take
+# Ink (design review, as stock_pants.py): jacket contour runs on the OUTER silhouette (setup pose, jacket on, tank off) take
 # the body brown 3a1001; interior runs keep the jacket ink 181210. Animations are not touched.
 #
 #   python scripts/views/stock_jacketb.py <stock rig.anim.json> <jacket rig.anim.json> <out dir> <out stem>
@@ -78,7 +78,7 @@ def main():
         if mine:
             cs.setdefault(slot, {}).update(json.loads(json.dumps(mine)))
             jslots.append(slot)
-    # ink split (owner D2)
+    # ink split (design review)
     w0 = setup_world(doc["bones"])
     dist, (ox, oy), worlds = silhouette(doc, w0)
     report["ink"] = {"silhouettePx": SIL_PX, "bodyInk": BODY_INK, "contours": {}}

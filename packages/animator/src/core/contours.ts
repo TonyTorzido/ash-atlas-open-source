@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Dynamic contours (plan Phase 4d, "dynamic contours"; consult: outlines of deforming skin are
  * stroke geometry built after deforming their centrelines, not baked into the deforming texture).
@@ -11,7 +11,7 @@
  * - the centreline: the skeleton evaluates a compiled contour into world points (Skeleton.
  *   computeContourPoints), reading the mesh's skinned vertices so a contour sits exactly on the
  *   deformed surface.
- * - buildStroke: centreline to a triangle list whose topology follows the centreline (plan 4d-4f
+ * - buildStroke: centreline to a triangle list whose topology follows the centreline (
  *   item 3, stroke compaction): rebuilt only on held-pose cache misses, so each build spends only
  *   the vertices its joins need, into buffers allocated once at capacity (rebuilds allocate
  *   nothing). Per point a centre vertex; the inner side of a turn is the miter point; the outer
@@ -113,14 +113,14 @@ export interface CompiledContour {
   readonly visibleMin: Float64Array;
   readonly visibleMax: Float64Array;
   /**
-   * Ownership gate (plan 4d-4l part c): the attachment whose display the contour needs (`owner`,
+   * Ownership gate (part c): the attachment whose display the contour needs (`owner`,
    * else the bound mesh) and its slot; null / "" for a bone-bound contour without `owner`.
    */
   readonly ownerAttachment: Attachment | null;
   readonly ownerSlot: string;
-  /** Clothing model: trimmed by pieces drawn after this slot ("" = the owner slot). */
+  /** Clothing model: trimmed by pieces drawn after this slot ("" = the user slot). */
   readonly coverFrom: string;
-  /** Arm layer: an under-sheet slot (drawn before the owner) that also trims the stroke ("" = none; format `coverUnder`). */
+  /** Arm layer: an under-sheet slot (drawn before the user) that also trims the stroke ("" = none; format `coverUnder`). */
   readonly coverUnder: string;
   /** Arm layer: coverers (meshes and opaque regions) trim at their outline and every trim end is capped, no feather (format `coverTight`). */
   readonly coverTight: boolean;
@@ -128,7 +128,7 @@ export interface CompiledContour {
   readonly trimAtOutline: boolean;
   /** Contour contacts of this contour (partner id, gap, cos of the angle, overlap; canvas px). */
   readonly contacts: readonly ContourContact[];
-  /** Contour joins of this contour (plan 4d-4n round 8; applyJoin). */
+  /** Contour joins of this contour (applyJoin). */
   readonly joins: readonly ContourJoin[];
   /**
    * Other contours (ids) whose geometry or visibility can move this centreline: with contacts, the
@@ -269,7 +269,7 @@ export function compileContours(doc: Pick<AnimDocument, "skins">, lookups: Conto
     for (const o of deps) for (const bone of unjoinedBones[o] as Int32Array) bones.add(bone);
     Object.assign(self, { ownerBones: Int32Array.from([...bones].sort((x, y) => x - y)) });
   }
-  // Geometry dependencies of contact contours (4d-4f review): the partners, and every same-skin
+  // Geometry dependencies of contact contours (review): the partners, and every same-skin
   // ink a junction test reads (open inks, and the members of their chains for the joint test).
   const ownBones = all.map((c) => c.ownerBones);
   for (const self of all) {
@@ -479,7 +479,7 @@ const NO_DEPENDENCIES: readonly number[] = Object.freeze([]);
 export const CONTACT_MOVE_CAP = 0.4;
 
 /**
- * Contour contacts (4d-4e closeout): adds to `out` (a copy of `self`'s unmoved centreline) a move
+ * Contour contacts (closeout): adds to `out` (a copy of `self`'s unmoved centreline) a move
  * toward each declared partner where the two run near-parallel (|cos| of either adjacent tangent
  * against the partner segment >= `cosMax`) with an ink gap g = distance - (width + otherWidth) / 2
  * in (-overlap, gap): by (g + overlap) / 2, capped at CONTACT_MOVE_CAP of this stroke's width so the
@@ -656,11 +656,10 @@ let joinSB = new Float64Array(32);
 const joinP = new Float64Array(4);
 
 /**
- * Contour join (plan 4d-4n round 8, format `contourJoins`): writes into `out` (`self`'s centreline,
+ * Contour join (format `contourJoins`): writes into `out` (`self`'s centreline,
  * 2 floats per point) the pair's joined geometry for `self`. `a` arrives at its joining end, `b`
  * leaves from its own; both are read unmoved (`aPts`, `bPts`) so the two members compute the same
- * answer independently. Every quantity is a continuous function of the two centrelines (no mode
- * switch, 4d-4n #3):
+ * answer independently. Every quantity is a continuous function of the two centrelines:
  * - overlap: each vertex and segment midpoint of B's head (within JOIN_SEARCH x `reach` px) has a
  *   distance d to A's last `reach` px or to A's extension past its end; its overlap weight is
  *   o = 1 under one stroke width, 0 past (1 + JOIN_RAMP) widths, linear between (and faded out

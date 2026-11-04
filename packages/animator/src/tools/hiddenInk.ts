@@ -1,8 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Hidden ink (plan 4d-4n round 8, owner review: dark specks inside the elbow crease and at the
- * wrist in strong bends). A skin mesh texture built from the art carries the art's outline ink
+ * Hidden ink. A skin mesh texture built from the art carries the art's outline ink
  * where, at rest, the rig draws something else on top: under the body's own strokes, under a rigid
  * region (the fist over the wrist), under the torso or head. Those texels never show at rest; in a
  * strong bend the skin stretches and they peek out as specks inside the line. Every mesh texel
@@ -36,7 +35,7 @@ const GARMENT_DONORS = 8;
 /**
  * A garment's band under and beside its strokes (every texel not shown at rest away from a line)
  * becomes the garment's own fill: the per-channel median of the nearest shown texels. Its painted
- * ring and the highlight inside the ring both go (round 9: a removed ring left the art's highlight as
+ * ring and the highlight inside the ring both go (a removed ring left the art's highlight as
  * light dashes beside the thinner line), so a stretch shows fill, never the ring, and the stroke is
  * the garment's only outline. Garment donors are the shown texels, not a luma threshold, so a dark
  * fabric keeps its own colour.
@@ -105,8 +104,8 @@ export function repaintHiddenInk(doc: any, textures: Map<string, RgbaImage>, ski
   const paths = new Set<string>();
   const garments = new Set<string>();
   // skin meshes, and rigid regions and embedded garment meshes (the tank) that carry a runtime
-  // outline (their painted ring is replaced by the strokes; round 9: the tank's painted armhole ring
-  // widened past its stroke in an armpit stretch, owner's dark ticks at upper arm 16-61)
+  // outline (their painted ring is replaced by the strokes; the tank's painted armhole ring
+  // widened past its stroke in an armpit stretch, the user's dark ticks at upper arm 16-61)
   const outlined = new Set(Object.keys((doc.skins[skinName]?.contours ?? {}) as Record<string, unknown>));
   for (const [slot, atts] of Object.entries((doc.skins[skinName]?.attachments ?? {}) as Record<string, Record<string, any>>)) {
     for (const a of Object.values(atts)) {

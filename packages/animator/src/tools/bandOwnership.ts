@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Outfit-aware contact-band eligibility (plan 4d-4l part c; 4d-4l review 9, review 5),
+ * Outfit-aware contact-band eligibility,
  * shared by the batch validator and live authoring: a band measured between two contours gates a
  * pose only while both contours draw, judged per outfit (the body skin alone and with each other
  * skin), never with every skin active at once (a later skin would override a garment and switch its

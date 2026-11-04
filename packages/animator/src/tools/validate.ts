@@ -1,8 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Rig validators (plan 3, Validators; 4.5.6 clipping check; 4.7 budgets). A machine-checkable
- * quality bar that runs before the owner looks:
+ * quality bar that runs before the user looks:
  *
  * - format:   the loader's own errors and warnings (schema and cross references);
  * - weights:  every weighted vertex sums to 1 (1e-3), no bone twice, no zero weight, every vertex
@@ -26,7 +26,7 @@
  *             at any sampled time of any clip; zero flagged pixels at 1x is the bar. Needs the
  *             textures.
  *
- * - tears:    on every review pose (rigPoses: derived from the rig, plan 4d-4i) and clip sample, body alone and with each skin:
+ * - tears: on every review pose (rigPoses: derived from the rig) and clip sample, body alone and with each skin:
  *             enclosed background holes inside the figure that were mostly figure at rest and
  *             are bordered only by parts that touch at rest (error; a fist closing on the hip or
  *             a hand near the head encloses a gap, not a tear); parts that touch at rest
@@ -42,7 +42,7 @@
  *             on the silhouette or beside another part, and clothing bands, pass). Needs the
  *             textures.
  *
- * - geometry: the unified evaluator (validateGeometry.ts, plan 4d-4g, shared with the surface
+ * - geometry: the unified evaluator (validateGeometry.ts, shared with the surface
  *             gates): per triangle signed-area ratio (flip / collapse below 0.2), principal
  *             stretches with region allowances and an absolute edge change in game px, at the
  *             companion's poses (else the review poses) and the clip samples; the companion is
@@ -53,7 +53,7 @@
  */
 import { AnimationState, AnimationStateData } from "../core/animationState.js";
 import type { AtlasPack } from "../core/atlasPack.js";
-import { isDrawable, type MeshAttachment } from "../core/attachments.js";
+import { attachmentTexturePaths, isDrawable, type MeshAttachment } from "../core/attachments.js";
 import { DEFAULT_CLIP_FPS, MAX_VERTEX_INFLUENCES, meshVertexCount, type AnimDocument, type MeshAttachmentData, type RigBudgetsData } from "../core/format.js";
 import { inContactBand } from "./contactBand.js";
 import { leanSplitOk, outsideDistance } from "./liveLimits.js";
@@ -96,7 +96,7 @@ export interface RigBudgets {
 
 /**
  * Generic defaults (any rig): engine limits only. Vertex budgets and chain budgets come from the
- * body preset or the document's `budgets` (plan 4d-4i).
+ * body preset or the document's `budgets`.
  */
 export const DEFAULT_BUDGETS: RigBudgets = {
   bodyVertices: undefined,
@@ -141,7 +141,7 @@ export interface ValidateOptions {
   bodySkin?: string;
   /** Explicit budgets, over the document's and the preset's (CLI flags). */
   budgets?: Partial<RigBudgets>;
-  /** The body preset the rig was built from: its budgets and review poses (plan 4d-4i). */
+  /** The body preset the rig was built from: its budgets and review poses. */
   preset?: BodyPreset;
   /**
    * Declared outfit combinations checked besides the body alone and the body with each item:
@@ -163,7 +163,7 @@ export interface ValidateOptions {
   /** Poses the tears check judges besides the clip samples (default: rigPoses, derived from the rig's hierarchy, roles and limits). */
   poses?: readonly ReviewPose[];
   /**
-   * The rig's validation companion (`<name>.validation.json`, plan 4d-4g): triangle regions,
+   * The rig's validation companion (`<name>.validation.json`): triangle regions,
    * distortion allowances, excused findings and the poses the geometry check evaluates (instead of
    * `poses`), hash-checked against the rig. Without it the geometry check uses DEFAULT_ALLOWANCE
    * with canvas px as game px.
@@ -229,7 +229,7 @@ export function validateRig(raw: unknown, options: ValidateOptions = {}): Valida
 const emptyGeometry = (): ValidationReport["geometry"] => ({ findings: [], diagnostics: 0, maxVisibleStretch: 1, maxEdgeRatio: 1, worst: "" });
 
 /**
- * Geometry: the unified evaluator (plan 4d-4g) on every outfit, at the companion's poses (else the
+ * Geometry: the unified evaluator on every outfit, at the companion's poses (else the
  * review poses) and the clip samples. One issue per failing finding ID (its poses counted); excused
  * findings are warnings; the old edge rule (ratio > 3 and > 4 game px) is reported, never an error.
  */
@@ -421,7 +421,7 @@ export function displayedFrameTimes(clip: { duration: number; loop: boolean; fps
 }
 
 /**
- * Combined pose limits (plan 4d-3 pass 3d-1) and contact bands (plan 4d-4e). Every clip is played
+ * Combined pose limits (pass 3d-1) and contact bands. Every clip is played
  * through the runtime (mixing on its track, IK and constraints applied):
  * - limits: its key times and 8 steps between them; a pose whose driver pair lies outside a declared
  *   polygon is an error (the runtime never clamps, so the clip itself must stay inside);
@@ -444,7 +444,7 @@ export function checkPoseLimits(doc: AnimDocument, issues: ValidationIssue[]): v
   };
   for (const [clipName, clip] of Object.entries(doc.animations)) {
     const skeleton = new Skeleton(doc);
-    // Hard IK reach (plan 4d-4m r3): every displayed frame keeps two-bone targets within MAX_IK_REACH.
+    // Hard IK reach (r3): every displayed frame keeps two-bone targets within MAX_IK_REACH.
     if (doc.ik.length) {
       let count = 0;
       let first: string | null = null;
@@ -489,7 +489,7 @@ export function checkPoseLimits(doc: AnimDocument, issues: ValidationIssue[]): v
       const names = [...new Set(bands.flatMap((b) => [b.x, b.y, ...Object.keys(b.when ?? {})]))].filter((n) => skeleton.findBone(n));
       const frames = displayedFrameTimes(clip);
       const hits = new Map<string, { count: number; first: string }>();
-      // Ownership (plan 4d-4l part c, review 9): a band measured between two contours gates only
+      // Ownership: a band measured between two contours gates only
       // while both draw, judged per outfit (body alone, body + each skin), so an overridden garment's
       // bands still gate in the outfit that shows it. Bands without a pair gate once, as before.
       const gated = bands.some((b) => b.contours);
@@ -617,10 +617,13 @@ function checkAtlas(doc: AnimDocument, pack: AtlasPack, budgets: RigBudgets, iss
   for (const [skin, data] of Object.entries(doc.skins)) {
     for (const [slot, placeholders] of Object.entries(data.attachments)) {
       for (const [name, attachment] of Object.entries(placeholders)) {
-        if (attachment.type === "point") continue;
-        used.add(attachment.path);
-        if (!regions.has(attachment.path)) {
-          issues.push({ severity: "error", check: "atlas", path: ["skins", skin, "attachments", slot, name, "path"], message: `texture '${attachment.path}' has no atlas region` });
+        if (attachment.type === "point" || attachment.type === "clipping" || attachment.type === "boundingbox" || attachment.type === "path") continue;
+        const frames = attachment.sequence ? attachmentTexturePaths({ path: attachment.path, sequence: attachment.sequence } as never) : [attachment.path];
+        for (const frame of frames) {
+          used.add(frame);
+          if (!regions.has(frame)) {
+            issues.push({ severity: "error", check: "atlas", path: ["skins", skin, "attachments", slot, name, "path"], message: `texture '${frame}' has no atlas region${attachment.sequence ? " (image sequence frame)" : ""}` });
+          }
         }
       }
     }
@@ -820,7 +823,7 @@ function hiddenBodyTexels(
   // Erode by the tolerance in texels (texture pixels per canvas pixel = texture width / mesh width).
   for (const [slotIndex, entry] of out) {
     const attachment = skeleton.slots[slotIndex]?.attachment;
-    const canvasWidth = attachment && attachment.type !== "point" ? attachment.width : entry.width;
+    const canvasWidth = isDrawable(attachment) ? attachment.width : entry.width;
     const radius = Math.max(1, Math.round(toleranceCanvasPx * (entry.width / canvasWidth)));
     // Close single-texel holes first (pixel centres skip some texels when the texture is denser
     // than the canvas), then erode.
@@ -990,7 +993,7 @@ function restVisibleTexels(skeleton: Skeleton, textures: ReadonlyMap<string, Rgb
     let mask = visible.get(slotIndex);
     if (!mask) {
       const attachment = skeleton.slots[slotIndex]?.attachment;
-      const texture = attachment && attachment.type !== "point" ? textures.get(attachment.path) : undefined;
+      const texture = isDrawable(attachment) ? textures.get(attachment.path) : undefined;
       if (!texture) continue;
       mask = createMask(texture.width, texture.height);
       visible.set(slotIndex, mask);
@@ -1047,7 +1050,7 @@ function buriedInk(
 ): { count: number; x: number; y: number } {
   const textureOf = (p: number) => {
     const attachment = skeleton.slots[(frame.top[p] as number) - 1]?.attachment;
-    return attachment && attachment.type !== "point" ? textures.get(attachment.path) : undefined;
+    return isDrawable(attachment) ? textures.get(attachment.path) : undefined;
   };
   const inkAt = (p: number) => {
     const texture = textureOf(p);
@@ -1355,7 +1358,7 @@ function checkTears(
           const length = Math.hypot((world[i * 2] as number) - (world[j * 2] as number), (world[i * 2 + 1] as number) - (world[j * 2 + 1] as number));
           slotWorst = Math.max(slotWorst, length / Math.max(1e-6, edge.rest[k] as number));
         }
-        // Edge ratios are reported only: distortion is judged by the geometry check (plan 4d-4g).
+        // Edge ratios are reported only: distortion is judged by the geometry check.
         worst = Math.max(worst, slotWorst);
       }
       results.push({ outfit: outfit.join("+"), pose: label, holes: frame.holes.length, stretch: worst, hairlines: cracks.count, buriedInk: buried.count, errors });

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Full-body non-mirrored build mode (docs/plans/atlas-animator-views.md, phase 2b, option A).
+ * Full-body non-mirrored build mode (packages/animator/README.md, phase 2b, option A).
  * The mirrored mode (one half-body preset reflected about `mirror.x`) stays as it is. A full-body
  * preset is for asymmetric views (the turned side): it declares several limb chains (a near arm, a
  * far arm, a near leg, a far leg), each an ordinary single-chain surface preset part with its own

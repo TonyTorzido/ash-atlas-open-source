@@ -1,11 +1,11 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4m: the whole body with legs.
+ * Plan: the whole body with legs.
  * `tsx src/cli/legsBody.ts <leg half rig dir> <leg preset.json> <body anim.json> <body preset.json> <out dir> [--no-render]`
  * (every bone, slot and point comes from the two presets and the documents: no template names).
  * mirrors the one built leg (tools/mirrorRig.ts: one welded hips skin, the shorts as one mesh, the
- * crotch closed on the welded midline), merges the legs into the certified 4d-4l upper body by
+ * crotch closed on the welded midline), merges the legs into the certified upper body by
  * name (shared root/pelvis, leg slots: hips under the torso, shorts over the tank; the upper body
  * is not re-merged), and bakes the evidence clips with planted feet: a two-bone solve per frame
  * places the ankle so the sole contact point (the setup-pose sole, foot kept at its setup world
@@ -15,7 +15,7 @@
  * Measures sole drift and ground penetration in stance, reach clamping on unreachable targets,
  * knee stability near extension and FK -> IK transitions; renders GIFs and 8-frame sheets at game
  * size and 3x, bare and dressed (tank + shorts).
- * Round 2: runtime two-bone IK constraints (foot targets outside the chain, keyed per frame from
+ *: runtime two-bone IK constraints (foot targets outside the chain, keyed per frame from
  * the world plant; the projected foreshortening is keyed as thigh scale so the runtime solve
  * reaches the target with a small constant outward bend), feet inherit translation only, live
  * measurement through AnimationState, the torso flows into the hips (bottom-edge stroke dropped,
@@ -53,13 +53,13 @@ type Pose = Record<string, number>;
 const FPS = 30;
 /** IK softness (canvas px): clip targets sit exactly at the start of this zone (reached exactly, small constant bend). */
 const IK_SOFTNESS = 0; // set from the rest chain length below (IK_SOFT_SHARE of it)
-/** Hard IK (owner decision 2026-10-15): clip targets stay within this share of the chain reach. */
+/** Hard IK: clip targets stay within this share of the chain reach. */
 const MAX_REACH = MAX_IK_REACH;
 /** Walk: foot lift and pelvis bob, canvas px (front view, projected). */
 const WALK_LIFT = 30;
 const WALK_BOB = 7;
 const SIDES = ["l", "r"] as const;
-/** Contour join reach (round 8): this multiple of the rest bridge arc (stroke end to silhouette). */
+/** Contour join reach: this multiple of the rest bridge arc (stroke end to silhouette). */
 const JOIN_REACH_SCALE = 1;
 type Side = (typeof SIDES)[number];
 
@@ -160,7 +160,7 @@ function dropBottomEdge(doc: any, slot: string, attachment: string): number {
 type Preset = ReturnType<typeof loadPreset>;
 
 /**
- * What the body pipeline reads per side (phase 2b, docs/plans/atlas-animator-views.md). Side "l" is
+ * What the body pipeline reads per side (phase 2b, packages/animator/README.md). Side "l" is
  * the leg preset's own chain with the body preset's arm; side "r" is its partner. Mirror mode derives
  * "r" from the reflection (names from the mirror renames, key signs -1, the sole reflected about
  * mirror.x, sided region boxes and fist keeps reflected); full-body mode takes it from the partner
@@ -864,9 +864,9 @@ async function pipeline(inp: BodyInputs, outDir: string, noRender: boolean, walk
   metrics.walkBobGamePx = +(WALK_BOB * Math.abs(sy) * gpx).toFixed(3);
 
   // --- write ---------------------------------------------------------------------------------
-  // chain joints the later slot's skin can paint over move along the chain (round 8, elbow crease)
+  // chain joints the later slot's skin can paint over move along the chain (elbow crease)
   bakeReport.chainHandover = handOverChainJoints(doc, skinKey) as unknown as number;
-  // art ink hidden at rest (under strokes, regions, the torso) is skin, not specks in a bend (round 8)
+  // art ink hidden at rest (under strokes, regions, the torso) is skin, not specks in a bend
   bakeReport.hiddenInkRepainted = repaintHiddenInk(doc, textures, skinKey) as unknown as number;
   mkdirSync(join(outDir, "rig"), { recursive: true });
   const rigName = `${doc.name}`;

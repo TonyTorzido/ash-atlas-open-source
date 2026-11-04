@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Hard-plate swag (swag-rules/STYLE.md, hard-plate): a rigid piece (pauldron, couter, plate) that
  * rides ONE bone, with no skin deformation. The plate spec (`fixtures/garments/*.plate.json`,
@@ -44,7 +44,7 @@ export interface PlateSpec {
   /** Max head-overlap px (posed plate outline under the head's outline) over the evidence clips. */
   maxHeadOverlapPx?: number;
   /**
-   * Partial follow (owner review 4d-4n round 10): the plate rides a socket bone at the arm joint (a
+   * Partial follow: the plate rides a socket bone at the arm joint (a
    * sibling of `sides.*.bone`, coincident with it at rest) that turns by this share of the arm bone's
    * rotation (a world transform constraint: mixRotate = follow, translation 1, scale and shear 0), so
    * the plate caps the joint instead of swinging round it. Omitted: the plate rides the arm bone.
@@ -56,7 +56,7 @@ export interface PlateSpec {
    */
   maxCentreInsideJointPx?: number;
   /**
-   * Declared overflow (armour round 15, STYLE.md hard-plate): where the plate may pass the silhouette of
+   * Declared overflow (armour, STYLE.md hard-plate): where the plate may pass the silhouette of
    * the rig it is worn on, as canvas-px rectangles [x0, y0, x1, y1) of the LEFT side (mirrored for the
    * right). The geometry behind it is the plate's own region on its bone; the `overflowDeclared` gate
    * fails any plate paint past the worn silhouette outside these zones (no zone: the plate stays on the body).

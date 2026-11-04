@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Auto-outline (plan 4.6 step 2): the alpha channel of a part image becomes a closed polygon.
  *
@@ -70,7 +70,7 @@ export function outlineMask(mask: Mask, options: OutlineOptions = {}): Outline {
   };
 }
 
-/** One traced component of an image (plan 4d-4j2: disconnected artwork gets an explicit policy). */
+/** One traced component of an image (disconnected artwork gets an explicit policy). */
 export interface ComponentOutline extends Outline {
   /** Opaque pixels of the component (before padding). */
   pixels: number;

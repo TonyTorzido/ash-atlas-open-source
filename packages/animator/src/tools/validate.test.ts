@@ -75,7 +75,7 @@ const clippingTextures = () =>
 describe("validators", () => {
   it("pass the fixture rig, including the clipping check over its clips", () => {
     // The hand-made fixture's 10-vertex torso is too coarse for the tears check (tested below).
-    // Rest only: before 4d-4i the default review poses named humanoid bones, so this rig was only
+    // Rest only: before the default review poses named humanoid bones, so this rig was only
     // ever judged at rest; the rig-derived poses take its chest to its declared +-90 limits, which
     // the 10-vertex torso cannot follow (asserted below, so the coarse fixture stays honest).
     const options = { atlas: threePartAtlas(), textures: threePartTextures(), budgets: { bodyVertices: 260 }, tears: false } as const;
@@ -217,7 +217,7 @@ describe("validators", () => {
       doc.bones[2].limits = { min: -180, max: 180 };
       doc.animations.bend.bones.upper.rotate[1].value = 170;
       const report = validateRig(doc, { textures: textures(), poses: [] });
-      // Judged by the unified geometry evaluator (plan 4d-4g): principal stretch past 2.2x.
+      // Judged by the unified geometry evaluator: principal stretch past 2.2x.
       // This quad has zero area at bind (its edges meet where the bones do), so it has no
       // deformation gradient: a collapse at every pose.
       expect(report.issues.some((issue) => issue.check === "geometry" && issue.severity === "error")).toBe(true);
@@ -232,7 +232,7 @@ describe("validators", () => {
       const skeleton = poseSkeleton(loadAnimDocument(stack(true)), ["body"], null);
       expect(hairlines(skeleton, speck, { width: 300, height: 300 }).count).toBeGreaterThan(0);
       expect(hairlines(skeleton, textures(), { width: 300, height: 300 }).count).toBe(0);
-      // A speck the rest pose already has is not exempt (4d-1: no rest-hairline exemption).
+      // A speck the rest pose already has is not exempt (no rest-hairline exemption).
       const atRest = validateRig(stack(true), { textures: speck, poses: [{ name: "rest", rotate: {} }], samples: 1 });
       expect(atRest.tears[0]?.hairlines ?? 0).toBeGreaterThan(0);
     });
@@ -275,7 +275,7 @@ describe("validators", () => {
       const rim = covered([58, 16, 2]);
       const flagged = validateRig(rim.doc, { textures: rim.textures, poses: pose });
       expect(flagged.tears.find((entry) => entry.pose === "pose 'cover away'")?.buriedInk ?? 0).toBeGreaterThan(20);
-      // A generated piece slot (`<part>.<piece>`) is judged like any part (4d-1: no exemption).
+      // A generated piece slot (`<part>.<piece>`) is judged like any part (no exemption).
       const piece = covered([58, 16, 2]) as { doc: Record<string, any>; textures: Map<string, MutableImage> }; // eslint-disable-line @typescript-eslint/no-explicit-any
       piece.doc.slots[0].name = "lower.rim";
       piece.doc.skins.body.attachments["lower.rim"] = piece.doc.skins.body.attachments.lower;
@@ -294,7 +294,7 @@ describe("validators", () => {
   });
 });
 
-describe("budgets from the preset or the document (plan 4d-4i)", () => {
+describe("budgets from the preset or the document ()", () => {
   const budgetIssues = (report: ReturnType<typeof validateRig>) => report.issues.filter((issue) => issue.check === "budget").map((issue) => `${issue.severity}: ${issue.message}`);
 
   it("no generic vertex budget: undeclared = a warning, never a humanoid default", () => {

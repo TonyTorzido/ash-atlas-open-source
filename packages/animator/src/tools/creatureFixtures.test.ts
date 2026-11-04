@@ -1,8 +1,8 @@
 /*
- * Plan 4d-4j2 item 7: five behavioural fixtures (tiny synthetic rigs and meshes, not art), each
+ * Plan item 7: five behavioural fixtures (tiny synthetic rigs and meshes, not art), each
  * with authoring metadata, weighted through the command bus (`weights.auto`), checked by the
  * validator (authoring check) and by weights tests with shuffled sibling order where there are
- * siblings to shuffle. Plan 4d-4j3 (review): outcome checks instead of probe-name echoes,
+ * siblings to shuffle. Plan: outcome checks instead of probe-name echoes,
  * the bat's negative control, the slime's deformation measured on the mesh, and the generic rest
  * render / exact-bind tests the raster rig's suite used to carry.
  */
@@ -235,7 +235,7 @@ function meshArea(doc: AnimDocument, points: readonly { x: number; y: number }[]
 // the fixtures' sizes are what the generality checks measure.
 vi.setConfig({ testTimeout: 30_000 });
 
-describe("creature fixtures (plan 4d-4j2 item 7)", () => {
+describe("creature fixtures (item 7)", () => {
   it("bat wing: a membrane lets sibling fingers blend away from their hub", () => {
     const hub = at(120, 120);
     const fingers = [at(250, 40), at(280, 120), at(250, 200)];
@@ -406,7 +406,7 @@ describe("creature fixtures (plan 4d-4j2 item 7)", () => {
   });
 });
 
-describe("authoring validator (plan 4d-4j2 item 6)", () => {
+describe("authoring validator (item 6)", () => {
   it("rejects unordered chains, unknown references, influences outside a domain and crossed overlaps", () => {
     const fixture: Fixture = {
       name: "pair",
@@ -446,7 +446,7 @@ describe("authoring validator (plan 4d-4j2 item 6)", () => {
     authoring: { chains: [{ id: "arm", bones: ["upper", "lower"] }] }
   });
 
-  it("warns on a deforming bone outside every chain and on an odd symmetry group (plan 4d-4j3)", () => {
+  it("warns on a deforming bone outside every chain and on an odd symmetry group ()", () => {
     const built = build(pair());
     const warnings = (authoring: unknown, extraBones: unknown[] = []) =>
       validateAuthoring(loadAnimDocument({ ...built.raw, bones: [...(built.raw["bones"] as unknown[]), ...extraBones], authoring }) as AnimDocument)
@@ -459,7 +459,7 @@ describe("authoring validator (plan 4d-4j2 item 6)", () => {
     expect(warnings(odd, [{ name: "x0", parent: "root" }, { name: "y0", parent: "root" }])).toMatch(/symmetry group 's' has 3 chains \(odd\): 'y' has no twin/);
   });
 
-  it("a partial declaration keeps an undeclared leg posed: fallback chain, rotation probe and a warning (plan 4d-4j3)", () => {
+  it("a partial declaration keeps an undeclared leg posed: fallback chain, rotation probe and a warning ()", () => {
     const built = build({
       name: "body-leg",
       shapes: [capsule(60, 120, 260, 120, 14), capsule(160, 130, 160, 225, 10)],
@@ -478,7 +478,7 @@ describe("authoring validator (plan 4d-4j2 item 6)", () => {
     expect(warnings).toMatch(/outside every declared chain.*'leg'/);
   });
 
-  it("rejects a non-positive deform amount at the schema, so squash/stretch stays finite (plan 4d-4j3 item 7)", () => {
+  it("rejects a non-positive deform amount at the schema, so squash/stretch stays finite (item 7)", () => {
     const built = build(pair());
     const load = (amount: number) => () => loadAnimDocument({ ...built.raw, authoring: { chains: [{ id: "arm", bones: ["upper", "lower"] }], probes: [{ name: "squash", kind: "deform", chain: "arm", amount }] } });
     expect(load(0)).toThrow();

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * `animator layers ...` (plan 4d-4k): the preservation-first layered-parts pipeline.
+ * `animator layers...`: the preservation-first layered-parts pipeline.
  *
  *   layers plan <source.png> --rig <rig.anim.json> --parts <parts.json> --out <dir>
  *   layers extract <dir>

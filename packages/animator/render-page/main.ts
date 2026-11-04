@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The CLI's headless render page (plan 4.1: the CLI renders through the same Pixi adapter as the
  * game). `animator render` loads this page in headless Chromium with SwiftShader, calls
@@ -100,7 +100,7 @@ function next(): RenderPageFrame {
   return { png: app.canvas.toDataURL("image/png"), time, missingTextures: [...character.missingTextures] };
 }
 
-/** Plan 4d-4e: mean wall time per frame (update + skinning + render, GPU synced by a 1-texel read). */
+/** Plan: mean wall time per frame (update + skinning + render, GPU synced by a 1-texel read). */
 function bench(frames: number): { msPerFrame: number; frames: number } {
   if (!session || !app) throw new Error("call prepare first");
   const current = session;

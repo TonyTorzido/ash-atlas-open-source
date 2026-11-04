@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Headless rendering for the CLI: builds the render page (render-page/, the game's Pixi adapter)
  * with Vite into a content-hashed cache, opens it in headless Chromium with SwiftShader (software
@@ -29,7 +29,7 @@ export const SWIFTSHADER_ARGS = ["--use-gl=angle", "--use-angle=swiftshader", "-
 export const DEFAULT_BACKGROUND = 0x1e2430;
 
 export interface RenderOptions {
-  /** Plan 4d-4e: time this many frames (no readback) instead of returning PNGs; see RenderResult.bench. */
+  /** Plan: time this many frames (no readback) instead of returning PNGs; see RenderResult.bench. */
   bench?: number;
   document: string;
   /** atlas-pack@1 manifest; default `<rig>.atlas.json` beside the document. */

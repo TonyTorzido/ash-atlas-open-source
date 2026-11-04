@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Cuff-to-wrist gap check (owner review, round 22: "the jackets/shirt don't go all the way to the hand"):
+ * Cuff-to-wrist gap check:
  * every sleeve's cuff hem must reach the wrist dip, the narrow point between the forearm and the fist
  * bulge, on both the inner and the outer side, in every frame; no forearm skin (or its outline) shows
  * between the hem and the fist.

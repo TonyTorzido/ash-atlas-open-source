@@ -1,8 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * `animator cap-arc-sheet <preset.json> --rig <rig.anim.json> --bone <bone> --at <v,v,...> --out <png>
- *   [--crop l,t,r,b] [--refs <dir> --rest <file> --ref-file <pattern with {v}>]` (plan 4d-4a): owner-approval sheet for
+ * [--crop l,t,r,b] [--refs <dir> --rest <file> --ref-file <pattern with {v}>]`: approval sheet for
  * a declared cap-run shoulder arc, BEFORE it is baked. Per driver value one row: the aligned
  * reference drawing (visual guide only, aligned as in ref-compare), the current rig through the
  * game's Pixi renderer, the skin's procedural target silhouette without the preset's `arc` and with

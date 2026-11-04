@@ -41,7 +41,7 @@ function rig(): { sk: Skeleton; r: StanceRig } {
   return { sk, r };
 }
 
-describe("stance policy: foreshorten (plan 4d-4m r5)", () => {
+describe("stance policy: foreshorten (r5)", () => {
   it("lands the ankle exactly on a closer or shifted plant, keeping the knee angle (no bow)", () => {
     const { sk, r } = rig();
     r.pose({});

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Multi-view phase 2c, step 2 (docs/plans/atlas-animator-views.md): the turned-side garment domain of a
+ * Multi-view phase 2c, step 2 (packages/animator/README.md): the turned-side garment domain of a
  * front domain, derived from the side body with the front's own rules, never warped from the front art.
  *   npx tsx scripts/views/side-domain.ts <side rig.anim.json> <front rig.anim.json> <front domain.json> <out dir> [--name jacketb]
  * The side body is three separate skin meshes (far arm under the torso sheet, the torso sheet, the near arm over

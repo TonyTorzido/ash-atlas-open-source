@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Sparse runtime proof (plan 4d-4e). The dense solved surface stays an offline reference; the
+ * Sparse runtime proof. The dense solved surface stays an offline reference; the
  * runtime rig is the same build (buildSurface with a SurfaceReduction) on a subset of its skin
  * vertices and garment outline samples, chosen by error measured over motion:
  * - a removed hull vertex must stay within the silhouette tolerance of the chord between its kept
@@ -212,7 +212,7 @@ export function reduceSkin(built: BuiltSurface, frames: readonly (readonly Pt[])
     }
     return worst;
   };
-  // Visible turn (plan 4d-4e: joint shape / kinks): a kept hull vertex may not turn more than the
+  // Visible turn (joint shape / kinks): a kept hull vertex may not turn more than the
   // dense hull turns over the window around it (+ tol.turn degrees) at any frame.
   const turnAt = (x: readonly Pt[], p: number, v: number, q: number) => {
     const a = x[p] as Pt, b = x[v] as Pt, c = x[q] as Pt;
@@ -476,7 +476,7 @@ export interface SparseBuild {
 }
 
 /**
- * Combined poses for the reducer (4d-4l dense agreement): raise (the limit included) x shrug +-6 x
+ * Combined poses for the reducer (dense agreement): raise (the limit included) x shrug +-6 x
  * lean +-10 x breathing peak x elbow 0 / 30, plus arms crossed; each fitted inside the rig's limits.
  */
 export function combinedPoses(dense: SurfaceRig): Pose[] {
@@ -520,7 +520,7 @@ export function buildSparseRig(dense: SurfaceRig): SparseBuild {
   const t = runtimeTolerances(preset);
   const toCanvas = (gamePx: number) => gamePx / t.gameScale;
   const frames: (readonly Pt[])[] = Object.values(dense.targets).flat().filter((x) => x.ok).map((x) => x.x);
-  // 4d-4l: the combined underarm poses (raise to the limit with shrug, lean and breathing together)
+  //: the combined underarm poses (raise to the limit with shrug, lean and breathing together)
   // that the single-driver sweeps never reach; the reference is the dense rig document itself (what
   // the whole-body probe compares the reduced rig against), so the underarm patch follows it there.
   const combined = combinedPoses(dense);
@@ -569,7 +569,7 @@ export function buildSparseRig(dense: SurfaceRig): SparseBuild {
   const textures = new Map<string, RgbaImage>(dense.textures);
   for (const [k, v] of built.images) textures.set(k, v as RgbaImage);
   report.unshift(
-    `sparse runtime (plan 4d-4e): skin ${dense.built.skin.points.length} -> ${built.skin.points.length} vertices (${dense.built.skin.hull} -> ${built.skin.hull} hull; removed ${skin.removedHull} hull, ${skin.removedInterior} interior; worst removed-vertex error over ${frames.length} frames: silhouette ${(skin.maxSilhouette * t.gameScale).toFixed(3)} / texture ${(skin.maxTexture * t.gameScale).toFixed(3)} game px; tolerances ${t.silhouette} / ${t.texture})`,
+    `sparse runtime (): skin ${dense.built.skin.points.length} -> ${built.skin.points.length} vertices (${dense.built.skin.hull} -> ${built.skin.hull} hull; removed ${skin.removedHull} hull, ${skin.removedInterior} interior; worst removed-vertex error over ${frames.length} frames: silhouette ${(skin.maxSilhouette * t.gameScale).toFixed(3)} / texture ${(skin.maxTexture * t.gameScale).toFixed(3)} game px; tolerances ${t.silhouette} / ${t.texture})`,
     ...dense.built.garments.map((g, k) => `garment ${g.slot}: ${g.points.length} -> ${built.garments[k]?.points.length} vertices (outline samples ${outlines[preset.garments[k]?.name ?? ""]?.kept}/${outlines[preset.garments[k]?.name ?? ""]?.total})`)
   );
   const buildMs = dense.buildMs + (Date.now() - started);
@@ -763,7 +763,7 @@ export function sparseReport(dense: SurfaceRig, sparse: SparseBuild): SparseRepo
   };
 }
 
-// --- visible distortion (plan 4d-4g note: hard gate from 4d-4e) -----------------------------------
+// --- visible distortion (note: hard gate from) -----------------------------------
 
 /** Per triangle: the largest colour step between neighbouring texels inside its bind area (0..1). */
 export function triangleContrast(mesh: BuiltMesh): number[] {
@@ -796,7 +796,7 @@ export function triangleContrast(mesh: BuiltMesh): number[] {
 
 /** Texture-contrast threshold (0..1) above which a triangle counts as textured. */
 export const TEXTURED_CONTRAST = 0.06;
-/** Visible-distortion allowances (plan 4d-4g note): textured outside / inside joint regions; flat triangles may only not collapse. */
+/** Visible-distortion allowances (note): textured outside / inside joint regions; flat triangles may only not collapse. */
 export const VISIBLE_ALLOWANCES = {
   textured: { minDet: 0.2, maxDet: 5, maxStretch: 1.5, minStretch: 0.67, absGamePx: 0.25 },
   joint: { minDet: 0.2, maxDet: 5, maxStretch: 2, minStretch: 0.5, absGamePx: 0.25 },

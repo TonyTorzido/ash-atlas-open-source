@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Loading `atlas-anim` documents: version detection, the migration table, structural validation
  * (zod), cross-reference validation, and errors that name the exact document path at fault.
@@ -21,7 +21,7 @@ export type Migration = (doc: RawDocument) => RawDocument;
 
 /**
  * MIGRATIONS[n] upgrades version n to n + 1. Empty while version 1 is the only version (the Phase
- * 4d-2 additions, mesh groups, skin contours and coverage, drivenGrids, are optional fields, so
+ * additions, mesh groups, skin contours and coverage, drivenGrids, are optional fields, so
  * version 1 documents load unchanged and need no migration); every
  * future format change adds an entry here together with a fixture of the old version.
  */

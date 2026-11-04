@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Phase 4d-2 harness rigs: a bending strip carrying a stroked circle (the 3x width-invariance
+ * Phase harness rigs: a bending strip carrying a stroked circle (the 3x width-invariance
  * golden) and a three-bone body with ten contours (the 50-character bench). Built in code.
  */
 import { bindPointToMesh } from "../../src/core/contours.js";

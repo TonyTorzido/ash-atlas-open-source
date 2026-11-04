@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Bilateral mirror of a finished half-body rig (plan 4d-4l, 4d-4k review section 2): the
+ * Bilateral mirror of a finished half-body rig: the
  * solved, baked and reduced half is the offline solving unit; this compiles it and its mirror about
  * the vertical line x = rule.x (canvas px) into ONE skin per mesh. Exact by construction:
  * - a mirrored bone R of a left bone L has world transform M W_L S (M the canvas reflection,
@@ -85,7 +85,7 @@ export function joinableVisible(rules: readonly { bone: string; min: number; max
   return (rules ?? []).every((r) => (bones[r.bone] ?? r.bone) === r.bone && Math.abs(r.min + r.max) < 1e-9);
 }
 
-/** A contour owner on the mirrored side: the slot through the slot map, a side-suffixed attachment name renamed (4d-4l review 10). */
+/** A contour owner on the mirrored side: the slot through the slot map, a side-suffixed attachment name renamed. */
 export function mirrorOwner(owner: { skin?: string; slot: string; attachment: string }, slots: Readonly<Record<string, string>>, rename: readonly (readonly [string, string])[]): { skin?: string; slot: string; attachment: string } {
   let attachment = owner.attachment;
   for (const [a, b] of rename) {
@@ -111,7 +111,7 @@ export function mirrorRig(raw: Record<string, any>, textures: ReadonlyMap<string
     return null;
   };
   const otherName = (n: string): string => suffix(n) ?? `${n}${rule.rename[0]?.[1] ?? "_r"}`;
-  // Inputs this mirror does not carry yet are rejected, not silently dropped (4d-4l review).
+  // Inputs this mirror does not carry yet are rejected, not silently dropped.
   for (const [skinName, sk] of Object.entries(raw.skins as Record<string, any>)) {
     if (sk.coverage && Object.keys(sk.coverage.regions ?? {}).length) throw new Error(`mirror: skin '${skinName}' declares coverage regions; mirroring coverage is not supported yet`);
     if ((sk.constraints ?? []).length) throw new Error(`mirror: skin '${skinName}' activates constraints; mirroring skin constraints is not supported yet`);
@@ -187,7 +187,7 @@ export function mirrorRig(raw: Record<string, any>, textures: ReadonlyMap<string
         if (m.type === "region") {
           const boneName = (raw.slots as any[]).find((s) => s.name === slotName)?.bone as string;
           if (suffix(boneName)) {
-            // Side region (plan 4d-4m r3: an art fist on the hand): R = M W_L S, so the far copy
+            // Side region (r3: an art fist on the hand): R = M W_L S, so the far copy
             // sits at local (x, -y), rotation -r on the mirrored bone, its texture flipped in v.
             const tex = textures.get(m.path);
             if (!tex) throw new Error(`mirror: no texture '${m.path}'`);
@@ -262,7 +262,7 @@ export function mirrorRig(raw: Record<string, any>, textures: ReadonlyMap<string
         const pos = infl.map((_, i) => [(world[i * 2] as number) + ox, (world[i * 2 + 1] as number) + oy] as [number, number]);
         const isCentre = pos.map((p) => Math.abs(p[0] - rule.x) <= tolerance);
         if (!isCentre.some(Boolean) && slots[slotName] !== slotName) {
-          // Detached side sheet (arm layer, step 2): no centre cut to weld, so the whole sheet is
+          // Detached side sheet: no centre cut to weld, so the whole sheet is
           // reflected into the mirrored slot as a separate attachment: side bones renamed, bone-local
           // offsets reflected, winding reversed, texture flipped in u, draw groups renamed.
           const far = slots[slotName] as string;
@@ -544,7 +544,7 @@ export function mirrorRig(raw: Record<string, any>, textures: ReadonlyMap<string
         const centre = (p: any) => typeof p === "number" && mi.right[p] === p;
         const L = pts.map((p) => mapPoint(mi, p, "left"));
         const R = pts.map((p) => mapPoint(mi, p, "right"));
-        // Visibility rules (format `visible`, an array) negate onto the right bones (4d-4l review 4).
+        // Visibility rules (format `visible`, an array) negate onto the right bones.
         const vis = mirrorVisible(c.visible, bones);
         if (pts.every(centre)) {
           report.push(`contour ${slotName}/${name}: lies on the mirror line (a centre-cut stroke), dropped`);

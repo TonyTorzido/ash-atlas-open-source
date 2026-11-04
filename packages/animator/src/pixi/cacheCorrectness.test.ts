@@ -10,7 +10,7 @@ import { DynamicAtlas } from "./dynamicAtlas.js";
 import { packedAtlasImages } from "./partImages.js";
 
 /*
- * Held-pose cache correctness (4d-4f review, docs/plans/research/phase-4d4f.md): every input
+ * Held-pose cache correctness (review, the design notes): every input
  * that changes what a miss would draw takes part in the cache identity, and nothing a miss draws
  * survives from an older pose.
  */

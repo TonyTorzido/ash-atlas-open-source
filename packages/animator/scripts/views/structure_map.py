@@ -1,4 +1,4 @@
-# Atlas Animator multi-view swag, step 3 (docs/plans/atlas-animator-views.md): the per-view structure map.
+# Atlas Animator multi-view swag, step 3 (packages/animator/README.md): the per-view structure map.
 #   python structure_map.py <design.json> <view> <template dir> <out dir> [<side landmarks.json>]
 #   (side: <template dir> holds torso/, near/, far/, one swag:template output per piece domain)
 # <template dir> = the swag:template output for that view's body (body.png + allowed-mask.png: the importer's own
@@ -6,7 +6,7 @@
 # (canvas crop 576x384 at x8/3 = 1536x1024, the scale the front was drawn at; never upscaled art):
 #   structure-<view>.svg   the construction as vectors (crop coordinates): allowed area, band inner edges, placket
 #                          line, frog crosses, hatched "none" zones (features the presence table forbids on this view)
-#   guide-<view>.png       the edit target: faint body, the allowed area flat light grey with a dark border
+#   guide-<view>.png       the generated edit target: faint body, the allowed area flat light grey with a dark border
 #                          (the border becomes the bold outline, as in every approved front), thin cyan construction
 #                          lines and hatched none zones
 #   front-on-body.png      the approved front on the faint body at the same crop and scale (the design to match)

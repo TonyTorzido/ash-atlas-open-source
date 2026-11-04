@@ -1,24 +1,23 @@
 #!/usr/bin/env bash
-# Five stock-body animations: rigs (docs/plans/atlas-animator-demos/views/turned-front/five-anims/five-anims-PLAN.md).
+# Five stock-body animations: rigs (packages/animator/README.md).
 # Run from packages/animator: bash scripts/views/five-anims-rigs.sh
 # 1. stock_pants.py (refine P1): the FRONT stock body = the certified black pants rig (pants/black/rig, brought over
-#    from feature/atlas-animator-pants--from-t1511 e558f2a22) with silhouette garment ink in body brown (owner D2).
+#    from feature/atlas-animator-pants--from-t1511 e558f2a22) with silhouette garment ink in body brown (design review).
 #    stock_shorts.py: the BACK stock body keeps the charcoal shorts stand-in (clips 04/05 are parked).
 #    polish_extremities.py (refine P5 item 4): fists and feet lose the flat pale highlight stickers and ink specks
 #    (colour only, inside the existing alpha; report in rig/stock-front.extremities.json).
-# 1a. refine_clips.py apply (refine P2, owner D1): the front walk_in_place = the template light-step walk (flat, 28 f)
+# 1a. refine_clips.py apply (refine P2, design review): the front walk_in_place = the template light-step walk (flat, 28 f)
 #    with the stronger front arm read (fixtures/clips/walk-front-chibi-stock.json); the back keeps the legacy walk.
 #    refine_clips.py idle (refine P3): idle_weight_shift = one breath per loop + a lagged head settle.
 #    turnfront_face.py --blink (refine P3): face_blink_half / face_blink_closed on the face slot + the idle blink keys.
-# 1b. back_drawn.py rig (round 2): the DRAWN back body (views/body-back-drawn) pasted into a copy of stock-back
+# 1b. back_drawn.py rig: the DRAWN back body (views/body-back-drawn) pasted into a copy of stock-back
 #    -> stock-back-drawn (stock-back is kept for the before/after).
-# 2. turnfront.py: front at 0 and 15; back (the drawn body) at 0 and 15 with --back-feet toe (owner, round 2: the foot
-#    extends toward the facing side) + the feet strip (heel = round 1 default, 0 = no shear; toe = the clips).
-# 3. turnfront_face.py: face combo A (nose dash-tick, a procedural dash; owner picks among dash-v / dash-tick / dash-h / none), face mode 2c. front 0 (idle), front L15, front L15 with mirrored inputs (the
+# 2. turnfront.py: front at 0 and 15; back (the drawn body) at 0 and 15 with --back-feet toe + the feet strip (heel = default, 0 = no shear; toe = the clips).
+# 3. turnfront_face.py: face combo A, face mode 2c. front 0 (idle), front L15, front L15 with mirrored inputs (the
 #    walk down-right clip is an image flip of its render).
 # 4. turnback_hair.py: the DRAWN back hair (--style drawn, default) at 0 and 15, back L15 with mirrored inputs (walk
-#    up-right); plus, for the before/after sheets, round 1's generated fill hair on the drawn body (before/*-hair-fill)
-#    and round 1's whole back (old body + fill hair, toe feet) at 0 / 15 (before/back-old-turn*-hair).
+# up-right); plus, for the before/after sheets, 's generated fill hair on the drawn body (before/*-hair-fill)
+# and 's whole back (old body + fill hair, toe feet) at 0 / 15 (before/back-old-turn*-hair).
 set -euo pipefail
 D=../../docs/plans/atlas-animator-demos
 R=$D/views/turned-front/five-anims/rig

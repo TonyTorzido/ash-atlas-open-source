@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Full-body non-mirrored build (phase 2b, docs/plans/atlas-animator-views.md):
+ * Full-body non-mirrored build (phase 2b, packages/animator/README.md):
  * `tsx src/cli/fullBody.ts <body.json> <out dir> [--no-gates] [--no-extremity]`
  * builds every part of a full-body preset (tools/surface/fullBody.ts) with the ordinary surface
  * builder (no mirror), writes each part under <out>/parts/<part>, composes them

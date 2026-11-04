@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * PNG file input/output for the Node tools (pngjs). Images are straight-alpha RGBA.
  */

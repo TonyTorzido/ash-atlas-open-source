@@ -1,8 +1,8 @@
 /*
- * Atlas Animator multi-view, phase 2b evidence (docs/plans/atlas-animator-views.md): attaches the shared head to a view
+ * Atlas Animator multi-view, phase 2b evidence (packages/animator/README.md): attaches the shared head to a view
  * rig. The head, face and hair regions of a source rig (the front rig with its prototype face) are copied onto the view
  * rig's `head` bone with the same bone-local placement, drawn last (over the body), textures from the source atlas.
- * Until a turned head is drawn, the front head stands in on the side rig (design decision, session 4).
+ * Until a turned head is drawn, the front head stands in on the side rig (root decision, session 4).
  *   npx tsx scripts/views/side-head.ts <view rig.anim.json> <head source rig.anim.json> <out dir>
  * Writes <out dir>/<view stem>-head.anim.json + atlas.
  */

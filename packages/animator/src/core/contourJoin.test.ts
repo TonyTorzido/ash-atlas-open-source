@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { applyJoin, type ContourJoin } from "./contours.js";
 
 /*
- * Contour joins are continuous (4d-4n #3): the joined centrelines move by a bounded amount
+ * Contour joins are continuous: the joined centrelines move by a bounded amount
  * for a small move of either input, through the overlap / bridge / hairpin transitions. Slow
  * forward and reverse sweeps measure the largest move of the joined strokes per input step (the
  * symmetric Hausdorff distance of each centreline: vertices may slide along a line).
@@ -79,7 +79,7 @@ function maxStep(sweep: (t: number) => { a: Float32Array; b: Float32Array }, fro
   return worst;
 }
 
-describe("contour joins: continuous in their inputs (4d-4n #3)", () => {
+describe("contour joins: continuous in their inputs", () => {
   it("the review repro: one B point across the old overlap threshold moves the output by about as much", () => {
     const at = (y: number) => {
       const { a, b } = lines([0, 0], 0.5 * Math.PI);

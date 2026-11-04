@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Render harness for the browser tests: a fixed-size Pixi 8 WebGL canvas and functions the tests
  * call through `window.animatorHarness`. Every render returns the canvas as a PNG data URL and
@@ -77,7 +77,7 @@ export interface CapeResult {
   captureFps: number;
 }
 
-/** Phase 4d-2: the stroked circle on a bending strip, rendered at 3x on white. */
+/** Phase: the stroked circle on a bending strip, rendered at 3x on white. */
 export interface ContourCircleResult extends RenderResult {
   /** Display scale (display pixels per canvas pixel). */
   scale: number;
@@ -87,7 +87,7 @@ export interface ContourCircleResult extends RenderResult {
   centreline: number[];
 }
 
-/** Phase 4d-2: the 50-character contour bench. */
+/** Phase: the 50-character contour bench. */
 export interface ContourBenchResult {
   characters: number;
   contoursPerCharacter: number;
@@ -291,7 +291,7 @@ async function renderThreePart(options: ThreePartOptions = {}): Promise<RenderRe
   return frame(characters, atlas);
 }
 
-// --- Phase 4d-2: contour width invariance at 3x, and the contour bench ---------------------------
+// --- Phase: contour width invariance at 3x, and the contour bench ---------------------------
 
 let circleDoc: ReturnType<typeof circleDocument> | null = null;
 

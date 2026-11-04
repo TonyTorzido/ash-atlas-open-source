@@ -7,7 +7,7 @@ import { capsule, paintShapes } from "./testFigures.js";
 
 const bone = (name: string, parent: number, x0: number, y0: number, x1: number, y1: number, radius: number) => ({ name, parent, start: { x: x0, y: y0 }, end: { x: x1, y: y1 }, radius });
 
-describe("auto-weights tree: sibling order (plan 4d-4j2 item 1)", () => {
+describe("auto-weights tree: sibling order (item 1)", () => {
   it("two children sharing a start give identical weights whichever is listed first", () => {
     // A body with two branches leaving the same point at its end (an upper and a lower child).
     const image = paintShapes(260, 200, [

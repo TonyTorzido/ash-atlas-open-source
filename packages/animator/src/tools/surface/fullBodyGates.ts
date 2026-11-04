@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Arm-layer gates on a composed full body (phase 2b milestone 2), never mirrored: every near arm
  * part runs the arm-layer gate set of tools/surface/armLayerGates.ts against the torso sheet it

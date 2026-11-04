@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Opaque outlines (clothing model, plan 4d-4l close; runtime review item 3): a region's
+ * Opaque outlines (clothing model, close): a region's
  * opaque area as a simple polygon of (u, v) pairs in 0..1 of the image, either winding, convex or
  * concave. outlineProblem validates it (the format rejects what it reports); triangulateOutline
  * ear-clips it for coverage tests (a fan is only valid for convex outlines). No imports: the format

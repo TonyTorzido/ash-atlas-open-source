@@ -58,3 +58,5 @@ docs/plans/mob-ai-phase2-shots/*
 
 __pycache__/
 *.pyc
+
+.atlas-sandbox-data/

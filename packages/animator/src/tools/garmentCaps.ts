@@ -1,10 +1,10 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * ABANDONED (armour round 14, owner rule): simple fitted armour reuses the jacket/shirt template (body-derived
- * core, neckline, cross-arm cuff cuts, hem). Do not use capCut for new garments; kept for the round 13 record.
+ * ABANDONED (armour, pose rule): simple fitted armour reuses the jacket/shirt template (body-derived
+ * core, neckline, cross-arm cuff cuts, hem). Do not use capCut for new garments; kept for the record.
  *
- * Short cap / sleeveless armhole cuts for fitted garments (owner review 4d-4n round 13). The round 12
+ * Short cap / sleeveless armhole cuts for fitted garments. The 
  * leather crossed the upper arm at 35% and, because the body has no boundary there (arm and torso
  * skin are one surface down to the underarm slit apex), continued the cut down the shoulder seam on
  * the TORSO side to the apex. The arm material between that seam cut and the apex was left uncovered:

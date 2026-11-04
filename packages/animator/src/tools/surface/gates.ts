@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Contract gates for a built surface (plan 4d, "acceptance is by contract, not by sheet"):
  * - shared geometry: weights normalised (<= 4 influences), group boundary vertices bit-identical
@@ -79,16 +79,16 @@ export interface GeometryReport {
   /** Doubled or competing borders at the setup pose (gate: none). */
   doubledAtRest: { sweep: string; frame: number; a: string; b: string; at: Pt; distance: number }[];
   /**
-   * Visible kink (plan 4d-3 pass 3d-2): along every contour, the net turn over a window of
+   * Visible kink (pass 3d-2): along every contour, the net turn over a window of
    * KINK_WINDOW game px centred on a visible point, counting only visible vertices and none within
    * KINK_CORNER px (bind) of a declared corner (`corner: true` path points), must stay within
    * KINK_TURN degrees, or within the bind turn of the same window when the drawing itself turns more
    * (same sign, + KINK_SLACK): a pose may not add a bend the art does not have.
    */
-  /** `bySweep`: violation count per sweep name (plan 4d-4k: attributes a kink rise to its sweeps). */
+  /** `bySweep`: violation count per sweep name (attributes a kink rise to its sweeps). */
   kinks: { checked: number; violations: number; maxExcess: number; worst: string; first: string[]; hard: HardKink[]; bySweep: Record<string, number> };
   /**
-   * Junction gates (plan 4d-4a, junctionGate.ts) over every sweep frame: `junction` (added concave
+   * Junction gates (junctionGate.ts) over every sweep frame: `junction` (added concave
    * turn at a cap run's limb/strap junction over the rest art's own turn, within the preset's
    * per-raise limit) and `neck` (the strap/neck curve's turn within its allowance of rest).
    */
@@ -100,7 +100,7 @@ export interface GeometryReport {
   /** Skin of a group drawn below a garment sliding under it at the declared poses (deepest point vs the garment's edge half width). */
   occlusion: { garment: string; limit: number; maxDepth: number; at: string }[];
   /**
-   * Partition hidden (plan 4d-3 3d-1 fix review): (a) `above`: skin of a group drawn above a garment
+   * Partition hidden (3d-1 fix review): (a) `above`: skin of a group drawn above a garment
    * piece that lies on that piece at bind (vertices, edge midpoints, centroids) must be covered by a
    * piece drawn above the group (an overlay), else it shows on the garment; exact at every pose
    * because conform garments are piecewise affine in the skin; (b) `root`: a group `under` a
@@ -120,10 +120,10 @@ export interface GeometryReport {
    */
   junctionContainment: { overlay: string; clearance: number; points: string[]; poses: number; minDepth: number; worst: string }[];
   pops: { sweep: string; maxSecondDiffGamePx: number; atFrame: number; medianGamePx: number }[];
-  /** Pass 3b (plan 4d-3): every sweep frame of the runtime against its solved target. */
+  /** Pass 3b: every sweep frame of the runtime against its solved target. */
   shape: ShapeReport;
   /**
-   * Unified geometry evaluator (plan 4d-4g) over every sweep frame: findings (errors and excused,
+   * Unified geometry evaluator over every sweep frame: findings (errors and excused,
    * one per ID and pose, the same keys `animator validate` emits on the companion poses), the count
    * of diagnostic old-rule edge findings, the largest visible principal stretch and edge ratio.
    */
@@ -152,7 +152,7 @@ export interface ShapeReport {
   coreDeviation: number;
   widths: { checked: number; outside: number; worst: string; bindOutside: number; min: number; max: number };
   /**
-   * No swelling (plan 4d-3 pass 3c, owner review): limb cross-sections across every core row (the
+   * No swelling: limb cross-sections across every core row (the
    * posed boundary on both sides at the row's bind arc length, measured across the posed core bone)
    * stay <= bind x (1 + SWELL_LIMIT) outside declared bulge zones (patches with an `envelope.bulge`:
    * bind + bulge there). Largest ratio outside bulge zones and the worst excess anywhere.
@@ -212,7 +212,7 @@ export function windowTurns(line: readonly Pt[], window: number, counts: readonl
 /** No-swelling gate: largest cross-section growth outside declared bulge zones (fraction of the bind width). */
 export const SWELL_LIMIT = 0.03;
 
-/** Signed-area gate (plan 4d-3 review): no triangle may shrink below this share of its bind area. */
+/** Signed-area gate (review): no triangle may shrink below this share of its bind area. */
 export const MIN_AREA_RATIO = AREA_FLOOR;
 /** Conform garment containment tolerance (canvas px): the outline/skin snapping distance, doubled. */
 export const CONFORM_TOLERANCE = 0.1;
@@ -580,7 +580,7 @@ export function geometryGates(rig: SurfaceRig): GeometryReport {
       }
       if (d > report.flankLock.maxDeviation) report.flankLock = { ...report.flankLock, maxDeviation: d, at: `${label} vertex ${v}` };
     }
-    // Apex motion is measured in the base bone's frame (plan 4d-4k): a trunk lean carries the
+    // Apex motion is measured in the base bone's frame: a trunk lean carries the
     // anchored apex with the body; only motion relative to the body counts.
     const baseNow = affine(preset.base);
     const baseSetup = setupAll.get(preset.base) as ReturnType<typeof affine>;
@@ -620,7 +620,7 @@ export function geometryGates(rig: SurfaceRig): GeometryReport {
   let frameCrack: ClearanceViolation | null = null;
   /** Visible contour samples at the current pose and the doubled/competing borders among them. */
   const contourFrame = (verts: Pt[][], sweepName: string, f: number, doubled: GeometryReport["doubled"], hold: boolean, pose: Pose): VisibleSample[] => {
-    // Rigid regions cover where their art is at this pose (4d-4k review, item 1), not at bind.
+    // Rigid regions cover where their art is at this pose, not at bind.
     poser.pose(pose);
     const covers = regionCovers(rig, poser.skeleton);
     const skinHull = (verts[0] as Pt[]).slice(0, built.skin.hull);
@@ -661,7 +661,7 @@ export function geometryGates(rig: SurfaceRig): GeometryReport {
       if (hold) cr.holds++;
       else cr.transient.frames++;
       const found = strokeClearance(clearanceLines(built, verts), clearanceLimit, clearanceCovered(built, verts, covers)).map((v) => ({ ...v, at: `${sweepName} frame ${f}${hold ? " (hold)" : ""}: ${v.at}` }));
-      // Contact bands (4d-4e closeout, tightened after the 4d-4e review): a hold may not sit in a
+      // Contact bands (closeout, tightened after the review): a hold may not sit in a
       // band. Every sweep frame is a displayed (held) frame at the clip's fps, so every crack fails at
       // every frame, a band pair's crack inside its band included (counted as a displayed crossing
       // too). Motion may only jump across a band between displayed frames.
@@ -859,7 +859,7 @@ export function geometryGates(rig: SurfaceRig): GeometryReport {
           byIndex.set(v, [out[k * 2] as number, out[k * 2 + 1] as number]);
         }
       }
-      // Inversions, collapse and directional distortion: the unified evaluator (plan 4d-4g), the
+      // Inversions, collapse and directional distortion: the unified evaluator, the
       // same function and finding IDs as `animator validate`.
       {
         const label = poseLabel(pose);
@@ -1075,7 +1075,7 @@ export function geometryGates(rig: SurfaceRig): GeometryReport {
 
 
 // ---------------------------------------------------------------------------------------------
-// Garment pieces (plan 4d-3 3d-1 fix review: overlays)
+// Garment pieces (3d-1 fix review: overlays)
 // ---------------------------------------------------------------------------------------------
 
 /** A garment's body piece or one of its overlays: a triangle range, its boundary edges and the strokes it owns. */
@@ -1153,7 +1153,7 @@ export function pieceDepth(pc: GarmentPiece, verts: readonly (readonly Pt[])[], 
 }
 
 /**
- * Overlay invisibility (plan 4d-3 3d-1 fix review): the raw document with every overlay merged back
+ * Overlay invisibility (3d-1 fix review): the raw document with every overlay merged back
  * into its garment's body piece (its triangle range and its contours drawn at the garment slot).
  */
 export function mergeOverlays(built: BuiltSurface, raw: Record<string, unknown>): Record<string, unknown> {
@@ -1245,7 +1245,7 @@ export function overlayInvisibility(rig: SurfaceRig, pose: Pose, a: RgbaImage, b
 }
 
 // ---------------------------------------------------------------------------------------------
-// Structural gates (plan 4d-3 pass 3a): connectivity, weight support, ownership, registration
+// Structural gates (pass 3a): connectivity, weight support, ownership, registration
 // ---------------------------------------------------------------------------------------------
 
 export interface MeshTopology {
@@ -1342,7 +1342,7 @@ export function structureGates(built: BuiltSurface): StructureReport {
     }
   });
   const infeasible = built.patches.filter((p) => p.side !== "both" && (!p.feasible || (p.ratio !== undefined && !(p.ratio >= 0 && p.ratio <= 1)))).map((p) => `${p.name}: min blend ratio ${p.minBlendRatio}`);
-  // Ownership: a skin contour bounds triangles of its owner's draw group.
+  // Ownership: a skin contour bounds triangles of its the user's draw group.
   const edgeTriangle = new Map<string, number>();
   const key = (a: number, b: number) => (a < b ? `${a},${b}` : `${b},${a}`);
   for (let t = 0; t < skin.triangles.length / 3; t++) for (let k = 0; k < 3; k++) edgeTriangle.set(key(skin.triangles[t * 3 + k] as number, skin.triangles[t * 3 + ((k + 1) % 3)] as number), t);
@@ -1378,7 +1378,7 @@ export function structureGates(built: BuiltSurface): StructureReport {
     for (const end of [c.points[0] as number, c.points[c.points.length - 1] as number]) {
       const p = mesh.points[end] as Pt;
       const shared = built.contours.some((o) => o !== c && o.mesh === c.mesh && (o.points[0] === end || o.points[o.points.length - 1] === end));
-      // Hidden ends (under a garment piece drawn above the owner at bind; gate "ends hidden or joined" checks every pose).
+      // Hidden ends (under a garment piece drawn above the user at bind; gate "ends hidden or joined" checks every pose).
       const mine = built.drawOrder.indexOf(c.owner);
       const hidden = c.mesh === "skin" && pieces.some((pc) => built.drawOrder.indexOf(pc.slot) > mine && pieceDepth(pc, bind, p) >= 0);
       if (!shared && !hidden && !junctionPoints.some((j) => dist(j.at, p) <= j.radius)) looseEnds.push(`${c.owner}/${c.name} end at (${p[0].toFixed(1)}, ${p[1].toFixed(1)})`);
@@ -1466,7 +1466,7 @@ export function profileWidth(image: RgbaImage, underAt: (t: number) => [number, 
 }
 
 /**
- * Known-good stroke (plan 4d-3 pass 3d-2, an independent member of the width calibration): an
+ * Known-good stroke (pass 3d-2, an independent member of the width calibration): an
  * analytic annulus of display width `w` (supersampled 8 x 8 per pixel, exact coverage) over a flat
  * background at a fractional offset, measured with the same profile integral against its underlay.
  * Returns the absolute errors (display px) over 72 normals.
@@ -1557,7 +1557,7 @@ export function measureWidths(
       skipped.outOfFrame++;
       continue;
     }
-    // Underlay: with the contour-less render of the same frame (plan 4d-3 pass 3d-2) every profile
+    // Underlay: with the contour-less render of the same frame (pass 3d-2) every profile
     // point has its own background, so a fill edge under the stroke does not read as ink; without
     // it, the colour just past the stroke on each side.
     const under = [at(-edge - 0.5), at(edge + 0.5)];
@@ -1700,7 +1700,7 @@ export interface RegionCover {
 }
 
 /**
- * Rigid-region coverage at the current pose (4d-4k review, item 1): a query point is carried
+ * Rigid-region coverage at the current pose: a query point is carried
  * back to the bind canvas through the region bone's inverse current world transform and its bind
  * transform, then tested against the keep polygon and, when the region texture is loaded, its alpha
  * (a keep polygon need not be filled to its edge). The skeleton must already be posed.
@@ -1770,7 +1770,7 @@ export function clearanceCrackPoints(rig: SurfaceRig, pose: Pose): Pt[] {
  * near-parallel ink pairs over background that overlap by less than one display px (gap in
  * (-minGap, 0]). Where two strokes overlap by under one output pixel, a pixel can hold both facing
  * edges: each stroke's AA fringe is partial and their composite stays under full alpha although the
- * union of the geometry is full (a conflation seam). Coordinator decision (pass 3d-1): such alpha
+ * union of the geometry is full (a conflation seam).): such alpha
  * pixels are excused only in motion frames, under the same degree time cap as the cracks.
  */
 export function clearanceContactPoints(rig: SurfaceRig, pose: Pose): { cracks: Pt[]; seams: Pt[] } {
@@ -1803,7 +1803,7 @@ export interface CrackStreak {
 const poseStep = (a: Pose, b: Pose) => Math.max(0, ...[...new Set([...Object.keys(a), ...Object.keys(b)])].map((k) => Math.abs((a[k] ?? 0) - (b[k] ?? 0))));
 
 /**
- * Clearance time cap (plan 4d-3 pass 3d-1, coordinator decision B): an arm closing on the body
+ * Clearance time cap (pass 3d-1): an arm closing on the body
  * passes through sub-pixel cracks, which is acceptable while it moves. Groups consecutive cracked
  * frames that are not held or end poses (those fail on their own) into streaks and measures each
  * in degrees of the moving joint: every frame counts its step from the previous frame (the first
@@ -1841,7 +1841,7 @@ export interface ClearanceViolation {
 }
 
 /**
- * Stroke clearance (plan 4d-3 pass 3d-1): wherever contour A runs near-parallel to a different
+ * Stroke clearance (pass 3d-1): wherever contour A runs near-parallel to a different
  * contour B (tangent angle below `maxAngle` degrees) and the background between their inks
  * (centre distance minus the two half widths) is above 0 and below `minGap` canvas px over a run
  * of at least `minSpan` canvas px along A, the pair leaves a thin slit or lens of background that
@@ -1924,7 +1924,7 @@ export function strokeClearance(lines: { key: string; points: readonly Pt[]; wid
  * a pixel is expected full only when every subsample of it and of its `erode`-pixel neighbourhood
  * is covered), not each shape thresholded at its own pixel centre: a background gap narrower than a
  * pixel between two strokes (the tip of a sharp V) is partial coverage in the geometry itself, so
- * the semi-transparent pixel there is explained (plan 4d-3 pass 3d-1, measurement correction).
+ * the semi-transparent pixel there is explained (pass 3d-1, measurement correction).
  */
 export function alphaGaps(rig: SurfaceRig, pose: Pose, pixi: RgbaImage, display: { scale: number; left: number; top: number }, erode = 1, ss = 4, cracks: readonly Pt[] = [], seams: readonly Pt[] = []): { gaps: number; explained: number; seams: number; at: string } {
   const poser = new Poser(rig.document, rig.built);

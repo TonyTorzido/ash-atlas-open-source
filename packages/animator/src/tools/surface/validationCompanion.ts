@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * The validation companion of a surface rig (plan 4d-4g): `<name>.validation.json`, written beside
+ * The validation companion of a surface rig: `<name>.validation.json`, written beside
  * the rig by the rig build and hash-checked by `animator validate`. It carries the triangle regions
  * (the solver's joint regions on the skin, every garment mesh), their distortion allowances (generic
  * defaults per region kind, overridden by the preset's `gates.distortion`), excused findings, and
@@ -32,7 +32,7 @@ export function poseLabel(pose: Readonly<Record<string, number>>): string {
 }
 
 /**
- * The final-runtime pose set every gate shares (4d-4e review): built from the rig as installed, after
+ * The final-runtime pose set every gate shares (review): built from the rig as installed, after
  * every driven grid is baked. Every distinct sweep frame, then for each installed grid (its actual
  * refined axes) the nodes, edge midpoints and cell centres; the pose-limit boundaries (polygon
  * vertices and edge midpoints); and every grid pose again with each other limited driver at its
@@ -66,7 +66,7 @@ export function finalPoses(rig: SurfaceRig): { label: string; origin: string; po
         add(cell, base);
         const others = drivers.filter((d) => d.bone !== g.x.bone && d.bone !== g.y.bone);
         for (const d of others) for (const v of d.limits) add(`${cell}, ${d.bone} ${v}`, { ...base, [d.bone]: v });
-        // Higher-order combinations (4d-4k review, item 4): at each node, every other driver
+        // Higher-order combinations: at each node, every other driver
         // at its low (then high) limit together, and each of those with breathing at its peak.
         if (kind === "node") {
           const combos: [string, Pose][] = [[cell, base]];

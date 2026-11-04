@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Where the dynamic atlas gets part images from. A PartImageProvider answers "the decoded image
  * for texture path P"; providers are built from prepacked pages (`atlas-pack@1`) or from

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * AnimatorCharacter: draws one Skeleton with Pixi 8.
  *
@@ -12,12 +12,12 @@
  * The mesh's texture is the atlas page texture itself, its tint/alpha the slot colour times the
  * attachment colour, its blend mode the slot's.
  *
- * Draw groups (plan 4d-2): a mesh with `groups` is skinned once by the skeleton; each group slot's
+ * Draw groups: a mesh with `groups` is skinned once by the skeleton; each group slot's
  * mesh gets a geometry of that group's triangles (compact vertex list) and copies its positions
  * from the one skinned result, so a boundary vertex lands on the same pixel in both groups. The
  * group draws at its slot's draw-order position with that slot's colour.
  *
- * Contours (plan 4d-2): each contour of the active skins is one more batched mesh, drawn right
+ * Contours: each contour of the active skins is one more batched mesh, drawn right
  * after its owner slot's mesh. Its geometry is the stroke built around the deformed centreline
  * (core/contours.ts buildStroke) with the atlas-resident coverage ramp as texture, so it batches
  * with the body. A stroke is rebuilt only when it must: an owner bone's world transform changed
@@ -35,7 +35,7 @@
  * batch across characters (Pixi does not batch custom-shader meshes), which would make the
  * crowd cost one draw call per character and page.
  *
- * Held-pose cache (plan 4d-4f): updateHeld(state) with a held-frame AnimationState (clip fps,
+ * Held-pose cache: updateHeld(state) with a held-frame AnimationState (clip fps,
  * default 30, on a 60 Hz display) evaluates the pose only when the displayed frame changes. The
  * cache key is the state's poseVersion (clip frames, crossfade steps, entries, alphas, masks), the
  * outfit version, the skeleton origin, the contour settings and the quantized display scale
@@ -44,7 +44,7 @@
  * buffer update, so Pixi re-uploads nothing. Move characters with the container's position (the
  * display transform), not skeleton.x/y, so a moving character still hits.
  *
- * Procedural edits (4d-4f review): a miss runs state.apply (which first resets every bone, slot and
+ * Procedural edits (review): a miss runs state.apply (which first resets every bone, slot and
  * constraint to the setup pose), then `onAfterApply(skeleton)`, then updateWorldTransform. So IK
  * targets, aim, direct bone or constraint edits go in onAfterApply, never between updates (the
  * next miss would wipe them). What the hook reads takes part in the cache key through
@@ -53,7 +53,7 @@
  * overwritten by the next miss too: tint through the container (tint, alpha), slot/colour
  * timelines, or onAfterApply.
  *
- * Clock and movement (4d-4f review, physics): step(state, dt) advances the state and the
+ * Clock and movement (review, physics): step(state, dt) advances the state and the
  * skeleton's physics clock (Skeleton.time) together, then runs updateHeld. A container move is
  * invisible to the skeleton, so cloth gets no inertia from it: report it with moveWorld(dx, dy)
  * (parent units, those of `position`). A rig without an active physics constraint drops the
@@ -68,13 +68,13 @@
  * uncached run agree at any simulation rate. Physics reset keys passed between held frames change
  * the state's poseVersion, so they always reach the skeleton.
  *
- * Separate decisions (runtime review item 1): a miss samples the animation (state.apply +
+ * Separate decisions: a miss samples the animation (state.apply +
  * onAfterApply) only when the sample key changed (pose version, state, outfit, procedural version,
  * invalidate()); runs the constraints and world transform when the sample, the skeleton origin, the
  * pending motion or a due physics step changed; and rebuilds geometry (skinning, strokes, buffer
  * uploads) on any of those or a display-scale / contour-LOD change, which alone re-poses nothing.
  *
- * Display scale (4d-4f review): device pixels per canvas pixel = the longer axis of the
+ * Display scale (review): device pixels per canvas pixel = the longer axis of the
  * container's global transform (non-uniform scale: the AA band is at most 1 device px along either
  * axis, thinner along the shorter one) times `displayResolution` (set it to the renderer's
  * resolution), or `contourPixelScale` when set. Known spike: a crowd at one zoom crosses a
@@ -84,8 +84,8 @@
  * Coordinates: the container's local space is skeleton space in canvas pixels (y down). Scale
  * the container for display size and mirror it with a negative scale.x (plan 4.4).
  */
-import { Container, Matrix, Mesh, MeshGeometry, type Buffer, type DestroyOptions } from "pixi.js";
-import { isGroupedMesh, type Attachment, type DrawableAttachment } from "../core/attachments.js";
+import { Container, Graphics, Matrix, Mesh, MeshGeometry, type Buffer, type DestroyOptions } from "pixi.js";
+import { attachmentTexturePaths, isDrawable, isGroupedMesh, sequenceFramePath, type Attachment, type DrawableAttachment } from "../core/attachments.js";
 import type { AnimationState } from "../core/animationState.js";
 import type { Bone } from "../core/bone.js";
 import { rgb24 } from "../core/color.js";
@@ -118,7 +118,7 @@ export interface AnimatorCharacterStats {
   msEmbed: number;
   msStroke: number;
   /**
-   * Per-stage split of msPose (runtime review item 8, measurement only): animation sampling
+   * Per-stage split of msPose: animation sampling
    * (state.apply + onAfterApply) and constraints + world transform (IK, transform, physics, driven).
    */
   msSample: number;
@@ -155,14 +155,14 @@ interface ContourView {
    * Capacity buffers (trimmedStrokeCapacity), handed whole to the geometry: its size never changes.
    * A batched mesh whose size changes from one frame to the next could keep a stale batch layout
    * (pixi 8 batcher), so a stroke drew other atlas content (body skin) along its rim while a join
-   * switched layout (owner review 4d-4n, the elbow crease of the arm raise). Indices past the
+   * switched layout. Indices past the
    * build's are degenerate (0, 0, 0).
    */
   readonly positions: Float32Array;
   readonly uvs: Float32Array;
   readonly indices: Uint32Array;
   /**
-   * The index list Pixi last packed into its batch (owner review 4d-4n, round 2). A batched mesh of
+   * The index list Pixi last packed into its batch. A batched mesh of
    * unchanged size is re-packed for its attributes only (MeshPipe.updateRenderable): its indices
    * stay those of the last instruction-set build. A new join or trim layout of the same capacity
    * then drew the old triangles over the new vertices (slivers from a stroke's end back to its
@@ -224,7 +224,7 @@ const MATRIX_EPSILON = 1e-7;
 const TRANSLATION_EPSILON = 1e-4;
 
 /**
- * The display scale contours are built for (plan 4d-4f zoom): `scale` rounded UP to a step of
+ * The display scale contours are built for (zoom): `scale` rounded UP to a step of
  * `step` in log2 space (step <= 0: exact). Rounding up keeps the displayed AA band in
  * (2^-step, 1] display px and the join error at or under STROKE_JOIN_ERROR at every scale inside
  * the step; the coverage-integrated stroke width is w for any band (core/contours.ts), so it is
@@ -237,6 +237,9 @@ export function quantizeDisplayScale(scale: number, step: number): number {
 
 /** Drawable key of draw group `group` of attachment `id` (negative, so never an attachment id). */
 const groupKey = (id: number, group: number) => -(id * 64 + group) - 1;
+/** Drawable key of frame `frame` of an image sequence (frame 0 is the attachment's own key). */
+const SEQUENCE_KEY_BASE = 1 << 24;
+const frameKey = (id: number, frame: number) => (frame <= 0 ? id : SEQUENCE_KEY_BASE + id * 256 + frame);
 
 export class AnimatorCharacter extends Container {
   readonly skeleton: Skeleton;
@@ -257,7 +260,7 @@ export class AnimatorCharacter extends Container {
    */
   proceduralVersion = 0;
   /**
-   * Display-scale quantization in log2 steps (plan 4d-4f zoom; default 1/8 = 9.05 % per step):
+   * Display-scale quantization in log2 steps (zoom; default 1/8 = 9.05 % per step):
    * strokes (AA band, join steps, level of detail) and the held-pose cache key use the display
    * scale rounded up to a step (quantizeDisplayScale), so a continuous pinch-zoom rebuilds strokes
    * only when it crosses a step; in between the cached geometry scales with the container. 0:
@@ -289,6 +292,10 @@ export class AnimatorCharacter extends Container {
   private readonly emptyGeometry: MeshGeometry;
   private orderVersion = -1;
   private childCount = 0;
+  /** Clipping masks: one Graphics per clipping slot that is active, children of maskHolder (drawn never, used as stencil). */
+  private readonly maskHolder = new Container({ label: "clip-masks" });
+  private readonly masks = new Map<number, Graphics>();
+  private hasClipping = false;
   private missing: string[] = [];
   private rampRegion: AtlasRegion | null = null;
   private readonly ramp: StrokeRamp = { u0: 0, u1: 1, v: 0.5, rampFraction: RAMP_TEXELS / RAMP_WIDTH };
@@ -389,6 +396,23 @@ export class AnimatorCharacter extends Container {
   private stageOutfit(missing: Set<string>, keep: (viewIndex: number, key: number, make: () => Drawable) => void): void {
     this.views.forEach((view, viewIndex) => {
       for (const attachment of this.outfitAttachments(view.slot)) {
+        if (attachment.sequence) {
+          // One drawable per frame: each frame is its own atlas region of the same attachment.
+          attachmentTexturePaths(attachment).forEach((framePath, frame) => {
+            const image = this.images.get(framePath);
+            if (!image) {
+              missing.add(framePath);
+              return;
+            }
+            keep(viewIndex, frameKey(attachment.id, frame), () => {
+              const region = this.atlas.acquire(framePath, () => image);
+              const uvs = attachment.type === "region" ? attachment.uvs : attachment.geometry.uvs;
+              const triangles = attachment.type === "region" ? attachment.triangles : attachment.geometry.triangles;
+              return buildDrawable(attachment, region, uvs, triangles, -1);
+            });
+          });
+          continue;
+        }
         const image = this.images.get(attachment.path);
         if (!image) {
           missing.add(attachment.path);
@@ -429,6 +453,7 @@ export class AnimatorCharacter extends Container {
     });
     this.missing = [...missing].sort();
     this.refreshContours();
+    this.refreshClipping();
     this.orderVersion = -1;
     this.outfitVersion++;
   }
@@ -492,7 +517,7 @@ export class AnimatorCharacter extends Container {
   }
 
   /**
-   * Held-pose update (plan 4d-4f): when the cache key is unchanged since the last evaluation,
+   * Held-pose update: when the cache key is unchanged since the last evaluation,
    * returns false having done nothing; otherwise poses the skeleton from `state` (apply + world
    * transform), redraws and returns true. `state` should have heldFrames on (otherwise its pose
    * version changes every frame and every call misses).
@@ -598,15 +623,19 @@ export class AnimatorCharacter extends Container {
     }
     const t0 = clock ? clock() : 0;
     let contours = false;
+    let clipping = false;
     for (const view of this.views) {
       const slot = view.slot;
+      if (slot.attachment !== null && slot.attachment.type === "clipping") clipping = true;
       const groupMesh = slot.groupMesh;
       let drawable: Drawable | null = null;
       if (groupMesh) {
         if (!slot.hidden) drawable = view.drawables.get(groupKey(groupMesh.id, slot.groupIndex)) ?? null;
       } else {
         const attachment = slot.attachment;
-        if (attachment && attachment.type !== "point" && !isGroupedMesh(attachment)) drawable = view.drawables.get(attachment.id) ?? null;
+        if (attachment && isDrawable(attachment) && !isGroupedMesh(attachment)) {
+          drawable = view.drawables.get(attachment.sequence ? frameKey(attachment.id, slot.sequenceFrame) : attachment.id) ?? null;
+        }
       }
       const slotAlpha = slot.color.a * slot.drivenAlpha;
       const alpha = drawable ? slotAlpha * drawable.attachment.color.a : 0;
@@ -627,6 +656,14 @@ export class AnimatorCharacter extends Container {
       }
       if (view.contours.length > 0) contours = true;
     }
+    if (clipping) {
+      if (this.maskHolder.parent !== this) this.addChild(this.maskHolder);
+      this.syncClipping();
+    } else if (this.hasClipping) {
+      this.clearMasks();
+      this.maskHolder.removeFromParent();
+    }
+    this.hasClipping = clipping;
     const t1 = clock ? clock() : 0;
     if (clock) stats.msEmbed += t1 - t0;
     if (!contours) return;
@@ -677,15 +714,68 @@ export class AnimatorCharacter extends Container {
     }
   }
 
+  /** Drops the mask state; syncFromSkeleton rebuilds it from the slots that show a clipping attachment. */
+  private refreshClipping(): void {
+    this.clearMasks();
+    this.maskHolder.removeFromParent();
+    this.hasClipping = false;
+  }
+
+  private clearMasks(): void {
+    for (const view of this.views) {
+      view.mesh.mask = null;
+      for (const contour of view.contours) contour.mesh.mask = null;
+    }
+    for (const g of this.masks.values()) g.clear();
+  }
+
+  /**
+   * Spine clipping: a slot showing a clipping attachment starts a mask; every later slot in draw
+   * order up to its end slot (inclusive; the end of the draw order when none) is clipped to the
+   * polygon. The polygon is the stencil of those meshes.
+   */
+  private syncClipping(): void {
+    const order = this.skeleton.drawOrder;
+    let active: Graphics | null = null;
+    let endSlot: string | null = null;
+    for (const slot of order) {
+      const view = this.views[slot.index] as SlotView;
+      const attachment = slot.attachment;
+      if (attachment && attachment.type === "clipping" && !slot.hidden) {
+        let g = this.masks.get(attachment.id);
+        if (!g) {
+          g = new Graphics();
+          this.masks.set(attachment.id, g);
+          this.maskHolder.addChild(g);
+        }
+        const world = this.skeleton.slotPolygonWorld(slot);
+        g.clear();
+        if (world && world.length >= 6) g.poly(Array.from(world)).fill(0xffffff);
+        active = g;
+        endSlot = attachment.endSlot;
+        view.mesh.mask = null;
+        continue;
+      }
+      const mask = active;
+      view.mesh.mask = mask;
+      for (const contour of view.contours) contour.mesh.mask = mask;
+      if (active && endSlot !== null && slot.data.name === endSlot) {
+        active = null;
+        endSlot = null;
+      }
+    }
+  }
+
   private applyDrawOrder(): void {
     const order = this.skeleton.drawOrder;
-    if (this.children.length !== this.childCount) {
+    if (this.children.length !== this.childCount + (this.maskHolder.parent === this ? 1 : 0)) {
       this.removeChildren();
       for (const slot of order) {
         const view = this.views[slot.index] as SlotView;
         this.addChild(view.mesh);
         for (const contour of view.contours) this.addChild(contour.mesh);
       }
+      if (this.hasClipping) this.addChild(this.maskHolder);
       return;
     }
     let i = 0;
@@ -708,7 +798,7 @@ export class AnimatorCharacter extends Container {
       for (const name of Object.keys(placeholders)) {
         const attachment = this.skeleton.getAttachment(slot, name);
         // Only the winning attachment per placeholder (a later skin may override it).
-        if (attachment && attachment.type !== "point" && attachment.skin === skin && !result.includes(attachment)) result.push(attachment);
+        if (attachment && isDrawable(attachment) && attachment.skin === skin && !result.includes(attachment)) result.push(attachment);
       }
     }
     return result;
@@ -857,7 +947,7 @@ export class AnimatorCharacter extends Container {
         cv.topology.valid = false;
       }
       if (!cv.mesh.visible) cv.mesh.visible = true;
-      // Compare (and refresh) the owner bones' transforms relative to the skeleton origin.
+      // Compare (and refresh) the user bones' transforms relative to the skeleton origin.
       let moved = false;
       const owners = contour.ownerBones;
       const snapshot = cv.snapshot;

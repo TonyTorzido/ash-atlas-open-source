@@ -1,12 +1,16 @@
 /*
- * Runtime-correctness fixes and the runtime behaviour contract (docs/plans/atlas-animator.md,
- * "Runtime behaviour contract").
+ * Runtime-correctness fixes and the runtime behaviour contract (packages/animator/README.md,
+ * "Runtime behaviour contract"; findings from the design notes).
  * Original minimal fixtures, one per finding / policy.
  */
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { applyCommand } from "../tools/commands.js";
+import { cloneJson, type JsonObject } from "../tools/jsonPatch.js";
+import type { MeshAttachment } from "./attachments.js";
 import { AnimationState, AnimationStateData, MAX_TRACKS, type TrackEntry } from "./animationState.js";
 import type { AnimDocumentInput } from "./format.js";
-import { parseAnimDocument } from "./formatLoader.js";
+import { loadAnimDocument, parseAnimDocument } from "./formatLoader.js";
 import { Skeleton } from "./skeleton.js";
 import { testDocument } from "./testHelpers.js";
 import { AnimationLibrary, ContinuousTimeline } from "./timelines.js";
@@ -371,5 +375,121 @@ describe("Runtime behaviour contract (section 3 policies)", () => {
     };
     expect(count(10)).toEqual({ events: 10, completes: 10 });
     expect(count(5000)).toEqual({ events: 1000, completes: 1000 });
+  });
+});
+
+describe("mesh weights + deform (MESH-WEIGHTS-PLAN P1)", () => {
+  const fixture = JSON.parse(readFileSync(new URL("../../fixtures/rigs/three-part.anim.json", import.meta.url), "utf8")) as JsonObject;
+  const torso = { skin: "body", slot: "torso", name: "torso" };
+  const o = (value: unknown) => value as JsonObject;
+  const pattern = (n: number, seed: number) => Array.from({ length: n }, (_, i) => Math.round(Math.sin(i * 1.7 + seed) * 40) / 10);
+  const meshOf = (doc: JsonObject) => o(o(o(o(o(doc["skins"])["body"])["attachments"])["torso"])["torso"]);
+
+  /** The fixture with a bone-free clip whose only content is a constant deform on the torso (and none when `vertices` is null). */
+  function docWith(base: JsonObject, vertices: number[] | null, offset = 0): JsonObject {
+    const doc = cloneJson(base) as JsonObject;
+    const clip: JsonObject = { duration: 1, loop: true };
+    if (vertices) clip["deform"] = { body: { torso: { torso: [{ time: 0, offset, vertices }, { time: 1, offset, vertices }] } } };
+    o(doc["animations"])["idle"] = clip;
+    return doc;
+  }
+
+  /** The torso's world vertices (float32) with the clip at t = 0.5 applied, through the real runtime. */
+  function posed(doc: JsonObject): Float32Array {
+    const document = loadAnimDocument(doc);
+    const skeleton = new Skeleton(document);
+    skeleton.setActiveSkins(["body"]);
+    const state = new AnimationState(new AnimationStateData(document));
+    state.setAnimation(0, "idle");
+    state.update(0.5);
+    state.apply(skeleton);
+    skeleton.updateWorldTransform("none");
+    const slot = skeleton.getSlot("torso");
+    const mesh = skeleton.getAttachment(slot, "torso") as MeshAttachment;
+    return Float32Array.from(skeleton.meshWorldVertices(mesh, slot.bone));
+  }
+
+  /** Rest-pose world delta of each vertex for a dense deform array, from the stored weighted encoding. */
+  function expectedDelta(doc: JsonObject, deform: number[]): number[] {
+    const document = loadAnimDocument(doc);
+    const skeleton = new Skeleton(document);
+    skeleton.updateWorldTransform("none");
+    const mesh = meshOf(doc);
+    const data = mesh["vertices"] as number[];
+    const names = mesh["bones"] as string[];
+    const out: number[] = [];
+    let cursor = 0;
+    let influence = 0;
+    for (let v = 0; v < (mesh["uvs"] as number[]).length / 2; v++) {
+      const n = data[cursor++] as number;
+      let dx = 0;
+      let dy = 0;
+      for (let k = 0; k < n; k++, cursor += 4, influence++) {
+        const { a, b, c, d } = skeleton.getBone(names[data[cursor] as number] as string).world;
+        const w = data[cursor + 3] as number;
+        dx += w * (a * (deform[influence * 2] as number) + b * (deform[influence * 2 + 1] as number));
+        dy += w * (c * (deform[influence * 2] as number) + d * (deform[influence * 2 + 1] as number));
+      }
+      out.push(dx, dy);
+    }
+    return out;
+  }
+
+  const influenceCount = (doc: JsonObject) => {
+    const data = meshOf(doc)["vertices"] as number[];
+    let total = 0;
+    for (let c = 0, v = 0; v < (meshOf(doc)["uvs"] as number[]).length / 2; v++) {
+      const n = data[c] as number;
+      total += n;
+      c += 1 + n * 4;
+    }
+    return total;
+  };
+
+  it("weighted mesh + deform: the posed vertices are the skinned rest plus the weighted bone-space delta", () => {
+    const base = docWith(fixture, null);
+    const deform = pattern(influenceCount(base) * 2, 5);
+    const rest = posed(base);
+    const withDeform = posed(docWith(fixture, deform));
+    const delta = expectedDelta(base, deform);
+    expect(delta.some((value) => Math.abs(value) > 0.1)).toBe(true);
+    for (let i = 0; i < rest.length; i++) expect(Math.abs((withDeform[i] as number) - (rest[i] as number) - (delta[i] as number))).toBeLessThan(1e-3);
+  });
+
+  it("deform after a weights.table layout remap keeps every vertex where it was", () => {
+    const base = docWith(fixture, null);
+    const deform = pattern(influenceCount(base) * 2, 9);
+    const doc = docWith(fixture, deform);
+    // Vertex 0 gains a third bone and vertex 2 drops to one, so the influence layout changes.
+    const columns = ["hips", "chest", "head"];
+    const mesh0 = meshOf(doc);
+    const data = mesh0["vertices"] as number[];
+    const rows: number[][] = [];
+    for (let c = 0, v = 0; v < 10; v++) {
+      const n = data[c++] as number;
+      const row = [0, 0, 0];
+      for (let k = 0; k < n; k++, c += 4) row[columns.indexOf((mesh0["bones"] as string[])[data[c] as number] as string)] = data[c + 3] as number;
+      rows.push(row);
+    }
+    rows[0] = [0.5, 0.3, 0.2];
+    rows[2] = [0, 1, 0];
+    const after = applyCommand(doc, { op: "weights.table", ...torso, influences: columns, weights: rows.flat() }).doc as JsonObject;
+    expect(influenceCount(after)).not.toBe(influenceCount(doc));
+    const before = posed(doc);
+    const now = posed(after);
+    // A changed weight moves the rest pose of the vertices it touches; the command keeps rest positions, so posing must agree.
+    for (let i = 0; i < before.length; i++) expect(Math.abs((now[i] as number) - (before[i] as number))).toBeLessThan(1e-2);
+  });
+
+  it("deform after a mesh.edit vertex insert keeps the old vertices and leaves the new one undeformed", () => {
+    const doc = docWith(fixture, pattern(influenceCount(docWith(fixture, null)) * 2, 3));
+    const uvs = meshOf(doc)["uvs"] as number[];
+    const points = [...uvs.map((u, i) => (i % 2 === 0 ? u * 60 : u * 120)), 30, 60];
+    const triangles = (meshOf(doc)["triangles"] as number[]).slice();
+    const after = applyCommand(doc, { op: "mesh.edit", ...torso, points, triangles, hull: 10, origin: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1] }).doc as JsonObject;
+    const before = posed(doc);
+    const now = posed(after);
+    for (let i = 0; i < before.length; i++) expect(Math.abs((now[i] as number) - (before[i] as number))).toBeLessThan(1e-2);
+    expect(now.length).toBe(before.length + 2);
   });
 });

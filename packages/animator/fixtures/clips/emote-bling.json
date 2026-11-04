@@ -1,6 +1,6 @@
 {
  "name": "emote_bling",
- "about": "Front-view chibi dance emote, 3 sections on the reference timeline: A low paddle sweep (0-2.0 s), B chest hand-roll (2.0-3.2 s), C knee lift, kick back, hands to the chin (3.2-3.97 s), settling into A at the loop. Elbows never fold outward (owner rule 1, step 1, 2026-10-16: pose limit elbow_never_outward): forearm keys lowered where the arm is below horizontal.",
+ "about": "Front-view chibi dance emote, 3 sections on the reference timeline: A low paddle sweep (0-2.0 s), B chest hand-roll (2.0-3.2 s), C knee lift, kick back, hands to the chin (3.2-3.97 s), settling into A at the loop. Elbows never fold outward (pose rule 1, step 1, 2026-10-16: pose limit elbow_never_outward): forearm keys lowered where the arm is below horizontal.",
  "bpm": 136,
  "beats": 9,
  "fps": 30,

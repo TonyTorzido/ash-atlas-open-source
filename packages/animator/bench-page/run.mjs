@@ -1,4 +1,4 @@
-// Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+// Atlas Animator: original implementation.
 //
 // Runs the built phone bench headless in Chromium (hardware GPU via ANGLE when available) and
 // writes the result JSON. The page is served (routed, no network) under the strict CSP of an

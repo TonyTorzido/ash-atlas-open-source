@@ -1,5 +1,5 @@
-# Atlas Animator turned-front, round 2 (2026-10-19): a FACE and HAIR on the turned head, turned by one general rule.
-# Deterministic. docs/plans/atlas-animator-demos/views/turned-front/round2/README.md.
+# Atlas Animator turned-front, (2026-10-19): a FACE and HAIR on the turned head, turned by one general rule.
+# Deterministic, no image generation. packages/animator/README.md.
 #
 #   python scripts/views/turnfront_face.py <rig.anim.json> <out dir> <out stem> --deg 15
 #       --eyes almond-calm --brows almond-calm --nose none --mouth smile-line --hair soldier-crop-hair
@@ -20,13 +20,13 @@
 # - Units -> canvas: the live body template is drawn with anchor (0.5, 1) at (0, offsetY) and scale 42 / 1448 x
 #   bodyTransforms.idle.scale, so one unit = 1 / (0.04786) canvas px and the egg head lands on the rig's head region.
 #
-# DEFAULT, round 2c (--face-mode project-clamped, owner 2026-10-19): round 2b with the projection's local horizontal
+# DEFAULT, (-face-mode project-clamped): with the projection's local horizontal
 # scale clamped to <= 1 per piece (project_piece: no feature ever widens; the far side keeps its foreshortening and
 # the anchor keeps the projection's shift) and the hair shift derived from the same projection at the fringe tip on
-# the axis (fringe_shift: R sin theta). Round 2b (--face-mode project, owner pick 2026-10-19): the face turns by the body angle and every face layer
+# the axis (fringe_shift: R sin theta).: the face turns by the body angle and every face layer
 # is warped column by column through the egg's surface (project_layer): x' = c + R sin(asin u - theta) per row, so the
 # features foreshorten by their position and the shift is the projection itself; the only darkening is the head's own
-# far-side crescent. The rule below is round 2 (--face-mode slide), kept so the round 2 evidence rebuilds.
+# far-side crescent. The rule below is (-face-mode slide), kept so the evidence rebuilds.
 #
 # The turn rule (per piece, from its anchor; the same for every eye / brow / nose / mouth / hair option):
 # - The face turns by PHI = FACE_GAIN x theta (the head leads the body; 15 -> 30 deg, 20 -> 40 deg) on a sphere fitted
@@ -76,19 +76,19 @@ FAR_NARROW, FAR_DARK, MOUTH_NARROW = 0.36, 0.22, 0.25
 EDGE_MARGIN = 16  # canvas px kept between the far eye/brow and the egg's outer edge (the outline is ~10 px)
 MIN_GAP, FAR_MIN_K = 0.45, 0.62  # far-to-near eye gap kept (x the drawn gap); the far eye's narrowest squeeze
 HAIR_SHIFT = 0.8
-PROJECT_GAIN = 1.0  # round 2b: the face turns with the body (owner: same angle, projected, not slid)
-# refine P6 (owner 2026-10-19): "those eyes are just too wide ... in general too wide for all models". Every eye style
+PROJECT_GAIN = 1.0  #: the face turns with the body
+# refine P6: "those eyes are just too wide ... in general too wide for all models". Every eye style
 # is narrowed about each eye's own centre by EYE_WIDTH_DEFAULT unless the style sets its own EYE_WIDTH entry
 # (--eye-width overrides both). On the turned view the facing-side eye keeps >= EYE_CLEAR_TARGET x its straight-front
 # outer-corner clearance to the head silhouette (G11 fails under EYE_CLEAR_MIN).
-# Owner 2026-10-19 (later): picked the L15 100% width with the edge-clearance ease, so the default is back to 1.0
+# picked the L15 100% width with the edge-clearance ease, so the default is back to 1.0
 # (as drawn); the EYE_WIDTH table and --eye-width stay for per-style or one-off narrowing.
 EYE_WIDTH_DEFAULT = 1.0
 EYE_WIDTH: dict[str, float] = {}
-# Owner 2026-10-19: "for now no nose". nose = NO_NOSE (the default) leaves the nose layer empty, so the rig gets no nose
+# "for now no nose". nose = NO_NOSE (the default) leaves the nose layer empty, so the rig gets no nose
 # slot; any drawn nose style still works when chosen.
 NO_NOSE = "none"
-# Owner 2026-10-19 (later): "a little dash for nose, simple, not a dot". Procedural dash noses, no drawn art: one
+# "a little dash for nose, simple, not a dot". Procedural dash noses, no drawn art: one
 # anti-aliased stroke in the mouth line's own ink colour and weight (measured from the chosen mouth layer), tapered
 # soft ends, its box centred on the nose feature point (where the drawn noses' box centres land). Length in eye widths
 # (one eye's alpha > 0.16 box). In the rig's front frame the far / shading side is screen-left (FAR_DIR = -1): the
@@ -103,7 +103,7 @@ DASH_NOSES = {
 FAR_DIR = -1.0
 DASH_TAPER = 0.35  # stroke width at the tips, x the full weight (sin^0.5 ramp between)
 EYE_CLEAR_TARGET, EYE_CLEAR_MIN = 0.85, 0.70
-# refine P7 (owner 2026-10-19): eyes, brows, nose and mouth are separate swappable region slots on the head bone (in
+# refine P7: eyes, brows, nose and mouth are separate swappable region slots on the head bone (in
 # this draw order, the order the baked face pasted them), each warped as before; the blink swaps the eyes slot only.
 FACE_PARTS = ("eyes", "brows", "nose", "mouth")
 PIECE_PART = {"eye": "eyes", "brow": "brows", "nose": "nose", "mouth": "mouth"}
@@ -259,7 +259,7 @@ def split_halves(layer: np.ndarray, axis: float):
 
 
 def narrow_eyes(eyes: np.ndarray, axis: float, width: float) -> np.ndarray:
-    """Refine P6 (owner 2026-10-19: "those eyes are just too wide, even on the regular character"): each eye scaled
+    """Refine P6: each eye scaled
     horizontally by `width` about its own centre (the alpha > 0.16 box centre of its half of the layer). Height and
     the centre-to-centre spacing are kept. Runs on the front-frame layer, before the blink frames are built from it
     and before the projection, so the open and blink eyes match and the turn never widens them."""
@@ -616,7 +616,7 @@ def egg_row(rows, y):
 
 
 def project_layer(layer: np.ndarray, rows, phi: float) -> np.ndarray:
-    """Round 2b (owner, 2026-10-19): the layer painted on the egg's front surface and turned with the head by phi.
+    """: the layer painted on the egg's front surface and turned with the head by phi.
     Per canvas row the egg is a circle of its own centre c and half-width R (a surface of revolution about the head's
     vertical axis, depth = width): a texel at u = (x - c) / R sits at surface angle asin(u) and is seen at
     x' = c + R sin(asin(u) - phi). Inverse-mapped per output column (u = sin(asin(u') + phi)), bilinear in premultiplied
@@ -684,7 +684,7 @@ def project_report(layers, face, rows, axis, phi):
 
 
 def project_piece(layer: np.ndarray, rows, phi: float, anchor_x: float, ease: float = 0.0) -> np.ndarray:
-    """Round 2c (owner, 2026-10-19: "the eyes must NOT get wider"): the round 2b surface projection with its local
+    """: the  surface projection with its local
     horizontal scale clamped to <= 1. Per row the projection's slope is f'(u) = cos(asin u - phi) / sqrt(1 - u^2) (< 1
     toward the far limb, > 1 on the near side). The piece is anchored at anchor_x, which lands exactly where the
     projection puts it (c + R sin(asin u_a - phi): the position shift is the projection's), and the map is integrated
@@ -744,7 +744,7 @@ def project_clamped(layers, rows, axis, phi, anchors=None, eases=None, clear_min
     """Each piece (far/near eye, far/near brow, nose, mouth) through project_piece. Anchors: each eye's box centre;
     each brow uses its eye's anchor (brows ride their eyes); nose and mouth their box centres. Returns the face layer
     and per-piece box shift / width ratio.
-    Refine P6 (owner 2026-10-19: on the turned view the eye on the facing side sits too close to the head outline):
+    Refine P6:
     with clear_min set, an eye whose outer-corner clearance to the egg silhouette falls under clear_min x its own
     straight-front clearance is eased back toward the axis (whole px) until it clears; its brow takes the same ease.
     Only that eye moves, so the rest of the face keeps the full turn. eases = (far, near) px reuses a found ease (the
@@ -793,7 +793,7 @@ def project_clamped(layers, rows, axis, phi, anchors=None, eases=None, clear_min
 
 
 def fringe_shift(hair: np.ndarray, rows, axis: float, phi: float) -> tuple[float, int]:
-    """Round 2c hair shift from the same projection: the fringe/parting sits on the head's front at the axis (u = 0),
+    """ hair shift from the same projection: the fringe/parting sits on the head's front at the axis (u = 0),
     at the row where the hair over the face ends on the axis column (the fringe tip; the lowest opaque hair row inside
     the egg on that column). The projection moves u = 0 by R sin(phi) at that row's half-width R."""
     col = hair[:, int(round(axis)), 3]
@@ -858,7 +858,7 @@ def build(rig_path: Path, deg: float, combo: dict, hair_mode: str, face_mode: st
     pieces = [{"kind": "eye", "side": "far", "layer": ef}, {"kind": "eye", "side": "near", "layer": en},
               {"kind": "brow", "side": "far", "layer": bf, "follow": True}, {"kind": "brow", "side": "near", "layer": bn, "follow": True},
               {"kind": "nose", "side": "mid", "layer": layers["nose"]}, {"kind": "mouth", "side": "mid", "layer": layers["mouth"]}]
-    hair_phi = FACE_GAIN * theta  # the hair keeps the round-2 shift (owner: hair stays as is for now)
+    hair_phi = FACE_GAIN * theta  # the hair keeps the round-2 shift
     if face_mode == "slide":
         phi_target = FACE_GAIN * theta
         phi = phi_target
@@ -916,7 +916,7 @@ def build(rig_path: Path, deg: float, combo: dict, hair_mode: str, face_mode: st
     hair_s, fringe_row = 0.0, None
     if deg and hair_mode != "none":
         fixed = None
-        if face_mode == "project-clamped":  # round 2c: the hair shift from the face's own projection
+        if face_mode == "project-clamped":  #: the hair shift from the face's own projection
             fixed, fringe_row = fringe_shift(hair, rows, axis, theta * PROJECT_GAIN)
         lock_row = max(rows, key=lambda yy: rows[yy][1])
         hair, hair_s = hair_warp(hair, axis, egg_half, hair_phi, ALPHA_PER_SIN * math.sin(theta), fixed, lock_row)
@@ -1013,7 +1013,7 @@ def main():
         ap.add_argument(f"--{k}", default=d)
     ap.add_argument("--hair-mode", choices=("shift", "flip", "none"), default="shift")
     ap.add_argument("--face-mode", choices=("project-clamped", "project", "slide"), default="project-clamped",
-                    help="project-clamped = round 2c (default: projected, never widens, hair shift from the projection); project = round 2b; slide = round 2")
+                    help="project-clamped =  (default: projected, never widens, hair shift from the projection); project =; slide = ")
     ap.add_argument("--mirror-inputs", action="store_true", help="mirror face and hair about the head axis before the turn")
     ap.add_argument("--blink", action="store_true",
                     help="refine P3: add face_blink_half / face_blink_closed to the face slot and the idle blink keys")

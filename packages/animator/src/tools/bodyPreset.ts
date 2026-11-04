@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Body presets (plan 4d-4i). Everything a body template knows that library code must not: vertex
+ * Body presets. Everything a body template knows that library code must not: vertex
  * budgets, chain budgets, bend caps and review poses. Library code (validator, review poses, CLI)
  * reads these from a preset or from the document's own `budgets` block, never from template bone
  * names. The humanoid is the first implementation (humanoid.ts, HUMANOID_BODY); a mob declares its
@@ -20,7 +20,7 @@ export interface ChainBudget {
 }
 
 /**
- * A close-up review crop of the body (plan 4d-4j): canvas coordinates belong to the preset, not
+ * A close-up review crop of the body: canvas coordinates belong to the preset, not
  * to the CLI. `frame` takes the document canvas and returns the crop in canvas pixels.
  */
 export interface ReviewCrop {

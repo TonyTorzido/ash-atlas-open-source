@@ -1,8 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4n, construction pass 1 (docs/plans/research/garment-construction.md, sections 2
- * and 5): a fitted garment is ONE body-derived surface.
+ * Plan, construction pass 1: a fitted garment is ONE body-derived surface.
  * - Domain: declared in body material coordinates (body triangle id + barycentric weights), apart
  *   from the art and the generated garment: the covered draw groups, the cut lines (neckline, cuffs,
  *   hem) as ordered material polylines with the groups they cut, one seed per group on the covered
@@ -52,13 +51,13 @@ export interface GarmentCut {
    * The slot drawn over the opening (the head over a neckline). The outline strokes ending at this
    * cut (and, for a stroked cut, its own stroke's ends) also get a short end piece drawn just above
    * that slot, so the line reaches the overlapping part's own ink instead of stopping under its
-   * opaque stub (round 6). Resolved per cut.
+   * opaque stub. Resolved per cut.
    */
   endsAbove?: string;
   /**
    * Whether the cut's boundary gets a runtime stroke (default: every kind). An unstroked cut keeps
-   * the art's own painted edge ink. Round 3 left necklines unstroked (the art's thin line); round 9
-   * (owner): a fitted garment's neckline closes with its own runtime outline in the item stroke
+   * the art's own painted edge ink. left necklines unstroked (the art's thin line); 
+   * a fitted garment's neckline closes with its own runtime outline in the item stroke
    * colour, drawn inside the garment (see `inset`), and the art's painted neckline ink is repainted.
    */
   stroke?: boolean;
@@ -109,7 +108,7 @@ export interface GarmentDomain {
    * px of rest boundary arc (smoothstep). Recorded from the art (`deriveCutDetails`), bounded.
    */
   details?: { cut: string; end: 0 | 1; extra: number; length: number }[];
-  /** The garment's own outline (owner review 4d-4n): rrggbbaa; default DEFAULT_GARMENT_STROKE. */
+  /** The garment's own outline: rrggbbaa; default DEFAULT_GARMENT_STROKE. */
   stroke?: { color: string };
   /**
    * Template type (swag-rules/STYLE.md): "simple" (default: thin, hugs the body) or "medium" (bulky, padded:
@@ -120,7 +119,7 @@ export interface GarmentDomain {
   bulk?: Partial<MediumBulk>;
   source?: Record<string, unknown>;
   /**
-   * Seam-darkness check config (scripts/polish-seam-ink.py check --domain, round 20c; not read by the importer):
+   * Seam-darkness check config (scripts/polish-seam-ink.py check --domain, not read by the importer):
    * the item's outline `ink` and its materials by nominal base colour. "dark" = a material whose own pattern is
    * dark line work (mail rings, lamellar/laminar plate rows): read in the default mode (luminance > 60); "plain"
    * (cloth, leather, lacquer) = read with the ink override, so near-black plain fabric is still measured.
@@ -129,7 +128,7 @@ export interface GarmentDomain {
 }
 
 /**
- * Medium template construction (round 17), canvas px. The full `margin` holds on the free outline; near a
+ * Medium template construction, canvas px. The full `margin` holds on the free outline; near a
  * neckline end the margin ramps from `neckMargin` (the simple margin: the collar corner stays a clean corner,
  * no step up into the neck) and beside each underarm fold apex from `gapMargin` (the arm/torso gap and the
  * armpit stay as open as on the simple template, in every pose), each over `*Ramp` px of rest arc
@@ -184,24 +183,24 @@ export interface SkinData {
  * most TAPER_SLOPE px per px of rest arc (a bounded, smooth taper; JOIN_TAPER = 1 / slope in d).
  */
 export const GAP_CLEAR = 1.5;
-/** Neckline end pieces drawn above the overlapping slot (round 6): points kept, prolongation (px). */
+/** Neckline end pieces drawn above the overlapping slot: points kept, prolongation (px). */
 export const TUCK_POINTS = 3;
 export const TUCK_EXTEND = 4;
 /** contourGate: px past half the stroke width an inset (geometric) stroke may lie from the edges it strokes. */
 export const INSET_GATE_TOL = 0.5;
 /**
- * Bound on a bounded join's offset deviation (game px, review #6): a join is where the offset is
+ * Bound on a bounded join's offset deviation: a join is where the offset is
  * miter-limited or reversed, so it may leave the nominal curve, but by at most half a game pixel.
  */
 export const JOIN_DEV_MAX_GAME_PX = 0.5;
 /** Construction: canvas px within which a cut point or a mesh corner counts as lying on an edge / the cut. */
 export const ON_EDGE_EPS = 1e-6;
-/** Outline smoothing (round 6): Laplacian half steps on the untapered margins, and their bounds in m. */
+/** Outline smoothing: Laplacian half steps on the untapered margins, and their bounds in m. */
 export const OUTLINE_SMOOTH_ITERS = 12;
 export const OUTLINE_SMOOTH_MIN = 0.6;
 export const OUTLINE_SMOOTH_MAX = 1.5;
 /**
- * The declared wedge of a protected gap (owner review 4d-4n round 4, option B): only anchors within
+ * The declared wedge of a protected gap: only anchors within
  * this rest arc (canvas px) of the gap's apex (the partition at the bottom of the slit) are capped
  * by their clearance (0: the apex anchors only), then GAP_TAPER_SLOPE spreads the cap along the run.
  * Beyond it the full margin holds, so the sleeve underside keeps a constant margin in every pose
@@ -211,7 +210,7 @@ export const GAP_WEDGE_ARC = 8;
 /**
  * Slope of the gap taper (px of margin per px of rest arc). Steep: the rest arc beside the underarm
  * apex is compressed (the upper-arm underside is ~30 px at rest and ~120 px in a raise or flex), so a
- * gentle rest slope would taper the whole stretched underside (the flex pouch, owner review 3).
+ * gentle rest slope would taper the whole stretched underside.
  */
 export const GAP_TAPER_SLOPE = 0.5;
 export const TAPER_SLOPE = 0.25;
@@ -283,7 +282,7 @@ export function materialRest(sd: { P: Pt[]; T: number[] }, mp: MaterialPoint): P
 }
 
 /**
- * A longer hem (owner review 4d-4n round 3): the domain with each hem cut moved `dy` canvas px down
+ * A longer hem: the domain with each hem cut moved `dy` canvas px down
  * the body's material. Every point is re-resolved on the cut's groups at its moved rest position; the
  * two ends are walked along the cut to the groups' boundary (outward while inside, inward while
  * outside), so the cut still crosses the body cleanly. Throws when a moved point leaves the groups.
@@ -294,7 +293,7 @@ export function lengthenHemDomain(raw: any, domain: GarmentDomain, dy: number): 
 }
 
 /**
- * Where a fitted garment's neckline sits (owner review 4d-4n round 9): canvas px the neckline cut is
+ * Where a fitted garment's neckline sits: canvas px the neckline cut is
  * lowered from the art's top edge before the build (moveCutsDomain), so the runtime neckline stroke
  * sits a little lower on the neck with clean skin between the chin and the collar.
  */
@@ -887,10 +886,9 @@ export function buildGarmentSurface(raw: any, domain: GarmentDomain, opts: Garme
         const c = Math.min(clear.get(x) ?? Infinity, ...[-1, 1].map((k) => { const y = nbr(x, k); return y ? (clear.get(y) ?? Infinity) : Infinity; }));
         // a fold apex facing a fold (finite clearance) closes on the body (margin 0): the cell across
         // the partition joins the arm and the torso, whose anchors part in a raise, so a margin there
-        // folds the cell over (owner review 4d-4n round 5: the right apex kept 0.99 px and its strip
-        // triangle flipped in every raised pose; the left apex had closed through its clearance)
+        // folds the cell over
         // (only across a narrow slit, one that cannot hold both margins: a shoulder-top partition
-        // faces open space far off and keeps its margin; round 6, it had closed into a notch)
+        // faces open space far off and keeps its margin; it had closed into a notch)
         clear.set(x, c < 2 * d + 1 + GAP_CLEAR ? 0 : c);
       }
       const apexArc = (x: (typeof pts)[number]) => Math.min(Infinity, ...apexes.filter((y) => y.run === x.run).map((y) => Math.abs(y.s - x.s)));
@@ -958,7 +956,7 @@ export function buildGarmentSurface(raw: any, domain: GarmentDomain, opts: Garme
       run.dAt = run.anchors.map((_, i) => run.d * (1 + detailAt(run, arc, i) / d));
     }
     clearanceTaper();
-    // smooth outline (owner review 4d-4n round 6: "why so many creases on shoulder?"): the body
+    // smooth outline: the body
     // boundary is a sampled mesh edge with small kinks (turns of +-30 degrees between 5 px vertices)
     // that a uniform offset reproduces as scallops, where the body's own outline (a coarser contour)
     // reads smooth. The untapered margins of each run are relaxed toward the Laplacian of the offset
@@ -1132,7 +1130,7 @@ export function buildGarmentSurface(raw: any, domain: GarmentDomain, opts: Garme
       const under = slots.map((x) => x.name as string).filter((h) => { const i = sd.slotIndex.get(h) ?? -1; return i > (sd.slotIndex.get(g) ?? 0) && i < firstLimb; }).sort((a, b) => (sd.slotIndex.get(b) ?? 0) - (sd.slotIndex.get(a) ?? 0))[0];
       if (under) after = under;
     } else if (domain.cuts.some((c) => c.kind === "cuff" && c.groups.includes(g))) {
-      // round 22 (owner: "the jackets/shirt don't go all the way to the hand"): a cuffed sleeve draws over the
+      //: a cuffed sleeve draws over the
       // extremity hanging off its limb bone (the fist region, which carries the wrist above the dip), so the hem
       // overlaps the wrist and the hand comes out from under it; the cuff cut sits on the wrist dip (tools/cuffGap.ts)
       const bone = slots.find((s) => s.name === g)?.bone as string | undefined;
@@ -1154,7 +1152,7 @@ export function buildGarmentSurface(raw: any, domain: GarmentDomain, opts: Garme
 
   // --- outlines: runs along the outer vertices, cuts from outer end to outer end; split by group
   const contours: Record<string, Record<string, any>> = {};
-  // trimAtOutline (armour round 14): a later plate (the head, a fist, a pauldron) trims these strokes only
+  // trimAtOutline (armour): a later plate (the head, a fist, a pauldron) trims these strokes only
   // where their centreline is under its opaque outline, never half a width outside it: the fabric reaches the
   // centreline, so a stroke trimmed there left bare fabric against the background (the cuff corner nick)
   const style = { width: strokeW, color: opts.strokeColor ?? domain.stroke?.color ?? DEFAULT_GARMENT_STROKE, caps: "round", trimAtOutline: true };
@@ -1265,9 +1263,9 @@ export function buildGarmentSurface(raw: any, domain: GarmentDomain, opts: Garme
     });
     // a run stroke ending at an unstroked cut is prolonged one stroke width along its end tangent, so
     // it tucks under what overlaps the opening (the head's outline) on both sides instead of stopping
-    // short of it (owner review 4d-4n round 6: a gap on the left neck). Each stroke end at a cut with
+    // short of it. Each stroke end at a cut with
     // `endsAbove` (resolved per cut: the cut its end vertex belongs to) also gets an end piece drawn
-    // just above that slot: at an unstroked cut the prolonged end; at a stroked cut (round 9: the
+    // just above that slot: at an unstroked cut the prolonged end; at a stroked cut (the
     // neckline) the strokes meeting at the chain end, so the corner under the overlapping part's
     // opaque stub still shows the line
     const tucks: [string, string, any][] = [];
@@ -1388,7 +1386,7 @@ export function correspondenceGate(raw: any, att: any, origin: Pt): { coreTriang
  * that distance of the path.
  */
 /**
- * Outline turn angle (plan 4d-4n notch gate): a zig-zag is two opposite turns within
+ * Outline turn angle (notch gate): a zig-zag is two opposite turns within
  * OUTLINE_ZIG_ARC canvas px of arc along a posed stroke (points closer than OUTLINE_ZIG_STEP merged);
  * its size is the smaller of the two turns, in degrees. The body's own outlines stay at or below
  * 37 degrees in every clip frame (the torso at the shoulder top on a raise); a garment outline may
@@ -1621,8 +1619,8 @@ export function garmentPoseMetrics(sk: Skeleton, build: GarmentBuild, domain: Ga
       const j = run.cyclic ? (i + 1) % k : i + 1;
       if (j >= k || joinAt[i] || joinAt[j]) return;
       // a cell closing on its anchor (margin 0: the fold apex, a sliver taper end) is a declared join,
-      // not a stretch of offset curve (round 5); its midpoint is measured against the join bound
-      // (item 7, round 5 had dropped these midpoints unmeasured)
+      // not a stretch of offset curve; its midpoint is measured against the join bound
+      //
       const apex = run.outer[i] === run.anchors[i] || run.outer[j] === run.anchors[j];
       const q = gp(run.outer[j] as number);
       const pm: Pt = [(gp(o)[0] + q[0]) / 2, (gp(o)[1] + q[1]) / 2];
@@ -1649,8 +1647,8 @@ export function garmentPoseMetrics(sk: Skeleton, build: GarmentBuild, domain: Ga
       return out;
     });
     // segments across the gap (consecutive anchors of one run on that side): the distance between
-    // two segments, 0 when they cross (review #6: endpoint distances miss crossing segments). The
-    // garment's clearance counts only pairs whose body clearance holds both margins (round 4, option
+    // two segments, 0 when they cross. The
+    // garment's clearance counts only pairs whose body clearance holds both margins (option
     // B: a narrower slit may overlap, the sleeve drawn over the torso); with no such pair the
     // verdict is the explicit "overlap", never an unmeasured pass
     type SidePt = { p: Pt; ri: number; s: number; i: number };
@@ -1687,7 +1685,7 @@ export function garmentPoseMetrics(sk: Skeleton, build: GarmentBuild, domain: Ga
 export const ARM_GAP_MIN = 2.5;
 
 /**
- * Arm/torso clearance of the posed garment (round 17, armGapEveryFrame): per protected gap, the smallest
+ * Arm/torso clearance of the posed garment (armGapEveryFrame): per protected gap, the smallest
  * distance between the garment's outer outline segments on the two sides, over the segment pairs whose
  * BODY clearance can hold the two local margins (|dAt| of each segment's anchors, + 1 + GAP_CLEAR); the
  * narrower rest slit is the declared overlap (sleeve over torso). Unlike the gaps of garmentPoseMetrics this
@@ -1735,7 +1733,7 @@ export function armGapClearance(sk: Skeleton, build: GarmentBuild, domain: Garme
 /** Half window of the silhouetteSmooth gate's local fit (canvas px of arc). */
 export const BUMP_SIGMA = 16;
 /**
- * Silhouette smoothness (round 17): the largest distance (canvas px) between the rest outer outline of each
+ * Silhouette smoothness: the largest distance (canvas px) between the rest outer outline of each
  * margin run and its own local quadratic fit (+-BUMP_SIGMA px of arc), run ends (2 windows) left out: the small
  * body bumps a padded garment must not follow. Rest positions from the build.
  */

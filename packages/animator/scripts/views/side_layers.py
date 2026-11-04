@@ -1,5 +1,5 @@
-# Atlas Animator multi-view, phase 2b (docs/plans/atlas-animator-views.md): the turned-side body separated into
-# preservation-first part layers, the front layered-parts pipeline's way (plan 4d-4k step A).
+# Atlas Animator multi-view, phase 2b (packages/animator/README.md): the turned-side body separated into
+# preservation-first part layers, the front layered-parts pipeline's way (step A).
 #
 #   npx tsx src/cli/animator.ts layers plan fixtures/canonical/body-side/body-side.png \
 #       --rig <side rig.anim.json> --parts fixtures/canonical/body-side/layers/side-layers.parts.json --out <plan dir>

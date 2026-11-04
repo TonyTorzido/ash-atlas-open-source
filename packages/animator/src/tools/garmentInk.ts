@@ -1,8 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Which art pixels are the garment's outline ink (the importer removes them and the engine draws its
- * own stroke). Owner rule: an outline may be any hue, as long as it is darker than the item. So the
+ * own stroke). pose rule: an outline may be any hue, as long as it is darker than the item. So the
  * ink is found by POSITION, never by a fixed colour family:
  * - the outline colour is learned from the art's own silhouette: the median of the opaque pixels
  *   2-4 px inside the alpha edge (the stroke core, the same ring the swag outlineContrast check reads);
@@ -61,7 +61,7 @@ export const INK_LINE_TOL = 30;
 export const MATERIAL_SPLIT = 40;
 /** How far (px) to look on each side of a line for its paint. */
 const SIDE_REACH = 14;
-/** Ink-like paint texels (not mask ink) a dark-material side must hold (round 21b). */
+/** Ink-like paint texels (not mask ink) a dark-material side must hold. */
 const DARK_SIDE_PAINT = 3;
 
 export const luminance = (r: number, g: number, b: number) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
@@ -113,8 +113,7 @@ export function artOutlineInk(art: RgbaImage, o: ArtInkOptions = {}): ArtInk {
 }
 
 /**
- * Trim lines run INTO the outline (owner review round 13: the belt's edge lines broke and faded within
- * ~20 px of the side outlines): band ink connected to a trim line component, deeper than the art's
+ * Trim lines run INTO the outline: band ink connected to a trim line component, deeper than the art's
  * outline stroke itself, is that trim line's end, not silhouette ink. The outline depth is the first
  * depth (px inside the alpha edge) where under half of the opaque pixels are band ink; the flood never
  * enters pixels at or above it, so it cannot run along the outline ring.
@@ -160,7 +159,7 @@ function markTrimLines(art: RgbaImage, ink: ArtInk, d: Float32Array, band: numbe
   const D = art.data;
   const interior = (i: number) => mask[i] === 1 && (d[i] as number) > band;
   const col = (i: number): Rgb => [D[i * 4] as number, D[i * 4 + 1] as number, D[i * 4 + 2] as number];
-  // (round 21b, Jade C belt end caps: a line edging a dark material whose paint is itself ink-like across the whole
+  // (Jade C belt end caps: a line edging a dark material whose paint is itself ink-like across the whole
   // reach, the belt's rounded end, found no settled paint on that side and never voted; its texels were removed
   // and refilled with the fabric, the belt's end read frayed. Ink and ink-like paint over the whole reach, all of it
   // past the silhouette band, is that dark material: its mean colour is the side's paint (a walk into the garment's
@@ -238,7 +237,7 @@ export function isOutlineInkColour(ink: ArtInk, r: number, g: number, b: number)
 /**
  * Ink-dark paint: within the band tolerance (INK_BAND_TOL) of the learned outline colour, i.e. the outline
  * itself, its antialiased blends and near-ink shading (a dark strap or baldric shade just outside the line
- * tolerance). The completion never refills removed ink from such paint (round 20, Jade C: two removed
+ * tolerance). The completion never refills removed ink from such paint (Jade C: two removed
  * strap-edge ink texels refilled from the near-ink baldric shade averaged back into the ink colour).
  */
 export function isInkDark(ink: ArtInk, r: number, g: number, b: number): boolean {

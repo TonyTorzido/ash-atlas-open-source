@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Browser image loading for the Pixi adapter: fetch PNGs, decode them to straight-alpha RGBA
  * bytes, and build part-image providers. Browser only (fetch, createImageBitmap, OffscreenCanvas).

@@ -15,7 +15,7 @@ import { failing, findingKey, rigHash, singularValues, type GeometryFinding } fr
 vi.setConfig({ testTimeout: 400_000, hookTimeout: 400_000 });
 
 /*
- * Plan 4d-4g, unified validator: `animator validate` and the surface gates run the same geometry
+ * Plan, unified validator: `animator validate` and the surface gates run the same geometry
  * evaluator on the same poses through the final runtime and emit the same finding IDs, on both
  * presets (a humanoid shoulder and a creature hip, data only), and both fail a deliberately wrong rig.
  */
@@ -110,7 +110,7 @@ describe.each(["template7-shoulder", "creature-leg"])("unified validator: %s", (
   });
 });
 
-describe("rigHash normalizes (4d-4l review 3)", () => {
+describe("rigHash normalizes", () => {
   it("a raw document and its loaded form hash alike", async () => {
     const { readFileSync } = await import("node:fs");
     const { loadAnimDocument } = await import("../core/formatLoader.js");

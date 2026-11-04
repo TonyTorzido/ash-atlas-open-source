@@ -1,4 +1,4 @@
-# Round 22 (owner: "the jackets/shirt don't go all the way to the hand"): deterministic cuff extension of existing
+#: deterministic cuff extension of existing
 # garment art (or a template allowed mask) after scripts/cuff-to-wrist.ts moved the domain's forearm cuff cuts onto
 # the wrist dip (source.cuffToWrist.moved: the art's old cut `from`, the new cut `to`).
 # Per arm, in the frame of the new cut (v across it, u down the forearm, u = 0 on the new cut), per sleeve column:

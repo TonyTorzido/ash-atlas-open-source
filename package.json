@@ -12,6 +12,7 @@
     "dev": "concurrently -n server,client -c blue,green \"pnpm dev:server\" \"pnpm dev:client\"",
     "dev:server": "pnpm --filter @ash-atlas/server dev",
     "dev:client": "pnpm --filter @ash-atlas/client dev",
+    "animator:verify": "pnpm --filter @ash-atlas/animator-editor verify",
     "appearance:studio": "pnpm --filter @ash-atlas/appearance-studio dev",
     "appearance:studio:build": "pnpm --filter @ash-atlas/appearance-studio build",
     "appearance:studio:desktop": "pnpm --filter @ash-atlas/appearance-studio desktop:package",

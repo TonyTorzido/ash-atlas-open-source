@@ -1,8 +1,8 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Rigid extremity joins for a rig document (the arm layer's fists; the same construction as the
- * full-body assembler's round 4/5/8 extremities in cli/legsBody.ts, here on any anim document):
+ * full-body assembler's /5/8 extremities in cli/legsBody.ts, here on any anim document):
  * - limb strokes whose setup points lie under the region's keep polygon are split there (no stroke
  *   end can peek out from under the fist in motion);
  * - the region gets a runtime outline: one bone-bound open contour from one cut stroke end around
@@ -214,7 +214,7 @@ export function joinExtremities(doc: Record<string, any>, textures: Map<string, 
         return Math.hypot(x - a[0] - dx * u, y - a[1] - dy * u) < (half + 1) / texScale;
       });
     // The wrist chord (between the two cut ends): the art's wrist stub past it, on the limb's side,
-    // is the forearm's skin, not the fist's (owner review: a tan wedge above the fist). Cleared beyond
+    // is the forearm's skin, not the fist's. Cleared beyond
     // OVERLAP px, so the region overlaps the limb only that much.
     const ch0 = ti[0];
     const ch1 = ti[1];

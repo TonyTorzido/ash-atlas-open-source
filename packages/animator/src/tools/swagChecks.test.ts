@@ -123,7 +123,7 @@ describe("swag checks", () => {
     expect(checkPaintOutsideAllowed(edge, ctx).metrics.outsidePx).toBe((checkPaintOutsideAllowed(good, ctx).metrics.outsidePx as number) + 240);
   });
 
-  it("paint outside the allowed area: passes where the owner declared an overflow zone", () => {
+  it("paint outside the allowed area: passes where the user declared an overflow zone", () => {
     const wide = clone(good);
     rect(wide, 250, 760, 80, 100, [44, 44, 52, 255]);
     const zone = new Uint8Array(ctx.overflow);

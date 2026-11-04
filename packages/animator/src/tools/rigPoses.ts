@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Rig-agnostic review poses (plan 4d-4i). The validator's geometry and tears checks pose the rig
+ * Rig-agnostic review poses. The validator's geometry and tears checks pose the rig
  * from the rig itself, never from a template's bone names:
  *
  * - roles: each deforming bone gets a semantic role, declared (`role` on the bone, inherited by
@@ -40,9 +40,9 @@ export interface RigChain {
   members: string[];
   /** The chain this one is twinned with (index into the chain list), if any. */
   twin?: number;
-  /** Authoring chain id (plan 4d-4j2), when the chain is declared rather than inferred. */
+  /** Authoring chain id, when the chain is declared rather than inferred. */
   id?: string;
-  /** Plan 4d-4j3: inferred for bones no declared chain covers (declared chains exist). */
+  /** Plan: inferred for bones no declared chain covers (declared chains exist). */
   fallback?: boolean;
 }
 
@@ -56,8 +56,8 @@ export interface RigRoles {
 }
 
 export function inferRoles(doc: AnimDocument): RigRoles {
-  // Plan 4d-4j2: declared chains (the authoring block) replace inference for the bones they cover.
-  // Plan 4d-4j3: the deforming bones (and the posed bones between them) that no declared chain
+  // Plan: declared chains (the authoring block) replace inference for the bones they cover.
+  // Plan: the deforming bones (and the posed bones between them) that no declared chain
   // covers still get inferred chains, marked `fallback`, so a partial declaration never silently
   // drops a moving bone from the review poses; validateAuthoring warns about them.
   const declaredChains = authoringChains(doc);
@@ -128,7 +128,7 @@ function inferFromSkeleton(doc: AnimDocument): RigRoles {
   };
   const boneLength = (name: string) => doc.bones.find((b) => b.name === name)?.length ?? 0;
 
-  // Plan 4d-4j2: every relevant root tree gets its own chains (largest first, ties by name), not
+  // Plan: every relevant root tree gets its own chains (largest first, ties by name), not
   // only the largest; non-deforming bones between deforming ones are chain members (posed), only a
   // non-deforming single-child run at the very top of a tree (it turns the tree rigidly) is skipped.
   const roots = doc.bones
@@ -161,7 +161,7 @@ function inferFromSkeleton(doc: AnimDocument): RigRoles {
         for (let node: string | undefined = child; node !== undefined; node = [...kids(node)].sort((a, b) => subtree(b).length - subtree(a).length)[0]) path.push(node);
         return path;
       };
-      // Plan 4d-4j: the spine ends at the last hub carrying a twin pair of 2+-bone chains (two
+      // Plan: the spine ends at the last hub carrying a twin pair of 2+-bone chains (two
       // chains of the same bone count; lengths may differ, as near and far legs drawn in
       // perspective do); everything beyond it is the head chain, its side branches
       // (ears, horns) members of it. A bone on the walked spine that declares role "head" cuts the
@@ -358,7 +358,7 @@ export function rigPoses(doc: AnimDocument, options: RigPoseOptions = {}): Revie
         add(`${role} depth ${d} max`, at(bones, 1));
         add(`${role} depth ${d} min`, at(bones, 0));
       }
-      // Plan 4d-4j2: side branches (ears off a head, a dewclaw off a leg) are chain members off
+      // Plan: side branches (ears off a head, a dewclaw off a leg) are chain members off
       // the main path; the caps scale them with the path, so each also gets its own endpoint
       // probes: the s-th side bone of every chain of the role, one bone per chain per pose (a
       // single moving bone is never capped), so every eligible bone reaches both of its limits.
@@ -386,7 +386,7 @@ export function rigPoses(doc: AnimDocument, options: RigPoseOptions = {}): Revie
   });
   add("stride", stride);
   // Declared chains are each tested alone too (eight legs off one hub move independently), and so
-  // are the fallback chains inferred beside them (plan 4d-4j3), named as fallback.
+  // are the fallback chains inferred beside them, named as fallback.
   for (const chain of chains) {
     const label = chain.id !== undefined ? `chain ${chain.id}` : chain.fallback ? `fallback chain ${chain.path[0] ?? chain.members[0]}` : undefined;
     if (label === undefined) continue;
@@ -394,7 +394,7 @@ export function rigPoses(doc: AnimDocument, options: RigPoseOptions = {}): Revie
     add(`${label} min`, at(chain.members, 0));
   }
   for (const probe of authoringProbes(doc)) poses.push(probe);
-  // Plan 4d-4m r3 (owner decision): with IK constraints, generated poses run with IK released
+  // Plan r3: with IK constraints, generated poses run with IK released
   // (pure FK), plus one small IK-held lean each way (+-5 deg on the first bone of the spine curl).
   if (doc.ik.length) {
     for (const p of poses) p.ikMix ??= 0;

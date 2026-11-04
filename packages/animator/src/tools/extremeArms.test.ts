@@ -9,8 +9,7 @@ import { texturesFromAtlas } from "./validate.js";
 import { outsideDistance } from "./liveLimits.js";
 
 /*
- * Extreme-arm outline gate (plan 4d-4n round 8, owner review of the Bling emote: wrist outline
- * breaks and elbow crease steps and specks at strong bends; review #4). The committed bare
+ * Extreme-arm outline gate. The committed bare
  * body must carry the round-8 runtime contour joins (two per hand) and the elbow handover
  * (`coverFrom`). It is posed with BOTH arms at once at every min / mid / max combination of the
  * declared upper arm x forearm x hand limits (the same combination on both sides) and at EVERY frame
@@ -35,7 +34,7 @@ import { outsideDistance } from "./liveLimits.js";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 /** The committed body (EXTREME_ARMS_RIG: another rig folder, e.g. a rebuild before it is committed). */
-const RIG = process.env.EXTREME_ARMS_RIG ? pathToFileURL(`${process.env.EXTREME_ARMS_RIG.replace(/[\\/]$/, "")}/`) : new URL("../../../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/", import.meta.url);
+const RIG = process.env.EXTREME_ARMS_RIG ? pathToFileURL(`${process.env.EXTREME_ARMS_RIG.replace(/[\\/]$/, "")}/`) : new URL("../../fixtures/test-rigs/body/", import.meta.url);
 const STROKE = 10;
 const WIDTH_SLACK = 1;
 const SPUR_SLACK = 3;
@@ -79,7 +78,7 @@ function limitPoses(raw: RawDoc): Pose[] {
       values[`hand_${side}`] = h as number;
       label.push(`${side} u${u} f${f} h${h}`);
     }
-    // Owner rule 1 (elbows never fold outward): corner/midpoint combinations outside the body's
+    // pose rule 1 (elbows never fold outward): corner/midpoint combinations outside the body's
     // elbow_never_outward limits (e.g. raise -15 with the elbow at 35/70) are not reachable poses.
     if (!elbowRuleOk(raw, values)) continue;
     poses.push({ label: label.join(" | "), values });
@@ -324,7 +323,7 @@ function copyFrame(F: Frame): Frame {
   return { ...F, slots: F.slots.slice(), ink: F.ink.slice(), luma: F.luma.slice() };
 }
 
-describe("extreme arms: one outline through elbow and wrist at every declared angle (plan 4d-4n round 8)", () => {
+describe("extreme arms: one outline through elbow and wrist at every declared angle ()", () => {
   const { raw, sk, textures } = load();
   const run = (poses: Pose[]) => {
     const bad: string[] = [];
@@ -359,8 +358,7 @@ describe("extreme arms: one outline through elbow and wrist at every declared an
   }, 300_000);
 
   /**
-   * Known issue (decision 2026-10-16, plan 4d-4n round 8 debt; docs/plans/research/
-   * extreme-arms rounds 8b-8d): at Bling f85 the right fist outline's end lies outside the
+   * Known issue: at Bling f85 the right fist outline's end lies outside the
    * forearm line and the join redraws it inward, exposing one fist-skin pixel past the stroke. The fix
    * (a pose-dependent fist clip) is deferred. Exactly this finding is expected: the test fails if it
    * grows past 1 px, if it disappears (clean this list up), or if any other finding appears.
@@ -461,8 +459,7 @@ describe("extreme arms: one outline through elbow and wrist at every declared an
 });
 
 /*
- * Armpit ticks (plan 4d-4n round 9, owner review: elbow-direction sheet rows 2-3, column A: small dark
- * ticks in the tank's side line where the arm meets the torso, upper arm 16-61). The DRESSED body is
+ * Armpit ticks. The DRESSED body is
  * posed with both arms at those raises (forearm 35, and 24 / 62 where the armpit triangles stretch
  * most) and rendered on the CPU with ids. Within ARMPIT px of each armpit junction (the tank armhole
  * contour's point at the torso's armpit corner), no pixel of a tank slot may be texture ink darker
@@ -475,7 +472,7 @@ describe("extreme arms: one outline through elbow and wrist at every declared an
 const ARMPIT = 30;
 const ARMPIT_POSES: [number, number][] = [[16, 35], [24, 62], [40, 35], [61, 35]];
 
-describe("armpit ticks on the dressed body (plan 4d-4n round 9)", () => {
+describe("armpit ticks on the dressed body ()", () => {
   const raw = JSON.parse(readFileSync(new URL("template7-shoulder-legs.anim.json", RIG), "utf8")) as RawDoc;
   const pack = atlasPackSchema.parse(JSON.parse(readFileSync(new URL("template7-shoulder-legs.atlas.json", RIG), "utf8")));
   const textures = texturesFromAtlas(pack, new Map(pack.pages.map((p) => [p.file, readPng(fileURLToPath(new URL(p.file, RIG)))] as const)));

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Held-item swag (swag-rules/STYLE.md, held-item): a weapon or tool held in one fist. Like the hard
  * plate it is NOT built from the body surface: it is one rigid region on a grip bone, a child of the

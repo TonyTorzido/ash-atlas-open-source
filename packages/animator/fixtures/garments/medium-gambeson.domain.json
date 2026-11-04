@@ -578,7 +578,7 @@
   "color": "1f2430ff"
  },
  "source": {
-  "from": "fixtures/garments/stock-cloth.domain.json (= kungfu-jacket, long cuff), copied verbatim (round 17 medium template): identical body cuts, seeds, gaps and details; changed name, template (medium), margin 11 (simple 4.5) and stroke. bulk {} = MEDIUM_BULK_DEFAULTS (tools/garmentSurface.ts).",
+  "from": "fixtures/garments/stock-cloth.domain.json (= kungfu-jacket, long cuff), copied verbatim (medium template): identical body cuts, seeds, gaps and details; changed name, template (medium), margin 11 (simple 4.5) and stroke. bulk {} = MEDIUM_BULK_DEFAULTS (tools/garmentSurface.ts).",
   "cuffToWrist": {
    "rule": "scripts/cuff-to-wrist.ts: forearm cuff cuts on the bare wrist dip (tools/cuffGap.ts wristDip at rest, both arms at their average), square to the extremity bone, ends at the limb edge",
    "moved": [

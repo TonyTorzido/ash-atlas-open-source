@@ -101,7 +101,7 @@ describe("rig-agnostic review poses", () => {
     expect(poses.find((p) => p.name === "limb curl")?.rotate["fl_lower"]).toBe(45);
   });
 
-  it("every root tree gets chains, with its non-deforming controllers posed (plan 4d-4j2 item 4)", () => {
+  it("every root tree gets chains, with its non-deforming controllers posed (item 4)", () => {
     // A second, smaller root tree: a bare root, a non-deforming controller hub, two two-bone arms.
     const raw = quadruped() as unknown as { bones: Record<string, unknown>[]; slots: Record<string, unknown>[]; skins: { body: { attachments: Record<string, unknown> } } };
     raw.bones.push({ name: "prop_root" }, { name: "prop_ctrl", parent: "prop_root", length: 10 });
@@ -134,7 +134,7 @@ describe("rig-agnostic review poses", () => {
     expect(rigPoses(doc).length).toBeGreaterThan(4);
   });
 
-  describe("head chain (plan 4d-4j)", () => {
+  describe("head chain ()", () => {
     // The quadruped with two ear bones on the skull: the walked spine would run on through neck and
     // skull (the skull branches); it must end at the chest (the last hub with a twin pair of 2+-bone
     // chains) and neck + skull + ears become the head chain.
@@ -148,7 +148,7 @@ describe("rig-agnostic review poses", () => {
       return loadAnimDocument(doc as unknown as AnimDocumentInput);
     };
 
-    it("capped side branches reach their own limits (plan 4d-4j2 item 2)", () => {
+    it("capped side branches reach their own limits (item 2)", () => {
       // Head chain capped at 30 degrees; the ears are side members with +-80: the curl is scaled to
       // the cap, so they need their own endpoint probes.
       const doc = withEars({ ear_a: { limits: { min: -80, max: 80 } }, ear_b: { limits: { min: -80, max: 80 } } });

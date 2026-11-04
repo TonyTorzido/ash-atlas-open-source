@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * 2D affine math shared by the runtime. Conventions (atlas-anim@1):
  * - Positions are canvas pixels with y pointing down.

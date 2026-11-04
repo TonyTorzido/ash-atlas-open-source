@@ -55,7 +55,7 @@ function rig(animations: Clips, extra: Partial<Sections> = {}) {
         }
       }
     },
-    events: { hit: { int: 7, float: 0.5, string: "slash" }, step: {} },
+    events: { hit: { int: 7, float: 0.5, string: "slash", audio: "swing" }, step: {} },
     ...extra,
     animations
   });
@@ -416,7 +416,7 @@ describe("mixing", () => {
     expect(skeleton.getSlot("weapon").placeholder).toBeNull();
   });
 
-  it("changing discreteThreshold mid-crossfade changes the pose version (4d-4f review, held-pose cache)", () => {
+  it("changing discreteThreshold mid-crossfade changes the pose version (review, held-pose cache)", () => {
     const { state, step, skeleton } = setup({
       axe: { duration: 1, slots: { weapon: { attachment: [{ time: 0, name: "axe" }] } } },
       none: { duration: 1, slots: { weapon: { attachment: [{ time: 0, name: null }] } } }
@@ -625,7 +625,7 @@ describe("events and callbacks", () => {
     state.addListener({ event: (_entry, event) => events.push(event) });
     state.setAnimation(0, "attack");
     step(0.31);
-    expect(events).toEqual([{ name: "hit", time: 0.3, int: 7, float: 0.5, string: "slash" }]);
+    expect(events).toEqual([{ name: "hit", time: 0.3, int: 7, float: 0.5, string: "slash", audio: "swing" }]);
   });
 
   it("a non-looping clip completes once; replacing it interrupts and ends it; listeners may re-enter", () => {

@@ -1,9 +1,9 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The humanoid preset (plan 4.6 step 3): the 24-bone skeleton, its fit to a front-facing A-pose
  * figure on the template canvas, and its review poses. (The part cut that fed the retired raster
- * rig went in 4d-4j.)
+ * rig went in.)
  *
  * Fit ("preset plus a fit pass on the alpha"): the figure's alpha is read row by row. The neck is
  * the narrowest row below the head's widest row; the armpits are the first rows where the arms
@@ -11,8 +11,8 @@
  * principal axis of each free-hanging limb's pixels; wrists and ankles are the narrowest point of
  * the lower limb before the hand or foot widens. Proportions the alpha cannot show (where the
  * shoulder pivot sits, how far above the crotch the hips turn) are preset fractions, chosen so the
- * live template reproduces the approved pivots in the AtlasRig review
- * (docs/plans/atlas-rig.md on feature/atlas-rig--from-t1502): the upper arm turns about the outer
+ * live template reproduces the pivots approved in the AtlasRig review
+ * (packages/animator/README.md on feature/atlas-rig--from-t1502): the upper arm turns about the outer
  * top of the shoulder, raise 105 out and 15 in, elbow 70.
  *
  * Side naming follows the game's catalogue: `_l` is screen left (negative x), `_r` screen right.
@@ -584,7 +584,7 @@ export const HUMANOID_REVIEW_POSES: readonly ReviewPose[] = [
 ];
 
 /**
- * The humanoid body preset (plan 4d-4i, BodyPreset): its budgets (plan 4.7: body <= 260 vertices,
+ * The humanoid body preset (BodyPreset): its budgets (plan 4.7: body <= 260 vertices,
  * each swag item <= 40, 6 items worn, <= 500 dressed; Phase 4 chain budgets: a front-only chibi
  * shows at most 50 degrees root -> head and 190 chest -> hand) and its review poses. `animator rig`
  * writes the budgets into the document it builds.

@@ -1,6 +1,6 @@
-// Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+// Atlas Animator: original implementation.
 //
-// Builds the plan 4d-4f phone bench into ONE self-contained HTML file: the bench bundle (Pixi + the
+// Builds the phone bench into ONE self-contained HTML file: the bench bundle (Pixi + the
 // animator runtime, esbuild IIFE) and both rigs with their atlas pages (base64 data URLs) inline.
 // Usage: node packages/animator/bench-page/build.mjs [out.html]
 import { execSync } from "node:child_process";
@@ -44,7 +44,7 @@ const rigs = [
   rig(
     "sparse-shoulder",
     "Sparse template7 shoulder (runtime rig)",
-    "4d-4e sparse runtime rig: torso, tank (garment sandwich), one arm, head, 5 contours, correctives. Half a body: per-character numbers are a lower bound for a dressed body. Clips: raise_elbow70 looped, transition to elbow.",
+    " sparse runtime rig: torso, tank (garment sandwich), one arm, head, 5 contours, correctives. Half a body: per-character numbers are a lower bound for a dressed body. Clips: raise_elbow70 looped, transition to elbow.",
     join(demos, "phase-4d4e/rig/template7-shoulder.anim.json"),
     join(demos, "phase-4d4e/rig/template7-shoulder.atlas.json"),
     ["raise_elbow70", "elbow"],
@@ -147,7 +147,7 @@ body.running main { visibility: hidden; }
 <div id="hud"><div id="status">Starting</div><div id="track"><div id="bar"></div></div></div>
 <main>
 <h1>Animator phone bench</h1>
-<p class="sub">Phase 4d-4f. 50 and then 20 characters (20 = total animated actors, players plus mobs; ?count=N runs one count), 30 fps held frames, a 60 Hz display, production game scale (figure = ${140} game px) at this device's DPR. Two rigs, five scenarios each: synchronized, phased, moving crowd, repeated clip transitions and pinch-zoom. Keep the screen on and the page in front: a run with any gap over 250 ms or a hidden page is marked INVALID.</p>
+<p class="sub">Phase. 50 and then 20 characters (20 = total animated actors, players plus mobs; ?count=N runs one count), 30 fps held frames, a 60 Hz display, production game scale (figure = ${140} game px) at this device's DPR. Two rigs, five scenarios each: synchronized, phased, moving crowd, repeated clip transitions and pinch-zoom. Keep the screen on and the page in front: a run with any gap over 250 ms or a hidden page is marked INVALID.</p>
 <p id="pageStatus">Loading the bench script...</p>
 <noscript><p>This bench needs JavaScript.</p></noscript>
 <div id="errors" role="alert"></div>

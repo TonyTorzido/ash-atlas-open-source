@@ -38,7 +38,7 @@ describe("core module boundaries", () => {
 
     it(`${file} carries the original-implementation header`, () => {
       const source = readSource(file);
-      expect(source.startsWith("/*\n * Atlas Animator: original implementation (clean-room")).toBe(true);
+      expect(source.startsWith("/*\n * Atlas Animator: original implementation")).toBe(true);
     });
   }
 

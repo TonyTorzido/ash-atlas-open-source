@@ -1,9 +1,9 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Garment closure (owner review 4d-4n round 13): what a dressed character shows inside the
+ * Garment closure: what a dressed character shows inside the
  * garment's promised coverage, read from a soft render with ids (tools/softRender.ts) at the
- * resolution the player sees (0.4 view and 1x). The round 12 leather passed every gate while the
+ * resolution the player sees (0.4 view and 1x). The leather passed every gate while the
  * short cap's lower stroke ended in a dark stub on the arm, with uninked arm skin between it and the
  * flank outline: nothing measured whether the garment's drawn outline is CLOSED.
  *
@@ -48,7 +48,7 @@ export interface ClosureFrame {
   /** Per pixel: 1 where the ink belongs to the garment (its own strokes). */
   garmentInk: Uint8Array;
   chains: ClosureChain[];
-  /** Per pixel: the top slot (index + 1; 0 = none), the owner slot for ink. */
+  /** Per pixel: the top slot (index + 1; 0 = none), the user slot for ink. */
   slot?: Int16Array;
   /** Body stroke width in output pixels (for the body-line radius). */
   bodyStrokePx: number;

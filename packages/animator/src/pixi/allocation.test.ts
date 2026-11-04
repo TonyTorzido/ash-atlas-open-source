@@ -14,7 +14,7 @@ import { packedAtlasImages } from "./partImages.js";
  * updateWorldTransform() and syncFromSkeleton() allocate nothing, including the IK (one and two
  * bone, softness, stretch), transform (world and local) and physics constraints (Phase 3; a
  * five-bone cape chain on every channel, with keyed mixes and a reset key, while the skeleton
- * moves through the world), and the Phase 4d-2 joint-ready parts (the torso as two draw groups of
+ * moves through the world), and the Phase joint-ready parts (the torso as two draw groups of
  * one skinned mesh, a mesh-bound and a bone-bound contour rebuilt as the pose changes, a two-driver
  * corrective grid on the torso). Warm up, force a GC, run 2000
  * frames (far less garbage than a young-generation scavenge would need to trigger, so any garbage
@@ -65,7 +65,7 @@ function scene() {
     { name: "hat", bones: ["hat"], target: "head", mixRotate: 0.5, offset: { y: -20 } },
     { name: "follow", bones: ["follower"], target: "chest", local: true, relative: true, mixX: 0.5 }
   ];
-  // Phase 4d-2: draw groups, contours (mesh-bound and bone-bound) and a corrective grid.
+  // Phase: draw groups, contours (mesh-bound and bone-bound) and a corrective grid.
   raw.slots.push({ name: "torso_upper", bone: "chest" }, { name: "outline", bone: "root" });
   const body = raw.skins["body"] as { attachments: { torso: { torso: Record<string, unknown> } }; contours?: unknown };
   body.attachments.torso.torso["groups"] = { torso: [[0, 4]], torso_upper: [[4, 8]] };

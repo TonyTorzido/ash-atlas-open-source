@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Turned-front round 2 rigs (docs/plans/atlas-animator-demos/views/turned-front/round2/README.md). Run from
+# Turned-front rigs (packages/animator/README.md). Run from
 # packages/animator: bash scripts/views/turnfront-round2-rigs.sh
-# 1. turnfront.py (round 2: feet toe toward the facing side) on the bare legs body and the arm-layer legs body;
+# 1. turnfront.py (feet toe toward the facing side) on the bare legs body and the arm-layer legs body;
 # 2. turnfront_face.py: face + hair on each (combo A, hair shifted and shifted+flipped);
 # 3. the four face/hair combos on the bare body at 0/15/20 (rig/combos, not committed: rebuilt here).
-# 4. round 2b (owner pick 2026-10-19): 15 deg, the face PROJECTED on the head surface at the body angle (default
-#    --face-mode project), hair shifted as in round 2.
-# 5. round 2c (owner 2026-10-19): the projection clamped so nothing widens, the hair shift from the same projection
+# 4.: 15 deg, the face PROJECTED on the head surface at the body angle (default
+# --face-mode project), hair shifted as in.
+# 5.: the projection clamped so nothing widens, the hair shift from the same projection
 #    (default --face-mode project-clamped).
 set -euo pipefail
 D=../../docs/plans/atlas-animator-demos

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Surface presets (plan 4d-3): the data a template supplies to the continuous-surface builder.
+ * Surface presets: the data a template supplies to the continuous-surface builder.
  * All coordinates are canvas pixels (y down), angles degrees clockwise. A humanoid shoulder, a
  * creature leg or a wing root is one preset each; the builder holds no template values.
  * Presets live beside their art (fixtures/canonical/*.preset.json).
@@ -43,7 +43,7 @@ const contour = z
     caps: z.enum(["round", "butt"]).optional(),
     extend: z.tuple([z.number().nonnegative(), z.number().nonnegative()]).optional(),
     /**
-     * Arm layer (docs/plans/research/arm-layer.md): a closing edge over an under-sheet. The
+     * Arm layer: a closing edge over an under-sheet. The
      * stroke is also trimmed where the named slot (drawn before it) covers its centreline, so the
      * edge is inked only where it leaves that sheet: buried, it has no outline; exposed, it is the
      * shared silhouette (format `coverUnder`).
@@ -61,7 +61,7 @@ const contour = z
      * pairs, linear between, held outside). `or`: further ways to show it (format driven `alphaOr`):
      * each entry is a list of factors (bone + keys) multiplied together, and the stroke takes the
      * largest of the primary fade and the entries (the forearm folded inward, gated by the raise).
-     * Keep each ramp short (the canonical arm layer uses 0.5 deg, attack round 2): a stroke half-way
+     * Keep each ramp short (the canonical arm layer uses 0.5 deg, attack): a stroke half-way
      * through a long ramp reads as a faint ring (the shoulder cap's across-outline on an attacking
      * arm); held clips gate that no arm-front frame shows a fader between off and on.
      */
@@ -73,7 +73,7 @@ const contour = z
   .strict();
 const fill = z.object({ color, polygon: path }).strict();
 /**
- * A joint patch (plan 4d-3 pass 3a): the deformation region of one joint side. `inner`/`outer`
+ * A joint patch (pass 3a): the deformation region of one joint side. `inner`/`outer`
  * patches are anchored on a boundary chain: the hull span from `from` (a notch apex or a
  * silhouette point) walking towards `toward` for `extent` of arc length; the joint's weight ramps
  * 0 -> 1 along that span (`profile`). `extent` is canvas px, or `{ width: [lo, hi] }`: a fraction
@@ -108,7 +108,7 @@ const patch = z
     permittedApexMotion: z.number().nonnegative().optional(),
     apexRide: pt.optional(),
     /**
-     * Girdle coupling of the riding apex (plan 4d-3 pass 3d-1 decision: a shrug elevates the
+     * Girdle coupling of the riding apex (pass 3d-1 decision: a shrug elevates the
      * shoulder girdle, so the armpit apex rides up with it). `bone` is a girdle bone between the
      * base and the patch's joint; the permitted apex motion grows by `gain` x the girdle's
      * elevation of the joint pivot (how far that bone's own rotation carries the pivot away from
@@ -116,7 +116,7 @@ const patch = z
      */
     apexGirdle: z.object({ bone: z.string(), gain: z.number().nonnegative().default(1) }).strict().optional(),
     /**
-     * Procedural boundary of the patch's root runs (plan 4d-3 pass 3d-1; default: the Hermite bend):
+     * Procedural boundary of the patch's root runs (pass 3d-1; default: the Hermite bend):
      * `crease` (a run ending on the notch apex): the limb edge stays a straight line (the rigid
      * core's edge carried by its bone) up to where it meets the body branch's tangent line, a fillet
      * of radius <= `fillet` x W there, then straight down that line to the apex;
@@ -127,7 +127,7 @@ const patch = z
      */
     boundary: z.enum(["crease", "cap"]).optional(),
     /**
-     * Shoulder arc of a `cap` run (plan 4d-4a): where the raised limb's top edge meets the strap
+     * Shoulder arc of a `cap` run: where the raised limb's top edge meets the strap
      * side, the smooth maximum's pinch (the body's shoulder line standing over the limb edge, then
      * stepping onto it in a concave notch) is replaced by ONE sweep: a cubic Hermite from a body
      * hand-off `from` canvas px from the body anchor (0 = the strap corner) to a limb hand-off `to`
@@ -143,7 +143,7 @@ const patch = z
     arc: z.object({ from: z.number().nonnegative(), to: z.number().nonnegative(), tension: z.number().positive().default(1), ramp: z.tuple([z.number(), z.number()]), move: z.number().nonnegative(), region: z.number().positive().optional(), gate: z.number().positive().optional(), gateByRaise: z.array(z.tuple([z.number(), z.number().positive()])).optional(), neck: z.number().positive().optional(), neckGate: z.number().positive().optional(), ride: z.object({ ramp: z.tuple([z.number(), z.number()]), to: z.number().positive(), tension: z.number().positive().default(1), max: z.number().nonnegative(), radius: z.number().positive() }).strict().optional() }).strict().optional(),
     fillet: z.number().positive().optional(),
     /**
-     * Crease boundary only (plan 4d-4 underside crimp): over `ramp` degrees of the patch's joint the
+     * Crease boundary only (underside crimp): over `ramp` degrees of the patch's joint the
      * crease run blends from the limb line + fillet + web into one circular arc tangent to the limb
      * edge at the hinge-band end and along the web into the apex (one G1 cubic); `spread` (0..1)
      * moves the run's vertices that share of the way from their home spacing to even arc-length
@@ -186,7 +186,7 @@ const patch = z
   })
   .strict();
 /**
- * A trunk bend zone (plan 4d-4k): near-rigid torso/head regions joined by one local bend. Along the
+ * A trunk bend zone: near-rigid torso/head regions joined by one local bend. Along the
  * axis a -> b the share `t` (smoothstep 0 at a, 1 at b) of each vertex's `from` weight moves to
  * `to`: past b the vertex follows `to` rigidly, before a it is untouched. `r0`/`r1` (optional)
  * limit the zone across the axis: full strength within r0 canvas px of the line through a and b,
@@ -212,7 +212,7 @@ const junction = z
 const sweepPhase = z.object({ bone: z.string(), from: z.number(), to: z.number(), step: z.number().positive() }).strict();
 
 /**
- * Arm layer (docs/plans/research/arm-layer.md, option A): a detached under-sheet built beside
+ * Arm layer: a detached under-sheet built beside
  * the skin (the torso under the arm). Its own silhouette (canvas points), lattice and paint; trunk
  * weights only (base, girdle, trunk bends), never a chain joint; `contours` anchor on its own hull.
  */
@@ -250,7 +250,7 @@ const assembly = z
       .min(1),
     order: z.array(z.string()).min(2),
     /**
-     * Arm-vs-arm order when the arms overlap (coordinator review): which arm assembly (sheet, strokes,
+     * Arm-vs-arm order when the arms overlap (review): which arm assembly (sheet, strokes,
      * fist) draws wholly in front: `far` (the mirrored arm) or `near`. A clip can still swap it with
      * draw-order keys (format drawOrder timelines) for an attacking arm.
      */
@@ -283,7 +283,7 @@ export const surfacePresetSchema = z
             length: z.number().optional(),
             limits: pt.optional(),
             /**
-             * Transform inheritance (plan 4d-4k): `noScale` keeps a child (neck, clavicle) at its own
+             * Transform inheritance: `noScale` keeps a child (neck, clavicle) at its own
              * size while the parent breathes (chest scale); its pivot still rides the parent.
              */
             inherit: z.enum(["normal", "onlyTranslation", "noRotation", "noScale", "noScaleOrReflection"]).optional()
@@ -294,7 +294,7 @@ export const surfacePresetSchema = z
     /** Body bone (weights' rest owner). */
     base: z.string(),
     /**
-     * Bilateral mirror rule (plan 4d-4l): the half-body preset is solved once and mirrored about the
+     * Bilateral mirror rule: the half-body preset is solved once and mirrored about the
      * vertical line x = `x` (tools/mirrorRig.ts). `rename` maps bone and slot names (suffix pairs,
      * e.g. ["_l", "_r"]; `slots` names slots the suffix rule cannot reach). The builder ends the
      * girdle share `feather` canvas px before the line, so centreline vertices carry trunk weights
@@ -325,11 +325,11 @@ export const surfacePresetSchema = z
       .strict()
       .optional(),
     /**
-     * The limb chain, root segment first; the last bone needs `toward`. `branches` (plan 4d-4i)
+     * The limb chain, root segment first; the last bone needs `toward`. `branches`
      * makes it a tree (pelvis > chest > neck > head, clavicles off the chest): each branch is a
      * chain hung from `parent` (any earlier bone of the skeleton), its bones parent to child. The
      * limb chain keeps the joint machinery (patches, cores, correctives); branch bones are
-     * near-rigid trunk influences (plan 4d-4k, 4d-4e review): they reach the skin only through
+     * near-rigid trunk influences: they reach the skin only through
      * `skin.regions.bends` (local bend zones), never through patches or correctives.
      */
     chain: z
@@ -403,7 +403,7 @@ export const surfacePresetSchema = z
             iterations: z.number().int().positive().optional()
           })
           .strict(),
-        /** Named regions (plan 4d-3 pass 3a): joint patches, rigid cores and fixed body regions; their bone lists are hard support masks. */
+        /** Named regions (pass 3a): joint patches, rigid cores and fixed body regions; their bone lists are hard support masks. */
         regions: z.object({ patches: z.array(patch).min(1), cores: z.array(core), fixed: z.array(fixedRegion), bends: z.array(bend).optional() }).strict(),
         /** Contour junctions (posed points). */
         junctions: z.array(junction).optional(),
@@ -428,7 +428,7 @@ export const surfacePresetSchema = z
           fills: z.array(fill),
           contours: z.array(contour),
           /**
-           * Garment overlays (plan 4d-3 3d-1 fix review, the sandwich): a triangle sub-range of the
+           * Garment overlays (3d-1 fix review, the sandwich): a triangle sub-range of the
            * garment's own mesh drawn as its own slot `name`, right after the skin group `above`
            * (draw order derived), riding the garment's weights. It owns the listed garment
            * `contours` and the band of garment fill `fillBand` canvas px past their stroke's inner
@@ -483,14 +483,14 @@ export const surfacePresetSchema = z
     /** Two-driver grids; `cap` [columns, rows] lifts the default 4x3 refinement cap, up to 6x5, where a smooth target needs it. */
     grids: z.array(z.object({ name: z.string(), x: z.object({ bone: z.string(), at: z.array(z.number()) }).strict(), y: z.object({ bone: z.string(), at: z.array(z.number()) }).strict(), cap: z.tuple([z.number().int().min(2).max(6), z.number().int().min(2).max(5)]).optional() }).strict()),
     /**
-     * Combined pose limits (plan 4d-3 pass 3d-1): convex polygons in (x, y) driver space (degrees,
+     * Combined pose limits (pass 3d-1): convex polygons in (x, y) driver space (degrees,
      * offsets from setup; drivers not named stay free), AND-ed. `auto` derives the polygon from a
      * declared collision: `collide: [part, region]` (a skin core/patch name or skin group slot, and a
      * rigid context region) sampled on the drivers' limit grid every `step` degrees (default 5) with
      * the other drivers at setup; the part's posed hull, dilated by `margin` canvas px, may not
      * reach the region's opaque pixels. Sweeps, seeds, grid refinement, interpolation and the gates
      * run only inside; the validator flags clips outside; the runtime never clamps.
-     * `plus` (plan 4d-4l part b, a combined limit): drivers added to y, so y is a sum (neck + head:
+     * `plus` (part b, a combined limit): drivers added to y, so y is a sum (neck + head:
      * the head's lean towards a raised hand); auto samples every same-side split of each y value
      * over the drivers' limits and blocks the value when any split collides. `auto.hold`: other drivers held
      * at each listed value combination during the sampling (a value is blocked when any combination
@@ -511,7 +511,7 @@ export const surfacePresetSchema = z
              * `clips` (declared polygons only): an authoring rule, not a build bound. It is written to the
              * rig's poseLimits (validator, live limits, mirror and gates check clips against it) but the
              * build (sweeps, seeds, grids, contacts, the surface gates) keeps the mechanical range, so the
-             * built body is unchanged. Owner rule 1 step 1 (elbow_never_outward, 2026-10-16).
+             * built body is unchanged. pose rule 1 step 1 (elbow_never_outward, 2026-10-16).
              */
             scope: z.enum(["build", "clips"]).optional(),
             auto: z
@@ -523,7 +523,7 @@ export const surfacePresetSchema = z
       )
       .optional(),
     /**
-     * Sparse runtime reduction (plan 4d-4e, sparse.ts): tolerances in game px over every solved sweep
+     * Sparse runtime reduction (sparse.ts): tolerances in game px over every solved sweep
      * frame. `silhouette`: a dropped hull / garment outline sample vs the chord of its kept
      * neighbours; `texture`: a dropped interior or row sample vs its barycentric point in the reduced
      * bind triangulation; `turn`: degrees a kept hull vertex may turn beyond the dense hull's turn
@@ -541,7 +541,7 @@ export const surfacePresetSchema = z
       .optional(),
     /** Joint crop for review renders (canvas rectangle); the full-figure view is computed from the posed bounds. */
     /**
-     * Leg IK policy (plan 4d-4m r5, tools/stancePolicy.ts): `foreshorten` keeps a planted leg straight
+     * Leg IK policy (r5, tools/stancePolicy.ts): `foreshorten` keeps a planted leg straight
      * as drawn and shortens it toward the viewer (no knee bow); two-bone IK blends in over `blend` of
      * each swing and out before the plant. `bend` keeps two-bone IK in stance.
      */
@@ -551,7 +551,7 @@ export const surfacePresetSchema = z
     gates: z
       .object({
         /**
-         * Hard visible-kink contours (plan 4d-4, underside crimp): per entry a contour `owner/name`
+         * Hard visible-kink contours (underside crimp): per entry a contour `owner/name`
          * whose visible-kink windows (net turn over KINK_WINDOW game px at visible vertices outside
          * declared corners) must stay within `turn` degrees (default KINK_TURN), or the bind turn +
          * KINK_SLACK, on its own hard gate row. `when` scopes the row to poses whose listed bones
@@ -572,7 +572,7 @@ export const surfacePresetSchema = z
         /** Draw-group occlusion: at these poses no skin drawn below `garment` may slide under it deeper than its edge half width. */
         occlusion: z.array(z.object({ garment: z.string(), poses: z.array(z.record(z.number())).min(1) }).strict()).optional(),
         /**
-         * Stroke clearance (plan 4d-3 pass 3d-1, coordinator redefinition): two different contours
+         * Stroke clearance (redefined): two different contours
          * running near-parallel (angle below `maxAngle` degrees) must not leave a sub-pixel crack of
          * background between their inks, a gap above 0 and below `displayPx` display px (DPR 1);
          * wider gaps are clean background. An arm closing on the body passes through such gaps in
@@ -582,7 +582,7 @@ export const surfacePresetSchema = z
          * joint (consecutive sweep frames, each counting its step from the previous frame).
          */
         /**
-         * Visible-distortion exceptions (plan 4d-4e closeout): one finding id (`kind/slot/attachment/tN`)
+         * Visible-distortion exceptions (closeout): one finding id (`kind/slot/attachment/tN`)
          * excused only inside a pose window (bone -> [lo, hi] degrees) and, when `rigHash` is set, only
          * on that rig build (any rebuild that changes the rig re-opens it). `debt` names the polish-debt row.
          */
@@ -590,7 +590,7 @@ export const surfacePresetSchema = z
           .object({
             exceptions: z.array(z.object({ id: z.string(), poses: z.record(z.tuple([z.number(), z.number()])), rigHash: z.string().optional(), debt: z.string(), reason: z.string() }).strict()).default([]),
             /**
-             * Declared openings (4d-4e review): narrow texture-debt regions, a bind-canvas polygon per
+             * Declared openings (review): narrow texture-debt regions, a bind-canvas polygon per
              * opening; a textured triangle is parked there only when all three bind vertices lie inside
              * it (touching is not enough). Findings there are reported as parked debt, never as passing.
              */
@@ -602,7 +602,7 @@ export const surfacePresetSchema = z
           .object({
             maxAngle: z.number().positive().default(15),
             /**
-             * Contour contacts (4d-4e closeout): when true the declared contact pairs render merged
+             * Contour contacts (closeout): when true the declared contact pairs render merged
              * (core/contours.ts applyContacts, scoped to the contact run). Off by default: measured at
              * the closeout the merge raised alpha gaps 2 -> 25 and held crack runs 54 -> 175 on
              * template7 (residual sub-px gaps at run ends and the capped move), so pairs stay contact
@@ -614,7 +614,7 @@ export const surfacePresetSchema = z
             transientDegrees: z.number().nonnegative().default(6),
             holds: z.array(z.record(z.number())).optional(),
             /**
-             * Joint ranges an arm only passes through, never holds (coordinator decision, pass 3d-1):
+             * Joint ranges an arm only passes through, never holds:
              * at the pose `at` (every listed bone at exactly that value, others free), `joint` in
              * [range[0], range[1]] degrees crosses a contact (e.g. the hand past the flank edge). A
              * held or end pose (declared hold, rest, a sweep's first or last frame) inside a range fails
@@ -624,7 +624,7 @@ export const surfacePresetSchema = z
               .array(z.object({ joint: z.string(), range: z.tuple([z.number(), z.number()]), at: z.record(z.number()).default({}), note: z.string().optional() }).strict())
               .optional(),
             /**
-             * Contact bands (plan 4d-4e closeout; pass-through generalised from a joint range to a
+             * Contact bands (closeout; pass-through generalised from a joint range to a
              * measured band): for the contour pair `pair` (each a contour `owner/name`, matched as one
              * link of a chained ink), the zone of the `x` x `y` driver plane (sampled every `step`
              * degrees, other bones at `hold`) where the pair leaves a crack under one display px. Motion
@@ -639,7 +639,7 @@ export const surfacePresetSchema = z
           .strict()
           .optional(),
         /**
-         * Simultaneous drivers (4d-4k review, item 4): `breathe` is the breathing scale (a bone
+         * Simultaneous drivers: `breathe` is the breathing scale (a bone
          * and its peak x/y factors); the final-runtime pose set adds every combined pose with it too.
          */
         combined: z.object({ breathe: z.object({ bone: z.string(), x: z.number().positive(), y: z.number().positive() }).strict().optional() }).strict().optional()

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Arm layer (closure round 6): where two trimmed strokes meet at an acute corner (the arm's closing
+ * Arm layer (closure): where two trimmed strokes meet at an acute corner (the arm's closing
  * edge entering the torso it is drawn over, beside the torso's own outline entering the arm), the
  * background between their visible parts is a wedge whose tip narrows to a one-pixel staircase: a
  * light speck enclosed in ink at the armpit apex. Pixel art closes such a corner with ink. The
@@ -230,7 +230,7 @@ function remaining(seg: Float64Array, m: number, i: number, x: number, y: number
 }
 
 /*
- * Hand-over bridge (arm layer round 8). Where the two trimmed lines meet at a wide corner (wider
+ * Hand-over bridge (arm layer). Where the two trimmed lines meet at a wide corner (wider
  * than FILLET_MAX_ANGLE: the shoulder, where the arm's closing line leaves the torso nearly in line
  * with the torso's own outline, about half a width deeper), each line ends at the crossing with a
  * round cap and the silhouette keeps a notch on the background side and a step on the fill side: a

@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The `animator` command line (plan 4.3, Phase 5). Every edit is a command from the command bus
  * (src/tools/commands.ts) and goes through the document's log (src/tools/documentStore.ts);
@@ -13,6 +13,7 @@
  *   animator undo|redo <doc> [--steps N] [--bridge URL]
  *   animator log <doc> [--last N] [--json]
  *   animator watch <doc>                                prints log entries as they land
+ *   animator validate --contract <rig.anim.json> [--contract-file CONTRACT.json] [--json]   checks a rig against the swag contract (src/cli/validateContract.ts)
  *   animator validate <doc> [--atlas <rig.atlas.json>] [--outfits tunic+cape,...] [--preset humanoid] [--body-vertices N] [--poses]
  *   animator weights overview <doc> [<doc>...] --out <png> [--skins body,...] [--ambiguous]   weight colours, docs side by side (--ambiguous marks weights.auto ambiguous vertices)
  *   animator diff <a> [<b>] [--git <rev>] [--json]
@@ -24,6 +25,10 @@
  *   animator rest-fidelity <doc> <source.png> [--out <prefix>] [--controls]   setup pose vs the source art (exit 1 on fail)
  *   animator layers plan|extract|validate|enforce|check|pack|build ...           layered parts (src/cli/layers.ts)
  *   animator outline trace <doc> <png> --slot S [--target N | --spacing P] [--tolerance 2.5] [--components all|largest]   region -> mesh from the PNG hull
+ *   animator export-spine <doc> <outDir> [--name N] [--clips a,b] [--clips-from other.anim.json] [--no-atlas]   Spine 4.2 JSON + images + .atlas (src/cli/exportSpine.ts)
+ *   animator validate-publish --rig <rig dir> [--repo <root>] [--require-clips] [--json]   checks a published rig + atlas + mapped clips (src/cli/validatePublish.ts)
+ *   animator import-spine <spine.json> --merge <rigdir|rig.anim.json> [--clips a,b] [--dry-run]   meshes, weights, linked meshes and deform back into the rig (src/cli/importSpineMeshes.ts)
+ *   animator import-spine-clips <spine.json> --rig <rigdir> [--clips a,b] [--loop a,b] [--trim] [--dry-run]   Spine clips back into the rig document (src/cli/importSpine.ts)
  *   animator rig --canonical <preset.json> --out <dir> [--review <dir>] [--preset humanoid]   build the canonical body + gates
  *
  * Exit codes: 0 ok, 1 failed (invalid document, rejected command, render error), 2 usage.
@@ -54,7 +59,7 @@ import { bridgeDocumentPath, bridgePost, openBridgeSession } from "./bridgeClien
 // Arguments
 // ---------------------------------------------------------------------------------------------
 
-const BOOLEAN_FLAGS = new Set(["controls", "sparse", "json", "dry-run", "help", "apply", "distal", "poses", "canonical", "ambiguous", "register"]);
+const BOOLEAN_FLAGS = new Set(["controls", "sparse", "json", "dry-run", "help", "apply", "distal", "poses", "canonical", "ambiguous", "register", "swaps", "no-atlas"]);
 
 class UsageError extends Error {}
 
@@ -124,7 +129,7 @@ function checkMode(args: Args): "command" | "end" {
   return check;
 }
 
-/** Live pose limits for key commands (plan 4d-4h): warn by default on the CLI. */
+/** Live pose limits for key commands: warn by default on the CLI. */
 function limitsMode(args: Args): "off" | "warn" | "reject" {
   const mode = flag(args, "limits") ?? "warn";
   if (mode !== "off" && mode !== "warn" && mode !== "reject") throw new UsageError("--limits must be 'warn', 'reject' or 'off'");
@@ -155,7 +160,7 @@ async function runCommands(args: Args, path: string, commands: Command[]): Promi
     return 1;
   };
   if (has(args, "dry-run")) {
-    // Plan 4d-4j3: a genuinely read-only reader (no crash repair, no external-edit log entry).
+    // Plan: a genuinely read-only reader (no crash repair, no external-edit log entry).
     const result = applyCommands(readDocument(path).doc, commands, { check, limits });
     print(JSON.stringify({ patch: result.patch, inverse: result.inverse }, null, has(args, "json") ? 0 : 1));
     print(`dry run: ${commands.length} command(s) valid, ${result.patch.length} patch op(s); nothing written`);
@@ -215,7 +220,7 @@ async function history(direction: "undo" | "redo", args: Args): Promise<number> 
   const results = stepHistory(path, direction, steps);
   for (const result of results) print(describeEntry(result.entry));
   if (results.length === 0) print(`nothing to ${direction}`);
-  // Plan 4d-4j3: the atlas pointer follows the document back to its previous asset bundle.
+  // Plan: the atlas pointer follows the document back to its previous asset bundle.
   if (results.length > 0) {
     const synced = (await import("./assets.js")).syncAtlasPointer(path);
     if (synced) print(`atlas: ${synced}`);
@@ -410,16 +415,16 @@ function validate(args: Args): number {
   const atlas = existsSync(atlasPath) && atlasPath !== input ? loadAtlas(atlasPath) : null;
   // Declared outfit combinations (item skins worn together, the body implied): `a+b,c+d`.
   const outfits = (flag(args, "outfits") ?? "").split(",").filter(Boolean).map((outfit) => outfit.split("+").filter(Boolean));
-  // The rig's validation companion (regions, allowances, exceptions, poses; hash-checked, plan 4d-4g).
+  // The rig's validation companion (regions, allowances, exceptions, poses; hash-checked).
   const companionPath = input.replace(/\.anim\.json$/, ".validation.json");
   const companion = existsSync(companionPath) && companionPath !== input ? (JSON.parse(readFileSync(companionPath, "utf8")) as ValidationCompanion) : undefined;
-  // Budgets (plan 4d-4i): the document's `budgets` over --preset's, under --body-vertices N.
+  // Budgets: the document's `budgets` over --preset's, under --body-vertices N.
   const bodyVertices = numberFlag(args, "body-vertices");
   const presetName = flag(args, "preset");
   const preset = presetName === undefined ? undefined : BODY_PRESETS[presetName];
   if (presetName !== undefined && !preset) throw new UsageError(`unknown --preset ${presetName} (known: ${Object.keys(BODY_PRESETS).join(", ")})`);
   const extra = { ...(bodyVertices === undefined ? {} : { budgets: { bodyVertices } }), ...(preset ? { preset } : {}) };
-  // Joints come from the document's authoring block (validateRig's default; plan 4d-4j3).
+  // Joints come from the document's authoring block (validateRig's default).
   const report = validateRig(raw, atlas ? { atlas: atlas.pack, textures: atlas.textures, outfits, companion, ...extra } : { outfits, companion, ...extra });
   printReport(report);
   if (has(args, "poses")) {
@@ -434,7 +439,7 @@ const BODY_PRESETS: Record<string, BodyPreset> = { [HUMANOID_BODY.name]: HUMANOI
 /**
  * `animator weights overview <doc> [<doc>...] --out <png>`: each document's weights overview (every
  * weighted mesh, vertices coloured by their bones' mix, at the setup pose; textures from the
- * sibling `.atlas.json` when present), side by side, labelled folder/file (plan 4d-4i).
+ * sibling `.atlas.json` when present), side by side, labelled folder/file.
  */
 function weights(args: Args): number {
   const [verb, ...docs] = args.positional;
@@ -457,7 +462,7 @@ function weights(args: Args): number {
 }
 
 /**
- * `--ambiguous` (plan 4d-4j3): re-runs `weights.auto` in memory on each weighted mesh of the setup
+ * `--ambiguous`: re-runs `weights.auto` in memory on each weighted mesh of the setup
  * attachments, with the mesh's own bone table as the tree (each bone hung from its nearest table
  * ancestor), and returns the ambiguous vertex IDs per slot for the overlay. Nothing is written.
  */
@@ -597,21 +602,21 @@ export function writeReviewImages(doc: NonNullable<ValidationReport["document"]>
   for (const slot of doc.slots) write(`weights-${slot.name}.png`, weightHeatSheet(doc, textures, slot.name));
   write("joints-sheet.png", jointContactSheet(doc, textures));
   write("joints-sheet-wireframe.png", jointContactSheet(doc, textures, { wireframe: true }));
-  // Close-ups: canvas crops are body-preset data (plan 4d-4j), never CLI constants.
+  // Close-ups: canvas crops are body-preset data, never CLI constants.
   for (const crop of body?.reviewCrops ?? []) write(`${crop.name}.png`, jointContactSheet(doc, textures, { frame: crop.frame(doc.canvas), scale: crop.scale, columns: crop.columns }));
   return written;
 }
 
 /**
- * `animator rig --canonical <preset.json> --out <dir>`: the canonical body (plan 4d-4j, the only rig
+ * `animator rig --canonical <preset.json> --out <dir>`: the canonical body (the only rig
  * path): the surface preset is built by buildRig and written by writeRig (document, atlas, source
  * SVG, validation companion), its contract gates run and `<preset>.gates.json` is written beside.
- * The raster path from a figure PNG (cut parts, joint pieces, fades) was retired in 4d-4j.
+ * The raster path from a figure PNG (cut parts, joint pieces, fades) was retired in.
  */
 async function rig(args: Args): Promise<number> {
   const input = args.positional[0];
   const out = flag(args, "out");
-  const usage = "usage: animator rig --canonical <preset.json> --out <dir> [--review <dir>] [--preset humanoid]  (the raster rig from a figure PNG was retired in 4d-4j)";
+  const usage = "usage: animator rig --canonical <preset.json> --out <dir> [--review <dir>] [--preset humanoid]  (the raster rig from a figure PNG was retired in)";
   if (!has(args, "canonical") || !input || !out) throw new UsageError(usage);
   const { runSurface } = await import("./surface.js");
   const { ok, summary } = await runSurface({ preset: input, out });
@@ -637,7 +642,7 @@ async function rig(args: Args): Promise<number> {
 // Entry
 // ---------------------------------------------------------------------------------------------
 
-/** `animator atlas import ...` and `animator outline trace ...` (plan 4d-4i, src/cli/assets.ts). */
+/** `animator atlas import...` and `animator outline trace...` (src/cli/assets.ts). */
 async function assetCommand(group: "atlas" | "outline", args: Args): Promise<number> {
   const verb = args.positional[0];
   if (group === "atlas" && verb === "split") {
@@ -663,10 +668,10 @@ async function assetCommand(group: "atlas" | "outline", args: Args): Promise<num
     return 0;
   }
   const want = group === "atlas" ? "import" : "trace";
-  if (verb !== want) throw new UsageError(group === "atlas" ? "usage: animator atlas import <doc> <png...> [--skin body] [--bone root] [--scale 1]" : "usage: animator outline trace <doc> <png> --slot S [--skin body] [--name N] [--target 320 | --spacing P] [--tolerance 2.5] [--components all|largest]");
+  if (verb !== want) throw new UsageError(group === "atlas" ? "usage: animator atlas import <doc> <png...> [--skin body] [--bone root] [--scale 1] [--swaps]" : "usage: animator outline trace <doc> <png> --slot S [--skin body] [--name N] [--target 320 | --spacing P] [--tolerance 2.5] [--components all|largest]");
   const rest: Args = { ...args, positional: args.positional.slice(1) };
   const path = requireDocument(rest, `animator ${group} ${want} <doc> ...`);
-  // Plan 4d-4j3: every option is validated before anything is read for writing or written.
+  // Plan: every option is validated before anything is read for writing or written.
   const check = checkMode(rest);
   const mode = limitsMode(rest);
   const dryRun = has(rest, "dry-run");
@@ -682,7 +687,7 @@ async function assetCommand(group: "atlas" | "outline", args: Args): Promise<num
   // The batch must apply under the run's own options (a --limits reject failure included) before
   // any asset is written. --check end with reject keeps the batch (runCommands), so it warns here.
   applyCommands(raw as JsonObject, plan.commands, { check, limits: check === "end" && mode === "reject" ? "warn" : mode });
-  // Transaction (plan 4d-4j3): a new immutable bundle, then the document commit that points at it,
+  // Transaction: a new immutable bundle, then the document commit that points at it,
   // then the pointer. A failed commit removes the unreferenced bundle; an interrupted run leaves
   // either an orphan bundle (document unchanged) or a stale pointer that the next sync repairs.
   const written = assets.writePlanFiles(plan);
@@ -710,7 +715,7 @@ const COMMANDS: Record<string, (args: Args) => number | Promise<number>> = {
   redo: (args) => history("redo", args),
   log,
   watch: watchLog,
-  validate,
+  validate: async (args) => (args.flags.has("contract") ? (await import("./validateContract.js")).validateContractCommand(String(args.flags.get("contract") ?? ""), args.flags) : validate(args)),
   diff,
   render,
   garment: (args) => (args.positional[0] === "import" ? garmentImportCommand(args.positional.slice(1), args.flags) : (process.stderr.write("usage: animator garment import <rig.anim.json> <art.png> <out dir> [flags]\n"), 2)),
@@ -729,7 +734,11 @@ const COMMANDS: Record<string, (args: Args) => number | Promise<number>> = {
   "ref-compare": async (args) => (await import("./refCompare.js")).refCompareCommand(args.positional, args.flags),
   "cap-arc-sheet": async (args) => (await import("./capArcSheet.js")).capArcSheetCommand(args.positional, args.flags),
   "pivot-fit": async (args) => (await import("./pivotFit.js")).pivotFitCommand(args.positional, args.flags),
-  layers: async (args) => (await import("./layers.js")).layersCommand(args.positional, args.flags)
+  layers: async (args) => (await import("./layers.js")).layersCommand(args.positional, args.flags),
+  "export-spine": async (args) => (await import("./exportSpine.js")).exportSpineCommand(args.positional, args.flags),
+  "validate-publish": async (args) => (await import("./validatePublish.js")).validatePublishCommand(args.positional, args.flags),
+  "import-spine": async (args) => (await import("./importSpineMeshes.js")).importSpineMeshesCommand(args.positional, args.flags),
+  "import-spine-clips": async (args) => (await import("./importSpine.js")).importSpineCommand(args.positional, args.flags)
 };
 
 export async function main(argv: readonly string[]): Promise<number> {

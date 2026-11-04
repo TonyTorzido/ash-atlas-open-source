@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plan 4d-4n owner review: garment layering over underwear, the per-garment outline colour and the
+ * Plan design review: garment layering over underwear, the per-garment outline colour and the
  * covered-texel mask of the per-frame coverage check, on the committed body rig and jacket domain.
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,11 +12,11 @@ import { describe, expect, it } from "vitest";
 import { DEFAULT_GARMENT_STROKE, buildGarmentSurface, coveredTexelMask, dressGarment, type GarmentDomain } from "./garmentSurface.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const raw = JSON.parse(readFileSync(join(ROOT, "../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/template7-shoulder-legs.anim.json"), "utf8"));
+const raw = JSON.parse(readFileSync(join(ROOT, "fixtures/test-rigs/body/template7-shoulder-legs.anim.json"), "utf8"));
 const domain: GarmentDomain = JSON.parse(readFileSync(join(ROOT, "fixtures/garments/kungfu-jacket.domain.json"), "utf8"));
 const slotNames = (doc: any) => (doc.slots as { name: string }[]).map((s) => s.name);
 
-describe("garment surface (4d-4n owner review)", () => {
+describe("garment surface", () => {
   it("draws the trunk above every underwear layer, hidden or not", () => {
     for (const hides of [["tank"], []]) {
       const build = buildGarmentSurface(raw, domain, { name: "jacket", margin: domain.margin, strokeWidth: 10, hides });
@@ -27,7 +27,7 @@ describe("garment surface (4d-4n owner review)", () => {
     }
   });
 
-  it("draws a cuffed sleeve over the fist and fist copies but under a held item on the hand bone (round 22)", () => {
+  it("draws a cuffed sleeve over the fist and fist copies but under a held item on the hand bone ()", () => {
     const rig = structuredClone(raw);
     const at = slotNames(rig).indexOf("hand");
     const skinKey = Object.keys(rig.skins)[0] as string;
@@ -63,7 +63,7 @@ describe("garment surface (4d-4n owner review)", () => {
     expect(covered).toBeLessThan(mask.length);
   });
 
-  it("blocks a cut that runs along an existing mesh edge (review #2) and never drops a declared cut", () => {
+  it("blocks a cut that runs along an existing mesh edge and never drops a declared cut", () => {
     // a 40 px square of two triangles, cut along their shared diagonal (through both corners)
     const square = {
       format: "atlas-anim@1",

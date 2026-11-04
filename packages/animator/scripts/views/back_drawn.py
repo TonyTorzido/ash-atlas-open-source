@@ -1,6 +1,6 @@
-# Atlas Animator five-anims round 2 (2026-10-19): DRAWN back art for the stock body and the soldier-crop hair.
-# Owner rejected the generated back (views/body-back = the front art with small edits; turnback_hair --style fill).
-# The art is drawn by hand (ART_DROPS/stock-back-draw); this script does everything deterministic
+# Atlas Animator five-anims (2026-10-19): DRAWN back art for the stock body and the soldier-crop hair.
+# The generated back was rejected (views/body-back = the front art with small edits; turnback_hair --style fill).
+# The art is drawn separately (ART_DROPS/stock-back-draw); this script does everything deterministic
 # around it. Run from packages/animator:
 #
 #   python scripts/views/back_drawn.py refs        references into ART_DROPS/stock-back-draw/refs (+ frames.json)
@@ -171,7 +171,7 @@ def neck_strip(bb, rows, axis):
 
 
 def cmd_maptest(rig, render_png, out_png):
-    """Mapping check: the owner map's colours vs the renderer's own rest render (1x)."""
+    """Mapping check: the user map's colours vs the renderer's own rest render (1x)."""
     doc, atlas, page_img = load_rig(Path(rig))
     lays = layers(doc, atlas["pages"][0])
     own, col = owner_map(lays, page_img)

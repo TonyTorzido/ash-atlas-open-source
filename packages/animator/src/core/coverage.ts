@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Clothing model, stroke side (plan 4d-4l close): local coverage intervals. A contour's stroke is
+ * Clothing model, stroke side (close): local coverage intervals. A contour's stroke is
  * trimmed where a surface drawn after it covers its centreline, so a garment hides exactly the
  * strokes under it (a tunic over a tank hides only the covered tank strokes, a pauldron only the
  * sleeve stroke under the plate) and the body keeps its own contours everywhere else.
@@ -12,7 +12,7 @@
  *   while a stroke crossing a coverer's edge is trimmed at the edge itself. A rigid plate (region)
  *   keeps strokes running within 60 degrees of its outline a half width off it (no ink-to-ink slit
  *   under a chin); a stroke heading into it more steeply is trimmed at the outline. A contour with
- *   `trimAtOutline` (garment strokes, armour round 14) gets no such reach from a rigid plate: it is
+ * `trimAtOutline` (garment strokes, armour) gets no such reach from a rigid plate: it is
  *   trimmed only where its centreline is under the plate, since its fabric reaches the centreline.
  * - Intervals are in contour parameter units: t in [0, n - 1] (open) or [0, n) (closed, wrapping),
  *   t = k + f on segment k. A coverer that rides the same surface as the contour (both on, or
@@ -77,7 +77,7 @@ const ALONG_COS = 0.9;
  * A rigid plate keeps strokes a half width off its outline when they run within 60 degrees of it
  * (no ink-to-ink slit under a chin); a stroke heading into the plate more steeply is trimmed at the
  * outline itself, so its cap tucks under the plate and two strokes meeting just outside the plate
- * leave no uncovered pocket between their caps (4d-4l: the tunic's underarm apex under a pauldron).
+ * leave no uncovered pocket between their caps (the tunic's underarm apex under a pauldron).
  */
 const RIGID_ALONG_COS = 0.5;
 
@@ -412,7 +412,7 @@ export function buildTrimmedStroke(
     // A joined end (the line continues in its partner) whose covered tail is shorter than one feather
     // has no room for the fade: the trim would cut the line hard at the coverer's edge, and where that
     // edge crosses it obliquely one corner of the cut stays outside the coverer (a sliver of
-    // background between the cut and the coverer's line; 4d-4n: the forearm line joined to the fist,
+    // background between the cut and the coverer's line; the forearm line joined to the fist,
     // ending at the head's outline). The coverer is drawn above, so the joined end keeps its cap and
     // the coverer hides what it covers. Unjoined ends keep the trim (the plate reach rule under a
     // chin needs it).

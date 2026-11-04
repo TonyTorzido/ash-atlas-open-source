@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Plane geometry for the continuous-surface builder (plan 4d-3): authored vector paths (control
+ * Plane geometry for the continuous-surface builder: authored vector paths (control
  * points, chain-relative points, arcs; centripetal Catmull-Rom with corner breaks), resampling,
  * polygon tests, a bone-chain coordinate frame (s along the chain, v across it) and a supersampled
  * polygon fill. Template-neutral: every number comes from the caller's preset.

@@ -1,13 +1,13 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * `animator pivot-fit <pose-refs.json> [--apply] [--limits <json>]` (plan 4d-3r checkpoint 1): fits the
+ * `animator pivot-fit <pose-refs.json> [--apply] [--limits <json>]` (checkpoint 1): fits the
  * chain's pivots and bone lengths to the references' `fit` data (src/tools/surface/pivotFit.ts) and
  * writes `<preset>.pivot-fit.json` beside the preset. `--apply` writes the fitted root pivot into the
  * preset (the root bone's `at`, its parent's `toward`, the girdle centre), re-expresses every
  * chain-relative coordinate for the new chain (the authored canvas geometry is unchanged) and updates
  * the pose-refs `rig` block. The distal pivots stay on the rest art unless `--distal` is given (plan
- * 4d-3r proportions option A: the template's own arm keeps its proportions; the fitted lengths are
+ * proportions option A: the template's own arm keeps its proportions; the fitted lengths are
  * reported). `--limits '{"bone":[lo,hi]}'` writes fitted limits (the largest drawn values that still
  * solve, chosen by the caller after a build).
  */
@@ -49,7 +49,7 @@ export async function pivotFitCommand(positional: string[], flags: Map<string, s
   const old = { root: upper.at as Pt, next: fore.at as Pt, end: fore.toward as Pt };
   const f = (v: number) => Number(v.toFixed(2));
   const report = {
-    note: "plan 4d-3r checkpoint 1 pivot fit: root = circle/axis fit of the drawn upper-arm axes and marked elbows; next = circle fit of the wrists in each reference's upper-arm frame. Canvas px.",
+    note: " checkpoint 1 pivot fit: root = circle/axis fit of the drawn upper-arm axes and marked elbows; next = circle fit of the wrists in each reference's upper-arm frame. Canvas px.",
     references: { fitted: spec.references.filter((r) => r.use !== "compare" && r.fit).map((r) => r.name), compareOnly: spec.references.filter((r) => r.use === "compare" || !r.fit).map((r) => r.name) },
     old: { ...old, lengths: { proximal: f(Math.hypot(old.next[0] - old.root[0], old.next[1] - old.root[1])), distal: f(Math.hypot(old.end[0] - old.next[0], old.end[1] - old.next[1])) } },
     fitted: { rest: { root: p1(fit.rest.root), next: p1(fit.rest.next), end: p1(fit.rest.end) }, lengths: { proximal: f(fit.lengths.proximal), proximalCircle: fit.lengths.proximalCircle === null ? null : f(fit.lengths.proximalCircle), distal: f(fit.lengths.distal) } },

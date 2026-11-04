@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * `atlas-pack@1`: the region table of prepacked atlas pages (`<name>.atlas.json` next to the page
  * PNGs). It says where each texture path's image sits on which page. The runtime does not draw

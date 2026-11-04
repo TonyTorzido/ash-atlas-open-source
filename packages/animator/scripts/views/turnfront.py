@@ -1,5 +1,4 @@
-# Atlas Animator turned-front PREVIEW (owner decision 2026-10-19: two slightly turned fronts, looking left and
-# mirrored for right; docs/plans/atlas-animator-demos/views/turned-front/README.md). Deterministic.
+# Atlas Animator turned-front PREVIEW. Deterministic, no image generation.
 #
 #   python scripts/views/turnfront.py <front.anim.json> <out dir> <stem> [--angles 0,10,15,20]
 #   (run from packages/animator)
@@ -8,7 +7,7 @@
 # toward screen-left, by editing the rig's setup data only (same skeleton, same clips, same atlas regions):
 #   - torso (chest/clavicle influences) and hips (pelvis influences): an elliptic cylinder about the body axis
 #     (skeleton x = 0) with half-width W and depth D, front surface depth z(u) = D (1 - (u/W)^2) (parabolic, so the
-#     map stays monotone up to ~35 deg; the owner range is 10-20 deg), rotated: x' = u cos(theta) - z sin(theta), plus an edge term so the
+#     map stays monotone up to ~35 deg; the user range is 10-20 deg), rotated: x' = u cos(theta) - z sin(theta), plus an edge term so the
 #     silhouette ends on the rotated ellipse's real extent E = sqrt(W^2 cos^2 + D^2 sin^2). The centre line moves
 #     toward the facing side by D sin(theta); the far half (screen-left) narrows, the near half widens.
 #   - joints (shoulders, hips) sit on the axis plane (z = 0): their bones move to x cos(theta); the arms and legs
@@ -52,15 +51,15 @@ KFAR_PER_SIN, KNEAR_PER_SIN = 0.30, 0.08  # far arm width x (1 - 0.30 sin), near
 # arm sits closer to the chest, which has itself moved toward it by D sin(theta); the near shoulder (upper_arm_r) moves
 # out by ARM_SPREAD x D_CHEST sin(theta) (0.7 px; 0.08 = 1.4 px opened a 3x hairline tear in idle_weight_shift on
 # the turned rigs). The arms ride their moved bones rigidly as before.
-# refine P6 (owner: "some detachment here"): the near shoulder no longer spreads; it moves 0.06 D sin(theta) (1 px)
+# refine P6: the near shoulder no longer spreads; it moves 0.06 D sin(theta) (1 px)
 # toward the chest so its root overlaps the tank flank at the outswing (the +0.04 spread let a 1-2 px background crack
 # run 6 rows up between the arm's inner outline and the tank flank, L15 f7-f9; gate G10)
 ARM_TUCK_PER_SIN, ARM_SPREAD_PER_SIN = 0.15, -0.06
 ALPHA_PER_SIN = 0.35  # far-side darkening at full far: 0.35 sin(theta) (10: 6%, 15: 9%, 20: 12%)
-# round 2: both feet toe toward the facing side. Every foot-bone influence below the ankle (the foot bone's setup
+#: both feet toe toward the facing side. Every foot-bone influence below the ankle (the foot bone's setup
 # origin) is sheared toward screen-left by FOOT_SHEAR_PER_SIN sin(theta) px per px below the ankle (15 deg: 0.31,
 # the toe tip ~22 canvas px; 20 deg: 0.41, ~30 px). Influences of the shin on the same vertices stay, so the ankle
-# blends. 0 = round 1 (feet at the camera); --feet 0 reproduces round 1.
+# blends. 0 = (feet at the camera); --feet 0 reproduces.
 FOOT_SHEAR_PER_SIN = 1.2
 # refine P4 (neck seam): the neck sides are ~97% chest-weighted, so the chest cylinder moved the far neck edge ~12.6
 # skeleton px toward screen-left at 15 deg while the head (a region) only moves HEAD_FWD D sin = 6.3; the far neck
@@ -305,7 +304,7 @@ def main():
     ap.add_argument("out")
     ap.add_argument("stem")
     ap.add_argument("--angles", default="0,10,15,20")
-    ap.add_argument("--feet", type=float, default=FOOT_SHEAR_PER_SIN, help="foot shear per sin(theta); 0 = round 1")
+    ap.add_argument("--feet", type=float, default=FOOT_SHEAR_PER_SIN, help="foot shear per sin(theta); 0 = ")
     ap.add_argument("--back", action="store_true", help="the source is a BACK rig: the back surface turns the other way")
     ap.add_argument("--back-feet", choices=("heel", "toe"), default="heel",
                     help="--back only: heel (default) = below the ankle is the heel, sheared toward screen-right; toe = the front sign")

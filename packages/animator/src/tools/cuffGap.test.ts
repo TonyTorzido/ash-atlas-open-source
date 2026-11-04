@@ -12,12 +12,12 @@ import { softRender } from "./softRender.js";
 import { texturesFromAtlas } from "./validate.js";
 
 /*
- * Occluded-arm pose for the cuff-to-wrist gate (round 22): at sweep@5.00 the left arm is raised with
+ * Occluded-arm pose for the cuff-to-wrist gate: at sweep@5.00 the left arm is raised with
  * the elbow bent, the fist sits under the head and part of the arm runs past the gate's render window.
  * Measured on the full composite in that window, the fist bulge is cut off and the wrist dip slides to
  * the search edge; measured on the arm alone (armDipIds) it stays on the rest-pose wrist.
  */
-const RIG = new URL("../../../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/", import.meta.url);
+const RIG = new URL("../../fixtures/test-rigs/body/", import.meta.url);
 
 function load() {
   const raw = JSON.parse(readFileSync(new URL("template7-shoulder-legs.bare.anim.json", RIG), "utf8"));

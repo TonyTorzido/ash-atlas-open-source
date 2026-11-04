@@ -6,7 +6,7 @@ import { Skeleton } from "./skeleton.js";
 import type { CompiledContour } from "./contours.js";
 
 /*
- * Coverage buffers and outlines (runtime review item 3): setup-space (skin-invariant cache
+ * Coverage buffers and outlines: setup-space (skin-invariant cache
  * fill) and posed contour points use separate buffers, so the first evaluation equals the repeat;
  * opaque outlines are validated and triangulated correctly (concave ones by ear clipping).
  */

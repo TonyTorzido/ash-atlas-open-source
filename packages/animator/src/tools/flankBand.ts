@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Round 21 (owner, Jade C flanks): texture and tone continuity across the last FLANK_BAND px inside the side
+ *: texture and tone continuity across the last FLANK_BAND px inside the side
  * outline. The garment's side flank texels (the trunk's silhouette run where it runs down the side, away from the
  * arms and the cuts) are split into windows of FLANK_BAND_ROWS rows per side; in each window the outer band (0 to
  * FLANK_BAND px past the stroke's inner edge) is compared with the band just inward of it (FLANK_BAND to 2 x

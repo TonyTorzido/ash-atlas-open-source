@@ -5,7 +5,7 @@ import { checkPoseLimits, type ValidationIssue } from "./validate.js";
 import { sampleClip } from "./liveLimits.js";
 
 /*
- * Plan 4d-4l part c: contact bands follow contour ownership. A band measured between two contours
+ * Plan part c: contact bands follow contour ownership. A band measured between two contours
  * (`contours`) gates a displayed pose only while both draw, so a hidden garment's bands are off.
  */
 
@@ -29,7 +29,7 @@ const contactErrors = (doc: ReturnType<typeof document>) => {
   return issues.filter((i) => i.check === "contacts").length;
 };
 
-describe("contact bands follow contour ownership (4d-4l part c)", () => {
+describe("contact bands follow contour ownership (part c)", () => {
   it("fires while both contours draw, not with the owning garment hidden", () => {
     expect(contactErrors(document(true, ["tunic/hem", "torso/side"]))).toBe(1);
     expect(contactErrors(document(false, ["tunic/hem", "torso/side"]))).toBe(0);
@@ -39,7 +39,7 @@ describe("contact bands follow contour ownership (4d-4l part c)", () => {
   });
 });
 
-describe("contact-band ownership per outfit, live and batch (4d-4l review 9, review 5)", () => {
+describe("contact-band ownership per outfit, live and batch", () => {
   it("an overridden garment's band still gates in the outfit that shows it", () => {
     expect(contactErrors(document(true, ["tunic/hem", "torso/side"], true))).toBe(1);
   });

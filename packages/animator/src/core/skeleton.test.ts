@@ -82,7 +82,7 @@ function checkSkeletonOrder(skeleton: Skeleton): void {
       const c = doc.physics[i];
       return { kind, index: i, name, skin: c?.skin ?? false, bones: [index(c?.bone ?? "")], target: -1 };
     }
-    const c = doc[kind][i];
+    const c = (doc[kind] ?? [])[i];
     return { kind, index: i, name, skin: c?.skin ?? false, bones: (c?.bones ?? []).map(index), target: index(c?.target ?? "") };
   });
   checkOrderRules(

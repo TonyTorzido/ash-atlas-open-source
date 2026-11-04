@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * The Phase 3 exit rig: the three-part fixture rig plus a cape skin, a chain of five skin bones
  * hanging from the top of the chest with one physics constraint per bone, and a weighted mesh

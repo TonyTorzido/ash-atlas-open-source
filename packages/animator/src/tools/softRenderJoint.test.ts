@@ -6,9 +6,9 @@ import { createImage } from "./image.js";
 import { softRender } from "./softRender.js";
 
 /*
- * Phase 4d-2 in the CPU soft renderer (validators and review sheets): grouped meshes draw per
+ * Phase in the CPU soft renderer (validators and review sheets): grouped meshes draw per
  * group at each group's slot, contours draw after their owner slot as flat stroke polygons whose
- * pixels carry the owner slot in the id buffer (texel -1).
+ * pixels carry the user slot in the id buffer (texel -1).
  */
 
 function document() {

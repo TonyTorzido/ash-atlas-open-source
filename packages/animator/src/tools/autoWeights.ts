@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Auto-weights (plan 4.6 step 4): bone weights for a part mesh.
  *
@@ -55,7 +55,7 @@ export interface AutoWeightOptions {
   heat?: number;
 }
 
-/** How two parts of one weight tree meet (plan 4d-4j2, authoring `connections`). */
+/** How two parts of one weight tree meet (authoring `connections`). */
 export type ConnectionKind = "welded" | "overlap" | "membrane";
 
 export interface TreeWeightOptions extends AutoWeightOptions {
@@ -74,13 +74,13 @@ export interface TreeWeightOptions extends AutoWeightOptions {
   /** Transition width per joint (tree bone index k = the joint at bone k's start), over the default band. */
   jointWidth?: ReadonlyMap<number, number>;
   /**
-   * Anchor eligibility (plan 4d-4j3): with an anchor, the anchor bone may carry weight (the pinned
+   * Anchor eligibility: with an anchor, the anchor bone may carry weight (the pinned
    * ring and the root bone's joint band) unless this is false; an ineligible anchor pins nothing and
    * joins no vertex's mask. `allow` speaks only of tree bones.
    */
   allowAnchor?: boolean;
   /**
-   * Pruning to `maxInfluences` (plan 4d-4j3) measures the dropped mass and the posed displacement
+   * Pruning to `maxInfluences` measures the dropped mass and the posed displacement
    * error (each bone alone, and all bones with alternating sign, rotated 30 degrees about their
    * starts). Vertices whose error exceeds `hubErrorPx` (default 1 px) are reported in the
    * diagnostics; `hubPolicy: "reject"` throws instead (a hub the influence cap cannot represent
@@ -97,7 +97,7 @@ export interface Ambiguity {
   competitors: { bone: number; distance: number }[];
 }
 
-/** What the weight solve had to correct, for reports (plan 4d-4j3). */
+/** What the weight solve had to correct, for reports. */
 export interface WeightDiagnostics {
   /** Vertices whose nearest allowed bones include a non-adjacent one at nearly the same distance. */
   ambiguities: Ambiguity[];
@@ -146,7 +146,7 @@ export interface WeightResult {
   weights: Influence[][];
   /** Per vertex: "pinned", "rigid" or "free" (for overlays and tests). */
   kinds: ("pinned" | "rigid" | "free")[];
-  /** Heat weights outside [0, 1] before the clamp (plan 4d-4j3). */
+  /** Heat weights outside [0, 1] before the clamp. */
   clamped?: WeightDiagnostics["clamped"];
 }
 
@@ -295,7 +295,7 @@ export function autoWeights(mesh: MeshForWeights, chain: WeightChain, options: A
 }
 
 /**
- * A branched part (plan 4d-4i): a bone TREE, parents before children, `parent` indexing this list
+ * A branched part: a bone TREE, parents before children, `parent` indexing this list
  * (-1 for the single trunk root). A quadruped body with a neck, a tail and four legs, a torso with two
  * clavicles and a head: each branch is its own chain hung from an explicit bone of another chain.
  */
@@ -335,7 +335,7 @@ export function checkWeightTree(tree: WeightTree): void {
 }
 
 /**
- * Heat weights over a bone tree (plan 4d-4i). A simple chain gives exactly `autoWeights`. For a
+ * Heat weights over a bone tree. A simple chain gives exactly `autoWeights`. For a
  * branched tree every vertex belongs to the domain of its nearest bone and may blend only with
  * that bone's parent and its nearest child, when their shared joint is within reach, so weight
  * never bleeds from one branch into another except around the joint they share. Joint hygiene
@@ -354,7 +354,7 @@ export function autoWeightsTree(mesh: MeshForWeights, tree: WeightTree, options:
   const anchor = tree.anchor;
   const offset = anchor ? 1 : 0;
   const connections = options.connections ?? [];
-  // Plan 4d-4j3: the domain's allowed set, checked once; an empty domain is an error, never a guess.
+  // Plan: the domain's allowed set, checked once; an empty domain is an error, never a guess.
   const allowedBone = (k: number) => !options.allow || options.allow(k);
   if (!tree.bones.some((_, k) => allowedBone(k))) throw new Error(`auto-weights: the deformation domain allows none of the tree's bones (${tree.bones.map((b) => b.name).join(", ")})`);
   const anchorEligible = anchor !== undefined && options.allowAnchor !== false;
@@ -416,7 +416,7 @@ export function autoWeightsTree(mesh: MeshForWeights, tree: WeightTree, options:
     return near(a) && near(b);
   };
 
-  // Domains (nearest tree bone) and the ambiguity count. Order-independent (plan 4d-4j2): bones at
+  // Domains (nearest tree bone) and the ambiguity count. Order-independent: bones at
   // the same distance (siblings sharing a start, a vertex on a hub) are a tie, resolved by the
   // hierarchy (a tied bone that is an ancestor of every other tied bone owns the vertex), else by
   // bone name, never by list order; tied bones also share the vertex's heat source below.
@@ -452,8 +452,8 @@ export function autoWeightsTree(mesh: MeshForWeights, tree: WeightTree, options:
     tied.sort(byName);
     const owner = tied.find((a) => tied.every((b) => b === a || isAncestor(a, b))) ?? (tied[0] as number);
     domains[i] = owner;
-    // Competitors by (distance, name), never by list order (plan 4d-4j3): every bone within the
-    // ratio that is not adjacent to the owner, so an adjacent runner-up (the owner's own child at
+    // Competitors by (distance, name), never by list order: every bone within the
+    // ratio that is not adjacent to the user, so an adjacent runner-up (the user's own child at
     // the joint) does not hide a third, non-adjacent branch just behind it. Top three reported.
     const competitors = treeBones
       .map((_, k) => k)
@@ -521,7 +521,7 @@ export function autoWeightsTree(mesh: MeshForWeights, tree: WeightTree, options:
     for (const c of reachable) if (childDistance(c) <= nearestChildDistance + tieTolerance(nearestChildDistance)) set.add(offset + c);
     for (const p of membraneNear(i, k)) set.add(offset + p);
     if (anchorEligible && k === rootBone) set.add(0);
-    // Plan 4d-4j3: every mask is intersected with the domain's allowed set (a parent added for
+    // Plan: every mask is intersected with the domain's allowed set (a parent added for
     // joint reach is still only a candidate), then candidate-versus-candidate overlap conflicts are
     // resolved before the solve: candidates in order (domain bone first, then by distance and name)
     // are admitted only when no admitted bone forbids them, so no vertex carries both sides of an
@@ -567,7 +567,7 @@ export function autoWeightsTree(mesh: MeshForWeights, tree: WeightTree, options:
       nearest.push([...at].filter(([, d]) => d <= best + tieTolerance(best)).map(([j]) => j));
       h[i] = ((area[i] as number) * heat) / Math.max(1, best) ** 2;
     }
-    // Forbidden influences are enforced inside the solve (plan 4d-4j2): bone j's heat equation is
+    // Forbidden influences are enforced inside the solve: bone j's heat equation is
     // solved only over the free vertices whose mask allows j; every other vertex is a boundary
     // value (1 where rigid on j, else 0), so weight never diffuses into a vertex that may not
     // carry it and the masking below removes nothing the solve produced. One factorization per
@@ -614,7 +614,7 @@ export function autoWeightsTree(mesh: MeshForWeights, tree: WeightTree, options:
   const pruning = new PruneStats(bones, mesh.points, options.hubErrorPx ?? 1);
   let result = pruneByName(masked(raw), bones, maxInfluences, minWeight, pruning);
   for (let pass = 0; pass < (options.smooth ?? 1); pass++) {
-    // Smoothing never imports a forbidden influence (plan 4d-4j3): it reads only the vertex's mask.
+    // Smoothing never imports a forbidden influence: it reads only the vertex's mask.
     result = smoothWeights(result, neighbours, (i) => (constrained[i] as number) < 0, bones.length, (i, bone) => (masks[i] as Set<number>).has(bone));
     result = pruneByName(masked(result), bones, maxInfluences, minWeight, pruning);
   }
@@ -769,7 +769,7 @@ function rotationDisplacement(x: number, y: number, pivot: Point, angle: number)
 }
 
 /**
- * Pruning cost per vertex (plan 4d-4j3): the dropped mass, and the posed displacement between the
+ * Pruning cost per vertex: the dropped mass, and the posed displacement between the
  * dense and the pruned weights over probe poses (each bone alone rotated 30 degrees about its start,
  * and every bone rotated with alternating sign by name rank).
  */
@@ -825,7 +825,7 @@ export class PruneStats {
 }
 
 /**
- * `pruneWeights` without any dependence on bone list order (plan 4d-4j3): normalise first, keep the
+ * `pruneWeights` without any dependence on bone list order: normalise first, keep the
  * largest `maxInfluences` by (weight, bone name) (a tie straddling the cap is cut by name, never
  * collapsed into one rigid weight), drop weights under the relative threshold `minWeight` of the
  * vertex's total, renormalise. The dropped mass and posed error go to `stats`.
@@ -924,7 +924,7 @@ export function smoothWeights(
   neighbours: readonly Set<number>[],
   selected: (vertex: number) => boolean,
   boneCount: number,
-  /** Plan 4d-4j3: bones vertex `i` may carry; others are never imported from its neighbours. */
+  /** Plan: bones vertex `i` may carry; others are never imported from its neighbours. */
   allow?: (vertex: number, bone: number) => boolean
 ): Influence[][] {
   const dense = (list: readonly Influence[]) => {

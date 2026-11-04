@@ -1,7 +1,6 @@
 # Atlas Animator: CLI and command reference
 
-Original 2D skeletal animation system (clean-room; see `docs/plans/atlas-animator.md` section 2:
-never open or copy Spine code). A rig is one JSON document, `<name>.anim.json` (`atlas-anim@1`),
+Original 2D skeletal animation system, written from scratch. A rig is one JSON document, `<name>.anim.json` (`atlas-anim@1`),
 plus an atlas (`<name>.atlas.json` + page PNGs). Canvas pixels, y down; angles in degrees,
 clockwise positive; times in seconds.
 
@@ -37,7 +36,7 @@ animator undo rig.anim.json [--steps N]     # redo likewise; log shows history
   command per line; `#` and `//` lines are comments) or a JSON array. A batch is atomic and is
   one undo step. `--dry-run` prints the patch without writing. `--check end` validates once at
   the end instead of after each command (for scripts that pass through invalid states).
-- **Pose limits are live** (plan 4d-4h). Key commands (`key.*`, `clip.duration`, `clip.copy`) are
+- **Pose limits are live** (). Key commands (`key.*`, `clip.duration`, `clip.copy`) are
   checked against the document's `poseLimits`: the keyed pose and the in-betweens, sampled through
   the runtime (key times and 8 steps between, so curves, IK and constraints count). A command is
   blamed only for poses it moved outside. `--limits warn` (CLI default) applies and prints
@@ -46,14 +45,14 @@ animator undo rig.anim.json [--steps N]     # redo likewise; log shows history
   upper_arm_l 80.8, forearm_l 48.7`; `--limits reject` refuses that command (nothing written, exit 1);
   `--limits off` skips the check. The nearest legal pose is the drivers projected onto the limit
   polygons: key those values (offsets from setup) to fix it. The Studio editor always rejects.
-- **Fast path: `apply-script <doc> <script> --check end --limits reject`.** Format and
+- **Fast path for scripts: `apply-script <doc> <script> --check end --limits reject`.** Format and
   pose limits are checked once, on the whole clip, at the end. A format error still refuses the
   batch; a pose-limit failure keeps it (written and logged, nothing reverted) and exits 1 with the
   findings, so fix forward with more `key.set` commands or `undo`. Run `validate` before rendering.
 - `new <doc> --name <n> --size WxH [--origin X,Y]` creates an empty rig (root bone only).
 - `log <doc> [--last N] [--json]` prints entries; `watch <doc>` prints them as they land.
 - `--bridge http://127.0.0.1:<port>` on apply / apply-script / undo / redo sends the batch to
-  the open Appearance Studio (the owner sees it land); the document must be in the Studio's
+  the open Appearance Studio (the user sees it land); the document must be in the Studio's
   worktree. Without it the CLI writes the file directly (the Studio need not run).
 - `rig <figure.png> --name <rig> --out <dir> [--review <dir>]` auto-rigs the humanoid template.
 - `atlas split <in.png> --line X1,Y1,X2,Y2 --seed X,Y --out <rest.png> --part <part.png> [--overlap 14]`
@@ -208,7 +207,7 @@ document, still checked and logged. Prefer named commands.
 `state.mode {mode: bones|mesh|weights}` change the preview, never the document; playback is
 Phase 7. Rendering and validation are CLI commands.
 
-## Joint-ready body (Phase 4d-2)
+## Joint-ready body (Phase)
 
 All optional in `atlas-anim@1` (older documents load unchanged):
 
@@ -217,13 +216,13 @@ All optional in `atlas-anim@1` (older documents load unchanged):
   draws at its slot's draw-order position with that slot's colour; boundary vertices, weights, UVs
   and correctives are shared by construction. The slot holding the mesh draws only its own group.
   Linked meshes of a grouped mesh draw whole. (The CPU software renderer behind `validate` and
-  review sheets still draws the whole mesh at the owner slot; the Pixi renderer is the reference.)
+  review sheets still draws the whole mesh at the user slot; the Pixi renderer is the reference.)
 - **Contours**: `skins.<skin>.contours.<owner slot>.<name>`, a centreline bound to a mesh
   (`mesh` + `points`: vertex indices or `[a, b, c, wa, wb]` barycentric points) or to bones
   (`bones` + weighted `vertices`), with `width` (canvas px, full width), `color`, `closed`,
   `caps` (round | butt) and `visible` rules (`[{bone, min, max}]` on the driver angle, all must
   hold). Stroked after deformation with round joins and one coverage-ramp anti-aliasing (an atlas
-  image), so the width stays constant under any bend; drawn as batched meshes just above the owner
+  image), so the width stays constant under any bend; drawn as batched meshes just above the user
   slot; rebuilt only when an owner bone (mesh influences and corrective drivers) moved; skipped
   below `AnimatorCharacter.contourMinPixels` display pixels. Set `contourPixelScale` when the
   container's world transform is not the display scale. Rigid art keeps baked strokes; never
@@ -233,7 +232,7 @@ All optional in `atlas-anim@1` (older documents load unchanged):
   keys after IK, constraints and limits.
 - **Coverage**: `skins.<skin>.coverage` = `regions` (named triangle ranges of one of the skin's
   meshes) and `covers` (regions of other skins it covers opaquely). Format only for now; the
-  equipment-coverage gate that reads it is Phase 4d-5.
+  equipment-coverage gate that reads it is Phase.
 
 ## Example script (`breathe.jsonl`)
 
@@ -250,7 +249,7 @@ All optional in `atlas-anim@1` (older documents load unchanged):
 The Appearance Studio's **Animator** workspace is the hand editor for the same documents. Every
 edit it makes (gizmo drags, brush strokes, inspector fields, console lines) is a command batch
 sent to the bridge, which applies it through the command log exactly as the CLI does; the editor
-then reloads from the log. So the CLI and the owner share one undo history, and a CLI edit made
+then reloads from the log. So the CLI and the user share one undo history, and a CLI edit made
 while the editor is open shows up live (and is listed in the editor's console, tagged `cli`).
 
 Routes (writes need the Studio origin, the session token and a writable task worktree):
@@ -281,7 +280,7 @@ in the browser), `@ash-atlas/animator/store` (file + log: `applyToFile`, `stepHi
 `@ash-atlas/animator/atlas` (`importCanvasPart`, PNG encode/decode; node), `@ash-atlas/animator/patch`
 (RFC 6902 with inverses), `@ash-atlas/animator/tools/outline` and `/tools/autoMesh` (pure).
 
-## Continuous-surface builder (plan 4d-3)
+## Continuous-surface builder
 
 `pnpm animator surface <preset.json> --out <dir> [--demos <dir>] [--quick] [--calibrate-width <k>]`
 builds one canonical skin surface (plus garment layers) from a preset in

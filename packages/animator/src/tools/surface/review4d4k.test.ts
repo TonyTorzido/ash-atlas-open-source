@@ -12,7 +12,7 @@ import { companionPoses, finalPoses } from "./validationCompanion.js";
 vi.setConfig({ testTimeout: 300_000, hookTimeout: 300_000 });
 
 /*
- * 4d-4k review (docs/plans/research/phase-4d4k.md, section 4): one regression test per
+ * review: one regression test per
  * defect, plus the scale-capable Poser and the higher-order final-runtime poses.
  */
 
@@ -24,7 +24,7 @@ const invert = (w: Affine): Affine => {
   return { a, b, c, d, x: -(a * w.x + b * w.y), y: -(c * w.x + d * w.y) };
 };
 
-describe("4d-4k review defects", () => {
+describe(" review defects", () => {
   it("1: rigid-region coverage follows the region bone (head tilt +15), not the bind polygon", () => {
     const rig = canonicalRig("template7-shoulder");
     const head = rig.built.preset.regions.find((r) => r.bone === "head");

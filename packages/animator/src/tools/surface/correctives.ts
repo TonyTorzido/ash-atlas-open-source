@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Corrective baking (plan 4d-3 pass 3b; consult 2, sections 3 and 6). The target shape at a
+ * Corrective baking (pass 3b; consult 2, sections 3 and 6). The target shape at a
  * pose comes from the surface solver (solver.ts: procedural boundary curves plus the constrained
  * interior solve, reached by feasible continuation). Residuals are baked against the exact runtime
  * evaluator (the Skeleton with every correction that stays active), encoded per influence in its
@@ -26,7 +26,7 @@ import { insideLimits, reachAlong, type PoseLimit } from "./limits.js";
 
 /**
  * A pose: bone rotation deltas (degrees) by bone name, plus optional scale factors keyed
- * `<bone>.scaleX` / `<bone>.scaleY` (multiplying the setup scale; 4d-4l simultaneous drivers).
+ * `<bone>.scaleX` / `<bone>.scaleY` (multiplying the setup scale; simultaneous drivers).
  */
 export type Pose = Record<string, number>;
 
@@ -120,7 +120,7 @@ const RELOCATE_X_STEP = 3;
 const RELOCATE_Y_ROWS = 8;
 
 /**
- * Grid node placement by the silhouette residual (plan 4d-3 pass 3d-1): on a fixed lattice
+ * Grid node placement by the silhouette residual (pass 3d-1): on a fixed lattice
  * (x every RELOCATE_X_STEP degrees, RELOCATE_Y_ROWS + 1 rows plus the node rows; targets solved by
  * continuation along each row, inside the pose limits), every interior node of each axis moves, one
  * at a time, to the lattice value whose bake gives the smallest worst residual of the free hull
@@ -221,7 +221,7 @@ export interface BakeReport {
   grids: { name: string; x: number[]; y: number[]; added: string[]; capBinds: string[]; samples: number; failing: number; worst: string }[];
   /** Seed or node targets the solver could not reach within the envelope (reported, not baked). */
   unsolved: string[];
-  /** Seeds, grid nodes and cells outside the combined pose limits (plan 4d-3 pass 3d-1): never checked; nodes are baked only to support interpolation inside. */
+  /** Seeds, grid nodes and cells outside the combined pose limits (pass 3d-1): never checked; nodes are baked only to support interpolation inside. */
   unreachable: string[];
   /** Runtime between keys and inside cells (not at seeds): the interpolation gate. */
   interpolation: { samples: number; failing: number; minRatio: number; worstShape: number; worstVertex: number; worstAt: string };
@@ -387,7 +387,7 @@ export function seedCorrectives(built: BuiltSurface, solver?: SurfaceSolver, lim
           grew = true;
         }
       }
-      // Silhouette residual (plan 4d-3 pass 3d-2): validity alone added no key where the baked
+      // Silhouette residual (pass 3d-2): validity alone added no key where the baked
       // interpolation lets the free hull vertices drift from the solved target and back; the temporal
       // gate sees that as a residual jump between sweep frames. Where the curve-vertex residual changes
       // by more than KINK_LIMIT over the sweep step, the interval gets a key at the jump.

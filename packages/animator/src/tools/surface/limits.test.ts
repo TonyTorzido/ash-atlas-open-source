@@ -6,7 +6,7 @@ import { convexOutside, insideLimits, isConvex, reachAlong, shrinkToFree, type P
 import type { Pt } from "./geometry.js";
 
 /*
- * Plan 4d-3 pass 3d-1: combined pose limits (convex polygons in driver space, AND-ed), the auto
+ * Plan pass 3d-1: combined pose limits (convex polygons in driver space, AND-ed), the auto
  * shrink to a collision-free convex set, and the validator flagging clips outside.
  */
 
@@ -69,7 +69,7 @@ describe("pose limits", () => {
     expect(unknown.ok).toBe(false);
   });
 
-  it("a combined limit (plan 4d-4l b): y plus its 'plus' drivers, in the shrink, the live check and the validator", () => {
+  it("a combined limit (b): y plus its 'plus' drivers, in the shrink, the live check and the validator", () => {
     // The lean limit: neck + head may not lean below -5 once the arm is past 60 (a keep line along the x axis).
     const lean: PoseLimit = { name: "lean", x: "raise", y: "neck", plus: ["head"], polygon: [[-15, -25], [60, -25], [105, -5], [105, 25], [-15, 25]], source: "declared" };
     expect(insideLimits([lean], { raise: 105, neck: -5, head: -5 })).toBe(false); // sum -10 (floor -5 at 105)
@@ -111,7 +111,7 @@ describe("pose limits", () => {
     expect(parseAnimDocument({ ...raw(0, 0), poseLimits: [{ name: "x", x: "raise", y: "neck", plus: ["nope"], polygon: [[0, 0], [1, 0], [0, 1]] }] }).ok).toBe(false);
   });
 
-  it("a combined limit admits only same-side splits (4d-4l review 1): counter-leans are outside everywhere", () => {
+  it("a combined limit admits only same-side splits: counter-leans are outside everywhere", () => {
     const lean: PoseLimit = { name: "lean", x: "raise", y: "neck", plus: ["head"], polygon: [[-15, -25], [105, -25], [105, 25], [-15, 25]], source: "declared" };
     // neck +10 / head -10 keeps a "neutral" sum but moves the head sideways: never sampled, so outside.
     expect(insideLimits([lean], { raise: 90, neck: 10, head: -10 })).toBe(false);

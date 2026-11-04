@@ -1,5 +1,4 @@
-# Round 22 (owner decision: the inner sleeve edge players see is the runtime outline, drawn from the mesh; the
-# importer strips the art's silhouette ink): edge-fit pass after extend-cuffs. Where a forearm's art stops short of
+#: edge-fit pass after extend-cuffs. Where a forearm's art stops short of
 # the runtime silhouette (scripts/garment-edge.ts: per boundary anchor, the rest point, the outward direction and
 # the distance the importer's silhouette check measures against), the sleeve FILL is continued out to it:
 #   per forearm anchor with a deficit (art exit < target - TOL), the strip between the anchor and target - INSET px

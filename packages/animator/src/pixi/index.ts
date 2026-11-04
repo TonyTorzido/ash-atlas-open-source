@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Public surface of the Pixi 8 adapter (`@ash-atlas/animator/pixi`): the character renderer, the
  * dynamic atlas, image providers and debug overlays. The game, the editor and the CLI's headless

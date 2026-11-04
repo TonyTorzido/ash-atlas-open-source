@@ -1,4 +1,4 @@
-// Lineup of every character view (docs/plans/atlas-animator-demos/views/turned-front/lineup/README.md). Run from
+// Lineup of every character view (packages/animator/README.md). Run from
 // packages/animator after `bash scripts/views/turnfront-lineup-rigs.sh`:
 //   npx tsx scripts/views/turnfront-lineup-evidence.ts
 // Jacket B worn, face combo A (almond eyes, soldier crop) on the front views, the stand-in back hair on the back views.
@@ -8,7 +8,7 @@
 // - lineup-view{040,0471}.png: the six views at rest (row 1, Jacket B) + the bare back body BACK / BACK TURNED L / R
 //   (row 2);
 // - lineup-walk-view{040,0471}-30fps.gif: the six views walking in sync (walk_in_place, same phase);
-// (the turnaround GIFs were dropped 2026-10-19: the owner dropped the circle demo; five-anims/ has the clips)
+// (the turnaround GIFs were dropped 2026-10-19: dropped the circle demo; five-anims/ has the clips)
 // - back-turn-diagnostic-view0471.png: BACK vs BACK TURNED LEFT at max zoom with the spine line and head axis marked.
 import { join } from "node:path";
 import { readFileSync } from "node:fs";

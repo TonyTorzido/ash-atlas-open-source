@@ -1,5 +1,5 @@
 /*
- * Atlas Animator, round 22 (owner: "the jackets/shirt don't go all the way to the hand. they stop"): every
+ * Atlas Animator: every
  * sleeve's cuff hem sits on the wrist dip, square to the forearm. For each forearm cuff cut of the given
  * domains (a cuff on a limb group whose bone carries the extremity, the fist), the cut moves onto the line
  * through the bare body's wrist dip (tools/cuffGap.ts wristDip, measured at rest) perpendicular to the
@@ -26,7 +26,7 @@ import { sleevedArms, wristDip } from "../src/tools/cuffGap.js";
 
 type Pt = [number, number];
 const HERE = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const RIG = join(HERE, "../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/template7-shoulder-legs.anim.json");
+const RIG = join(HERE, "../fixtures/test-rigs/body/template7-shoulder-legs.anim.json");
 const raw = JSON.parse(readFileSync(RIG, "utf8"));
 const pack = atlasPackSchema.parse(JSON.parse(readFileSync(RIG.replace(/\.anim\.json$/, ".atlas.json"), "utf8")));
 const tex = texturesFromAtlas(pack, new Map(pack.pages.map((p) => [p.file, readPng(join(dirname(RIG), p.file))])) as any);

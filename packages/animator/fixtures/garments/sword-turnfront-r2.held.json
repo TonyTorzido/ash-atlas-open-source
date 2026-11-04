@@ -30,6 +30,6 @@
   "color": "1c1f26ff"
  },
  "source": {
-  "note": "PROTOTYPE (turned-front round 2, 2026-10-19): fixtures/garments/sword-live.held.json (live sprite, same art and size) on armlayer-turn15-face-shift.anim.json: grip.at = the front chop's grip point moved with the left hand, grip.angle solved by scripts/views/turnfront-round2-sword-clips.ts so the ready blade is 25 deg off vertical, out."
+  "note": "PROTOTYPE (turned-front, 2026-10-19): fixtures/garments/sword-live.held.json (live sprite, same art and size) on armlayer-turn15-face-shift.anim.json: grip.at = the front chop's grip point moved with the left hand, grip.angle solved by scripts/views/turnfront-round2-sword-clips.ts so the ready blade is 25 deg off vertical, out."
  }
 }

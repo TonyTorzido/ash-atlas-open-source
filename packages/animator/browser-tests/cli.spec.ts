@@ -98,7 +98,7 @@ test("animator render writes MP4, GIF and a contact sheet from a clean environme
 });
 
 /*
- * Plan 4d-4i: the CPU review rasteriser (softRender: validators, weight overviews, contact sheets)
+ * Plan: the CPU review rasteriser (softRender: validators, weight overviews, contact sheets)
  * must register art exactly where the Pixi page draws it. The fox (fixtures/rigs/fox, from
  * mob-rig-test-01) remeshed past 1024 vertices used to lose every triangle past the CPU's fixed
  * world buffer. Both renders of the setup pose, alpha >= 128 silhouettes, must agree.
@@ -129,10 +129,10 @@ test("the CPU review renderer and the Pixi page give the same fox silhouette (de
   expect(both / either).toBeGreaterThan(0.98);
 });
 
-test("the browser render draws the tunic's own flank strokes in the body ink (4d-4l garment probe)", async ({}, testInfo) => {
+test("the browser render draws the tunic's own flank strokes in the body ink (garment probe)", async ({}, testInfo) => {
   // The probe's tunic owns its outline as mesh-bound strokes (edge_* contours) and has no painted
   // edge band, so the dark line on its flank in the Pixi page is the stroke itself.
-  const rig = join(packageDir, "../../docs/plans/atlas-animator-demos/phase-4d4l/probe/rig");
+  const rig = join(packageDir, "fixtures/test-rigs/probe");
   const doc = join(rig, "template7-shoulder-probe-tunic.anim.json");
   const raw = JSON.parse(readFileSync(doc, "utf8"));
   const strokes = Object.values(raw.skins[Object.keys(raw.skins)[0] as string].contours as Record<string, Record<string, { color: string }>>).flatMap((byName) => Object.entries(byName).filter(([name]) => name.startsWith("edge_")).map(([, c]) => c));

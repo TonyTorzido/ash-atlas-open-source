@@ -1,4 +1,4 @@
-// Jacket B gathering + flag-building clips (2026-10-20, docs/plans/player-gather-anims.md).
+// Jacket B gathering + flag-building clips (2026-10-20, packages/animator/README.md).
 // Authors the body clips on the Jacket B turned rigs (rigs/jacketb, as copied by scripts/copy-jacket-rig.mjs) and the
 // per-frame held-item transform (tools are NOT baked into the sheets; the client draws the in-game tool sprite there).
 //   npx tsx scripts/gather/gather-clips-jacketb.ts [<out dir>] [gather|sword]      (run from packages/animator)
@@ -7,10 +7,10 @@
 //   grip in canvas px from the skeleton origin (y down); itemDeg = canvas direction (atan2, y down) from the grip to
 //   the item's head (the tool head / the flag top); order 0 = behind the body, 1 = in front; planted 1 = the flag
 //   stays where it is (let go).
-// The `sword-combo` set (2026-10-20, docs/plans/player-sword-combo.md, retired: no longer shipped) writes the
+// The `sword-combo` set (2026-10-20, packages/animator/README.md, retired: no longer shipped) writes the
 // sword_1..3 rig combo clips the same way to <out>/sword-combo-clips.json, with a 6th xf column: the blade's on-screen
 // length factor (foreshortening as it sweeps around the body in depth; the client scales the art along its up axis).
-// The `sword` set (2026-10-20, docs/plans/player-sword-keyposes/README.md, Phase 2) writes sword_walk: the live
+// The `sword` set (2026-10-20, packages/animator/README.md, Phase 2) writes sword_walk: the live
 // walk_in_place with the sword arm (upper_arm_l / forearm_l / hand_l) held at the drawn ready pose's angle, and the
 // per-frame grip (same 6 xf columns; itemDeg = the ready pose's blade angle turned with the fist). The swings
 // themselves are drawn key poses (scripts/pack-sword-keyposes.py), not rig clips.
@@ -21,7 +21,7 @@
 // (negative = lean toward the facing side), csx/csy chest scale, thL/thR thighs.
 // Pose keys follow the Spine curve convention (a key's curve shapes the segment that starts at it); every frame is
 // then keyed so the clip and the exported item transform interpolate identically. Every clip ships all 30 fps poses
-// (hold 1; 2026-10-20 owner: the 15 fps holds read "very stuttery").
+// (hold 1: 15 fps holds read as stuttery).
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { AnimationState, AnimationStateData } from "../../src/core/animationState.js";
@@ -149,7 +149,7 @@ const CLIPS: ClipSpec[] = [
   }
 ];
 
-// Sword combo (action combat, docs/plans/player-sword-combo.md): one clip per combo step, played from the press.
+// Sword combo (action combat, packages/animator/README.md): one clip per combo step, played from the press.
 // The blade crosses the target SWING_CONTACT_MS after the press (swing 105 ms, finisher 119 ms: both in f3 =
 // 100-133 ms); the recovery lasts the step's server recovery (700 / 700 / 900 ms = 21 / 21 / 27 frames) and ends on
 // the turned standing pose, so a chained step starts where the last ended and an unchained one hands over to the

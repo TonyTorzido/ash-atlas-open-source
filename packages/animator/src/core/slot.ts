@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * A runtime slot: one entry of the draw list, bound to a bone, showing at most one attachment.
  *
@@ -13,7 +13,7 @@
 import type { Attachment, MeshAttachment } from "./attachments.js";
 import type { Bone } from "./bone.js";
 import { copyRgba, parseRgba, type Rgba } from "./color.js";
-import type { SlotData } from "./format.js";
+import type { SequenceMode, SlotData } from "./format.js";
 
 export class Slot {
   readonly data: SlotData;
@@ -28,6 +28,15 @@ export class Slot {
   drivenPlaceholder: string | null | undefined = undefined;
   /** Driven-key opacity this frame (1 = none); renderers multiply it into `color.a`. */
   drivenAlpha = 1;
+  /**
+   * Image-sequence state: the active sequence key (null = none, the attachment's setup frame
+   * shows), the seconds since it, and the frame the skeleton resolved for the shown attachment.
+   */
+  sequenceMode: SequenceMode | null = null;
+  sequenceIndex = 0;
+  sequenceDelay = 0;
+  sequenceElapsed = 0;
+  sequenceFrame = 0;
   /** True while an active skin hides this slot. */
   hidden = false;
   /** The attachment drawn this frame (resolved by the skeleton). */
@@ -58,5 +67,7 @@ export class Slot {
   setToSetupPose(): void {
     copyRgba(this.setupColor, this.color);
     this.placeholder = this.data.attachment;
+    this.sequenceMode = null;
+    this.sequenceElapsed = 0;
   }
 }

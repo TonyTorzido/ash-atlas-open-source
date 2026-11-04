@@ -80,7 +80,7 @@ describe("humanoid fit", () => {
     }
   });
 
-  it("fits the live body template close to the approved pivots for AtlasRig", () => {
+  it("fits the live body template close to the pivots approved for AtlasRig", () => {
     const template = readPng(LIVE_TEMPLATE_PATH);
     expect([template.width, template.height]).toEqual([1086, 1448]);
     const landmarks = fitHumanoid(largestComponent(alphaMask(template)) ?? alphaMask(template));

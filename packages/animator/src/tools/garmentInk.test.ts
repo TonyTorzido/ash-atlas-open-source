@@ -8,8 +8,8 @@ import { readPng } from "./png.js";
 import { SWAG_RULES_DIR } from "./swagTypes.js";
 
 /*
- * Outline ink by position, not colour (owner rule: an outline may be any hue, as long as it is darker
- * than the item). Round 9 regression: medium brown leather was stripped as ink (68,651 of 69,310 px).
+ * Outline ink by position, not colour (pose rule: an outline may be any hue, as long as it is darker
+ * than the item). regression: medium brown leather was stripped as ink (68,651 of 69,310 px).
  * The jacket and the test shirt use the body's red-brown ink: the new detector must agree with the old
  * colour test there, so neither regresses.
  */
@@ -151,7 +151,7 @@ describe("garment outline ink by position", () => {
     expect(isInkBlend(ink, [165, 100, 50], 92, 65, 70)).toBe(true);
     expect(isInkBlend(ink, [165, 100, 50], 165, 100, 50)).toBe(false);
   });
-  it("a belt's ink-like end cap is a trim edge against the fabric; a line hugging the outline is not (round 21b, Jade C)", () => {
+  it("a belt's ink-like end cap is a trim edge against the fabric; a line hugging the outline is not (Jade C)", () => {
     const w = 120, h = 120;
     const art = createImage(w, h);
     for (let y = 10; y < 110; y++) for (let x = 10; x < 110; x++) {
@@ -167,7 +167,7 @@ describe("garment outline ink by position", () => {
     const ink = artOutlineInk(art);
     expect(ink.outline).toEqual([17, 18, 19]);
     // the cap's 4 px ink edge line (left, away from its square corners): ink-like cap paint the whole reach on one side,
-    // fabric on the other (before round 21b: no settled paint on the cap side, no vote, the edge was removed)
+    // fabric on the other (before: no settled paint on the cap side, no vote, the edge was removed)
     for (const y of [60, 64, 68]) for (const x of [34, 36]) expect(ink.trimLine[y * w + x]).toBe(1);
     // the belt's own edge lines stay trim
     expect(ink.trimLine[51 * w + 80]).toBe(1);

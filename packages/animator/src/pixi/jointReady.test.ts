@@ -11,8 +11,8 @@ import { DynamicAtlas } from "./dynamicAtlas.js";
 import { packedAtlasImages } from "./partImages.js";
 
 /*
- * Phase 4d-2 in the Pixi adapter: draw groups (one skinned mesh, one batched mesh per group slot,
- * identical boundary positions) and contours (a batched stroke mesh after the owner slot, rebuilt
+ * Phase in the Pixi adapter: draw groups (one skinned mesh, one batched mesh per group slot,
+ * identical boundary positions) and contours (a batched stroke mesh after the user slot, rebuilt
  * only when an owner bone moved, shifted on a pure skeleton move, hidden by level of detail).
  */
 

@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Held-item attack clip gates (attack round 1, 2026-10-17). Pure functions over per-frame samples
+ * Held-item attack clip gates (attack, 2026-10-17). Pure functions over per-frame samples
  * that cli/heldImport.ts takes from the dressed rig; each has a damaged control in
  * heldClipGates.test.ts and in the CLI run on the real rig.
  *
@@ -19,7 +19,7 @@
  *   and the pose is held (hitstop) for the declared frames from it.
  * - elbowInwardGate: every frame lies inside the rig's pose limits and each elbow only folds inward
  *   (the side its `elbow_never_outward*` limit allows at the arm-down pose), never outward.
- * - faderGate (attack round 2): in arm-front frames each contour fader of the holding arm (the
+ * - faderGate (attack): in arm-front frames each contour fader of the holding arm (the
  *   shoulder cap's across-outline and the front outlines) is fully hidden or fully shown, never
  *   half-faded (a half-faded cap reads as a faint ring on the shoulder).
  */

@@ -1,4 +1,4 @@
-// PROTOTYPE (side sword round 2, 2026-10-18): two more side-view swings on the turned-side rig's near hand, same timing
+// PROTOTYPE (side sword, 2026-10-18): two more side-view swings on the turned-side rig's near hand, same timing
 // as side_sword_slash (contact f3 = 100 ms with `hit`, 2-frame hitstop, 60 px lunge, lean, step, squash), each with a
 // 2-frame anticipation and the thin swipe trail. Run from packages/animator after scripts/views/side-sword-clips.ts
 // (which writes fixtures/garments/sword-side.held.json and the art):

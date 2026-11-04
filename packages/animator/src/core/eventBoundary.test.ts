@@ -4,7 +4,7 @@ import { Skeleton } from "./skeleton.js";
 import { testDocument } from "./testHelpers.js";
 
 /*
- * Transition-boundary events stable across frame divisions (runtime review item 6). Rule: a
+ * Transition-boundary events stable across frame divisions. Rule: a
  * key of an entry being mixed out fires iff its track time is at or before the boundary (the old
  * entry's track time when the newer mix fraction reaches eventThreshold) plus EVENT_EPSILON; once.
  */

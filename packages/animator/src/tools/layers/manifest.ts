@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * The layered-parts placement manifest (plan 4d-4k; consult 07, step 4), version 1, with
+ * The layered-parts placement manifest, version 1, with
  * its schema and validator. Conventions:
  *
  * - `coordinates`: source pixels, top-left origin, y down.

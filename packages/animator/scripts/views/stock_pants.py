@@ -3,7 +3,7 @@
 # skeleton, torso/hips/tank meshes and walk/idle clips as the phase-4d4m body). It replaces stock_shorts.py's charcoal
 # shorts stand-in for the front clips; the pants slot already hides `shorts`. No art change.
 #
-# Ink (owner decision D2): garment contour runs that sit on the OUTER silhouette take the body brown 3a1001; interior
+# Ink: garment contour runs that sit on the OUTER silhouette take the body brown 3a1001; interior
 # runs keep their garment ink (tank 45403d, pants 1a1614). Classification is geometric, in the setup pose: every
 # visible mesh triangle and region (head, fists, by their opaque polygons) is rasterised in skeleton space; a contour
 # point is "silhouette" when it lies within SIL_PX of the background. Each garment contour is split into runs of equal

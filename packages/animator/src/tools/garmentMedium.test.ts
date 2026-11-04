@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Round 17: the medium (bulky, padded) template on the simple template's construction: thicker free outline,
+ *: the medium (bulky, padded) template on the simple template's construction: thicker free outline,
  * simple-thin at the neckline ends and beside the underarm gaps, a low-passed silhouette; the
  * armGapClearance and silhouetteBump measures behind the armGapEveryFrame and silhouetteSmooth gates.
  */
@@ -15,7 +15,7 @@ import { Skeleton } from "../core/skeleton.js";
 import { ARM_GAP_MIN, MEDIUM_BULK_DEFAULTS, armGapClearance, buildGarmentSurface, dressGarment, dropNecklines, mediumBulk, silhouetteBump, type GarmentBuild, type GarmentDomain } from "./garmentSurface.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const raw = JSON.parse(readFileSync(join(ROOT, "../../docs/plans/atlas-animator-demos/phase-4d4m/body/rig/template7-shoulder-legs.anim.json"), "utf8"));
+const raw = JSON.parse(readFileSync(join(ROOT, "fixtures/test-rigs/body/template7-shoulder-legs.anim.json"), "utf8"));
 const medium: GarmentDomain = dropNecklines(raw, JSON.parse(readFileSync(join(ROOT, "fixtures/garments/medium-gambeson.domain.json"), "utf8")));
 const hides = ["tank", "tank_armhole", "tank_armhole_r"];
 const build = (d: GarmentDomain, margin = d.margin) => buildGarmentSurface(raw, d, { name: "g", margin, strokeWidth: 10, hides });
@@ -28,7 +28,7 @@ const atRest = (b: GarmentBuild) => {
 };
 const margins = (b: GarmentBuild) => b.runs.flatMap((r) => r.dAt.map(Math.abs));
 
-describe("medium template (round 17)", () => {
+describe("medium template ()", () => {
   it("is declared per item with defaults; simple domains are untouched", () => {
     expect(mediumBulk(medium)).toEqual(MEDIUM_BULK_DEFAULTS);
     expect(mediumBulk({ ...medium, template: "simple" as const })).toBeNull();

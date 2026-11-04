@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Second rig acceptance (nest mouse): weights.auto domains follow the mesh, not straight lines.
  * A U-shaped part (a body column, a gap, a tail curled back up beside it): the inner edge of the

@@ -22,7 +22,7 @@ function build(points: Float32Array, count: number, closed: boolean, capacity: n
   return { positions, uvs, indices, counts, run: () => buildStroke(points, count, closed, false, 4, 1, RAMP, positions, uvs, indices, counts, topology) };
 }
 
-describe("stroke topology identity (4d-4f review, sameTopology)", () => {
+describe("stroke topology identity (review, sameTopology)", () => {
   it("an open/closed switch or another point count rewrites uvs and indices", () => {
     // Gentle turns: every join is a single rim vertex per side, open or closed (identical sides).
     const points = polygon(64, 200);

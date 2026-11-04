@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Leg stance policy (plan 4d-4m round 5, owner decision 2026-10-15): with `stance: "foreshorten"`
+ * Leg stance policy: with `stance: "foreshorten"`
  * a planted leg stays straight as drawn (the shin keeps its setup angle to the thigh) and shortens
  * toward the viewer when the hip comes closer to the plant: the thigh turns so the ankle lies on
  * the hip -> plant line and its length scales so the ankle lands exactly on the plant. No knee bow,

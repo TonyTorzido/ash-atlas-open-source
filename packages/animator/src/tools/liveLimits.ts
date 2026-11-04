@@ -1,7 +1,7 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
- * Live pose limits (plan 4d-4h): key commands are checked against the document's `poseLimits`
+ * Live pose limits: key commands are checked against the document's `poseLimits`
  * while authoring, not only by `animator validate`. A clip is sampled through the runtime (its key
  * times and 8 steps between them, so interpolation curves, IK and constraints are included) and
  * each sample's driver pair is tested against every limit polygon. A command is blamed only for
@@ -62,7 +62,7 @@ export function limitPoint(limit: Pick<Limit, "x" | "y" | "plus">, values: Reado
 }
 
 /**
- * The combined-lean rule (4d-4l review, item 1): a combined limit's y is a lean, so every
+ * The combined-lean rule: a combined limit's y is a lean, so every
  * driver of the sum (y and each `plus`) leans the total's way or is 0, and a total of 0 means every
  * driver at 0. The auto limit samples only such splits; a counter-leaning split (neck one way, head
  * the other) moves the head sideways with a "neutral" sum and is outside the limit.
@@ -222,7 +222,7 @@ export function sampleClip(doc: AnimDocument, clip: string, times: readonly numb
       values[name] = bone ? drivenValue(bone) : 0;
     }
     const outside = limits.filter((l) => outsideDistance(l.polygon, limitPoint(l, values)) > TOLERANCE || !leanSplitOk(l, values)).map((l) => l.name);
-    // Hard IK reach (plan 4d-4m r3): a two-bone target past MAX_IK_REACH of the chain is outside,
+    // Hard IK reach (r3): a two-bone target past MAX_IK_REACH of the chain is outside,
     // in any outfit (the batch validator's rule: active constraints only, every bandOutfits outfit).
     if (doc.ik.length) {
       const skins = [...skeleton.activeSkins];

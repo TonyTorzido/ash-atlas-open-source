@@ -1,9 +1,9 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Swag checks (swag-rules/STYLE.md): checks on the artist's art, on top of the importer gates
  * (cli/garmentImport.ts). Each check returns pass/fail and a plain-English reason written to be fed
- * straight back to the artist in a redraw note. All are pure functions over the art and the guide
+ * straight back to the artist in a redraw prompt. All are pure functions over the art and the guide
  * data (tools/swagGuide.ts), in rig canvas pixels:
  * - outlineContrast: the outline (any hue) must be clearly darker than the item's fill;
  * - paletteOutliers: flat cel shading uses a few colours; gradients, noise and scribbles fail;
@@ -32,7 +32,7 @@ export interface SwagChecksReport {
 
 /**
  * `required`: the area the item must cover (the zero-margin core, the body inside the cuts). Cracks
- * are checked against it whether or not they reach the item's edge (review 4d-4n #6: a slit open to
+ * are checked against it whether or not they reach the item's edge (review #6: a slit open to
  * the outside is not an enclosed hole, but it still leaves the body bare).
  */
 export type SwagCheckContext = Pick<SwagContext, "width" | "height" | "allowed" | "overflow"> & { neckZone?: Uint8Array; required?: Uint8Array };
@@ -324,7 +324,7 @@ export function checkRegistration(art: RgbaImage, ctx: SwagCheckContext, o: Swag
   const A = ctx.allowed;
   // the fitted part is registered: paint past the allowed area inside the neck and shoulder zone (collar
   // variation) or inside a declared overflow zone is left out of the art mask. The allowed area itself
-  // stays whole, so missing paint anywhere, the neck zone included, lowers the coverage (review 4d-4n #6, #8).
+  // stays whole, so missing paint anywhere, the neck zone included, lowers the coverage (review #6, #8).
   let overflowPx = 0;
   for (let i = 0; i < M.length; i++) {
     if (!M[i] || A[i]) continue;

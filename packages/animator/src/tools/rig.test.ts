@@ -10,7 +10,7 @@ import { LIVE_TEMPLATE_PATH } from "./testFigures.js";
 
 /*
  * The humanoid skeleton fitted to the live body template (template7-clean.png). The raster rig
- * built on it (parts, joint pieces, fades) was retired in 4d-4j; the canonical body is built by
+ * built on it (parts, joint pieces, fades) was retired in; the canonical body is built by
  * `animator rig --canonical`. The skeleton stays the humanoid's reference for the rig-derived
  * review poses: one region slot per weighted bone of the retired rig, so the same bones deform.
  */
@@ -36,7 +36,7 @@ function humanoidSkeleton(): AnimDocumentInput {
 }
 
 describe("humanoid skeleton: rig-derived review poses", () => {
-  it("rig-derived review poses (plan 4d-4i) cover every joint of the humanoid review set, both directions", () => {
+  it("rig-derived review poses () cover every joint of the humanoid review set, both directions", () => {
     const doc = loadAnimDocument(humanoidSkeleton());
     const derived = rigPoses(doc);
     const clamp = (name: string, value: number) => {

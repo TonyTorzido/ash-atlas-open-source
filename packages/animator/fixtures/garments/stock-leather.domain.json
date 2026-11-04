@@ -575,10 +575,10 @@
   "color": "2a160bff"
  },
  "source": {
-  "from": "fixtures/garments/test-shirt.domain.json, copied verbatim (round 14): identical body-derived core, neckline, hem and cross-arm forearm cuff cuts (cuff_forearm(_r)), gaps and cut details",
+  "from": "fixtures/garments/test-shirt.domain.json, copied verbatim (): identical body-derived core, neckline, hem and cross-arm forearm cuff cuts (cuff_forearm(_r)), gaps and cut details",
   "changed": "name, stroke colour (darker brown 2a160b); margin kept 4.5 (fitted leather)",
-  "note": "round 14: leather jerkin with elbow-length sleeves on the proven shirt/jacket template; the round 13 cap-cut domain (tools/garmentCaps.ts) is abandoned",
-  "stock": "round 16: stock leather armour on the simple template (renamed from leather-cuirass.domain.json; the round 14/15 leather jerkin, art leather-jerkin-05 polished, unchanged)",
+  "note": ": leather jerkin with elbow-length sleeves on the proven shirt/jacket template; the  cap-cut domain (tools/garmentCaps.ts) is abandoned",
+  "stock": ": stock leather armour on the simple template (renamed from leather-cuirass.domain.json; the /15 leather jerkin, art leather-jerkin-05 polished, unchanged)",
   "cuffToWrist": {
    "rule": "scripts/cuff-to-wrist.ts: forearm cuff cuts on the bare wrist dip (tools/cuffGap.ts wristDip at rest, both arms at their average), square to the extremity bone, ends at the limb edge",
    "moved": [

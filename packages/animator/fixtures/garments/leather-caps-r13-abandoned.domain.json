@@ -846,6 +846,6 @@
  },
  "source": {
   "from": "kungfu-jacket.domain.json neckline and hem; cap cuts straight across each upper arm, perpendicular to the bone at 0.35 of shoulder->elbow (rest), end to end across the upper-arm group",
-  "caps": "tools/garmentCaps.ts capCut along 0.36, underarm 16 px (round 13: the cut lies on the arm's own material, outer boundary -> the arm's underarm line below the slit apex)"
+  "caps": "tools/garmentCaps.ts capCut along 0.36, underarm 16 px (the cut lies on the arm's own material, outer boundary -> the arm's underarm line below the slit apex)"
  }
 }

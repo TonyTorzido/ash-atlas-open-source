@@ -1,6 +1,6 @@
 {
   "name": "template7-shoulder",
-  "description": "Humanoid preset, template7 body: the screen-left shoulder, arm and tank armhole as one continuous skin surface plus the tank garment layer (plan 4d-3 first milestone). The tank owns the visible edge along the strap and the whole flank, so the torso has no flank contour; the *_cut junctions are where contours leave the preset (the rest of the body is 4d-4).",
+  "description": "Humanoid preset, template7 body: the screen-left shoulder, arm and tank armhole as one continuous skin surface plus the tank garment layer (first milestone). The tank owns the visible edge along the strap and the whole flank, so the torso has no flank contour; the *_cut junctions are where contours leave the preset (the rest of the body is).",
   "canvas": { "width": 1086, "height": 1448, "originX": 542, "originY": 960 },
   "figureHeight": 1074,
   "gamePixels": 140,
@@ -181,9 +181,9 @@
   "gates": {
     "combined": { "breathe": { "bone": "chest", "x": 1.012, "y": 1.01 } },
     "visibleDistortion": { "exceptions": [ { "id": "compress/torso/skin/t32", "poses": { "clavicle_l": [-6, 6], "upper_arm_l": [85, 105] }, "rigHash": "1f05677865258839", "debt": "Armpit web re-solve (raise 0..40 under shrug) / shoulder-top compression", "reason": "a skin triangle (torso skin t32 at the shoulder top; skin, not the tank garment) of the sparse rig compresses to 0.6669..0.6688 (limit 0.67) at raise 85..105 (worst shrug +6 raise ~96); the dense rig fails the same spot (t214/t218 0.6684); fixed with the armpit-web re-solve, not by loosening the allowance" } ] },
-    "clearance": { "contacts": [ { "name": "forearm_flank", "pair": ["forearm/outline", "tank/flank"], "x": "upper_arm_l", "y": "clavicle_l", "step": [1.5, 1], "note": "the hanging forearm passes the tank flank: a diagonal raise x shrug band (4d-4e probe: raise -15 shrug 4..6, raise -10 shrug 0..3, raise -5 shrug -4..-1, raise 0 shrug -6..-5)" },
+    "clearance": { "contacts": [ { "name": "forearm_flank", "pair": ["forearm/outline", "tank/flank"], "x": "upper_arm_l", "y": "clavicle_l", "step": [1.5, 1], "note": "the hanging forearm passes the tank flank: a diagonal raise x shrug band (probe: raise -15 shrug 4..6, raise -10 shrug 0..3, raise -5 shrug -4..-1, raise 0 shrug -6..-5)" },
       { "name": "forearm_flank_elbow", "pair": ["forearm/outline", "tank/flank"], "x": "upper_arm_l", "y": "forearm_l", "step": [2.5, 2.5], "note": "the same pair as the elbow bends at low raise (elbow_at_raise-15)" },
-      { "name": "arm_flank", "pair": ["upper_arm/outline", "tank/flank"], "x": "upper_arm_l", "y": "clavicle_l", "step": [2.5, 1], "note": "4d-4e closeout run: the upper-arm outline closes on the tank flank at low raise (4 cracks, raise frames near -15)" },
+      { "name": "arm_flank", "pair": ["upper_arm/outline", "tank/flank"], "x": "upper_arm_l", "y": "clavicle_l", "step": [2.5, 1], "note": " closeout run: the upper-arm outline closes on the tank flank at low raise (4 cracks, raise frames near -15)" },
       { "name": "underside_flank", "pair": ["upper_arm/underside", "tank/flank"], "x": "upper_arm_l", "y": "clavicle_l", "step": [2.5, 1], "note": "the arm underside closes on the tank flank under shrug" },
       { "name": "strap_torso", "pair": ["tank/neckline", "torso/outline"], "x": "upper_arm_l", "y": "clavicle_l", "step": [2.5, 1], "note": "the strap/neckline ink runs along the shoulder outline at high raise" } ] },
     "kink": { "hard": [ { "contour": "upper_arm/underside", "turn": 20, "when": { "upper_arm_l": [40, 105] }, "s": [0, 76] } ] },

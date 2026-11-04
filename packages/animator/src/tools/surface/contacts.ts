@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Measures the declared contact bands of a surface rig (preset `gates.clearance.contacts`) on its
  * baked runtime: every grid sample of the driver plane inside the pose limits, posed through the

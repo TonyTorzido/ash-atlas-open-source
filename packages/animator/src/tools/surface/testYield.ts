@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Setup file of the "surface" vitest project. Surface tests block the worker for up to ~40 s each
  * (rig builds, gate sweeps), and vitest's runner moves from test to test without yielding to the

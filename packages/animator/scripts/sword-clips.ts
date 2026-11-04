@@ -3,7 +3,7 @@
 // Run from packages/animator: npx tsx scripts/sword-clips.ts
 // Values are offsets from the setup pose (degrees; pelvis translate in canvas px, y down).
 //
-// Round 4 (2026-10-17, owner: "the weapon was ABOVE the player's hand ... it swung down from that position"): the
+//: the
 // idle and the main slash follow the LIVE game's sword (rendered with the real PlayerRenderer in
 // docs/plans/atlas-animator-demos/attacks/sword/live-reference/, scripts/live-sword-reference.ts):
 // - ready/idle: arm hanging straight, 17 deg out (live REST_ARM_DEGREES), the blade up out of the fist 25 deg off
@@ -236,7 +236,7 @@ const readyFile = {
   drawPhases: [{ from: 0, to: 2.000001, order: "back" }]
 };
 
-// --- on hold: the round-3 diagonal cross-body chop (owner choice before the live match) and the round-1 rising cut.
+// --- on hold: the round-3 diagonal cross-body chop (chosen before the live match) and the round-1 rising cut.
 // Both were authored for the 135 deg grip; they are kept as written, not re-angled, and are not loaded or rendered.
 const CHOP_READY: Pose = { px: 0, py: 0, chest: -1, head: 1, ua: 14, fa: -24, hand: -15, uaR: -6, faR: 12, handR: 0 };
 const WIND: Pose = { px: 5, py: -2, chest: 4, head: 1, clav: 2, ua: 100, fa: -50, hand: 30, uaR: -14, faR: 10, handR: 4 };

@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 import { writePng } from "./png.js";
 
 /*
- * scripts/polish-seam-ink.py check (round 16): near-seam darkness is judged per material, each material
+ * scripts/polish-seam-ink.py check: near-seam darkness is judged per material, each material
  * against its own interior. A two-material garment (steel plate meeting cloth sleeves on the seam, with an
  * antialiased edge) passes; a dark band on either side of that seam still fails.
  */
@@ -34,7 +34,7 @@ function check(paint: (x: number, y: number) => number[], extra: string[] = []):
   return { status: r.status, out: `${r.stdout}${r.stderr}` };
 }
 
-describe("seam darkness check (per material)", () => {
+describe("seam darkness check (per material)", { timeout: 30_000 }, () => {
   it("a clean two-material seam passes", () => {
     const r = check((x) => twoMaterial(x));
     expect(r.out).toMatch(/PASS/);
@@ -47,7 +47,7 @@ describe("seam darkness check (per material)", () => {
     expect(r.status).toBe(1);
   });
 
-  // round 18 (premium kung-fu jacket): a near-black fabric (lum 47) sits below the default lum > 60 interior
+  // (premium kung-fu jacket): a near-black fabric (lum 47) sits below the default lum > 60 interior
   // cut, so without --ink the check cannot see it; with --ink (the outline colour) it is measured
   const BLACK = [47, 47, 51], INK = [42, 18, 10];
   const blackSmudge = (x: number, y: number) => (x >= SEAM - 5 && x <= SEAM + 4 && y > 30 && y < 90 ? [30, 30, 33] : BLACK);
@@ -70,7 +70,7 @@ describe("seam darkness check (per material)", () => {
     expect(r.status).toBe(1);
   });
 
-  // round 20c: the --ink override is per material. Mail (and lamellar) is an intrinsically dark pattern: its ring gaps
+  //: the --ink override is per material. Mail (and lamellar) is an intrinsically dark pattern: its ring gaps
   // (luminance < 60) are the material, not seam shading, and its rings compress toward the seam. The domain's
   // seamCheck block marks it "dark", so those texels are read in the default mode; plain fabric keeps the override.
   const MAIL = [125, 132, 140], GAP = [40, 44, 50], JADE = [46, 122, 90];

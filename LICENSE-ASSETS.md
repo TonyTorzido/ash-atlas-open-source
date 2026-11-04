@@ -59,3 +59,5 @@ https://www.naturalearthdata.com/about/terms-of-use/
 **Provenance.** The CC BY 4.0 grant above covers only material the author had the right to
 license. Third-party marks (for example Google or Apple sign-in branding) remain the property of
 their owners and are not licensed by this repository.
+
+Rig art under `packages/animator` (the `rigs` and `fixtures` folders, including PNG atlases and part images) is licensed CC BY 4.0, with the same attribution as the other art listed above.

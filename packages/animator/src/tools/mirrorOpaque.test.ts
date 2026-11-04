@@ -10,7 +10,7 @@ import { canonicalPresetPath, canonicalRig } from "./surface/testRigs.js";
 vi.setConfig({ testTimeout: 300_000, hookTimeout: 300_000 });
 
 /*
- * Mirroring transforms pixels and coverage metadata together (runtime review item 4).
+ * Mirroring transforms pixels and coverage metadata together.
  */
 
 const signedArea = (p: readonly number[]) => {

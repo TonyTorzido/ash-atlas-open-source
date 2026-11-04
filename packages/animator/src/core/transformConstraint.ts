@@ -1,5 +1,5 @@
 /*
- * Atlas Animator: original implementation (clean-room, see docs/plans/atlas-animator.md section 2).
+ * Atlas Animator: original implementation.
  *
  * Transform constraint: moves the constrained bones toward the target bone's transform, channel by
  * channel (rotation, translation, X/Y scale, Y shear), each with its own keyable mix (0 = the

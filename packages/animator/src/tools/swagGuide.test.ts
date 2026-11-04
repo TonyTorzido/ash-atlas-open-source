@@ -4,11 +4,11 @@ import { loadSwagContext } from "./swagGuide.js";
 import { DEFAULT_BODY_RIG } from "./swagTypes.js";
 
 /*
- * Colour-in guide (armour round 11): the allowed area is the garment's own rest render, so a stroke the
+ * Colour-in guide (armour): the allowed area is the garment's own rest render, so a stroke the
  * resting arm covers (the flank just below a capped vest's armpit seam) still counts. The importer's
  * artworkCutEnds gate expects the art to reach margin + half a stroke there.
  */
-// the round 13 capped leather domain (tools/garmentCaps.ts, ABANDONED round 14), kept frozen for this test
+// the capped leather domain (tools/garmentCaps.ts, ABANDONED), kept frozen for this test
 const DOMAIN = "fixtures/garments/leather-caps-r13-abandoned.domain.json";
 const have = existsSync(DEFAULT_BODY_RIG) && existsSync(DOMAIN);
 

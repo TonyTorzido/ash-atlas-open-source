@@ -26,6 +26,17 @@ const CASES: { op: string; setup?: Command[]; command: Command; expect?: (doc: J
   { op: "doc.new", command: { op: "doc.new", name: "fresh", width: 64, height: 64 }, expect: (d) => expect(d["bones"]).toEqual([{ name: "root" }]) },
   { op: "doc.set", command: { op: "doc.set", revision: 3, canvas: { originY: 200 } }, expect: (d) => expect(getAt(d, "/canvas/originY")).toBe(200) },
   { op: "bone.add", command: { op: "bone.add", name: "tip", parent: "chest", x: 30, length: 10 }, expect: (d) => expect((d["bones"] as JsonObject[]).map((b) => b["name"])).toEqual(["root", "hips", "chest", "head", "tip"]) },
+  {
+    op: "joint.add",
+    command: { op: "joint.add", name: "neck_j", parent: "chest", child: "head", before: "torso" },
+    expect: (d) => {
+      const bone = (d["bones"] as JsonObject[]).find((b) => b["name"] === "neck_j");
+      expect(bone).toMatchObject({ parent: "chest", x: 60, length: 24 });
+      expect(d["transform"]).toEqual([expect.objectContaining({ name: "neck_j_half", bones: ["neck_j"], target: "head", local: true, relative: true, mixRotate: 0.5 })]);
+      const order = (d["drawOrder"] as string[] | undefined) ?? (d["slots"] as JsonObject[]).map((s) => String(s["name"]));
+      expect(order.indexOf("neck_j_joint")).toBe(order.indexOf("torso") - 1);
+    }
+  },
   { op: "bone.remove", setup: [{ op: "bone.add", name: "tip", parent: "chest" }], command: { op: "bone.remove", name: "tip" } },
   { op: "bone.set", command: { op: "bone.set", name: "chest", rotation: 12, scaleX: 1.1 } },
   { op: "bone.parent", command: { op: "bone.parent", name: "head", parent: "hips" }, expect: (d) => expect(getAt(d, "/bones/3/parent")).toBe("hips") },
@@ -62,6 +73,8 @@ const CASES: { op: string; setup?: Command[]; command: Command; expect?: (doc: J
   { op: "weights.unbind", command: { op: "weights.unbind", ...torso } },
   { op: "weights.set", command: { op: "weights.set", ...torso, vertices: [0, 1], influences: [{ bone: "chest", weight: 3 }, { bone: "hips", weight: 1 }] } },
   { op: "weights.prune", command: { op: "weights.prune", ...torso, max: 1 } },
+  { op: "weights.table", command: { op: "weights.table", ...torso, influences: ["hips", "chest"], weights: [0.5, 0.5, 1, 0, 0.5, 0.5, 0, 1, 0, 1, 0, 1, 0, 1, 0.5, 0.5, 1, 0, 1, 0] } },
+  { op: "mesh.edit", command: { op: "mesh.edit", ...torso, points: [0, 120, 0, 0, 60, 0, 60, 120], triangles: [0, 1, 2, 0, 2, 3], hull: 4, origin: [0, 4, 5, 9] } },
   { op: "weights.smooth", command: { op: "weights.smooth", ...torso, iterations: 2 } },
   { op: "weights.seam", command: { op: "weights.seam", ...torso, bone: "root", line: [[-400, -400], [400, 400]], hard: 2000, soft: 2000 } },
   { op: "weights.assign", command: { op: "weights.assign", ...torso, weights: [{ vertex: 0, influences: [{ bone: "chest", weight: 1 }] }, { vertex: 2, influences: [{ bone: "hips", weight: 1 }, { bone: "chest", weight: 3 }] }] } },
@@ -104,10 +117,10 @@ const CASES: { op: string; setup?: Command[]; command: Command; expect?: (doc: J
     command: { op: "bone.rename", name: "chest", to: "ribcage" },
     expect: (d) => expect(text(d)).not.toContain('"chest"')
   },
-  { op: "event.add", command: { op: "event.add", name: "swoosh", string: "air" } },
+  { op: "event.add", command: { op: "event.add", name: "swoosh", string: "air", audio: "whoosh_01" } },
   { op: "event.set", command: { op: "event.set", name: "hit", int: 7 } },
   { op: "event.remove", setup: [{ op: "event.add", name: "swoosh" }], command: { op: "event.remove", name: "swoosh" } },
-  { op: "event.key", command: { op: "event.key", clip: "idle", time: 1.2, name: "step" } },
+  { op: "event.key", command: { op: "event.key", clip: "idle", time: 1.2, name: "step", audio: "step_soft" } },
   { op: "event.unkey", setup: [{ op: "event.key", clip: "idle", time: 1.2, name: "step" }], command: { op: "event.unkey", clip: "idle", time: 1.2, name: "step" } },
   { op: "clip.add", command: { op: "clip.add", name: "jump", duration: 0.6 } },
   { op: "clip.remove", command: { op: "clip.remove", name: "walk" } },
@@ -345,7 +358,7 @@ describe("tool-backed commands", () => {
     expect(new Set(mesh["bones"] as string[])).toEqual(new Set(["hips", "chest"]));
   });
 
-  it("doc.new makes a default skin and attachment.add creates a missing skin (plan 4d-4i)", () => {
+  it("doc.new makes a default skin and attachment.add creates a missing skin ()", () => {
     const fresh = applyCommand({}, { op: "doc.new", name: "fox", width: 64, height: 64 }, { check: "none" }).doc;
     expect(getAt(fresh, "/skins/body")).toEqual({ attachments: {} });
     const withSlot = applyCommand(fresh, { op: "slot.add", name: "fox", bone: "root", attachment: "fox" }).doc;
@@ -362,7 +375,7 @@ describe("tool-backed commands", () => {
   });
 });
 
-describe("weights.auto diagnostics (plan 4d-4j)", () => {
+describe("weights.auto diagnostics ()", () => {
   // A hub with two parallel legs 8 px apart in one mesh: past the hub joint the split between the
   // legs is a guess, so the command must report ambiguous vertices (siblings are not adjacent there).
   const points: number[] = [];
@@ -418,13 +431,13 @@ describe("weights.auto diagnostics (plan 4d-4j)", () => {
     expect(result.notes.some((n) => n.level === "warning" && n.message.startsWith("command 1 (weights.auto): "))).toBe(true);
   });
 
-  it("ambiguity notes name vertex IDs and the competing bones, and point at the overlay (plan 4d-4j3)", () => {
+  it("ambiguity notes name vertex IDs and the competing bones, and point at the overlay ()", () => {
     const warning = (applyCommands(doc, [command]).applied[0]?.notes ?? []).find((n) => /ambiguous/.test(n.message));
     expect(warning?.message).toMatch(/v\d+ leg_[ab] vs leg_[ab]/);
     expect(warning?.message).toMatch(/weights overview --ambiguous/);
   });
 
-  it("`weights overview --ambiguous` marks the ambiguous vertices (plan 4d-4j3)", async () => {
+  it("`weights overview --ambiguous` marks the ambiguous vertices ()", async () => {
     const { mkdtempSync, rmSync, writeFileSync, existsSync } = await import("node:fs");
     const { tmpdir } = await import("node:os");
     const { join } = await import("node:path");
@@ -454,7 +467,7 @@ describe("weights.auto diagnostics (plan 4d-4j)", () => {
     }
   });
 
-  it("radius estimation shares equidistant hull samples: sibling order changes no weight (plan 4d-4j3)", () => {
+  it("radius estimation shares equidistant hull samples: sibling order changes no weight ()", () => {
     // Two coincident sibling legs, no radius anywhere: the hull samples are equidistant from both.
     const coincident = { ...doc, bones: (doc["bones"] as JsonObject[]).map((b) => (b["name"] === "leg_b" ? { ...b, y: 4 } : b)) } as JsonObject;
     const byName = (out: JsonObject) => {
