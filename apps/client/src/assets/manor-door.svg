@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 150" role="img" aria-label="Manor door">
+  <path fill="#17100b" stroke="#5f4029" stroke-width="8" d="M15 142V50C15 23 34 8 60 8s45 15 45 42v92z"/>
+  <path fill="#6f4528" stroke="#b78246" stroke-width="5" d="M26 140V52c0-20 13-32 34-32s34 12 34 32v88z"/>
+  <path fill="none" stroke="#3b2417" stroke-width="5" d="M30 58h60M30 96h60M60 23v115"/>
+  <circle cx="79" cy="82" r="6" fill="#e2b45f" stroke="#4a2d19" stroke-width="3"/>
+  <path fill="#2a1b12" d="M8 138h104v12H8z"/>
+</svg>

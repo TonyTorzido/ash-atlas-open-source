@@ -1,0 +1,60 @@
+{
+  "manor": {
+    "id": "example_manor",
+    "name": "Example Manor",
+    "description": "A small two-floor manor: a lobby with the stations, a hall upstairs, and a study behind a locked door.",
+    "playerPlacement": true
+  },
+  "entranceRoom": "example_lobby",
+  "rooms": [
+    {
+      "id": "example_lobby",
+      "name": "Lobby",
+      "anchors": {
+        "notice_board": { "x": 300, "y": 700, "type": "message", "message": "Welcome home." }
+      },
+      "colliders": [
+        { "id": "fireplace", "rect": { "x": 500, "y": 200, "width": 250, "height": 90 } }
+      ],
+      "walls": [
+        {
+          "id": "back_wall",
+          "kind": "back_wall",
+          "polygon": [{ "x": 120, "y": 100 }, { "x": 1134, "y": 100 }, { "x": 1134, "y": 180 }, { "x": 120, "y": 180 }]
+        }
+      ]
+    },
+    {
+      "id": "example_hall",
+      "name": "Upstairs Hall",
+      "width": 1000,
+      "height": 1000,
+      "floors": [
+        { "polygon": [{ "x": 80, "y": 200 }, { "x": 920, "y": 200 }, { "x": 920, "y": 920 }, { "x": 80, "y": 920 }] }
+      ],
+      "spawn": { "x": 500, "y": 800 }
+    },
+    {
+      "id": "example_study",
+      "name": "Study",
+      "width": 1000,
+      "height": 1000
+    }
+  ],
+  "doors": [
+    {
+      "id": "lobby_stairs",
+      "from": { "room": "example_lobby", "at": { "x": 1100, "y": 1000 } },
+      "to": { "room": "example_hall", "at": { "x": 500, "y": 880 } },
+      "label": "Upstairs",
+      "reverseLabel": "Back downstairs"
+    },
+    {
+      "id": "hall_study",
+      "from": { "room": "example_hall", "at": { "x": 200, "y": 300 } },
+      "to": { "room": "example_study", "at": { "x": 500, "y": 880 } },
+      "label": "Study",
+      "locked": true
+    }
+  ]
+}

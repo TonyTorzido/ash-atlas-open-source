@@ -1,0 +1,5 @@
+{
+  "canary": "stage3-client-only-final",
+  "base_generation": "test/t551",
+  "base_sha": "5c797f360a08bda2d2d3553190e04e0083a8a4fc"
+}

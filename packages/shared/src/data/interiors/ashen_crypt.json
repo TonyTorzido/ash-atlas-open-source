@@ -1,0 +1,1418 @@
+{
+  "defaultRoomId": "gatehouse",
+  "description": "A sealed crypt under the old chapel. Break the bone guard, open the ossuary, and put down what sleeps there.",
+  "environment": {
+    "accentColor": "#c8a45a",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#0d1014",
+    "environmentId": "crypt",
+    "floorColor": "#2a2f36",
+    "musicAssetKey": null,
+    "wallColor": "#3b424b"
+  },
+  "id": "ashen_crypt",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "bossTemplateIds": [
+      "dungeon_ogre"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "gatehouse"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "bone_guard",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "gate_to_hall_back",
+          "hall_to_ossuary"
+        ],
+        "name": "Bone Guard",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "bone_hall",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "bone_guard_skeleton_w1",
+              "bone_guard_skeleton_w1_2",
+              "bone_guard_skeleton_w1_3"
+            ]
+          },
+          {
+            "delayMs": 1000,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "bone_guard_skeleton_w2",
+              "bone_guard_skeleton_w2_2",
+              "bone_guard_goblin_w2",
+              "bone_guard_goblin_w2_2"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "ossuary_lord",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "hall_to_ossuary_back"
+        ],
+        "name": "The Ossuary Lord",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "ossuary",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "ossuary_lord_skeleton_w1",
+              "ossuary_lord_skeleton_w1_2",
+              "ossuary_lord_skeleton_w1_3",
+              "ossuary_lord_skeleton_w1_4"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "dungeon_ogre",
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "ossuary_lord_boss",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "hall_to_ossuary_back"
+        ],
+        "name": "The Ossuary Lord - Boss",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "ossuary",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "ossuary_lord_boss_boss"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "entrance_escape",
+      "portalId": "ashen_crypt_world_to_entrance",
+      "roomId": "gatehouse"
+    },
+    "escape": {
+      "portalId": "ashen_crypt_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "ashen_crypt-v1"
+    },
+    "rewardTableIds": [
+      "ashen_crypt_crypt_chest_reward"
+    ],
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "ashen_crypt_crypt_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "crypt_chest",
+          "roomId": "ossuary",
+          "type": "object_interact"
+        },
+        "id": "crypt_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "bone_guard",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "bone_hall",
+          "type": "zone_enter",
+          "zoneId": "hall_detector"
+        },
+        "id": "start_bone_guard",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "flagId": "hall_to_ossuary_unlocked",
+            "type": "set_dungeon_flag",
+            "value": true
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "bone_guard",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "bone_guard_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "ossuary_lord_boss",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "ossuary_lord",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "ossuary_lord_starts_ossuary_lord_boss",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "ossuary_lord",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "ossuary",
+          "type": "room_enter"
+        },
+        "id": "start_ossuary_lord",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "crypt_chest",
+            "roomId": "ossuary",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "ossuary_lord_boss",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "ossuary_lord_boss_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      }
+    ]
+  },
+  "name": "Ashen Crypt",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "gatehouse"
+      },
+      "destinationArrivalAnchorId": "entrance_escape",
+      "enabled": false,
+      "id": "ashen_crypt_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for ashen_crypt",
+      "presentation": "door",
+      "reciprocalPortalId": "ashen_crypt_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "ashen_crypt_entrance_to_world",
+      "interactionLabel": "Return to world",
+      "presentation": "door",
+      "reciprocalPortalId": "ashen_crypt_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "gatehouse"
+      },
+      "sourceApproachAnchorId": "entrance_escape",
+      "sourceThresholdAnchorId": "entrance_escape"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "gate_to_hall_arrival",
+        "kind": "room",
+        "roomId": "bone_hall"
+      },
+      "destinationArrivalAnchorId": "gate_to_hall_arrival",
+      "enabled": true,
+      "id": "gate_to_hall",
+      "interactionLabel": "Enter the Hall of Bones",
+      "preloadSceneKey": "ashen_crypt/bone_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_hall_back",
+      "retired": false,
+      "source": {
+        "anchorId": "gate_to_hall_anchor",
+        "kind": "room",
+        "roomId": "gatehouse"
+      },
+      "sourceApproachAnchorId": "gate_to_hall_anchor",
+      "sourceThresholdAnchorId": "gate_to_hall_anchor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "gate_to_hall_anchor",
+        "kind": "room",
+        "roomId": "gatehouse"
+      },
+      "destinationArrivalAnchorId": "gate_to_hall_anchor",
+      "enabled": true,
+      "id": "gate_to_hall_back",
+      "interactionLabel": "Go to Crypt Gatehouse",
+      "preloadSceneKey": "ashen_crypt/gatehouse",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_hall",
+      "retired": false,
+      "source": {
+        "anchorId": "gate_to_hall_arrival",
+        "kind": "room",
+        "roomId": "bone_hall"
+      },
+      "sourceApproachAnchorId": "gate_to_hall_arrival",
+      "sourceThresholdAnchorId": "gate_to_hall_arrival"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "gate_to_well_arrival",
+        "kind": "room",
+        "roomId": "crypt_well"
+      },
+      "destinationArrivalAnchorId": "gate_to_well_arrival",
+      "enabled": true,
+      "id": "gate_to_well",
+      "interactionLabel": "Climb down to the well",
+      "preloadSceneKey": "ashen_crypt/crypt_well",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_well_back",
+      "retired": false,
+      "source": {
+        "anchorId": "gate_to_well_anchor",
+        "kind": "room",
+        "roomId": "gatehouse"
+      },
+      "sourceApproachAnchorId": "gate_to_well_anchor",
+      "sourceThresholdAnchorId": "gate_to_well_anchor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "gate_to_well_anchor",
+        "kind": "room",
+        "roomId": "gatehouse"
+      },
+      "destinationArrivalAnchorId": "gate_to_well_anchor",
+      "enabled": true,
+      "id": "gate_to_well_back",
+      "interactionLabel": "Go to Crypt Gatehouse",
+      "preloadSceneKey": "ashen_crypt/gatehouse",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_well",
+      "retired": false,
+      "source": {
+        "anchorId": "gate_to_well_arrival",
+        "kind": "room",
+        "roomId": "crypt_well"
+      },
+      "sourceApproachAnchorId": "gate_to_well_arrival",
+      "sourceThresholdAnchorId": "gate_to_well_arrival"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "hall_to_ossuary_arrival",
+        "kind": "room",
+        "roomId": "ossuary"
+      },
+      "destinationArrivalAnchorId": "hall_to_ossuary_arrival",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "hall_to_ossuary_unlocked",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "hall_to_ossuary",
+      "interactionLabel": "Sealed Ossuary Door",
+      "preloadSceneKey": "ashen_crypt/ossuary",
+      "presentation": "door",
+      "reciprocalPortalId": "hall_to_ossuary_back",
+      "retired": false,
+      "source": {
+        "anchorId": "hall_to_ossuary_anchor",
+        "kind": "room",
+        "roomId": "bone_hall"
+      },
+      "sourceApproachAnchorId": "hall_to_ossuary_anchor",
+      "sourceThresholdAnchorId": "hall_to_ossuary_anchor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "hall_to_ossuary_anchor",
+        "kind": "room",
+        "roomId": "bone_hall"
+      },
+      "destinationArrivalAnchorId": "hall_to_ossuary_anchor",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "hall_to_ossuary_unlocked",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "hall_to_ossuary_back",
+      "interactionLabel": "Go to Hall of Bones",
+      "preloadSceneKey": "ashen_crypt/bone_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "hall_to_ossuary",
+      "retired": false,
+      "source": {
+        "anchorId": "hall_to_ossuary_arrival",
+        "kind": "room",
+        "roomId": "ossuary"
+      },
+      "sourceApproachAnchorId": "hall_to_ossuary_arrival",
+      "sourceThresholdAnchorId": "hall_to_ossuary_arrival"
+    }
+  ],
+  "retired": false,
+  "revision": "ashen_crypt-v1",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 400
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "entrance_escape",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 440
+        },
+        {
+          "id": "gate_to_hall_anchor",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 110
+        },
+        {
+          "id": "gate_to_well_anchor",
+          "retired": false,
+          "role": "portal",
+          "x": 890,
+          "y": 400
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "ashen_crypt_crypt",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "gatehouse",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "ashen_crypt_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Crypt Gatehouse",
+      "objects": [
+        {
+          "anchorId": "entrance_escape",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "ashen_crypt_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Return to world",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Return to world",
+          "opacity": 1,
+          "portalId": "ashen_crypt_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "gate_to_hall_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_hall_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Hall of Bones",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Hall of Bones",
+          "opacity": 1,
+          "portalId": "gate_to_hall",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "gate_to_well_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_well_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb down to the well",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Climb down to the well",
+          "opacity": 1,
+          "portalId": "gate_to_well",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "ashen_crypt-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 450
+        },
+        {
+          "id": "gate_to_hall_arrival",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "hall_to_ossuary_anchor",
+          "retired": false,
+          "role": "portal",
+          "x": 1090,
+          "y": 450
+        },
+        {
+          "id": "bone_guard_skeleton_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        },
+        {
+          "id": "bone_guard_skeleton_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        },
+        {
+          "id": "bone_guard_skeleton_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        },
+        {
+          "id": "bone_guard_skeleton_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        },
+        {
+          "id": "bone_guard_skeleton_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        },
+        {
+          "id": "bone_guard_goblin_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        },
+        {
+          "id": "bone_guard_goblin_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 450
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "bone_hall_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 876
+            },
+            {
+              "x": 24,
+              "y": 876
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 900,
+      "id": "bone_hall",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 900,
+            "id": "bone_hall_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "bone_guard_skeleton_w1_anchor",
+          "archetype": "skeleton",
+          "encounterId": "bone_guard",
+          "facing": 3.141592653589793,
+          "id": "bone_guard_skeleton_w1",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "bone_guard_wave1_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_guard_skeleton_w1_2_anchor",
+          "archetype": "skeleton",
+          "encounterId": "bone_guard",
+          "facing": 3.141592653589793,
+          "id": "bone_guard_skeleton_w1_2",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "bone_guard_wave1_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_guard_skeleton_w1_3_anchor",
+          "archetype": "skeleton",
+          "encounterId": "bone_guard",
+          "facing": 3.141592653589793,
+          "id": "bone_guard_skeleton_w1_3",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "bone_guard_wave1_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_guard_skeleton_w2_anchor",
+          "archetype": "skeleton",
+          "encounterId": "bone_guard",
+          "facing": 3.141592653589793,
+          "id": "bone_guard_skeleton_w2",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "bone_guard_wave2_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "bone_guard_skeleton_w2_2_anchor",
+          "archetype": "skeleton",
+          "encounterId": "bone_guard",
+          "facing": 3.141592653589793,
+          "id": "bone_guard_skeleton_w2_2",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "bone_guard_wave2_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "bone_guard_goblin_w2_anchor",
+          "archetype": "goblin",
+          "encounterId": "bone_guard",
+          "facing": 3.141592653589793,
+          "id": "bone_guard_goblin_w2",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "bone_guard_wave2_goblin_2",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "bone_guard_goblin_w2_2_anchor",
+          "archetype": "goblin",
+          "encounterId": "bone_guard",
+          "facing": 3.141592653589793,
+          "id": "bone_guard_goblin_w2_2",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "bone_guard_wave2_goblin_2",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Hall of Bones",
+      "objects": [
+        {
+          "anchorId": "gate_to_hall_arrival",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_hall_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go to Crypt Gatehouse",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go to Crypt Gatehouse",
+          "opacity": 1,
+          "portalId": "gate_to_hall_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "hall_to_ossuary_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hall_to_ossuary_object",
+          "initialState": "closed",
+          "interactionLabel": "Sealed Ossuary Door",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Sealed Ossuary Door",
+          "opacity": 1,
+          "portalId": "hall_to_ossuary",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "ashen_crypt-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 300,
+          "id": "hall_detector",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 600,
+          "x": 300,
+          "y": 300
+        },
+        {
+          "height": 860,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1160,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 820,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1120,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 500
+        },
+        {
+          "id": "hall_to_ossuary_arrival",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "crypt_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 200
+        },
+        {
+          "id": "ossuary_lord_skeleton_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 500
+        },
+        {
+          "id": "ossuary_lord_skeleton_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 500
+        },
+        {
+          "id": "ossuary_lord_skeleton_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 500
+        },
+        {
+          "id": "ossuary_lord_skeleton_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 500
+        },
+        {
+          "id": "ossuary_lord_boss_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1090,
+          "y": 500
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "ossuary_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "ossuary",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "ossuary_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "ossuary_lord_skeleton_w1_anchor",
+          "archetype": "skeleton",
+          "encounterId": "ossuary_lord",
+          "facing": 3.141592653589793,
+          "id": "ossuary_lord_skeleton_w1",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "ossuary_lord_wave1_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ossuary_lord_skeleton_w1_2_anchor",
+          "archetype": "skeleton",
+          "encounterId": "ossuary_lord",
+          "facing": 3.141592653589793,
+          "id": "ossuary_lord_skeleton_w1_2",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "ossuary_lord_wave1_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ossuary_lord_skeleton_w1_3_anchor",
+          "archetype": "skeleton",
+          "encounterId": "ossuary_lord",
+          "facing": 3.141592653589793,
+          "id": "ossuary_lord_skeleton_w1_3",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "ossuary_lord_wave1_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ossuary_lord_skeleton_w1_4_anchor",
+          "archetype": "skeleton",
+          "encounterId": "ossuary_lord",
+          "facing": 3.141592653589793,
+          "id": "ossuary_lord_skeleton_w1_4",
+          "leashZoneId": "encounter_leash",
+          "randomSpawnZoneId": "encounter_boundary",
+          "retired": false,
+          "spawnGroupId": "ossuary_lord_wave1_skeleton_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ossuary_lord_boss_boss_anchor",
+          "archetype": "ogre",
+          "encounterId": "ossuary_lord_boss",
+          "facing": 3.141592653589793,
+          "id": "ossuary_lord_boss_boss",
+          "leashZoneId": "encounter_leash",
+          "retired": false,
+          "spawnGroupId": "ossuary_lord_boss_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "The Ossuary",
+      "objects": [
+        {
+          "anchorId": "hall_to_ossuary_arrival",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hall_to_ossuary_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go to Hall of Bones",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go to Hall of Bones",
+          "opacity": 1,
+          "portalId": "hall_to_ossuary_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "crypt_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "crypt_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Crypt Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "ashen_crypt_crypt_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "ashen_crypt-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 960,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1160,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 920,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1120,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 400,
+          "y": 400
+        },
+        {
+          "id": "gate_to_well_arrival",
+          "retired": false,
+          "role": "portal",
+          "x": 400,
+          "y": 110
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 400,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "crypt_well_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 776,
+              "y": 24
+            },
+            {
+              "x": 776,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "crypt_well",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "crypt_well_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 800,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Crypt Well",
+      "objects": [
+        {
+          "anchorId": "gate_to_well_arrival",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_well_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go to Crypt Gatehouse",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go to Crypt Gatehouse",
+          "opacity": 1,
+          "portalId": "gate_to_well_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "well_ore",
+          "interactionRadius": 82,
+          "maxCount": 4,
+          "maxYield": 3,
+          "minCount": 2,
+          "minimumSpacing": 60,
+          "minYield": 1,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1407774968,
+          "shape": {
+            "height": 500,
+            "id": "well_ore_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 500,
+            "x": 150,
+            "y": 150
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "ashen_crypt-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 800,
+      "zones": []
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

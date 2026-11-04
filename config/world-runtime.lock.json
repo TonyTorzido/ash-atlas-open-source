@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "pipeline": {
+    "repository": "example-org/world-data",
+    "protected_branch": "main",
+    "sha": "d2efd6b4966e25646f41f988ece6b6ef1c882bc5"
+  },
+  "release": {
+    "release_id": "world-packages-v1",
+    "profile_set_fingerprint": "36dc3eb8bd36e32f7dc92084f1520d3180e6ce1a6c4f06354f7c1b34d6014553",
+    "build_contract_fingerprint": "db08e6eb96caa4755f58780f952588efc90c3e644f867d77c87b2955b51d38bd",
+    "boundary_release_id": "world-boundaries-v1",
+    "manifest_sha256": "80bfe7152f2b4f16cc182cc38a86a72950634d5799fbb31b6bad4ef686bb5578",
+    "package_count": 64800,
+    "artifact_count": 648000
+  },
+  "river_surface": {
+    "release_id": "river-surface-v1",
+    "manifest_sha256": "c605631193ff786e33182fb8b6d7cfa3ab868b35d0a47fec5e1aa717ace447d5",
+    "policy": "osm-medium-plus-v1",
+    "cell_size_m": 125,
+    "package_count": 11869,
+    "cell_count": 100376268,
+    "span_count": 15508465
+  },
+  "lake_surface": {
+    "release_id": "lake-surface-v1",
+    "manifest_sha256": "d0c25c2b6a4e9349091a5f483a294fac7988cd098a1f77e354343cb2f27f42b9",
+    "policy": "hydrolakes-center-membership-v1",
+    "membership_policy": "reconstructed-lake-covers-canonical-cell-center",
+    "overlap_policy": "independent-river-and-lake-memberships",
+    "grid_fingerprint": "44e1b2d53f5b3d38b6f5370d30c94403d6d4f90a6207f12ccdee799713a6229b",
+    "cell_size_m": 125,
+    "package_count": 11423,
+    "lake_count": 185181,
+    "cell_count": 477463775,
+    "span_count": 18044558
+  },
+  "ocean_coast_surface": {
+    "release_id": "ocean-coast-surface-v1",
+    "manifest_sha256": "b8319476532112ef6076d56819a89a9551ea88c4b55f52a06c80b8bae8fa3954",
+    "policy": "three-cell-canonical-ocean-coast-v1",
+    "selection_policy": "canonical-cell-center-outside-authoritative-land",
+    "band_morphology": "three-cell-chebyshev-dilation-v1",
+    "band_cells": 3,
+    "overlap_policy": "independent-river-lake-ocean-coast-memberships",
+    "precedence_policy": "river>lake>ocean>land",
+    "deep_ocean_policy": "implicit-outside-authoritative-land",
+    "grid_fingerprint": "44e1b2d53f5b3d38b6f5370d30c94403d6d4f90a6207f12ccdee799713a6229b",
+    "cell_size_m": 125,
+    "package_count": 6929,
+    "cell_count": 99447307,
+    "span_count": 14326950
+  },
+  "riverbank_lakeshore": {
+    "release_id": "riverbank-lakeshore-v1",
+    "manifest_sha256": "c3a2823f759271abb77bf23220e33cb1146d9a3ecb2615f79d3e173189a2344f",
+    "schema": "riverbank-lakeshore-row-spans-v1",
+    "policy": "canonical-water-surface-land-within-500m-v1",
+    "pipeline_sha": "4d3448ae3f719e678d864e04679008294f72df8c",
+    "contract_fingerprint": "32572021050b078ba856469a705631902e8036c8bf4512334d056732b35000ce",
+    "distance_m": 500,
+    "cell_size_m": 125,
+    "grid_fingerprint": "44e1b2d53f5b3d38b6f5370d30c94403d6d4f90a6207f12ccdee799713a6229b",
+    "inventory_sha256": "2f6048b8cee3c73031ec0e58b01f870e6318d7d8cdc902aae7cf5289b9aa74a0",
+    "package_count": 14627,
+    "selected_package_count": 20542,
+    "positive_package_count": 14627,
+    "empty_package_count": 5915,
+    "source_package_count": 14598,
+    "span_count": 59122237,
+    "membership_cell_count": 391536663,
+    "source_package_fingerprint": "f92da45fcd830d2191cd015db54193b72ff0307f5ce3125e4406de0681792680",
+    "selected_package_fingerprint": "aab9bbdf505dda7fe1037fcb31d36e8260422307cc88edb66ed184e40f4c968e",
+    "deterministic_fingerprint": "63b63551b99514f4db818ce324005f0476663133651f6b9bba040154180422e6",
+    "source": {
+      "river": {
+        "release_id": "river-surface-v1",
+        "manifest_sha256": "c605631193ff786e33182fb8b6d7cfa3ab868b35d0a47fec5e1aa717ace447d5",
+        "policy": "osm-medium-plus-v1"
+      },
+      "lake": {
+        "release_id": "lake-surface-v1",
+        "manifest_sha256": "d0c25c2b6a4e9349091a5f483a294fac7988cd098a1f77e354343cb2f27f42b9",
+        "policy": "hydrolakes-center-membership-v1"
+      },
+      "world": {
+        "release_id": "world-packages-v1",
+        "manifest_sha256": "80bfe7152f2b4f16cc182cc38a86a72950634d5799fbb31b6bad4ef686bb5578"
+      }
+    }
+  },
+  "waterbody_identity_overlay": {
+    "release_id": "waterbody-identity-overlay-v4",
+    "manifest_sha256": "f81deb9fb441ec5644095b1d4ea8f430c652948f5e7a64e9beac5a6ea005020c",
+    "schema": "waterbody-identity-overlay-v1",
+    "schema_version": "waterbody-identity-overlay-v1",
+    "policy": "existing-cell-candidate-precedence-v1",
+    "policy_version": "existing-cell-candidate-precedence-v1",
+    "package_count": 17109,
+    "source_cell_count": 677287350,
+    "source_span_count": 53130897,
+    "final_cell_count": 670964923,
+    "final_span_count": 53334150,
+    "identity_registry_fingerprint": "972e15ccc73c0364c5c49e9252ef7a0936d90b344dbeef74a8f53dde9576a6d2",
+    "deterministic_fingerprint": "3f78b03289beda4cb08068c490927df6f6f5583cabdbe7b906f2e047d0b2cb38",
+    "input_release_ids": {
+      "river": "river-surface-v1",
+      "lake": "lake-surface-v1",
+      "ocean": "ocean-coast-surface-v1"
+    },
+    "input_manifests": {
+      "river": "c605631193ff786e33182fb8b6d7cfa3ab868b35d0a47fec5e1aa717ace447d5",
+      "lake": "d0c25c2b6a4e9349091a5f483a294fac7988cd098a1f77e354343cb2f27f42b9",
+      "ocean": "b8319476532112ef6076d56819a89a9551ea88c4b55f52a06c80b8bae8fa3954"
+    }
+  },
+  "water_name_index": {
+    "release_id": "water-names-v1",
+    "manifest_sha256": "bb73ebeac7c48d4adcedf9dd10e9a0a6cf591bd8ef7dfe01dca2a141a9e6317b",
+    "schema": "water-names-v1",
+    "policy": "same-class-nearest-authoritative-name-v1",
+    "entries_filename": "entries.sqlite3",
+    "entries_format": "sqlite-wkb-rtree-v1",
+    "entries_sha256": "40dd4b1427c0fc98cdd437ea6dcdb2b2e4d8d5412af636159624e144b337fee9",
+    "entries_size_bytes": 2295668736,
+    "index_hash": "90482d2633df3cc869e1c1162aa7b1da0503f051740122eeeb65612cd33c3bd2",
+    "deterministic_fingerprint": "41d3431fc3f87eb52b1219bccebc32228c6dd49e610f0194ea55c76c8c370661",
+    "entry_count": 526218,
+    "classes": {
+      "river": 523086,
+      "lake": 3021,
+      "ocean": 111
+    },
+    "max_distance_m": {
+      "river": 25000,
+      "lake": 100000,
+      "ocean": 500000
+    }
+  },
+  "water_visual_tiles": {
+    "release_id": "water-visual-tiles-v1",
+    "manifest_sha256": "6eece70668d929850944b44ccd134a426972080aeed18865f7c360618daeb229",
+    "policy": "precedence-resolved-canonical-water-visual-v1",
+    "precedence": "river>lake>ocean>land",
+    "surface_policy": "canonical-membership-geometric-difference",
+    "freshwater_perimeter_policy": "boundary-of-expanded-dissolved-visible-cell-mask",
+    "ocean_coastline_policy": "visible-ocean-grid-edges-adjacent-to-authoritative-land",
+    "deep_ocean_policy": "implicit-outside-authoritative-land",
+    "layers": [
+      "water_ocean_surface",
+      "water_ocean_coastline",
+      "water_lake_surface",
+      "water_lake_perimeter",
+      "water_river_surface",
+      "water_river_perimeter"
+    ],
+    "min_zoom": 12,
+    "max_zoom": 14,
+    "artifact_file": "water-visual-7e4a0ddc7821bfb554d34896bb83d2e35a3304a3e7d75ace73c57f73adfa974a.pmtiles",
+    "artifact_sha256": "7e4a0ddc7821bfb554d34896bb83d2e35a3304a3e7d75ace73c57f73adfa974a",
+    "artifact_size_bytes": 1639576487,
+    "tile_count": 8290747
+  },
+  "settlement_authority": {
+    "release_id": "world-settlements-v2",
+    "release_fingerprint": "462688b612b6929be93955f3e2976d19bd22d703fea24db1c5f4fa74e663ee26",
+    "founding_policy_id": "settlement-founding-v2",
+    "founding_policy_fingerprint": "cbc6f31242142c2a04059ca39a29a8a4f84b752edd84dfd516830c11458255b1",
+    "resolution_policy_id": "primary-settlement-resolution-v1",
+    "resolution_policy_fingerprint": "6e422725266126827aab6c10cdd52ca0391c2aeb05243b076b9156ffadc6d371",
+    "settlement_count": 3345617,
+    "alias_count": 3350348
+  }
+}

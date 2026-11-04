@@ -1,0 +1,3135 @@
+{
+  "defaultRoomId": "lair_mouth",
+  "description": "Tunnels burrowed toward the world's lava. Cross the Bone Bridge, get past the Hatchery's broodguards, and face the Elder Dragon on its hoard. Recommended level 27.",
+  "environment": {
+    "accentColor": "#f97316",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#120806",
+    "environmentId": "wyrm_hollow",
+    "floorColor": "#2b211d",
+    "musicAssetKey": null,
+    "wallColor": "#1b1513"
+  },
+  "id": "wyrm_hollow",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "bossTemplateIds": [
+      "elder_dragon"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "lair_mouth"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "tunnels_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "ember_tunnels",
+        "leashZoneId": "tunnels_leash",
+        "lockPortalIds": [
+          "mouth_to_tunnels_back",
+          "tunnels_to_pools"
+        ],
+        "name": "Ember Tunnels",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "ember_tunnels",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "ember_tunnels_drakeling_w1",
+              "ember_tunnels_drakeling_w1_2",
+              "ember_tunnels_drakeling_w1_3",
+              "ember_tunnels_drakeling_w1_4",
+              "ember_tunnels_lava_slime_w1",
+              "ember_tunnels_lava_slime_w1_2",
+              "ember_tunnels_fire_bird_w1"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "pools_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "salamander_pools",
+        "leashZoneId": "pools_leash",
+        "lockPortalIds": [
+          "tunnels_to_pools_back",
+          "pools_to_bridge"
+        ],
+        "name": "Salamander Pools",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "salamander_pools",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "salamander_pools_magma_salamander_w1",
+              "salamander_pools_magma_salamander_w1_2",
+              "salamander_pools_magma_salamander_w1_3",
+              "salamander_pools_lava_slime_w1",
+              "salamander_pools_drakeling_w1",
+              "salamander_pools_drakeling_w1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "bridge_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "bone_bridge",
+        "leashZoneId": "bridge_leash",
+        "lockPortalIds": [
+          "pools_to_bridge_back",
+          "bridge_to_hatchery"
+        ],
+        "name": "Bone Bridge",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "bone_bridge",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "bone_bridge_ash_wyvern_w1",
+              "bone_bridge_ash_wyvern_w1_2",
+              "bone_bridge_ash_wyvern_w1_3",
+              "bone_bridge_drakeling_w1",
+              "bone_bridge_drakeling_w1_2",
+              "bone_bridge_fire_bird_w1"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "hatchery_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "hatchery",
+        "leashZoneId": "hatchery_leash",
+        "lockPortalIds": [
+          "bridge_to_hatchery_back",
+          "hatchery_to_vault",
+          "hatchery_to_chamber"
+        ],
+        "name": "Hatchery",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "hatchery",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "hatchery_drake_broodguard_w1",
+              "hatchery_drake_broodguard_w1_2",
+              "hatchery_drakeling_w1",
+              "hatchery_drakeling_w1_2",
+              "hatchery_drakeling_w1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "vault_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "hoard_vault",
+        "leashZoneId": "vault_leash",
+        "lockPortalIds": [
+          "hatchery_to_vault_back"
+        ],
+        "name": "Hoard Vault",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "hoard_vault",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "hoard_vault_magma_salamander_w1",
+              "hoard_vault_lava_slime_w1",
+              "hoard_vault_lava_slime_w1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "elder_dragon",
+        "boundaryZoneId": "chamber_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "elder_dragon",
+        "leashZoneId": "chamber_leash",
+        "lockPortalIds": [
+          "hatchery_to_chamber_back"
+        ],
+        "name": "The Elder Dragon",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "hoard_chamber",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "elder_dragon_boss",
+              "elder_dragon_drakeling_40_1",
+              "elder_dragon_drakeling_40_2",
+              "elder_dragon_drakeling_40_3",
+              "elder_dragon_drakeling_40_4",
+              "elder_dragon_drakeling_70_1",
+              "elder_dragon_drakeling_70_2",
+              "elder_dragon_drakeling_70_3"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "world_entry_arrival",
+      "portalId": "wyrm_hollow_world_to_entrance",
+      "roomId": "lair_mouth"
+    },
+    "escape": {
+      "portalId": "wyrm_hollow_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "wyrm_hollow-v1"
+    },
+    "rewardTableIds": [
+      "wyrm_hollow_vault_chest_reward",
+      "wyrm_hollow_hoard_chest_reward"
+    ],
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "wyrm_hollow_vault_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "vault_chest",
+          "roomId": "hoard_vault",
+          "type": "object_interact"
+        },
+        "id": "vault_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "wyrm_hollow_hoard_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "hoard_chest",
+          "roomId": "hoard_chamber",
+          "type": "object_interact"
+        },
+        "id": "hoard_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "ember_tunnels",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "ember_tunnels",
+          "type": "room_enter"
+        },
+        "id": "start_ember_tunnels",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The tunnels fall quiet, but the vents keep spitting fire.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "ember_tunnels",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "ember_tunnels_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "salamander_pools",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "salamander_pools",
+          "type": "room_enter"
+        },
+        "id": "start_salamander_pools",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The pools settle. The Bone Bridge lies ahead.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "salamander_pools",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "salamander_pools_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "bone_bridge",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "bone_bridge",
+          "type": "room_enter"
+        },
+        "id": "start_bone_bridge",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The wyverns are down. Warm air rolls out of the Hatchery.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "bone_bridge",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "bone_bridge_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "hatchery",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "hatchery",
+          "type": "room_enter"
+        },
+        "id": "start_hatchery",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The broodguards fall. The nest is yours to tend, and the hoard waits to the north.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "hatchery",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "hatchery_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "hoard_vault",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "hoard_vault",
+          "type": "room_enter"
+        },
+        "id": "start_hoard_vault",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "vault_chest",
+            "roomId": "hoard_vault",
+            "type": "set_object_available"
+          },
+          {
+            "text": "A small cache glitters among the coins.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "hoard_vault",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "hoard_vault_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "elder_dragon",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "hoard_chamber",
+          "type": "room_enter"
+        },
+        "id": "start_elder_dragon",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "hoard_chest",
+            "roomId": "hoard_chamber",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          },
+          {
+            "text": "The Elder Dragon falls. Its hoard is yours.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "elder_dragon",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "elder_dragon_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      }
+    ],
+    "access": {
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6,
+      "minimumLevel": 27
+    }
+  },
+  "name": "Wyrm Hollow",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "lair_mouth"
+      },
+      "destinationArrivalAnchorId": "world_entry_arrival",
+      "enabled": false,
+      "id": "wyrm_hollow_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for wyrm_hollow",
+      "presentation": "door",
+      "reciprocalPortalId": "wyrm_hollow_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "wyrm_hollow_entrance_to_world",
+      "interactionLabel": "Leave the Lair",
+      "presentation": "cave",
+      "reciprocalPortalId": "wyrm_hollow_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "lair_mouth"
+      },
+      "sourceApproachAnchorId": "world_approach",
+      "sourceThresholdAnchorId": "entrance_escape"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "ember_tunnels"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "mouth_to_tunnels",
+      "interactionLabel": "Into the Tunnels",
+      "preloadSceneKey": "wyrm_hollow/ember_tunnels",
+      "presentation": "door",
+      "reciprocalPortalId": "mouth_to_tunnels_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "lair_mouth"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "lair_mouth"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "mouth_to_tunnels_back",
+      "interactionLabel": "Back to the Lair Mouth",
+      "preloadSceneKey": "wyrm_hollow/lair_mouth",
+      "presentation": "door",
+      "reciprocalPortalId": "mouth_to_tunnels",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "ember_tunnels"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "salamander_pools"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "tunnels_to_pools",
+      "interactionLabel": "To the Pools",
+      "preloadSceneKey": "wyrm_hollow/salamander_pools",
+      "presentation": "door",
+      "reciprocalPortalId": "tunnels_to_pools_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "ember_tunnels"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "ember_tunnels"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "tunnels_to_pools_back",
+      "interactionLabel": "Back to the Tunnels",
+      "preloadSceneKey": "wyrm_hollow/ember_tunnels",
+      "presentation": "door",
+      "reciprocalPortalId": "tunnels_to_pools",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "salamander_pools"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "bone_bridge"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "pools_to_bridge",
+      "interactionLabel": "Cross the Bone Bridge",
+      "preloadSceneKey": "wyrm_hollow/bone_bridge",
+      "presentation": "door",
+      "reciprocalPortalId": "pools_to_bridge_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "salamander_pools"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "salamander_pools"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "pools_to_bridge_back",
+      "interactionLabel": "Back to the Pools",
+      "preloadSceneKey": "wyrm_hollow/salamander_pools",
+      "presentation": "door",
+      "reciprocalPortalId": "pools_to_bridge",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "bone_bridge"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "hatchery"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "bridge_to_hatchery",
+      "interactionLabel": "Enter the Hatchery",
+      "preloadSceneKey": "wyrm_hollow/hatchery",
+      "presentation": "door",
+      "reciprocalPortalId": "bridge_to_hatchery_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "bone_bridge"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "bone_bridge"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "bridge_to_hatchery_back",
+      "interactionLabel": "Back to the Bridge",
+      "preloadSceneKey": "wyrm_hollow/bone_bridge",
+      "presentation": "door",
+      "reciprocalPortalId": "bridge_to_hatchery",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "hatchery"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "hoard_vault"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "hatchery_to_vault",
+      "interactionLabel": "Enter the Vault",
+      "preloadSceneKey": "wyrm_hollow/hoard_vault",
+      "presentation": "door",
+      "reciprocalPortalId": "hatchery_to_vault_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "hatchery"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "hatchery"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "hatchery_to_vault_back",
+      "interactionLabel": "Back to the Hatchery",
+      "preloadSceneKey": "wyrm_hollow/hatchery",
+      "presentation": "door",
+      "reciprocalPortalId": "hatchery_to_vault",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "hoard_vault"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "hoard_chamber"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "hatchery_to_chamber",
+      "interactionLabel": "Enter the Hoard Chamber",
+      "preloadSceneKey": "wyrm_hollow/hoard_chamber",
+      "presentation": "door",
+      "reciprocalPortalId": "hatchery_to_chamber_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "hatchery"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "hatchery"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "hatchery_to_chamber_back",
+      "interactionLabel": "Back to the Hatchery",
+      "preloadSceneKey": "wyrm_hollow/hatchery",
+      "presentation": "door",
+      "reciprocalPortalId": "hatchery_to_chamber",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "hoard_chamber"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    }
+  ],
+  "retired": false,
+  "revision": "wyrm_hollow-v1",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 800
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "entrance_escape",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 960
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 140
+        },
+        {
+          "id": "world_approach",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 880
+        },
+        {
+          "id": "world_entry_arrival",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 800
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "lair_mouth_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "lair_mouth",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "lair_mouth_floor",
+            "prefabRevision": "lair-mouth-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Lair Mouth",
+      "objects": [
+        {
+          "anchorId": "entrance_escape",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "wyrm_hollow_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Leave the Lair",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Leave the Lair",
+          "opacity": 1,
+          "portalId": "wyrm_hollow_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "mouth_to_tunnels_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Tunnels",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Tunnels",
+          "opacity": 1,
+          "portalId": "mouth_to_tunnels",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "wyrm_hollow-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 130,
+          "y": 400
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 400
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 100,
+          "y": 400
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 130,
+          "y": 400
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 400
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1500,
+          "y": 400
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1470,
+          "y": 400
+        },
+        {
+          "id": "ember_tunnels_drakeling_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 520,
+          "y": 330
+        },
+        {
+          "id": "ember_tunnels_drakeling_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 420
+        },
+        {
+          "id": "ember_tunnels_drakeling_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 980,
+          "y": 380
+        },
+        {
+          "id": "ember_tunnels_drakeling_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 300
+        },
+        {
+          "id": "ember_tunnels_lava_slime_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 760,
+          "y": 600
+        },
+        {
+          "id": "ember_tunnels_lava_slime_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1300,
+          "y": 560
+        },
+        {
+          "id": "ember_tunnels_fire_bird_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1200,
+          "y": 400
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "ember_tunnels_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "ember_tunnels",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "ember_tunnels_floor",
+            "prefabRevision": "ember-tunnels-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "ember_tunnels_drakeling_w1_anchor",
+          "archetype": "drakeling",
+          "encounterId": "ember_tunnels",
+          "facing": 3.141592653589793,
+          "id": "ember_tunnels_drakeling_w1",
+          "leashZoneId": "tunnels_leash",
+          "retired": false,
+          "spawnGroupId": "ember_tunnels_wave1_drakeling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ember_tunnels_drakeling_w1_2_anchor",
+          "archetype": "drakeling",
+          "encounterId": "ember_tunnels",
+          "facing": 3.141592653589793,
+          "id": "ember_tunnels_drakeling_w1_2",
+          "leashZoneId": "tunnels_leash",
+          "retired": false,
+          "spawnGroupId": "ember_tunnels_wave1_drakeling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ember_tunnels_drakeling_w1_3_anchor",
+          "archetype": "drakeling",
+          "encounterId": "ember_tunnels",
+          "facing": 3.141592653589793,
+          "id": "ember_tunnels_drakeling_w1_3",
+          "leashZoneId": "tunnels_leash",
+          "retired": false,
+          "spawnGroupId": "ember_tunnels_wave1_drakeling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ember_tunnels_drakeling_w1_4_anchor",
+          "archetype": "drakeling",
+          "encounterId": "ember_tunnels",
+          "facing": 3.141592653589793,
+          "id": "ember_tunnels_drakeling_w1_4",
+          "leashZoneId": "tunnels_leash",
+          "retired": false,
+          "spawnGroupId": "ember_tunnels_wave1_drakeling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ember_tunnels_lava_slime_w1_anchor",
+          "archetype": "lava_slime",
+          "encounterId": "ember_tunnels",
+          "facing": 3.141592653589793,
+          "id": "ember_tunnels_lava_slime_w1",
+          "leashZoneId": "tunnels_leash",
+          "retired": false,
+          "spawnGroupId": "ember_tunnels_wave1_lava_slime_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ember_tunnels_lava_slime_w1_2_anchor",
+          "archetype": "lava_slime",
+          "encounterId": "ember_tunnels",
+          "facing": 3.141592653589793,
+          "id": "ember_tunnels_lava_slime_w1_2",
+          "leashZoneId": "tunnels_leash",
+          "retired": false,
+          "spawnGroupId": "ember_tunnels_wave1_lava_slime_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ember_tunnels_fire_bird_w1_anchor",
+          "archetype": "fire_bird",
+          "encounterId": "ember_tunnels",
+          "facing": 3.141592653589793,
+          "id": "ember_tunnels_fire_bird_w1",
+          "leashZoneId": "tunnels_leash",
+          "retired": false,
+          "spawnGroupId": "ember_tunnels_wave1_fire_bird_3",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Ember Tunnels",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "mouth_to_tunnels_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Lair Mouth",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Lair Mouth",
+          "opacity": 1,
+          "portalId": "mouth_to_tunnels_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "tunnels_to_pools_object",
+          "initialState": "closed",
+          "interactionLabel": "To the Pools",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "To the Pools",
+          "opacity": 1,
+          "portalId": "tunnels_to_pools",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "tunnels_sulfur",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minimumSpacing": 110,
+          "minYield": 1,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "sulfur",
+            "coal"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 2830729158,
+          "shape": {
+            "height": 120,
+            "id": "tunnels_sulfur_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 300,
+            "x": 120,
+            "y": 600
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "wyrm_hollow-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 700,
+          "id": "tunnels_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 50
+        },
+        {
+          "height": 740,
+          "id": "tunnels_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 130,
+          "id": "vent_1",
+          "kind": "rectangle",
+          "purpose": "damage",
+          "retired": false,
+          "width": 130,
+          "x": 240,
+          "y": 190
+        },
+        {
+          "height": 130,
+          "id": "vent_2",
+          "kind": "rectangle",
+          "purpose": "damage",
+          "retired": false,
+          "width": 130,
+          "x": 495,
+          "y": 495
+        },
+        {
+          "height": 130,
+          "id": "vent_3",
+          "kind": "rectangle",
+          "purpose": "damage",
+          "retired": false,
+          "width": 130,
+          "x": 755,
+          "y": 175
+        },
+        {
+          "height": 130,
+          "id": "vent_4",
+          "kind": "rectangle",
+          "purpose": "damage",
+          "retired": false,
+          "width": 130,
+          "x": 1015,
+          "y": 495
+        },
+        {
+          "height": 130,
+          "id": "vent_5",
+          "kind": "rectangle",
+          "purpose": "damage",
+          "retired": false,
+          "width": 130,
+          "x": 1255,
+          "y": 195
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 600
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 600
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 600
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 600
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 140
+        },
+        {
+          "id": "salamander_pools_magma_salamander_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 420,
+          "y": 380
+        },
+        {
+          "id": "salamander_pools_magma_salamander_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 420
+        },
+        {
+          "id": "salamander_pools_magma_salamander_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 640,
+          "y": 820
+        },
+        {
+          "id": "salamander_pools_lava_slime_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 700
+        },
+        {
+          "id": "salamander_pools_drakeling_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 380,
+          "y": 760
+        },
+        {
+          "id": "salamander_pools_drakeling_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 460,
+          "y": 840
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "salamander_pools_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "salamander_pools",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "salamander_pools_floor",
+            "prefabRevision": "salamander-pools-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "salamander_pools_magma_salamander_w1_anchor",
+          "archetype": "magma_salamander",
+          "encounterId": "salamander_pools",
+          "facing": 3.141592653589793,
+          "id": "salamander_pools_magma_salamander_w1",
+          "leashZoneId": "pools_leash",
+          "retired": false,
+          "spawnGroupId": "salamander_pools_wave1_magma_salamander_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "salamander_pools_magma_salamander_w1_2_anchor",
+          "archetype": "magma_salamander",
+          "encounterId": "salamander_pools",
+          "facing": 3.141592653589793,
+          "id": "salamander_pools_magma_salamander_w1_2",
+          "leashZoneId": "pools_leash",
+          "retired": false,
+          "spawnGroupId": "salamander_pools_wave1_magma_salamander_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "salamander_pools_magma_salamander_w1_3_anchor",
+          "archetype": "magma_salamander",
+          "encounterId": "salamander_pools",
+          "facing": 3.141592653589793,
+          "id": "salamander_pools_magma_salamander_w1_3",
+          "leashZoneId": "pools_leash",
+          "retired": false,
+          "spawnGroupId": "salamander_pools_wave1_magma_salamander_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "salamander_pools_lava_slime_w1_anchor",
+          "archetype": "lava_slime",
+          "encounterId": "salamander_pools",
+          "facing": 3.141592653589793,
+          "id": "salamander_pools_lava_slime_w1",
+          "leashZoneId": "pools_leash",
+          "retired": false,
+          "spawnGroupId": "salamander_pools_wave1_lava_slime_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "salamander_pools_drakeling_w1_anchor",
+          "archetype": "drakeling",
+          "encounterId": "salamander_pools",
+          "facing": 3.141592653589793,
+          "id": "salamander_pools_drakeling_w1",
+          "leashZoneId": "pools_leash",
+          "retired": false,
+          "spawnGroupId": "salamander_pools_wave1_drakeling_3",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "salamander_pools_drakeling_w1_2_anchor",
+          "archetype": "drakeling",
+          "encounterId": "salamander_pools",
+          "facing": 3.141592653589793,
+          "id": "salamander_pools_drakeling_w1_2",
+          "leashZoneId": "pools_leash",
+          "retired": false,
+          "spawnGroupId": "salamander_pools_wave1_drakeling_3",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Salamander Pools",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "tunnels_to_pools_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Tunnels",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Tunnels",
+          "opacity": 1,
+          "portalId": "tunnels_to_pools_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pools_to_bridge_object",
+          "initialState": "closed",
+          "interactionLabel": "Cross the Bone Bridge",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Cross the Bone Bridge",
+          "opacity": 1,
+          "portalId": "pools_to_bridge",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "pools_iron",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minimumSpacing": 110,
+          "minYield": 1,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "iron",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 686117153,
+          "shape": {
+            "height": 220,
+            "id": "pools_iron_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 220,
+            "x": 900,
+            "y": 900
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "wyrm_hollow-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 1100,
+          "id": "pools_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1100,
+          "x": 50,
+          "y": 50
+        },
+        {
+          "height": 1140,
+          "id": "pools_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 130,
+          "y": 350
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 350
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 100,
+          "y": 350
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 130,
+          "y": 350
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 350
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1500,
+          "y": 350
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1470,
+          "y": 350
+        },
+        {
+          "id": "bone_bridge_ash_wyvern_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 200
+        },
+        {
+          "id": "bone_bridge_ash_wyvern_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1000,
+          "y": 500
+        },
+        {
+          "id": "bone_bridge_ash_wyvern_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1300,
+          "y": 220
+        },
+        {
+          "id": "bone_bridge_drakeling_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 350
+        },
+        {
+          "id": "bone_bridge_drakeling_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 880,
+          "y": 380
+        },
+        {
+          "id": "bone_bridge_fire_bird_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1150,
+          "y": 350
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 350
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "bone_bridge_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 676
+            },
+            {
+              "x": 24,
+              "y": 676
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 700,
+      "id": "bone_bridge",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 700,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "bone_bridge_floor",
+            "prefabRevision": "bone-bridge-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "bone_bridge_ash_wyvern_w1_anchor",
+          "archetype": "ash_wyvern",
+          "encounterId": "bone_bridge",
+          "facing": 3.141592653589793,
+          "id": "bone_bridge_ash_wyvern_w1",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bone_bridge_wave1_ash_wyvern_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_bridge_ash_wyvern_w1_2_anchor",
+          "archetype": "ash_wyvern",
+          "encounterId": "bone_bridge",
+          "facing": 3.141592653589793,
+          "id": "bone_bridge_ash_wyvern_w1_2",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bone_bridge_wave1_ash_wyvern_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_bridge_ash_wyvern_w1_3_anchor",
+          "archetype": "ash_wyvern",
+          "encounterId": "bone_bridge",
+          "facing": 3.141592653589793,
+          "id": "bone_bridge_ash_wyvern_w1_3",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bone_bridge_wave1_ash_wyvern_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_bridge_drakeling_w1_anchor",
+          "archetype": "drakeling",
+          "encounterId": "bone_bridge",
+          "facing": 3.141592653589793,
+          "id": "bone_bridge_drakeling_w1",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bone_bridge_wave1_drakeling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_bridge_drakeling_w1_2_anchor",
+          "archetype": "drakeling",
+          "encounterId": "bone_bridge",
+          "facing": 3.141592653589793,
+          "id": "bone_bridge_drakeling_w1_2",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bone_bridge_wave1_drakeling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bone_bridge_fire_bird_w1_anchor",
+          "archetype": "fire_bird",
+          "encounterId": "bone_bridge",
+          "facing": 3.141592653589793,
+          "id": "bone_bridge_fire_bird_w1",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bone_bridge_wave1_fire_bird_3",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Bone Bridge",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pools_to_bridge_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Pools",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Pools",
+          "opacity": 1,
+          "portalId": "pools_to_bridge_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bridge_to_hatchery_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Hatchery",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Hatchery",
+          "opacity": 1,
+          "portalId": "bridge_to_hatchery",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "wyrm_hollow-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 620,
+          "id": "bridge_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 40
+        },
+        {
+          "height": 640,
+          "id": "bridge_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 500
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 500
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 500
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 500
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 140
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1170,
+          "y": 500
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1090,
+          "y": 500
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 500
+        },
+        {
+          "id": "wyrm_nest",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 560
+        },
+        {
+          "id": "hatchery_drake_broodguard_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 440,
+          "y": 600
+        },
+        {
+          "id": "hatchery_drake_broodguard_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 760,
+          "y": 600
+        },
+        {
+          "id": "hatchery_drakeling_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 340
+        },
+        {
+          "id": "hatchery_drakeling_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 420,
+          "y": 820
+        },
+        {
+          "id": "hatchery_drakeling_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 780,
+          "y": 820
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "hatchery_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "hatchery",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "hatchery_floor",
+            "prefabRevision": "hatchery-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "hatchery_drake_broodguard_w1_anchor",
+          "archetype": "drake_broodguard",
+          "encounterId": "hatchery",
+          "facing": 3.141592653589793,
+          "id": "hatchery_drake_broodguard_w1",
+          "leashZoneId": "hatchery_leash",
+          "retired": false,
+          "spawnGroupId": "hatchery_wave1_drake_broodguard_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hatchery_drake_broodguard_w1_2_anchor",
+          "archetype": "drake_broodguard",
+          "encounterId": "hatchery",
+          "facing": 3.141592653589793,
+          "id": "hatchery_drake_broodguard_w1_2",
+          "leashZoneId": "hatchery_leash",
+          "retired": false,
+          "spawnGroupId": "hatchery_wave1_drake_broodguard_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hatchery_drakeling_w1_anchor",
+          "archetype": "drakeling",
+          "encounterId": "hatchery",
+          "facing": 3.141592653589793,
+          "id": "hatchery_drakeling_w1",
+          "leashZoneId": "hatchery_leash",
+          "retired": false,
+          "spawnGroupId": "hatchery_wave1_drakeling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hatchery_drakeling_w1_2_anchor",
+          "archetype": "drakeling",
+          "encounterId": "hatchery",
+          "facing": 3.141592653589793,
+          "id": "hatchery_drakeling_w1_2",
+          "leashZoneId": "hatchery_leash",
+          "retired": false,
+          "spawnGroupId": "hatchery_wave1_drakeling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hatchery_drakeling_w1_3_anchor",
+          "archetype": "drakeling",
+          "encounterId": "hatchery",
+          "facing": 3.141592653589793,
+          "id": "hatchery_drakeling_w1_3",
+          "leashZoneId": "hatchery_leash",
+          "retired": false,
+          "spawnGroupId": "hatchery_wave1_drakeling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Hatchery",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bridge_to_hatchery_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Bridge",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Bridge",
+          "opacity": 1,
+          "portalId": "bridge_to_hatchery_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hatchery_to_vault_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Vault",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Vault",
+          "opacity": 1,
+          "portalId": "hatchery_to_vault",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hatchery_to_chamber_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Hoard Chamber",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Hoard Chamber",
+          "opacity": 1,
+          "portalId": "hatchery_to_chamber",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "wyrm_nest",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "wyrm-nest",
+          "initialState": "idle",
+          "interactionLabel": "Place 6 Wyrm Eggs and 3 trophies",
+          "interactionRadius": 120,
+          "layerId": "actors",
+          "name": "Wyrm Nest",
+          "opacity": 1,
+          "prefabId": "wyrm_hollow_nest",
+          "prefabRevision": "wyrm-hollow-nest-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "skillTurnIn": "rare_beast_mastery",
+          "type": "shrine",
+          "zIndex": 10
+        }
+      ],
+      "retired": false,
+      "revision": "wyrm_hollow-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 900,
+          "id": "hatchery_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1100,
+          "x": 50,
+          "y": 50
+        },
+        {
+          "height": 940,
+          "id": "hatchery_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 400
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 400
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 400
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 400
+        },
+        {
+          "id": "vault_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 400
+        },
+        {
+          "id": "hoard_vault_magma_salamander_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 520,
+          "y": 260
+        },
+        {
+          "id": "hoard_vault_lava_slime_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 420,
+          "y": 560
+        },
+        {
+          "id": "hoard_vault_lava_slime_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 600
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 400,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "hoard_vault_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 776,
+              "y": 24
+            },
+            {
+              "x": 776,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "hoard_vault",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "hoard_vault_floor",
+            "prefabRevision": "hoard-vault-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 800,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "hoard_vault_magma_salamander_w1_anchor",
+          "archetype": "magma_salamander",
+          "encounterId": "hoard_vault",
+          "facing": 3.141592653589793,
+          "id": "hoard_vault_magma_salamander_w1",
+          "leashZoneId": "vault_leash",
+          "retired": false,
+          "spawnGroupId": "hoard_vault_wave1_magma_salamander_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hoard_vault_lava_slime_w1_anchor",
+          "archetype": "lava_slime",
+          "encounterId": "hoard_vault",
+          "facing": 3.141592653589793,
+          "id": "hoard_vault_lava_slime_w1",
+          "leashZoneId": "vault_leash",
+          "retired": false,
+          "spawnGroupId": "hoard_vault_wave1_lava_slime_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hoard_vault_lava_slime_w1_2_anchor",
+          "archetype": "lava_slime",
+          "encounterId": "hoard_vault",
+          "facing": 3.141592653589793,
+          "id": "hoard_vault_lava_slime_w1_2",
+          "leashZoneId": "vault_leash",
+          "retired": false,
+          "spawnGroupId": "hoard_vault_wave1_lava_slime_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Hoard Vault",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hatchery_to_vault_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Hatchery",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Hatchery",
+          "opacity": 1,
+          "portalId": "hatchery_to_vault_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "vault_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "vault_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Hoard Vault Cache",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "wyrm_hollow_vault_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "wyrm_hollow-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 800,
+      "zones": [
+        {
+          "height": 700,
+          "id": "vault_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 700,
+          "x": 50,
+          "y": 50
+        },
+        {
+          "height": 740,
+          "id": "vault_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 740,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 1460
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 1570
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 1490
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 1460
+        },
+        {
+          "id": "hoard_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1250,
+          "y": 1300
+        },
+        {
+          "id": "elder_dragon_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 760
+        },
+        {
+          "id": "elder_dragon_drakeling_40_1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 260
+        },
+        {
+          "id": "elder_dragon_drakeling_40_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1490,
+          "y": 260
+        },
+        {
+          "id": "elder_dragon_drakeling_40_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 1340
+        },
+        {
+          "id": "elder_dragon_drakeling_40_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1490,
+          "y": 1340
+        },
+        {
+          "id": "elder_dragon_drakeling_70_1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 800
+        },
+        {
+          "id": "elder_dragon_drakeling_70_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1490,
+          "y": 800
+        },
+        {
+          "id": "elder_dragon_drakeling_70_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 110
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 800
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "hoard_chamber_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 1576
+            },
+            {
+              "x": 24,
+              "y": 1576
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1600,
+      "id": "hoard_chamber",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1600,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "hoard_chamber_floor",
+            "prefabRevision": "hoard-chamber-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "elder_dragon_boss_anchor",
+          "archetype": "elder_dragon",
+          "encounterId": "elder_dragon",
+          "facing": 3.141592653589793,
+          "id": "elder_dragon_boss",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_group",
+          "visualScale": 1.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "elder_dragon_drakeling_40_1_anchor",
+          "archetype": "drakeling",
+          "encounterId": "elder_dragon",
+          "facing": 0,
+          "id": "elder_dragon_drakeling_40_1",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_drakelings_40",
+          "summonAtHealthPercent": 40,
+          "summonedByMobSpawnId": "elder_dragon_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "elder_dragon_drakeling_40_2_anchor",
+          "archetype": "drakeling",
+          "encounterId": "elder_dragon",
+          "facing": 0,
+          "id": "elder_dragon_drakeling_40_2",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_drakelings_40",
+          "summonAtHealthPercent": 40,
+          "summonedByMobSpawnId": "elder_dragon_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "elder_dragon_drakeling_40_3_anchor",
+          "archetype": "drakeling",
+          "encounterId": "elder_dragon",
+          "facing": 0,
+          "id": "elder_dragon_drakeling_40_3",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_drakelings_40",
+          "summonAtHealthPercent": 40,
+          "summonedByMobSpawnId": "elder_dragon_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "elder_dragon_drakeling_40_4_anchor",
+          "archetype": "drakeling",
+          "encounterId": "elder_dragon",
+          "facing": 0,
+          "id": "elder_dragon_drakeling_40_4",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_drakelings_40",
+          "summonAtHealthPercent": 40,
+          "summonedByMobSpawnId": "elder_dragon_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "elder_dragon_drakeling_70_1_anchor",
+          "archetype": "drakeling",
+          "encounterId": "elder_dragon",
+          "facing": 0,
+          "id": "elder_dragon_drakeling_70_1",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_drakelings_70",
+          "summonAtHealthPercent": 70,
+          "summonedByMobSpawnId": "elder_dragon_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "elder_dragon_drakeling_70_2_anchor",
+          "archetype": "drakeling",
+          "encounterId": "elder_dragon",
+          "facing": 0,
+          "id": "elder_dragon_drakeling_70_2",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_drakelings_70",
+          "summonAtHealthPercent": 70,
+          "summonedByMobSpawnId": "elder_dragon_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "elder_dragon_drakeling_70_3_anchor",
+          "archetype": "drakeling",
+          "encounterId": "elder_dragon",
+          "facing": 0,
+          "id": "elder_dragon_drakeling_70_3",
+          "leashZoneId": "chamber_leash",
+          "retired": false,
+          "spawnGroupId": "elder_dragon_drakelings_70",
+          "summonAtHealthPercent": 70,
+          "summonedByMobSpawnId": "elder_dragon_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Hoard Chamber",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hatchery_to_chamber_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Hatchery",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Hatchery",
+          "opacity": 1,
+          "portalId": "hatchery_to_chamber_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "hoard_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "hoard_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Elder Dragon's Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "wyrm_hollow_hoard_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "wyrm_hollow-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 1480,
+          "id": "chamber_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 40
+        },
+        {
+          "height": 1550,
+          "id": "chamber_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1550,
+          "x": 25,
+          "y": 25
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

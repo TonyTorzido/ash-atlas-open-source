@@ -1,0 +1,4883 @@
+{
+  "defaultRoomId": "cave_mouth",
+  "description": "A raptor-infested cave system under Fangrock. Fight through the den and pit to the Raptor Chieftain's throne. Recommended level 6.",
+  "environment": {
+    "accentColor": "#c8a45a",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#0d0b09",
+    "environmentId": "cave",
+    "floorColor": "#3a3228",
+    "musicAssetKey": null,
+    "wallColor": "#4a4036"
+  },
+  "id": "fangrock_cavern",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "access": {
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6,
+      "minimumLevel": 6
+    },
+    "bossTemplateIds": [
+      "raptor-chieftain"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "cave_mouth"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "fork_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "fork_pack",
+        "leashZoneId": "fork_leash",
+        "lockPortalIds": [
+          "mouth_to_fork_back",
+          "fork_to_den",
+          "fork_to_grotto",
+          "fork_to_pass"
+        ],
+        "name": "Raptor Pack",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 12,
+            "min": 11
+          },
+          "elite": {
+            "chancePct": 5,
+            "maxPerEncounter": 1,
+            "modifierPool": [
+              "hardy",
+              "swift"
+            ]
+          },
+          "formations": [
+            "wedge",
+            "scatter"
+          ],
+          "pool": [
+            {
+              "archetype": "cave_raptor",
+              "cost": 3,
+              "max": 3,
+              "min": 1,
+              "weight": 2
+            },
+            {
+              "archetype": "raptor_runt",
+              "cost": 1,
+              "min": 2,
+              "weight": 3
+            },
+            {
+              "archetype": "raptor_spitter",
+              "cost": 2,
+              "max": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "fork_spawn_west",
+              "fork_spawn_east"
+            ]
+          },
+          "waves": {
+            "delayMs": 1500,
+            "max": 2,
+            "min": 1
+          }
+        },
+        "roomId": "the_fork",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "den_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "den_runts",
+        "leashZoneId": "den_leash",
+        "lockPortalIds": [
+          "fork_to_den_back"
+        ],
+        "name": "Raptor Runts",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 9,
+            "min": 8
+          },
+          "elite": {
+            "chancePct": 5,
+            "maxPerEncounter": 1,
+            "modifierPool": [
+              "hardy",
+              "swift"
+            ]
+          },
+          "formations": [
+            "circle",
+            "scatter"
+          ],
+          "pool": [
+            {
+              "archetype": "raptor_runt",
+              "cost": 1,
+              "min": 3,
+              "weight": 4
+            },
+            {
+              "archetype": "cave_raptor",
+              "cost": 3,
+              "max": 1,
+              "weight": 1
+            },
+            {
+              "archetype": "cave_bat",
+              "cost": 1,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "den_spawn_west",
+              "den_spawn_north"
+            ]
+          },
+          "waves": {
+            "delayMs": 1500,
+            "max": 2,
+            "min": 1
+          }
+        },
+        "roomId": "raptor_den",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "grotto_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "grotto_miners",
+        "leashZoneId": "grotto_leash",
+        "lockPortalIds": [
+          "fork_to_grotto_back"
+        ],
+        "name": "Goblin Miners",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 10,
+            "min": 9
+          },
+          "elite": {
+            "chancePct": 5,
+            "maxPerEncounter": 1,
+            "modifierPool": [
+              "hardy",
+              "swift"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "line"
+          ],
+          "pool": [
+            {
+              "archetype": "goblin",
+              "cost": 3,
+              "max": 2,
+              "weight": 2
+            },
+            {
+              "archetype": "cave_bat",
+              "cost": 1,
+              "min": 2,
+              "weight": 2
+            },
+            {
+              "archetype": "raptor_runt",
+              "cost": 1,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "grotto_spawn_mid",
+              "grotto_spawn_south"
+            ]
+          },
+          "waves": {
+            "delayMs": 1500,
+            "max": 2,
+            "min": 1
+          }
+        },
+        "roomId": "mushroom_grotto",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "pass_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "pass_bats",
+        "leashZoneId": "pass_leash",
+        "lockPortalIds": [
+          "fork_to_pass_back"
+        ],
+        "name": "Bridge Ambush",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 8,
+            "min": 7
+          },
+          "elite": {
+            "chancePct": 5,
+            "maxPerEncounter": 1,
+            "modifierPool": [
+              "hardy",
+              "swift"
+            ]
+          },
+          "formations": [
+            "line",
+            "scatter"
+          ],
+          "pool": [
+            {
+              "archetype": "cave_bat",
+              "cost": 1,
+              "min": 3,
+              "weight": 4
+            },
+            {
+              "archetype": "cave_raptor",
+              "cost": 3,
+              "max": 1,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "pass_spawn_west",
+              "pass_spawn_east"
+            ]
+          },
+          "waves": {
+            "delayMs": 1500,
+            "max": 2,
+            "min": 1
+          }
+        },
+        "roomId": "narrow_pass",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "pit_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "pit_ambush",
+        "leashZoneId": "pit_leash",
+        "lockPortalIds": [
+          "pass_to_pit_back",
+          "pit_to_throne"
+        ],
+        "name": "Bone Pit Ambush",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 12,
+            "min": 11
+          },
+          "elite": {
+            "chancePct": 5,
+            "maxPerEncounter": 1,
+            "modifierPool": [
+              "hardy",
+              "swift"
+            ]
+          },
+          "formations": [
+            "circle",
+            "wedge",
+            "scatter"
+          ],
+          "pool": [
+            {
+              "archetype": "cave_raptor",
+              "cost": 3,
+              "max": 3,
+              "weight": 2
+            },
+            {
+              "archetype": "raptor_spitter",
+              "cost": 2,
+              "max": 3,
+              "weight": 2
+            },
+            {
+              "archetype": "raptor_runt",
+              "cost": 1,
+              "min": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "pit_spawn_mid",
+              "pit_spawn_east",
+              "pit_spawn_south"
+            ]
+          },
+          "waves": {
+            "delayMs": 1500,
+            "max": 2,
+            "min": 1
+          }
+        },
+        "roomId": "bone_pit",
+        "waves": []
+      },
+      {
+        "bossTemplateId": "raptor-chieftain",
+        "boundaryZoneId": "throne_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "raptor_chieftain",
+        "leashZoneId": "throne_leash",
+        "lockPortalIds": [
+          "pit_to_throne_back"
+        ],
+        "name": "Raptor Chieftain",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "chieftain_throne",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "raptor_chieftain_boss_boss",
+              "raptor_chieftain_raptor_runt_w1_66",
+              "raptor_chieftain_raptor_runt_w1_66_2",
+              "raptor_chieftain_raptor_runt_w1_66_3",
+              "raptor_chieftain_raptor_runt_w1_33",
+              "raptor_chieftain_raptor_runt_w1_33_2",
+              "raptor_chieftain_raptor_runt_w1_33_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "pass_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "lever_ambush",
+        "leashZoneId": "pass_leash",
+        "lockPortalIds": [],
+        "name": "Lever Ambush",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 4,
+            "min": 4
+          },
+          "elite": {
+            "chancePct": 5,
+            "maxPerEncounter": 1,
+            "modifierPool": [
+              "hardy",
+              "swift"
+            ]
+          },
+          "formations": [
+            "scatter"
+          ],
+          "pool": [
+            {
+              "archetype": "cave_bat",
+              "cost": 1,
+              "weight": 2
+            },
+            {
+              "archetype": "raptor_runt",
+              "cost": 1,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "pass_spawn_levers"
+            ]
+          },
+          "waves": {
+            "max": 1,
+            "min": 1
+          }
+        },
+        "roomId": "narrow_pass",
+        "waves": []
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "world_entry_arrival",
+      "portalId": "fangrock_cavern_world_to_entrance",
+      "roomId": "cave_mouth"
+    },
+    "escape": {
+      "portalId": "fangrock_cavern_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "fangrock_cavern-v3"
+    },
+    "rewardTableIds": [
+      "fangrock_cavern_throne_chest_reward",
+      "fangrock_cavern_baby_chest",
+      "fangrock_cavern_den_chest_reward",
+      "fangrock_cavern_completion_reward",
+      "fangrock_cavern_vault_chest_reward"
+    ],
+    "runRolls": {
+      "flags": [
+        {
+          "chancePct": 35,
+          "flagId": "vault_open"
+        }
+      ]
+    },
+    "tier": {
+      "id": "t05"
+    },
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_den_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "den_chest",
+          "roomId": "raptor_den",
+          "type": "object_interact"
+        },
+        "id": "den_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_throne_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "throne_chest",
+          "roomId": "chieftain_throne",
+          "type": "object_interact"
+        },
+        "id": "throne_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "fork_pack",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "the_fork",
+          "type": "room_enter"
+        },
+        "id": "start_fork_pack",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "den_runts",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "raptor_den",
+          "type": "room_enter"
+        },
+        "id": "start_den_runts",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "grotto_miners",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "mushroom_grotto",
+          "type": "room_enter"
+        },
+        "id": "start_grotto_miners",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "pass_bats",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "narrow_pass",
+          "type": "room_enter"
+        },
+        "id": "start_pass_bats",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "pit_ambush",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "bone_pit",
+          "type": "room_enter"
+        },
+        "id": "start_pit_ambush",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "raptor_chieftain",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "chieftain_throne",
+          "type": "room_enter"
+        },
+        "id": "start_raptor_chieftain",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "throne_chest",
+            "roomId": "chieftain_throne",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          },
+          {
+            "text": "The Raptor Chieftain falls. A hoard is revealed.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "raptor_chieftain",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "raptor_chieftain_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-mouth",
+          "roomId": "cave_mouth",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-mouth-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-den-ne",
+          "roomId": "raptor_den",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-den-ne-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-den-se",
+          "roomId": "raptor_den",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-den-se-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-grotto-sw",
+          "roomId": "mushroom_grotto",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-grotto-sw-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-grotto-e",
+          "roomId": "mushroom_grotto",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-grotto-e-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-grotto-n",
+          "roomId": "mushroom_grotto",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-grotto-n-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-pit-ne",
+          "roomId": "bone_pit",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-pit-ne-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "fangrock-small-chest-pit-w",
+          "roomId": "bone_pit",
+          "type": "object_interact"
+        },
+        "id": "fangrock-small-chest-pit-w-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "recipients": "present",
+            "rewardTableId": "fangrock_cavern_completion_reward",
+            "type": "grant_run_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "raptor_chieftain",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "raptor_chieftain_completion_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "locked": true,
+            "portalId": "pass_to_pit",
+            "type": "set_portal_locked"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "narrow_pass",
+          "type": "room_enter"
+        },
+        "id": "lock_pass_exit",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The carving shows three glyphs: triangle, circle, square. Pull the levers in that order.",
+            "tone": "info",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-rune-sign",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_rune_sign_read",
+        "repetition": "repeat",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "Stone clicks somewhere in the wall.",
+            "tone": "info",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [
+            {
+              "objectId": "pass-lever-triangle",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-circle",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-square",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            }
+          ],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-lever-triangle",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_lever_triangle_ok",
+        "repetition": "repeat",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "Another click. One lever to go.",
+            "tone": "info",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [
+            {
+              "objectId": "pass-lever-triangle",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-circle",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-square",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            }
+          ],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-lever-circle",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_lever_circle_ok",
+        "repetition": "repeat",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "flagId": "pass_levers_solved",
+            "type": "set_dungeon_flag",
+            "value": true
+          },
+          {
+            "locked": false,
+            "portalId": "pass_to_pit",
+            "type": "set_portal_locked"
+          },
+          {
+            "available": true,
+            "objectId": "pass-cache-chest",
+            "roomId": "narrow_pass",
+            "type": "set_object_available"
+          },
+          {
+            "enabled": false,
+            "triggerId": "pass_lever_triangle_wrong",
+            "type": "enable_trigger"
+          },
+          {
+            "enabled": false,
+            "triggerId": "pass_lever_circle_wrong",
+            "type": "enable_trigger"
+          },
+          {
+            "enabled": false,
+            "triggerId": "pass_lever_square_wrong",
+            "type": "enable_trigger"
+          },
+          {
+            "text": "The levers lock in. The rockfall grinds aside and a cache is revealed.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [
+            {
+              "objectId": "pass-lever-triangle",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-circle",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-square",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            }
+          ],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-lever-square",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_lever_square_ok",
+        "repetition": "repeat",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "objectId": "pass-lever-triangle",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "objectId": "pass-lever-circle",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "objectId": "pass-lever-square",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "text": "Wrong order. The levers slam back and the cave stirs.",
+            "tone": "warning",
+            "type": "show_message"
+          },
+          {
+            "encounterId": "lever_ambush",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [
+            {
+              "objectId": "pass-lever-triangle",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-circle",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-square",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            }
+          ],
+          "mode": "any"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-lever-triangle",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_lever_triangle_wrong",
+        "repetition": "repeat",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "objectId": "pass-lever-triangle",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "objectId": "pass-lever-circle",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "objectId": "pass-lever-square",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "text": "Wrong order. The levers slam back and the cave stirs.",
+            "tone": "warning",
+            "type": "show_message"
+          },
+          {
+            "encounterId": "lever_ambush",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [
+            {
+              "objectId": "pass-lever-triangle",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-circle",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-square",
+              "roomId": "narrow_pass",
+              "state": "pressed",
+              "type": "object_state"
+            }
+          ],
+          "mode": "any"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-lever-circle",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_lever_circle_wrong",
+        "repetition": "repeat",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "objectId": "pass-lever-triangle",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "objectId": "pass-lever-circle",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "objectId": "pass-lever-square",
+            "roomId": "narrow_pass",
+            "state": "released",
+            "type": "set_object_state"
+          },
+          {
+            "text": "Wrong order. The levers slam back and the cave stirs.",
+            "tone": "warning",
+            "type": "show_message"
+          },
+          {
+            "encounterId": "lever_ambush",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [
+            {
+              "objectId": "pass-lever-triangle",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-circle",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            },
+            {
+              "objectId": "pass-lever-square",
+              "roomId": "narrow_pass",
+              "state": "released",
+              "type": "object_state"
+            }
+          ],
+          "mode": "any"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-lever-square",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_lever_square_wrong",
+        "repetition": "repeat",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_den_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pass-cache-chest",
+          "roomId": "narrow_pass",
+          "type": "object_interact"
+        },
+        "id": "pass_cache_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "vault-hoard-chest",
+            "roomId": "raptor_den",
+            "type": "set_object_available"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "flagId": "vault_open",
+          "type": "dungeon_flag",
+          "value": true
+        },
+        "id": "reveal_vault_hoard",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_vault_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "vault-hoard-chest",
+          "roomId": "raptor_den",
+          "type": "object_interact"
+        },
+        "id": "vault_hoard_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fangrock_cavern_den_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "pit-bone-cache",
+          "roomId": "bone_pit",
+          "type": "object_interact"
+        },
+        "id": "pit_bone_cache_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      }
+    ]
+  },
+  "name": "Fangrock Cavern",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "cave_mouth"
+      },
+      "destinationArrivalAnchorId": "world_entry_arrival",
+      "enabled": false,
+      "id": "fangrock_cavern_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for fangrock_cavern",
+      "presentation": "door",
+      "reciprocalPortalId": "fangrock_cavern_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "fangrock_cavern_entrance_to_world",
+      "interactionLabel": "Leave the Cavern",
+      "presentation": "cave",
+      "reciprocalPortalId": "fangrock_cavern_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "cave_mouth"
+      },
+      "sourceApproachAnchorId": "world_approach",
+      "sourceThresholdAnchorId": "world_exit"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "destinationArrivalAnchorId": "arrive_s",
+      "enabled": true,
+      "id": "mouth_to_fork",
+      "interactionLabel": "Go North",
+      "preloadSceneKey": "fangrock_cavern/the_fork",
+      "presentation": "door",
+      "reciprocalPortalId": "mouth_to_fork_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "cave_mouth"
+      },
+      "sourceApproachAnchorId": "approach_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "cave_mouth"
+      },
+      "destinationArrivalAnchorId": "arrive_n",
+      "enabled": true,
+      "id": "mouth_to_fork_back",
+      "interactionLabel": "Go South",
+      "preloadSceneKey": "fangrock_cavern/cave_mouth",
+      "presentation": "door",
+      "reciprocalPortalId": "mouth_to_fork",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "sourceApproachAnchorId": "approach_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "raptor_den"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "fork_to_den",
+      "interactionLabel": "Go West",
+      "preloadSceneKey": "fangrock_cavern/raptor_den",
+      "presentation": "door",
+      "reciprocalPortalId": "fork_to_den_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "fork_to_den_back",
+      "interactionLabel": "Go East",
+      "preloadSceneKey": "fangrock_cavern/the_fork",
+      "presentation": "door",
+      "reciprocalPortalId": "fork_to_den",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "raptor_den"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "mushroom_grotto"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "fork_to_grotto",
+      "interactionLabel": "Go East",
+      "preloadSceneKey": "fangrock_cavern/mushroom_grotto",
+      "presentation": "door",
+      "reciprocalPortalId": "fork_to_grotto_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "fork_to_grotto_back",
+      "interactionLabel": "Go West",
+      "preloadSceneKey": "fangrock_cavern/the_fork",
+      "presentation": "door",
+      "reciprocalPortalId": "fork_to_grotto",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "mushroom_grotto"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "narrow_pass"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "fork_to_pass",
+      "interactionLabel": "Go North",
+      "preloadSceneKey": "fangrock_cavern/narrow_pass",
+      "presentation": "door",
+      "reciprocalPortalId": "fork_to_pass_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "sourceApproachAnchorId": "approach_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "the_fork"
+      },
+      "destinationArrivalAnchorId": "arrive_n",
+      "enabled": true,
+      "id": "fork_to_pass_back",
+      "interactionLabel": "Go South",
+      "preloadSceneKey": "fangrock_cavern/the_fork",
+      "presentation": "door",
+      "reciprocalPortalId": "fork_to_pass",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "narrow_pass"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "bone_pit"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "pass_to_pit",
+      "interactionLabel": "Go East",
+      "preloadSceneKey": "fangrock_cavern/bone_pit",
+      "presentation": "door",
+      "reciprocalPortalId": "pass_to_pit_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "narrow_pass"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "narrow_pass"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "pass_to_pit_back",
+      "interactionLabel": "Go West",
+      "preloadSceneKey": "fangrock_cavern/narrow_pass",
+      "presentation": "door",
+      "reciprocalPortalId": "pass_to_pit",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "bone_pit"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "chieftain_throne"
+      },
+      "destinationArrivalAnchorId": "arrive_s",
+      "enabled": true,
+      "id": "pit_to_throne",
+      "interactionLabel": "Climb the ramp",
+      "preloadSceneKey": "fangrock_cavern/chieftain_throne",
+      "presentation": "door",
+      "reciprocalPortalId": "pit_to_throne_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "bone_pit"
+      },
+      "sourceApproachAnchorId": "approach_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "bone_pit"
+      },
+      "destinationArrivalAnchorId": "arrive_n",
+      "enabled": true,
+      "id": "pit_to_throne_back",
+      "interactionLabel": "Go Back Down",
+      "preloadSceneKey": "fangrock_cavern/bone_pit",
+      "presentation": "door",
+      "reciprocalPortalId": "pit_to_throne",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "chieftain_throne"
+      },
+      "sourceApproachAnchorId": "approach_s",
+      "sourceThresholdAnchorId": "door_s"
+    }
+  ],
+  "retired": false,
+  "revision": "fangrock_cavern-v3",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 760
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "world_exit",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 950
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 650
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 40
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 120
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 150
+        },
+        {
+          "id": "world_approach",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 870
+        },
+        {
+          "id": "world_entry_arrival",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 760
+        },
+        {
+          "id": "fangrock_small_chest_mouth_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 180,
+          "y": 720
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 1000,
+          "id": "wall_left",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 100,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 1000,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 100,
+          "x": 900,
+          "y": 0
+        },
+        {
+          "height": 100,
+          "id": "wall_top_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 330,
+          "x": 100,
+          "y": 0
+        },
+        {
+          "height": 100,
+          "id": "wall_top_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 330,
+          "x": 570,
+          "y": 0
+        },
+        {
+          "height": 170,
+          "id": "wall_bottom_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 300,
+          "x": 100,
+          "y": 830
+        },
+        {
+          "height": 170,
+          "id": "wall_bottom_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 300,
+          "x": 600,
+          "y": 830
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "fangrock_cavern_cave",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "cave_mouth",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "cave_mouth_floor",
+            "prefabRevision": "cave-mouth-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Cave Mouth",
+      "objects": [
+        {
+          "anchorId": "world_exit",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock_cavern_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Return to world",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Return to world",
+          "opacity": 0,
+          "portalId": "fangrock_cavern_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "mouth_to_fork_object",
+          "initialState": "closed",
+          "interactionLabel": "Go North",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go North",
+          "opacity": 0,
+          "portalId": "mouth_to_fork",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_mouth_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-mouth",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "mouth_west_rocks",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "stone",
+            "coal"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1207919,
+          "shape": {
+            "height": 140,
+            "id": "mouth_west_rocks_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 145,
+            "x": 135,
+            "y": 160
+          }
+        },
+        {
+          "id": "mouth_east_rocks",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1215838,
+          "shape": {
+            "height": 140,
+            "id": "mouth_east_rocks_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 140,
+            "x": 720,
+            "y": 160
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "fangrock_cavern-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 480,
+          "y": 860
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 480,
+          "y": 970
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 480,
+          "y": 890
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 480,
+          "y": 860
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 485,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 485,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 485,
+          "y": 140
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 465
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 465
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 465
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 970,
+          "y": 480
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 890,
+          "y": 480
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 860,
+          "y": 480
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 60,
+          "id": "wall_top_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 400,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_top_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 430,
+          "x": 570,
+          "y": 0
+        },
+        {
+          "height": 70,
+          "id": "wall_bottom_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 400,
+          "x": 0,
+          "y": 930
+        },
+        {
+          "height": 70,
+          "id": "wall_bottom_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 440,
+          "x": 560,
+          "y": 930
+        },
+        {
+          "height": 400,
+          "id": "wall_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 470,
+          "id": "wall_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 530
+        },
+        {
+          "height": 420,
+          "id": "wall_right_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 940,
+          "y": 0
+        },
+        {
+          "height": 460,
+          "id": "wall_right_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 940,
+          "y": 540
+        },
+        {
+          "height": 200,
+          "id": "boulders_nw",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 200,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 200,
+          "id": "boulders_ne",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 200,
+          "x": 800,
+          "y": 0
+        },
+        {
+          "height": 200,
+          "id": "boulders_sw",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 200,
+          "x": 0,
+          "y": 800
+        },
+        {
+          "height": 200,
+          "id": "boulders_se",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 200,
+          "x": 800,
+          "y": 800
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "the_fork_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "the_fork",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "the_fork_floor",
+            "prefabRevision": "the-fork-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "The Fork",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "mouth_to_fork_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go South",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go South",
+          "opacity": 0,
+          "portalId": "mouth_to_fork_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fork_to_den_object",
+          "initialState": "closed",
+          "interactionLabel": "Go West",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go West",
+          "opacity": 0,
+          "portalId": "fork_to_den",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fork_to_grotto_object",
+          "initialState": "closed",
+          "interactionLabel": "Go East",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go East",
+          "opacity": 0,
+          "portalId": "fork_to_grotto",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fork_to_pass_object",
+          "initialState": "closed",
+          "interactionLabel": "Go North",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go North",
+          "opacity": 0,
+          "portalId": "fork_to_pass",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "fork_sw_ledge",
+          "interactionRadius": 82,
+          "maxCount": 1,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 80,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore",
+            "coal",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1223757,
+          "shape": {
+            "height": 70,
+            "id": "fork_sw_ledge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 110,
+            "x": 90,
+            "y": 680
+          }
+        },
+        {
+          "id": "fork_se_ledge",
+          "interactionRadius": 82,
+          "maxCount": 1,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 80,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore",
+            "coal",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1231676,
+          "shape": {
+            "height": 70,
+            "id": "fork_se_ledge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 100,
+            "x": 810,
+            "y": 680
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "fangrock_cavern-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 870,
+          "id": "fork_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "fork_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 300,
+          "id": "fork_spawn_west",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 200,
+          "x": 260,
+          "y": 260
+        },
+        {
+          "height": 300,
+          "id": "fork_spawn_east",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 200,
+          "x": 540,
+          "y": 260
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 860,
+          "y": 400
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 970,
+          "y": 400
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 890,
+          "y": 400
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 860,
+          "y": 400
+        },
+        {
+          "id": "den_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 150,
+          "y": 650
+        },
+        {
+          "id": "den_gold_vein_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 580,
+          "y": 110
+        },
+        {
+          "id": "fangrock_small_chest_den_ne_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 890,
+          "y": 130
+        },
+        {
+          "id": "fangrock_small_chest_den_se_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 890,
+          "y": 680
+        },
+        {
+          "id": "vault_hoard_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 140
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 60,
+          "id": "wall_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1000,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 80,
+          "id": "wall_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1000,
+          "x": 0,
+          "y": 720
+        },
+        {
+          "height": 800,
+          "id": "wall_left",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 340,
+          "id": "wall_right_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 70,
+          "x": 930,
+          "y": 0
+        },
+        {
+          "height": 345,
+          "id": "wall_right_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 70,
+          "x": 930,
+          "y": 455
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "raptor_den_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "raptor_den",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "raptor_den_floor",
+            "prefabRevision": "raptor-den-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Raptor Den",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fork_to_den_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go East",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go East",
+          "opacity": 0,
+          "portalId": "fork_to_den_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "den_chest_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "den_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Egg Nest Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_den_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_den_ne_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-den-ne",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_den_se_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-den-se",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "vault_hoard_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "vault-hoard-chest",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Hidden Raptor Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_vault_chest",
+          "prefabRevision": "dungeon-vault-chest-v1",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_vault_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceNodes": [
+        {
+          "anchorId": "den_gold_vein_anchor",
+          "available": true,
+          "id": "den_gold_vein",
+          "interactionRadius": 82,
+          "maxYield": 3,
+          "minYield": 1,
+          "resetOnRun": true,
+          "resourceType": "ore",
+          "respawnSeconds": null,
+          "retired": false
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "den_north_rocks",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 90,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore",
+            "stone",
+            "iron"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1239595,
+          "shape": {
+            "height": 90,
+            "id": "den_north_rocks_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 150,
+            "x": 640,
+            "y": 100
+          }
+        },
+        {
+          "id": "den_south_rocks",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "coal",
+            "stone",
+            "iron"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1247514,
+          "shape": {
+            "height": 90,
+            "id": "den_south_rocks_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 300,
+            "x": 480,
+            "y": 600
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "fangrock_cavern-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 660,
+          "id": "den_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 870,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 740,
+          "id": "den_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 300,
+          "id": "den_spawn_west",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 280,
+          "x": 180,
+          "y": 250
+        },
+        {
+          "height": 170,
+          "id": "den_spawn_north",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 240,
+          "x": 480,
+          "y": 150
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 400
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 400
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 400
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 400
+        },
+        {
+          "id": "grotto_ore_1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 960,
+          "y": 300
+        },
+        {
+          "id": "grotto_ore_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 955,
+          "y": 500
+        },
+        {
+          "id": "grotto_crystal_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 350,
+          "y": 840
+        },
+        {
+          "id": "fangrock_small_chest_grotto_sw_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 120,
+          "y": 820
+        },
+        {
+          "id": "fangrock_small_chest_grotto_e_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1070,
+          "y": 650
+        },
+        {
+          "id": "fangrock_small_chest_grotto_n_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 140
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 80,
+          "id": "wall_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 110,
+          "id": "wall_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 890
+        },
+        {
+          "height": 350,
+          "id": "wall_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 70,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 550,
+          "id": "wall_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 70,
+          "x": 0,
+          "y": 450
+        },
+        {
+          "height": 1000,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 80,
+          "x": 1120,
+          "y": 0
+        },
+        {
+          "id": "mushrooms_ne",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 870,
+              "y": 90
+            },
+            {
+              "x": 864.67,
+              "y": 116.79
+            },
+            {
+              "x": 849.5,
+              "y": 139.5
+            },
+            {
+              "x": 826.79,
+              "y": 154.67
+            },
+            {
+              "x": 800,
+              "y": 160
+            },
+            {
+              "x": 773.21,
+              "y": 154.67
+            },
+            {
+              "x": 750.5,
+              "y": 139.5
+            },
+            {
+              "x": 735.33,
+              "y": 116.79
+            },
+            {
+              "x": 730,
+              "y": 90
+            },
+            {
+              "x": 735.33,
+              "y": 63.21
+            },
+            {
+              "x": 750.5,
+              "y": 40.5
+            },
+            {
+              "x": 773.21,
+              "y": 25.33
+            },
+            {
+              "x": 800,
+              "y": 20
+            },
+            {
+              "x": 826.79,
+              "y": 25.33
+            },
+            {
+              "x": 849.5,
+              "y": 40.5
+            },
+            {
+              "x": 864.67,
+              "y": 63.21
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "mushrooms_se",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 1170,
+              "y": 850
+            },
+            {
+              "x": 1164.62,
+              "y": 883.99
+            },
+            {
+              "x": 1148.99,
+              "y": 914.66
+            },
+            {
+              "x": 1124.66,
+              "y": 938.99
+            },
+            {
+              "x": 1093.99,
+              "y": 954.62
+            },
+            {
+              "x": 1060,
+              "y": 960
+            },
+            {
+              "x": 1026.01,
+              "y": 954.62
+            },
+            {
+              "x": 995.34,
+              "y": 938.99
+            },
+            {
+              "x": 971.01,
+              "y": 914.66
+            },
+            {
+              "x": 955.38,
+              "y": 883.99
+            },
+            {
+              "x": 950,
+              "y": 850
+            },
+            {
+              "x": 955.38,
+              "y": 816.01
+            },
+            {
+              "x": 971.01,
+              "y": 785.34
+            },
+            {
+              "x": 995.34,
+              "y": 761.01
+            },
+            {
+              "x": 1026.01,
+              "y": 745.38
+            },
+            {
+              "x": 1060,
+              "y": 740
+            },
+            {
+              "x": 1093.99,
+              "y": 745.38
+            },
+            {
+              "x": 1124.66,
+              "y": 761.01
+            },
+            {
+              "x": 1148.99,
+              "y": 785.34
+            },
+            {
+              "x": 1164.62,
+              "y": 816.01
+            }
+          ],
+          "retired": false
+        },
+        {
+          "height": 560,
+          "id": "mine_scaffold",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 120,
+          "x": 1000,
+          "y": 20
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "mushroom_grotto_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "mushroom_grotto",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "mushroom_grotto_floor",
+            "prefabRevision": "mushroom-grotto-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Mushroom Grotto",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fork_to_grotto_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go West",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go West",
+          "opacity": 0,
+          "portalId": "fork_to_grotto_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_grotto_sw_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-grotto-sw",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_grotto_e_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-grotto-e",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_grotto_n_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-grotto-n",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceNodes": [
+        {
+          "anchorId": "grotto_ore_1_anchor",
+          "available": true,
+          "id": "grotto_ore_1",
+          "interactionRadius": 82,
+          "maxYield": 3,
+          "minYield": 1,
+          "resetOnRun": true,
+          "resourceType": "ore",
+          "respawnSeconds": null,
+          "retired": false
+        },
+        {
+          "anchorId": "grotto_ore_2_anchor",
+          "available": true,
+          "id": "grotto_ore_2",
+          "interactionRadius": 82,
+          "maxYield": 3,
+          "minYield": 1,
+          "resetOnRun": true,
+          "resourceType": "ore",
+          "respawnSeconds": null,
+          "retired": false
+        },
+        {
+          "anchorId": "grotto_crystal_anchor",
+          "available": true,
+          "id": "grotto_crystal",
+          "interactionRadius": 82,
+          "maxYield": 3,
+          "minYield": 1,
+          "resetOnRun": true,
+          "resourceType": "stone",
+          "respawnSeconds": null,
+          "retired": false
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "grotto_west_crystals",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 90,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "stone",
+            "iron"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1255433,
+          "shape": {
+            "height": 100,
+            "id": "grotto_west_crystals_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 200,
+            "x": 200,
+            "y": 160
+          }
+        },
+        {
+          "id": "grotto_south_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore",
+            "coal",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1263352,
+          "shape": {
+            "height": 60,
+            "id": "grotto_south_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 260,
+            "x": 600,
+            "y": 790
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "fangrock_cavern-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 810,
+          "id": "grotto_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1050,
+          "x": 70,
+          "y": 80
+        },
+        {
+          "height": 920,
+          "id": "grotto_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 260,
+          "id": "grotto_spawn_mid",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 300,
+          "x": 450,
+          "y": 250
+        },
+        {
+          "height": 200,
+          "id": "grotto_spawn_south",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 350,
+          "x": 450,
+          "y": 600
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 350
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 350
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 350
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 350
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 350
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1490,
+          "y": 350
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1460,
+          "y": 350
+        },
+        {
+          "id": "pass_lever_triangle_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1260,
+          "y": 290
+        },
+        {
+          "id": "pass_lever_circle_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1150,
+          "y": 290
+        },
+        {
+          "id": "pass_lever_square_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1370,
+          "y": 290
+        },
+        {
+          "id": "pass_rune_sign_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1010,
+          "y": 290
+        },
+        {
+          "id": "pass_cache_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1440,
+          "y": 298
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 350
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 260,
+          "id": "rock_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 270,
+          "id": "rock_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 430
+        },
+        {
+          "height": 40,
+          "id": "edge_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 260
+        },
+        {
+          "height": 30,
+          "id": "edge_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 400
+        },
+        {
+          "height": 40,
+          "id": "edge_right_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 1540,
+          "y": 260
+        },
+        {
+          "height": 30,
+          "id": "edge_right_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 1540,
+          "y": 400
+        },
+        {
+          "height": 45,
+          "id": "chasm_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 205,
+          "x": 700,
+          "y": 260
+        },
+        {
+          "height": 30,
+          "id": "chasm_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 205,
+          "x": 700,
+          "y": 400
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "narrow_pass_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 676
+            },
+            {
+              "x": 24,
+              "y": 676
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 700,
+      "id": "narrow_pass",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 700,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "narrow_pass_floor",
+            "prefabRevision": "narrow-pass-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Narrow Pass",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fork_to_pass_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go South",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go South",
+          "opacity": 0,
+          "portalId": "fork_to_pass_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pass_to_pit_object",
+          "initialState": "closed",
+          "interactionLabel": "Go East",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go East",
+          "opacity": 0,
+          "portalId": "pass_to_pit",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "pass_lever_triangle_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pass-lever-triangle",
+          "initialState": "released",
+          "interactionLabel": "Pull lever",
+          "interactionRadius": 72,
+          "layerId": "actors",
+          "name": "Triangle Lever",
+          "opacity": 1,
+          "prefabId": "dungeon_lever",
+          "prefabRevision": "dungeon-lever-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "switch",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "pass_lever_circle_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pass-lever-circle",
+          "initialState": "released",
+          "interactionLabel": "Pull lever",
+          "interactionRadius": 72,
+          "layerId": "actors",
+          "name": "Circle Lever",
+          "opacity": 1,
+          "prefabId": "dungeon_lever",
+          "prefabRevision": "dungeon-lever-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "switch",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "pass_lever_square_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pass-lever-square",
+          "initialState": "released",
+          "interactionLabel": "Pull lever",
+          "interactionRadius": 72,
+          "layerId": "actors",
+          "name": "Square Lever",
+          "opacity": 1,
+          "prefabId": "dungeon_lever",
+          "prefabRevision": "dungeon-lever-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "switch",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "pass_rune_sign_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pass-rune-sign",
+          "initialState": "idle",
+          "interactionLabel": "Read the carving",
+          "interactionRadius": 80,
+          "layerId": "actors",
+          "name": "Rune Carving",
+          "opacity": 1,
+          "prefabId": "fangrock_rune_sign",
+          "prefabRevision": "fangrock-rune-sign-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "pass_cache_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "pass-cache-chest",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Pass Cache",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_den_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fangrock_cavern-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 170,
+          "id": "pass_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1480,
+          "x": 60,
+          "y": 260
+        },
+        {
+          "height": 290,
+          "id": "pass_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 200
+        },
+        {
+          "height": 95,
+          "id": "pass_spawn_west",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 380,
+          "x": 260,
+          "y": 300
+        },
+        {
+          "height": 95,
+          "id": "pass_spawn_east",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 220,
+          "x": 930,
+          "y": 300
+        },
+        {
+          "height": 95,
+          "id": "pass_spawn_levers",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 460,
+          "x": 1000,
+          "y": 300
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 150,
+          "y": 575
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 575
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 575
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 150,
+          "y": 575
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 585,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 585,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 585,
+          "y": 160
+        },
+        {
+          "id": "fangrock_small_chest_pit_ne_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1070,
+          "y": 140
+        },
+        {
+          "id": "fangrock_small_chest_pit_w_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 130,
+          "y": 800
+        },
+        {
+          "id": "pit_cache_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 1040
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 80,
+          "id": "wall_top_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 500,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 80,
+          "id": "wall_top_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 530,
+          "x": 670,
+          "y": 0
+        },
+        {
+          "height": 80,
+          "id": "wall_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 1120
+        },
+        {
+          "height": 510,
+          "id": "wall_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 80,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 560,
+          "id": "wall_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 80,
+          "x": 0,
+          "y": 640
+        },
+        {
+          "height": 1200,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 80,
+          "x": 1120,
+          "y": 0
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "bone_pit_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "bone_pit",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "bone_pit_floor",
+            "prefabRevision": "bone-pit-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Bone Pit",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pass_to_pit_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go West",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go West",
+          "opacity": 0,
+          "portalId": "pass_to_pit_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pit_to_throne_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb the ramp",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Climb the ramp",
+          "opacity": 0,
+          "portalId": "pit_to_throne",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_pit_ne_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-pit-ne",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "fangrock_small_chest_pit_w_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fangrock-small-chest-pit-w",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "fangrock_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "pit_cache_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pit-bone-cache",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Bone Pit Cache",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_den_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "pit_sw_ledge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 90,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "stone",
+            "coal"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1271271,
+          "shape": {
+            "height": 130,
+            "id": "pit_sw_ledge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 160,
+            "x": 120,
+            "y": 950
+          }
+        },
+        {
+          "id": "pit_se_ledge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 90,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore",
+            "iron"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1279190,
+          "shape": {
+            "height": 130,
+            "id": "pit_se_ledge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 130,
+            "x": 950,
+            "y": 950
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "fangrock_cavern-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 1040,
+          "id": "pit_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1040,
+          "x": 80,
+          "y": 80
+        },
+        {
+          "height": 1140,
+          "id": "pit_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 250,
+          "id": "pit_spawn_mid",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 350,
+          "x": 350,
+          "y": 450
+        },
+        {
+          "height": 300,
+          "id": "pit_spawn_east",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 350,
+          "x": 700,
+          "y": 600
+        },
+        {
+          "height": 200,
+          "id": "pit_spawn_south",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 350,
+          "x": 200,
+          "y": 850
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 700,
+          "y": 1150
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 700,
+          "y": 1370
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 1290
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 1150
+        },
+        {
+          "id": "scale_shrine",
+          "retired": false,
+          "role": "point",
+          "x": 1180,
+          "y": 1080
+        },
+        {
+          "id": "throne_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 400,
+          "y": 1050
+        },
+        {
+          "id": "raptor_chieftain_boss_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 720,
+          "y": 330
+        },
+        {
+          "id": "raptor_chieftain_raptor_runt_w1_66_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 180,
+          "y": 450
+        },
+        {
+          "id": "raptor_chieftain_raptor_runt_w1_66_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1220,
+          "y": 450
+        },
+        {
+          "id": "raptor_chieftain_raptor_runt_w1_66_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 200,
+          "y": 850
+        },
+        {
+          "id": "raptor_chieftain_raptor_runt_w1_33_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1200,
+          "y": 850
+        },
+        {
+          "id": "raptor_chieftain_raptor_runt_w1_33_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 300,
+          "y": 200
+        },
+        {
+          "id": "raptor_chieftain_raptor_runt_w1_33_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 200
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 700
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 90,
+          "id": "wall_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1400,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 1400,
+          "id": "wall_left",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 90,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 1400,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 90,
+          "x": 1310,
+          "y": 0
+        },
+        {
+          "height": 190,
+          "id": "wall_bottom_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 615,
+          "x": 0,
+          "y": 1210
+        },
+        {
+          "height": 190,
+          "id": "wall_bottom_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 615,
+          "x": 785,
+          "y": 1210
+        },
+        {
+          "height": 220,
+          "id": "boulder_throne",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 300,
+          "x": 570,
+          "y": 0
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "chieftain_throne_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 1376
+            },
+            {
+              "x": 24,
+              "y": 1376
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1400,
+      "id": "chieftain_throne",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "chieftain_throne_floor",
+            "prefabRevision": "chieftain-throne-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "raptor_chieftain_boss_boss_anchor",
+          "archetype": "raptor_chieftain",
+          "encounterId": "raptor_chieftain",
+          "facing": 1.5707963267948966,
+          "id": "raptor_chieftain_boss_boss",
+          "leashZoneId": "throne_leash",
+          "retired": false,
+          "spawnGroupId": "raptor_chieftain_boss_group",
+          "visualScale": 1.5,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "raptor_chieftain_raptor_runt_w1_66_anchor",
+          "archetype": "raptor_runt",
+          "encounterId": "raptor_chieftain",
+          "facing": 3.141592653589793,
+          "id": "raptor_chieftain_raptor_runt_w1_66",
+          "leashZoneId": "throne_leash",
+          "retired": false,
+          "spawnGroupId": "raptor_chieftain_runts_66",
+          "summonAtHealthPercent": 66,
+          "summonedByMobSpawnId": "raptor_chieftain_boss_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "raptor_chieftain_raptor_runt_w1_66_2_anchor",
+          "archetype": "raptor_runt",
+          "encounterId": "raptor_chieftain",
+          "facing": 3.141592653589793,
+          "id": "raptor_chieftain_raptor_runt_w1_66_2",
+          "leashZoneId": "throne_leash",
+          "retired": false,
+          "spawnGroupId": "raptor_chieftain_runts_66",
+          "summonAtHealthPercent": 66,
+          "summonedByMobSpawnId": "raptor_chieftain_boss_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "raptor_chieftain_raptor_runt_w1_66_3_anchor",
+          "archetype": "raptor_runt",
+          "encounterId": "raptor_chieftain",
+          "facing": 3.141592653589793,
+          "id": "raptor_chieftain_raptor_runt_w1_66_3",
+          "leashZoneId": "throne_leash",
+          "retired": false,
+          "spawnGroupId": "raptor_chieftain_runts_66",
+          "summonAtHealthPercent": 66,
+          "summonedByMobSpawnId": "raptor_chieftain_boss_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "raptor_chieftain_raptor_runt_w1_33_anchor",
+          "archetype": "raptor_runt",
+          "encounterId": "raptor_chieftain",
+          "facing": 3.141592653589793,
+          "id": "raptor_chieftain_raptor_runt_w1_33",
+          "leashZoneId": "throne_leash",
+          "retired": false,
+          "spawnGroupId": "raptor_chieftain_runts_33",
+          "summonAtHealthPercent": 33,
+          "summonedByMobSpawnId": "raptor_chieftain_boss_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "raptor_chieftain_raptor_runt_w1_33_2_anchor",
+          "archetype": "raptor_runt",
+          "encounterId": "raptor_chieftain",
+          "facing": 3.141592653589793,
+          "id": "raptor_chieftain_raptor_runt_w1_33_2",
+          "leashZoneId": "throne_leash",
+          "retired": false,
+          "spawnGroupId": "raptor_chieftain_runts_33",
+          "summonAtHealthPercent": 33,
+          "summonedByMobSpawnId": "raptor_chieftain_boss_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "raptor_chieftain_raptor_runt_w1_33_3_anchor",
+          "archetype": "raptor_runt",
+          "encounterId": "raptor_chieftain",
+          "facing": 3.141592653589793,
+          "id": "raptor_chieftain_raptor_runt_w1_33_3",
+          "leashZoneId": "throne_leash",
+          "retired": false,
+          "spawnGroupId": "raptor_chieftain_runts_33",
+          "summonAtHealthPercent": 33,
+          "summonedByMobSpawnId": "raptor_chieftain_boss_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Chieftain's Throne",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "pit_to_throne_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go Back Down",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go Back Down",
+          "opacity": 0,
+          "portalId": "pit_to_throne_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "throne_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "throne_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Chieftain's Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fangrock_cavern_throne_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "scale_shrine",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "scale-shrine",
+          "initialState": "idle",
+          "interactionLabel": "Offer 6 Raptor Scales",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Scale Shrine",
+          "opacity": 1,
+          "prefabId": "fangrock_scale_shrine",
+          "prefabRevision": "fangrock-scale-shrine-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "skillTurnIn": "deepstone_lore",
+          "type": "shrine",
+          "zIndex": 10
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "throne_sw_corner",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "stone",
+            "ore"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1287109,
+          "shape": {
+            "height": 160,
+            "id": "throne_sw_corner_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 170,
+            "x": 120,
+            "y": 1000
+          }
+        },
+        {
+          "id": "throne_east_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 90,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "coal",
+            "iron"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1295028,
+          "shape": {
+            "height": 120,
+            "id": "throne_east_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 90,
+            "x": 1180,
+            "y": 640
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "fangrock_cavern-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 1120,
+          "id": "throne_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1220,
+          "x": 90,
+          "y": 90
+        },
+        {
+          "height": 1260,
+          "id": "throne_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1340,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

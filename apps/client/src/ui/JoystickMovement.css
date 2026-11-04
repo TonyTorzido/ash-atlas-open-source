@@ -1,0 +1,386 @@
+/* Overworld thumb controls, twin-thumb layout.
+ *   left thumb  : movement stick, bottom-left corner zone, close to the dock
+ *   right thumb : attack (anchor) bottom-right; dash is a stick flick (no button)
+ * Every control is a small visible face inside a larger invisible touch zone (padding / pad vars below), so a thumb
+ * that lands a little off still grabs it. The zones stop at the dock top and at the slot rails (the outer 44px
+ * strips), so they never take touches from the hotbar, MENU or the rails. Nothing here reaches the screen centre. */
+:root {
+  /* Controls hug the screen corners: this is the gap from the (safe-area) screen edge to the visible stick / attack face. */
+  --cc-rail-inset: 10px;
+  --cc-face-inset: 22px; /* visible stick / attack face distance from the safe edge (owner: a tiny bit in from the corner) */
+  /* One glass family for the stick, attack, dash and the slot rails: frosted parchment with a bronze rim. */
+  --cc-glass-fill: color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 52%, transparent);
+  --cc-glass-rim: color-mix(in srgb, var(--aa-ui-bronze-500) 62%, transparent);
+  /* Sizes follow the short side of the screen and are capped, so a tablet never gets giant controls. */
+  --cc-stick: clamp(82px, 24vmin, 104px);
+  --cc-knob: clamp(40px, 11.5vmin, 50px);
+  --cc-attack: clamp(76px, 22vmin, 96px);
+  --cc-left: calc(var(--hud-safe-left, 0px) + var(--cc-face-inset));
+  --cc-right: calc(var(--hud-safe-right, 0px) + var(--cc-face-inset));
+  --cc-bottom: calc(var(--hud-bottom-bar-height, 0px) + 8px);
+  /* Portrait: stick nudged inward from the rail and dropped close to the dock. */
+  --cc-stick-left: var(--cc-left);
+  --cc-stick-bottom: calc(var(--hud-bottom-bar-height, 0px) + 8px);
+  /* Touch zone padding around the visible faces. */
+  --cc-stick-pad-t: 30px;
+  --cc-stick-pad-r: 30px;
+  --cc-stick-pad-b: 0px; /* the MENU medallion rises above the dock beside the stick, so the zone stops at the base bottom */
+  --cc-stick-pad-l: 8px; /* the zone reaches at most 2px from the screen edge */
+  --cc-az-l: 56px; /* reaches inward toward the screen centre */
+  --cc-az-r: 8px;
+  --cc-az-t: 44px;
+  --cc-az-b: 8px;
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  :root {
+    /* Landscape: the stick and the attack face sit fully in the bottom corners, only the safe-area insets and a thin rim gap in from the screen. */
+    --cc-face-inset: 10px;
+    --cc-edge-gap: 4px;
+    --cc-bottom: calc(var(--hud-safe-bottom, 0px) + var(--cc-edge-gap));
+    --cc-stick-left: var(--cc-left);
+    --cc-stick-bottom: calc(var(--hud-safe-bottom, 0px) + var(--cc-edge-gap));
+    --cc-stick-pad-b: 6px;
+    --cc-stick-pad-t: 24px;
+    --cc-stick-pad-l: 8px;
+    --cc-az-t: 34px;
+    --cc-az-b: var(--cc-edge-gap);
+  }
+}
+
+/* Left thumb: the element is the invisible touch zone, the base inside it is what the player sees. */
+.joystick-move {
+  position: fixed;
+  z-index: calc(var(--hud-z, 45) - 1);
+  left: calc(var(--cc-stick-left) - var(--cc-stick-pad-l));
+  bottom: calc(var(--cc-stick-bottom) - var(--cc-stick-pad-b));
+  box-sizing: border-box;
+  padding: var(--cc-stick-pad-t) var(--cc-stick-pad-r) var(--cc-stick-pad-b) var(--cc-stick-pad-l);
+  border-radius: 28px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+}
+.joystick-move-base {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--cc-stick);
+  height: var(--cc-stick);
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--cc-glass-rim);
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 16%, transparent) 0 46%, color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 34%, transparent) 100%);
+  box-shadow: 0 4px 12px rgb(39 26 15 / 16%), inset 0 0 0 5px color-mix(in srgb, var(--aa-ui-ink-950, #1b140d) 6%, transparent);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.joystick-move.is-active .joystick-move-base {
+  opacity: 1;
+  border-color: var(--aa-ui-active-bronze);
+}
+/* Inner guide ring: shows the knob's travel range. */
+.joystick-move-ring {
+  position: absolute;
+  inset: 24%;
+  border: 1px dashed color-mix(in srgb, var(--aa-ui-bronze-500) 45%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.joystick-move-knob {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--cc-knob);
+  height: var(--cc-knob);
+  border: 2px solid color-mix(in srgb, var(--aa-ui-bronze-500) 85%, transparent);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 38%, var(--aa-ui-highlight, rgb(255 255 255 / 40%)), transparent 62%),
+    color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 72%, transparent);
+  box-shadow: 0 3px 8px rgb(39 26 15 / 26%), inset 0 0 0 4px color-mix(in srgb, var(--aa-ui-bronze-500) 18%, transparent);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Right thumb cluster. The box is the attack FACE; the attack button around it is the larger invisible touch zone. */
+.joystick-combat-cluster {
+  position: fixed;
+  z-index: calc(var(--hud-z, 45) - 1);
+  right: var(--cc-right);
+  bottom: var(--cc-bottom);
+  width: var(--cc-attack);
+  height: var(--cc-attack);
+  pointer-events: none;
+}
+
+.joystick-attack {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--aa-ui-text);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+}
+/* Attack: 58px face inside a 122 x 110 zone. It reaches up and inward; the bottom stops at the dock top and the right side at the slot rail. */
+.joystick-attack {
+  --swing-ready: 1;
+  right: calc(-1 * var(--cc-az-r));
+  bottom: calc(-1 * var(--cc-az-b));
+  width: calc(var(--cc-attack) + var(--cc-az-l) + var(--cc-az-r));
+  height: calc(var(--cc-attack) + var(--cc-az-t) + var(--cc-az-b));
+  border-radius: 30px;
+}
+/* The visible round faces: cooldown ring + parchment disc with a bronze rim. --ready runs 0..1 while recharging. */
+.joystick-attack-face {
+  --ring: 3px;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* The attack face is a second stick base: the same glass ring and bronze rim, with the framed sword disc as its knob. */
+.joystick-attack-face { --ready: var(--swing-ready); --ring: 2px; --disc: calc(var(--cc-attack) * .54); left: var(--cc-az-l); top: var(--cc-az-t); width: var(--cc-attack); height: var(--cc-attack); }
+.joystick-attack-face {
+  box-sizing: border-box;
+  background: radial-gradient(circle, color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 16%, transparent) 0 46%, color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 34%, transparent) 100%);
+  box-shadow: 0 4px 12px rgb(39 26 15 / 16%), inset 0 0 0 5px color-mix(in srgb, var(--aa-ui-ink-950, #1b140d) 6%, transparent);
+}
+.joystick-attack-face::before {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  /* Ready: a faint full bronze ring. Recharging: bright bronze fill sweeping over a pale track. */
+  background: conic-gradient(color-mix(in srgb, var(--aa-ui-bronze-500) 62%, transparent) calc(var(--ready) * 360deg), color-mix(in srgb, var(--aa-ui-bronze-500) 16%, transparent) 0);
+  -webkit-mask: radial-gradient(circle farthest-side, transparent calc(100% - var(--ring)), #000 calc(100% - var(--ring) + 1px));
+  mask: radial-gradient(circle farthest-side, transparent calc(100% - var(--ring)), #000 calc(100% - var(--ring) + 1px));
+  content: "";
+}
+.joystick-attack.is-cooling .joystick-attack-face::before {
+  background: conic-gradient(var(--aa-ui-active-bronze) calc(var(--ready) * 360deg), color-mix(in srgb, var(--aa-ui-parchment-100, #e7dcc2) 55%, transparent) 0);
+}
+.joystick-attack-face::after {
+  position: absolute;
+  inset: calc((100% - var(--disc)) / 2);
+  border: 2px solid color-mix(in srgb, var(--aa-ui-bronze-500) 85%, transparent);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 38%, var(--aa-ui-highlight, rgb(255 255 255 / 40%)), transparent 62%),
+    color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 72%, transparent);
+  box-shadow: 0 3px 8px rgb(39 26 15 / 26%), inset 0 0 0 4px color-mix(in srgb, var(--aa-ui-bronze-500) 18%, transparent);
+  content: "";
+}
+.joystick-attack:not(.is-cooling):active .joystick-attack-face::after {
+  border-color: var(--aa-ui-active-bronze);
+  transform: scale(.94);
+}
+.joystick-attack-glyph {
+  position: relative;
+  z-index: 1;
+  width: calc(var(--cc-attack) * .32);
+  height: calc(var(--cc-attack) * .32);
+  pointer-events: none;
+  overflow: visible;
+  color: var(--aa-ui-text);
+}
+
+.joystick-dash-pip {
+  --dash-ready: 1;
+  position: fixed;
+  z-index: calc(var(--hud-z, 45) - 1);
+  left: 50%;
+  bottom: calc(var(--hud-bottom-bar-height, 0px) + max(var(--hud-safe-bottom, 0px), 8px) + 18px);
+  width: 64px;
+  height: 6px;
+  margin-left: -32px;
+  border-radius: 3px;
+  background:
+    linear-gradient(90deg, var(--aa-ui-bronze-500) calc(var(--dash-ready) * 100%), transparent 0),
+    color-mix(in srgb, var(--aa-ui-leather-800) 70%, transparent);
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+  pointer-events: none;
+}
+.joystick-dash-pip.is-cooling {
+  opacity: 0.85;
+}
+/* A flick asked for a dash that is still recharging: the recharge ring blinks and nudges, so the thumb learns to wait. */
+.joystick-dash-pip.is-denied { opacity: 1; animation: joystick-dash-denied 420ms ease-out; }
+@keyframes joystick-dash-denied {
+  0% { transform: translateX(0) scale(1); filter: brightness(1); }
+  18% { transform: translateX(-4px) scale(1.06); filter: brightness(1.35); }
+  42% { transform: translateX(4px) scale(1.06); filter: brightness(1.35); }
+  70% { transform: translateX(-2px) scale(1.02); filter: brightness(1.15); }
+  100% { transform: translateX(0) scale(1); filter: brightness(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .joystick-dash-pip.is-denied { animation: none; filter: brightness(1.35); }
+}
+
+/* Attack button as a second stick: a small bronze knob follows the drag and a tick on the rim points the aim. */
+.joystick-attack-knob {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: 30%;
+  height: 30%;
+  margin: -15% 0 0 -15%;
+  border: 1.5px solid var(--aa-ui-leather-800, #3b2a1a);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--aa-ui-highlight, rgb(255 255 255 / 55%)), var(--aa-ui-bronze-500) 70%);
+  box-shadow: 0 2px 5px rgb(39 26 15 / 40%);
+  pointer-events: none;
+}
+/* Direction marker: a bronze wedge just outside the rim, rotated about the face centre toward the touch. */
+.joystick-attack-marker {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.joystick-attack-marker::before {
+  position: absolute;
+  left: calc(var(--cc-attack) / 2 + 1px);
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--aa-ui-active-bronze);
+  filter: drop-shadow(0 1px 1px rgb(39 26 15 / 45%));
+  content: "";
+}
+.joystick-attack.is-aiming .joystick-attack-face::after {
+  border-color: var(--aa-ui-active-bronze);
+}
+.joystick-attack.is-aiming .joystick-attack-glyph {
+  opacity: .35;
+}
+
+/* The build-info chip sits low and centred; where it meets a touch zone the control wins. */
+html[data-combat-controls] .version-watermark {
+  z-index: calc(var(--hud-z, 45) - 2);
+}
+
+/* Floating sticks. The regions are big invisible activation areas (sized by floatingStick.ts and applied inline);
+ * the stick base appears under the thumb. At rest only a faint glass outline marks where each stick lives. The
+ * slot rails, dock, MENU medallion and popups stack above the regions, so they keep their own taps. */
+.joystick-geometry-probe {
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-sizing: content-box;
+  height: 0;
+  /* Safe insets as padding and the dock height as width, so the script can read them back as pixels. */
+  padding: var(--hud-safe-top, 0px) var(--hud-safe-right, 0px) var(--hud-safe-bottom, 0px) var(--hud-safe-left, 0px);
+  width: var(--hud-bottom-bar-height, 0px);
+  visibility: hidden;
+  pointer-events: none;
+}
+.joystick-rest-anchor {
+  position: fixed;
+  left: var(--cc-stick-left);
+  bottom: var(--cc-stick-bottom);
+  width: var(--cc-stick);
+  height: var(--cc-stick);
+  visibility: hidden;
+  pointer-events: none;
+}
+/* Dotted guides: only the top and inner edges show (the others sit on the screen edge or the dock). */
+.floating-region-guide {
+  position: fixed;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: calc(var(--hud-z, 45) - 3);
+  --guide-line: color-mix(in srgb, var(--aa-ui-bronze-500) 38%, transparent);
+  border-top: 1.5px dotted var(--guide-line);
+}
+.floating-region-guide.is-left { border-right: 1.5px dotted var(--guide-line); border-top-right-radius: 18px; }
+.floating-region-guide.is-right { border-left: 1.5px dotted var(--guide-line); border-top-left-radius: 18px; }
+
+.joystick-move.is-floating {
+  bottom: auto;
+  padding: 0;
+  border-radius: 0;
+}
+.joystick-move.is-floating .joystick-move-base,
+.joystick-attack.is-floating .joystick-attack-face {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: opacity 180ms ease-out;
+}
+.joystick-move.is-floating:not(.is-held) .joystick-move-base { opacity: 0.4; }
+.joystick-move.is-floating:not(.is-held) .joystick-move-ring { opacity: 0; }
+.joystick-move.is-floating:not(.is-held) .joystick-move-knob { opacity: 0.55; }
+.joystick-move.is-floating.is-held .joystick-move-base {
+  opacity: 1;
+  border-color: var(--aa-ui-active-bronze);
+  transition: none;
+}
+.joystick-attack.is-floating {
+  position: fixed;
+  border-radius: 0;
+}
+.joystick-attack.is-floating:not(.is-held) .joystick-attack-face { opacity: 0.42; }
+.joystick-attack.is-floating.is-held .joystick-attack-face {
+  opacity: 1;
+  transition: none;
+}
+/* The sword disc is the attack knob: it rides the thumb offset (--kx / --ky) inside the base ring. */
+.joystick-attack.is-floating .joystick-attack-face::after,
+.joystick-attack.is-floating .joystick-attack-glyph {
+  transform: translate(var(--kx, 0px), var(--ky, 0px));
+}
+.joystick-attack.is-floating:not(.is-cooling):active .joystick-attack-face::after {
+  transform: translate(var(--kx, 0px), var(--ky, 0px)) scale(.94);
+}
+.joystick-attack.is-floating .joystick-attack-knob { display: none; }
+.joystick-attack.is-floating.is-aiming .joystick-attack-glyph { opacity: 1; }
+/* A menu or popup is open: the regions let every touch through. */
+.joystick-move.is-suspended,
+.joystick-attack.is-suspended { pointer-events: none; }
+
+/* Swing recovery ended: the ring flashes and the disc pops for a moment, so the next swing's moment is felt. */
+.joystick-attack.is-ready-pop .joystick-attack-face::before { animation: joystick-attack-ready 300ms ease-out; }
+.joystick-attack.is-ready-pop .joystick-attack-face::after { animation: joystick-attack-ready-disc 300ms ease-out; }
+@keyframes joystick-attack-ready {
+  0% { filter: brightness(1.7) drop-shadow(0 0 4px var(--aa-ui-active-bronze)); }
+  100% { filter: brightness(1); }
+}
+@keyframes joystick-attack-ready-disc {
+  0% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+/* A press that came too early to buffer: the ring blinks and the disc nudges, like a refused dash. */
+.joystick-attack.is-too-early .joystick-attack-face::before { animation: joystick-attack-early 320ms ease-out; }
+@keyframes joystick-attack-early {
+  0% { filter: brightness(1); }
+  25% { filter: brightness(1.6); }
+  100% { filter: brightness(1); }
+}
+/* The dash charge is back. */
+.joystick-dash-pip.is-ready-pop { opacity: 1; animation: joystick-dash-ready 380ms ease-out; }
+@keyframes joystick-dash-ready {
+  0% { transform: scaleX(1.25) scaleY(1.6); filter: brightness(1.8); }
+  100% { transform: none; filter: brightness(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .joystick-attack.is-ready-pop .joystick-attack-face::before,
+  .joystick-attack.is-ready-pop .joystick-attack-face::after,
+  .joystick-attack.is-too-early .joystick-attack-face::before,
+  .joystick-dash-pip.is-ready-pop { animation: none; }
+}

@@ -1,0 +1,165 @@
+{
+  "dungeon": {
+    "id": "wyrm_hollow",
+    "name": "Wyrm Hollow",
+    "description": "Tunnels burrowed toward the world's lava. Cross the Bone Bridge, get past the Hatchery's broodguards, and face the Elder Dragon on its hoard. Recommended level 27.",
+    "instancePolicy": "party_ephemeral",
+    "theme": { "id": "wyrm_hollow", "backgroundColor": "#120806", "floorColor": "#2b211d", "wallColor": "#1b1513", "accentColor": "#f97316" }
+  },
+  "entranceRoom": "lair_mouth",
+  "rooms": [
+    {
+      "id": "lair_mouth", "name": "Lair Mouth", "width": 1000, "height": 1000, "spawn": { "x": 500, "y": 800 },
+      "anchors": {
+        "door_n": { "x": 500, "y": 30 }, "approach_n": { "x": 500, "y": 110 }, "arrive_n": { "x": 500, "y": 140 }
+      }
+    },
+    {
+      "id": "ember_tunnels", "name": "Ember Tunnels", "width": 1600, "height": 800, "spawn": { "x": 130, "y": 400 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 400 }, "approach_w": { "x": 100, "y": 400 }, "arrive_w": { "x": 130, "y": 400 },
+        "door_e": { "x": 1570, "y": 400 }, "approach_e": { "x": 1500, "y": 400 }, "arrive_e": { "x": 1470, "y": 400 }
+      },
+      "zones": [
+        { "id": "tunnels_boundary", "purpose": "encounter_boundary", "rect": { "x": 40, "y": 50, "width": 1520, "height": 700 } },
+        { "id": "tunnels_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1540, "height": 740 } },
+        { "id": "vent_1", "purpose": "damage", "rect": { "x": 240, "y": 190, "width": 130, "height": 130 } },
+        { "id": "vent_2", "purpose": "damage", "rect": { "x": 495, "y": 495, "width": 130, "height": 130 } },
+        { "id": "vent_3", "purpose": "damage", "rect": { "x": 755, "y": 175, "width": 130, "height": 130 } },
+        { "id": "vent_4", "purpose": "damage", "rect": { "x": 1015, "y": 495, "width": 130, "height": 130 } },
+        { "id": "vent_5", "purpose": "damage", "rect": { "x": 1255, "y": 195, "width": 130, "height": 130 } }
+      ],
+      "resourceZones": [
+        { "id": "tunnels_sulfur", "types": ["sulfur", "coal"], "rect": { "x": 120, "y": 600, "width": 300, "height": 120 }, "count": { "min": 1, "max": 2 }, "spacing": 110 }
+      ]
+    },
+    {
+      "id": "salamander_pools", "name": "Salamander Pools", "width": 1200, "height": 1200, "spawn": { "x": 140, "y": 600 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 600 }, "approach_w": { "x": 110, "y": 600 }, "arrive_w": { "x": 140, "y": 600 },
+        "door_n": { "x": 600, "y": 30 }, "approach_n": { "x": 600, "y": 110 }, "arrive_n": { "x": 600, "y": 140 }
+      },
+      "zones": [
+        { "id": "pools_boundary", "purpose": "encounter_boundary", "rect": { "x": 50, "y": 50, "width": 1100, "height": 1100 } },
+        { "id": "pools_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1140, "height": 1140 } }
+      ],
+      "resourceZones": [
+        { "id": "pools_iron", "types": ["iron", "stone"], "rect": { "x": 900, "y": 900, "width": 220, "height": 220 }, "count": { "min": 1, "max": 2 }, "spacing": 110 }
+      ]
+    },
+    {
+      "id": "bone_bridge", "name": "Bone Bridge", "width": 1600, "height": 700, "spawn": { "x": 130, "y": 350 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 350 }, "approach_w": { "x": 100, "y": 350 }, "arrive_w": { "x": 130, "y": 350 },
+        "door_e": { "x": 1570, "y": 350 }, "approach_e": { "x": 1500, "y": 350 }, "arrive_e": { "x": 1470, "y": 350 }
+      },
+      "zones": [
+        { "id": "bridge_boundary", "purpose": "encounter_boundary", "rect": { "x": 40, "y": 40, "width": 1520, "height": 620 } },
+        { "id": "bridge_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1540, "height": 640 } }
+      ]
+    },
+    {
+      "id": "hatchery", "name": "Hatchery", "width": 1200, "height": 1000, "spawn": { "x": 140, "y": 500 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 500 }, "approach_w": { "x": 110, "y": 500 }, "arrive_w": { "x": 140, "y": 500 },
+        "door_n": { "x": 600, "y": 30 }, "approach_n": { "x": 600, "y": 110 }, "arrive_n": { "x": 600, "y": 140 },
+        "door_e": { "x": 1170, "y": 500 }, "approach_e": { "x": 1090, "y": 500 }, "arrive_e": { "x": 1060, "y": 500 },
+        "wyrm_nest": { "x": 600, "y": 560 }
+      },
+      "zones": [
+        { "id": "hatchery_boundary", "purpose": "encounter_boundary", "rect": { "x": 50, "y": 50, "width": 1100, "height": 900 } },
+        { "id": "hatchery_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1140, "height": 940 } }
+      ]
+    },
+    {
+      "id": "hoard_vault", "name": "Hoard Vault", "width": 800, "height": 800, "spawn": { "x": 140, "y": 400 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 400 }, "approach_w": { "x": 110, "y": 400 }, "arrive_w": { "x": 140, "y": 400 }
+      },
+      "zones": [
+        { "id": "vault_boundary", "purpose": "encounter_boundary", "rect": { "x": 50, "y": 50, "width": 700, "height": 700 } },
+        { "id": "vault_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 740, "height": 740 } }
+      ],
+      "chests": [
+        { "id": "vault_chest", "name": "Hoard Vault Cache", "at": { "x": 600, "y": 400 }, "reward": { "gold": 300, "items": [{ "itemId": "sulfur", "quantity": 10 }] }, "hidden": true }
+      ]
+    },
+    {
+      "id": "hoard_chamber", "name": "Hoard Chamber", "width": 1600, "height": 1600, "spawn": { "x": 800, "y": 1460 },
+      "anchors": {
+        "door_s": { "x": 800, "y": 1570 }, "approach_s": { "x": 800, "y": 1490 }, "arrive_s": { "x": 800, "y": 1460 }
+      },
+      "zones": [
+        { "id": "chamber_boundary", "purpose": "encounter_boundary", "rect": { "x": 40, "y": 40, "width": 1520, "height": 1480 } },
+        { "id": "chamber_leash", "purpose": "leash", "rect": { "x": 25, "y": 25, "width": 1550, "height": 1550 } }
+      ],
+      "chests": [
+        { "id": "hoard_chest", "name": "Elder Dragon's Hoard", "at": { "x": 1250, "y": 1300 }, "reward": { "gold": 800, "items": [{ "itemId": "coal", "quantity": 15 }] }, "hidden": true }
+      ]
+    }
+  ],
+  "doors": [
+    { "id": "mouth_to_tunnels", "from": { "room": "lair_mouth", "anchor": "door_n" }, "to": { "room": "ember_tunnels", "anchor": "door_w" }, "label": "Into the Tunnels", "reverseLabel": "Back to the Lair Mouth" },
+    { "id": "tunnels_to_pools", "from": { "room": "ember_tunnels", "anchor": "door_e" }, "to": { "room": "salamander_pools", "anchor": "door_w" }, "label": "To the Pools", "reverseLabel": "Back to the Tunnels" },
+    { "id": "pools_to_bridge", "from": { "room": "salamander_pools", "anchor": "door_n" }, "to": { "room": "bone_bridge", "anchor": "door_w" }, "label": "Cross the Bone Bridge", "reverseLabel": "Back to the Pools" },
+    { "id": "bridge_to_hatchery", "from": { "room": "bone_bridge", "anchor": "door_e" }, "to": { "room": "hatchery", "anchor": "door_w" }, "label": "Enter the Hatchery", "reverseLabel": "Back to the Bridge" },
+    { "id": "hatchery_to_vault", "from": { "room": "hatchery", "anchor": "door_e" }, "to": { "room": "hoard_vault", "anchor": "door_w" }, "label": "Enter the Vault", "reverseLabel": "Back to the Hatchery" },
+    { "id": "hatchery_to_chamber", "from": { "room": "hatchery", "anchor": "door_n" }, "to": { "room": "hoard_chamber", "anchor": "door_s" }, "label": "Enter the Hoard Chamber", "reverseLabel": "Back to the Hatchery" }
+  ],
+  "encounters": [
+    {
+      "id": "ember_tunnels", "name": "Ember Tunnels", "room": "ember_tunnels", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "drakeling", "at": [{ "x": 520, "y": 330 }, { "x": 600, "y": 420 }, { "x": 980, "y": 380 }, { "x": 1060, "y": 300 }] },
+        { "archetype": "lava_slime", "at": [{ "x": 760, "y": 600 }, { "x": 1300, "y": 560 }] },
+        { "archetype": "fire_bird", "at": [{ "x": 1200, "y": 400 }] }
+      ] }],
+      "boundary": "tunnels_boundary", "leash": "tunnels_leash",
+      "onComplete": [{ "message": "The tunnels fall quiet, but the vents keep spitting fire." }]
+    },
+    {
+      "id": "salamander_pools", "name": "Salamander Pools", "room": "salamander_pools", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "magma_salamander", "at": [{ "x": 420, "y": 380 }, { "x": 800, "y": 420 }, { "x": 640, "y": 820 }] },
+        { "archetype": "lava_slime", "at": [{ "x": 900, "y": 700 }] },
+        { "archetype": "drakeling", "at": [{ "x": 380, "y": 760 }, { "x": 460, "y": 840 }] }
+      ] }],
+      "boundary": "pools_boundary", "leash": "pools_leash",
+      "onComplete": [{ "message": "The pools settle. The Bone Bridge lies ahead." }]
+    },
+    {
+      "id": "bone_bridge", "name": "Bone Bridge", "room": "bone_bridge", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "ash_wyvern", "at": [{ "x": 600, "y": 200 }, { "x": 1000, "y": 500 }, { "x": 1300, "y": 220 }] },
+        { "archetype": "drakeling", "at": [{ "x": 800, "y": 350 }, { "x": 880, "y": 380 }] },
+        { "archetype": "fire_bird", "at": [{ "x": 1150, "y": 350 }] }
+      ] }],
+      "boundary": "bridge_boundary", "leash": "bridge_leash",
+      "onComplete": [{ "message": "The wyverns are down. Warm air rolls out of the Hatchery." }]
+    },
+    {
+      "id": "hatchery", "name": "Hatchery", "room": "hatchery", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "drake_broodguard", "at": [{ "x": 440, "y": 600 }, { "x": 760, "y": 600 }] },
+        { "archetype": "drakeling", "at": [{ "x": 600, "y": 340 }, { "x": 420, "y": 820 }, { "x": 780, "y": 820 }] }
+      ] }],
+      "boundary": "hatchery_boundary", "leash": "hatchery_leash",
+      "onComplete": [{ "message": "The broodguards fall. The nest is yours to tend, and the hoard waits to the north." }]
+    },
+    {
+      "id": "hoard_vault", "name": "Hoard Vault", "room": "hoard_vault", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "magma_salamander", "at": [{ "x": 520, "y": 260 }] },
+        { "archetype": "lava_slime", "at": [{ "x": 420, "y": 560 }, { "x": 600, "y": 600 }] }
+      ] }],
+      "boundary": "vault_boundary", "leash": "vault_leash",
+      "onComplete": [{ "revealChest": "vault_chest" }, { "message": "A small cache glitters among the coins." }]
+    },
+    {
+      "id": "elder_dragon", "name": "The Elder Dragon", "room": "hoard_chamber", "startOn": "room_enter", "lockDoors": true,
+      "boss": { "template": "elder_dragon", "at": { "x": 800, "y": 760 }, "visualScale": 1.8 },
+      "boundary": "chamber_boundary", "leash": "chamber_leash",
+      "onComplete": [{ "revealChest": "hoard_chest" }, { "completeDungeon": true }, { "message": "The Elder Dragon falls. Its hoard is yours." }]
+    }
+  ]
+}

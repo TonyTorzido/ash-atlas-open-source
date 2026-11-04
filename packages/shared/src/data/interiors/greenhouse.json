@@ -1,0 +1,846 @@
+{
+  "defaultRoomId": "greenhouse_main_room",
+  "description": "The Studio-authored greenhouse room.",
+  "environment": {
+    "ambienceAssetKey": null,
+    "environmentId": "greenhouse",
+    "musicAssetKey": null
+  },
+  "id": "greenhouse",
+  "instancePolicy": "owner_persistent",
+  "kind": "greenhouse",
+  "modules": {
+    "planters": {
+      "capacity": 15,
+      "potPrefabId": "greenhouse_pot",
+      "stageArt": [
+        {
+          "artId": "wheat_seedling",
+          "assetKey": "apps/client/src/assets/plants/wheat-seedling.png",
+          "cropId": "wheat",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.8,
+          "scale": 0.8,
+          "stage": 1
+        },
+        {
+          "artId": "wheat_middle_2",
+          "assetKey": "apps/client/src/assets/plants/wheat-middle-2.png",
+          "cropId": "wheat",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.72,
+          "scale": 0.8,
+          "stage": 2
+        },
+        {
+          "artId": "wheat_middle_3",
+          "assetKey": "apps/client/src/assets/plants/wheat-middle-3.png",
+          "cropId": "wheat",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.65,
+          "scale": 0.68,
+          "stage": 3
+        },
+        {
+          "artId": "wheat_full",
+          "assetKey": "apps/client/src/assets/plants/wheat-full.png",
+          "cropId": "wheat",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.55,
+          "scale": 0.68,
+          "stage": 4
+        },
+        {
+          "artId": "giving_berry_tree_seedling",
+          "assetKey": "apps/client/src/assets/plants/giving-berry-tree-seedling.png",
+          "cropId": "giving_berry_tree",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.8,
+          "scale": 0.5,
+          "stage": 1
+        },
+        {
+          "artId": "giving_berry_tree_middle_2",
+          "assetKey": "apps/client/src/assets/plants/giving-berry-tree-middle-2.png",
+          "cropId": "giving_berry_tree",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.7,
+          "scale": 0.55,
+          "stage": 2
+        },
+        {
+          "artId": "giving_berry_tree_fruiting",
+          "assetKey": "apps/client/src/assets/plants/giving-berry-tree-fruiting.png",
+          "cropId": "giving_berry_tree",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.62,
+          "scale": 0.45,
+          "stage": 3
+        },
+        {
+          "artId": "giving_berry_tree_mature",
+          "assetKey": "apps/client/src/assets/plants/giving-berry-tree-mature.png",
+          "cropId": "giving_berry_tree",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.55,
+          "scale": 0.7,
+          "stage": 4
+        }
+      ]
+    }
+  },
+  "name": "Greenhouse",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "greenhouse-exit-portal:greenhouse_main_room",
+      "interactionLabel": "Exit Greenhouse",
+      "presentation": "door",
+      "retired": false,
+      "source": {
+        "anchorId": "greenhouse-exit:greenhouse_main_room",
+        "kind": "room",
+        "roomId": "greenhouse_main_room"
+      },
+      "sourceApproachAnchorId": "greenhouse-exit:greenhouse_main_room"
+    }
+  ],
+  "retired": false,
+  "revision": "greenhouse-r6",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 627,
+          "y": 1003.2
+        },
+        {
+          "id": "greenhouse-exit:greenhouse_main_room",
+          "retired": false,
+          "role": "portal",
+          "x": 627,
+          "y": 1158
+        },
+        {
+          "id": "greenhouse-water-storage:greenhouse_main_room",
+          "retired": false,
+          "role": "point",
+          "x": 1020,
+          "y": 720
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:0:0",
+          "retired": false,
+          "role": "point",
+          "x": 209,
+          "y": 313.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:0:1",
+          "retired": false,
+          "role": "point",
+          "x": 418,
+          "y": 313.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:0:2",
+          "retired": false,
+          "role": "point",
+          "x": 627,
+          "y": 313.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:0:3",
+          "retired": false,
+          "role": "point",
+          "x": 836,
+          "y": 313.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:0:4",
+          "retired": false,
+          "role": "point",
+          "x": 1045,
+          "y": 313.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:1:0",
+          "retired": false,
+          "role": "point",
+          "x": 209,
+          "y": 627
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:1:1",
+          "retired": false,
+          "role": "point",
+          "x": 418,
+          "y": 627
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:1:2",
+          "retired": false,
+          "role": "point",
+          "x": 627,
+          "y": 627
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:1:3",
+          "retired": false,
+          "role": "point",
+          "x": 836,
+          "y": 627
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:1:4",
+          "retired": false,
+          "role": "point",
+          "x": 1045,
+          "y": 627
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:2:0",
+          "retired": false,
+          "role": "point",
+          "x": 209,
+          "y": 940.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:2:1",
+          "retired": false,
+          "role": "point",
+          "x": 418,
+          "y": 940.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:2:2",
+          "retired": false,
+          "role": "point",
+          "x": 627,
+          "y": 940.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:2:3",
+          "retired": false,
+          "role": "point",
+          "x": 836,
+          "y": 940.5
+        },
+        {
+          "id": "greenhouse-main-anchor:greenhouse_main_room:2:4",
+          "retired": false,
+          "role": "point",
+          "x": 1045,
+          "y": 940.5
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "greenhouse-exit-touch:greenhouse_main_room",
+          "interactionLabel": "Exit Greenhouse",
+          "polygon": [
+            {
+              "x": 555,
+              "y": 1158
+            },
+            {
+              "x": 699,
+              "y": 1158
+            },
+            {
+              "x": 699,
+              "y": 1254
+            },
+            {
+              "x": 555,
+              "y": 1254
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "greenhouse-exit:greenhouse_main_room"
+          }
+        },
+        {
+          "id": "greenhouse-water-tank-touch:greenhouse_main_room",
+          "interactionLabel": "Water tank",
+          "polygon": [
+            {
+              "x": 905,
+              "y": 605
+            },
+            {
+              "x": 1135,
+              "y": 605
+            },
+            {
+              "x": 1135,
+              "y": 835
+            },
+            {
+              "x": 905,
+              "y": 835
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "greenhouse-water-tank:greenhouse_main_room"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "greenhouse",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "greenhouse-surface:floor",
+          "polygon": [
+            {
+              "x": 90.05922367385621,
+              "y": 238.77890799968327
+            },
+            {
+              "x": 1166.8809355417686,
+              "y": 239.15150156658513
+            },
+            {
+              "x": 1171.3520583445904,
+              "y": 1253.7484317990118
+            },
+            {
+              "x": 80.37155299767961,
+              "y": 1253.0033674712618
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "greenhouse_main_room",
+      "layers": {
+        "above_player": [],
+        "actors": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 160,
+            "id": "greenhouse-water-storage-art:greenhouse_main_room",
+            "opacity": 1,
+            "prefabId": "greenhouse_water_tank_art",
+            "prefabRevision": "greenhouse-r6",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 160,
+            "x": 940,
+            "y": 640,
+            "zIndex": 10
+          }
+        ],
+        "background": [],
+        "below_player": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 144,
+            "id": "greenhouse-exit:greenhouse_main_room-art",
+            "opacity": 1,
+            "prefabId": "greenhouse_door",
+            "prefabRevision": "greenhouse-r6",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 144,
+            "x": 555,
+            "y": 1086,
+            "zIndex": 0
+          }
+        ],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Greenhouse",
+      "objects": [
+        {
+          "anchorId": "greenhouse-water-storage:greenhouse_main_room",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-water-tank:greenhouse_main_room",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Water tank",
+          "opacity": 1,
+          "prefabId": "greenhouse_water_tank",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "water_tank",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:0:0",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:0:0",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:0:1",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:0:1",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:0:2",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:0:2",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:0:3",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:0:3",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:0:4",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:0:4",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:1:0",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:1:0",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:1:1",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:1:1",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:1:2",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:1:2",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:1:3",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:1:3",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:1:4",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:1:4",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:2:0",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:2:0",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:2:1",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:2:1",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:2:2",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:2:2",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:2:3",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:2:3",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "greenhouse-main-anchor:greenhouse_main_room:2:4",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "greenhouse-planter:greenhouse-main-anchor:greenhouse_main_room:2:4",
+          "initialState": "idle",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Farm Plot",
+          "opacity": 1,
+          "prefabId": "greenhouse_pot",
+          "prefabRevision": "greenhouse-r6",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "planter",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "greenhouse-r6",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "greenhouse-surface:back_wall",
+          "imagePolygon": [
+            {
+              "u": 0.0721096642644274,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0.0015624623820058303
+            },
+            {
+              "u": 0.9317641848864268,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 91.9222375606355,
+              "y": 238.77884084012268
+            },
+            {
+              "x": 1.752397293338418,
+              "y": 0.3132168399416994
+            },
+            {
+              "x": 1252.206704453093,
+              "y": 0.6858104068435289
+            },
+            {
+              "x": 1166.8809355417686,
+              "y": 238.77884084012268
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "greenhouse-surface:left_wall",
+          "imagePolygon": [
+            {
+              "u": 1,
+              "v": 0.1897679447514416
+            },
+            {
+              "u": 0.008196721830473132,
+              "v": 0
+            },
+            {
+              "u": 0,
+              "v": 0.9985128261271451
+            },
+            {
+              "u": 0.8729507957982361,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 91.17703507607511,
+              "y": 238.77884084012268
+            },
+            {
+              "x": 1.007191930511164,
+              "y": 1.0584346752587814
+            },
+            {
+              "x": 0.26198656768391015,
+              "y": 1251.8854639645026
+            },
+            {
+              "x": 79.62635051311925,
+              "y": 1253.7484317990118
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "greenhouse-surface:right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0.18958333254144297
+            },
+            {
+              "u": 0.9827576164397172,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0.9985119409078688
+            },
+            {
+              "u": 0.05172288874208715,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1166.8809355417686,
+              "y": 239.1515034854297
+            },
+            {
+              "x": 1251.8342336922447,
+              "y": 1.8036371598191518
+            },
+            {
+              "x": 1253.3247307659058,
+              "y": 1251.8854639645026
+            },
+            {
+              "x": 1171.3520583445904,
+              "y": 1253.7484317990118
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    }
+  ],
+  "spatialProfileId": "standard_indoor"
+}

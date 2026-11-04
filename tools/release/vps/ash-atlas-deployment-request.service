@@ -1,0 +1,19 @@
+[Unit]
+Description=Ash Atlas pull-based deployment request poller
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0027
+ExecStart=/home/debian/ops/ash-atlas-server/poll-deployment-request.sh
+TimeoutStartSec=75s
+KillMode=control-group
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=read-only
+ProtectSystem=strict
+ReadWritePaths=/home/debian/repos/game.git /var/lib/ash-atlas /var/lib/ash-atlas-deployment-status /var/log/ash-atlas /run/lock

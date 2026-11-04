@@ -1,0 +1,91 @@
+default_platform(:ios)
+
+def app_store_key
+  app_store_connect_api_key(
+    key_id: ENV.fetch("APP_STORE_CONNECT_KEY_ID"),
+    issuer_id: ENV.fetch("APP_STORE_CONNECT_ISSUER_ID"),
+    key_content: ENV.fetch("APP_STORE_CONNECT_KEY_P8_BASE64"),
+    is_key_content_base64: true
+  )
+end
+
+def testflight_internal_group!
+  app = Spaceship::ConnectAPI::App.find(ENV.fetch("ASH_ATLAS_IOS_BUNDLE_ID", "com.ashatlas.game"))
+  UI.user_error!("Ash Atlas app was not found in App Store Connect") unless app
+  group_name = ENV.fetch("ASH_ATLAS_TESTFLIGHT_INTERNAL_GROUP")
+  groups = app.get_beta_groups.select { |candidate| candidate.name == group_name && candidate.is_internal_group }
+  UI.user_error!("TestFlight internal group is missing or ambiguous") unless groups.length == 1
+  group = groups.first
+  UI.user_error!("TestFlight group '#{group_name}' does not exist") unless group
+  UI.user_error!("TestFlight group '#{group_name}' is not an internal group") unless group.is_internal_group
+  [app, group]
+end
+
+# The same read-only verifier is used after upload and on recovery. It binds the
+# Google bundle hash and the Apple app/platform/version/build ID to durable state.
+def verify_internal!(platform)
+  ENV["STORE_PLATFORM"] = platform
+  Dir.chdir(File.expand_path("..", __dir__)) do
+    sh("node", "tools/mobile-release/open-beta.mjs", "verify-internal", log: false)
+  end
+end
+
+def verify_testflight_internal!
+  verify_internal!("ios")
+end
+
+def verify_play_internal!
+  verify_internal!("android")
+end
+
+def coordinated_daily_testers?
+  ENV["COORDINATED_DAILY_TESTERS"] == "true"
+end
+
+platform :ios do
+  desc "Upload an already-built IPA to TestFlight internal testing only"
+  lane :upload_internal do
+    api_key = app_store_key
+    testflight_internal_group! unless coordinated_daily_testers?
+    options = {
+      api_key: api_key,
+      ipa: ENV.fetch("ASH_ATLAS_IPA_PATH"),
+      distribute_external: false,
+      skip_waiting_for_build_processing: false,
+      changelog: ENV.fetch("ASH_ATLAS_BETA_NOTES", "Ash Atlas internal beta candidate")
+    }
+    options[:groups] = [ENV.fetch("ASH_ATLAS_TESTFLIGHT_INTERNAL_GROUP")] unless coordinated_daily_testers?
+    upload_to_testflight(**options)
+    verify_testflight_internal! unless coordinated_daily_testers?
+  end
+
+  desc "Verify an existing build is processed and attached to the named internal group"
+  lane :verify_internal do
+    app_store_key
+    verify_testflight_internal!
+  end
+end
+
+platform :android do
+  desc "Upload an already-built AAB to Google Play internal testing only"
+  lane :upload_internal do
+    daily_testers = coordinated_daily_testers?
+    upload_to_play_store(
+      json_key: ENV.fetch("GOOGLE_PLAY_SERVICE_ACCOUNT_JSON"),
+      package_name: ENV.fetch("ASH_ATLAS_ANDROID_PACKAGE", "com.ashatlas.game"),
+      aab: ENV.fetch("ASH_ATLAS_AAB_PATH"),
+      track: "internal",
+      release_status: daily_testers ? "draft" : "completed",
+      skip_upload_apk: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+    verify_play_internal! unless daily_testers
+  end
+
+  desc "Verify an existing build is completed on Google Play internal testing"
+  lane :verify_internal do
+    verify_play_internal!
+  end
+end

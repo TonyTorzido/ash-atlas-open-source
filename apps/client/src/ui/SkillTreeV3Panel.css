@@ -1,0 +1,294 @@
+.skill-v3-shell .destination-shell-content { min-height: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; }
+.skill-v3-shell .game-app-body > .game-app-tabs-housed, .skill-v3-shell .phone-destination-body > .game-app-tabs-housed { width: auto; min-width: 0; box-sizing: border-box; margin: var(--aa-ui-space-3) var(--aa-ui-space-3) 0; }
+.skill-v3-shell { --aa-ui-text-muted: color-mix(in srgb, var(--aa-menu-text) 80%, var(--aa-menu-muted)); }
+.skill-v3-app { position: relative; height: 100%; min-height: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-4); box-sizing: border-box; color: var(--aa-ui-text); background: var(--aa-ui-ink-950); overflow: hidden; }
+.skill-v3-app.professions-section, .skill-v3-app.achievements-section { grid-template-rows: minmax(0, 1fr); }
+.skill-v3-content { min-width: 0; min-height: 0; display: flex; flex: 1 1 0; flex-direction: column; gap: var(--aa-ui-space-3); }
+.skill-v3-content > :is(.skill-v3-ledger, .skill-v3-class-tab, .skill-v3-knowledge) { flex: 1 1 0; }
+.skill-v3-app[data-layout="desktop"] .skill-v3-content.has-sheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 38%); grid-template-rows: auto minmax(0, 1fr); gap: var(--aa-ui-space-3); }
+.skill-v3-app[data-layout="desktop"] .skill-v3-content.has-sheet > .skill-v3-error { grid-column: 1 / -1; }
+.skill-v3-app[data-layout="desktop"] .skill-v3-content.has-sheet > :is(.skill-v3-ledger, .skill-v3-class-tab, .skill-v3-knowledge) { grid-row: 2; grid-column: 1; }
+.skill-v3-error, .skill-v3-loading { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-2) var(--aa-ui-space-3); border: 1px solid var(--aa-ui-border-muted); background: var(--aa-ui-leather-900); }
+.skill-v3-error { color: var(--aa-ui-danger); }
+.skill-v3-error button, .skill-v3-loading button { min-height: 44px; }
+
+/* One perk per line, each with a small bronze marker. */
+.skill-v3-effect-lines { display: grid; gap: 2px; min-width: 0; }
+.skill-v3-effect-lines > span { position: relative; display: block; min-width: 0; padding-left: 11px; overflow-wrap: anywhere; }
+.skill-v3-effect-lines > span::before { position: absolute; top: .6em; left: 2px; width: 4px; height: 4px; border-radius: 50%; background: var(--aa-ui-active-bronze); content: ""; }
+.skill-v3-class-rule { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-rank-dots { display: flex; justify-content: center; gap: 4px; }
+.skill-v3-rank-dots i { width: 7px; height: 7px; border: 1px solid var(--aa-ui-active-bronze); border-radius: 50%; }
+.skill-v3-rank-dots i[data-filled="true"] { background: var(--aa-ui-active-bronze); }
+.skill-v3-node-badge { max-width: 100%; padding: 1px 4px; border: 1px solid var(--aa-ui-active-bronze); border-radius: var(--aa-ui-radius-control); color: var(--aa-ui-parchment-100); background: var(--aa-ui-leather-800); font: var(--aa-type-label); overflow-wrap: anywhere; }
+.skill-v3-detail { min-width: 0; display: grid; align-content: start; gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-4); border: 1px solid var(--aa-ui-border-muted); border-radius: var(--aa-ui-radius-panel); background: var(--aa-ui-leather-900); }
+.skill-v3-detail > header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--aa-ui-space-3); padding-bottom: var(--aa-ui-space-2); border-bottom: 1px solid var(--aa-ui-border-muted); }
+.skill-v3-detail-heading { min-width: 0; display: grid; gap: var(--aa-ui-space-2); }
+/* The spend action sits in the sheet header, beside the name: a brass plaque with the cost underneath. */
+.skill-v3-detail > header > .skill-v3-header-action { min-width: 92px; min-height: 52px; display: grid; justify-items: center; align-content: center; gap: 2px; padding: 6px 14px; font: 700 16px/1.05 var(--aa-ui-font-display); font-variant: small-caps; letter-spacing: .03em; white-space: nowrap; }
+html .skill-v3-detail > header > .skill-v3-header-action.game-app-button:not(:disabled) { border-color: var(--aa-brass); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 0 0 1px var(--aa-brass-soft), 0 1px 3px rgb(40 26 14 / 20%); }
+.skill-v3-header-action small { font: 800 11px/1 var(--aa-ui-font-body); font-variant: normal; font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.skill-v3-header-reason { grid-column: 1 / -1; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.skill-v3-detail-identity { min-width: 0; }
+.skill-v3-detail header span, .skill-v3-detail-identity > span { color: var(--aa-ui-active-bronze); font: 800 10px/1.2 var(--aa-ui-font-body); letter-spacing: .08em; text-transform: uppercase; }
+.skill-v3-detail h3 { margin: 3px 0 0; color: var(--aa-ui-parchment-100); font: var(--aa-type-page); }
+.skill-v3-detail-state { min-width: 0; display: grid; justify-items: start; gap: 3px; color: var(--aa-ui-parchment-200); text-align: left; }
+.skill-v3-detail-state small, .skill-v3-actions small { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.skill-v3-detail p { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-body); overflow-wrap: anywhere; }
+.skill-v3-detail > section { display: grid; gap: var(--aa-ui-space-2); }
+.skill-v3-detail h4 { margin: 0; color: var(--aa-ui-parchment-200); font: var(--aa-type-section); }
+.skill-v3-current-class { color: var(--aa-ui-active-bronze) !important; font-weight: 800; }
+.skill-v3-rank-ledger { display: grid; }
+.skill-v3-rank-row { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title cost" "content content"; gap: var(--aa-ui-space-2); padding: var(--aa-ui-space-2) 0; border-bottom: 1px solid var(--aa-ui-border-muted); color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-rank-title { grid-area: title; min-width: 0; overflow-wrap: anywhere; }
+.skill-v3-rank-cost { grid-area: cost; max-width: 26ch; color: var(--aa-ui-active-bronze); text-align: right; overflow-wrap: anywhere; }
+.skill-v3-rank-content { grid-area: content; min-width: 0; overflow-wrap: anywhere; }
+.skill-v3-rank-row[data-earned="true"] { color: var(--aa-ui-parchment-200); }
+.skill-v3-rank-effects { display: grid; gap: 5px; }
+.skill-v3-rank-effects > span { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--aa-ui-space-2); }
+.skill-v3-rank-effects > span > span { min-width: 0; overflow-wrap: anywhere; }
+.skill-v3-rank-effects > span > small { justify-self: end; color: var(--aa-ui-active-bronze); font-weight: 800; overflow-wrap: anywhere; }
+.skill-v3-rank-effects small[data-effect-support="dormant"] { color: var(--aa-ui-text-muted); }
+.skill-v3-actions { display: grid; gap: 5px; padding-top: var(--aa-ui-space-2); }
+.skill-v3-actions button, .skill-v3-loadout-actions button { min-height: 44px; }
+.skill-v3-loadout-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--aa-ui-space-2); }
+.skill-v3-cooldown-state { grid-column: 1 / -1; color: var(--aa-ui-text-muted); }
+.skill-v3-class-cards { display: grid; gap: var(--aa-ui-space-2); }
+.skill-v3-class-card { min-width: 0; min-height: 70px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-2); border: 1px solid var(--aa-ui-border-muted); border-radius: var(--aa-ui-radius-control); color: var(--aa-ui-text); background: var(--aa-ui-material-wood); text-align: left; }
+.skill-v3-class-card:hover:not(:disabled), .skill-v3-class-card:focus-visible { border-color: var(--aa-ui-active-bronze); background: var(--aa-ui-material-wood-raised); }
+.skill-v3-class-card-copy { min-width: 0; display: grid; gap: 3px; }
+.skill-v3-class-card-copy strong { color: var(--aa-ui-parchment-100); font: var(--aa-type-card); }
+.skill-v3-class-card-copy b { color: var(--aa-ui-active-bronze); font: var(--aa-type-label); text-transform: uppercase; }
+.skill-v3-class-card-copy small { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.skill-v3-class-card[data-class-state="active-class"] { border-color: var(--aa-brass); box-shadow: inset 0 0 0 2px var(--aa-menu-paper), inset 0 0 0 3px var(--aa-brass-soft); }
+.skill-v3-class-card:is([data-class-state="class-locked"], [data-class-state="locked"], [data-class-state="unavailable"]) .progression-icon { filter: grayscale(.85) brightness(.92); opacity: .6; }
+.skill-v3-class-cards { grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+.skill-v3-class-card-mark { width: 52px; height: 52px; display: grid; place-items: center; border: 1px solid var(--aa-plaque-edge); border-radius: var(--aa-ui-radius-control); background: var(--aa-grain), var(--aa-menu-paper); }
+.skill-v3-class-picker .skill-v3-class-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.skill-v3-class-picker .skill-v3-class-card { grid-template-columns: auto minmax(0, 1fr); min-height: 0; gap: var(--aa-ui-space-2); }
+.skill-v3-class-picker .skill-v3-class-card-mark { width: 40px; height: 40px; }
+.skill-v3-class-picker-status { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px var(--aa-ui-space-2); }
+.skill-v3-class-picker-status strong { color: var(--aa-ui-parchment-100); font: 700 20px/1.15 var(--aa-ui-font-display); font-variant: small-caps; }
+.skill-v3-class-picker-status small { flex-basis: 100%; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-class-overview > section { display: grid; gap: var(--aa-ui-space-2); }
+.skill-v3-sheet { position: relative; min-width: 0; min-height: 0; overflow: hidden auto; overscroll-behavior: contain; outline: none; }
+.skill-v3-sheet-scrim { display: none; }
+.skill-v3-app[data-layout="desktop"] .skill-v3-sheet { grid-row: 2; grid-column: 2; }
+/* One motion for the sheet: scrim and sheet fade together, the sheet rising 12px. The scrim is a light warm ink
+ * (the dark 45% black popped in instantly and read as a flash). Compositor-only properties, no layout churn. */
+.skill-v3-app[data-layout="phone"] .skill-v3-sheet-scrim { position: absolute; inset: 0; z-index: 3; display: block; background: rgb(39 26 15 / 26%); animation: skill-v3-scrim-in .16s ease-out both; }
+.skill-v3-app[data-layout="phone"] .skill-v3-sheet-scrim[data-state="closing"] { animation: skill-v3-scrim-out .16s ease-in both; pointer-events: none; }
+.skill-v3-app[data-layout="phone"] .skill-v3-sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; max-height: 100%; border-top: 1px solid var(--aa-ui-active-bronze); border-radius: var(--aa-ui-radius-panel) var(--aa-ui-radius-panel) 0 0; background: var(--aa-ui-ink-950); box-shadow: var(--aa-ui-shadow); will-change: transform, opacity; animation: skill-v3-sheet-in .16s ease-out both; }
+.skill-v3-app[data-layout="phone"] .skill-v3-sheet > .skill-v3-detail { border: 0; border-radius: 0; }
+.skill-v3-app[data-layout="phone"] .skill-v3-sheet[data-state="closing"] { animation: skill-v3-sheet-out .16s ease-in both; pointer-events: none; }
+.skill-v3-app[data-layout="desktop"] .skill-v3-sheet { animation: skill-v3-sheet-fade .16s ease-out both; }
+.skill-v3-app[data-layout="desktop"] .skill-v3-sheet[data-state="closing"] { animation: skill-v3-sheet-fade .16s ease-in reverse both; pointer-events: none; }
+@keyframes skill-v3-sheet-in { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes skill-v3-sheet-out { from { transform: none; opacity: 1; } to { transform: translateY(12px); opacity: 0; } }
+@keyframes skill-v3-sheet-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes skill-v3-scrim-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes skill-v3-scrim-out { from { opacity: 1; } to { opacity: 0; } }
+
+.skill-v3-shell .phone-destination-body { min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.skill-v3-shell .phone-destination-body > .skill-v3-app { height: auto; min-height: 0; flex: 1 1 0; }
+html[data-layout-mode="compact"] .skill-v3-app { height: auto; flex: 1 1 0; display: flex; flex-direction: column; padding: var(--aa-ui-space-3); }
+html[data-layout-mode="compact"] .skill-v3-app.professions-section > .professions-app-layout { min-height: 0; flex: 1 1 0; }
+html[data-layout-mode="compact"] .skill-v3-shell .phone-menu-header { gap: var(--aa-ui-space-2); }
+@media (prefers-reduced-motion: reduce) { .skill-v3-shell * { scroll-behavior: auto; } .skill-v3-sheet, .skill-v3-sheet-scrim { animation: none !important; will-change: auto; } }
+
+/* Points summary: one compact line at the top of the Skills tab (SP available, spent, then the active-class action). */
+.skill-v3-summary { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: var(--aa-kit-card-gap); padding: 4px var(--aa-kit-card-pad); border: 1px solid var(--aa-brass-soft); border-radius: 6px; background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 18px var(--aa-vignette), 0 1px 3px rgb(40 26 14 / 14%); }
+.skill-v3-summary-points { min-width: 0; margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-summary-points strong { color: var(--aa-menu-text); font: var(--aa-type-value); font-variant-numeric: tabular-nums; }
+.skill-v3-summary-points .skill-v3-available strong { font-size: 16px; }
+.skill-v3-shell .skill-v3-active-class-chip { min-width: 0; min-height: 44px; display: inline-flex; flex: 0 1 auto; align-items: center; gap: 4px; }
+.skill-v3-shell .skill-v3-active-class-chip small { color: var(--aa-ui-text-muted); font: var(--aa-type-label); }
+.skill-v3-shell .skill-v3-active-class-chip strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--aa-type-value); }
+.skill-v3-shell .skill-v3-active-class-chip[data-active="true"] { border-color: var(--aa-ui-active-bronze); }
+
+/* Skill ledger: one vertical scroll. Each discipline is a parchment card (header, then its tiers stacked beneath); the class path and Discoveries follow.
+ * Cards and tiles reuse the Game Menu parchment tokens (grain, brass hairline, plaque gradient) from menuAppearance.css. */
+.skill-v3-ledger { min-width: 0; min-height: 0; display: grid; align-content: start; gap: var(--aa-ui-space-4, 16px); overflow: hidden auto; overscroll-behavior-y: contain; padding: 2px 4px 16px 2px; scrollbar-width: none; }
+.skill-v3-ledger::-webkit-scrollbar { display: none; }
+/* Discipline picker: the housed tab rail with an icon over a short name and the discipline rank; four always fit one row. */
+.skill-v3-ledger > .skill-v3-discipline-tabs { position: sticky; top: 0; z-index: 2; margin: 0; padding: 0 0 6px; background: var(--aa-menu-page); }
+/* Pinned discipline picker: keep its own gap below and fade scrolled cards out under it (beats the shared housed-rail padding). */
+html .skill-v3-ledger > .game-app-tabs.game-app-tabs.game-app-tabs-housed.skill-v3-discipline-tabs { padding-bottom: 8px; box-shadow: 0 -4px 0 var(--aa-menu-page); }
+.skill-v3-ledger > .skill-v3-discipline-tabs::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 16px; pointer-events: none; background: linear-gradient(var(--aa-menu-page), transparent); }
+.skill-v3-discipline-classes { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-discipline-classes b { color: var(--aa-ui-parchment-100); font-weight: 800; }
+
+html .game-app-tabs.game-app-tabs.game-app-tabs-housed.skill-v3-discipline-tabs button { min-height: 64px; height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 5px 2px; overflow: hidden; text-overflow: clip; font-size: 12px; line-height: 1.15; }
+.skill-v3-discipline-tabs .game-app-tab-icon { display: grid; place-items: center; }
+.skill-v3-discipline-tabs button > span:not(.game-app-tab-icon) { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.skill-v3-discipline-tabs .game-app-tab-detail { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.skill-v3-discipline-tabs button .progression-icon { border: 0; background: transparent; }
+.skill-v3-discipline-list { min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--aa-ui-space-4, 16px); align-items: start; }
+.skill-v3-discipline, .skill-v3-class-path, .skill-v3-ledger > .skill-v3-ledger-tier { position: relative; min-width: 0; display: grid; gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-3); border: 1px solid var(--aa-brass-soft); border-radius: 6px; background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 18px var(--aa-vignette), 0 1px 3px rgb(40 26 14 / 14%); }
+/* Brass inner rule, like the Game Menu directory card. */
+.skill-v3-discipline::before, .skill-v3-class-path::before, .skill-v3-ledger > .skill-v3-ledger-tier::before { content: ""; position: absolute; inset: 3px; border: 1px solid var(--aa-brass-soft); border-radius: 4px; opacity: .6; pointer-events: none; }
+.skill-v3-discipline > *, .skill-v3-class-path > *, .skill-v3-ledger > .skill-v3-ledger-tier > * { position: relative; }
+.skill-v3-ledger-tier { min-width: 0; display: grid; gap: var(--aa-ui-space-2); }
+.skill-v3-ledger-tier > :is(h3, h4) { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 2px var(--aa-ui-space-2); margin: 0; padding-bottom: 4px; background: linear-gradient(90deg, transparent, var(--aa-brass-soft) 12%, var(--aa-brass-soft) 88%, transparent) bottom / 100% 1px no-repeat; color: var(--aa-ui-active-bronze); font: var(--aa-type-label); font-family: var(--aa-ui-font-display); letter-spacing: .08em; text-transform: uppercase; }
+.skill-v3-ledger-hint { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); letter-spacing: 0; text-align: right; text-transform: none; }
+.skill-v3-ledger-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: var(--aa-ui-space-2); margin: 0; padding: 0; list-style: none; }
+.skill-v3-ledger-grid > li { min-width: 0; display: grid; }
+.skill-v3-ledger-cell { position: relative; width: 100%; min-width: 0; min-height: 56px; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--aa-ui-space-3); padding: 6px 8px; border: 1px solid var(--aa-plaque-edge); border-radius: 4px; color: var(--aa-ui-text); background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 1px 2px rgb(40 26 14 / 16%); text-align: left; }
+/* Outranks the phone shell's blanket button fill (html[data-ui-profile="phone"] .phone-destination-shell … button:not(:disabled)). */
+html .skill-v3-shell .skill-v3-app .skill-v3-ledger button.skill-v3-ledger-cell:not(:disabled) { border: 1px solid var(--aa-plaque-edge); background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 1px 2px rgb(40 26 14 / 16%); transform: none; }
+html .skill-v3-shell .skill-v3-app .skill-v3-ledger button.skill-v3-ledger-cell:is(:hover, :focus-visible):not(:disabled) { border-color: var(--aa-brass); filter: brightness(1.04); }
+html .skill-v3-shell .skill-v3-app .skill-v3-ledger button.skill-v3-ledger-cell:active:not(:disabled) { background: var(--aa-grain), var(--aa-plaque-pressed); box-shadow: inset 0 2px 4px var(--aa-plaque-lo); transform: translateY(1px); }
+.skill-v3-ledger-cell:focus-visible { outline: 2px solid var(--aa-ui-active-bronze); outline-offset: 2px; }
+.skill-v3-ledger-icon { position: relative; width: 52px; height: 52px; display: grid; place-items: center; box-sizing: border-box; border: 1px solid var(--aa-plaque-edge); border-radius: 4px; background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 8px var(--aa-vignette); }
+.skill-v3-ledger-icon .progression-icon { border: 0; background: transparent; }
+.skill-v3-ledger-copy { min-width: 0; display: grid; gap: 2px; }
+.skill-v3-ledger-copy strong { max-width: 100%; color: var(--aa-ui-parchment-100); font: var(--aa-type-card); font-family: var(--aa-ui-font-display); overflow-wrap: anywhere; }
+.skill-v3-ledger-hint-line { color: var(--aa-ui-text-muted); font: var(--aa-type-label); letter-spacing: .06em; text-transform: uppercase; overflow-wrap: anywhere; }
+.skill-v3-ledger-meter { min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; }
+.skill-v3-ledger-meter .skill-v3-rank-dots { justify-content: flex-start; }
+.skill-v3-ledger-status { min-width: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.skill-v3-ledger-rank { position: absolute; right: -6px; bottom: -4px; min-width: 18px; height: 18px; display: grid; place-items: center; padding: 0 4px; box-sizing: border-box; border: 1px solid var(--aa-brass); border-radius: 999px; color: var(--aa-menu-paper); background: var(--aa-brass); font: 800 11px/1 var(--aa-ui-font-body); font-variant-numeric: tabular-nums; }
+.skill-v3-ledger-lock { position: absolute; right: -4px; bottom: -3px; padding: 2px; border-radius: 50%; color: var(--aa-ui-text-muted); background: var(--aa-menu-paper); box-sizing: content-box; }
+/* Discipline header: the discipline's own cell, set apart from its skills. */
+.skill-v3-discipline-head { min-height: 64px; }
+.skill-v3-discipline-head .skill-v3-ledger-icon { width: 56px; height: 56px; }
+.skill-v3-discipline-head .skill-v3-ledger-copy strong { font-size: 16px; }
+/* States: learned (brass frame), maxed (gilded double frame), purchasable now (bright brass), locked (dimmed, desaturated, with a lock). */
+.skill-v3-ledger-cell[data-state="learned"] .skill-v3-ledger-icon { border-color: var(--aa-brass); box-shadow: inset 0 0 0 1px var(--aa-brass-soft), inset 0 0 8px var(--aa-vignette); }
+html .skill-v3-shell .skill-v3-app .skill-v3-ledger button.skill-v3-ledger-cell[data-state="learned"]:not(:disabled) { border-color: var(--aa-brass); }
+html .skill-v3-shell .skill-v3-app .skill-v3-ledger button.skill-v3-ledger-cell[data-maxed="true"]:not(:disabled) { box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 0 0 2px var(--aa-brass-soft); }
+.skill-v3-ledger-cell[data-maxed="true"] .skill-v3-ledger-status { color: var(--aa-ui-active-bronze); font-weight: 800; }
+.skill-v3-ledger-cell[data-state="purchasable"] .skill-v3-ledger-icon { border: 2px solid var(--aa-brass); }
+.skill-v3-ledger-cell[data-state="purchasable"] .skill-v3-ledger-status { color: var(--aa-ui-active-bronze); font-weight: 800; }
+html .skill-v3-shell .skill-v3-app .skill-v3-ledger button.skill-v3-ledger-cell[data-state="locked"]:not(:disabled) { border-color: var(--aa-ui-border-muted); background: var(--aa-grain), var(--aa-menu-paper); box-shadow: none; }
+.skill-v3-ledger-cell[data-state="locked"] .skill-v3-ledger-icon { background: var(--aa-menu-page); box-shadow: none; }
+.skill-v3-ledger-cell[data-state="locked"] .progression-icon { filter: grayscale(.7) brightness(.95); opacity: .7; }
+.skill-v3-ledger-cell[data-state="locked"] strong { color: var(--aa-ui-text-muted); }
+/* Picker pips, ready glow, prerequisite chips. */
+html .game-app-tabs.game-app-tabs.game-app-tabs-housed:is(.skill-v3-discipline-tabs, .skill-v3-section-tabs) button { position: relative; }
+.skill-v3-discipline-tabs .game-app-tab-badge { position: absolute; top: 3px; right: 4px; min-width: 16px; height: 16px; display: grid; place-items: center; padding: 0 4px; box-sizing: border-box; border: 1px solid var(--aa-brass); border-radius: 999px; color: var(--aa-menu-paper); background: var(--aa-brass); font: 800 10px/1 var(--aa-ui-font-body); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+html .skill-v3-shell .skill-v3-app .skill-v3-ledger button.skill-v3-ledger-cell[data-ready="true"]:not(:disabled) { border-color: var(--aa-brass); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 0 0 1px var(--aa-brass), 0 0 10px rgb(200 154 82 / 55%); }
+.skill-v3-ledger-cell[data-ready="true"] .skill-v3-ledger-status { color: var(--aa-ui-active-bronze); font-weight: 800; }
+.skill-v3-prereqs { display: flex; flex-wrap: wrap; gap: 3px; }
+.skill-v3-prereq { max-width: 100%; padding: 1px 6px; border: 1px solid var(--aa-brass-soft); border-radius: 3px; color: var(--aa-ui-text-muted); background: var(--aa-menu-paper); font: var(--aa-type-label); letter-spacing: .02em; overflow-wrap: anywhere; }
+.skill-v3-prereq[data-met="true"] { opacity: .65;  }
+
+/* Top-level section rail: five icon-over-label tabs on one row. */
+.skill-v3-section-tabs .game-app-tab-icon .menu-destination-glyph { width: 24px; height: 24px; }
+html .game-app-tabs.game-app-tabs.game-app-tabs-housed.skill-v3-section-tabs button { min-height: 54px; height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px 1px; overflow: hidden; text-overflow: clip; font-size: clamp(9px, 2.5vw, 11px); line-height: 1.1; letter-spacing: -.01em; }
+.skill-v3-section-tabs button > span:not(.game-app-tab-icon) { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.skill-v3-summary-level { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); white-space: nowrap; }
+.skill-v3-summary-level strong { color: var(--aa-menu-text); font: var(--aa-type-value); font-variant-numeric: tabular-nums; }
+
+/* Class and Knowledge tabs: one scroll of parchment blocks, same rhythm as the Skills ledger. */
+.skill-v3-class-tab, .skill-v3-knowledge { min-width: 0; min-height: 0; display: grid; align-content: start; gap: var(--aa-ui-space-4, 16px); overflow: hidden auto; overscroll-behavior-y: contain; padding: 2px 4px 16px 2px; scrollbar-width: none; flex: 1 1 0; }
+.skill-v3-class-tab::-webkit-scrollbar, .skill-v3-knowledge::-webkit-scrollbar { display: none; }
+.skill-v3-hero, .skill-v3-class-block, .skill-v3-knowledge-group { position: relative; min-width: 0; display: grid; gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-3); border: 1px solid var(--aa-brass-soft); border-radius: 6px; background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 18px var(--aa-vignette), 0 1px 3px rgb(40 26 14 / 14%); }
+.skill-v3-hero::before, .skill-v3-class-block::before, .skill-v3-knowledge-group::before { content: ""; position: absolute; inset: 3px; border: 1px solid var(--aa-brass-soft); border-radius: 4px; opacity: .6; pointer-events: none; }
+.skill-v3-hero > *, .skill-v3-class-block > *, .skill-v3-knowledge-group > * { position: relative; }
+.skill-v3-hero { grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: var(--aa-ui-space-3); }
+.skill-v3-hero-copy { min-width: 0; display: grid; gap: 3px; }
+.skill-v3-hero h2 { margin: 0; color: var(--aa-ui-parchment-100); font: 700 22px/1.15 var(--aa-ui-font-display); font-variant: small-caps; letter-spacing: .03em; overflow-wrap: anywhere; }
+.skill-v3-eyebrow { color: var(--aa-ui-active-bronze); font: var(--aa-type-label); font-family: var(--aa-ui-font-display); letter-spacing: .08em; text-transform: uppercase; }
+.skill-v3-hero-sub { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-hero > .progression-icon, .skill-v3-hero-mark { border: 1px solid var(--aa-plaque-edge); background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 8px var(--aa-vignette); }
+.skill-v3-hero-mark { width: 72px; height: 72px; display: grid; place-items: center; border-radius: 4px; color: var(--aa-brass); }
+.skill-v3-hero-mark .menu-destination-glyph { width: 44px; height: 44px; }
+.skill-v3-hero-copy p { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-body); overflow-wrap: anywhere; }
+.skill-v3-rank-track { display: flex; gap: 6px; margin: 4px 0 0; padding: 0; list-style: none; }
+.skill-v3-rank-track li { width: 28px; height: 28px; display: grid; place-items: center; box-sizing: border-box; border: 1px solid var(--aa-ui-border); border-radius: 4px; color: var(--aa-ui-text-muted); background: transparent; font: 800 12px/1 var(--aa-ui-font-body); font-variant-numeric: tabular-nums; }
+.skill-v3-rank-track li[data-state="earned"] { border-color: var(--aa-brass); color: var(--aa-menu-paper); background: var(--aa-brass); }
+.skill-v3-rank-track li[data-state="next"] { border: 1.5px solid var(--aa-brass); color: var(--aa-ui-active-bronze); }
+.skill-v3-hero-next, .skill-v3-hero-actions { grid-column: 1 / -1; }
+.skill-v3-hero-next { min-width: 0; display: grid; gap: 3px; padding: var(--aa-ui-space-2) var(--aa-ui-space-3); border: 1px solid var(--aa-ui-border-muted); border-radius: 4px; background: var(--aa-menu-page); color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-hero-next p { margin: 0; }
+.skill-v3-hero-gate { color: var(--aa-ui-active-bronze); font-weight: 800; }
+.skill-v3-hero-reason, .skill-v3-soon { color: var(--aa-ui-text-muted); font: italic var(--aa-type-meta); }
+.skill-v3-hero-actions { display: flex; flex-wrap: wrap; gap: var(--aa-ui-space-2); }
+.skill-v3-hero-actions button { min-height: 44px; flex: 1 1 140px; }
+.skill-v3-class-block > h3, .skill-v3-knowledge-group > h3, .professions-entry-group > h3.skill-v3-section-title, .legend-journal-list > header > h3.skill-v3-section-title { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 2px var(--aa-ui-space-2); margin: 0; padding-bottom: 4px; background: linear-gradient(90deg, transparent, var(--aa-brass-soft) 12%, var(--aa-brass-soft) 88%, transparent) bottom / 100% 1px no-repeat; color: var(--aa-ui-active-bronze); font: var(--aa-type-label); font-family: var(--aa-ui-font-display); letter-spacing: .08em; text-transform: uppercase; }
+.skill-v3-class-block > p { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-body); }
+.skill-v3-class-block > button { min-height: 44px; justify-self: start; }
+.skill-v3-class-paths, .skill-v3-knowledge-list { display: grid; gap: var(--aa-ui-space-2); margin: 0; padding: 0; list-style: none; }
+.skill-v3-soon { font-style: italic; }
+.skill-v3-class-paths > li { min-width: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-2); border: 1px solid var(--aa-ui-border-muted); border-radius: 4px; background: var(--aa-menu-paper); }
+.skill-v3-class-paths > li[data-open="true"] { border-color: var(--aa-brass); }
+.skill-v3-class-paths > li > span { min-width: 0; display: grid; gap: 1px; }
+.skill-v3-class-paths strong { color: var(--aa-ui-parchment-100); font: var(--aa-type-card); font-family: var(--aa-ui-font-display); }
+.skill-v3-class-paths small { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.skill-v3-class-paths em { color: var(--aa-ui-active-bronze); font: 800 12px/1 var(--aa-ui-font-body); font-style: normal; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.skill-v3-hero-empty { grid-template-columns: auto minmax(0, 1fr); }
+
+/* Knowledge cards. */
+.skill-v3-knowledge-intro { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-body); }
+.skill-v3-knowledge-card { width: 100%; min-width: 0; min-height: 64px; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "icon copy" "chip chip"; align-items: center; gap: var(--aa-ui-space-2) var(--aa-ui-space-3); padding: 8px; box-sizing: border-box; border: 1px solid var(--aa-plaque-edge); border-radius: 4px; color: var(--aa-ui-text); background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 1px 2px rgb(40 26 14 / 16%); text-align: left; }
+html .skill-v3-shell .skill-v3-app button.skill-v3-knowledge-card:not(:disabled) { border: 1px solid var(--aa-plaque-edge); background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 1px 2px rgb(40 26 14 / 16%); transform: none; }
+html .skill-v3-shell .skill-v3-app button.skill-v3-knowledge-card:is(:hover, :focus-visible):not(:disabled) { border-color: var(--aa-brass); filter: brightness(1.04); }
+html .skill-v3-shell .skill-v3-app button.skill-v3-knowledge-card[data-state="ready"]:not(:disabled) { border-color: var(--aa-brass); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 0 0 1px var(--aa-brass), 0 0 10px rgb(200 154 82 / 55%); }
+html .skill-v3-shell .skill-v3-app button.skill-v3-knowledge-card[data-state="locked"]:not(:disabled), .skill-v3-knowledge-card[data-state="soon"] { border-color: var(--aa-ui-border-muted); background: var(--aa-grain), var(--aa-menu-paper); box-shadow: none; }
+.skill-v3-knowledge-card[data-state="soon"] { opacity: .6; }
+.skill-v3-knowledge-card[data-state="locked"] .skill-v3-knowledge-icon .progression-icon { filter: grayscale(.7) brightness(.95); opacity: .7; }
+.skill-v3-knowledge-icon { grid-area: icon; width: 52px; height: 52px; display: grid; place-items: center; box-sizing: border-box; border: 1px solid var(--aa-plaque-edge); border-radius: 4px; background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 8px var(--aa-vignette); }
+.skill-v3-knowledge-icon .progression-icon { border: 0; background: transparent; }
+.skill-v3-knowledge-copy { grid-area: copy; min-width: 0; display: grid; gap: 2px; }
+.skill-v3-knowledge-copy strong { color: var(--aa-ui-parchment-100); font: var(--aa-type-card); font-family: var(--aa-ui-font-display); overflow-wrap: anywhere; }
+.skill-v3-knowledge-effect, .skill-v3-knowledge-token { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.skill-v3-knowledge-token strong { color: var(--aa-ui-active-bronze); font: 800 12px/1.2 var(--aa-ui-font-body); font-variant-numeric: tabular-nums; }
+.skill-v3-knowledge-chip { grid-area: chip; justify-self: start; padding: 1px 8px; border: 1px solid var(--aa-brass-soft); border-radius: 3px; color: var(--aa-ui-text-muted); background: var(--aa-menu-paper); font: var(--aa-type-label); letter-spacing: .04em; }
+.skill-v3-knowledge-chip[data-state="learned"], .skill-v3-knowledge-chip[data-state="maxed"], .skill-v3-knowledge-chip[data-state="available"], .skill-v3-knowledge-chip[data-state="ready"] { border-color: var(--aa-brass); color: var(--aa-menu-paper); background: var(--aa-brass); font-weight: 800; }
+@media (min-width: 640px) { .skill-v3-knowledge-list { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); } .skill-v3-class-paths { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); } }
+@container mobile-app (min-width: 560px) { .skill-v3-hero { grid-template-columns: auto minmax(0, 1.2fr) minmax(0, 1fr); } .skill-v3-hero-next { grid-column: auto; } .skill-v3-hero-actions { grid-column: 1 / -1; } }
+
+html[data-layout-mode="compact"] :is(.skill-v3-ledger, .skill-v3-class-tab, .skill-v3-knowledge) { flex: 1 1 0; }
+
+/* Rank ledger in skill and discipline details: Level columns when the sheet is wide enough (thin rules between them, no boxes), stacked rows otherwise. */
+.skill-v3-rank-ledger-section { container-type: inline-size; }
+@container (min-width: 270px) {
+  .skill-v3-rank-ledger[data-layout="columns"] { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; }
+  .skill-v3-rank-ledger[data-layout="columns"] .skill-v3-rank-row { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "cost" "content"; align-content: start; gap: 4px; padding: var(--aa-ui-space-1) var(--aa-ui-space-2); border: 0; border-left: 1px solid var(--aa-ui-border-muted); }
+  .skill-v3-rank-ledger[data-layout="columns"] .skill-v3-rank-row:first-child { border-left: 0; padding-left: 0; }
+  .skill-v3-rank-ledger[data-layout="columns"] .skill-v3-rank-cost { max-width: none; text-align: left; }
+}
+
+/* ===== Progression polish (round 3) ===== */
+/* Rail: no rule under it, a small gap before the strip. */
+html .skill-v3-shell .game-app-tabs.game-app-tabs-housed.skill-v3-section-tabs { border-bottom: 0; box-shadow: none; }
+/* Rail to summary strip = header to rail (8px): no body gap under the rail, the app supplies the 8px. */
+html[data-ui-profile] .skill-v3-shell :is(.phone-destination-body, .game-app-body) { row-gap: 0; }
+html[data-ui-profile] .skill-v3-shell .skill-v3-app { padding-top: 8px; }
+
+/* Carved plaque, shared by every clickable card or row in Progression (same recipe as the tab rail). */
+html .skill-v3-shell :is(.legend-journal-category, .legend-journal-record, .profession-entry-card, .skill-v3-loadout-actions .game-app-button) { border: 1px solid var(--aa-plaque-edge); border-radius: 4px; background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 1px 2px rgb(40 26 14 / 16%); color: var(--aa-ui-text); }
+html .skill-v3-shell :is(.legend-journal-category, .legend-journal-record):is(:hover, :focus-within) { border-color: var(--aa-brass); }
+
+/* Skill sheet: loadout plaques share the header plaque's face; cooldown sits right-aligned under them. */
+.skill-v3-loadout-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+html .skill-v3-detail .skill-v3-loadout-actions .game-app-button { min-height: 48px; padding: 6px 8px; font: 700 15px/1.05 var(--aa-ui-font-display); font-variant: small-caps; letter-spacing: .03em; }
+html .skill-v3-detail .skill-v3-loadout-actions .game-app-button:disabled { opacity: .55; filter: grayscale(.5); box-shadow: none; }
+html .skill-v3-detail .skill-v3-loadout-actions .game-app-button[aria-pressed="true"] { border-color: var(--aa-brass); box-shadow: inset 0 0 0 2px var(--aa-menu-paper), inset 0 0 0 3px var(--aa-brass-soft); }
+.skill-v3-loadout-actions .skill-v3-cooldown-state { grid-column: 1 / -1; justify-self: end; font: var(--aa-type-meta); }
+
+/* Rank rows: display-font title, brass cost, thin rules. */
+.skill-v3-rank-title { color: var(--aa-ui-parchment-100); font-family: var(--aa-ui-font-display); font-size: 15px; font-variant: small-caps; letter-spacing: .03em; }
+.skill-v3-rank-row[data-earned="false"] .skill-v3-rank-title { color: var(--aa-ui-text-muted); }
+.skill-v3-rank-ledger { gap: 0; }
+.skill-v3-rank-row:last-child { border-bottom: 0; }
+.skill-v3-rank-row[data-earned="true"]:last-of-type, .skill-v3-rank-row[data-current="true"] { box-shadow: none; }
+/* Disabled spend plaque: flat and dimmed so a locked action never looks pressable. */
+html .skill-v3-detail > header > .skill-v3-header-action.game-app-button:disabled { opacity: .55; filter: grayscale(.5); box-shadow: none; cursor: not-allowed; }
+/* The reason under a header is plain text; a pure SP-shortage reason is screen-reader only (the plaque shows the cost). */
+.skill-v3-detail > header > .skill-v3-header-reason { padding: 0; border: 0; background: transparent; color: var(--aa-ui-text-muted); }
+.skill-v3-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skill-v3-detail-state > small:nth-of-type(1) { color: var(--aa-ui-parchment-200); }
+
+/* One progress bar for the whole Progression app: brass fill on an inset parchment track. */
+html .skill-v3-shell :is(.ash-progress-meter, .achievement-progress) { height: 10px; overflow: hidden; border: 1px solid var(--aa-brass-soft); border-radius: 3px; background: var(--aa-menu-page); box-shadow: inset 0 1px 3px rgb(40 26 14 / 30%); }
+html .skill-v3-shell :is(.ash-progress-meter, .achievement-progress) > span { display: block; height: 100%; background: var(--aa-brass); }
+
+/* Discovery offerings, class writs and World Knowledge parts: item chips with have/need, wrapping (never scrolling). */
+.skill-v3-offering { display: grid; gap: var(--aa-ui-space-1); justify-items: start; padding: var(--aa-ui-space-2); border: 1px solid var(--aa-brass-soft); border-radius: 4px; background: var(--aa-menu-paper); }
+.skill-v3-offering h4 { margin: 0; }
+.skill-v3-offering p { margin: 0; color: var(--aa-ui-text-muted); font: var(--aa-type-meta); }
+.skill-v3-offering .material-chip-list { flex-wrap: wrap; }
+.skill-v3-offering-where { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.skill-v3-knowledge-copy .material-chip-list { flex-wrap: wrap; margin-top: 2px; }

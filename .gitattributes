@@ -1,0 +1,37 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.icns binary
+*.pdf binary
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.mid binary
+*.midi binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.jar binary
+*.gz binary
+*.bin binary
+*.zip binary
+
+db/migrations/030*.sql text eol=lf
+db/migrations/0724_personal_buoys.sql text eol=lf
+tools/release/request-game-update.sh text eol=lf
+tools/release/vps/*.sh text eol=lf
+tools/release/vps/*.service text eol=lf
+tools/release/vps/ash-atlas-deployment-request.timer text eol=lf
+tools/release/vps/ash-atlas-deployment-reconcile.timer text eol=lf
+tools/release/vps/*.caddy text eol=lf
+tools/release/vps/deployment-controller.conf text eol=lf
+tools/telemetry-home/*.sh text eol=lf
+tools/telemetry-home/*watchdog* text eol=lf

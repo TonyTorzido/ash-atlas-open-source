@@ -1,0 +1,40 @@
+/* Off-screen player badge: the same frosted parchment and bronze rim as the thumb controls, edge-clamped by script. */
+.player-offscreen-indicator {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: calc(var(--hud-z, 45) - 1);
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--cc-glass-rim, color-mix(in srgb, var(--aa-ui-bronze-500) 62%, transparent));
+  background: var(--cc-glass-fill, color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 52%, transparent));
+  color: var(--aa-ui-bronze-500);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.28);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 180ms ease, visibility 0s linear 180ms;
+}
+.player-offscreen-indicator[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 180ms ease, visibility 0s;
+}
+.player-offscreen-indicator svg {
+  width: 22px;
+  height: 22px;
+  /* The chevron points right at 0deg; the script sets the bearing toward the player. */
+  transform: rotate(var(--offscreen-angle, 0deg));
+}
+@media (prefers-reduced-motion: reduce) {
+  .player-offscreen-indicator,
+  .player-offscreen-indicator[data-visible="true"] { transition: none; }
+}

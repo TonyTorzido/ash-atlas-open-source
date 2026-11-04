@@ -1,0 +1,26 @@
+# Plain local PostgreSQL/PostGIS for development on Linux, macOS or Windows.
+# Values match DATABASE_URL in .env.example:
+#   postgres://ash_atlas:ash_atlas@127.0.0.1:35432/ash_atlas_game
+# Usage: docker compose -f docker-compose.dev.yml up -d
+# These are throwaway development credentials, bound to localhost only.
+name: ash-atlas-dev
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: ash_atlas_game
+      POSTGRES_USER: ash_atlas
+      POSTGRES_PASSWORD: ash_atlas
+    ports:
+      - "127.0.0.1:35432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ash_atlas -d ash_atlas_game"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres_data:

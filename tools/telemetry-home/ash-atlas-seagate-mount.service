@@ -1,0 +1,11 @@
+[Unit]
+Description=Safely retry the configured Ash Atlas Seagate mount
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/telemetry-home.env
+ExecStart=/usr/local/sbin/ash-atlas-seagate-mount
+PrivateTmp=true
+ProtectHome=true

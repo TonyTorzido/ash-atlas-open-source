@@ -1,0 +1,46 @@
+{
+  "source": "Natural Earth 1:10m admin-1 states and provinces",
+  "sourceUrl": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces.zip",
+  "sourceSha256": "efc59726337323058f9446210adc96673179cd344e053666ee3d28cb58ba2b05",
+  "countries": [
+    "CAN",
+    "MEX",
+    "USA"
+  ],
+  "featureCounts": {
+    "CAN": 13,
+    "MEX": 32,
+    "USA": 51
+  },
+  "projection": "EPSG:3857",
+  "bounds": [
+    [
+      -180,
+      85.05112878
+    ],
+    [
+      180,
+      85.05112878
+    ],
+    [
+      180,
+      -85.05112878
+    ],
+    [
+      -180,
+      -85.05112878
+    ]
+  ],
+  "sourceWidth": 8192,
+  "sourceHeight": 8192,
+  "tileSize": 256,
+  "minZoom": 0,
+  "maxZoom": 5,
+  "format": "PMTiles raster PNG",
+  "lineColor": "#756b59",
+  "lineAlpha": 190,
+  "pixelCount": 20015,
+  "file": "north-america-administrative-subdivisions.pmtiles",
+  "fileSizeBytes": 195016,
+  "sha256": "b8a0e2c67bcb6502a18c453fc0fca427b0ac3f2462abd94c4e997e53ef27d779"
+}

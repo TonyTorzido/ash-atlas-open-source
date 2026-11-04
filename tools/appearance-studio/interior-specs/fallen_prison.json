@@ -1,0 +1,1813 @@
+{
+  "dungeon": {
+    "id": "fallen_prison",
+    "name": "Fallen Prison",
+    "description": "A sky prison fallen to earth. Fight through the Barracks, free the Valkyries in the Warded Cells, and climb the Sentencing Stair to the Trifang Warden. Level 40 by design (entry is capped by the current level cap).",
+    "instancePolicy": "party_ephemeral",
+    "theme": {
+      "id": "prison",
+      "backgroundColor": "#0c0d12",
+      "floorColor": "#3a3b44",
+      "wallColor": "#2c2e38",
+      "accentColor": "#c9b26a"
+    }
+  },
+  "entranceRoom": "wreck_gate",
+  "rooms": [
+    {
+      "id": "wreck_gate",
+      "name": "Wreck Gate",
+      "width": 1000,
+      "height": 800,
+      "spawn": {
+        "x": 500,
+        "y": 600
+      },
+      "anchors": {
+        "door_n": {
+          "x": 500,
+          "y": 30
+        },
+        "approach_n": {
+          "x": 500,
+          "y": 110
+        },
+        "arrive_n": {
+          "x": 500,
+          "y": 140
+        }
+      },
+      "zones": [
+        {
+          "id": "wreck_gate_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 880,
+            "height": 680
+          }
+        },
+        {
+          "id": "wreck_gate_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 940,
+            "height": 740
+          }
+        }
+      ]
+    },
+    {
+      "id": "barracks_hall",
+      "name": "Barracks Hall",
+      "width": 1600,
+      "height": 900,
+      "spawn": {
+        "x": 800,
+        "y": 760
+      },
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 870
+        },
+        "approach_s": {
+          "x": 800,
+          "y": 790
+        },
+        "arrive_s": {
+          "x": 800,
+          "y": 760
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 450
+        },
+        "approach_e": {
+          "x": 1490,
+          "y": 450
+        },
+        "arrive_e": {
+          "x": 1460,
+          "y": 450
+        }
+      },
+      "zones": [
+        {
+          "id": "barracks_hall_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1480,
+            "height": 780
+          }
+        },
+        {
+          "id": "barracks_hall_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1540,
+            "height": 840
+          }
+        }
+      ]
+    },
+    {
+      "id": "barracks_maze_a",
+      "name": "Barracks Maze: West Wing",
+      "width": 1600,
+      "height": 1200,
+      "spawn": {
+        "x": 130,
+        "y": 600
+      },
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "approach_w": {
+          "x": 110,
+          "y": 600
+        },
+        "arrive_w": {
+          "x": 140,
+          "y": 600
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        },
+        "approach_n": {
+          "x": 800,
+          "y": 110
+        },
+        "arrive_n": {
+          "x": 800,
+          "y": 140
+        }
+      },
+      "zones": [
+        {
+          "id": "barracks_maze_a_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1480,
+            "height": 1080
+          }
+        },
+        {
+          "id": "barracks_maze_a_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1540,
+            "height": 1140
+          }
+        }
+      ]
+    },
+    {
+      "id": "barracks_maze_b",
+      "name": "Barracks Maze: East Wing",
+      "width": 1600,
+      "height": 1200,
+      "spawn": {
+        "x": 800,
+        "y": 1060
+      },
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 1170
+        },
+        "approach_s": {
+          "x": 800,
+          "y": 1090
+        },
+        "arrive_s": {
+          "x": 800,
+          "y": 1060
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 600
+        },
+        "approach_e": {
+          "x": 1490,
+          "y": 600
+        },
+        "arrive_e": {
+          "x": 1460,
+          "y": 600
+        }
+      },
+      "zones": [
+        {
+          "id": "barracks_maze_b_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1480,
+            "height": 1080
+          }
+        },
+        {
+          "id": "barracks_maze_b_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1540,
+            "height": 1140
+          }
+        }
+      ]
+    },
+    {
+      "id": "centurion_hall",
+      "name": "Marshal's Hall",
+      "width": 1600,
+      "height": 1400,
+      "spawn": {
+        "x": 200,
+        "y": 700
+      },
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 700
+        },
+        "approach_w": {
+          "x": 110,
+          "y": 700
+        },
+        "arrive_w": {
+          "x": 140,
+          "y": 700
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        },
+        "approach_n": {
+          "x": 800,
+          "y": 110
+        },
+        "arrive_n": {
+          "x": 800,
+          "y": 140
+        }
+      },
+      "zones": [
+        {
+          "id": "centurion_hall_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1480,
+            "height": 1280
+          }
+        },
+        {
+          "id": "centurion_hall_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1540,
+            "height": 1340
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "centurion_hoard",
+          "name": "Marshal's Strongbox",
+          "at": {
+            "x": 1300,
+            "y": 700
+          },
+          "hidden": true,
+          "reward": {
+            "gold": 300,
+            "items": [
+              {
+                "itemId": "edict_seal",
+                "quantity": 13
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cell_spine",
+      "name": "Cell Spine",
+      "width": 1800,
+      "height": 1000,
+      "spawn": {
+        "x": 900,
+        "y": 900
+      },
+      "anchors": {
+        "door_s": {
+          "x": 900,
+          "y": 970
+        },
+        "approach_s": {
+          "x": 900,
+          "y": 890
+        },
+        "arrive_s": {
+          "x": 900,
+          "y": 860
+        },
+        "door_w": {
+          "x": 30,
+          "y": 500
+        },
+        "approach_w": {
+          "x": 110,
+          "y": 500
+        },
+        "arrive_w": {
+          "x": 140,
+          "y": 500
+        },
+        "door_n": {
+          "x": 900,
+          "y": 30
+        },
+        "approach_n": {
+          "x": 900,
+          "y": 110
+        },
+        "arrive_n": {
+          "x": 900,
+          "y": 140
+        },
+        "door_e": {
+          "x": 1770,
+          "y": 500
+        },
+        "approach_e": {
+          "x": 1690,
+          "y": 500
+        },
+        "arrive_e": {
+          "x": 1660,
+          "y": 500
+        }
+      },
+      "zones": [
+        {
+          "id": "cell_spine_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1680,
+            "height": 880
+          }
+        },
+        {
+          "id": "cell_spine_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1740,
+            "height": 940
+          }
+        }
+      ]
+    },
+    {
+      "id": "cell_a",
+      "name": "Warded Cell I",
+      "width": 1000,
+      "height": 1000,
+      "spawn": {
+        "x": 870,
+        "y": 500
+      },
+      "anchors": {
+        "door_e": {
+          "x": 970,
+          "y": 500
+        },
+        "approach_e": {
+          "x": 890,
+          "y": 500
+        },
+        "arrive_e": {
+          "x": 860,
+          "y": 500
+        }
+      },
+      "zones": [
+        {
+          "id": "cell_a_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 880,
+            "height": 880
+          }
+        },
+        {
+          "id": "cell_a_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 940,
+            "height": 940
+          }
+        }
+      ]
+    },
+    {
+      "id": "cell_b",
+      "name": "Warded Cell II",
+      "width": 1000,
+      "height": 1000,
+      "spawn": {
+        "x": 500,
+        "y": 870
+      },
+      "anchors": {
+        "door_s": {
+          "x": 500,
+          "y": 970
+        },
+        "approach_s": {
+          "x": 500,
+          "y": 890
+        },
+        "arrive_s": {
+          "x": 500,
+          "y": 860
+        },
+        "door_w": {
+          "x": 30,
+          "y": 500
+        },
+        "approach_w": {
+          "x": 110,
+          "y": 500
+        },
+        "arrive_w": {
+          "x": 140,
+          "y": 500
+        }
+      },
+      "zones": [
+        {
+          "id": "cell_b_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 880,
+            "height": 880
+          }
+        },
+        {
+          "id": "cell_b_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 940,
+            "height": 940
+          }
+        }
+      ]
+    },
+    {
+      "id": "cell_c",
+      "name": "Warded Cell III",
+      "width": 1000,
+      "height": 1000,
+      "spawn": {
+        "x": 870,
+        "y": 500
+      },
+      "anchors": {
+        "door_e": {
+          "x": 970,
+          "y": 500
+        },
+        "approach_e": {
+          "x": 890,
+          "y": 500
+        },
+        "arrive_e": {
+          "x": 860,
+          "y": 500
+        }
+      },
+      "zones": [
+        {
+          "id": "cell_c_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 880,
+            "height": 880
+          }
+        },
+        {
+          "id": "cell_c_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 940,
+            "height": 940
+          }
+        }
+      ]
+    },
+    {
+      "id": "egg_chamber",
+      "name": "Brood Chamber",
+      "width": 1800,
+      "height": 1500,
+      "spawn": {
+        "x": 200,
+        "y": 750
+      },
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 750
+        },
+        "approach_w": {
+          "x": 110,
+          "y": 750
+        },
+        "arrive_w": {
+          "x": 140,
+          "y": 750
+        },
+        "door_n": {
+          "x": 900,
+          "y": 30
+        },
+        "approach_n": {
+          "x": 900,
+          "y": 110
+        },
+        "arrive_n": {
+          "x": 900,
+          "y": 140
+        }
+      },
+      "zones": [
+        {
+          "id": "egg_chamber_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1680,
+            "height": 1380
+          }
+        },
+        {
+          "id": "egg_chamber_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1740,
+            "height": 1440
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "mother_clutch",
+          "name": "Brood Matron's Clutch",
+          "at": {
+            "x": 1450,
+            "y": 750
+          },
+          "hidden": true,
+          "reward": {
+            "gold": 500,
+            "items": [
+              {
+                "itemId": "edict_seal",
+                "quantity": 27
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "stair_foot",
+      "name": "Foot of the Stairs",
+      "width": 1200,
+      "height": 1100,
+      "spawn": {
+        "x": 600,
+        "y": 1000
+      },
+      "anchors": {
+        "door_s": {
+          "x": 600,
+          "y": 1070
+        },
+        "approach_s": {
+          "x": 600,
+          "y": 990
+        },
+        "arrive_s": {
+          "x": 600,
+          "y": 960
+        },
+        "door_n": {
+          "x": 600,
+          "y": 30
+        },
+        "approach_n": {
+          "x": 600,
+          "y": 110
+        },
+        "arrive_n": {
+          "x": 600,
+          "y": 140
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 550
+        },
+        "approach_e": {
+          "x": 1090,
+          "y": 550
+        },
+        "arrive_e": {
+          "x": 1060,
+          "y": 550
+        }
+      },
+      "zones": [
+        {
+          "id": "stair_foot_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1080,
+            "height": 980
+          }
+        },
+        {
+          "id": "stair_foot_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1140,
+            "height": 1040
+          }
+        }
+      ]
+    },
+    {
+      "id": "stair_mid",
+      "name": "Mid Stairs",
+      "width": 1200,
+      "height": 1200,
+      "spawn": {
+        "x": 600,
+        "y": 1100
+      },
+      "anchors": {
+        "door_s": {
+          "x": 600,
+          "y": 1170
+        },
+        "approach_s": {
+          "x": 600,
+          "y": 1090
+        },
+        "arrive_s": {
+          "x": 600,
+          "y": 1060
+        },
+        "door_n": {
+          "x": 600,
+          "y": 30
+        },
+        "approach_n": {
+          "x": 600,
+          "y": 110
+        },
+        "arrive_n": {
+          "x": 600,
+          "y": 140
+        },
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "approach_w": {
+          "x": 110,
+          "y": 600
+        },
+        "arrive_w": {
+          "x": 140,
+          "y": 600
+        }
+      },
+      "zones": [
+        {
+          "id": "stair_mid_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        {
+          "id": "stair_mid_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1140,
+            "height": 1140
+          }
+        }
+      ]
+    },
+    {
+      "id": "treasure_a",
+      "name": "Treasure Room I",
+      "width": 1000,
+      "height": 900,
+      "spawn": {
+        "x": 130,
+        "y": 450
+      },
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 450
+        },
+        "approach_w": {
+          "x": 110,
+          "y": 450
+        },
+        "arrive_w": {
+          "x": 140,
+          "y": 450
+        }
+      },
+      "zones": [
+        {
+          "id": "treasure_a_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 880,
+            "height": 780
+          }
+        },
+        {
+          "id": "treasure_a_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 940,
+            "height": 840
+          }
+        },
+        {
+          "id": "vault_a_trigger",
+          "purpose": "trigger",
+          "rect": {
+            "x": 500,
+            "y": 250,
+            "width": 300,
+            "height": 400
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "vault_chest_a",
+          "name": "Gilded Chest",
+          "at": {
+            "x": 700,
+            "y": 450
+          },
+          "reward": {
+            "gold": 400,
+            "items": [
+              {
+                "itemId": "hearty_ration",
+                "quantity": 3
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "treasure_b",
+      "name": "Treasure Room II",
+      "width": 1000,
+      "height": 900,
+      "spawn": {
+        "x": 870,
+        "y": 450
+      },
+      "anchors": {
+        "door_e": {
+          "x": 970,
+          "y": 450
+        },
+        "approach_e": {
+          "x": 890,
+          "y": 450
+        },
+        "arrive_e": {
+          "x": 860,
+          "y": 450
+        }
+      },
+      "zones": [
+        {
+          "id": "treasure_b_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 880,
+            "height": 780
+          }
+        },
+        {
+          "id": "treasure_b_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 940,
+            "height": 840
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "vault_chest_b",
+          "name": "Warden's Reliquary",
+          "at": {
+            "x": 300,
+            "y": 450
+          },
+          "hidden": true,
+          "reward": {
+            "gold": 700,
+            "items": [
+              {
+                "itemId": "repair_kit",
+                "quantity": 3
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "hound_den",
+      "name": "The Warden's Den",
+      "width": 2000,
+      "height": 1700,
+      "spawn": {
+        "x": 1000,
+        "y": 1560
+      },
+      "anchors": {
+        "door_s": {
+          "x": 1000,
+          "y": 1670
+        },
+        "approach_s": {
+          "x": 1000,
+          "y": 1590
+        },
+        "arrive_s": {
+          "x": 1000,
+          "y": 1560
+        }
+      },
+      "zones": [
+        {
+          "id": "hound_den_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 60,
+            "y": 60,
+            "width": 1880,
+            "height": 1580
+          }
+        },
+        {
+          "id": "hound_den_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 30,
+            "y": 30,
+            "width": 1940,
+            "height": 1640
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "hound_hoard",
+          "name": "Hound's Hoard",
+          "at": {
+            "x": 1000,
+            "y": 350
+          },
+          "hidden": true,
+          "reward": {
+            "gold": 1000,
+            "items": [
+              {
+                "itemId": "edict_seal",
+                "quantity": 44
+              },
+              {
+                "itemId": "prison_key_fragment",
+                "quantity": 1
+              }
+            ]
+          }
+        }
+      ],
+      "shrines": [
+        {
+          "id": "verdict_altar",
+          "name": "Verdict Altar",
+          "at": {
+            "x": 840,
+            "y": 350
+          },
+          "skillTurnIn": "edict_stride",
+          "interactionLabel": "Offer 440 Edict Seals"
+        }
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "id": "wreck_gate_to_barracks_hall",
+      "from": {
+        "room": "wreck_gate",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "barracks_hall",
+        "anchor": "door_s"
+      },
+      "label": "Enter the Barracks",
+      "reverseLabel": "Back to the Wreck"
+    },
+    {
+      "id": "barracks_hall_to_barracks_maze_a",
+      "from": {
+        "room": "barracks_hall",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "barracks_maze_a",
+        "anchor": "door_w"
+      },
+      "label": "Into the Maze",
+      "reverseLabel": "Back to the Hall"
+    },
+    {
+      "id": "barracks_maze_a_to_barracks_maze_b",
+      "from": {
+        "room": "barracks_maze_a",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "barracks_maze_b",
+        "anchor": "door_s"
+      },
+      "label": "Deeper Into the Maze",
+      "reverseLabel": "Back to the West Wing"
+    },
+    {
+      "id": "barracks_maze_b_to_centurion_hall",
+      "from": {
+        "room": "barracks_maze_b",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "centurion_hall",
+        "anchor": "door_w"
+      },
+      "label": "To the Marshal's Hall",
+      "reverseLabel": "Back to the Maze"
+    },
+    {
+      "id": "centurion_hall_to_cell_spine",
+      "from": {
+        "room": "centurion_hall",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "cell_spine",
+        "anchor": "door_s"
+      },
+      "label": "Descend to the Cells",
+      "reverseLabel": "Back to the Marshal's Hall"
+    },
+    {
+      "id": "cell_spine_to_cell_a",
+      "from": {
+        "room": "cell_spine",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "cell_a",
+        "anchor": "door_e"
+      },
+      "label": "Cell I",
+      "reverseLabel": "Back to the Spine"
+    },
+    {
+      "id": "cell_spine_to_cell_b",
+      "from": {
+        "room": "cell_spine",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "cell_b",
+        "anchor": "door_s"
+      },
+      "label": "Cell II",
+      "reverseLabel": "Back to the Spine"
+    },
+    {
+      "id": "cell_b_to_cell_c",
+      "from": {
+        "room": "cell_b",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "cell_c",
+        "anchor": "door_e"
+      },
+      "label": "Cell III",
+      "reverseLabel": "Back to Cell II"
+    },
+    {
+      "id": "cell_spine_to_egg_chamber",
+      "from": {
+        "room": "cell_spine",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "egg_chamber",
+        "anchor": "door_w"
+      },
+      "label": "To the Brood Chamber",
+      "reverseLabel": "Back to the Spine"
+    },
+    {
+      "id": "egg_chamber_to_stair_foot",
+      "from": {
+        "room": "egg_chamber",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "stair_foot",
+        "anchor": "door_s"
+      },
+      "label": "Climb the Sentencing Stair",
+      "reverseLabel": "Back to the Brood Chamber"
+    },
+    {
+      "id": "stair_foot_to_stair_mid",
+      "from": {
+        "room": "stair_foot",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "stair_mid",
+        "anchor": "door_s"
+      },
+      "label": "Climb Higher",
+      "reverseLabel": "Back Down"
+    },
+    {
+      "id": "stair_foot_to_treasure_a",
+      "from": {
+        "room": "stair_foot",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "treasure_a",
+        "anchor": "door_w"
+      },
+      "label": "Side Vault I",
+      "reverseLabel": "Back to the Stairs"
+    },
+    {
+      "id": "stair_mid_to_treasure_b",
+      "from": {
+        "room": "stair_mid",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "treasure_b",
+        "anchor": "door_e"
+      },
+      "label": "Side Vault II",
+      "reverseLabel": "Back to the Stairs"
+    },
+    {
+      "id": "stair_mid_to_hound_den",
+      "from": {
+        "room": "stair_mid",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "hound_den",
+        "anchor": "door_s"
+      },
+      "label": "To the Warden's Den",
+      "reverseLabel": "Back Down the Stairs"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "hall_patrol",
+      "name": "Hall Patrol",
+      "room": "barracks_hall",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "barracks_hall_boundary",
+      "leash": "barracks_hall_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "warden_scout",
+              "at": [
+                {
+                  "x": 580,
+                  "y": 370
+                },
+                {
+                  "x": 780,
+                  "y": 530
+                },
+                {
+                  "x": 980,
+                  "y": 370
+                },
+                {
+                  "x": 1180,
+                  "y": 530
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "delayMs": 2000,
+          "mobs": [
+            {
+              "archetype": "warden_scout",
+              "at": [
+                {
+                  "x": 613,
+                  "y": 235
+                },
+                {
+                  "x": 880,
+                  "y": 395
+                },
+                {
+                  "x": 1147,
+                  "y": 235
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maze_west",
+      "name": "West Wing Patrols",
+      "room": "barracks_maze_a",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "barracks_maze_a_boundary",
+      "leash": "barracks_maze_a_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "warden_scout",
+              "at": [
+                {
+                  "x": 613,
+                  "y": 280
+                },
+                {
+                  "x": 880,
+                  "y": 440
+                },
+                {
+                  "x": 1147,
+                  "y": 280
+                }
+              ]
+            },
+            {
+              "archetype": "zealot",
+              "at": [
+                {
+                  "x": 680,
+                  "y": 760
+                },
+                {
+                  "x": 1080,
+                  "y": 920
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "delayMs": 2000,
+          "mobs": [
+            {
+              "archetype": "zealot",
+              "at": [
+                {
+                  "x": 613,
+                  "y": 520
+                },
+                {
+                  "x": 880,
+                  "y": 680
+                },
+                {
+                  "x": 1147,
+                  "y": 520
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maze_east",
+      "name": "East Wing Zealots",
+      "room": "barracks_maze_b",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "barracks_maze_b_boundary",
+      "leash": "barracks_maze_b_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "zealot",
+              "at": [
+                {
+                  "x": 580,
+                  "y": 400
+                },
+                {
+                  "x": 780,
+                  "y": 560
+                },
+                {
+                  "x": 980,
+                  "y": 400
+                },
+                {
+                  "x": 1180,
+                  "y": 560
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "delayMs": 2000,
+          "mobs": [
+            {
+              "archetype": "warden_scout",
+              "at": [
+                {
+                  "x": 613,
+                  "y": 640
+                },
+                {
+                  "x": 880,
+                  "y": 800
+                },
+                {
+                  "x": 1147,
+                  "y": 640
+                }
+              ]
+            },
+            {
+              "archetype": "zealot",
+              "at": [
+                {
+                  "x": 680,
+                  "y": 280
+                },
+                {
+                  "x": 1080,
+                  "y": 440
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "centurion",
+      "name": "The Cohort Marshal",
+      "room": "centurion_hall",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "centurion_hall_boundary",
+      "leash": "centurion_hall_leash",
+      "boss": {
+        "template": "centurion",
+        "name": "The Cohort Marshal",
+        "at": {
+          "x": 900,
+          "y": 700
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "centurion_hoard"
+        },
+        {
+          "message": "The Cohort Marshal falls. His strongbox is revealed."
+        }
+      ]
+    },
+    {
+      "id": "spine_guard",
+      "name": "Spine Guard",
+      "room": "cell_spine",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "cell_spine_boundary",
+      "leash": "cell_spine_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "serpent_jailer",
+              "at": [
+                {
+                  "x": 765,
+                  "y": 320
+                },
+                {
+                  "x": 1215,
+                  "y": 480
+                }
+              ]
+            },
+            {
+              "archetype": "warden_scout",
+              "at": [
+                {
+                  "x": 690,
+                  "y": 520
+                },
+                {
+                  "x": 990,
+                  "y": 680
+                },
+                {
+                  "x": 1290,
+                  "y": 520
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rescue_a",
+      "name": "Serpent Jailer I",
+      "room": "cell_a",
+      "startOn": "room_enter",
+      "lockDoors": false,
+      "boundary": "cell_a_boundary",
+      "leash": "cell_a_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "serpent_jailer",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 500
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rescue": {
+        "timeLimitMs": 75000
+      }
+    },
+    {
+      "id": "rescue_b",
+      "name": "Serpent Jailer II",
+      "room": "cell_b",
+      "startOn": "room_enter",
+      "lockDoors": false,
+      "boundary": "cell_b_boundary",
+      "leash": "cell_b_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "serpent_jailer",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 500
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rescue": {
+        "timeLimitMs": 80000
+      }
+    },
+    {
+      "id": "rescue_c",
+      "name": "Serpent Jailer III",
+      "room": "cell_c",
+      "startOn": "room_enter",
+      "lockDoors": false,
+      "boundary": "cell_c_boundary",
+      "leash": "cell_c_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "serpent_jailer",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 500
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rescue": {
+        "timeLimitMs": 90000
+      }
+    },
+    {
+      "id": "brood_matron",
+      "name": "The Brood Matron",
+      "room": "egg_chamber",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "egg_chamber_boundary",
+      "leash": "egg_chamber_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "coil_hatchling",
+              "at": [
+                {
+                  "x": 653,
+                  "y": 370
+                },
+                {
+                  "x": 878,
+                  "y": 530
+                },
+                {
+                  "x": 1103,
+                  "y": 370
+                },
+                {
+                  "x": 1328,
+                  "y": 530
+                }
+              ]
+            },
+            {
+              "archetype": "coil_hatchling",
+              "at": [
+                {
+                  "x": 653,
+                  "y": 970
+                },
+                {
+                  "x": 878,
+                  "y": 1130
+                },
+                {
+                  "x": 1103,
+                  "y": 970
+                },
+                {
+                  "x": 1328,
+                  "y": 1130
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "boss": {
+        "template": "brood_matron",
+        "name": "The Brood Matron",
+        "at": {
+          "x": 1000,
+          "y": 750
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "mother_clutch"
+        },
+        {
+          "message": "The Brood Matron falls. Her clutch lies open."
+        }
+      ]
+    },
+    {
+      "id": "stair_guard_low",
+      "name": "Legion at the Foot",
+      "room": "stair_foot",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "stair_foot_boundary",
+      "leash": "stair_foot_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "legion_soldier",
+              "at": [
+                {
+                  "x": 435,
+                  "y": 360
+                },
+                {
+                  "x": 585,
+                  "y": 520
+                },
+                {
+                  "x": 735,
+                  "y": 360
+                },
+                {
+                  "x": 885,
+                  "y": 520
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "delayMs": 2000,
+          "mobs": [
+            {
+              "archetype": "legion_soldier",
+              "at": [
+                {
+                  "x": 460,
+                  "y": 580
+                },
+                {
+                  "x": 660,
+                  "y": 740
+                },
+                {
+                  "x": 860,
+                  "y": 580
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stair_guard_high",
+      "name": "Legion on the Landing",
+      "room": "stair_mid",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "stair_mid_boundary",
+      "leash": "stair_mid_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "legion_soldier",
+              "at": [
+                {
+                  "x": 420,
+                  "y": 400
+                },
+                {
+                  "x": 540,
+                  "y": 560
+                },
+                {
+                  "x": 660,
+                  "y": 400
+                },
+                {
+                  "x": 780,
+                  "y": 560
+                },
+                {
+                  "x": 900,
+                  "y": 400
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "delayMs": 2000,
+          "mobs": [
+            {
+              "archetype": "legion_soldier",
+              "at": [
+                {
+                  "x": 460,
+                  "y": 700
+                },
+                {
+                  "x": 660,
+                  "y": 860
+                },
+                {
+                  "x": 860,
+                  "y": 700
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mimic_ambush_a",
+      "name": "Mimic Ambush",
+      "room": "treasure_a",
+      "startOn": {
+        "zoneEnter": "vault_a_trigger"
+      },
+      "lockDoors": false,
+      "boundary": "treasure_a_boundary",
+      "leash": "treasure_a_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "mimic",
+              "at": [
+                {
+                  "x": 560,
+                  "y": 300
+                },
+                {
+                  "x": 560,
+                  "y": 600
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mimic_vault_b",
+      "name": "Mimic Vault",
+      "room": "treasure_b",
+      "startOn": "room_enter",
+      "lockDoors": false,
+      "boundary": "treasure_b_boundary",
+      "leash": "treasure_b_leash",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "mimic",
+              "at": [
+                {
+                  "x": 400,
+                  "y": 300
+                },
+                {
+                  "x": 400,
+                  "y": 600
+                },
+                {
+                  "x": 600,
+                  "y": 450
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "onComplete": [
+        {
+          "revealChest": "vault_chest_b"
+        }
+      ]
+    },
+    {
+      "id": "hound",
+      "name": "The Trifang Warden",
+      "room": "hound_den",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boundary": "hound_den_boundary",
+      "leash": "hound_den_leash",
+      "boss": {
+        "template": "trifang_warden",
+        "name": "Trifang Warden",
+        "at": {
+          "x": 1000,
+          "y": 700
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "hound_hoard"
+        },
+        {
+          "revealShrine": "verdict_altar"
+        },
+        {
+          "completeDungeon": true
+        },
+        {
+          "message": "The Hound falls. The prison is yours."
+        }
+      ]
+    }
+  ]
+}

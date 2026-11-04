@@ -1,0 +1,232 @@
+# The app shell and release identity must always be revalidated so a retained
+# browser cannot keep loading an obsolete bundle after a deployment.
+# Keep this before other handles so Caddy orders it ahead of the main
+# /play/* fallback. Asset requests must never receive index.html.
+# Strip the asset prefix and serve the same assets tree as the /play/ handler.
+handle_path /play/assets/* {
+	root * /srv/www/playashatlas/current/assets
+	@ashAtlasExistingPlayAsset file
+	handle @ashAtlasExistingPlayAsset {
+		file_server
+	}
+	handle {
+		header Cache-Control "public, max-age=60"
+		respond 404
+	}
+}
+
+# The native artifact route supplies each manifest file's checksum and RSA
+# signature from its immutable sidecar. Preserve the path and href query.
+@ashAtlasNativeManifest path_regexp ashAtlasNativeManifest ^/play/native-bundles/(ios|android)/[a-f0-9]{64}/bundle$
+
+handle /play/native-bundles/* {
+	route {
+		reverse_proxy @ashAtlasNativeManifest 127.0.0.1:3001
+		# Previously published ZIP pointers remain downloadable during rollback.
+		uri strip_prefix /play/native-bundles
+		root * /srv/www/playashatlas/native-bundles
+		header {
+			Cache-Control "public, max-age=31536000, immutable"
+			Content-Type "application/zip"
+			X-Content-Type-Options "nosniff"
+		}
+		file_server
+	}
+}
+
+@ashAtlasOwnerLeaderboards {
+	method GET
+	path /api/dev/leaderboards/*
+}
+handle @ashAtlasOwnerLeaderboards {
+	reverse_proxy 127.0.0.1:3001
+}
+
+@ashAtlasLegendaryBirdPlayers {
+	method GET
+	path /api/dev/legendary-birds/players
+}
+handle @ashAtlasLegendaryBirdPlayers {
+	reverse_proxy 127.0.0.1:3001
+}
+
+@ashAtlasLegendaryBirdTrigger {
+	method POST
+	path /api/dev/legendary-birds/trigger
+}
+handle @ashAtlasLegendaryBirdTrigger {
+	reverse_proxy 127.0.0.1:3001
+}
+
+@ashAtlasEconomyObservatory {
+	method GET
+	path /api/dev/economy/overview /api/dev/economy/items /api/dev/economy/items/* /api/dev/economy/players /api/dev/economy/players/* /api/dev/economy/item-holders /api/dev/economy/cohorts /api/dev/economy/flow /api/dev/economy/report /api/dev/economy/export.xlsx
+}
+handle @ashAtlasEconomyObservatory {
+	reverse_proxy 127.0.0.1:3001
+}
+
+# Universal Links / Android App Links association files from the client release
+# (apps/client/public/.well-known). Served directly as JSON: Apple's CDN and
+# Android verification reject redirects, and these must never fall back to the
+# app shell.
+@ashAtlasAppAssociation path /.well-known/apple-app-site-association /.well-known/assetlinks.json
+handle @ashAtlasAppAssociation {
+	root * /srv/www/playashatlas/current
+	header {
+		Cache-Control "public, max-age=3600"
+		Content-Type "application/json"
+		X-Content-Type-Options "nosniff"
+	}
+	file_server
+}
+
+@ashAtlasAccountDeletion path /delete-account
+handle @ashAtlasAccountDeletion {
+	root * /srv/www/playashatlas/current/landing
+	rewrite * /delete-account.html
+	header {
+		Cache-Control "no-store"
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+		Cross-Origin-Opener-Policy "same-origin"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+	file_server
+}
+
+@ashAtlasTerms path /terms
+handle @ashAtlasTerms {
+	root * /srv/www/playashatlas/current/landing
+	rewrite * /terms.html
+	header {
+		Cache-Control "no-store"
+		Content-Security-Policy "default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'none'"
+		Cross-Origin-Opener-Policy "same-origin"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+	file_server
+}
+
+# The landing page loads its same-origin update sign-up script and posts it to /api.
+@ashAtlasLanding path /
+handle @ashAtlasLanding {
+	root * /srv/www/playashatlas/current/landing
+	header {
+		Cache-Control "no-store"
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+		Cross-Origin-Opener-Policy "same-origin"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+	file_server
+}
+
+@ashAtlasPrivacy path /privacy /privacy/
+handle @ashAtlasPrivacy {
+	root * /srv/www/playashatlas/current
+	rewrite * /privacy/index.html
+	header {
+		Cache-Control "no-store"
+		Content-Security-Policy "default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'none'"
+		Cross-Origin-Opener-Policy "same-origin"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+	file_server
+}
+
+@ashAtlasPrivacyAsset path /privacy/*
+handle @ashAtlasPrivacyAsset {
+	root * /srv/www/playashatlas/current
+	header {
+		Cache-Control "no-store"
+		Content-Security-Policy "default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'none'"
+		Cross-Origin-Opener-Policy "same-origin"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+	file_server
+}
+
+@ashAtlasWiki path /wiki /wiki/*
+handle @ashAtlasWiki {
+	root * /srv/www/playashatlas/current
+	rewrite * /index.html
+	header Cache-Control "no-store"
+	file_server
+}
+
+@ashAtlasPlayEntry path /play/ /play/index.html
+header @ashAtlasPlayEntry Cache-Control "no-store"
+
+@ashAtlasPlayRelease path /play/release.json
+header @ashAtlasPlayRelease Cache-Control "no-store, max-age=0"
+
+# Vite's generated assets are flat and content-addressed. Nested public assets
+# keep literal names and must revalidate even when their suffix resembles a hash.
+@ashAtlasPlayMutableNestedAsset path_regexp ashAtlasPlayMutableNestedAsset ^/play/assets/[^/]+/.+$
+header @ashAtlasPlayMutableNestedAsset Cache-Control "no-cache, max-age=0, must-revalidate"
+
+@ashAtlasPlayHashedAsset path_regexp ashAtlasPlayHashedAsset ^/play/assets/[^/]+-[A-Za-z0-9_-]{8,}\.[A-Za-z0-9]+$
+header @ashAtlasPlayHashedAsset Cache-Control "public, max-age=31536000, immutable"
+
+@ashAtlasPlayManifest path /play/site.webmanifest
+header @ashAtlasPlayManifest Cache-Control "no-cache, max-age=0, must-revalidate"
+header @ashAtlasPlayManifest Content-Type "application/manifest+json"
+
+@ashAtlasMutableBrandAssets path /play/landing/* /play/brand/*
+header @ashAtlasMutableBrandAssets Cache-Control "no-cache, max-age=0, must-revalidate"
+
+# Historical installed clients registered this URL. Keep an uncacheable
+# retirement worker here so those clients discard their obsolete app shell.
+@ashAtlasRetiredServiceWorker path /play/sw.js
+header @ashAtlasRetiredServiceWorker {
+	Cache-Control "no-store, max-age=0, must-revalidate"
+	Service-Worker-Allowed "/play/"
+}
+
+# Retired legacy per-class visual tile products. The files may still exist on
+# disk until they are deleted, so answer a fixed 404 instead of serving them.
+# Single-path handles sort ahead of any broader path handle in the site block.
+handle /world-data/river-visual-tiles-v1/* {
+	respond 404
+}
+
+handle /world-data/lake-visual-tiles-v2/* {
+	respond 404
+}
+
+handle /world-data/ocean-coast-visual-tiles-v1/* {
+	respond 404
+}
+
+@ashAtlasWaterVisualTiles {
+	method GET HEAD
+	path /world-data/water-visual-tiles-v1/water-visual-7e4a0ddc7821bfb554d34896bb83d2e35a3304a3e7d75ace73c57f73adfa974a.pmtiles
+}
+log_skip @ashAtlasWaterVisualTiles
+handle /world-data/water-visual-tiles-v1/water-visual-7e4a0ddc7821bfb554d34896bb83d2e35a3304a3e7d75ace73c57f73adfa974a.pmtiles {
+	uri strip_prefix /world-data/water-visual-tiles-v1
+	root * /srv/ash-atlas/world/releases/water-visual-tiles-v1
+	header {
+		Cache-Control "public, max-age=31536000, immutable"
+		Content-Type "application/octet-stream"
+		X-Content-Type-Options "nosniff"
+	}
+	file_server
+}
+
+@ashAtlasUnknownWaterVisualTiles {
+	path /world-data/water-visual-tiles-v1/*
+	not path /world-data/water-visual-tiles-v1/water-visual-7e4a0ddc7821bfb554d34896bb83d2e35a3304a3e7d75ace73c57f73adfa974a.pmtiles
+}
+handle @ashAtlasUnknownWaterVisualTiles {
+	respond 404
+}

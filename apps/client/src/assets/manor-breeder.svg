@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" role="img" aria-label="Breeder's Kennel">
+  <path fill="#5b3d2b" stroke="#2d1b12" stroke-width="5" d="M12 78V34L60 8l48 26v44H82V55H38v23z"/>
+  <path fill="#d8b27a" stroke="#2d1b12" stroke-width="4" d="M43 78V59h34v19M28 35h64"/>
+  <circle cx="60" cy="43" r="9" fill="#8b5a3c"/>
+  <path fill="none" stroke="#f2dfbd" stroke-width="5" stroke-linecap="round" d="M53 39l-6-5m20 5 6-5M53 48l-6 5m20-5 6 5"/>
+</svg>

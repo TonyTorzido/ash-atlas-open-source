@@ -1,0 +1,30 @@
+[Unit]
+Description=Ash Atlas private closed-test host telemetry sample
+After=postgresql.service
+
+[Service]
+Type=oneshot
+Restart=on-failure
+RestartSec=2s
+User=ash-atlas-telemetry
+Group=ash-atlas-telemetry
+EnvironmentFile=/etc/ash-atlas/telemetry-writer.env
+ExecStart=/opt/ash-atlas/current/tools/release/vps/host-telemetry-sample.sh
+TimeoutStartSec=3s
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CPUQuota=20%
+MemoryMax=64M

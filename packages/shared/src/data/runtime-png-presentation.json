@@ -1,0 +1,5812 @@
+{
+  "fixed": {
+    "atlasShrine": {
+      "anchorX": 0.45927573515307346,
+      "anchorY": 0.7709466959157933,
+      "height": 44,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "radiusPx": 22,
+        "shape": "circle"
+      },
+      "width": 44
+    },
+    "city": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "height": 186,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.6107,
+        "radiusPx": 48,
+        "shape": "circle"
+      },
+      "width": 186
+    },
+    "cityStructures.armory": {
+      "anchorX": 0.5,
+      "anchorY": 0.72,
+      "height": 72,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "width": 80
+    },
+    "cityStructures.barracks": {
+      "anchorX": 0.2690806451561624,
+      "anchorY": 0.7027533825555516,
+      "height": 72,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "width": 80
+    },
+    "cityStructures.city_house": {
+      "anchorX": 0.36755543716408806,
+      "anchorY": 0.7397486496791824,
+      "height": 77.5,
+      "hitGeometry": {
+        "centerX": 0.5255915132839439,
+        "centerY": 0.5,
+        "height": 0.71,
+        "shape": "rectangle",
+        "width": 0.84
+      },
+      "width": 62
+    },
+    "cityStructures.city_kennel": {
+      "anchorX": 0.38788577192984913,
+      "anchorY": 0.6848224804382121,
+      "height": 91.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.51,
+        "height": 0.701,
+        "shape": "rectangle",
+        "width": 0.973
+      },
+      "width": 87.2
+    },
+    "cityStructures.cistern_warrens": {
+      "anchorX": 0.45219229651738235,
+      "anchorY": 0.7871025779411616,
+      "height": 56.5,
+      "hitGeometry": {
+        "centerX": 0.5153646280953542,
+        "centerY": 0.5027996080951951,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.936
+      },
+      "width": 84.7
+    },
+    "cityStructures.demolition_factory": {
+      "anchorX": 0.5,
+      "anchorY": 0.72,
+      "height": 72,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "width": 80
+    },
+    "cityStructures.goblin_market": {
+      "anchorX": 0.4414086695134354,
+      "anchorY": 0.6925709301513856,
+      "height": 81.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.507,
+        "height": 0.749,
+        "shape": "rectangle",
+        "width": 1.039
+      },
+      "width": 81.4
+    },
+    "cityStructures.market": {
+      "anchorX": 0.3952307864254841,
+      "anchorY": 0.6199870042398438,
+      "height": 58.800000000000004,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.489,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1.039
+      },
+      "width": 88.2
+    },
+    "cityStructures.mayor_house": {
+      "anchorX": 0.36986049506442065,
+      "anchorY": 0.7506125809213451,
+      "height": 61.2,
+      "hitGeometry": {
+        "centerX": 0.5255915132839439,
+        "centerY": 0.49285091622717475,
+        "height": 0.912,
+        "shape": "rectangle",
+        "width": 0.84
+      },
+      "width": 61.2
+    },
+    "cityStructures.monument_forestry": {
+      "anchorX": 0.5320854569322513,
+      "anchorY": 0.6715332864443002,
+      "height": 66,
+      "hitGeometry": {
+        "centerX": 0.49766591126155246,
+        "centerY": 0.488,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.6
+      },
+      "width": 66
+    },
+    "cityStructures.monument_hunting": {
+      "anchorX": 0.4777465782895169,
+      "anchorY": 0.8063800575824432,
+      "height": 68.73881204231081,
+      "hitGeometry": {
+        "centerX": 0.48770624477553465,
+        "centerY": 0.494,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.6
+      },
+      "width": 66
+    },
+    "cityStructures.monument_mining": {
+      "anchorX": 0.5320854569322513,
+      "anchorY": 0.6715332864443002,
+      "height": 66,
+      "hitGeometry": {
+        "centerX": 0.49766591126155246,
+        "centerY": 0.488,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.6
+      },
+      "width": 66
+    },
+    "cityStructures.oil_well": {
+      "anchorX": 0.485,
+      "anchorY": 0.641,
+      "height": 60,
+      "hitGeometry": {
+        "centerX": 0.4980708386621837,
+        "centerY": 0.489,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.844
+      },
+      "width": 60
+    },
+    "cityStructures.powder_works": {
+      "anchorX": 0.2348434051950389,
+      "anchorY": 0.7915187056205178,
+      "height": 72,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "width": 80
+    },
+    "cityStructures.salon": {
+      "anchorX": 0.282,
+      "anchorY": 0.7531968700369506,
+      "height": 61.9,
+      "hitGeometry": {
+        "centerX": 0.531,
+        "centerY": 0.492,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.958
+      },
+      "width": 61.9
+    },
+    "cityStructures.siege_workshop": {
+      "anchorX": 0.2234309918746644,
+      "anchorY": 0.715434344861695,
+      "height": 72,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "width": 80
+    },
+    "cityStructures.warehouse": {
+      "anchorX": 0.2615720795002192,
+      "anchorY": 0.7195493142867025,
+      "height": 90,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.491,
+        "height": 0.704,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "width": 90
+    },
+    "furnace": {
+      "anchorX": 0.34384917917208835,
+      "anchorY": 0.8320641350555037,
+      "height": 58.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.85
+      },
+      "width": 58.6
+    },
+    "greenhouse": {
+      "anchorX": 0.5,
+      "anchorY": 0.9,
+      "height": 84,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "width": 96
+    },
+    "kitchen": {
+      "anchorX": 0.5,
+      "anchorY": 0.82,
+      "height": 58,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.86
+      },
+      "width": 58
+    },
+    "loom": {
+      "anchorX": 0.4361071833091936,
+      "anchorY": 0.7417826205784411,
+      "height": 64,
+      "hitGeometry": {
+        "centerX": 0.5109224139036008,
+        "centerY": 0.5086474223071392,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "width": 64
+    },
+    "manor": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "height": 75.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.755,
+        "shape": "rectangle",
+        "width": 0.894
+      },
+      "width": 75.2
+    },
+    "resinGain": {
+      "anchorX": 0,
+      "anchorY": 1,
+      "height": 20,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "radiusPx": 10,
+        "shape": "circle"
+      },
+      "width": 20
+    },
+    "tannery": {
+      "anchorX": 0.41105648300567565,
+      "anchorY": 0.6941156750160197,
+      "height": 64,
+      "hitGeometry": {
+        "centerX": 0.5109224139036008,
+        "centerY": 0.5086474223071392,
+        "radiusPx": 25,
+        "shape": "circle"
+      },
+      "width": 64
+    },
+    "worldMapAtlasShrine": {
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "height": 40,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "radiusPx": 20,
+        "shape": "circle"
+      },
+      "width": 40
+    },
+    "worldMapCity": {
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "height": 50,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "radiusPx": 25,
+        "shape": "circle"
+      },
+      "width": 50
+    },
+    "worldMapKingdom": {
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "height": 62,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "radiusPx": 31,
+        "shape": "circle"
+      },
+      "width": 62
+    },
+    "worldMapManor": {
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "height": 42,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "radiusPx": 21,
+        "shape": "circle"
+      },
+      "width": 42
+    }
+  },
+  "masterScale": 0.8,
+  "revision": 98,
+  "schemaVersion": 4,
+  "sprites": {
+    "alligator_hide": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "atlas_shrine_shard": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "giving_berry": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "balsam_resin": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "bear_hide": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "coal": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "crude_oil": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "deer_hide": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:amethyst": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:diamond": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:emerald": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:onyx": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:opal": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:ruby": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:sapphire": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "enchantment_stone:topaz": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "food": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "generic": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "gold": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "hog_hide": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "iron": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "iron_bar": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "jellyfish_venom": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "brood_silk": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "raptor_scale": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "giant_egg": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "brood_egg": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "clutch_egg": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "crawler_egg": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "broken_whistle": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "bonewrought_blade": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "bonewrought_mail": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "elder_acorn": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "wyrm_egg": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "dragon_scale": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "zephyr": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "refined_oil": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "ore": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "pack": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "venomsteel_bar": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "venomsteel_core": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "sulfur": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "fire_feather": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "tempest_quill": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "ice_feather": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "fire_bar": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "lightning_bar": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "ice_bar": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "fire_core": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "lightning_core": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "ice_core": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "crystal": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "pearl": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "shellback_plate": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "abyssal_orb": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "tidewater_draught": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "undertow_snare": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "stillwater_orb": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "free_step_ward": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "masons_tome": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "freshwater_fish": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "fishing_rod": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "flax_fiber": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "cloth": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "bone": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "bricks": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "chitin": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "fertilizer": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "flux_plant": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "produce": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "seed": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "repair_kit": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "lumen": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "training_heavy_boots": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "training_light_boots": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "training_heavy_gloves": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "training_light_gloves": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "training_heavy_helm": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "training_light_hood": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "training_shield": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "ranged_shield": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "torch": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "water": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "wolf_pelt": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "alligator": {
+      "anchorX": 0.5,
+      "anchorY": 0.804,
+      "baseHeightPx": 57,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.8,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.25,
+      "zoomStrength": 0.70389327891398
+    },
+    "caiman": {
+      "anchorX": 0.5,
+      "anchorY": 0.804,
+      "baseHeightPx": 57,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.8,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.25,
+      "zoomStrength": 0.70389327891398
+    },
+    "crocodile": {
+      "anchorX": 0.5,
+      "anchorY": 0.804,
+      "baseHeightPx": 57,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.8,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.25,
+      "zoomStrength": 0.70389327891398
+    },
+    "bear": {
+      "anchorX": 0.7132296484682494,
+      "anchorY": 0.8045770393452855,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.785,
+        "shape": "rectangle",
+        "width": 0.882
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "snowBear": {
+      "anchorX": 0.7132296484682494,
+      "anchorY": 0.8045770393452855,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.785,
+        "shape": "rectangle",
+        "width": 0.882
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "blackBear": {
+      "anchorX": 0.7132296484682494,
+      "anchorY": 0.8045770393452855,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.785,
+        "shape": "rectangle",
+        "width": 0.882
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "sunBear": {
+      "anchorX": 0.7132296484682494,
+      "anchorY": 0.8045770393452855,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.785,
+        "shape": "rectangle",
+        "width": 0.882
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "buoy": {
+      "anchorX": 0.5,
+      "anchorY": 0.9512195121951219,
+      "baseHeightPx": 61.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.9512195121951219,
+        "radiusPx": 24,
+        "shape": "circle"
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 15.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "chinesePistache": {
+      "anchorX": 0.5,
+      "anchorY": 0.888,
+      "baseHeightPx": 81.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.474,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 20.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "city": {
+      "anchorX": 0.3852997298075309,
+      "anchorY": 0.7842975020090887,
+      "baseHeightPx": 87.7,
+      "hitGeometry": {
+        "centerX": 0.49801835433779584,
+        "centerY": 0.5065305761812462,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 21.925,
+      "zoomStrength": 0.70389327891398
+    },
+    "coalMine": {
+      "anchorX": 0.5810181561373554,
+      "anchorY": 0.6945400593854144,
+      "baseHeightPx": 87.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.62,
+        "shape": "rectangle",
+        "width": 0.802
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 21.95,
+      "zoomStrength": 0.70389327891398
+    },
+    "coastalCrab": {
+      "anchorX": 0.5,
+      "anchorY": 0.968,
+      "baseHeightPx": 40,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 10,
+      "zoomStrength": 0.70389327891398
+    },
+    "iceCrab": {
+      "anchorX": 0.5,
+      "anchorY": 0.968,
+      "baseHeightPx": 40,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 10,
+      "zoomStrength": 0.70389327891398
+    },
+    "sandCrab": {
+      "anchorX": 0.5,
+      "anchorY": 0.968,
+      "baseHeightPx": 40,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 10,
+      "zoomStrength": 0.70389327891398
+    },
+    "mangroveCrab": {
+      "anchorX": 0.5,
+      "anchorY": 0.968,
+      "baseHeightPx": 40,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 10,
+      "zoomStrength": 0.70389327891398
+    },
+    "deer": {
+      "anchorX": 0.5,
+      "anchorY": 0.85,
+      "baseHeightPx": 69.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.547,
+        "height": 0.741,
+        "shape": "rectangle",
+        "width": 0.469
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "frostDeer": {
+      "anchorX": 0.5,
+      "anchorY": 0.85,
+      "baseHeightPx": 69.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.547,
+        "height": 0.741,
+        "shape": "rectangle",
+        "width": 0.469
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "jungleDeer": {
+      "anchorX": 0.5,
+      "anchorY": 0.85,
+      "baseHeightPx": 69.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.547,
+        "height": 0.741,
+        "shape": "rectangle",
+        "width": 0.469
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "marshDeer": {
+      "anchorX": 0.5,
+      "anchorY": 0.85,
+      "baseHeightPx": 69.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.547,
+        "height": 0.741,
+        "shape": "rectangle",
+        "width": 0.469
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "sandDeer": {
+      "anchorX": 0.5,
+      "anchorY": 0.85,
+      "baseHeightPx": 69.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.547,
+        "height": 0.741,
+        "shape": "rectangle",
+        "width": 0.469
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "dog": {
+      "anchorX": 0.5,
+      "anchorY": 0.86,
+      "baseHeightPx": 38.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 9.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "fireBird": {
+      "anchorX": 0.4585780371598132,
+      "anchorY": 0.7263208338993703,
+      "baseHeightPx": 100,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 25,
+      "zoomStrength": 0.70389327891398
+    },
+    "flag": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 37.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 1,
+        "radiusPx": 24,
+        "shape": "circle"
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 9.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "flax": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 54,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.56,
+        "height": 1.1,
+        "shape": "rectangle",
+        "width": 0.734
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 13.5,
+      "zoomStrength": 0.70389327891398
+    },
+    "frog": {
+      "anchorX": 0.36831369647276757,
+      "anchorY": 0.725912731214657,
+      "baseHeightPx": 54.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.7,
+        "shape": "rectangle",
+        "width": 0.88
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 13.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "frostFrog": {
+      "anchorX": 0.36831369647276757,
+      "anchorY": 0.725912731214657,
+      "baseHeightPx": 43.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.7,
+        "shape": "rectangle",
+        "width": 0.88
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "poisonFrog": {
+      "anchorX": 0.36831369647276757,
+      "anchorY": 0.725912731214657,
+      "baseHeightPx": 43.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.7,
+        "shape": "rectangle",
+        "width": 0.88
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "desertToad": {
+      "anchorX": 0.36831369647276757,
+      "anchorY": 0.725912731214657,
+      "baseHeightPx": 43.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.7,
+        "shape": "rectangle",
+        "width": 0.88
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "genericMob": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 54,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 1,
+        "radiusPx": 37.5,
+        "shape": "circle"
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 13.5,
+      "zoomStrength": 0.70389327891398
+    },
+    "skeleton": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 65.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 1,
+        "radiusPx": 37.5,
+        "shape": "circle"
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 16.325,
+      "zoomStrength": 0.70389327891398
+    },
+    "goblinArcher": {
+      "anchorX": 0.4368692197721755,
+      "anchorY": 0.844,
+      "baseHeightPx": 55.7,
+      "hitGeometry": {
+        "centerX": 0.554,
+        "centerY": 0.484,
+        "height": 0.983,
+        "shape": "rectangle",
+        "width": 0.906
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 13.925,
+      "zoomStrength": 0.70389327891398
+    },
+    "goblinBasic": {
+      "anchorX": 0.4986106407798545,
+      "anchorY": 0.8314002202595336,
+      "baseHeightPx": 73,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.961,
+        "shape": "rectangle",
+        "width": 0.695
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 18.25,
+      "zoomStrength": 0.70389327891398
+    },
+    "goblinHall": {
+      "anchorX": 0.36272984439635364,
+      "anchorY": 0.7338529507384846,
+      "baseHeightPx": 125.3,
+      "hitGeometry": {
+        "centerX": 0.49801835433779584,
+        "centerY": 0.5065305761812462,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 31.325,
+      "zoomStrength": 0.70389327891398
+    },
+    "goblinHealer": {
+      "anchorX": 0.4678136449386618,
+      "anchorY": 0.8374142239524113,
+      "baseHeightPx": 59.4,
+      "hitGeometry": {
+        "centerX": 0.556,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.8
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 14.85,
+      "zoomStrength": 0.70389327891398
+    },
+    "goblinWarrior": {
+      "anchorX": 0.5,
+      "anchorY": 0.896,
+      "baseHeightPx": 51.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 12.95,
+      "zoomStrength": 0.70389327891398
+    },
+    "hog": {
+      "anchorX": 0.5,
+      "anchorY": 0.861,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.66,
+        "height": 0.517,
+        "shape": "rectangle",
+        "width": 0.55
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "woollyHog": {
+      "anchorX": 0.5,
+      "anchorY": 0.861,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.66,
+        "height": 0.517,
+        "shape": "rectangle",
+        "width": 0.55
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "warthog": {
+      "anchorX": 0.5,
+      "anchorY": 0.861,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.66,
+        "height": 0.517,
+        "shape": "rectangle",
+        "width": 0.55
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "jungleHog": {
+      "anchorX": 0.5,
+      "anchorY": 0.861,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.66,
+        "height": 0.517,
+        "shape": "rectangle",
+        "width": 0.55
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "mudHog": {
+      "anchorX": 0.5,
+      "anchorY": 0.861,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.66,
+        "height": 0.517,
+        "shape": "rectangle",
+        "width": 0.55
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "javelina": {
+      "anchorX": 0.5,
+      "anchorY": 0.861,
+      "baseHeightPx": 68.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.66,
+        "height": 0.517,
+        "shape": "rectangle",
+        "width": 0.55
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.1,
+      "zoomStrength": 0.70389327891398
+    },
+    "iceBird": {
+      "anchorX": 0.43040901325058467,
+      "anchorY": 0.7544898578085989,
+      "baseHeightPx": 100,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 25,
+      "zoomStrength": 0.70389327891398
+    },
+    "ironMine": {
+      "anchorX": 0.5861571326240612,
+      "anchorY": 0.6534282474917676,
+      "baseHeightPx": 87.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.468,
+        "height": 0.53,
+        "shape": "rectangle",
+        "width": 0.75
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 21.95,
+      "zoomStrength": 0.70389327891398
+    },
+    "jellyfish": {
+      "anchorX": 0.5030254022374138,
+      "anchorY": 0.7848598327361722,
+      "baseHeightPx": 42,
+      "hitGeometry": {
+        "centerX": 0.51,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.85
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10.5,
+      "zoomStrength": 0.70389327891398
+    },
+    "kingdomSeat": {
+      "anchorX": 0.35162557409099016,
+      "anchorY": 0.7033801505493532,
+      "baseHeightPx": 140,
+      "hitGeometry": {
+        "centerX": 0.501,
+        "centerY": 0.5,
+        "height": 0.8,
+        "shape": "rectangle",
+        "width": 0.8
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 35,
+      "zoomStrength": 0.70389327891398
+    },
+    "leather": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "lightningBird": {
+      "anchorX": 0.3991100590428182,
+      "anchorY": 0.7857888120163653,
+      "baseHeightPx": 100,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 25,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.archer": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.678,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.478
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 14.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.bomber": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.678,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.379
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 14.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.bomber.idle": {
+      "anchorX": 0.5218458711078551,
+      "anchorY": 0.901828290001414,
+      "baseHeightPx": 40,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.bomber.escaping": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 40,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 10, "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.bomber.detonation": {
+      "anchorX": 0.5, "anchorY": 0.5, "baseHeightPx": 24,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 1, "shape": "rectangle", "width": 1 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 6, "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.bomber.planting": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 40,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.field_ballista": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.624,
+        "height": 0.589,
+        "shape": "rectangle",
+        "width": 0.78
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 14.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.field_ballista.deployed": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 57,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.25,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.field_ballista.launch": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 57.1,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.275,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.field_ballista.packed": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 57,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.25,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.field_ballista.rock": {
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "baseHeightPx": 6.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 1.625,
+      "zoomStrength": 0.70389327891398
+    },
+    "militaryUnits.infantry": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.678,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.376
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 14.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "mysteriousTraveler": {
+      "anchorX": 0.5155375611407835,
+      "anchorY": 0.9105350888060458,
+      "baseHeightPx": 68.4,
+      "hitGeometry": {
+        "centerX": 0.596,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.739
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.1,
+      "zoomStrength": 0.70389327891398
+    },
+    "ogre": {
+      "anchorX": 0.5383596994541971,
+      "anchorY": 0.90727454977531,
+      "baseHeightPx": 67.2,
+      "hitGeometry": {
+        "centerX": 0.521,
+        "centerY": 0.507,
+        "height": 0.955,
+        "shape": "rectangle",
+        "width": 0.873
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "player": {
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "baseHeightPx": 28,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 1,
+        "radiusPx": 28,
+        "shape": "circle"
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "sapCrawler": {
+      "anchorX": 0.5,
+      "anchorY": 0.836,
+      "baseHeightPx": 54.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.646,
+        "height": 0.544,
+        "shape": "rectangle",
+        "width": 0.516
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 13.65,
+      "zoomStrength": 0.70389327891398
+    },
+    "slime": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 62.7,
+      "hitGeometry": { "centerX": 0.499, "centerY": 0.679, "height": 0.478, "shape": "rectangle", "width": 0.803 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 15.675, "zoomStrength": 0.70389327891398
+    },
+    "slimeMiniboss": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 82,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.577, "height": 0.683, "shape": "rectangle", "width": 0.935 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 20.5, "zoomStrength": 0.70389327891398
+    },
+    "shellbackTurtle": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 52,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 13, "zoomStrength": 0.70389327891398
+    },
+    "sewerSpider": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 46,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 11.5, "zoomStrength": 0.70389327891398
+    },
+    "duneTick": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 41.7,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 10.425, "zoomStrength": 0.70389327891398
+    },
+    "spiderling": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 43.2,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 10.8, "zoomStrength": 0.70389327891398
+    },
+    "broodMatriarch": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 139,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.9, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 34.75, "zoomStrength": 0.70389327891398
+    },
+    "caveRaptor": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 52,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 13, "zoomStrength": 0.70389327891398
+    },
+    "raptorRunt": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 40.4,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 10.1, "zoomStrength": 0.70389327891398
+    },
+    "raptorSpitter": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 50,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 12.5, "zoomStrength": 0.70389327891398
+    },
+    "caveBat": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 48.7,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 12.175, "zoomStrength": 0.70389327891398
+    },
+    "raptorChieftain": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 120,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 30, "zoomStrength": 0.70389327891398
+    },
+    "minionLarge": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 88,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.62, "height": 0.62, "shape": "rectangle", "width": 0.56 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 22, "zoomStrength": 0.70389327891398
+    },
+    "petCompanion": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 72,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.66, "height": 0.56, "shape": "rectangle", "width": 0.62 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 18, "zoomStrength": 0.70389327891398
+    },
+    "petWisp": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 86.2,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.66, "height": 0.56, "shape": "rectangle", "width": 0.62 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 21.55, "zoomStrength": 0.70389327891398
+    },
+    "nestMouse": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 40.9,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 10.225, "zoomStrength": 0.70389327891398
+    },
+    "carrionChick": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 44,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 11, "zoomStrength": 0.70389327891398
+    },
+    "cliffHawk": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 50,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 12.5, "zoomStrength": 0.70389327891398
+    },
+    "thunderwing": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 130,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 32.5, "zoomStrength": 0.70389327891398
+    },
+    "rotWolf": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 65,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 16.25, "zoomStrength": 0.70389327891398
+    },
+    "blightedStag": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 70,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 17.5, "zoomStrength": 0.70389327891398
+    },
+    "thornfern": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 60,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 15, "zoomStrength": 0.70389327891398
+    },
+    "blightTreant": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 96,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 24, "zoomStrength": 0.70389327891398
+    },
+    "mimic": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 84,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 21, "zoomStrength": 0.70389327891398
+    },
+    "blightSprite": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 36.3,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 9.075, "zoomStrength": 0.70389327891398
+    },
+    "hollowElder": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 140,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 35, "zoomStrength": 0.70389327891398
+    },
+    "drakeling": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 72,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.68, "height": 0.479, "shape": "rectangle", "width": 0.801 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 18, "zoomStrength": 0.70389327891398
+    },
+    "magmaSalamander": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 72,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.65, "height": 0.537, "shape": "rectangle", "width": 0.6 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 18, "zoomStrength": 0.70389327891398
+    },
+    "lavaSlime": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 66,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.68, "height": 0.479, "shape": "rectangle", "width": 0.727 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 16.5, "zoomStrength": 0.70389327891398
+    },
+    "ashWyvern": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 88,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.577, "height": 0.684, "shape": "rectangle", "width": 0.738 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 22, "zoomStrength": 0.70389327891398
+    },
+    "drakeBroodguard": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 124,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.577, "height": 0.684, "shape": "rectangle", "width": 0.869 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 31, "zoomStrength": 0.70389327891398
+    },
+    "elderDragon": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 170,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.499, "height": 0.84, "shape": "rectangle", "width": 0.897 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 42.5, "zoomStrength": 0.70389327891398
+    },
+    "deepCrawler": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 70,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 17.5, "zoomStrength": 0.70389327891398
+    },
+    "voidWisp": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 56,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 14, "zoomStrength": 0.70389327891398
+    },
+    "chronoWisp": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 56,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 14, "zoomStrength": 0.70389327891398
+    },
+    "mawLily": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 66,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 16.5, "zoomStrength": 0.70389327891398
+    },
+    "theWatcher": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 140,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 35, "zoomStrength": 0.70389327891398
+    },
+    "drownedAdmiral": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 120,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 30, "zoomStrength": 0.70389327891398
+    },
+    "tidemaw": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 160,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 40, "zoomStrength": 0.70389327891398
+    },
+    "abyssalOne": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 170,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 42.5, "zoomStrength": 0.70389327891398
+    },
+    "tidemawTentacle": {
+      "anchorX": 0.5, "anchorY": 0.9, "baseHeightPx": 80,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.86, "shape": "rectangle", "width": 0.9 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 20, "zoomStrength": 0.70389327891398
+    },
+    "ironGolem": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 107.9,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.572, "height": 0.742, "shape": "rectangle", "width": 0.797 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 26.975, "zoomStrength": 0.70389327891398
+    },
+    "trifangWarden": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 210.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.587,
+        "height": 0.641,
+        "shape": "rectangle",
+        "width": 0.797
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 52.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "broodMatron": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 181.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.502,
+        "height": 0.793,
+        "shape": "rectangle",
+        "width": 0.797
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 45.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "centurion": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 173.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.51,
+        "height": 0.779,
+        "shape": "rectangle",
+        "width": 0.796
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 43.35,
+      "zoomStrength": 0.70389327891398
+    },
+    "legionSoldier": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 69.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.592,
+        "height": 0.632,
+        "shape": "rectangle",
+        "width": 0.606
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.45,
+      "zoomStrength": 0.70389327891398
+    },
+    "coilHatchling": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 49.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.64,
+        "height": 0.545,
+        "shape": "rectangle",
+        "width": 0.487
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 12.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "cagedValkyrie": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 70.1,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.593,
+        "height": 0.629,
+        "shape": "rectangle",
+        "width": 0.632
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.525,
+      "zoomStrength": 0.70389327891398
+    },
+    "serpentJailer": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 84.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.66,
+        "shape": "rectangle",
+        "width": 0.718
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 21.125,
+      "zoomStrength": 0.70389327891398
+    },
+    "zealot": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 76.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.622,
+        "height": 0.576,
+        "shape": "rectangle",
+        "width": 0.632
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 19.125,
+      "zoomStrength": 0.70389327891398
+    },
+    "wardenScout": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 80,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.636,
+        "height": 0.551,
+        "shape": "rectangle",
+        "width": 0.631
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 20,
+      "zoomStrength": 0.70389327891398
+    },
+    "cloudArbiter": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 94,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.544,
+        "height": 0.718,
+        "shape": "rectangle",
+        "width": 0.677
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 23.5,
+      "zoomStrength": 0.70389327891398
+    },
+    "cloudSentry": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 77.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.544,
+        "height": 0.718,
+        "shape": "rectangle",
+        "width": 0.574
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 19.425,
+      "zoomStrength": 0.70389327891398
+    },
+    "skyScout": {
+      "anchorX": 0.5,
+      "anchorY": 0.94,
+      "baseHeightPx": 78.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.63,
+        "height": 0.562,
+        "shape": "rectangle",
+        "width": 0.631
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 19.625,
+      "zoomStrength": 0.70389327891398
+    },
+    "stoneGolem": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 114.1,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.557, "height": 0.771, "shape": "rectangle", "width": 0.797 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 28.525, "zoomStrength": 0.70389327891398
+    },
+    "geodeGolem": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 110.4,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.544, "height": 0.797, "shape": "rectangle", "width": 0.771 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 27.6, "zoomStrength": 0.70389327891398
+    },
+    "menderGolem": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 112.4,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.604, "height": 0.676, "shape": "rectangle", "width": 0.702 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 28.1, "zoomStrength": 0.70389327891398
+    },
+    "sentinelStatueDormant": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 120.4,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.544, "height": 0.797, "shape": "rectangle", "width": 0.492 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 30.1, "zoomStrength": 0.70389327891398
+    },
+    "sentinelStatueAwake": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 120.4,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.544, "height": 0.797, "shape": "rectangle", "width": 0.492 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 30.1, "zoomStrength": 0.70389327891398
+    },
+    "sparkWisp": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 66.0,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.64, "height": 0.606, "shape": "rectangle", "width": 0.467 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 16.5, "zoomStrength": 0.70389327891398
+    },
+    "slagCrawler": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 67.8,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.692, "height": 0.502, "shape": "rectangle", "width": 0.702 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 16.95, "zoomStrength": 0.70389327891398
+    },
+    "golemSmith": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 108.3,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.592, "height": 0.702, "shape": "rectangle", "width": 0.572 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 27.075, "zoomStrength": 0.70389327891398
+    },
+    "walkingHammer": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 82.5,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.64, "height": 0.606, "shape": "rectangle", "width": 0.508 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 20.625, "zoomStrength": 0.70389327891398
+    },
+    "corruptedHuskDormant": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 106.9,
+      "hitGeometry": { "centerX": 0.487, "centerY": 0.548, "height": 0.785, "shape": "rectangle", "width": 0.566 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 26.725, "zoomStrength": 0.70389327891398
+    },
+    "corruptedHuskPossessed": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 106.5,
+      "hitGeometry": { "centerX": 0.488, "centerY": 0.548, "height": 0.789, "shape": "rectangle", "width": 0.57 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 26.625, "zoomStrength": 0.70389327891398
+    },
+    "gemHusk": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 107.8,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.544, "height": 0.797, "shape": "rectangle", "width": 0.62 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 26.95, "zoomStrength": 0.70389327891398
+    },
+    "graniteBull": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 173.1,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.538, "height": 0.809, "shape": "rectangle", "width": 0.885 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 43.275, "zoomStrength": 0.70389327891398
+    },
+    "corruptedCore": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 169.5,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.5, "height": 0.885, "shape": "rectangle", "width": 0.841 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 42.375, "zoomStrength": 0.70389327891398
+    },
+    "forgemaster": {
+      "anchorX": 0.5, "anchorY": 0.94, "baseHeightPx": 189.5,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.52, "height": 0.844, "shape": "rectangle", "width": 0.885 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 47.375, "zoomStrength": 0.70389327891398
+    },
+    "initiateMonk": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 102.4,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.68, "height": 0.479, "shape": "rectangle", "width": 0.434 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 25.6, "zoomStrength": 0.70389327891398
+    },
+    "staffAdept": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 108.7,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.68, "height": 0.479, "shape": "rectangle", "width": 0.513 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 27.175, "zoomStrength": 0.70389327891398
+    },
+    "shadowAcrobat": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 102.4,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.68, "height": 0.479, "shape": "rectangle", "width": 0.489 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 25.6, "zoomStrength": 0.70389327891398
+    },
+    "ironStatue": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 96,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.577, "height": 0.684, "shape": "rectangle", "width": 0.732 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 24, "zoomStrength": 0.70389327891398
+    },
+    "bellSpirit": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 96,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.65, "height": 0.537, "shape": "rectangle", "width": 0.48 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 24, "zoomStrength": 0.70389327891398
+    },
+    "emberShade": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 92,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.6, "height": 0.6, "shape": "rectangle", "width": 0.5 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 23, "zoomStrength": 0.70389327891398
+    },
+    "ashboundRevenant": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 100,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.577, "height": 0.684, "shape": "rectangle", "width": 0.6 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 25, "zoomStrength": 0.70389327891398
+    },
+    "vaultWarden": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 150,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.55, "height": 0.75, "shape": "rectangle", "width": 0.74 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 37.5, "zoomStrength": 0.70389327891398
+    },
+    "grandmaster": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 154.8,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.499, "height": 0.84, "shape": "rectangle", "width": 0.74 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 38.7, "zoomStrength": 0.70389327891398
+    },
+    "grandmasterClone": {
+      "anchorX": 0.5, "anchorY": 0.918, "baseHeightPx": 73.8,
+      "hitGeometry": { "centerX": 0.5, "centerY": 0.499, "height": 0.84, "shape": "rectangle", "width": 0.74 },
+      "horizontalScale": 1, "maxHeightPx": null, "minHeightPx": 18.45, "zoomStrength": 0.70389327891398
+    },
+    "sewerRat": {
+      "anchorX": 0.5,
+      "anchorY": 0.9,
+      "baseHeightPx": 42,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.86,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10.5,
+      "zoomStrength": 0.70389327891398
+    },
+    "sewerRatMiniboss": {
+      "anchorX": 0.5,
+      "anchorY": 0.9,
+      "baseHeightPx": 92,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.92,
+        "shape": "rectangle",
+        "width": 0.92
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 23,
+      "zoomStrength": 0.70389327891398
+    },
+    "sickSewerRat": {
+      "anchorX": 0.5,
+      "anchorY": 0.9,
+      "baseHeightPx": 42,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.86,
+        "shape": "rectangle",
+        "width": 0.9
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 10.5,
+      "zoomStrength": 0.70389327891398
+    },
+    "slag": {
+      "anchorX": 0.5,
+      "anchorY": 0.815,
+      "baseHeightPx": 28,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "squid": {
+      "anchorX": 0.4568578477169838,
+      "anchorY": 0.6635992848894217,
+      "baseHeightPx": 56,
+      "hitGeometry": {
+        "centerX": 0.485,
+        "centerY": 0.5,
+        "height": 0.829,
+        "shape": "rectangle",
+        "width": 0.812
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 14,
+      "zoomStrength": 0.70389327891398
+    },
+    "stone": {
+      "anchorX": 0.5,
+      "anchorY": 0.779,
+      "baseHeightPx": 28,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    },
+    "stoneMine": {
+      "anchorX": 0.5437319797334125,
+      "anchorY": 0.658567796630188,
+      "baseHeightPx": 87.8,
+      "hitGeometry": {
+        "centerX": 0.494,
+        "centerY": 0.476,
+        "height": 0.555,
+        "shape": "rectangle",
+        "width": 0.55
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 21.95,
+      "zoomStrength": 0.70389327891398
+    },
+    "sulfurMine": {
+      "anchorX": 0.6066943914776428,
+      "anchorY": 0.7545774758715016,
+      "baseHeightPx": 50,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 12.5,
+      "zoomStrength": 0.70389327891398
+    },
+    "tree": {
+      "anchorX": 0.5,
+      "anchorY": 0.888,
+      "baseHeightPx": 86.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 0.7
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 21.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "willowTree": {
+      "anchorX": 0.4971989917217236,
+      "anchorY": 0.7902503938251205,
+      "baseHeightPx": 113.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 0.9,
+        "shape": "rectangle",
+        "width": 0.95
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 28.45,
+      "zoomStrength": 0.70389327891398
+    },
+    "wolf": {
+      "anchorX": 0.5,
+      "anchorY": 0.89,
+      "baseHeightPx": 65.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.609
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.35,
+      "zoomStrength": 0.70389327891398
+    },
+    "frostWolf": {
+      "anchorX": 0.5,
+      "anchorY": 0.89,
+      "baseHeightPx": 65.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.609
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.35,
+      "zoomStrength": 0.70389327891398
+    },
+    "duneWolf": {
+      "anchorX": 0.5,
+      "anchorY": 0.89,
+      "baseHeightPx": 71.0,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.609
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.75,
+      "zoomStrength": 0.70389327891398
+    },
+    "jungleWolf": {
+      "anchorX": 0.5,
+      "anchorY": 0.89,
+      "baseHeightPx": 65.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.609
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.35,
+      "zoomStrength": 0.70389327891398
+    },
+    "bogWolf": {
+      "anchorX": 0.5,
+      "anchorY": 0.89,
+      "baseHeightPx": 65.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.609
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.35,
+      "zoomStrength": 0.70389327891398
+    },
+    "frostWraith": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.65,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.631
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "yeti": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.577,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.735
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "barrowWight": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.65,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.565
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "risenSkeleton": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 107,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.69,
+        "height": 0.46,
+        "shape": "rectangle",
+        "width": 0.4
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 26.75,
+      "zoomStrength": 0.70389327891398
+    },
+    "revenantLich": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 78.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.62,
+        "height": 0.62,
+        "shape": "rectangle",
+        "width": 0.45
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 19.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "mossGolem": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 81.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.577,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.695
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 20.475,
+      "zoomStrength": 0.70389327891398
+    },
+    "vineLurker": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.65,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.571
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "lizardfolkWarrior": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.68,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.463
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "bogGhoul": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.65,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.562
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "giantScorpion": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 71.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.65,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.526
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.925,
+      "zoomStrength": 0.70389327891398
+    },
+    "dustMummy": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.68,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.568
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.65,
+      "zoomStrength": 0.70389327891398
+    },
+    "thunderhorn": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.577,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.813
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "griffin": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.577,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.749
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "basilisk": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.65,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.882
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "jungleTapir": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.596
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "jaguar": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.897
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "mandrill": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.581
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "canopyGoblin": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.421
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "poisonfrogRaider": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.504
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "pantherfolkStalker": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.587
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "vineWrappedCorpse": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.46
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "serpentPriestess": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.344
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "capercaillie": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.421
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "bugbearChieftain": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.661
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "pinewarden": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.407
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "gallowsGhost": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.436
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "alderKing": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.554
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "elk": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.531
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "redSquirrel": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 104.0,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.318
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 26.0,
+      "zoomStrength": 0.70389327891398
+    },
+    "pineDryad": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.331
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "badger": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.616
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "greySquirrel": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 104.0,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.332
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 26.0,
+      "zoomStrength": 0.70389327891398
+    },
+    "stagBeetle": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.583
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "mossjawSneak": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.57
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "mossjawSpearman": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.51
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "mossjawHexer": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.407
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "mossjawWarboss": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.526
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "hedgeWitch": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.375
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "restlessGravedigger": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.41
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "covenMatron": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.387
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "greatGreyOwl": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.548
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "flyingSquirrel": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.408
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "stagfolkWarden": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.31
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "rimeWitch": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.39
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "draugrBerserker": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.496
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "snowTalonbear": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.644
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "frostwaterTroll": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.728
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "undericeLurker": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.659
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "plainsBison": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.791
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "prairieDog": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 104.0,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.293
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 26.0,
+      "zoomStrength": 0.70389327891398
+    },
+    "burrowingOwl": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.282
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "centaurOutrider": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.693
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "voltElemental": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 71.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.52
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.975,
+      "zoomStrength": 0.70389327891398
+    },
+    "possessedScythe": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.537
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "strawmanLord": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.618
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "giraffe": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.453
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "lioness": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.887
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "spottedHyena": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 69.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.557
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.325,
+      "zoomStrength": 0.70389327891398
+    },
+    "gnollBonebow": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.563
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "gnollPackseer": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.321
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "gnollPacklord": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.72
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "carrionGhoul": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.529
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "sunGriffin": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.638
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "sitatunga": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.427
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "emperorDragonfly": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.602
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "frogfolkTadpole": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.498
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "frogfolkBlowgunner": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.51
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "frogfolkShaman": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.495
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "frogfolkChief": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.664
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "bloatLeech": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 71.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.498
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.975,
+      "zoomStrength": 0.70389327891398
+    },
+    "bogHag": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.558
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "leechMother": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.715
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "mountainIbex": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 71.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.43
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.975,
+      "zoomStrength": 0.70389327891398
+    },
+    "wildYak": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.823
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "alpineMarmot": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 80.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.377
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 20.175,
+      "zoomStrength": 0.70389327891398
+    },
+    "yakfolkStonehorn": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.695
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "highlandReaver": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.484
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "stormHarpy": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 71.0,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.544
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.75,
+      "zoomStrength": 0.70389327891398
+    },
+    "cairnWight": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.637
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "stormwingChick": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.489
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "stormwing": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.862
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "wildScrubGoat": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 71.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.429
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.975,
+      "zoomStrength": 0.70389327891398
+    },
+    "crestedPorcupine": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 76.0,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.508
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 19.0,
+      "zoomStrength": 0.70389327891398
+    },
+    "spurThighedTortoise": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 69.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.554
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.425,
+      "zoomStrength": 0.70389327891398
+    },
+    "cyclopsShepherd": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.652
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "skeletonHoplite": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.528
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "tarElemental": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.553
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "oliveDryad": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.424
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "chimera": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.744
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "dromedary": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.643
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "fennecFox": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 95.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.402
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 23.975,
+      "zoomStrength": 0.70389327891398
+    },
+    "sidewinder": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.718
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "desertLion": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.932
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "jackalfolkSkirmisher": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.551
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "duneGoblin": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.548
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "desertMarauder": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.556
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "scorchTroll": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.6
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "emberGiant": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.754
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "saiga": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 71.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.467
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.975,
+      "zoomStrength": 0.70389327891398
+    },
+    "wildHorse": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.708
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "steppeMarmot": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.761
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "steppeRaider": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.656
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "steppeHorseArcher": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.603
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "saltHusk": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.421
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "kurganWight": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.56
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "centaurKhan": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.754
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "lemming": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 79.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.483
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 19.95,
+      "zoomStrength": 0.70389327891398
+    },
+    "snowGoose": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 80.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.408
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 20.175,
+      "zoomStrength": 0.70389327891398
+    },
+    "frostbornRunecaster": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.448
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "frostbornJarl": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.549
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "permafrostElemental": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.805
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "draugr": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.579
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "mammothPatriarch": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.878
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "emperorPenguin": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.324
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "pearyCaribou": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.511
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "iceWorm": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.373
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "rimeTroll": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.692
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "auroraShade": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.486
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "blizzardLord": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.846
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "seaOtter": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.528
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "herringGull": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 58.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.344
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 14.675,
+      "zoomStrength": 0.70389327891398
+    },
+    "spinyLobster": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.607
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "gillfolkScout": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.393
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "gillfolkNetter": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.441
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "coralGolem": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.635
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "drownedDeckhand": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.566
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "reefKraken": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.541
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "hammerheadShark": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.727
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "mantaRay": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.754
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "humpbackWhale": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.504,
+        "height": 0.827,
+        "shape": "rectangle",
+        "width": 0.938
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "merfolkHarpooner": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.53
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "phantomLookout": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.543
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "maelstromSpirit": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.535
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "seaSerpent": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.664
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "kraken": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.682
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "muskellunge": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.545
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "muteSwan": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.613
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "drownedBride": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.543
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "lakeMaiden": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.379
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "elderMereSerpent": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.813
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "northernPike": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.487
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "snappingTurtle": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.728
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "drownedThrall": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.539
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "beaver": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.536
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "riverOtter": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 72.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.534
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.075,
+      "zoomStrength": 0.70389327891398
+    },
+    "riverSalmon": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.693
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "kappa": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.471
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "kappaBrawler": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.567
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "bridgeTroll": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.933
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "nixie": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 102.4,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.492
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 25.6,
+      "zoomStrength": 0.70389327891398
+    },
+    "rapidsElemental": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.654
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "shellback": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 67.9,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.613,
+        "height": 0.61,
+        "shape": "rectangle",
+        "width": 0.859
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.975,
+      "zoomStrength": 0.70389327891398
+    },
+    "darter": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.679,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.564
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "inkPool": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 63.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.58
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.9,
+      "zoomStrength": 0.70389327891398
+    },
+    "drownedCitizen": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.389
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "tideWraith": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.501
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "gateWarden": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 85.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.613,
+        "height": 0.61,
+        "shape": "rectangle",
+        "width": 0.602
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 21.3,
+      "zoomStrength": 0.70389327891398
+    },
+    "drownedCultist": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 91.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.522
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.8,
+      "zoomStrength": 0.70389327891398
+    },
+    "direWolf": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.815
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "mossTroll": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.615
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "woollyMammoth": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 74.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.498,
+        "height": 0.84,
+        "shape": "rectangle",
+        "width": 0.905
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 18.575,
+      "zoomStrength": 0.70389327891398
+    },
+    "fieldHare": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 98.8,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.723,
+        "height": 0.391,
+        "shape": "rectangle",
+        "width": 0.246
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 24.7,
+      "zoomStrength": 0.70389327891398
+    },
+    "arcticHare": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 104.0,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.732,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.357
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 26.0,
+      "zoomStrength": 0.70389327891398
+    },
+    "capybara": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.674,
+        "height": 0.488,
+        "shape": "rectangle",
+        "width": 0.67
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "armadillo": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 69.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.757,
+        "height": 0.322,
+        "shape": "rectangle",
+        "width": 0.554
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.425,
+      "zoomStrength": 0.70389327891398
+    },
+    "redFox": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.708,
+        "height": 0.42,
+        "shape": "rectangle",
+        "width": 0.627
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "wolverine": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.674,
+        "height": 0.488,
+        "shape": "rectangle",
+        "width": 0.658
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "ostrich": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.547,
+        "height": 0.742,
+        "shape": "rectangle",
+        "width": 0.577
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "goldenEagle": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.645,
+        "height": 0.547,
+        "shape": "rectangle",
+        "width": 0.759
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "muskOx": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.605,
+        "height": 0.625,
+        "shape": "rectangle",
+        "width": 0.74
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "seal": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 66.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.703,
+        "height": 0.43,
+        "shape": "rectangle",
+        "width": 0.675
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "ashDrake": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 65.5,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.626
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 16.375,
+      "zoomStrength": 0.70389327891398
+    },
+    "emberDragon": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.779
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "snapjawFlytrap": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 68.7,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.649,
+        "height": 0.537,
+        "shape": "rectangle",
+        "width": 0.562
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.175,
+      "zoomStrength": 0.70389327891398
+    },
+    "cairnGolem": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.576,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.619
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "giantLarva": {
+      "anchorX": 0.5,
+      "anchorY": 0.985,
+      "baseHeightPx": 49.6,
+      "hitGeometry": {
+        "centerX": 0.507,
+        "centerY": 0.502,
+        "height": 0.967,
+        "shape": "rectangle",
+        "width": 0.949
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 12.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "trainingDummy": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 89,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.68,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.45
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 22.25,
+      "zoomStrength": 0.70389327891398
+    },
+    "bandit": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.68,
+        "height": 0.479,
+        "shape": "rectangle",
+        "width": 0.525
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "orcBrute": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 70.2,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.577,
+        "height": 0.684,
+        "shape": "rectangle",
+        "width": 0.704
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 17.55,
+      "zoomStrength": 0.70389327891398
+    },
+    "hollinHut": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 85.3,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.567,
+        "height": 0.703,
+        "shape": "rectangle",
+        "width": 0.918
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 21.325,
+      "zoomStrength": 0.70389327891398
+    },
+    "hollinGuard": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.704,
+        "height": 0.43,
+        "shape": "rectangle",
+        "width": 0.367
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "hollinFarmer": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.714,
+        "height": 0.41,
+        "shape": "rectangle",
+        "width": 0.337
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "hollinHelper": {
+      "anchorX": 0.5,
+      "anchorY": 0.918,
+      "baseHeightPx": 61.6,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.733,
+        "height": 0.371,
+        "shape": "rectangle",
+        "width": 0.279
+      },
+      "horizontalScale": 1,
+      "maxHeightPx": null,
+      "minHeightPx": 15.4,
+      "zoomStrength": 0.70389327891398
+    },
+    "wood": {
+      "anchorX": 0.5,
+      "anchorY": 0.891,
+      "baseHeightPx": 28,
+      "hitGeometry": {
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "height": 1,
+        "shape": "rectangle",
+        "width": 1
+      },
+      "maxHeightPx": null,
+      "minHeightPx": 7,
+      "zoomStrength": 0.70389327891398
+    }
+  },
+  "worldObjectZoomPolicy": {
+    "baseZoom": 15,
+    "maxScale": null,
+    "minScale": 0.25,
+    "zoomStrength": 0.70389327891398
+  }
+}

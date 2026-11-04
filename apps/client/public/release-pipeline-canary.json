@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "canary": "stage3-client-only",
+  "baseline_generation": "t547",
+  "purpose": "controlled client-only protected release and rollback verification"
+}

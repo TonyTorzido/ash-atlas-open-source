@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly restore of one recent portable Ash Atlas backup
+
+[Timer]
+OnCalendar=Sun *-*-* 06:20:00
+RandomizedDelaySec=15min
+Persistent=false
+
+[Install]
+WantedBy=timers.target

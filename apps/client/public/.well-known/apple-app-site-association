@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["ABCDE12345.com.ashatlas.game"],
+        "components": [
+          { "/": "/link/*", "comment": "Ash Atlas app links; every other path stays on the web" }
+        ]
+      }
+    ]
+  }
+}

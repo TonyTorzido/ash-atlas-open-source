@@ -1,0 +1,17 @@
+{
+  "dir": "assets/audio/music/",
+  "formats": {
+    "m4a": {
+      "loop": "hearthlight-loop-v2.m4a",
+      "loopStartSec": 0,
+      "loopEndSec": 53.79310657596372,
+      "untrimmed": {
+        "decodedSamples": 2373632,
+        "loopStartSec": 0.023219954648526078,
+        "loopEndSec": 53.816326530612244
+      },
+      "intro": "hearthlight-intro-v2.m4a",
+      "introLoopAtSec": 4.137936507936508
+    }
+  }
+}

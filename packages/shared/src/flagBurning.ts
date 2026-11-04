@@ -1,0 +1,35 @@
+import type { ResourceType } from "./collectibles.js";
+import {
+  STRUCTURE_WARFARE_ATTACK_COOLDOWN_MS,
+  STRUCTURE_WARFARE_ATTACK_DAMAGE,
+  STRUCTURE_WARFARE_BASE_BURN_DURATION_MS,
+  STRUCTURE_WARFARE_INTERACTION_RADIUS_M,
+  STRUCTURE_WARFARE_STONE_BURN_DURATION_MS,
+  STRUCTURE_WARFARE_TOWER_BURN_DURATION_MS,
+  STRUCTURE_WARFARE_TORCH_COST
+} from "./structureWarfare.js";
+
+export const FLAG_BURN_DURATION_MS = STRUCTURE_WARFARE_BASE_BURN_DURATION_MS;
+export const FLAG_HARDENED_BURN_DURATION_MS = STRUCTURE_WARFARE_STONE_BURN_DURATION_MS;
+export const FLAG_TOWER_BURN_DURATION_MS = STRUCTURE_WARFARE_TOWER_BURN_DURATION_MS;
+export const FLAG_HARDENED_ATTACK_DAMAGE = STRUCTURE_WARFARE_ATTACK_DAMAGE;
+export const FLAG_HARDENED_ATTACK_COOLDOWN_MS = STRUCTURE_WARFARE_ATTACK_COOLDOWN_MS;
+export const FLAG_BURN_INTERACTION_RADIUS_M = STRUCTURE_WARFARE_INTERACTION_RADIUS_M;
+
+export const FLAG_BURN_RECIPE: readonly Readonly<{
+  itemId: ResourceType;
+  quantity: number;
+}>[] = Object.freeze([
+  Object.freeze({ itemId: "coal" as const, quantity: 10 }),
+  Object.freeze({ itemId: "crude_oil" as const, quantity: 100 })
+]);
+
+export const FLAG_BURN_OUTPUT = Object.freeze({
+  itemId: "torch" as const,
+  quantity: 25
+});
+
+export const FLAG_BURN_TORCH_COST = Object.freeze({
+  ...STRUCTURE_WARFARE_TORCH_COST
+});
+

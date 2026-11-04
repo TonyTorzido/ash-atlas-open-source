@@ -1,0 +1,12 @@
+[Unit]
+Description=Reconcile Ash Atlas durable deployment receipts and HTTPS projections
+
+[Timer]
+OnBootSec=45s
+OnUnitActiveSec=60s
+RandomizedDelaySec=10s
+Persistent=true
+Unit=ash-atlas-deployment-reconcile.service
+
+[Install]
+WantedBy=timers.target

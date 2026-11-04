@@ -1,0 +1,11 @@
+[Unit]
+Description=Create monthly Ash Atlas PostgreSQL recovery points
+
+[Timer]
+OnCalendar=*-*-01 05:20:00 UTC
+RandomizedDelaySec=5min
+Persistent=true
+Unit=ash-atlas-database-backup@monthly.service
+
+[Install]
+WantedBy=timers.target

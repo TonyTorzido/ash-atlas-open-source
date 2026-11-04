@@ -1,0 +1,13 @@
+[Unit]
+Description=Run a daily deep checksum and restore-catalog scrub
+
+[Timer]
+OnCalendar=*-*-* 04:40:00
+RandomizedDelaySec=20min
+# The deep scrub is a periodic defense-in-depth pass.  Do not replay a stale
+# missed run immediately after reboot; routine liveness is handled by pull,
+# mirror, and bounded per-backup proof.
+Persistent=false
+
+[Install]
+WantedBy=timers.target

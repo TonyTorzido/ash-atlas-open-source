@@ -1,0 +1,314 @@
+/* Ash Heart puzzle HUD: the same parchment folio, brass rim and frosted stick as the rest of the game HUD. */
+.heart-puzzle-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  overflow: hidden;
+  font-family: var(--aa-ui-font-body, inherit);
+  color: var(--aa-menu-text, #37291f);
+}
+
+.heart-puzzle-hud button,
+.heart-puzzle-hud__pad,
+.heart-puzzle-hud__card,
+.heart-puzzle-hud__npc {
+  pointer-events: auto;
+}
+
+/* Puzzle card: parchment folio with a brass edge, like the profile card and chat bar. */
+.heart-puzzle-hud__card {
+  position: absolute;
+  /* Top centre, under the chat bar: never over the portrait / HP panel at top-left. */
+  top: calc(env(safe-area-inset-top, 0px) + 64px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  gap: 6px;
+  box-sizing: border-box;
+  max-width: min(320px, calc(100vw - 24px));
+  padding: 0;
+  border-radius: var(--aa-ui-radius-panel, 6px);
+  background: var(--aa-ui-material-folio, #f0e4cb);
+  border: 1px solid var(--aa-plaque-edge, #9a7443);
+  box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--aa-brass, #94692c) 16%, transparent), var(--aa-ui-shadow-shallow, 0 3px 9px rgb(39 26 15 / 15%));
+}
+
+/* Short landscape phones: the chip moves to the top right, beside the chat bar, so the room can use the full height. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .heart-puzzle-hud__card {
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    left: auto;
+    right: calc(env(safe-area-inset-right, 0px) + 12px);
+    transform: none;
+  }
+}
+
+.heart-puzzle-hud__card--open { padding: 0 12px 10px; width: min(320px, calc(100vw - 24px)); }
+
+/* Compact chip: the room title and a chevron; tap to open the card. */
+.heart-puzzle-hud .heart-puzzle-hud__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 4px 14px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  white-space: nowrap;
+}
+.heart-puzzle-hud__card--open .heart-puzzle-hud__chip { padding: 8px 0 2px; }
+.heart-puzzle-hud .heart-puzzle-hud__chip:active { background: none; box-shadow: none; }
+.heart-puzzle-hud__chevron {
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-right: 2px solid var(--aa-menu-accent, #6c481f);
+  border-bottom: 2px solid var(--aa-menu-accent, #6c481f);
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+.heart-puzzle-hud__card--open .heart-puzzle-hud__chevron { margin-top: 3px; transform: rotate(-135deg); }
+
+.heart-puzzle-hud__title {
+  font-family: var(--aa-ui-font-display, Georgia, serif);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--aa-menu-accent, #6c481f);
+}
+.heart-puzzle-hud__line { font-size: 12px; color: var(--aa-menu-muted, #5d4935); line-height: 1.35; }
+.heart-puzzle-hud__row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Carved plaque buttons, the same family as the menu controls. */
+.heart-puzzle-hud button {
+  min-height: 34px;
+  padding: 4px 11px;
+  border-radius: var(--aa-ui-radius-control, 4px);
+  border: 1px solid var(--aa-plaque-edge, #9a7443);
+  background: linear-gradient(180deg, var(--aa-plaque-top, #f4e9cf), var(--aa-plaque-bottom, #e0c998));
+  box-shadow: inset 0 1px 0 var(--aa-plaque-hi, rgb(255 251 238 / 75%)), 0 1px 0 var(--aa-plaque-lo, rgb(112 76 34 / 30%));
+  color: var(--aa-menu-text, #37291f);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.heart-puzzle-hud button:active { background: var(--aa-plaque-pressed, #d4ba85); box-shadow: inset 0 1px 2px var(--aa-plaque-lo, rgb(112 76 34 / 30%)); }
+.heart-puzzle-hud button:focus-visible { outline: 2px solid var(--aa-ui-focus-ring, #37291f); outline-offset: 2px; }
+
+/* Tilt pad: the movement stick face (frosted parchment, bronze rim, dashed guide ring, round knob). */
+.heart-puzzle-hud__pad {
+  position: absolute;
+  /* Right side, above the action slots: the movement joystick keeps the bottom left. */
+  right: 70px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 182px);
+  box-sizing: border-box;
+  padding: 14px 14px 22px;
+  border-radius: 28px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: grid;
+  place-items: center;
+}
+
+.heart-puzzle-hud__padBase {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--cc-stick, 96px);
+  height: var(--cc-stick, 96px);
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--cc-glass-rim, color-mix(in srgb, var(--aa-ui-bronze-500, #6c481f) 62%, transparent));
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 16%, transparent) 0 46%, color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 34%, transparent) 100%);
+  box-shadow: 0 4px 12px rgb(39 26 15 / 16%), inset 0 0 0 5px color-mix(in srgb, var(--aa-ui-ink-950, #1b140d) 6%, transparent);
+  opacity: 0.85;
+  pointer-events: none;
+}
+.heart-puzzle-hud__pad:active .heart-puzzle-hud__padBase { opacity: 1; border-color: var(--aa-ui-active-bronze, #6c481f); }
+
+.heart-puzzle-hud__padRing {
+  position: absolute;
+  inset: 24%;
+  border: 1px dashed color-mix(in srgb, var(--aa-ui-bronze-500, #6c481f) 45%, transparent);
+  border-radius: 50%;
+}
+
+.heart-puzzle-hud__knob {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--cc-knob, 46px);
+  height: var(--cc-knob, 46px);
+  border: 2px solid color-mix(in srgb, var(--aa-ui-bronze-500, #6c481f) 85%, transparent);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 38%, var(--aa-ui-highlight, rgb(255 255 255 / 40%)), transparent 62%),
+    color-mix(in srgb, var(--aa-ui-material-folio, #e9dfc6) 72%, transparent);
+  box-shadow: 0 3px 8px rgb(39 26 15 / 26%), inset 0 0 0 4px color-mix(in srgb, var(--aa-ui-bronze-500, #6c481f) 18%, transparent);
+  will-change: transform;
+}
+
+.heart-puzzle-hud__padNote {
+  position: absolute;
+  bottom: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  color: var(--aa-menu-muted, #5d4935);
+  text-shadow: 0 1px 0 rgb(255 248 230 / 70%);
+}
+
+/* Fallback hint panel (Old Pell normally speaks in a bubble beside him). */
+.heart-puzzle-hud__npc {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
+  transform: translateX(-50%);
+  display: grid;
+  gap: 6px;
+  box-sizing: border-box;
+  width: min(420px, calc(100vw - 24px));
+  max-height: 60vh;
+  overflow: hidden;
+  padding: 12px 14px;
+  border-radius: var(--aa-ui-radius-panel, 6px);
+  background: var(--aa-ui-material-folio, #f0e4cb);
+  border: 1px solid var(--aa-plaque-edge, #9a7443);
+  box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--aa-brass, #94692c) 16%, transparent), var(--aa-ui-shadow, 0 10px 28px rgb(39 26 15 / 24%));
+  font-size: 13px;
+  color: var(--aa-menu-text, #37291f);
+}
+.heart-puzzle-hud__npc strong { font-family: var(--aa-ui-font-display, Georgia, serif); color: var(--aa-menu-accent, #6c481f); }
+.heart-puzzle-hud__npc p { margin: 0; }
+.heart-puzzle-hud__npc em { color: var(--aa-menu-muted, #5d4935); font-weight: 400; font-style: normal; font-size: 11px; }
+.heart-puzzle-hud__muted { color: var(--aa-menu-muted, #5d4935); font-size: 11px; }
+
+/* Room title card. */
+.heart-puzzle-hud__title-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: heart-puzzle-title 3s ease both;
+}
+.heart-puzzle-hud__title-card span {
+  padding: 10px 28px 11px;
+  border-top: 1px solid var(--aa-plaque-edge, #9a7443);
+  border-bottom: 1px solid var(--aa-plaque-edge, #9a7443);
+  background: linear-gradient(90deg, rgb(240 228 203 / 0%), rgb(240 228 203 / 90%) 18% 82%, rgb(240 228 203 / 0%));
+  font-family: var(--aa-ui-font-display, Georgia, serif);
+  font-size: clamp(20px, 5.4vw, 30px);
+  letter-spacing: 0.08em;
+  color: var(--aa-menu-text, #37291f);
+  text-shadow: 0 1px 0 rgb(255 248 230 / 60%);
+}
+@keyframes heart-puzzle-title {
+  0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+  16% { opacity: 1; transform: none; }
+  78% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
+/* Heart room celebration beat. */
+.heart-puzzle-hud__celebrate {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 46%, rgb(255 130 70 / 30%), transparent 62%);
+  animation: heart-puzzle-bloom 4.2s ease both;
+}
+.heart-puzzle-hud__celebrate span {
+  padding: 8px 26px;
+  border-radius: var(--aa-ui-radius-panel, 6px);
+  background: var(--aa-ui-material-folio, #f0e4cb);
+  border: 1px solid var(--aa-plaque-edge, #9a7443);
+  box-shadow: 0 0 36px rgb(255 120 60 / 50%);
+  font-family: var(--aa-ui-font-display, Georgia, serif);
+  font-size: clamp(20px, 5vw, 28px);
+  letter-spacing: 0.1em;
+  color: var(--aa-menu-accent, #6c481f);
+}
+@keyframes heart-puzzle-bloom {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart-puzzle-hud__title-card,
+  .heart-puzzle-hud__celebrate { animation-duration: 0.01s; animation-delay: 2.6s; animation-fill-mode: backwards; }
+}
+
+/* Chip: room title, a status line and (while playing) Quit plus the board controls. */
+.heart-puzzle-hud__card { padding: 0 12px 8px; justify-items: center; text-align: center; }
+.heart-puzzle-hud .heart-puzzle-hud__quit { min-height: 26px; padding: 2px 10px; font-size: 11px; }
+
+/* No gyro / motion access denied: a clear notice, with the touch fallback tucked behind it. */
+.heart-puzzle-hud__notice {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 110px);
+  transform: translateX(-50%);
+  display: grid;
+  gap: 6px;
+  box-sizing: border-box;
+  width: min(360px, calc(100vw - 24px));
+  padding: 12px 14px;
+  border-radius: var(--aa-ui-radius-panel, 6px);
+  background: var(--aa-ui-material-folio, #f0e4cb);
+  border: 1px solid var(--aa-plaque-edge, #9a7443);
+  box-shadow: var(--aa-ui-shadow, 0 10px 28px rgb(39 26 15 / 24%));
+  font-size: 13px;
+  pointer-events: auto;
+}
+.heart-puzzle-hud__notice strong { font-family: var(--aa-ui-font-display, Georgia, serif); color: var(--aa-menu-accent, #6c481f); }
+.heart-puzzle-hud .heart-puzzle-hud__fallback {
+  justify-self: start;
+  min-height: 0;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  text-decoration: underline;
+  color: var(--aa-menu-muted, #5d4935);
+  font-size: 11px;
+}
+
+/* Old Pell's popup: the standard prompt; his words scroll inside it with no native scrollbar. */
+.heart-puzzle-pell__text {
+  display: grid;
+  gap: 8px;
+  max-height: min(34vh, 250px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding: 0 2px 18px;
+  font-size: 13px;
+  line-height: 1.42;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 22px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 22px), transparent);
+}
+.heart-puzzle-pell__text::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.heart-puzzle-pell__text p { margin: 0; }
+/* Pell's story: short lines, set apart from the room instructions below. */
+.heart-puzzle-pell__lore {
+  display: grid;
+  gap: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid color-mix(in srgb, var(--aa-brass, #94692c) 35%, transparent);
+  font-family: var(--aa-ui-font-display, Georgia, serif);
+  font-style: italic;
+}
+.heart-puzzle-pell__label { font-family: var(--aa-ui-font-display, Georgia, serif); color: var(--aa-menu-accent, #6c481f); font-weight: 600; }
+.heart-puzzle-pell__hint { padding-left: 8px; border-left: 2px solid color-mix(in srgb, var(--aa-brass, #94692c) 55%, transparent); }
+.heart-puzzle-pell .game-compact-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.heart-puzzle-pell .game-compact-actions > .game-compact-action:only-of-type { grid-column: 1 / -1; }
+.heart-puzzle-pell .game-compact-cancel { display: none; }

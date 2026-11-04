@@ -1,0 +1,748 @@
+{
+  "dungeon": {
+    "id": "tilted_vault",
+    "name": "The Tilted Vault",
+    "description": "A stonemason's vault that only opens to a steady hand. Tilt the floor and let the marble show the way.",
+    "instancePolicy": "party_ephemeral",
+    "theme": {
+      "id": "vault"
+    }
+  },
+  "entranceRoom": "vault_r1",
+  "rooms": [
+    {
+      "id": "vault_r1",
+      "name": "The Marble Maze",
+      "width": 1080,
+      "height": 1510,
+      "spawn": {
+        "x": 134,
+        "y": 264
+      },
+      "objects": [
+        {
+          "id": "vault_pell_1",
+          "type": "npc",
+          "prefab": "grove_hermit",
+          "at": {
+            "x": 330,
+            "y": 208
+          },
+          "name": "Old Pell",
+          "interactionLabel": "Talk to Old Pell"
+        },
+        {
+          "id": "vault_seal_1",
+          "type": "switch",
+          "prefab": "dungeon_lever",
+          "at": {
+            "x": 950,
+            "y": 1290
+          },
+          "name": "Vault Seal",
+          "interactionLabel": "Inspect the seal"
+        }
+      ]
+    },
+    {
+      "id": "combat_a",
+      "name": "Ember Hall",
+      "width": 1080,
+      "height": 1100,
+      "spawn": {
+        "x": 308,
+        "y": 276
+      },
+      "objects": [],
+      "zones": [
+        {
+          "id": "encounter_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 78,
+            "y": 176,
+            "width": 924,
+            "height": 859
+          }
+        },
+        {
+          "id": "encounter_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 78,
+            "y": 176,
+            "width": 924,
+            "height": 859
+          }
+        }
+      ]
+    },
+    {
+      "id": "vault_r2",
+      "name": "Two Weights",
+      "width": 1080,
+      "height": 1250,
+      "spawn": {
+        "x": 135,
+        "y": 276
+      },
+      "objects": [
+        {
+          "id": "vault_pell_2",
+          "type": "npc",
+          "prefab": "grove_hermit",
+          "at": {
+            "x": 440,
+            "y": 222
+          },
+          "name": "Old Pell",
+          "interactionLabel": "Talk to Old Pell"
+        },
+        {
+          "id": "vault_seal_2",
+          "type": "switch",
+          "prefab": "dungeon_lever",
+          "at": {
+            "x": 950,
+            "y": 1030
+          },
+          "name": "Vault Seal",
+          "interactionLabel": "Inspect the seal"
+        }
+      ]
+    },
+    {
+      "id": "combat_b",
+      "name": "The Ash Gallery",
+      "width": 1080,
+      "height": 1100,
+      "spawn": {
+        "x": 308,
+        "y": 278
+      },
+      "objects": [],
+      "zones": [
+        {
+          "id": "encounter_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 80,
+            "y": 179,
+            "width": 918,
+            "height": 851
+          }
+        },
+        {
+          "id": "encounter_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 80,
+            "y": 179,
+            "width": 918,
+            "height": 851
+          }
+        }
+      ]
+    },
+    {
+      "id": "vault_r3",
+      "name": "The Turning Floor",
+      "width": 1080,
+      "height": 990,
+      "spawn": {
+        "x": 132,
+        "y": 247
+      },
+      "objects": [
+        {
+          "id": "vault_pell_3",
+          "type": "npc",
+          "prefab": "grove_hermit",
+          "at": {
+            "x": 440,
+            "y": 191
+          },
+          "name": "Old Pell",
+          "interactionLabel": "Talk to Old Pell"
+        },
+        {
+          "id": "vault_seal_3",
+          "type": "switch",
+          "prefab": "dungeon_lever",
+          "at": {
+            "x": 952,
+            "y": 770
+          },
+          "name": "Vault Seal",
+          "interactionLabel": "Inspect the seal"
+        }
+      ]
+    },
+    {
+      "id": "combat_c",
+      "name": "The Warden's Stair",
+      "width": 1080,
+      "height": 1100,
+      "spawn": {
+        "x": 308,
+        "y": 276
+      },
+      "objects": [],
+      "zones": [
+        {
+          "id": "encounter_boundary",
+          "purpose": "encounter_boundary",
+          "rect": {
+            "x": 80,
+            "y": 176,
+            "width": 921,
+            "height": 857
+          }
+        },
+        {
+          "id": "encounter_leash",
+          "purpose": "leash",
+          "rect": {
+            "x": 80,
+            "y": 176,
+            "width": 921,
+            "height": 857
+          }
+        }
+      ]
+    },
+    {
+      "id": "vault_r4",
+      "name": "The Heart Chamber",
+      "width": 1080,
+      "height": 1440,
+      "spawn": {
+        "x": 160,
+        "y": 289
+      },
+      "objects": [
+        {
+          "id": "vault_pell_4",
+          "type": "npc",
+          "prefab": "grove_hermit",
+          "at": {
+            "x": 440,
+            "y": 234
+          },
+          "name": "Old Pell",
+          "interactionLabel": "Talk to Old Pell"
+        },
+        {
+          "id": "vault_seal_4",
+          "type": "switch",
+          "prefab": "dungeon_lever",
+          "at": {
+            "x": 943,
+            "y": 1220
+          },
+          "name": "Vault Seal",
+          "interactionLabel": "Inspect the seal"
+        }
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "id": "vault_r1_to_combat_a",
+      "from": {
+        "room": "vault_r1",
+        "at": {
+          "x": 890,
+          "y": 1379
+        }
+      },
+      "to": {
+        "room": "combat_a",
+        "at": {
+          "x": 218,
+          "y": 206
+        }
+      },
+      "label": "Through the sealed door",
+      "reverseLabel": "Back down",
+      "locked": true
+    },
+    {
+      "id": "combat_a_to_vault_r2",
+      "from": {
+        "room": "combat_a",
+        "at": {
+          "x": 846,
+          "y": 981
+        }
+      },
+      "to": {
+        "room": "vault_r2",
+        "at": {
+          "x": 190,
+          "y": 227
+        }
+      },
+      "label": "Through the sealed door",
+      "reverseLabel": "Back down",
+      "locked": true
+    },
+    {
+      "id": "vault_r2_to_combat_b",
+      "from": {
+        "room": "vault_r2",
+        "at": {
+          "x": 890,
+          "y": 1146
+        }
+      },
+      "to": {
+        "room": "combat_b",
+        "at": {
+          "x": 218,
+          "y": 209
+        }
+      },
+      "label": "Through the sealed door",
+      "reverseLabel": "Back down",
+      "locked": true
+    },
+    {
+      "id": "combat_b_to_vault_r3",
+      "from": {
+        "room": "combat_b",
+        "at": {
+          "x": 846,
+          "y": 967
+        }
+      },
+      "to": {
+        "room": "vault_r3",
+        "at": {
+          "x": 190,
+          "y": 207
+        }
+      },
+      "label": "Through the sealed door",
+      "reverseLabel": "Back down",
+      "locked": true
+    },
+    {
+      "id": "vault_r3_to_combat_c",
+      "from": {
+        "room": "vault_r3",
+        "at": {
+          "x": 890,
+          "y": 888
+        }
+      },
+      "to": {
+        "room": "combat_c",
+        "at": {
+          "x": 218,
+          "y": 207
+        }
+      },
+      "label": "Through the sealed door",
+      "reverseLabel": "Back down",
+      "locked": true
+    },
+    {
+      "id": "combat_c_to_vault_r4",
+      "from": {
+        "room": "combat_c",
+        "at": {
+          "x": 846,
+          "y": 968
+        }
+      },
+      "to": {
+        "room": "vault_r4",
+        "at": {
+          "x": 190,
+          "y": 249
+        }
+      },
+      "label": "Through the sealed door",
+      "reverseLabel": "Back down",
+      "locked": true
+    }
+  ],
+  "triggers": [
+    {
+      "id": "vault_r1_solved",
+      "event": {
+        "objectId": "vault_seal_1",
+        "roomId": "vault_r1",
+        "type": "object_interact"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "flagId": "vault_r1_solved",
+          "type": "set_dungeon_flag",
+          "value": true
+        },
+        {
+          "text": "The seal breaks. A door grinds open.",
+          "tone": "success",
+          "type": "show_message"
+        }
+      ]
+    },
+    {
+      "id": "vault_r2_solved",
+      "event": {
+        "objectId": "vault_seal_2",
+        "roomId": "vault_r2",
+        "type": "object_interact"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "flagId": "vault_r2_solved",
+          "type": "set_dungeon_flag",
+          "value": true
+        },
+        {
+          "text": "The seal breaks. A door grinds open.",
+          "tone": "success",
+          "type": "show_message"
+        }
+      ]
+    },
+    {
+      "id": "vault_r3_solved",
+      "event": {
+        "objectId": "vault_seal_3",
+        "roomId": "vault_r3",
+        "type": "object_interact"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "flagId": "vault_r3_solved",
+          "type": "set_dungeon_flag",
+          "value": true
+        },
+        {
+          "text": "The seal breaks. A door grinds open.",
+          "tone": "success",
+          "type": "show_message"
+        }
+      ]
+    },
+    {
+      "id": "vault_r4_solved",
+      "event": {
+        "objectId": "vault_seal_4",
+        "roomId": "vault_r4",
+        "type": "object_interact"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "text": "The Ash Heart stirs.",
+          "tone": "success",
+          "type": "show_message"
+        },
+        {
+          "type": "complete_dungeon"
+        }
+      ]
+    },
+    {
+      "id": "combat_a_start",
+      "event": {
+        "roomId": "combat_a",
+        "type": "zone_enter",
+        "zoneId": "combat_a_detector"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "encounterId": "combat_a_fight",
+          "type": "start_encounter"
+        }
+      ]
+    },
+    {
+      "id": "combat_a_cleared",
+      "event": {
+        "encounterId": "combat_a_fight",
+        "state": "completed",
+        "type": "encounter_state"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "flagId": "combat_a_cleared",
+          "type": "set_dungeon_flag",
+          "value": true
+        },
+        {
+          "text": "The last ember gutters out. A door grinds open.",
+          "tone": "success",
+          "type": "show_message"
+        }
+      ]
+    },
+    {
+      "id": "combat_b_start",
+      "event": {
+        "roomId": "combat_b",
+        "type": "zone_enter",
+        "zoneId": "combat_b_detector"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "encounterId": "combat_b_fight",
+          "type": "start_encounter"
+        }
+      ]
+    },
+    {
+      "id": "combat_b_cleared",
+      "event": {
+        "encounterId": "combat_b_fight",
+        "state": "completed",
+        "type": "encounter_state"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "flagId": "combat_b_cleared",
+          "type": "set_dungeon_flag",
+          "value": true
+        },
+        {
+          "text": "The last ember gutters out. A door grinds open.",
+          "tone": "success",
+          "type": "show_message"
+        }
+      ]
+    },
+    {
+      "id": "combat_c_start",
+      "event": {
+        "roomId": "combat_c",
+        "type": "zone_enter",
+        "zoneId": "combat_c_detector"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "encounterId": "combat_c_fight",
+          "type": "start_encounter"
+        }
+      ]
+    },
+    {
+      "id": "combat_c_cleared",
+      "event": {
+        "encounterId": "combat_c_fight",
+        "state": "completed",
+        "type": "encounter_state"
+      },
+      "scope": "instance",
+      "repetition": "once",
+      "conditions": {
+        "items": [],
+        "mode": "all"
+      },
+      "actions": [
+        {
+          "flagId": "combat_c_cleared",
+          "type": "set_dungeon_flag",
+          "value": true
+        },
+        {
+          "text": "The last ember gutters out. A door grinds open.",
+          "tone": "success",
+          "type": "show_message"
+        }
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "combat_a_fight",
+      "room": "combat_a",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "ember_shade",
+              "at": [
+                {
+                  "x": 560,
+                  "y": 420
+                },
+                {
+                  "x": 800,
+                  "y": 440
+                },
+                {
+                  "x": 420,
+                  "y": 660
+                },
+                {
+                  "x": 640,
+                  "y": 600
+                },
+                {
+                  "x": 860,
+                  "y": 900
+                },
+                {
+                  "x": 300,
+                  "y": 900
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "boundary": "encounter_boundary",
+      "leash": "encounter_leash"
+    },
+    {
+      "id": "combat_b_fight",
+      "room": "combat_b",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "ember_shade",
+              "at": [
+                {
+                  "x": 520,
+                  "y": 380
+                },
+                {
+                  "x": 860,
+                  "y": 420
+                },
+                {
+                  "x": 400,
+                  "y": 620
+                },
+                {
+                  "x": 880,
+                  "y": 700
+                }
+              ]
+            },
+            {
+              "archetype": "ashbound_revenant",
+              "at": [
+                {
+                  "x": 640,
+                  "y": 930
+                },
+                {
+                  "x": 360,
+                  "y": 960
+                },
+                {
+                  "x": 800,
+                  "y": 960
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "boundary": "encounter_boundary",
+      "leash": "encounter_leash"
+    },
+    {
+      "id": "combat_c_fight",
+      "room": "combat_c",
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "ashbound_revenant",
+              "at": [
+                {
+                  "x": 420,
+                  "y": 560
+                },
+                {
+                  "x": 860,
+                  "y": 600
+                },
+                {
+                  "x": 300,
+                  "y": 960
+                },
+                {
+                  "x": 700,
+                  "y": 960
+                }
+              ]
+            },
+            {
+              "archetype": "vault_warden",
+              "at": [
+                {
+                  "x": 560,
+                  "y": 840
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "boundary": "encounter_boundary",
+      "leash": "encounter_leash"
+    }
+  ]
+}

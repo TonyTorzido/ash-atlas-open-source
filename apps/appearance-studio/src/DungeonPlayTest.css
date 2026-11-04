@@ -1,0 +1,79 @@
+.studio-playtest { display: grid; gap: 10px; min-width: 0; outline: none; }
+.studio-playtest-toolbar, .studio-playtest-actions, .studio-playtest-hud, .studio-playtest-hint { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.studio-playtest-toolbar { justify-content: space-between; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.studio-playtest-title { display: grid; gap: 3px; }
+.studio-playtest-title > span { color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.studio-playtest-title h2 { margin: 0; font-size: 20px; }
+.studio-playtest-title small { color: var(--muted); }
+.studio-playtest-actions button, .studio-playtest-hud button { min-height: 44px; }
+.studio-playtest-workspace { min-height: 520px; height: max(520px, calc(100dvh - 290px)); display: grid; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: #000; }
+.studio-playtest-workspace.with-debug { grid-template-columns: minmax(0, 1fr) 300px; }
+.studio-playtest-viewport { position: relative; height: 100%; min-width: 0; min-height: 0; container-type: size; overflow: hidden; margin: auto; width: 100%; isolation: isolate; }
+.studio-playtest-viewport.desktop { max-width: calc((100dvh - 290px) * 16 / 9); aspect-ratio: 16/9; }
+.studio-playtest-viewport.tablet { max-width: calc((100dvh - 290px) * 4 / 3); aspect-ratio: 4/3; }
+.studio-playtest-viewport.phone { max-width: 430px; }
+.studio-playtest-viewport .indoor-scene-viewport { position: absolute; z-index: 1; }
+.studio-playtest-viewport .dungeon-enemy-target:hover, .studio-playtest-viewport .dungeon-enemy-target:active { background: transparent; border: 0; }
+.studio-playtest-viewport .game-compact-prompt { bottom: 16px; }
+.studio-playtest-viewport .game-compact-dismiss-layer { position: absolute; }
+.studio-playtest-hud { justify-content: space-between; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.studio-playtest-player { display: grid; grid-template-columns: minmax(140px, 260px) auto; gap: 5px 10px; align-items: center; }
+.studio-playtest-player > strong { grid-column: 1/-1; font-size: 13px; }
+.studio-playtest-player > span { font-size: 12px; font-variant-numeric: tabular-nums; }
+.studio-playtest-health { height: 13px; }
+.studio-playtest[data-playtest-state="DEBUG_PAUSED"] .studio-playtest-health .hp-bar-fill { transition: none; }
+.studio-playtest-combat-controls, .studio-playtest-view-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.studio-playtest-combat-controls button.primary {
+  color: #16120a;
+  border-color: var(--gold);
+  background: linear-gradient(var(--gold-strong), var(--gold));
+  font-weight: 750;
+}
+.studio-playtest-combat-controls button.primary:hover:not(:disabled),
+.studio-playtest-combat-controls button.primary:focus-visible {
+  color: #16120a;
+  border-color: var(--gold-strong);
+  background: linear-gradient(var(--gold-strong), var(--gold));
+}
+.studio-playtest-view-controls label { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.studio-playtest-combat-controls kbd { margin-left: 9px; color: var(--muted); font-size: 10px; }
+.studio-playtest-hint { justify-content: space-between; font-size: 11px; color: var(--muted); padding: 0 3px; }
+.studio-playtest-debug { overflow-y: auto; min-width: 0; border-left: 1px solid var(--line); padding: 16px; display: grid; align-content: start; gap: 10px; background: var(--panel); }
+.studio-playtest-debug h3 { margin: 10px 0 0; font-size: 13px; color: var(--gold); }
+.studio-playtest-debug h3:first-child { margin-top: 0; }
+.studio-playtest-debug-controls { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 10px; }
+.studio-playtest-debug label:not(.toggle) { display: grid; gap: 5px; font-size: 12px; }
+.studio-playtest-debug .toggle { font-size: 12px; min-height: 30px; }
+.studio-playtest-debug-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.studio-playtest-debug-actions button { font-size: 11px; }
+.studio-playtest-debug details { border-top: 1px solid var(--line); padding-top: 10px; font-size: 11px; overflow-wrap: anywhere; }
+.studio-playtest-debug details summary { cursor: pointer; font-weight: 700; }
+.studio-playtest-debug dl { display: grid; gap: 4px; }
+.studio-playtest-debug dt { color: var(--muted); }
+.studio-playtest-debug dd { margin: 0 0 7px; }
+.studio-playtest-debug ol { padding-left: 16px; }
+.studio-playtest-debug li { margin-block: 5px; }
+.studio-playtest-room-notice, .studio-playtest-error { display: flex; align-items: center; gap: 10px; justify-content: space-between; padding: 10px 14px; border: 1px solid var(--gold); border-radius: 6px; font-size: 12px; background: var(--panel); }
+.studio-playtest-diagnostics { display: grid; gap: 6px; padding: 11px 14px; border: 1px solid var(--danger); border-radius: 6px; color: var(--danger); background: color-mix(in srgb, var(--danger) 8%, var(--panel)); font-size: 12px; }
+.studio-playtest-diagnostics > span { color: var(--muted); }
+.studio-playtest-diagnostics ul { display: grid; gap: 4px; margin: 0; padding-left: 20px; }
+.studio-playtest-diagnostics li { display: grid; gap: 2px; }
+.studio-playtest-diagnostics li[data-severity="warning"] { color: var(--gold); }
+.studio-playtest-diagnostics li > span { color: var(--muted); }
+.studio-playtest-diagnostics code { overflow-wrap: anywhere; font-size: 11px; }
+.studio-playtest-error { border-color: var(--danger); color: var(--danger); }
+.studio-playtest-state { position: absolute; inset: 0; z-index: 40; display: grid; place-content: center; text-align: center; gap: 14px; color: var(--aa-menu-text); background: var(--aa-menu-page); }
+.studio-playtest-paused, .studio-playtest-complete { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 40; display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 24px); padding: 8px 14px; border: 1px solid var(--aa-menu-rule); border-radius: 5px; color: var(--aa-menu-text); background: var(--aa-menu-paper); font-size: 12px; }
+.studio-playtest-overlays { position: absolute; inset: 0; z-index: 100; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.studio-playtest-overlays * { vector-effect: non-scaling-stroke; fill: none; stroke-width: 1.3px; }
+.studio-playtest-overlays .bounds { stroke: #fff; }
+.studio-playtest-overlays .collision { stroke: #ff7b76; fill: #ff7b7620; }
+.studio-playtest-overlays .trigger { stroke: #d084ff; fill: #d084ff16; }
+.studio-playtest-overlays .hitbox { stroke: #55dbff; }
+.studio-playtest-overlays .attack { stroke: #ffa94d; stroke-dasharray: 5 5; }
+.studio-playtest-overlays .aggro { stroke: #e26ab9; stroke-dasharray: 3 6; }
+.studio-playtest-overlays .anchor { stroke: #f5d65b; }
+.studio-playtest-overlays text { fill: #fff0ae; stroke: #211a08; stroke-width: 2px; paint-order: stroke fill; font: 11px sans-serif; }
+.studio-playtest-overlays .spawn { stroke: #5bf59e; }
+.studio-playtest-overlays .route { stroke: #5bf59e; stroke-dasharray: 5 5; }
+@media(max-width:900px) { .studio-playtest-workspace.with-debug { height: auto; grid-template-columns: 1fr; }.studio-playtest-workspace.with-debug .studio-playtest-viewport { height: 65dvh; min-height: 420px; }.studio-playtest-debug { max-height: 420px; border-left: 0; border-top: 1px solid var(--line); }.studio-playtest-hud { align-items: stretch; }.studio-playtest-title h2 { font-size: 17px; } }

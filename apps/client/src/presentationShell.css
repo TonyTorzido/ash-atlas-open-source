@@ -1,0 +1,128 @@
+#root {
+  container: mobile-app / size;
+}
+
+.app-presentation,
+.mobile-app-stage {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.app-presentation {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-app-stage {
+  --app-viewport-height: 100cqh;
+  position: relative;
+  overflow: hidden;
+  /* clip (unlike hidden) is never a scroll container: a fixed child that overhangs, such as the
+   * boot-curtain sweep, cannot scroll the whole stage sideways. */
+  overflow: clip;
+  container: mobile-app / size;
+  contain: size layout paint;
+  isolation: isolate;
+}
+
+.desktop-shell-branding {
+  display: none;
+}
+
+html[data-layout-mode="wide"] .app-presentation {
+  --desktop-mobile-stage-width: min(1366px, calc(100cqw - 32px), calc(133.3984375cqh - 42.6875px));
+  --desktop-mobile-stage-height: min(1024px, calc(100cqh - 32px), calc(74.9633968cqw - 23.988287px));
+  display: grid;
+  place-items: center;
+  background-color: var(--aa-ui-ink-950);
+  background-image:
+    linear-gradient(rgb(231 220 194 / 2%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(231 220 194 / 2%) 1px, transparent 1px);
+  background-size: 34px 34px, 34px 34px;
+}
+
+html[data-layout-mode="wide"] .app-presentation:has(
+  #public-chat-panel[data-mobile-chat-presence="open"]
+) {
+  background-image: none;
+}
+
+html[data-layout-mode="wide"] .mobile-app-stage {
+  width: var(--desktop-mobile-stage-width);
+  height: var(--desktop-mobile-stage-height);
+  border-radius: var(--aa-ui-radius-panel);
+  outline: 1px solid var(--aa-ui-border);
+  outline-offset: -1px;
+  background: var(--aa-ui-ink-950);
+  box-shadow:
+    0 24px 70px rgb(0 0 0 / 66%),
+    0 0 0 1px rgb(231 220 194 / 5%);
+}
+
+html[data-layout-mode="wide"] .desktop-shell-branding {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: max(120px, calc((100% - var(--desktop-mobile-stage-width)) / 2 - 48px));
+  max-width: 220px;
+  display: grid;
+  gap: 6px;
+  color: var(--aa-ui-text-muted);
+  pointer-events: none;
+}
+
+html[data-layout-mode="wide"] .chat-top-bar-utility {
+  display: flex;
+}
+
+html[data-layout-mode="wide"] .account-utility {
+  width: auto;
+}
+
+html[data-layout-mode="wide"] .account-menu-trigger {
+  min-width: 38px;
+}
+
+.desktop-shell-branding strong {
+  color: var(--aa-ui-parchment-200);
+  font: 700 clamp(14px, 1.2cqw, 18px)/1 Georgia, "Times New Roman", serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.desktop-shell-brand-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 4px;
+  border-radius: var(--aa-ui-radius-control);
+  object-fit: contain;
+}
+
+.desktop-shell-branding span {
+  color: var(--aa-ui-bronze-500);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.desktop-shell-branding p {
+  max-width: 210px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-layout-mode="wide"] .mobile-app-stage {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-aspect-ratio: 17 / 10), (max-width: 1199px) {
+  html[data-layout-mode="wide"] .desktop-shell-branding {
+    display: none;
+  }
+}

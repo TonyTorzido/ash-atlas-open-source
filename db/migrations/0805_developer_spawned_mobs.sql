@@ -1,0 +1,22 @@
+CREATE TABLE developer_spawned_mobs (
+  entity_id TEXT PRIMARY KEY,
+  creator_player_id TEXT NULL REFERENCES players(id) ON DELETE SET NULL,
+  request_id TEXT NOT NULL,
+  mob_archetype TEXT NOT NULL,
+  appearance_variant TEXT NOT NULL,
+  region_code TEXT NOT NULL,
+  zone_id TEXT NOT NULL,
+  spawn_lat DOUBLE PRECISION NOT NULL,
+  spawn_lon DOUBLE PRECISION NOT NULL,
+  origin_flag_id UUID NULL REFERENCES flags(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE (creator_player_id, request_id),
+  CHECK (length(entity_id) > 0),
+  CHECK (length(request_id) > 0),
+  CHECK (length(mob_archetype) > 0),
+  CHECK (appearance_variant IN ('normal', 'ashen')),
+  CHECK (length(region_code) > 0),
+  CHECK (length(zone_id) > 0),
+  CHECK (spawn_lat >= -90 AND spawn_lat <= 90),
+  CHECK (spawn_lon >= -180 AND spawn_lon <= 180)
+);

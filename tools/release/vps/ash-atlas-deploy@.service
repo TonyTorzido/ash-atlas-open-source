@@ -1,0 +1,21 @@
+[Unit]
+Description=Ash Atlas durable deployment operation %i
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+Restart=no
+User=root
+Group=root
+UMask=0027
+ExecStart=/home/debian/ops/ash-atlas-server/deploy-control.sh run %i
+ExecStopPost=/home/debian/ops/ash-atlas-server/deploy-control.sh finalize %i
+TimeoutStartSec=30min
+TimeoutStopSec=2min
+KillMode=control-group
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

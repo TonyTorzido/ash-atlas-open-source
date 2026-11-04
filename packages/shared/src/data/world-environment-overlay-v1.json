@@ -1,0 +1,90 @@
+{
+  "worldEnvironmentOverlayVersion": 1,
+  "dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "bounds": [
+    [-180, 85.05112878],
+    [180, 85.05112878],
+    [180, -85.05112878],
+    [-180, -85.05112878]
+  ],
+  "defaultOpacity": 0.38,
+  "elevationThresholdsM": {
+    "moderate": 500,
+    "high": 1500,
+    "extreme": 2500,
+    "summit": 5000
+  },
+  "terrainThresholds": {
+    "flatMaxLocalReliefM": 220,
+    "hillyMinElevationM": 1800,
+    "mountainousMinElevationM": 2500,
+    "mountainousMinLocalReliefM": 700
+  },
+  "groups": [
+    {
+      "id": "environment",
+      "label": "Biomes",
+      "order": 0,
+      "categories": [
+        { "id": "jungle", "label": "Jungle", "color": "#14803c", "defaultEnabled": true, "order": 0, "sourceBiomeIds": [1, 2] },
+        { "id": "pinewild", "label": "Pinewild", "color": "#2e5e4e", "defaultEnabled": true, "order": 1, "sourceBiomeIds": [3, 5] },
+        { "id": "greenwood", "label": "Greenwood", "color": "#5ea34a", "defaultEnabled": true, "order": 2, "sourceBiomeIds": [4] },
+        { "id": "frostwood", "label": "Frostwood", "color": "#4f8494", "defaultEnabled": true, "order": 3, "sourceBiomeIds": [6] },
+        { "id": "plains", "label": "Plains", "color": "#b9c24d", "defaultEnabled": true, "order": 4, "sourceBiomeIds": [8] },
+        { "id": "savanna", "label": "Savanna", "color": "#d6a23a", "defaultEnabled": true, "order": 5, "sourceBiomeIds": [7] },
+        { "id": "marsh", "label": "Marsh", "color": "#2f9d8f", "defaultEnabled": true, "order": 6, "sourceBiomeIds": [9, 14] },
+        { "id": "highmeadow", "label": "Highmeadow", "color": "#8caa6c", "defaultEnabled": true, "order": 7, "sourceBiomeIds": [10] },
+        { "id": "scrubland", "label": "Scrubland", "color": "#a8673a", "defaultEnabled": true, "order": 8, "sourceBiomeIds": [12] },
+        { "id": "badlands", "label": "Badlands", "color": "#e2b57a", "defaultEnabled": true, "order": 9, "sourceBiomeIds": [13], "maxAbsLatitudeExclusive": 35 },
+        { "id": "steppe", "label": "Steppe", "color": "#b39a66", "defaultEnabled": true, "order": 10, "sourceBiomeIds": [13], "minAbsLatitude": 35 },
+        { "id": "tundra", "label": "Tundra", "color": "#8fb1a9", "defaultEnabled": true, "order": 11, "sourceBiomeIds": [11], "excludeEcoregionNames": ["Rock and Ice"] },
+        { "id": "frozen_waste", "label": "Frozen Waste", "color": "#e4eef2", "defaultEnabled": true, "order": 12, "sourceBiomeIds": [11], "includeEcoregionNames": ["Rock and Ice"] }
+      ]
+    },
+    {
+      "id": "elevation",
+      "label": "Elevation",
+      "order": 1,
+      "categories": [
+        { "id": "low", "label": "Low", "color": "#4a9a69", "defaultEnabled": true, "order": 0 },
+        { "id": "moderate", "label": "Moderate", "color": "#b0a047", "defaultEnabled": true, "order": 1 },
+        { "id": "high", "label": "High", "color": "#b36a3b", "defaultEnabled": true, "order": 2 },
+        { "id": "extreme", "label": "Alpine", "color": "#8d4e62", "defaultEnabled": true, "order": 3 },
+        { "id": "summit", "label": "Summit", "color": "#161316", "defaultEnabled": true, "order": 4 }
+      ]
+    },
+    {
+      "id": "terrain",
+      "label": "Terrain",
+      "order": 2,
+      "categories": [
+        { "id": "flat", "label": "Flat", "color": "#6f9f72", "defaultEnabled": true, "order": 0, "sourceTerrainClasses": ["flat"] },
+        { "id": "hilly", "label": "Hilly / Rolling", "color": "#a88450", "defaultEnabled": true, "order": 1, "sourceTerrainClasses": ["hilly"] },
+        { "id": "mountainous", "label": "Mountainous / Rugged", "color": "#765a55", "defaultEnabled": true, "order": 2, "sourceTerrainClasses": ["mountainous"] }
+      ]
+    },
+    {
+      "id": "ocean_depth",
+      "label": "Ocean Depth",
+      "order": 3,
+      "categories": [
+        { "id": "nearshore", "label": "Nearshore / Coastal", "color": "#4ea6aa", "defaultEnabled": true, "order": 0, "sourceOceanDepthClasses": ["coastal_or_shallow"] },
+        { "id": "shallow", "label": "Shallow", "color": "#347ca1", "defaultEnabled": true, "order": 1, "sourceOceanDepthClasses": ["shelf_or_slope"] },
+        { "id": "deep", "label": "Deep", "color": "#31558d", "defaultEnabled": true, "order": 2, "sourceOceanDepthClasses": ["deep_ocean"] },
+        { "id": "abyssal", "label": "Abyssal", "color": "#303b6f", "defaultEnabled": true, "order": 3, "sourceOceanDepthClasses": ["abyssal"] }
+      ]
+    },
+    {
+      "id": "water",
+      "label": "Water",
+      "order": 4,
+      "categories": [
+        { "id": "rivers", "label": "Rivers", "color": "#4f9fae", "defaultEnabled": true, "order": 0, "sourceSurface": "river_surface" },
+        { "id": "lakes", "label": "Lakes", "color": "#4c75ad", "defaultEnabled": true, "order": 1, "sourceSurface": "lake_surface" }
+      ]
+    }
+  ]
+}

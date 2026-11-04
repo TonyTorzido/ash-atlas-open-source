@@ -1,0 +1,216 @@
+/* HUD lanes: fixed, non-overlapping zones for transient feedback. Docs: docs/build-bible/HUD_LANES.md
+ *
+ * Notice lane  - short status lines (dungeon news, flag burn, announcements), top-centre directly
+ *                under the chat row.
+ * Loot feed    - item / gold / XP rows from every reward source.
+ *                Desktop: right side, above the pack frame and beside the right quick slots,
+ *                newest row at the bottom.
+ *                Phone:   right side under the chat row and the zoom readout, clear of the
+ *                quick-slot rail; never covers the top bar or the dock.
+ * The bottom-centre slot above the dock belongs to activity timers (.gameplay-status-stack).
+ * Neither lane may cover the chat bar, party widget, unit frame, hotbars or bottom bar. */
+:root {
+  --hud-lane-notice-top: calc(var(--hud-safe-top) + var(--hud-chat-height) + 11px);
+  --hud-lane-notice-width: min(300px, calc(100cqw - 2 * (max(var(--hud-safe-left), var(--hud-safe-right)) + 62px)));
+  --hud-lane-loot-top: calc(var(--hud-safe-top) + var(--hud-chat-height) + 46px);
+  --hud-lane-loot-right: calc(var(--hud-safe-right) + 52px);
+  --hud-lane-loot-width: min(210px, calc(100cqw - 140px));
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] {
+  /* Chat plaque top (safe + 12px) + chat row + gap; same width rule as the plaque. */
+  --hud-lane-notice-top: calc(var(--hud-safe-top) + 12px + var(--hud-chat-height) + 10px);
+  --hud-lane-notice-width: min(440px, calc(100% - 2 * (var(--desktop-unit-width) + var(--desktop-edge) + 24px)));
+  /* Above the pack frame (12px edge + 78px frame) and inside the right quick-slot column (52px + gaps). */
+  --hud-lane-loot-bottom: calc(var(--hud-safe-bottom) + 12px + 78px + 14px);
+  --hud-lane-loot-right: calc(max(var(--desktop-edge), var(--hud-safe-right)) + 52px + 12px);
+  --hud-lane-loot-width: 260px;
+}
+
+/* Notice lane ------------------------------------------------------------ */
+.hud-notice-lane.announcement-global-hud-layer {
+  position: fixed;
+  z-index: 8000;
+  inset: auto;
+  top: var(--hud-lane-notice-top);
+  left: 50%;
+  width: var(--hud-lane-notice-width);
+  display: grid;
+  gap: 6px;
+  justify-items: stretch;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.hud-notice-lane.announcement-global-hud-layer > :is(.announcement-hud-notice, .flag-burn-hud-notice) {
+  position: static;
+  inset: auto;
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+/* The phone's expanded party panel owns the top-left; the lane drops to the slot above the dock timers. */
+html[data-ui-profile="phone"]:not([data-presentation="desktop"]):has(.party-combat-hud:not(.is-collapsed)) .hud-notice-lane.announcement-global-hud-layer {
+  top: auto;
+  bottom: calc(var(--hud-bottom-bar-height) + 62px);
+}
+
+.hud-notice-stack { display: grid; gap: 6px; justify-items: center; margin: 0; padding: 0; list-style: none; }
+.hud-notice {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 6px 14px;
+  border: 1px solid color-mix(in srgb, var(--aa-ui-bronze-500) 62%, transparent);
+  border-left: 3px solid var(--hud-notice-accent, var(--aa-ui-bronze-500));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--aa-ui-leather-800) 94%, transparent);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 34%);
+  color: var(--aa-ui-parchment-100);
+  font: 600 13px/1.3 var(--aa-ui-font-body);
+  text-align: center;
+  animation: hud-notice-in 180ms ease-out, hud-notice-out 300ms ease-in 3200ms forwards;
+}
+.hud-notice-success { --hud-notice-accent: var(--aa-ui-active-bronze); }
+.hud-notice-warning { --hud-notice-accent: var(--aa-ui-warning); }
+.hud-notice-info { --hud-notice-accent: var(--aa-ui-bronze-500); }
+.hud-notice-text { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow-wrap: anywhere; }
+.hud-notice-count { color: var(--aa-ui-active-bronze); font-variant-numeric: tabular-nums; }
+@keyframes hud-notice-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes hud-notice-out { to { opacity: 0; transform: translateY(-4px); } }
+
+/* Loot feed -------------------------------------------------------------- */
+.hud-loot-feed {
+  position: fixed;
+  z-index: 46;
+  top: var(--hud-lane-loot-top);
+  right: var(--hud-lane-loot-right);
+  width: var(--hud-lane-loot-width);
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  pointer-events: none;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .hud-loot-feed {
+  top: auto;
+  bottom: var(--hud-lane-loot-bottom);
+}
+.hud-loot-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 26px;
+  padding: 2px 10px 2px 6px;
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--aa-ui-leather-800) 78%, transparent);
+  color: var(--aa-ui-parchment-100);
+  font: 700 13px/1.15 var(--aa-ui-font-body);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  will-change: opacity, transform;
+}
+.hud-loot-text { overflow: hidden; text-overflow: ellipsis; }
+.hud-loot-icon { width: 22px; height: 22px; flex: 0 0 auto; object-fit: contain; }
+.hud-loot-coin { width: 16px; height: 16px; flex: 0 0 auto; margin-left: 3px; color: var(--hud-gold, #c9a968); }
+.hud-loot-row-gold .hud-loot-text { color: var(--hud-gold, #c9a968); }
+.hud-loot-row-xp { min-height: 22px; padding-left: 10px; background: color-mix(in srgb, var(--aa-ui-leather-800) 58%, transparent); color: var(--aa-ui-text-muted, #b49d75); font-size: 12px; font-weight: 600; }
+.hud-loot-row-notice { padding-left: 10px; }
+html[data-ui-profile="phone"]:not([data-presentation="desktop"]) .hud-loot-row { min-height: 24px; font-size: 12px; }
+html[data-ui-profile="phone"]:not([data-presentation="desktop"]) .hud-loot-icon { width: 20px; height: 20px; }
+
+/* Magnet loot: icons burst from the source, then are pulled into the player ------------------ */
+.hud-loot-fly {
+  position: fixed;
+  z-index: 46;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.loot-fly-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  /* Art only: no box, backdrop or filter. */
+  background: none;
+  border: 0;
+  box-shadow: none;
+  filter: none;
+}
+.loot-fly-icon > img { display: block; width: 100%; height: 100%; object-fit: contain; background: none; }
+/* "+N" that floats off the player's head when loot lands: cream fill, thin dark outline. */
+.loot-fly-count {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  color: #fff6dc;
+  font: 800 13px/1 var(--aa-ui-font-body);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 3px #2a1f12;
+  text-shadow: 0 1px 1px rgb(0 0 0 / 55%);
+}
+.loot-fly-count.is-gold { color: #fac775; }
+
+/* Rare and better: compact pills above the left quick slots ------------------------------- */
+.hud-loot-pills {
+  position: fixed;
+  z-index: 46;
+  left: calc(var(--hud-safe-left, 0px) + 8px);
+  /* Bottom edge sits above the left rail when fully open (centred at 49%, five 44px slots). */
+  top: calc(49% - 2.5 * var(--hud-action-hit, 44px) - 8px);
+  transform: translateY(-100%);
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  max-width: min(240px, calc(100cqw - 120px));
+  pointer-events: none;
+}
+.hud-loot-pill {
+  --item-rarity-color: var(--aa-item-rarity-rare);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 24px;
+  padding: 2px 10px 2px 5px;
+  border: 1px solid var(--item-rarity-color);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--aa-ui-leather-800) 90%, transparent);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 34%);
+  color: var(--aa-ui-parchment-100);
+  font: 700 12px/1.15 var(--aa-ui-font-body);
+  animation: hud-loot-pill-in 220ms ease-out;
+  will-change: opacity, transform;
+}
+.hud-loot-pill[data-rarity="epic"] { --item-rarity-color: var(--aa-item-rarity-epic); }
+.hud-loot-pill[data-rarity="legendary"] { --item-rarity-color: var(--aa-item-rarity-legendary); }
+.hud-loot-pill-dot {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--item-rarity-color);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 45%), inset 0 0 0 2px color-mix(in srgb, #fff 28%, transparent);
+}
+.hud-loot-pill-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@keyframes hud-loot-pill-in { from { transform: translateX(-24px); opacity: 0; } to { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-notice { animation: none; }
+  .hud-loot-pill { animation: none; }
+}
+
+/* UI Standards gallery: the same components laid out statically, outside the fixed lanes. */
+.ui-standards-lane-demo { display: grid; gap: 12px; justify-items: center; padding: 12px; border-radius: 8px; background: color-mix(in srgb, var(--aa-ui-leather-800) 88%, transparent); }
+.ui-standards-lane-demo .hud-notice { animation: none; }
+.ui-standards-lane-demo .hud-loot-feed { position: static; width: min(260px, 100%); }

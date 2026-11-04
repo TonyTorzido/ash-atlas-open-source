@@ -1,0 +1,17 @@
+[Unit]
+Description=Apply bounded Ash Atlas telemetry segment retention
+After=postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/telemetry-export.env
+ExecStart=/opt/ash-atlas/current/tools/release/vps/retain-telemetry-segments.sh
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/ash-atlas/telemetry-exports /var/lib/ash-atlas/telemetry-acknowledgments /run/lock

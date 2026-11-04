@@ -1,0 +1,410 @@
+/* Canonical menu palette. Legacy material names remain aliases so every existing
+ * app consumes the same light/dark contract. Map styles, artwork and semantic
+ * health/rarity/presence colors are deliberately independent of these tokens. */
+:root {
+  color-scheme: light;
+  --aa-menu-page: #e7d8b9;
+  --aa-menu-paper: #f0e4cb;
+  --aa-menu-raised: #e4d1ac;
+  --aa-menu-pressed: #d8c196;
+  --aa-menu-text: #37291f;
+  --aa-menu-muted: #5d4935;
+  --aa-menu-accent: #6c481f;
+  --aa-menu-rule: #b49a70;
+  --aa-menu-danger-surface: #eed3c5;
+  --aa-menu-danger-text: #8a352d;
+  --aa-menu-success-surface: #dce2c5;
+  --aa-menu-success-text: #37543b;
+  --aa-menu-scrim: rgb(48 35 24 / 35%);
+  --aa-prompt-surface: rgb(228 206 160 / 54%);
+  --aa-prompt-edge: rgb(108 72 31 / 24%);
+  --aa-prompt-sheen: rgb(255 248 230 / 35%);
+  --aa-prompt-control: color-mix(in srgb, var(--aa-menu-paper) 70%, transparent);
+  --aa-prompt-control-hover: color-mix(in srgb, var(--aa-menu-paper) 92%, transparent);
+  --aa-prompt-control-edge: rgb(108 72 31 / 20%);
+  --aa-prompt-shadow: 0 18px 44px rgb(48 32 18 / 26%), 0 2px 6px rgb(48 32 18 / 12%);
+  /* Medieval finish: brass edges, carved plaques and parchment grain. */
+  --aa-brass: #94692c;
+  --aa-brass-soft: rgb(148 105 44 / 45%);
+  --aa-plaque-top: #f4e9cf;
+  --aa-plaque-bottom: #e0c998;
+  --aa-plaque-pressed: #d4ba85;
+  --aa-plaque-edge: #9a7443;
+  --aa-plaque-hi: rgb(255 251 238 / 75%);
+  --aa-plaque-lo: rgb(112 76 34 / 30%);
+  --aa-vignette: rgb(122 84 40 / 16%);
+  --aa-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .24 0 0 0 0 .11 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html[data-menu-theme="dark"] {
+  color-scheme: dark;
+  --aa-menu-page: #281f1a;
+  --aa-menu-paper: #34271f;
+  --aa-menu-raised: #433329;
+  --aa-menu-pressed: #554131;
+  --aa-menu-text: #eee3ca;
+  --aa-menu-muted: #c3b297;
+  --aa-menu-accent: #d1af73;
+  --aa-menu-rule: #80674b;
+  --aa-menu-danger-surface: #492b25;
+  --aa-menu-danger-text: #edb0a1;
+  --aa-menu-success-surface: #303c2b;
+  --aa-menu-success-text: #b9d2a8;
+  --aa-menu-scrim: rgb(22 15 11 / 55%);
+  --aa-prompt-surface: rgb(38 27 20 / 52%);
+  --aa-prompt-edge: rgb(209 175 115 / 22%);
+  --aa-prompt-sheen: rgb(255 240 210 / 9%);
+  --aa-prompt-control: color-mix(in srgb, var(--aa-menu-raised) 62%, transparent);
+  --aa-prompt-control-hover: color-mix(in srgb, var(--aa-menu-pressed) 80%, transparent);
+  --aa-prompt-control-edge: rgb(209 175 115 / 20%);
+  --aa-prompt-shadow: 0 18px 44px rgb(0 0 0 / 45%), 0 2px 6px rgb(0 0 0 / 25%);
+  --aa-brass: #c89a52;
+  --aa-brass-soft: rgb(200 154 82 / 38%);
+  --aa-plaque-top: #4d3a2c;
+  --aa-plaque-bottom: #36281f;
+  --aa-plaque-pressed: #2c2019;
+  --aa-plaque-edge: #7e6040;
+  --aa-plaque-hi: rgb(255 228 180 / 10%);
+  --aa-plaque-lo: rgb(0 0 0 / 38%);
+  --aa-vignette: rgb(0 0 0 / 34%);
+  --aa-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .02 0 0 0 0 .01 0 0 0 0 0 0 0 0 .8 -.22'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root,
+.ash-atlas-compact-ui {
+  --aa-ui-ink-950: var(--aa-menu-page);
+  --aa-ui-ink-900: var(--aa-menu-paper);
+  --aa-ui-leather-900: var(--aa-menu-paper);
+  --aa-ui-leather-800: var(--aa-menu-raised);
+  --aa-ui-leather-700: var(--aa-menu-pressed);
+  --aa-ui-wood-800: var(--aa-menu-raised);
+  --aa-ui-wood-700: var(--aa-menu-pressed);
+  --aa-ui-parchment-100: var(--aa-menu-text);
+  --aa-ui-parchment-200: var(--aa-menu-text);
+  --aa-ui-parchment-300: var(--aa-menu-muted);
+  --aa-ui-text: var(--aa-menu-text);
+  --aa-ui-text-muted: var(--aa-menu-muted);
+  --aa-ui-bronze-500: var(--aa-menu-accent);
+  --aa-ui-bronze-700: var(--aa-menu-rule);
+  --aa-ui-active-bronze: var(--aa-menu-accent);
+  --aa-ui-border: var(--aa-menu-rule);
+  --aa-ui-border-muted: color-mix(in srgb, var(--aa-menu-rule) 58%, transparent);
+  --aa-ui-highlight: color-mix(in srgb, var(--aa-menu-paper) 60%, white);
+  --aa-ui-disabled-surface: var(--aa-menu-page);
+  --aa-ui-disabled-text: var(--aa-menu-muted);
+  --aa-ui-panel: var(--aa-menu-paper);
+  --aa-ui-material-folio:
+    var(--aa-grain),
+    radial-gradient(ellipse at 90% 6%, rgb(255 255 255 / 7%), transparent 64%),
+    linear-gradient(165deg, var(--aa-menu-paper), var(--aa-menu-page));
+  --aa-ui-material-ink: var(--aa-ui-material-folio);
+  --aa-ui-material-leather:
+    var(--aa-grain),
+    linear-gradient(155deg, rgb(255 255 255 / 6%), transparent 55%),
+    linear-gradient(180deg, var(--aa-menu-raised), var(--aa-menu-paper));
+  --aa-ui-material-wood: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom));
+  --aa-ui-shadow: 0 10px 28px rgb(39 26 15 / 24%);
+  --aa-ui-shadow-shallow: 0 3px 9px rgb(39 26 15 / 15%);
+}
+
+/* Shared shells, root folios and overlays own materials, never domain data. */
+html[data-ui-profile="phone"] .phone-menu-primary-grid,
+html[data-ui-profile="phone"] .phone-menu-realm-grid,
+html[data-ui-profile="phone"] .phone-menu-profile,
+.ui-standards-menu-preview .phone-menu-primary-grid,
+.ui-standards-menu-preview .phone-menu-realm-grid,
+.ui-standards-menu-preview .phone-menu-profile,
+.character-destination.character-destination .character-loadout {
+  background: var(--aa-ui-material-folio);
+}
+html[data-ui-profile="phone"] .phone-menu-profile-art,
+.ui-standards-menu-preview .phone-menu-profile-art { background: var(--aa-ui-material-leather); }
+html[data-ui-profile="phone"] .phone-menu-profile-class,
+.ui-standards-menu-preview .phone-menu-profile-class,
+.character-destination.character-destination .character-slot,
+.character-destination.character-destination .character-slot > i { color: var(--aa-ui-text-muted); }
+.modal-scrim,
+.destination-shell-scrim { background: var(--aa-menu-scrim); }
+.phone-party-layer .phone-destination-body,
+.phone-party-layer .game-app-body { padding: 0; background: var(--aa-ui-material-folio); overflow-y: auto; }
+/* Canonical compact prompt surface: a see-through parchment leaf in a gilded
+ * double rule with brass corner brackets, a serif small-caps title over a brass
+ * rule, carved plaque buttons and a quiet Cancel row. Both themes. */
+html .game-compact-prompt.game-compact-prompt {
+  --aa-ui-radius-control: 4px;
+  gap: 10px;
+  padding: 14px 14px 10px;
+  border: 1px solid var(--aa-plaque-edge);
+  border-radius: 6px;
+  color: var(--aa-menu-text);
+  background: var(--aa-grain), var(--aa-prompt-surface);
+  -webkit-backdrop-filter: blur(3px) saturate(1.2);
+  backdrop-filter: blur(3px) saturate(1.2);
+  box-shadow: inset 0 0 22px var(--aa-vignette), inset 0 1px var(--aa-prompt-sheen), var(--aa-prompt-shadow);
+}
+/* Inner rule and corner brackets. They never take pointer input. */
+html .game-compact-prompt.game-compact-prompt::before,
+html .game-compact-prompt.game-compact-prompt::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+html .game-compact-prompt.game-compact-prompt::before { border: 1px solid var(--aa-brass-soft); }
+html .game-compact-prompt.game-compact-prompt::after {
+  inset: 1px;
+  background: var(--aa-brass);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/svg%3E") top left / 15px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg transform='translate%2816 0%29 scale%28-1 1%29'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/g%3E%3C/svg%3E") top right / 15px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg transform='translate%280 16%29 scale%281 -1%29'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/g%3E%3C/svg%3E") bottom left / 15px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg transform='translate%2816 16%29 scale%28-1 -1%29'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/g%3E%3C/svg%3E") bottom right / 15px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/svg%3E") top left / 15px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg transform='translate%2816 0%29 scale%28-1 1%29'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/g%3E%3C/svg%3E") top right / 15px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg transform='translate%280 16%29 scale%281 -1%29'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/g%3E%3C/svg%3E") bottom left / 15px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg transform='translate%2816 16%29 scale%28-1 -1%29'%3E%3Cpath d='M1.5 15V6.5Q1.5 1.5 6.5 1.5H15' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5 2.9 7.1 5 5 7.1 2.9 5Z'/%3E%3C/g%3E%3C/svg%3E") bottom right / 15px no-repeat;
+}
+html .game-compact-prompt.game-compact-prompt > * { position: relative; z-index: 1; }
+html .game-compact-prompt.game-compact-prompt h2 {
+  padding: 0 2px;
+  color: var(--aa-menu-text);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font: 700 17px/1.2 var(--aa-ui-font-display);
+  font-variant: small-caps;
+  letter-spacing: .04em;
+}
+/* Brass rule with a centre diamond under the title. */
+html .game-compact-prompt.game-compact-prompt .game-compact-heading,
+html .game-compact-prompt.game-target-picker > h2 {
+  padding-bottom: 9px;
+  background: linear-gradient(90deg, transparent, var(--aa-brass-soft) 18%, var(--aa-brass-soft) 82%, transparent) bottom / 100% 1px no-repeat;
+}
+html .game-compact-prompt.game-compact-prompt .game-compact-heading::after,
+html .game-compact-prompt.game-target-picker > h2::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--aa-brass);
+  transform: translateX(-50%) rotate(45deg);
+}
+html .game-compact-prompt.game-compact-prompt .game-compact-heading { position: relative; }
+html .game-compact-prompt.game-target-picker > h2 { position: relative; }
+html .game-compact-prompt.game-compact-prompt .game-compact-heading p,
+html .game-compact-prompt.game-compact-prompt .game-compact-message { padding: 0 2px; font: 600 12px/1.4 var(--aa-ui-font-body); color: var(--aa-menu-text); }
+html .game-compact-prompt.game-compact-prompt .game-compact-disabled-reason { display: block; padding: 3px 2px 0; font: 600 11px/1.35 var(--aa-ui-font-body); color: var(--aa-menu-text); overflow-wrap: anywhere; }
+html .game-compact-prompt.game-compact-prompt .game-compact-category { padding: 0 2px; color: var(--aa-menu-accent); }
+html .game-compact-prompt.game-compact-prompt .game-compact-content { display: grid; gap: 6px; padding: 0 2px; font: 500 13px/1.45 var(--aa-ui-font-body); color: var(--aa-menu-text); }
+html .game-compact-prompt.game-compact-prompt .game-compact-content p { margin: 0; }
+html .game-compact-prompt.game-compact-prompt .game-compact-actions { gap: 6px; }
+/* Action bars: one action is a full-width bar (the Giving Tree Chop prompt). Two or three actions
+ * split that same bar into equal segments side by side; four or more use two-per-row split rows
+ * (an odd last action spans the row). Cancel is the quiet full-width row last. */
+html .game-compact-prompt.game-compact-prompt .game-compact-actions--stacked:not(:has([data-action-key="move-to-me"])) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+html .game-compact-prompt.game-compact-prompt .game-compact-actions--stacked:not(:has([data-action-key="move-to-me"])):not(:has(> .game-compact-action + .game-compact-action)) { grid-template-columns: minmax(0, 1fr); }
+html .game-compact-prompt.game-compact-prompt .game-compact-actions--stacked:not(:has([data-action-key="move-to-me"])):has(> .game-compact-action:nth-child(3)):not(:has(> .game-compact-action:nth-child(4))) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html .game-compact-prompt.game-compact-prompt .game-compact-actions--stacked:not(:has([data-action-key="move-to-me"])):has(> .game-compact-action:nth-child(4)) > .game-compact-action:nth-child(odd):nth-last-child(2) { grid-column: 1 / -1; }
+html .game-compact-prompt.game-compact-prompt .game-compact-actions--stacked > .game-compact-cancel { grid-column: 1 / -1; }
+html .game-compact-prompt.game-compact-prompt .game-compact-skills { grid-column: 1 / -1; display: grid; gap: 6px; }
+html .game-compact-prompt.game-compact-prompt .game-compact-skill-row { display: grid; gap: 6px; }
+html .game-compact-prompt.game-compact-prompt .game-compact-skill-row > button { padding: 6px 4px; font-size: 12px; line-height: 1.15; }
+/* Target picker rows: one continuous pill split into even halves (same fill,
+ * hairline divider): the target info on the left and its action on the right. */
+html .game-compact-prompt.game-target-picker { --game-target-row-height: 50px; }
+html .game-compact-prompt.game-target-picker h2 { display: flex; align-items: center; gap: 8px; }
+/* Count seal: a small brass-rimmed disc beside the picker title. */
+.game-target-count,
+.game-app-count {
+  display: inline-grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid var(--aa-brass);
+  border-radius: 999px;
+  color: var(--aa-menu-text);
+  background: linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom));
+  box-shadow: inset 0 1px var(--aa-plaque-hi), 0 1px 2px rgb(40 26 14 / 20%);
+  /* Georgia's old-style figures sit low; the body face has even numerals. */
+  font: 700 12px/1 var(--aa-ui-font-body);
+  font-variant: normal;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 0;
+  text-align: center;
+}
+html .game-compact-prompt.game-compact-prompt .game-interaction-row.has-quick-action { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+html .game-compact-prompt.game-compact-prompt .game-interaction-row.game-interaction-row > button { min-height: 50px; border-radius: var(--aa-ui-radius-control); }
+html .game-compact-prompt.game-compact-prompt .game-interaction-row.has-quick-action > .game-interaction-detail { border-right-width: 0; border-radius: var(--aa-ui-radius-control) 0 0 var(--aa-ui-radius-control); }
+html .game-compact-prompt.game-compact-prompt .game-interaction-row.has-quick-action > .game-interaction-quick { border-left: 1px solid var(--aa-prompt-control-edge); border-radius: 0 var(--aa-ui-radius-control) var(--aa-ui-radius-control) 0; }
+html .game-compact-prompt.game-compact-prompt .game-interaction-detail { align-content: center; gap: 2px; padding: 6px 12px; text-align: left; }
+html .game-compact-prompt.game-compact-prompt .game-interaction-row strong { font: 700 14px/1.2 var(--aa-ui-font-display); letter-spacing: .01em; }
+html .game-compact-prompt.game-compact-prompt .game-interaction-context { gap: 0; color: var(--aa-menu-muted); font: 600 11px/1.25 var(--aa-ui-font-body); }
+html .game-compact-prompt.game-compact-prompt .game-interaction-context > span { color: inherit; font: inherit; letter-spacing: 0; text-transform: none; }
+html .game-compact-prompt.game-compact-prompt .game-interaction-context > .game-interaction-detail-status { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+html .game-compact-prompt.game-compact-prompt .game-interaction-meta + .game-interaction-detail-status::before { content: "·"; margin: 0 4px; }
+html .game-compact-prompt.game-compact-prompt .game-interaction-quick { place-items: center; text-align: center; }
+html .game-compact-prompt.game-compact-prompt button {
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--aa-plaque-edge);
+  border-radius: var(--aa-ui-radius-control);
+  color: var(--aa-menu-text);
+  background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom));
+  box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 1px 2px rgb(40 26 14 / 18%);
+  font: 700 13px/1.2 var(--aa-ui-font-display);
+  letter-spacing: .01em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+  transition: filter 120ms ease, border-color 120ms ease, transform 80ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+html .game-compact-prompt.game-compact-prompt button:hover:not(:disabled),
+html .game-compact-prompt.game-compact-prompt button:focus-visible { border-color: var(--aa-brass); filter: brightness(1.04); }
+html .game-compact-prompt.game-compact-prompt button:focus-visible { outline: 2px solid color-mix(in srgb, var(--aa-brass) 75%, transparent); outline-offset: 1px; }
+/* The prompt container is focused by script only so Escape and focus return work. It is not a
+   keyboard stop (tabindex -1), so the global [tabindex]:focus-visible yellow ring never outlines
+   the whole panel; its buttons keep their own focus-visible ring. */
+html .game-compact-prompt.game-action-prompt[tabindex]:focus,
+html .game-compact-prompt.game-action-prompt[tabindex]:focus-visible { outline: none; }
+/* Every desktop window is likewise focused by script only (Escape, focus return); never ring the whole frame. */
+html[data-presentation="desktop"] aside.desktop-floating-window[data-desktop-window][tabindex]:is(:focus, :focus-visible) { outline: none; }
+html .game-compact-prompt.game-compact-prompt button:active:not(:disabled) {
+  background: var(--aa-grain), var(--aa-plaque-pressed);
+  box-shadow: inset 0 2px 4px var(--aa-plaque-lo);
+  transform: translateY(1px);
+}
+html .game-compact-prompt.game-compact-prompt button.danger {
+  border-color: color-mix(in srgb, var(--aa-menu-danger-text) 55%, var(--aa-plaque-edge));
+  color: var(--aa-menu-danger-text);
+  background: var(--aa-grain), linear-gradient(180deg, color-mix(in srgb, var(--aa-menu-danger-surface) 80%, var(--aa-plaque-top)), var(--aa-menu-danger-surface));
+}
+html .game-compact-prompt.game-compact-prompt button.secondary { color: var(--aa-menu-muted); }
+html .game-compact-prompt.game-compact-prompt button:disabled { color: var(--aa-menu-muted); box-shadow: none; filter: saturate(.5); opacity: .55; }
+html .game-compact-prompt.game-compact-prompt button.game-compact-cancel {
+  min-height: 34px;
+  border-color: transparent;
+  color: var(--aa-menu-muted);
+  background: transparent;
+  box-shadow: none;
+  font: 600 13px/1.2 var(--aa-ui-font-display);
+  font-variant: small-caps;
+  letter-spacing: .08em;
+}
+html .game-compact-prompt.game-compact-prompt button.game-compact-cancel:hover:not(:disabled),
+html .game-compact-prompt.game-compact-prompt button.game-compact-cancel:active:not(:disabled) { border-color: transparent; color: var(--aa-menu-text); background: transparent; filter: none; transform: none; }
+.game-compact-message.error { padding: 8px 10px; border-radius: 4px; background: var(--aa-menu-danger-surface); }
+.game-action-prompt-forced-layer .game-compact-prompt { max-height: calc(100dvh - 32px); overflow-y: auto; }
+.world-activity-timer-plate { background: var(--aa-ui-material-folio); color: var(--aa-menu-text); box-shadow: var(--aa-ui-shadow-shallow); }
+.world-activity-timer-plate output, .world-activity-timer-icon { color: var(--aa-menu-text); }
+.world-activity-timer-progress { background: var(--aa-menu-paper); border-color: var(--aa-menu-rule); box-shadow: none; }
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-track {
+  --aa-health-track: var(--aa-menu-paper);
+  --aa-health-frame: var(--aa-menu-paper);
+  background: var(--aa-menu-paper); border-color: var(--aa-menu-rule); box-shadow: none;
+}
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-track-fill,
+html[data-ui-profile="phone"] .phone-bottom-status .hp-bar-damage-trail { opacity: .48; }
+html[data-menu-theme="dark"][data-ui-profile="phone"] .phone-bottom-status .status-bar-track-fill,
+html[data-menu-theme="dark"][data-ui-profile="phone"] .phone-bottom-status .hp-bar-damage-trail { opacity: .28; }
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock .status-bar-compact-value { color: var(--aa-menu-text); font-weight: 800; text-shadow: none; }
+.game-compact-message.error,
+.game-compact-action.destructive { color: var(--aa-menu-danger-text); }
+.game-compact-action.destructive { background: var(--aa-menu-danger-surface); color: var(--aa-menu-danger-text); }
+.direct-messages-panel {
+  --dm-bg: var(--aa-menu-page);
+  --dm-panel: var(--aa-menu-paper);
+  --dm-line: var(--aa-ui-border-muted);
+  --dm-gold: var(--aa-menu-accent);
+  --dm-text: var(--aa-menu-text);
+  --dm-muted: var(--aa-menu-muted);
+}
+
+/* Item Protection owns one bounded scroller per active tab. The old 100%-high
+ * block plus an unconstrained nested section clipped records below the shell. */
+.inventory-protection-destination { overflow: clip !important; }
+.inventory-protection-destination :is(.game-app-body, .phone-destination-body) {
+  display: flex; flex-direction: column; min-height: 0; padding: 12px; overflow: hidden !important;
+}
+html[data-ui-profile="phone"] .phone-destination-shell :is(.phone-menu-header > small, .game-app-header small) { font: 500 12px/1.4 var(--aa-ui-font-body); }
+html[data-ui-profile="phone"] .inventory-protection-destination .phone-menu-header { flex-wrap: wrap; gap: 6px; }
+html[data-ui-profile="phone"] .inventory-protection-destination .phone-menu-header > small { flex-basis: 100%; max-width: none; text-align: left; }
+.inventory-protection-destination .inventory-protection-layout {
+  display: flex; flex-direction: column; flex: 1 1 auto; width: 100%;
+  height: auto; min-height: 0; overflow: hidden; background: transparent;
+}
+.inventory-protection-layout > .game-app-tabs { flex: 0 0 auto; }
+.inventory-protection-destination .inventory-protection-scroll {
+  flex: 1 1 auto; min-height: 0; overflow: auto; overscroll-behavior: contain;
+  scrollbar-gutter: stable; scroll-padding-block: 12px; outline-offset: -3px;
+}
+.inventory-protection-destination .inventory-protection-item-copy,
+.inventory-protection-destination .inventory-protection-toggle > span {
+  grid-template-columns: 36px minmax(0, 1fr); column-gap: 10px; align-items: center;
+}
+.inventory-protection-destination .inventory-protection-item-copy .item-artwork,
+.inventory-protection-destination .inventory-protection-toggle .item-artwork {
+  grid-column: 1; grid-row: 1 / 3; margin: 0; float: none;
+}
+.inventory-protection-item-copy :is(strong, small),
+.inventory-protection-toggle > span :is(strong, small) { grid-column: 2; overflow-wrap: anywhere; }
+.inventory-protection-destination .inventory-protection-layout small { font: 600 12px/1.4 var(--aa-ui-font-body); }
+@container (max-width: 560px) {
+  .inventory-protection-destination .inventory-protection-material { grid-template-columns: minmax(0, 1fr) auto !important; }
+  .inventory-protection-destination .inventory-protection-item-copy { grid-column: 1 / -1; }
+  .inventory-protection-destination .inventory-protection-quantity { grid-template-columns: 44px minmax(54px, 1fr) 44px; }
+  .inventory-protection-destination .inventory-protection-toggle { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Readable copy belongs to the active paper, including legacy auth/settings
+ * declarations that predate semantic theme tokens. No opacity-based text mute. */
+.auth-card :is(h1, h2, h3, strong, label, legend), .auth-card .auth-brand { color: var(--aa-ui-text); }
+.auth-card :is(p, .auth-copy, .auth-detail, .auth-field, .google-button-slot) { color: var(--aa-ui-text-muted); }
+.auth-card a, .auth-card .auth-links a { color: var(--aa-ui-active-bronze); text-decoration: underline; }
+.auth-card .developer-login-panel { background: var(--aa-menu-raised); color: var(--aa-ui-text); border-color: var(--aa-ui-border); }
+.auth-card :is(.developer-login-button, .auth-primary, .auth-secondary) { color: var(--aa-ui-text); background: var(--aa-menu-paper); border: 1px solid var(--aa-ui-border); }
+.auth-card input { color: var(--aa-ui-text); background: var(--aa-menu-paper); border-color: var(--aa-ui-border); }
+.auth-screen { background-color: var(--aa-menu-page); }
+html[data-ui-profile="phone"] .phone-settings-app .game-app-card > header h3,
+html[data-ui-profile="phone"] .phone-settings-app .map-data-credits h2,
+html[data-ui-profile="phone"] .phone-settings-app .phone-layout-select,
+html[data-ui-profile="phone"] .chat-panel-phone-title { color: var(--aa-ui-text); }
+html[data-ui-profile="phone"] .phone-settings-app .game-app-card > header .game-app-card-description,
+html[data-ui-profile="phone"] .phone-settings-app .map-data-credits p,
+html[data-ui-profile="phone"] .phone-settings-app .map-data-credits .map-renderer-notice,
+html[data-ui-profile="phone"] .phone-settings-app .phone-map-settings small,
+html[data-ui-profile="phone"] .phone-settings-app .phone-legal-card,
+html[data-ui-profile="phone"] .phone-settings-app .phone-legal-card p { color: var(--aa-ui-text-muted); }
+html[data-ui-profile="phone"] .phone-settings-app .map-data-credits .game-app-card-leading svg { color: var(--aa-ui-active-bronze); }
+html[data-ui-profile="phone"] .phone-settings-app .map-data-credits a,
+html[data-ui-profile="phone"] .phone-settings-app .phone-support-privacy,
+html[data-ui-profile="phone"] .chat-composer-terms-action { color: var(--aa-ui-text); background: var(--aa-menu-raised); border-color: var(--aa-ui-border); }
+html[data-ui-profile="phone"] .phone-menu-profile-eyebrow,
+html[data-ui-profile="phone"] .phone-menu-profile-stat small,
+html[data-ui-profile="phone"] .phone-menu-profile-hunger-heading small,
+html[data-ui-profile="phone"] .phone-menu-profile-xp small,
+.ui-standards-menu-preview .phone-menu-profile-eyebrow,
+.ui-standards-menu-preview .phone-menu-profile-stat small,
+.ui-standards-menu-preview .phone-menu-profile-hunger-heading small,
+.ui-standards-menu-preview .phone-menu-profile-xp small { color: var(--aa-ui-text-muted); }
+html[data-ui-profile="phone"] .phone-settings-app :is(button:disabled, select:disabled) {
+  opacity: 1; color: var(--aa-ui-disabled-text); background: var(--aa-ui-disabled-surface); border-style: dashed;
+}
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-value {
+  inset: 0; width: 100%; min-width: 0; max-width: 100%; transform: none;
+  padding-inline: 2px; color: var(--aa-menu-text); background: transparent; text-shadow: none;
+  font-weight: 800; font-variant-numeric: tabular-nums;
+}
+.direct-message-terms-gate, .direct-message-terms-gate p { color: var(--aa-ui-text); background: var(--aa-menu-raised); }
+html[data-ui-profile="phone"] :is(.phone-destination-shell, .chat-panel, .auth-card) :is(button:disabled, select:disabled, textarea:disabled) {
+  opacity: 1; color: var(--aa-ui-disabled-text);
+}
+input::placeholder, textarea::placeholder { color: var(--aa-ui-text-muted); opacity: 1; }
+
+/* Status/economy ink follows the same floating parchment as resource values. */
+html[data-ui-profile="phone"] .phone-economy-state .phone-economy-state-value,
+html[data-ui-profile="phone"] .phone-economy-gold > strong,
+html[data-ui-profile="phone"] .phone-economy-state-none,
+html[data-ui-profile="phone"] .phone-economy-storage .phone-economy-row-icon {
+  color: var(--aa-ui-text);
+  text-shadow: none;
+}
+html[data-ui-profile="phone"] .phone-economy-storage-track { background: var(--aa-menu-paper); }
+html[data-ui-profile="phone"] .phone-economy-storage-fill { background: var(--aa-menu-rule); opacity: .45; }
+html[data-ui-profile="phone"] .phone-economy-storage .phone-economy-storage-value { color: var(--aa-menu-text); background: transparent; text-shadow: none; font-weight: 800; }
+html[data-ui-profile="phone"] .inventory-full .phone-economy-storage-fill { background: var(--aa-ui-danger); }

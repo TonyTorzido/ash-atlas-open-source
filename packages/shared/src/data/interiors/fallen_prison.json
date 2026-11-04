@@ -1,0 +1,6163 @@
+{
+  "defaultRoomId": "wreck_gate",
+  "description": "A sky prison fallen to earth. Fight through the Barracks, free the Valkyries in the Warded Cells, and climb the Sentencing Stair to the Trifang Warden. Level 40 by design (entry is capped by the current level cap).",
+  "environment": {
+    "accentColor": "#c9b26a",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#0c0d12",
+    "environmentId": "prison",
+    "floorColor": "#3a3b44",
+    "musicAssetKey": null,
+    "wallColor": "#2c2e38"
+  },
+  "id": "fallen_prison",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "access": {
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutHours": 10,
+      "minimumLevel": 40
+    },
+    "bossTemplateIds": [
+      "centurion",
+      "brood_matron",
+      "trifang_warden"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "wreck_gate"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "barracks_hall_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "hall_patrol",
+        "leashZoneId": "barracks_hall_leash",
+        "lockPortalIds": [
+          "wreck_gate_to_barracks_hall_back",
+          "barracks_hall_to_barracks_maze_a"
+        ],
+        "name": "Hall Patrol",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "barracks_hall",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "hall_patrol_warden_scout_w1",
+              "hall_patrol_warden_scout_w1_2",
+              "hall_patrol_warden_scout_w1_3",
+              "hall_patrol_warden_scout_w1_4"
+            ]
+          },
+          {
+            "delayMs": 2000,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "hall_patrol_warden_scout_w2",
+              "hall_patrol_warden_scout_w2_2",
+              "hall_patrol_warden_scout_w2_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "barracks_maze_a_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "maze_west",
+        "leashZoneId": "barracks_maze_a_leash",
+        "lockPortalIds": [
+          "barracks_hall_to_barracks_maze_a_back",
+          "barracks_maze_a_to_barracks_maze_b"
+        ],
+        "name": "West Wing Patrols",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "barracks_maze_a",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "maze_west_warden_scout_w1",
+              "maze_west_warden_scout_w1_2",
+              "maze_west_warden_scout_w1_3",
+              "maze_west_zealot_w1",
+              "maze_west_zealot_w1_2"
+            ]
+          },
+          {
+            "delayMs": 2000,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "maze_west_zealot_w2",
+              "maze_west_zealot_w2_2",
+              "maze_west_zealot_w2_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "barracks_maze_b_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "maze_east",
+        "leashZoneId": "barracks_maze_b_leash",
+        "lockPortalIds": [
+          "barracks_maze_a_to_barracks_maze_b_back",
+          "barracks_maze_b_to_centurion_hall"
+        ],
+        "name": "East Wing Zealots",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "barracks_maze_b",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "maze_east_zealot_w1",
+              "maze_east_zealot_w1_2",
+              "maze_east_zealot_w1_3",
+              "maze_east_zealot_w1_4"
+            ]
+          },
+          {
+            "delayMs": 2000,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "maze_east_warden_scout_w2",
+              "maze_east_warden_scout_w2_2",
+              "maze_east_warden_scout_w2_3",
+              "maze_east_zealot_w2",
+              "maze_east_zealot_w2_2"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "centurion",
+        "boundaryZoneId": "centurion_hall_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "centurion",
+        "leashZoneId": "centurion_hall_leash",
+        "lockPortalIds": [
+          "barracks_maze_b_to_centurion_hall_back",
+          "centurion_hall_to_cell_spine"
+        ],
+        "name": "The Cohort Marshal",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "centurion_hall",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "centurion_boss"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "cell_spine_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "spine_guard",
+        "leashZoneId": "cell_spine_leash",
+        "lockPortalIds": [
+          "centurion_hall_to_cell_spine_back",
+          "cell_spine_to_cell_a",
+          "cell_spine_to_cell_b",
+          "cell_spine_to_egg_chamber"
+        ],
+        "name": "Spine Guard",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "cell_spine",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "spine_guard_serpent_jailer_w1",
+              "spine_guard_serpent_jailer_w1_2",
+              "spine_guard_warden_scout_w1",
+              "spine_guard_warden_scout_w1_2",
+              "spine_guard_warden_scout_w1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "cell_a_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "rescue_a",
+        "leashZoneId": "cell_a_leash",
+        "lockPortalIds": [],
+        "name": "Serpent Jailer I",
+        "rescue": {
+          "timeLimitMs": 75000
+        },
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "cell_a",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "rescue_a_serpent_jailer_w1"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "cell_b_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "rescue_b",
+        "leashZoneId": "cell_b_leash",
+        "lockPortalIds": [],
+        "name": "Serpent Jailer II",
+        "rescue": {
+          "timeLimitMs": 80000
+        },
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "cell_b",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "rescue_b_serpent_jailer_w1"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "cell_c_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "rescue_c",
+        "leashZoneId": "cell_c_leash",
+        "lockPortalIds": [],
+        "name": "Serpent Jailer III",
+        "rescue": {
+          "timeLimitMs": 90000
+        },
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "cell_c",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "rescue_c_serpent_jailer_w1"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "egg_chamber_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "brood_matron",
+        "leashZoneId": "egg_chamber_leash",
+        "lockPortalIds": [
+          "cell_spine_to_egg_chamber_back",
+          "egg_chamber_to_stair_foot"
+        ],
+        "name": "The Brood Matron",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "egg_chamber",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "brood_matron_coil_hatchling_w1",
+              "brood_matron_coil_hatchling_w1_2",
+              "brood_matron_coil_hatchling_w1_3",
+              "brood_matron_coil_hatchling_w1_4",
+              "brood_matron_coil_hatchling_w1_5",
+              "brood_matron_coil_hatchling_w1_6",
+              "brood_matron_coil_hatchling_w1_7",
+              "brood_matron_coil_hatchling_w1_8"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "brood_matron",
+        "boundaryZoneId": "egg_chamber_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "brood_matron_boss",
+        "leashZoneId": "egg_chamber_leash",
+        "lockPortalIds": [
+          "cell_spine_to_egg_chamber_back",
+          "egg_chamber_to_stair_foot"
+        ],
+        "name": "The Brood Matron - Boss",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "egg_chamber",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "brood_matron_boss_boss"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "stair_foot_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "stair_guard_low",
+        "leashZoneId": "stair_foot_leash",
+        "lockPortalIds": [
+          "egg_chamber_to_stair_foot_back",
+          "stair_foot_to_stair_mid",
+          "stair_foot_to_treasure_a"
+        ],
+        "name": "Legion at the Foot",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "stair_foot",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "stair_guard_low_legion_soldier_w1",
+              "stair_guard_low_legion_soldier_w1_2",
+              "stair_guard_low_legion_soldier_w1_3",
+              "stair_guard_low_legion_soldier_w1_4"
+            ]
+          },
+          {
+            "delayMs": 2000,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "stair_guard_low_legion_soldier_w2",
+              "stair_guard_low_legion_soldier_w2_2",
+              "stair_guard_low_legion_soldier_w2_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "stair_mid_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "stair_guard_high",
+        "leashZoneId": "stair_mid_leash",
+        "lockPortalIds": [
+          "stair_foot_to_stair_mid_back",
+          "stair_mid_to_treasure_b",
+          "stair_mid_to_hound_den"
+        ],
+        "name": "Legion on the Landing",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "stair_mid",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "stair_guard_high_legion_soldier_w1",
+              "stair_guard_high_legion_soldier_w1_2",
+              "stair_guard_high_legion_soldier_w1_3",
+              "stair_guard_high_legion_soldier_w1_4",
+              "stair_guard_high_legion_soldier_w1_5"
+            ]
+          },
+          {
+            "delayMs": 2000,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "stair_guard_high_legion_soldier_w2",
+              "stair_guard_high_legion_soldier_w2_2",
+              "stair_guard_high_legion_soldier_w2_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "treasure_a_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "mimic_ambush_a",
+        "leashZoneId": "treasure_a_leash",
+        "lockPortalIds": [],
+        "name": "Mimic Ambush",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "treasure_a",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "mimic_ambush_a_mimic_w1",
+              "mimic_ambush_a_mimic_w1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "treasure_b_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "mimic_vault_b",
+        "leashZoneId": "treasure_b_leash",
+        "lockPortalIds": [],
+        "name": "Mimic Vault",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "treasure_b",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "mimic_vault_b_mimic_w1",
+              "mimic_vault_b_mimic_w1_2",
+              "mimic_vault_b_mimic_w1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "trifang_warden",
+        "boundaryZoneId": "hound_den_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "hound",
+        "leashZoneId": "hound_den_leash",
+        "lockPortalIds": [
+          "stair_mid_to_hound_den_back"
+        ],
+        "name": "The Trifang Warden",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "hound_den",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "hound_boss"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "entrance_escape",
+      "portalId": "fallen_prison_world_to_entrance",
+      "roomId": "wreck_gate"
+    },
+    "escape": {
+      "portalId": "fallen_prison_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "fallen_prison-v1"
+    },
+    "rewardTableIds": [
+      "fallen_prison_centurion_hoard_reward",
+      "fallen_prison_mother_clutch_reward",
+      "fallen_prison_vault_chest_a_reward",
+      "fallen_prison_vault_chest_b_reward",
+      "fallen_prison_hound_hoard_reward"
+    ],
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "fallen_prison_centurion_hoard_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "centurion_hoard",
+          "roomId": "centurion_hall",
+          "type": "object_interact"
+        },
+        "id": "centurion_hoard_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fallen_prison_mother_clutch_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "mother_clutch",
+          "roomId": "egg_chamber",
+          "type": "object_interact"
+        },
+        "id": "mother_clutch_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fallen_prison_vault_chest_a_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "vault_chest_a",
+          "roomId": "treasure_a",
+          "type": "object_interact"
+        },
+        "id": "vault_chest_a_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fallen_prison_vault_chest_b_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "vault_chest_b",
+          "roomId": "treasure_b",
+          "type": "object_interact"
+        },
+        "id": "vault_chest_b_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "fallen_prison_hound_hoard_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "hound_hoard",
+          "roomId": "hound_den",
+          "type": "object_interact"
+        },
+        "id": "hound_hoard_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "hall_patrol",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "barracks_hall",
+          "type": "room_enter"
+        },
+        "id": "start_hall_patrol",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "maze_west",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "barracks_maze_a",
+          "type": "room_enter"
+        },
+        "id": "start_maze_west",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "maze_east",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "barracks_maze_b",
+          "type": "room_enter"
+        },
+        "id": "start_maze_east",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "centurion",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "centurion_hall",
+          "type": "room_enter"
+        },
+        "id": "start_centurion",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "centurion_hoard",
+            "roomId": "centurion_hall",
+            "type": "set_object_available"
+          },
+          {
+            "text": "The Cohort Marshal falls. His strongbox is revealed.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "centurion",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "centurion_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "spine_guard",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "cell_spine",
+          "type": "room_enter"
+        },
+        "id": "start_spine_guard",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "rescue_a",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "cell_a",
+          "type": "room_enter"
+        },
+        "id": "start_rescue_a",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "rescue_b",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "cell_b",
+          "type": "room_enter"
+        },
+        "id": "start_rescue_b",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "rescue_c",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "cell_c",
+          "type": "room_enter"
+        },
+        "id": "start_rescue_c",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "brood_matron_boss",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "brood_matron",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "brood_matron_starts_brood_matron_boss",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "brood_matron",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "egg_chamber",
+          "type": "room_enter"
+        },
+        "id": "start_brood_matron",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "mother_clutch",
+            "roomId": "egg_chamber",
+            "type": "set_object_available"
+          },
+          {
+            "text": "The Brood Matron falls. Her clutch lies open.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "brood_matron_boss",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "brood_matron_boss_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "stair_guard_low",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "stair_foot",
+          "type": "room_enter"
+        },
+        "id": "start_stair_guard_low",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "stair_guard_high",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "stair_mid",
+          "type": "room_enter"
+        },
+        "id": "start_stair_guard_high",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "mimic_ambush_a",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "treasure_a",
+          "type": "zone_enter",
+          "zoneId": "vault_a_trigger"
+        },
+        "id": "start_mimic_ambush_a",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "mimic_vault_b",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "treasure_b",
+          "type": "room_enter"
+        },
+        "id": "start_mimic_vault_b",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "vault_chest_b",
+            "roomId": "treasure_b",
+            "type": "set_object_available"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "mimic_vault_b",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "mimic_vault_b_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "hound",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "hound_den",
+          "type": "room_enter"
+        },
+        "id": "start_hound",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "hound_hoard",
+            "roomId": "hound_den",
+            "type": "set_object_available"
+          },
+          {
+            "available": true,
+            "objectId": "verdict_altar",
+            "roomId": "hound_den",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          },
+          {
+            "text": "The Hound falls. The prison is yours.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "hound",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "hound_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      }
+    ]
+  },
+  "name": "Fallen Prison",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "wreck_gate"
+      },
+      "destinationArrivalAnchorId": "entrance_escape",
+      "enabled": false,
+      "id": "fallen_prison_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for fallen_prison",
+      "presentation": "door",
+      "reciprocalPortalId": "fallen_prison_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "fallen_prison_entrance_to_world",
+      "interactionLabel": "Return to world",
+      "presentation": "door",
+      "reciprocalPortalId": "fallen_prison_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "wreck_gate"
+      },
+      "sourceApproachAnchorId": "entrance_escape",
+      "sourceThresholdAnchorId": "entrance_escape"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "barracks_hall"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "wreck_gate_to_barracks_hall",
+      "interactionLabel": "Enter the Barracks",
+      "preloadSceneKey": "fallen_prison/barracks_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "wreck_gate_to_barracks_hall_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "wreck_gate"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "wreck_gate"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "wreck_gate_to_barracks_hall_back",
+      "interactionLabel": "Back to the Wreck",
+      "preloadSceneKey": "fallen_prison/wreck_gate",
+      "presentation": "door",
+      "reciprocalPortalId": "wreck_gate_to_barracks_hall",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "barracks_hall"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "barracks_maze_a"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "barracks_hall_to_barracks_maze_a",
+      "interactionLabel": "Into the Maze",
+      "preloadSceneKey": "fallen_prison/barracks_maze_a",
+      "presentation": "door",
+      "reciprocalPortalId": "barracks_hall_to_barracks_maze_a_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "barracks_hall"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "barracks_hall"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "barracks_hall_to_barracks_maze_a_back",
+      "interactionLabel": "Back to the Hall",
+      "preloadSceneKey": "fallen_prison/barracks_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "barracks_hall_to_barracks_maze_a",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "barracks_maze_a"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "barracks_maze_b"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "barracks_maze_a_to_barracks_maze_b",
+      "interactionLabel": "Deeper Into the Maze",
+      "preloadSceneKey": "fallen_prison/barracks_maze_b",
+      "presentation": "door",
+      "reciprocalPortalId": "barracks_maze_a_to_barracks_maze_b_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "barracks_maze_a"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "barracks_maze_a"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "barracks_maze_a_to_barracks_maze_b_back",
+      "interactionLabel": "Back to the West Wing",
+      "preloadSceneKey": "fallen_prison/barracks_maze_a",
+      "presentation": "door",
+      "reciprocalPortalId": "barracks_maze_a_to_barracks_maze_b",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "barracks_maze_b"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "centurion_hall"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "barracks_maze_b_to_centurion_hall",
+      "interactionLabel": "To the Marshal's Hall",
+      "preloadSceneKey": "fallen_prison/centurion_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "barracks_maze_b_to_centurion_hall_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "barracks_maze_b"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "barracks_maze_b"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "barracks_maze_b_to_centurion_hall_back",
+      "interactionLabel": "Back to the Maze",
+      "preloadSceneKey": "fallen_prison/barracks_maze_b",
+      "presentation": "door",
+      "reciprocalPortalId": "barracks_maze_b_to_centurion_hall",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "centurion_hall"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "centurion_hall_to_cell_spine",
+      "interactionLabel": "Descend to the Cells",
+      "preloadSceneKey": "fallen_prison/cell_spine",
+      "presentation": "door",
+      "reciprocalPortalId": "centurion_hall_to_cell_spine_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "centurion_hall"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "centurion_hall"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "centurion_hall_to_cell_spine_back",
+      "interactionLabel": "Back to the Marshal's Hall",
+      "preloadSceneKey": "fallen_prison/centurion_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "centurion_hall_to_cell_spine",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "cell_a"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "cell_spine_to_cell_a",
+      "interactionLabel": "Cell I",
+      "preloadSceneKey": "fallen_prison/cell_a",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_spine_to_cell_a_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "cell_spine_to_cell_a_back",
+      "interactionLabel": "Back to the Spine",
+      "preloadSceneKey": "fallen_prison/cell_spine",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_spine_to_cell_a",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "cell_a"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "cell_b"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "cell_spine_to_cell_b",
+      "interactionLabel": "Cell II",
+      "preloadSceneKey": "fallen_prison/cell_b",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_spine_to_cell_b_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "cell_spine_to_cell_b_back",
+      "interactionLabel": "Back to the Spine",
+      "preloadSceneKey": "fallen_prison/cell_spine",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_spine_to_cell_b",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "cell_b"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "cell_c"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "cell_b_to_cell_c",
+      "interactionLabel": "Cell III",
+      "preloadSceneKey": "fallen_prison/cell_c",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_b_to_cell_c_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "cell_b"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "cell_b"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "cell_b_to_cell_c_back",
+      "interactionLabel": "Back to Cell II",
+      "preloadSceneKey": "fallen_prison/cell_b",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_b_to_cell_c",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "cell_c"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "egg_chamber"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "cell_spine_to_egg_chamber",
+      "interactionLabel": "To the Brood Chamber",
+      "preloadSceneKey": "fallen_prison/egg_chamber",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_spine_to_egg_chamber_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "cell_spine"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "cell_spine_to_egg_chamber_back",
+      "interactionLabel": "Back to the Spine",
+      "preloadSceneKey": "fallen_prison/cell_spine",
+      "presentation": "door",
+      "reciprocalPortalId": "cell_spine_to_egg_chamber",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "egg_chamber"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "stair_foot"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "egg_chamber_to_stair_foot",
+      "interactionLabel": "Climb the Sentencing Stair",
+      "preloadSceneKey": "fallen_prison/stair_foot",
+      "presentation": "door",
+      "reciprocalPortalId": "egg_chamber_to_stair_foot_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "egg_chamber"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "egg_chamber"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "egg_chamber_to_stair_foot_back",
+      "interactionLabel": "Back to the Brood Chamber",
+      "preloadSceneKey": "fallen_prison/egg_chamber",
+      "presentation": "door",
+      "reciprocalPortalId": "egg_chamber_to_stair_foot",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "stair_foot"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "stair_mid"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "stair_foot_to_stair_mid",
+      "interactionLabel": "Climb Higher",
+      "preloadSceneKey": "fallen_prison/stair_mid",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_foot_to_stair_mid_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "stair_foot"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "stair_foot"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "stair_foot_to_stair_mid_back",
+      "interactionLabel": "Back Down",
+      "preloadSceneKey": "fallen_prison/stair_foot",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_foot_to_stair_mid",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "stair_mid"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "treasure_a"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "stair_foot_to_treasure_a",
+      "interactionLabel": "Side Vault I",
+      "preloadSceneKey": "fallen_prison/treasure_a",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_foot_to_treasure_a_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "stair_foot"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "stair_foot"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "stair_foot_to_treasure_a_back",
+      "interactionLabel": "Back to the Stairs",
+      "preloadSceneKey": "fallen_prison/stair_foot",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_foot_to_treasure_a",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "treasure_a"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "treasure_b"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "stair_mid_to_treasure_b",
+      "interactionLabel": "Side Vault II",
+      "preloadSceneKey": "fallen_prison/treasure_b",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_mid_to_treasure_b_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "stair_mid"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "stair_mid"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "stair_mid_to_treasure_b_back",
+      "interactionLabel": "Back to the Stairs",
+      "preloadSceneKey": "fallen_prison/stair_mid",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_mid_to_treasure_b",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "treasure_b"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "hound_den"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "stair_mid_to_hound_den",
+      "interactionLabel": "To the Warden's Den",
+      "preloadSceneKey": "fallen_prison/hound_den",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_mid_to_hound_den_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "stair_mid"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "stair_mid"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "stair_mid_to_hound_den_back",
+      "interactionLabel": "Back Down the Stairs",
+      "preloadSceneKey": "fallen_prison/stair_mid",
+      "presentation": "door",
+      "reciprocalPortalId": "stair_mid_to_hound_den",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "hound_den"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    }
+  ],
+  "retired": false,
+  "revision": "fallen_prison-v1",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 600
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "entrance_escape",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 440
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 140
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "fallen_prison_prison",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "wreck_gate",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "fallen_prison_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Wreck Gate",
+      "objects": [
+        {
+          "anchorId": "entrance_escape",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "fallen_prison_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Return to world",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Return to world",
+          "opacity": 1,
+          "portalId": "fallen_prison_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "wreck_gate_to_barracks_hall_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Barracks",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Barracks",
+          "opacity": 1,
+          "portalId": "wreck_gate_to_barracks_hall",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 680,
+          "id": "wreck_gate_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 740,
+          "id": "wreck_gate_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 760
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 870
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 790
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 760
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 450
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1490,
+          "y": 450
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1460,
+          "y": 450
+        },
+        {
+          "id": "hall_patrol_warden_scout_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 580,
+          "y": 370
+        },
+        {
+          "id": "hall_patrol_warden_scout_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 780,
+          "y": 530
+        },
+        {
+          "id": "hall_patrol_warden_scout_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 980,
+          "y": 370
+        },
+        {
+          "id": "hall_patrol_warden_scout_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1180,
+          "y": 530
+        },
+        {
+          "id": "hall_patrol_warden_scout_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 613,
+          "y": 235
+        },
+        {
+          "id": "hall_patrol_warden_scout_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 880,
+          "y": 395
+        },
+        {
+          "id": "hall_patrol_warden_scout_w2_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1147,
+          "y": 235
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 450
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "barracks_hall_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 876
+            },
+            {
+              "x": 24,
+              "y": 876
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 900,
+      "id": "barracks_hall",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 900,
+            "id": "barracks_hall_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "hall_patrol_warden_scout_w1_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "hall_patrol",
+          "facing": 3.141592653589793,
+          "id": "hall_patrol_warden_scout_w1",
+          "leashZoneId": "barracks_hall_leash",
+          "retired": false,
+          "spawnGroupId": "hall_patrol_wave1_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hall_patrol_warden_scout_w1_2_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "hall_patrol",
+          "facing": 3.141592653589793,
+          "id": "hall_patrol_warden_scout_w1_2",
+          "leashZoneId": "barracks_hall_leash",
+          "retired": false,
+          "spawnGroupId": "hall_patrol_wave1_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hall_patrol_warden_scout_w1_3_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "hall_patrol",
+          "facing": 3.141592653589793,
+          "id": "hall_patrol_warden_scout_w1_3",
+          "leashZoneId": "barracks_hall_leash",
+          "retired": false,
+          "spawnGroupId": "hall_patrol_wave1_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hall_patrol_warden_scout_w1_4_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "hall_patrol",
+          "facing": 3.141592653589793,
+          "id": "hall_patrol_warden_scout_w1_4",
+          "leashZoneId": "barracks_hall_leash",
+          "retired": false,
+          "spawnGroupId": "hall_patrol_wave1_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hall_patrol_warden_scout_w2_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "hall_patrol",
+          "facing": 3.141592653589793,
+          "id": "hall_patrol_warden_scout_w2",
+          "leashZoneId": "barracks_hall_leash",
+          "retired": false,
+          "spawnGroupId": "hall_patrol_wave2_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "hall_patrol_warden_scout_w2_2_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "hall_patrol",
+          "facing": 3.141592653589793,
+          "id": "hall_patrol_warden_scout_w2_2",
+          "leashZoneId": "barracks_hall_leash",
+          "retired": false,
+          "spawnGroupId": "hall_patrol_wave2_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "hall_patrol_warden_scout_w2_3_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "hall_patrol",
+          "facing": 3.141592653589793,
+          "id": "hall_patrol_warden_scout_w2_3",
+          "leashZoneId": "barracks_hall_leash",
+          "retired": false,
+          "spawnGroupId": "hall_patrol_wave2_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Barracks Hall",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "wreck_gate_to_barracks_hall_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Wreck",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Wreck",
+          "opacity": 1,
+          "portalId": "wreck_gate_to_barracks_hall_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "barracks_hall_to_barracks_maze_a_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Maze",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Maze",
+          "opacity": 1,
+          "portalId": "barracks_hall_to_barracks_maze_a",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 780,
+          "id": "barracks_hall_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1480,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 840,
+          "id": "barracks_hall_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 130,
+          "y": 600
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 600
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 600
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 600
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 140
+        },
+        {
+          "id": "maze_west_warden_scout_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 613,
+          "y": 280
+        },
+        {
+          "id": "maze_west_warden_scout_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 880,
+          "y": 440
+        },
+        {
+          "id": "maze_west_warden_scout_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1147,
+          "y": 280
+        },
+        {
+          "id": "maze_west_zealot_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 680,
+          "y": 760
+        },
+        {
+          "id": "maze_west_zealot_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1080,
+          "y": 920
+        },
+        {
+          "id": "maze_west_zealot_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 613,
+          "y": 520
+        },
+        {
+          "id": "maze_west_zealot_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 880,
+          "y": 680
+        },
+        {
+          "id": "maze_west_zealot_w2_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1147,
+          "y": 520
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "barracks_maze_a_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "barracks_maze_a",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "barracks_maze_a_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "maze_west_warden_scout_w1_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_warden_scout_w1",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave1_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_west_warden_scout_w1_2_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_warden_scout_w1_2",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave1_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_west_warden_scout_w1_3_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_warden_scout_w1_3",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave1_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_west_zealot_w1_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_zealot_w1",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave1_zealot_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_west_zealot_w1_2_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_zealot_w1_2",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave1_zealot_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_west_zealot_w2_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_zealot_w2",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave2_zealot_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "maze_west_zealot_w2_2_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_zealot_w2_2",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave2_zealot_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "maze_west_zealot_w2_3_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_west",
+          "facing": 3.141592653589793,
+          "id": "maze_west_zealot_w2_3",
+          "leashZoneId": "barracks_maze_a_leash",
+          "retired": false,
+          "spawnGroupId": "maze_west_wave2_zealot_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Barracks Maze: West Wing",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "barracks_hall_to_barracks_maze_a_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Hall",
+          "opacity": 1,
+          "portalId": "barracks_hall_to_barracks_maze_a_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "barracks_maze_a_to_barracks_maze_b_object",
+          "initialState": "closed",
+          "interactionLabel": "Deeper Into the Maze",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Deeper Into the Maze",
+          "opacity": 1,
+          "portalId": "barracks_maze_a_to_barracks_maze_b",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 1080,
+          "id": "barracks_maze_a_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1480,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1140,
+          "id": "barracks_maze_a_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 1060
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 1170
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 1090
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 1060
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 600
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1490,
+          "y": 600
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1460,
+          "y": 600
+        },
+        {
+          "id": "maze_east_zealot_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 580,
+          "y": 400
+        },
+        {
+          "id": "maze_east_zealot_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 780,
+          "y": 560
+        },
+        {
+          "id": "maze_east_zealot_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 980,
+          "y": 400
+        },
+        {
+          "id": "maze_east_zealot_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1180,
+          "y": 560
+        },
+        {
+          "id": "maze_east_warden_scout_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 613,
+          "y": 640
+        },
+        {
+          "id": "maze_east_warden_scout_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 880,
+          "y": 800
+        },
+        {
+          "id": "maze_east_warden_scout_w2_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1147,
+          "y": 640
+        },
+        {
+          "id": "maze_east_zealot_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 680,
+          "y": 280
+        },
+        {
+          "id": "maze_east_zealot_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1080,
+          "y": 440
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "barracks_maze_b_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "barracks_maze_b",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "barracks_maze_b_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "maze_east_zealot_w1_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_zealot_w1",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave1_zealot_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_east_zealot_w1_2_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_zealot_w1_2",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave1_zealot_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_east_zealot_w1_3_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_zealot_w1_3",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave1_zealot_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_east_zealot_w1_4_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_zealot_w1_4",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave1_zealot_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "maze_east_warden_scout_w2_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_warden_scout_w2",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave2_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "maze_east_warden_scout_w2_2_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_warden_scout_w2_2",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave2_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "maze_east_warden_scout_w2_3_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_warden_scout_w2_3",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave2_warden_scout_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "maze_east_zealot_w2_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_zealot_w2",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave2_zealot_2",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "maze_east_zealot_w2_2_anchor",
+          "archetype": "zealot",
+          "encounterId": "maze_east",
+          "facing": 3.141592653589793,
+          "id": "maze_east_zealot_w2_2",
+          "leashZoneId": "barracks_maze_b_leash",
+          "retired": false,
+          "spawnGroupId": "maze_east_wave2_zealot_2",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Barracks Maze: East Wing",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "barracks_maze_a_to_barracks_maze_b_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the West Wing",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the West Wing",
+          "opacity": 1,
+          "portalId": "barracks_maze_a_to_barracks_maze_b_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "barracks_maze_b_to_centurion_hall_object",
+          "initialState": "closed",
+          "interactionLabel": "To the Marshal's Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "To the Marshal's Hall",
+          "opacity": 1,
+          "portalId": "barracks_maze_b_to_centurion_hall",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 1080,
+          "id": "barracks_maze_b_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1480,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1140,
+          "id": "barracks_maze_b_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 200,
+          "y": 700
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 700
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 700
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 700
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 140
+        },
+        {
+          "id": "centurion_hoard_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1300,
+          "y": 700
+        },
+        {
+          "id": "centurion_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 700
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 700
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "centurion_hall_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 1376
+            },
+            {
+              "x": 24,
+              "y": 1376
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1400,
+      "id": "centurion_hall",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "centurion_hall_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "centurion_boss_anchor",
+          "archetype": "centurion",
+          "encounterId": "centurion",
+          "facing": 3.141592653589793,
+          "id": "centurion_boss",
+          "leashZoneId": "centurion_hall_leash",
+          "retired": false,
+          "spawnGroupId": "centurion_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Marshal's Hall",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "barracks_maze_b_to_centurion_hall_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Maze",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Maze",
+          "opacity": 1,
+          "portalId": "barracks_maze_b_to_centurion_hall_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "centurion_hall_to_cell_spine_object",
+          "initialState": "closed",
+          "interactionLabel": "Descend to the Cells",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Descend to the Cells",
+          "opacity": 1,
+          "portalId": "centurion_hall_to_cell_spine",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "centurion_hoard_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "centurion_hoard",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Marshal's Strongbox",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fallen_prison_centurion_hoard_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 1280,
+          "id": "centurion_hall_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1480,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1340,
+          "id": "centurion_hall_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 900,
+          "y": 900
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 900,
+          "y": 970
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 890
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 860
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 500
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 500
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 500
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 900,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 140
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1770,
+          "y": 500
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1690,
+          "y": 500
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1660,
+          "y": 500
+        },
+        {
+          "id": "spine_guard_serpent_jailer_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 765,
+          "y": 320
+        },
+        {
+          "id": "spine_guard_serpent_jailer_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1215,
+          "y": 480
+        },
+        {
+          "id": "spine_guard_warden_scout_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 690,
+          "y": 520
+        },
+        {
+          "id": "spine_guard_warden_scout_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 990,
+          "y": 680
+        },
+        {
+          "id": "spine_guard_warden_scout_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1290,
+          "y": 520
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 900,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "cell_spine_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1776,
+              "y": 24
+            },
+            {
+              "x": 1776,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "cell_spine",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "cell_spine_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1800,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "spine_guard_serpent_jailer_w1_anchor",
+          "archetype": "serpent_jailer",
+          "encounterId": "spine_guard",
+          "facing": 3.141592653589793,
+          "id": "spine_guard_serpent_jailer_w1",
+          "leashZoneId": "cell_spine_leash",
+          "retired": false,
+          "spawnGroupId": "spine_guard_wave1_serpent_jailer_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "spine_guard_serpent_jailer_w1_2_anchor",
+          "archetype": "serpent_jailer",
+          "encounterId": "spine_guard",
+          "facing": 3.141592653589793,
+          "id": "spine_guard_serpent_jailer_w1_2",
+          "leashZoneId": "cell_spine_leash",
+          "retired": false,
+          "spawnGroupId": "spine_guard_wave1_serpent_jailer_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "spine_guard_warden_scout_w1_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "spine_guard",
+          "facing": 3.141592653589793,
+          "id": "spine_guard_warden_scout_w1",
+          "leashZoneId": "cell_spine_leash",
+          "retired": false,
+          "spawnGroupId": "spine_guard_wave1_warden_scout_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "spine_guard_warden_scout_w1_2_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "spine_guard",
+          "facing": 3.141592653589793,
+          "id": "spine_guard_warden_scout_w1_2",
+          "leashZoneId": "cell_spine_leash",
+          "retired": false,
+          "spawnGroupId": "spine_guard_wave1_warden_scout_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "spine_guard_warden_scout_w1_3_anchor",
+          "archetype": "warden_scout",
+          "encounterId": "spine_guard",
+          "facing": 3.141592653589793,
+          "id": "spine_guard_warden_scout_w1_3",
+          "leashZoneId": "cell_spine_leash",
+          "retired": false,
+          "spawnGroupId": "spine_guard_wave1_warden_scout_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Cell Spine",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "centurion_hall_to_cell_spine_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Marshal's Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Marshal's Hall",
+          "opacity": 1,
+          "portalId": "centurion_hall_to_cell_spine_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_spine_to_cell_a_object",
+          "initialState": "closed",
+          "interactionLabel": "Cell I",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Cell I",
+          "opacity": 1,
+          "portalId": "cell_spine_to_cell_a",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_spine_to_cell_b_object",
+          "initialState": "closed",
+          "interactionLabel": "Cell II",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Cell II",
+          "opacity": 1,
+          "portalId": "cell_spine_to_cell_b",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_spine_to_egg_chamber_object",
+          "initialState": "closed",
+          "interactionLabel": "To the Brood Chamber",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "To the Brood Chamber",
+          "opacity": 1,
+          "portalId": "cell_spine_to_egg_chamber",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1800,
+      "zones": [
+        {
+          "height": 880,
+          "id": "cell_spine_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1680,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "cell_spine_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1740,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 870,
+          "y": 500
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 970,
+          "y": 500
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 890,
+          "y": 500
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 860,
+          "y": 500
+        },
+        {
+          "id": "rescue_a_serpent_jailer_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 500
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "cell_a_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "cell_a",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "cell_a_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "rescue_a_serpent_jailer_w1_anchor",
+          "archetype": "serpent_jailer",
+          "encounterId": "rescue_a",
+          "facing": 3.141592653589793,
+          "id": "rescue_a_serpent_jailer_w1",
+          "leashZoneId": "cell_a_leash",
+          "retired": false,
+          "spawnGroupId": "rescue_a_wave1_serpent_jailer_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Warded Cell I",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_spine_to_cell_a_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Spine",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Spine",
+          "opacity": 1,
+          "portalId": "cell_spine_to_cell_a_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 880,
+          "id": "cell_a_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "cell_a_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 870
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 970
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 890
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 860
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 500
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 500
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 500
+        },
+        {
+          "id": "rescue_b_serpent_jailer_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 500
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "cell_b_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "cell_b",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "cell_b_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "rescue_b_serpent_jailer_w1_anchor",
+          "archetype": "serpent_jailer",
+          "encounterId": "rescue_b",
+          "facing": 3.141592653589793,
+          "id": "rescue_b_serpent_jailer_w1",
+          "leashZoneId": "cell_b_leash",
+          "retired": false,
+          "spawnGroupId": "rescue_b_wave1_serpent_jailer_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Warded Cell II",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_spine_to_cell_b_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Spine",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Spine",
+          "opacity": 1,
+          "portalId": "cell_spine_to_cell_b_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_b_to_cell_c_object",
+          "initialState": "closed",
+          "interactionLabel": "Cell III",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Cell III",
+          "opacity": 1,
+          "portalId": "cell_b_to_cell_c",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 880,
+          "id": "cell_b_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "cell_b_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 870,
+          "y": 500
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 970,
+          "y": 500
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 890,
+          "y": 500
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 860,
+          "y": 500
+        },
+        {
+          "id": "rescue_c_serpent_jailer_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 500
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "cell_c_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "cell_c",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "cell_c_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "rescue_c_serpent_jailer_w1_anchor",
+          "archetype": "serpent_jailer",
+          "encounterId": "rescue_c",
+          "facing": 3.141592653589793,
+          "id": "rescue_c_serpent_jailer_w1",
+          "leashZoneId": "cell_c_leash",
+          "retired": false,
+          "spawnGroupId": "rescue_c_wave1_serpent_jailer_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Warded Cell III",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_b_to_cell_c_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to Cell II",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to Cell II",
+          "opacity": 1,
+          "portalId": "cell_b_to_cell_c_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 880,
+          "id": "cell_c_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "cell_c_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 200,
+          "y": 750
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 750
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 750
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 750
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 900,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 140
+        },
+        {
+          "id": "mother_clutch_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1450,
+          "y": 750
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 653,
+          "y": 370
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 878,
+          "y": 530
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1103,
+          "y": 370
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1328,
+          "y": 530
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_5_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 653,
+          "y": 970
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_6_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 878,
+          "y": 1130
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_7_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1103,
+          "y": 970
+        },
+        {
+          "id": "brood_matron_coil_hatchling_w1_8_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1328,
+          "y": 1130
+        },
+        {
+          "id": "brood_matron_boss_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1000,
+          "y": 750
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 900,
+          "y": 750
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "egg_chamber_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1776,
+              "y": 24
+            },
+            {
+              "x": 1776,
+              "y": 1476
+            },
+            {
+              "x": 24,
+              "y": 1476
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1500,
+      "id": "egg_chamber",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1500,
+            "id": "egg_chamber_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1800,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_2_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1_2",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_3_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1_3",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_4_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1_4",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_5_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1_5",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_6_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1_6",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_7_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1_7",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_coil_hatchling_w1_8_anchor",
+          "archetype": "coil_hatchling",
+          "encounterId": "brood_matron",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_coil_hatchling_w1_8",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_wave1_coil_hatchling_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "brood_matron_boss_boss_anchor",
+          "archetype": "brood_matron",
+          "encounterId": "brood_matron_boss",
+          "facing": 3.141592653589793,
+          "id": "brood_matron_boss_boss",
+          "leashZoneId": "egg_chamber_leash",
+          "retired": false,
+          "spawnGroupId": "brood_matron_boss_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Brood Chamber",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cell_spine_to_egg_chamber_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Spine",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Spine",
+          "opacity": 1,
+          "portalId": "cell_spine_to_egg_chamber_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "egg_chamber_to_stair_foot_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb the Sentencing Stair",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Climb the Sentencing Stair",
+          "opacity": 1,
+          "portalId": "egg_chamber_to_stair_foot",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "mother_clutch_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "mother_clutch",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Brood Matron's Clutch",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fallen_prison_mother_clutch_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1800,
+      "zones": [
+        {
+          "height": 1380,
+          "id": "egg_chamber_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1680,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1440,
+          "id": "egg_chamber_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1740,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 1000
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 1070
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 990
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 960
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 140
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1170,
+          "y": 550
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1090,
+          "y": 550
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 550
+        },
+        {
+          "id": "stair_guard_low_legion_soldier_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 435,
+          "y": 360
+        },
+        {
+          "id": "stair_guard_low_legion_soldier_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 585,
+          "y": 520
+        },
+        {
+          "id": "stair_guard_low_legion_soldier_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 735,
+          "y": 360
+        },
+        {
+          "id": "stair_guard_low_legion_soldier_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 885,
+          "y": 520
+        },
+        {
+          "id": "stair_guard_low_legion_soldier_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 460,
+          "y": 580
+        },
+        {
+          "id": "stair_guard_low_legion_soldier_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 660,
+          "y": 740
+        },
+        {
+          "id": "stair_guard_low_legion_soldier_w2_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 860,
+          "y": 580
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 550
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "stair_foot_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1076
+            },
+            {
+              "x": 24,
+              "y": 1076
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1100,
+      "id": "stair_foot",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1100,
+            "id": "stair_foot_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "stair_guard_low_legion_soldier_w1_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_low",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_low_legion_soldier_w1",
+          "leashZoneId": "stair_foot_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_low_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_low_legion_soldier_w1_2_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_low",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_low_legion_soldier_w1_2",
+          "leashZoneId": "stair_foot_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_low_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_low_legion_soldier_w1_3_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_low",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_low_legion_soldier_w1_3",
+          "leashZoneId": "stair_foot_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_low_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_low_legion_soldier_w1_4_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_low",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_low_legion_soldier_w1_4",
+          "leashZoneId": "stair_foot_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_low_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_low_legion_soldier_w2_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_low",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_low_legion_soldier_w2",
+          "leashZoneId": "stair_foot_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_low_wave2_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "stair_guard_low_legion_soldier_w2_2_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_low",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_low_legion_soldier_w2_2",
+          "leashZoneId": "stair_foot_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_low_wave2_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "stair_guard_low_legion_soldier_w2_3_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_low",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_low_legion_soldier_w2_3",
+          "leashZoneId": "stair_foot_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_low_wave2_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Foot of the Stairs",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "egg_chamber_to_stair_foot_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Brood Chamber",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Brood Chamber",
+          "opacity": 1,
+          "portalId": "egg_chamber_to_stair_foot_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_foot_to_stair_mid_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb Higher",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Climb Higher",
+          "opacity": 1,
+          "portalId": "stair_foot_to_stair_mid",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_foot_to_treasure_a_object",
+          "initialState": "closed",
+          "interactionLabel": "Side Vault I",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Side Vault I",
+          "opacity": 1,
+          "portalId": "stair_foot_to_treasure_a",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 980,
+          "id": "stair_foot_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1080,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1040,
+          "id": "stair_foot_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 1100
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 1170
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 1090
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 1060
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 140
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 600
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 600
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 600
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 420,
+          "y": 400
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 540,
+          "y": 560
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 660,
+          "y": 400
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 780,
+          "y": 560
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w1_5_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 400
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 460,
+          "y": 700
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 660,
+          "y": 860
+        },
+        {
+          "id": "stair_guard_high_legion_soldier_w2_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 860,
+          "y": 700
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "stair_mid_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "stair_mid",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "stair_mid_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w1_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w1",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w1_2_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w1_2",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w1_3_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w1_3",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w1_4_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w1_4",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w1_5_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w1_5",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave1_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w2_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w2",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave2_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w2_2_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w2_2",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave2_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "stair_guard_high_legion_soldier_w2_3_anchor",
+          "archetype": "legion_soldier",
+          "encounterId": "stair_guard_high",
+          "facing": 3.141592653589793,
+          "id": "stair_guard_high_legion_soldier_w2_3",
+          "leashZoneId": "stair_mid_leash",
+          "retired": false,
+          "spawnGroupId": "stair_guard_high_wave2_legion_soldier_1",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Mid Stairs",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_foot_to_stair_mid_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back Down",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back Down",
+          "opacity": 1,
+          "portalId": "stair_foot_to_stair_mid_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_mid_to_treasure_b_object",
+          "initialState": "closed",
+          "interactionLabel": "Side Vault II",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Side Vault II",
+          "opacity": 1,
+          "portalId": "stair_mid_to_treasure_b",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_mid_to_hound_den_object",
+          "initialState": "closed",
+          "interactionLabel": "To the Warden's Den",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "To the Warden's Den",
+          "opacity": 1,
+          "portalId": "stair_mid_to_hound_den",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 1080,
+          "id": "stair_mid_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1080,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1140,
+          "id": "stair_mid_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 130,
+          "y": 450
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 450
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 450
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 450
+        },
+        {
+          "id": "vault_chest_a_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 450
+        },
+        {
+          "id": "mimic_ambush_a_mimic_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 560,
+          "y": 300
+        },
+        {
+          "id": "mimic_ambush_a_mimic_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 560,
+          "y": 600
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 450
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "treasure_a_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 876
+            },
+            {
+              "x": 24,
+              "y": 876
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 900,
+      "id": "treasure_a",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 900,
+            "id": "treasure_a_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "mimic_ambush_a_mimic_w1_anchor",
+          "archetype": "mimic",
+          "encounterId": "mimic_ambush_a",
+          "facing": 3.141592653589793,
+          "id": "mimic_ambush_a_mimic_w1",
+          "leashZoneId": "treasure_a_leash",
+          "retired": false,
+          "spawnGroupId": "mimic_ambush_a_wave1_mimic_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "mimic_ambush_a_mimic_w1_2_anchor",
+          "archetype": "mimic",
+          "encounterId": "mimic_ambush_a",
+          "facing": 3.141592653589793,
+          "id": "mimic_ambush_a_mimic_w1_2",
+          "leashZoneId": "treasure_a_leash",
+          "retired": false,
+          "spawnGroupId": "mimic_ambush_a_wave1_mimic_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Treasure Room I",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_foot_to_treasure_a_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Stairs",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Stairs",
+          "opacity": 1,
+          "portalId": "stair_foot_to_treasure_a_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "vault_chest_a_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "vault_chest_a",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Gilded Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fallen_prison_vault_chest_a_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 780,
+          "id": "treasure_a_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 840,
+          "id": "treasure_a_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 400,
+          "id": "vault_a_trigger",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 300,
+          "x": 500,
+          "y": 250
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 870,
+          "y": 450
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 970,
+          "y": 450
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 890,
+          "y": 450
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 860,
+          "y": 450
+        },
+        {
+          "id": "vault_chest_b_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 300,
+          "y": 450
+        },
+        {
+          "id": "mimic_vault_b_mimic_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 400,
+          "y": 300
+        },
+        {
+          "id": "mimic_vault_b_mimic_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 400,
+          "y": 600
+        },
+        {
+          "id": "mimic_vault_b_mimic_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 450
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 450
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "treasure_b_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 876
+            },
+            {
+              "x": 24,
+              "y": 876
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 900,
+      "id": "treasure_b",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 900,
+            "id": "treasure_b_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "mimic_vault_b_mimic_w1_anchor",
+          "archetype": "mimic",
+          "encounterId": "mimic_vault_b",
+          "facing": 3.141592653589793,
+          "id": "mimic_vault_b_mimic_w1",
+          "leashZoneId": "treasure_b_leash",
+          "retired": false,
+          "spawnGroupId": "mimic_vault_b_wave1_mimic_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "mimic_vault_b_mimic_w1_2_anchor",
+          "archetype": "mimic",
+          "encounterId": "mimic_vault_b",
+          "facing": 3.141592653589793,
+          "id": "mimic_vault_b_mimic_w1_2",
+          "leashZoneId": "treasure_b_leash",
+          "retired": false,
+          "spawnGroupId": "mimic_vault_b_wave1_mimic_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "mimic_vault_b_mimic_w1_3_anchor",
+          "archetype": "mimic",
+          "encounterId": "mimic_vault_b",
+          "facing": 3.141592653589793,
+          "id": "mimic_vault_b_mimic_w1_3",
+          "leashZoneId": "treasure_b_leash",
+          "retired": false,
+          "spawnGroupId": "mimic_vault_b_wave1_mimic_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Treasure Room II",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_mid_to_treasure_b_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Stairs",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Stairs",
+          "opacity": 1,
+          "portalId": "stair_mid_to_treasure_b_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "vault_chest_b_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "vault_chest_b",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Warden's Reliquary",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fallen_prison_vault_chest_b_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 780,
+          "id": "treasure_b_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 840,
+          "id": "treasure_b_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 940,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1000,
+          "y": 1560
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 1000,
+          "y": 1670
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 1000,
+          "y": 1590
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 1000,
+          "y": 1560
+        },
+        {
+          "id": "hound_hoard_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1000,
+          "y": 350
+        },
+        {
+          "id": "hound_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1000,
+          "y": 700
+        },
+        {
+          "id": "verdict_altar_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 840,
+          "y": 350
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 1000,
+          "y": 850
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "hound_den_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1976,
+              "y": 24
+            },
+            {
+              "x": 1976,
+              "y": 1676
+            },
+            {
+              "x": 24,
+              "y": 1676
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1700,
+      "id": "hound_den",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1700,
+            "id": "hound_den_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 2000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "hound_boss_anchor",
+          "archetype": "trifang_warden",
+          "encounterId": "hound",
+          "facing": 3.141592653589793,
+          "id": "hound_boss",
+          "leashZoneId": "hound_den_leash",
+          "retired": false,
+          "spawnGroupId": "hound_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "The Warden's Den",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "stair_mid_to_hound_den_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back Down the Stairs",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back Down the Stairs",
+          "opacity": 1,
+          "portalId": "stair_mid_to_hound_den_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "hound_hoard_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "hound_hoard",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Hound's Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "fallen_prison_hound_hoard_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "verdict_altar_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "verdict_altar",
+          "initialState": "idle",
+          "interactionLabel": "Offer 440 Edict Seals",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Verdict Altar",
+          "opacity": 1,
+          "prefabId": "fangrock_scale_shrine",
+          "prefabRevision": "fangrock-scale-shrine-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "skillTurnIn": "edict_stride",
+          "type": "shrine",
+          "zIndex": 10
+        }
+      ],
+      "retired": false,
+      "revision": "fallen_prison-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 2000,
+      "zones": [
+        {
+          "height": 1580,
+          "id": "hound_den_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1880,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1640,
+          "id": "hound_den_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1940,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

@@ -1,0 +1,90 @@
+{
+  "dungeon": {
+    "id": "ashen_crypt",
+    "name": "Ashen Crypt",
+    "description": "A sealed crypt under the old chapel. Break the bone guard, open the ossuary, and put down what sleeps there.",
+    "instancePolicy": "party_ephemeral",
+    "theme": { "id": "crypt" }
+  },
+  "entranceRoom": "gatehouse",
+  "rooms": [
+    {
+      "id": "gatehouse",
+      "name": "Crypt Gatehouse",
+      "width": 1000,
+      "height": 800
+    },
+    {
+      "id": "bone_hall",
+      "name": "Hall of Bones",
+      "width": 1200,
+      "height": 900,
+      "zones": [
+        { "id": "hall_detector", "purpose": "trigger", "rect": { "x": 300, "y": 300, "width": 600, "height": 300 } }
+      ]
+    },
+    {
+      "id": "ossuary",
+      "name": "The Ossuary",
+      "width": 1200,
+      "height": 1000,
+      "chests": [
+        {
+          "id": "crypt_chest",
+          "name": "Crypt Chest",
+          "at": { "x": 600, "y": 200 },
+          "reward": { "gold": 250, "items": [{ "itemId": "coal", "quantity": 5 }] }
+        }
+      ]
+    },
+    {
+      "id": "crypt_well",
+      "name": "Crypt Well",
+      "width": 800,
+      "height": 800,
+      "resourceZones": [
+        {
+          "id": "well_ore",
+          "types": ["ore", "stone"],
+          "rect": { "x": 150, "y": 150, "width": 500, "height": 500 },
+          "count": { "min": 2, "max": 4 }
+        }
+      ]
+    }
+  ],
+  "doors": [
+    { "id": "gate_to_hall", "from": { "room": "gatehouse" }, "to": { "room": "bone_hall" }, "label": "Enter the Hall of Bones" },
+    { "id": "gate_to_well", "from": { "room": "gatehouse" }, "to": { "room": "crypt_well" }, "label": "Climb down to the well" },
+    {
+      "id": "hall_to_ossuary",
+      "from": { "room": "bone_hall" },
+      "to": { "room": "ossuary" },
+      "label": "Sealed Ossuary Door",
+      "locked": true
+    }
+  ],
+  "encounters": [
+    {
+      "id": "bone_guard",
+      "name": "Bone Guard",
+      "room": "bone_hall",
+      "startOn": { "zoneEnter": "hall_detector" },
+      "lockDoors": true,
+      "waves": [
+        { "mobs": [{ "archetype": "skeleton", "count": 3 }] },
+        { "delayMs": 1000, "mobs": [{ "archetype": "skeleton", "count": 2 }, { "archetype": "goblin", "count": 2 }] }
+      ],
+      "onComplete": [{ "unlockDoor": "hall_to_ossuary" }, { "message": "The Ossuary door grinds open." }]
+    },
+    {
+      "id": "ossuary_lord",
+      "name": "The Ossuary Lord",
+      "room": "ossuary",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [{ "mobs": [{ "archetype": "skeleton", "count": 4 }] }],
+      "boss": { "template": "dungeon_ogre" },
+      "onComplete": [{ "revealChest": "crypt_chest" }, { "completeDungeon": true }, { "message": "The Ossuary Lord falls. A chest rises from the bones." }]
+    }
+  ]
+}

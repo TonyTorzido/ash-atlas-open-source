@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "assets": {
+    "apps/client/src/assets/city-construction/blueprint.png": {
+      "label": "City Blueprint",
+      "category": "Buildings",
+      "usages": [
+        {
+          "id": "production-city-construction-blueprint",
+          "label": "City Blueprint",
+          "context": "Production renderer",
+          "editor": {
+            "kind": "sprite",
+            "key": "city"
+          }
+        }
+      ]
+    },
+    "apps/client/src/assets/city-construction/foundation.png": {
+      "label": "City Foundation",
+      "category": "Buildings",
+      "usages": [
+        {
+          "id": "production-city-construction-foundation",
+          "label": "City Foundation",
+          "context": "Production renderer",
+          "editor": {
+            "kind": "sprite",
+            "key": "city"
+          }
+        }
+      ]
+    },
+    "apps/client/src/assets/city-construction/framing.png": {
+      "label": "City Framing",
+      "category": "Buildings",
+      "usages": [
+        {
+          "id": "production-city-construction-framing",
+          "label": "City Framing",
+          "context": "Production renderer",
+          "editor": {
+            "kind": "sprite",
+            "key": "city"
+          }
+        }
+      ]
+    },
+    "apps/client/src/assets/coastal-crab.png": {
+      "label": "Coastal Crab",
+      "category": "Mobs & Animals",
+      "usages": [{
+        "id": "production-coastal-crab-world-mob",
+        "label": "Coastal Crab",
+        "context": "World Mob",
+        "editor": { "kind": "sprite", "key": "coastalCrab" }
+      }]
+    },
+    "apps/client/src/assets/goblins/goblin-basic.png": {
+      "label": "Goblin",
+      "category": "Mobs & Animals",
+      "usages": [{
+        "id": "production-goblin-basic-world-mob",
+        "label": "Goblin",
+        "context": "World Mob",
+        "editor": { "kind": "sprite", "key": "goblinBasic" }
+      }]
+    },
+    "apps/client/src/assets/goblins/goblin-warrior.png": {
+      "label": "Goblin Warrior",
+      "category": "Mobs & Animals",
+      "usages": [{
+        "id": "production-goblin-warrior-world-mob",
+        "label": "Goblin Warrior",
+        "context": "World Mob",
+        "editor": { "kind": "sprite", "key": "goblinWarrior" }
+      }]
+    },
+    "apps/client/src/assets/goblins/goblin-archer.png": {
+      "label": "Goblin Archer",
+      "category": "Mobs & Animals",
+      "usages": [{
+        "id": "production-goblin-archer-world-mob",
+        "label": "Goblin Archer",
+        "context": "World Mob",
+        "editor": { "kind": "sprite", "key": "goblinArcher" }
+      }]
+    },
+    "apps/client/src/assets/goblins/goblin-healer.png": {
+      "label": "Goblin Healer",
+      "category": "Mobs & Animals",
+      "usages": [{
+        "id": "production-goblin-healer-world-mob",
+        "label": "Goblin Healer",
+        "context": "World Mob",
+        "editor": { "kind": "sprite", "key": "goblinHealer" }
+      }]
+    },
+    "apps/client/src/assets/goblins/goblin-hall.png": {
+      "label": "Goblin Hall",
+      "category": "Buildings",
+      "usages": [{
+        "id": "production-goblin-hall-world-city",
+        "label": "Goblin Hall",
+        "context": "World City Hall",
+        "editor": { "kind": "sprite", "key": "goblinHall" }
+      }]
+    },
+    "apps/client/src/assets/goblins/goblin-market.png": {
+      "label": "Goblin Market",
+      "category": "Buildings",
+      "usages": [{
+        "id": "production-goblin-market-world-city-facility",
+        "label": "Goblin Market",
+        "context": "World City Facility",
+        "editor": { "kind": "world-object", "key": "cityStructures.goblin_market" }
+      }]
+    },
+    "apps/client/src/assets/sulfur-mine.png": {
+      "label": "Sulfur Mine",
+      "category": "Resources",
+      "usages": [{
+        "id": "production-sulfur-mine-world-resource",
+        "label": "Sulfur Mine",
+        "context": "World Resource",
+        "editor": { "kind": "sprite", "key": "sulfurMine" }
+      }]
+    },
+    "apps/client/src/assets/wild-flax.png": {
+      "label": "Wild Flax",
+      "category": "Resources",
+      "usages": [{
+        "id": "production-wild-flax-world-resource",
+        "label": "Wild Flax",
+        "context": "World Resource",
+        "editor": { "kind": "sprite", "key": "flax" }
+      }]
+    }
+  }
+}

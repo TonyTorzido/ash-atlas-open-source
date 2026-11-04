@@ -1,0 +1,352 @@
+name: Private control — coordinated mobile Mac
+
+run-name: ash-atlas-mobile-${{ inputs.operation_id }}-${{ inputs.dispatch_nonce }}
+
+# Copy this template into a private control repository. The game repository
+# remains an uncredentialed source mirror. The private repository owns the
+# trusted runner, durable handoff root, store credentials, and adapter paths.
+# The pinned control checkout supplies the concrete uncredentialed builder and
+# trusted signer adapters.  They are copied outside both checkouts before use;
+# a missing Mac toolchain, profile, key, store adapter, or durable plan produces
+# ACTION_REQUIRED before a reservation or store mutation.
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation_id:
+        description: Exact operation ID from the trusted server controller
+        required: true
+        type: string
+      dispatch_nonce:
+        description: Immutable transport dispatch nonce used to fence run recovery
+        required: true
+        type: string
+      generation:
+        description: Accepted test generation tag
+        required: true
+        type: string
+      server_sha:
+        description: Exact accepted integration/test SHA
+        required: true
+        type: string
+      accepted_master_sha:
+        description: Master identity recorded by the controller
+        required: true
+        type: string
+      current_server_sha:
+        description: Live server SHA before this operation
+        required: true
+        type: string
+      tooling_sha:
+        description: Exact immutable private tooling checkout SHA
+        required: true
+        type: string
+      action:
+        description: Start or resume the durable child operation
+        required: true
+        default: start
+        type: choice
+        options: [start, resume, post-health]
+      server_evidence_base64:
+        description: Base64 controller-authenticated evidence bytes for post-health
+        required: false
+        default: ""
+        type: string
+      server_evidence_sha256:
+        description: SHA-256 of the exact authenticated evidence bytes
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ash-atlas-private-mobile-${{ inputs.operation_id }}
+  cancel-in-progress: false
+
+jobs:
+  mobile:
+    # This label is registered only to the private control repository. It must
+    # never be shared with pull-request or game-repository workflows.
+    runs-on: [self-hosted, macOS, ash-atlas-mobile-control]
+    timeout-minutes: 90
+    environment: private-mobile-production
+    permissions:
+      contents: write
+    env:
+      OPERATION_ID: ${{ inputs.operation_id }}
+      DISPATCH_NONCE: ${{ inputs.dispatch_nonce }}
+      GENERATION: ${{ inputs.generation }}
+      SERVER_SHA: ${{ inputs.server_sha }}
+      ACCEPTED_MASTER_SHA: ${{ inputs.accepted_master_sha }}
+      CURRENT_SERVER_SHA: ${{ inputs.current_server_sha }}
+      TOOLING_SHA: ${{ inputs.tooling_sha }}
+      ACTION_NAME: ${{ inputs.action }}
+      # This root is on the trusted runner and survives a new workflow URL.
+      # Do not substitute runner.temp: signed bytes and receipts must be
+      # reusable after response loss and Resume.
+      HANDOFF_ROOT: ${{ vars.COORDINATED_HANDOFF_ROOT }}
+      # These protected packet paths are read-only inputs. The materializer
+      # derives marketing versions and writes operation-scoped plan/version
+      # files under HANDOFF_ROOT before the controller reserves a build.
+      IOS_METADATA_PACKET_PATH: ${{ vars.COORDINATED_IOS_METADATA_PACKET_PATH }}
+      ANDROID_METADATA_PACKET_PATH: ${{ vars.COORDINATED_ANDROID_METADATA_PACKET_PATH }}
+      APPROVED_VERSION_PLAN_PATH: ${{ vars.COORDINATED_APPROVED_VERSION_PLAN_PATH }}
+      REGISTRY_SEED_PATH: ${{ vars.COORDINATED_REGISTRY_SEED_PATH }}
+      REGISTRY_REMOTE: example-org/game
+      REGISTRY_BRANCH: mobile-release-state
+      SOURCE_REPOSITORY_ROOT: ${{ github.workspace }}/source-mirror
+      TOOLING_ROOT: ${{ github.workspace }}/control-tooling
+      # Provider paths are set by the materialization step below.  The source
+      # mirror never supplies an executable to a credentialed process.
+      COORDINATED_ISOLATED_BUILD_IDENTITY: ${{ vars.COORDINATED_ISOLATED_BUILD_IDENTITY }}
+      # Root-owned outside-checkout coordinated-mac-build-gate.mjs. The sudoers rule permits only
+      # this exact no-argument path; its JSON request arrives on stdin.
+      COORDINATED_ISOLATED_BUILD_GATE: ${{ vars.COORDINATED_ISOLATED_BUILD_GATE }}
+      COORDINATED_ISOLATED_BUILD_GATE_SHA256: ${{ vars.COORDINATED_ISOLATED_BUILD_GATE_SHA256 }}
+      COORDINATED_TRUSTED_SIGNER_ID: ${{ vars.COORDINATED_TRUSTED_SIGNER_ID }}
+      COORDINATED_TRUSTED_STORE_PROVIDER: ${{ vars.COORDINATED_TRUSTED_STORE_PROVIDER }}
+      PRODUCTION_TOOL_SHA: ${{ vars.PRODUCTION_TOOL_SHA }}
+      SERVER_EVIDENCE_BASE64: ${{ inputs.server_evidence_base64 }}
+      SERVER_EVIDENCE_SHA256: ${{ inputs.server_evidence_sha256 }}
+      SERVER_EVIDENCE_FILE: ""
+
+    steps:
+      - name: Check out the game source as an immutable source mirror
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, upstream verified 2026-09-19
+        with:
+          repository: example-org/game
+          ref: refs/tags/test/${{ inputs.generation }}
+          path: source-mirror
+          # Production ancestry checks need the accepted master commit and
+          # the immutable generation tag in one local object graph.
+          fetch-depth: 0
+          token: ${{ secrets.GAME_SOURCE_READ_TOKEN }}
+          persist-credentials: false
+
+      - name: Check out immutable private control tooling
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, upstream verified 2026-09-19
+        with:
+          repository: ${{ vars.PRIVATE_CONTROL_REPOSITORY }}
+          ref: ${{ vars.PRIVATE_CONTROL_TOOLING_REF }}
+          path: control-tooling
+          fetch-depth: 1
+          token: ${{ secrets.CONTROL_TOOLING_READ_TOKEN }}
+          persist-credentials: false
+
+      - name: Prove source, tooling, and durable roots before any mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$OPERATION_ID" =~ ^[A-Za-z0-9][A-Za-z0-9._:-]{2,127}$ ]]
+          [[ "$DISPATCH_NONCE" =~ ^[0-9a-f]{32}$ ]]
+          [[ "$GENERATION" =~ ^t[0-9]{3,4}$ ]]
+          [[ "$SERVER_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$ACCEPTED_MASTER_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$CURRENT_SERVER_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$TOOLING_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ -d "$SOURCE_REPOSITORY_ROOT" && -d "$TOOLING_ROOT" ]]
+          [[ "$SOURCE_REPOSITORY_ROOT" != "$TOOLING_ROOT" ]]
+          [[ "$REGISTRY_REMOTE" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]
+          [[ -n "$HANDOFF_ROOT" && -n "$IOS_METADATA_PACKET_PATH" && -n "$ANDROID_METADATA_PACKET_PATH" ]]
+          [[ -n "$COORDINATED_ISOLATED_BUILD_GATE" && -f "$COORDINATED_ISOLATED_BUILD_GATE" ]]
+          [[ "$COORDINATED_ISOLATED_BUILD_GATE_SHA256" =~ ^[0-9a-f]{64}$ ]]
+          test "$(shasum -a 256 "$COORDINATED_ISOLATED_BUILD_GATE" | awk '{print $1}')" = "$COORDINATED_ISOLATED_BUILD_GATE_SHA256"
+          test "$(git -C "$SOURCE_REPOSITORY_ROOT" rev-parse --verify HEAD)" = "$SERVER_SHA"
+          test "$(git -C "$TOOLING_ROOT" rev-parse --verify HEAD)" = "$TOOLING_SHA"
+          test -z "$(git -C "$SOURCE_REPOSITORY_ROOT" status --porcelain)"
+          test -z "$(git -C "$TOOLING_ROOT" status --porcelain)"
+          test "$HANDOFF_ROOT" != "$SOURCE_REPOSITORY_ROOT"
+          test "$HANDOFF_ROOT" != "$TOOLING_ROOT"
+          mkdir -p "$HANDOFF_ROOT"
+
+      - name: Materialize authenticated server evidence from the controller dispatch
+        if: inputs.action == 'post-health'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'SERVER_EVIDENCE_NODE'
+          import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          import { join } from 'node:path';
+          const { SERVER_EVIDENCE_BASE64: encoded, SERVER_EVIDENCE_SHA256: expected,
+            HANDOFF_ROOT: root, OPERATION_ID: operation, DISPATCH_NONCE: nonce, GITHUB_ENV: githubEnv } = process.env;
+          if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{2,127}$/.test(operation ?? '') ||
+              !/^[0-9a-f]{32}$/.test(nonce ?? '') || !root || /[\r\n]/.test(root) ||
+              !encoded || encoded.length > 43692 || !/^[0-9a-f]{64}$/.test(expected ?? '')) {
+            throw new Error('Missing or invalid post-health evidence dispatch');
+          }
+          const bytes = Buffer.from(encoded, 'base64');
+          if (!bytes.length || bytes.length > 32768 || bytes.toString('base64') !== encoded ||
+              createHash('sha256').update(bytes).digest('hex') !== expected) {
+            throw new Error('Post-health evidence transport hash or size mismatch');
+          }
+          const destination = join(root, `${operation}.${nonce}.server-evidence.json`);
+          if (existsSync(destination)) {
+            if (!readFileSync(destination).equals(bytes)) throw new Error('Durable server evidence bytes changed');
+          } else {
+            writeFileSync(destination, bytes, { flag: 'wx', mode: 0o600 });
+          }
+          appendFileSync(githubEnv, `SERVER_EVIDENCE_FILE=${destination}\n`);
+          SERVER_EVIDENCE_NODE
+
+      - name: Materialize pinned Mac build and signer adapters outside checkouts
+        shell: bash
+        run: |
+          set -euo pipefail
+          provider_root="$HANDOFF_ROOT/.providers-$OPERATION_ID"
+          test "$provider_root" != "$SOURCE_REPOSITORY_ROOT"
+          test "$provider_root" != "$TOOLING_ROOT"
+          mkdir -p "$provider_root"
+          chmod 755 "$provider_root"
+          for provider in coordinated-mac-unsigned-builder.mjs coordinated-mac-trusted-signer.mjs coordinated-mac-isolated-build-supervisor.mjs; do
+            source_path="$TOOLING_ROOT/tools/mobile-release/$provider"
+            destination_path="$provider_root/$provider"
+            test -f "$source_path"
+            cp "$source_path" "$destination_path"
+            test "$(shasum -a 256 "$source_path" | awk '{print $1}')" = \
+              "$(shasum -a 256 "$destination_path" | awk '{print $1}')"
+            # The dedicated BuildUser must read/execute the immutable builder;
+            # no provider bytes are writable by that identity.
+            chmod 755 "$destination_path"
+          done
+          echo "COORDINATED_ISOLATED_BUILDER=$provider_root/coordinated-mac-unsigned-builder.mjs" >> "$GITHUB_ENV"
+          echo "COORDINATED_ISOLATED_BUILDER_SHA256=$(shasum -a 256 "$provider_root/coordinated-mac-unsigned-builder.mjs" | awk '{print $1}')" >> "$GITHUB_ENV"
+          echo "COORDINATED_TRUSTED_SIGNER=$provider_root/coordinated-mac-trusted-signer.mjs" >> "$GITHUB_ENV"
+          echo "COORDINATED_ISOLATED_BUILD_SUPERVISOR=$provider_root/coordinated-mac-isolated-build-supervisor.mjs" >> "$GITHUB_ENV"
+          echo "COORDINATED_ISOLATED_BUILD_SUPERVISOR_SHA256=$(shasum -a 256 "$provider_root/coordinated-mac-isolated-build-supervisor.mjs" | awk '{print $1}')" >> "$GITHUB_ENV"
+
+      - name: Read authoritative version history or approved first-publication plan
+        id: versions
+        shell: bash
+        env:
+          ASH_ATLAS_REGISTRY_TOKEN: ${{ secrets.ASH_ATLAS_REGISTRY_TOKEN }}
+          GITHUB_REPOSITORY: example-org/game
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/ash-atlas-coordinated-inputs" "$RUNNER_TEMP/ash-atlas-coordinated-output"
+          if [[ -n "${APPROVED_VERSION_PLAN_PATH:-}" ]]; then
+            test -s "$APPROVED_VERSION_PLAN_PATH"
+            echo "approved_version_file=$APPROVED_VERSION_PLAN_PATH" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          node "$TOOLING_ROOT/tools/mobile-release/registry-remote.mjs" distributed-sources \
+            --remote "$REGISTRY_REMOTE" --branch "$REGISTRY_BRANCH" --seed "$REGISTRY_SEED_PATH" \
+            > "$RUNNER_TEMP/ash-atlas-coordinated-inputs/distributed-sources.json"
+          code=$?
+          if [[ "$code" -ne 0 ]]; then
+            node "$TOOLING_ROOT/tools/mobile-release/coordinated-bootstrap.mjs" \
+              --operation-id "$OPERATION_ID" --generation "$GENERATION" \
+              --server-sha "$SERVER_SHA" --accepted-master-sha "$ACCEPTED_MASTER_SHA" \
+              --current-server-sha "$CURRENT_SERVER_SHA" \
+              --reason 'ACTION_REQUIRED_VERSION_PLAN: authoritative distributed store history is unavailable; provide an operation-bound approved version plan for first publication or reconciliation' \
+              --action-required "$RUNNER_TEMP/ash-atlas-coordinated-output/coordinated-action-required.json"
+            exit "$code"
+          fi
+          echo "distributed_sources_file=$RUNNER_TEMP/ash-atlas-coordinated-inputs/distributed-sources.json" >> "$GITHUB_OUTPUT"
+
+      - name: Materialize operation-bound plan and versions
+        id: materialize
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ash-atlas-coordinated-inputs"
+          version_args=()
+          if [[ -n "${{ steps.versions.outputs.approved_version_file }}" ]]; then
+            version_args+=(--approved-version-file "${{ steps.versions.outputs.approved_version_file }}")
+          else
+            version_args+=(--distributed-sources-file "${{ steps.versions.outputs.distributed_sources_file }}")
+          fi
+          node "$TOOLING_ROOT/tools/mobile-release/coordinated-mobile-plan.mjs" \
+            --operation-id "$OPERATION_ID" --generation "$GENERATION" \
+            --server-sha "$SERVER_SHA" --accepted-master-sha "$ACCEPTED_MASTER_SHA" \
+            --current-server-sha "$CURRENT_SERVER_SHA" \
+            --registry-remote "$REGISTRY_REMOTE" \
+            --source-repository-root "$SOURCE_REPOSITORY_ROOT" --tooling-root "$TOOLING_ROOT" \
+            --handoff-root "$HANDOFF_ROOT" \
+            --ios-metadata-packet "$IOS_METADATA_PACKET_PATH" \
+            --android-metadata-packet "$ANDROID_METADATA_PACKET_PATH" \
+            "${version_args[@]}" \
+            --output "$RUNNER_TEMP/ash-atlas-coordinated-inputs/materialized.json"
+
+      - name: Run the durable trusted mobile controller
+        id: control
+        shell: bash
+        env:
+          # These names are the only store credentials visible to the trusted
+          # adapter child. They are absent from checkout and source-build
+          # steps; the controller applies a second explicit allowlist.
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
+          APPLE_PRIVATE_KEY_PATH: ${{ secrets.APPLE_PRIVATE_KEY_PATH }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_P8_BASE64: ${{ secrets.APP_STORE_CONNECT_KEY_P8_BASE64 }}
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE64: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE64 }}
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          APP_STORE_CONNECT_PRODUCTION_KEY_ID: ${{ secrets.APP_STORE_CONNECT_PRODUCTION_KEY_ID }}
+          APP_STORE_CONNECT_PRODUCTION_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_PRODUCTION_ISSUER_ID }}
+          APP_STORE_CONNECT_PRODUCTION_KEY_P8_BASE64: ${{ secrets.APP_STORE_CONNECT_PRODUCTION_KEY_P8_BASE64 }}
+          GOOGLE_PLAY_PRODUCTION_SERVICE_ACCOUNT_JSON_BASE64: ${{ secrets.GOOGLE_PLAY_PRODUCTION_SERVICE_ACCOUNT_JSON_BASE64 }}
+          ASH_ATLAS_TESTFLIGHT_INTERNAL_GROUP: ${{ vars.ASH_ATLAS_TESTFLIGHT_INTERNAL_GROUP }}
+          ASH_ATLAS_PRODUCTION_MUTATION: ${{ vars.ASH_ATLAS_PRODUCTION_MUTATION }}
+          COORDINATED_FASTLANE_ROOT: ${{ vars.COORDINATED_FASTLANE_ROOT }}
+          COORDINATED_BUNDLE_EXECUTABLE: ${{ vars.COORDINATED_BUNDLE_EXECUTABLE }}
+          MOBILE_COMPATIBILITY_SERVER_URL: ${{ vars.MOBILE_COMPATIBILITY_SERVER_URL }}
+          COORDINATED_PRODUCTION_RELEASE_APPROVAL_SHA256: ${{ secrets.COORDINATED_PRODUCTION_RELEASE_APPROVAL_SHA256 }}
+          ASH_ATLAS_REGISTRY_TOKEN: ${{ secrets.ASH_ATLAS_REGISTRY_TOKEN }}
+          GITHUB_REPOSITORY: example-org/game
+          COORDINATED_SERVER_EVIDENCE_HMAC_KEY: ${{ secrets.COORDINATED_SERVER_EVIDENCE_HMAC_KEY }}
+          COORDINATED_SERVER_EVIDENCE_HMAC_KEY_ID: coordinated-server-evidence-v1
+          APPLE_DISTRIBUTION_P12_BASE64: ${{ secrets.APPLE_DISTRIBUTION_P12_BASE64 }}
+          APPLE_DISTRIBUTION_P12_PASSWORD: ${{ secrets.APPLE_DISTRIBUTION_P12_PASSWORD }}
+          APPLE_PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+          APPLE_PROVISIONING_PROFILE_SPECIFIER: ${{ vars.APPLE_PROVISIONING_PROFILE_SPECIFIER }}
+          APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+          ANDROID_UPLOAD_KEYSTORE_BASE64: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_BASE64 }}
+          ANDROID_UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_PASSWORD }}
+          ANDROID_UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+          ANDROID_UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+          ANDROID_UPLOAD_KEY_FINGERPRINT: ${{ vars.ANDROID_UPLOAD_KEY_FINGERPRINT }}
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/ash-atlas-coordinated-output"
+          trusted_store_provider="$TOOLING_ROOT/tools/mobile-release/coordinated-trusted-store-adapter.mjs"
+          if [[ -n "${COORDINATED_TRUSTED_STORE_PROVIDER:-}" ]]; then
+            trusted_store_provider="$COORDINATED_TRUSTED_STORE_PROVIDER"
+          fi
+          extra_args=()
+          if [[ -n "$SERVER_EVIDENCE_FILE" ]]; then
+            extra_args+=(--server-evidence-file "$SERVER_EVIDENCE_FILE")
+          fi
+          node "$TOOLING_ROOT/tools/mobile-release/coordinated-mobile-control.mjs" \
+            --action "$ACTION_NAME" --operation-id "$OPERATION_ID" --generation "$GENERATION" \
+            --server-sha "$SERVER_SHA" --accepted-master-sha "$ACCEPTED_MASTER_SHA" \
+            --current-server-sha "$CURRENT_SERVER_SHA" --tooling-sha "$TOOLING_SHA" \
+            --source-repository-root "$SOURCE_REPOSITORY_ROOT" --tooling-root "$TOOLING_ROOT" \
+            --registry-remote "$REGISTRY_REMOTE" --registry-branch "$REGISTRY_BRANCH" \
+            --registry-seed "$REGISTRY_SEED_PATH" --handoff-root "$HANDOFF_ROOT" \
+            --state-file "$HANDOFF_ROOT/$OPERATION_ID.control-state.json" \
+            --plan-file "${{ steps.materialize.outputs.plan_path }}" \
+            --reserved-versions-file "${{ steps.materialize.outputs.reserved_versions_path }}" \
+            --protocol-min 3 --protocol-max 3 --trusted-store-provider "$trusted_store_provider" \
+            --seed-path "$HANDOFF_ROOT/$OPERATION_ID.coordinated-seed.json" \
+            --receipt-path "$HANDOFF_ROOT/$OPERATION_ID.coordinated-mobile-receipt.json" \
+            "${extra_args[@]}" \
+            --output "$RUNNER_TEMP/ash-atlas-coordinated-output/coordinated-result.json"
+          code=$?
+          test -s "$RUNNER_TEMP/ash-atlas-coordinated-output/coordinated-result.json" || {
+            printf '%s\n' '{"status":"ACTION_REQUIRED","code":"ACTION_REQUIRED_PROVISION_TRUSTED_STORE"}' > "$RUNNER_TEMP/ash-atlas-coordinated-output/coordinated-result.json"
+          }
+          exit "$code"
+
+      - name: Retain controller result and hashes only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4, upstream verified 2026-09-19
+        with:
+          name: ash-atlas-private-mobile-${{ inputs.operation_id }}
+          path: ${{ runner.temp }}/ash-atlas-coordinated-output/*
+          if-no-files-found: error
+          retention-days: 7

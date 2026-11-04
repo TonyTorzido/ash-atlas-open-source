@@ -1,0 +1,79 @@
+.professions-destination .game-app-body { overflow: hidden; }
+.professions-app-layout { position: relative; min-height: 0; height: 100%; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: var(--aa-ui-space-3); }
+.professions-app-layout > .skill-v3-summary { grid-column: 1 / -1; grid-row: 1; }
+.professions-app-layout > .professions-list { grid-row: 2; grid-column: 1; }
+/* Desktop docks the detail sheet beside the list; phone overlays it (SkillTreeV3Panel.css). */
+.professions-app-layout.desktop-layout.has-sheet { grid-template-columns: minmax(0, 1fr) minmax(300px, 38%); }
+.skill-v3-app[data-layout="desktop"] .professions-app-layout.has-sheet > .skill-v3-sheet { grid-row: 2; grid-column: 2; }
+.skill-v3-sheet > .profession-detail-child { height: auto; overflow: visible; padding: 0; }
+.professions-browser { min-width: 0; min-height: 0; display: block; overflow: hidden; }
+.professions-list, .profession-detail-child { min-width: 0; min-height: 0; height: 100%; overflow: hidden auto; overscroll-behavior-y: contain; padding: 2px 5px 12px 2px; box-sizing: border-box; }
+.professions-list { display: grid; align-content: start; gap: 18px; }
+.professions-entry-group { display: grid; gap: 9px; }
+.professions-entry-group > header { display: flex; justify-content: space-between; gap: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--aa-ui-border-muted); color: var(--aa-ui-parchment-200); }
+.professions-entry-group[data-content-state="future"] { padding-top: 5px; }
+/* Columns follow the space left beside an open detail panel. */
+.professions-entry-grid { min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: var(--aa-ui-space-2); }
+.professions-future-heading { margin: 4px 0 0; color: var(--aa-ui-text-muted); font: var(--aa-type-label); letter-spacing: .08em; text-transform: uppercase; }
+.profession-entry-card { min-width: 0; min-height: 74px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--aa-ui-space-3); padding: var(--aa-ui-space-2); border: 1px solid var(--aa-ui-border-muted); border-radius: var(--aa-ui-radius-control); color: var(--aa-ui-text); background: var(--aa-ui-material-wood); text-align: left; }
+.profession-entry-card:hover, .profession-entry-card:focus-visible, .profession-entry-card[data-selected="true"] { border-color: var(--aa-ui-active-bronze); background: var(--aa-ui-material-wood-raised); }
+.profession-entry-card[data-content-state="future"] { min-height: 60px; opacity: .78; }
+.profession-entry-card[data-content-state="future"] .progression-icon { filter: grayscale(.85) brightness(.92); opacity: .6; }
+.profession-entry-card-rank { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.profession-entry-card-rank em { color: var(--aa-ui-text-muted); font: italic var(--aa-type-meta); overflow-wrap: anywhere; }
+.profession-entry-card-meter { display: block; height: 8px; overflow: hidden; border: 1px solid var(--aa-brass-soft); border-radius: 4px; background: var(--aa-menu-paper); }
+.profession-entry-card-meter > i { display: block; height: 100%; background: var(--aa-brass); }
+.profession-entry-card-copy .profession-entry-card-status { color: var(--aa-ui-text-muted); font-weight: 600; }
+.profession-entry-card-copy { min-width: 0; display: grid; gap: 3px; }
+.profession-entry-card-copy strong { color: var(--aa-ui-parchment-100); font: var(--aa-type-card); overflow-wrap: anywhere; }
+.profession-entry-card-copy small { color: var(--aa-ui-text-muted); font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.profession-entry-card-copy small:first-of-type { color: var(--aa-ui-active-bronze); font-weight: 800; }
+.profession-entry-card-chevron { color: var(--aa-ui-active-bronze); font-size: 22px; }
+.professions-loading { color: var(--aa-ui-text-muted); }
+.profession-rank-milestone { border-color: var(--aa-ui-active-bronze); }
+.profession-milestone-label { color: var(--aa-ui-parchment-200); font-weight: 700; }
+.profession-detail { display: grid; gap: 12px; min-width: 0; }
+.profession-detail-progress { display: grid; gap: 5px; }
+.profession-detail-status { margin: 0; color: var(--aa-ui-text-muted); line-height: 1.35; }
+.profession-detail-ranks { display: grid; gap: 8px; min-width: 0; }
+.profession-oil-well-status { display: grid; gap: 6px; padding: var(--aa-kit-card-pad); border: 1px solid var(--aa-ui-bronze-700); border-radius: 6px; background: var(--aa-ui-material-ink); }
+.profession-oil-well-status h3, .profession-oil-well-status p { margin: 0; }
+.profession-oil-well-status h3 { color: var(--aa-ui-parchment-200); font: var(--aa-type-section); }
+.profession-oil-well-status p { color: var(--aa-ui-text-muted); line-height: 1.4; }
+.profession-oil-well-status button { min-height: 44px; }
+/* Parchment treatment shared with the Skills ledger: grained paper cards, plaque tiles, brass hairlines (tokens in menuAppearance.css). */
+.professions-entry-group { position: relative; padding: var(--aa-ui-space-3); border: 1px solid var(--aa-brass-soft); border-radius: 6px; background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 18px var(--aa-vignette), 0 1px 3px rgb(40 26 14 / 14%); }
+.professions-entry-group::before { content: ""; position: absolute; inset: 3px; border: 1px solid var(--aa-brass-soft); border-radius: 4px; opacity: .6; pointer-events: none; }
+.professions-entry-group > * { position: relative; }
+.professions-entry-group > header { border-bottom: 0; padding-bottom: 7px; background: linear-gradient(90deg, transparent, var(--aa-brass-soft) 12%, var(--aa-brass-soft) 88%, transparent) bottom / 100% 1px no-repeat; font-family: var(--aa-ui-font-display); font-variant: small-caps; letter-spacing: .04em; }
+html .profession-entry-card { border: 1px solid var(--aa-plaque-edge); border-radius: 4px; background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 1px 2px rgb(40 26 14 / 16%); }
+html .profession-entry-card:is(:hover, :focus-visible), html .profession-entry-card[data-selected="true"] { border-color: var(--aa-brass); background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); filter: brightness(1.04); }
+html .profession-entry-card:active { background: var(--aa-grain), var(--aa-plaque-pressed); box-shadow: inset 0 2px 4px var(--aa-plaque-lo); }
+html .profession-entry-card[data-content-state="future"] { border-color: var(--aa-ui-border-muted); background: var(--aa-grain), var(--aa-menu-paper); box-shadow: none; }
+.profession-entry-card .progression-icon { border: 1px solid var(--aa-plaque-edge); background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 8px var(--aa-vignette); }
+.profession-entry-card-copy strong { font-family: var(--aa-ui-font-display); }
+.profession-oil-well-status { border-color: var(--aa-brass-soft); background: var(--aa-grain), var(--aa-menu-paper); box-shadow: inset 0 0 18px var(--aa-vignette); }
+.professions-list, .profession-detail-child { scrollbar-color: var(--aa-ui-iron-500) var(--aa-ui-ink-950); scrollbar-width: thin; }
+.professions-list::-webkit-scrollbar, .profession-detail-child::-webkit-scrollbar { width: 10px; height: 10px; }
+.professions-list::-webkit-scrollbar-track, .profession-detail-child::-webkit-scrollbar-track { background: var(--aa-ui-ink-950); }
+.professions-list::-webkit-scrollbar-thumb, .profession-detail-child::-webkit-scrollbar-thumb { border: 2px solid var(--aa-ui-ink-950); border-radius: 999px; background: var(--aa-ui-iron-500); }
+@media (prefers-reduced-motion: reduce) {
+  .professions-destination * { scroll-behavior: auto; }
+}
+
+/* Detail view: shares the Progression sheet header (ProgressionDetailHeader.tsx); body is the progress block, optional well gauge, and the shared rank ladder (RankLadder.css). */
+.profession-detail.skill-v3-detail { gap: var(--aa-ui-space-3); }
+.profession-detail-description { margin: 0; }
+.profession-detail-progress { gap: var(--aa-ui-space-2); }
+.profession-detail-progress .profession-detail-status { color: var(--aa-ui-active-bronze); font: var(--aa-type-meta); font-weight: 800; }
+.profession-detail-ranks { min-width: 0; }
+.profession-detail-ranks > h3 { margin: 0; color: var(--aa-ui-parchment-200); font: var(--aa-type-section); }
+.profession-oil-well-status > strong { color: var(--aa-ui-parchment-100); font-family: var(--aa-ui-font-display); }
+.skill-v3-sheet .profession-detail-child .skill-v3-detail { border: 0; border-radius: 0; background: transparent; }
+
+/* Trade sheet: description, one XP bar with a single meta line, the optional well gauge, then Rank progression rows. No frames inside the sheet. */
+.profession-detail-progress { display: grid; gap: 6px; padding: 0; border: 0; background: none; box-shadow: none; }
+.profession-detail-ranks { display: grid; gap: var(--aa-ui-space-2); padding: 0; border: 0; background: none; box-shadow: none; }
+.profession-detail-ranks > h4, .profession-oil-well-status > h4 { margin: 0; color: var(--aa-ui-parchment-200); font: var(--aa-type-section); }
+html .profession-detail .profession-oil-well-status { display: grid; gap: 4px; padding: 0 0 var(--aa-ui-space-2); border: 0; border-bottom: 1px solid var(--aa-ui-border-muted); border-radius: 0; background: none; box-shadow: none; }
+.profession-oil-well-status button { justify-self: start; min-width: 160px; }

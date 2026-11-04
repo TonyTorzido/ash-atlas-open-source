@@ -1,0 +1,99 @@
+name: Coordinated release control
+
+# Copy this workflow into the separate private control repository after its
+# trusted runner and ACL-protected state root are provisioned.  It must never
+# live in the game repository or target the shared quality runner.
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        required: true
+        default: start
+        type: choice
+        options: [start, inspect, resume, resume-active]
+      operation_id:
+        required: false
+        default: ''
+        type: string
+      batch_request:
+        description: 'Ordered JSON array of {branch, sha, player_patch_note}; start only'
+        required: false
+        default: ''
+        type: string
+      expected_generation:
+        description: Exact remote test generation resolved by the Mac request helper
+        required: false
+        default: ''
+        type: string
+      expected_candidate_sha:
+        description: Exact remote integration/test SHA resolved by the Mac request helper
+        required: false
+        default: ''
+        type: string
+      delivery_mode:
+        description: Coordinated mobile delivery mode; this workflow permits the tester-only daily path.
+        required: false
+        default: daily-testers
+        type: choice
+        options:
+          - daily-testers
+      dry_run:
+        description: Keep false for the live coordinated release path
+        required: true
+        default: false
+        type: boolean
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ash-atlas-coordinated-release-control
+  cancel-in-progress: false
+
+jobs:
+  coordinate:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: [self-hosted, Windows, X64, ash-atlas-coordinated-release]
+    timeout-minutes: 90
+    environment: coordinated-production
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, pinned
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Run the trusted controller
+        shell: powershell
+        env:
+          INPUT_ACTION: ${{ github.event_name == 'schedule' && 'resume-active' || inputs.action }}
+          INPUT_OPERATION_ID: ${{ inputs.operation_id || '' }}
+          INPUT_BATCH_REQUEST: ${{ github.event_name == 'schedule' && '' || inputs.batch_request || '' }}
+          INPUT_EXPECTED_GENERATION: ${{ github.event_name == 'schedule' && '' || inputs.expected_generation || '' }}
+          INPUT_EXPECTED_CANDIDATE_SHA: ${{ github.event_name == 'schedule' && '' || inputs.expected_candidate_sha || '' }}
+          INPUT_DELIVERY_MODE: ${{ github.event_name == 'schedule' && '' || inputs.delivery_mode || '' }}
+          INPUT_DRY_RUN: ${{ github.event_name == 'schedule' && 'false' || inputs.dry_run }}
+        run: >-
+          $controlConfigPath = 'C:\ProgramData\AshAtlas\CoordinatedRelease\control.json';
+          $controlConfig = Get-Content -Raw -LiteralPath $controlConfigPath -Encoding utf8 | ConvertFrom-Json;
+          $controllerScript = [string]$controlConfig.trusted_controller.controller_script;
+          if (-not $controllerScript -or -not (Test-Path -LiteralPath $controllerScript -PathType Leaf)) { throw 'trusted controller script is missing from the immutable tooling checkout' };
+          $controllerArgs = @('-Action', $(if ($env:INPUT_ACTION -eq 'resume-active') { 'ResumeActive' } else { $env:INPUT_ACTION }),
+          '-ConfigPath', $controlConfigPath);
+          if ($env:INPUT_OPERATION_ID) { $controllerArgs += @('-OperationId', $env:INPUT_OPERATION_ID) };
+          if ($env:INPUT_EXPECTED_GENERATION) { $controllerArgs += @('-ExpectedGeneration', $env:INPUT_EXPECTED_GENERATION) };
+          if ($env:INPUT_EXPECTED_CANDIDATE_SHA) { $controllerArgs += @('-ExpectedCandidateSha', $env:INPUT_EXPECTED_CANDIDATE_SHA) };
+          if ($env:INPUT_DELIVERY_MODE -and $env:INPUT_ACTION -eq 'start' -and -not $env:INPUT_BATCH_REQUEST) { $controllerArgs += @('-ExpectedDeliveryMode', $env:INPUT_DELIVERY_MODE) };
+          if ($env:INPUT_DRY_RUN -eq 'true') { $controllerArgs += '-DryRun' };
+          $batchRequestPath = $null;
+          try {
+            if ($env:INPUT_BATCH_REQUEST) {
+              $batchRequestPath = Join-Path ([IO.Path]::GetTempPath()) ('ash-atlas-batch-request-' + $PID + '.json');
+              [IO.File]::WriteAllText($batchRequestPath, [string]$env:INPUT_BATCH_REQUEST, [Text.UTF8Encoding]::new($false));
+              $controllerArgs += @('-BatchRequestPath', $batchRequestPath);
+            };
+            & powershell -NoProfile -ExecutionPolicy Bypass -File $controllerScript @controllerArgs;
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          } finally {
+            if ($batchRequestPath -and (Test-Path -LiteralPath $batchRequestPath)) { Remove-Item -LiteralPath $batchRequestPath -Force -ErrorAction SilentlyContinue }
+          }

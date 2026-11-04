@@ -1,0 +1,4404 @@
+{
+  "defaultRoomId": "grove_gate",
+  "description": "A grove choked by creeping blight. Clear the hollow and the treant ring, then descend into the Heartwood to face the Hollow Elder. Recommended level 17.",
+  "environment": {
+    "accentColor": "#9b6fc4",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#0a110a",
+    "environmentId": "grove",
+    "floorColor": "#4a3f27",
+    "musicAssetKey": null,
+    "wallColor": "#3a4a22"
+  },
+  "id": "blightwood_grove",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "access": {
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6,
+      "minimumLevel": 17
+    },
+    "bossTemplateIds": [
+      "hollow-elder"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "grove_gate"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "path_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "path_blight",
+        "leashZoneId": "path_leash",
+        "lockPortalIds": [
+          "gate_to_path_back",
+          "path_to_clearing"
+        ],
+        "name": "Blighted Path Ambush",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "blighted_path",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "path_blight_rot_wolf_w1",
+              "path_blight_rot_wolf_w1_2",
+              "path_blight_rot_wolf_w1_3",
+              "path_blight_sap_crawler_w1",
+              "path_blight_sap_crawler_w1_2",
+              "path_blight_sap_crawler_w1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "hollow_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "hollow_fern",
+        "leashZoneId": "hollow_leash",
+        "lockPortalIds": [
+          "clearing_to_hollow_back"
+        ],
+        "name": "Fern Hollow",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "fern_hollow",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "hollow_fern_thornfern_w1",
+              "hollow_fern_thornfern_w1_2",
+              "hollow_fern_thornfern_w1_3",
+              "hollow_fern_blighted_stag_w1",
+              "hollow_fern_blighted_stag_w1_2",
+              "hollow_fern_frog_w1",
+              "hollow_fern_frog_w1_2",
+              "hollow_fern_frog_w1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "ring_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "ring_treants",
+        "leashZoneId": "ring_leash",
+        "lockPortalIds": [
+          "clearing_to_ring_back"
+        ],
+        "name": "Treant Ring",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "treant_ring",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "ring_treants_blight_treant_w1",
+              "ring_treants_blight_treant_w1_2",
+              "ring_treants_blight_treant_w1_3",
+              "ring_treants_blight_treant_w1_4",
+              "ring_treants_rot_wolf_w1",
+              "ring_treants_rot_wolf_w1_2",
+              "ring_treants_rot_wolf_w1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "hollow-elder",
+        "boundaryZoneId": "heart_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "hollow_elder",
+        "leashZoneId": "heart_leash",
+        "lockPortalIds": [
+          "clearing_to_heartwood_back"
+        ],
+        "name": "The Hollow Elder",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "heartwood",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "hollow_elder_boss",
+              "hollow_elder_blight_sprite_w1_90",
+              "hollow_elder_blight_sprite_w1_90_2",
+              "hollow_elder_blight_sprite_w1_70",
+              "hollow_elder_blight_sprite_w1_70_2",
+              "hollow_elder_blight_sprite_w1_70_3",
+              "hollow_elder_blight_sprite_w1_50",
+              "hollow_elder_blight_sprite_w1_50_2",
+              "hollow_elder_blight_sprite_w1_50_3",
+              "hollow_elder_blight_sprite_w1_35",
+              "hollow_elder_blight_sprite_w1_35_2",
+              "hollow_elder_blight_sprite_w1_35_3",
+              "hollow_elder_blight_sprite_w1_20",
+              "hollow_elder_blight_sprite_w1_20_2",
+              "hollow_elder_blight_sprite_w1_20_3"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "world_entry_arrival",
+      "portalId": "blightwood_grove_world_to_entrance",
+      "roomId": "grove_gate"
+    },
+    "escape": {
+      "portalId": "blightwood_grove_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "blightwood_grove-v2"
+    },
+    "rewardTableIds": [
+      "blightwood_grove_heart_chest_reward",
+      "blightwood_grove_baby_chest",
+      "blightwood_grove_completion_reward"
+    ],
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_heart_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "heart_chest",
+          "roomId": "heartwood",
+          "type": "object_interact"
+        },
+        "id": "heart_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "path_blight",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "blighted_path",
+          "type": "room_enter"
+        },
+        "id": "start_path_blight",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "hollow_fern",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "fern_hollow",
+          "type": "room_enter"
+        },
+        "id": "start_hollow_fern",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "flagId": "fern_hollow_cleared",
+            "type": "set_dungeon_flag",
+            "value": true
+          },
+          {
+            "text": "Fern Hollow is clear. The Heartwood stirs.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "hollow_fern",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "hollow_fern_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "ring_treants",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "treant_ring",
+          "type": "room_enter"
+        },
+        "id": "start_ring_treants",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "flagId": "treant_ring_cleared",
+            "type": "set_dungeon_flag",
+            "value": true
+          },
+          {
+            "text": "The Treant Ring falls still. The Heartwood stirs.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "ring_treants",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "ring_treants_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "hollow_elder",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "heartwood",
+          "type": "room_enter"
+        },
+        "id": "start_hollow_elder",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "heart_chest",
+            "roomId": "heartwood",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          },
+          {
+            "text": "The Hollow Elder falls. A hoard is revealed.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "hollow_elder",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "hollow_elder_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "grove-small-chest-gate",
+          "roomId": "grove_gate",
+          "type": "object_interact"
+        },
+        "id": "grove-small-chest-gate-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "grove-small-chest-path-e",
+          "roomId": "blighted_path",
+          "type": "object_interact"
+        },
+        "id": "grove-small-chest-path-e-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "grove-small-chest-path-w",
+          "roomId": "blighted_path",
+          "type": "object_interact"
+        },
+        "id": "grove-small-chest-path-w-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "grove-small-chest-fern-ne",
+          "roomId": "fern_hollow",
+          "type": "object_interact"
+        },
+        "id": "grove-small-chest-fern-ne-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "grove-small-chest-fern-se",
+          "roomId": "fern_hollow",
+          "type": "object_interact"
+        },
+        "id": "grove-small-chest-fern-se-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "grove-small-chest-ring-sw",
+          "roomId": "treant_ring",
+          "type": "object_interact"
+        },
+        "id": "grove-small-chest-ring-sw-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "blightwood_grove_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "grove-small-chest-ring-e",
+          "roomId": "treant_ring",
+          "type": "object_interact"
+        },
+        "id": "grove-small-chest-ring-e-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "recipients": "present",
+            "rewardTableId": "blightwood_grove_completion_reward",
+            "type": "grant_run_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "hollow_elder",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "hollow_elder_completion_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      }
+    ]
+  },
+  "name": "Blightwood Grove",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "grove_gate"
+      },
+      "destinationArrivalAnchorId": "world_entry_arrival",
+      "enabled": false,
+      "id": "blightwood_grove_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for blightwood_grove",
+      "presentation": "door",
+      "reciprocalPortalId": "blightwood_grove_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "blightwood_grove_entrance_to_world",
+      "interactionLabel": "Leave the Grove",
+      "presentation": "cave",
+      "reciprocalPortalId": "blightwood_grove_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "grove_gate"
+      },
+      "sourceApproachAnchorId": "world_approach",
+      "sourceThresholdAnchorId": "world_exit"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "blighted_path"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "gate_to_path",
+      "interactionLabel": "Follow the Path",
+      "preloadSceneKey": "blightwood_grove/blighted_path",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_path_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "grove_gate"
+      },
+      "sourceApproachAnchorId": "approach_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "grove_gate"
+      },
+      "destinationArrivalAnchorId": "arrive_n",
+      "enabled": true,
+      "id": "gate_to_path_back",
+      "interactionLabel": "Back to the Gate",
+      "preloadSceneKey": "blightwood_grove/grove_gate",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_path",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "blighted_path"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "destinationArrivalAnchorId": "arrive_s",
+      "enabled": true,
+      "id": "path_to_clearing",
+      "interactionLabel": "Enter the Clearing",
+      "preloadSceneKey": "blightwood_grove/hermit_clearing",
+      "presentation": "door",
+      "reciprocalPortalId": "path_to_clearing_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "blighted_path"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "blighted_path"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "path_to_clearing_back",
+      "interactionLabel": "Back to the Path",
+      "preloadSceneKey": "blightwood_grove/blighted_path",
+      "presentation": "door",
+      "reciprocalPortalId": "path_to_clearing",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "sourceApproachAnchorId": "approach_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "fern_hollow"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "clearing_to_hollow",
+      "interactionLabel": "Go West",
+      "preloadSceneKey": "blightwood_grove/fern_hollow",
+      "presentation": "door",
+      "reciprocalPortalId": "clearing_to_hollow_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "clearing_to_hollow_back",
+      "interactionLabel": "Back to the Clearing",
+      "preloadSceneKey": "blightwood_grove/hermit_clearing",
+      "presentation": "door",
+      "reciprocalPortalId": "clearing_to_hollow",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "fern_hollow"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "treant_ring"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "clearing_to_ring",
+      "interactionLabel": "Go East",
+      "preloadSceneKey": "blightwood_grove/treant_ring",
+      "presentation": "door",
+      "reciprocalPortalId": "clearing_to_ring_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "clearing_to_ring_back",
+      "interactionLabel": "Back to the Clearing",
+      "preloadSceneKey": "blightwood_grove/hermit_clearing",
+      "presentation": "door",
+      "reciprocalPortalId": "clearing_to_ring",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "treant_ring"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "heartwood"
+      },
+      "destinationArrivalAnchorId": "arrive_s",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "fern_hollow_cleared",
+          "type": "dungeon_flag",
+          "value": true
+        },
+        {
+          "flagId": "treant_ring_cleared",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "clearing_to_heartwood",
+      "interactionLabel": "Enter the Heartwood",
+      "preloadSceneKey": "blightwood_grove/heartwood",
+      "presentation": "door",
+      "reciprocalPortalId": "clearing_to_heartwood_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "sourceApproachAnchorId": "approach_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "hermit_clearing"
+      },
+      "destinationArrivalAnchorId": "arrive_n",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "fern_hollow_cleared",
+          "type": "dungeon_flag",
+          "value": true
+        },
+        {
+          "flagId": "treant_ring_cleared",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "clearing_to_heartwood_back",
+      "interactionLabel": "Back to the Clearing",
+      "preloadSceneKey": "blightwood_grove/hermit_clearing",
+      "presentation": "door",
+      "reciprocalPortalId": "clearing_to_heartwood",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "heartwood"
+      },
+      "sourceApproachAnchorId": "approach_s",
+      "sourceThresholdAnchorId": "door_s"
+    }
+  ],
+  "retired": false,
+  "revision": "blightwood_grove-v2",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 800
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "world_exit",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 960
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 140
+        },
+        {
+          "id": "world_approach",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 880
+        },
+        {
+          "id": "world_entry_arrival",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 800
+        },
+        {
+          "id": "grove_small_chest_gate_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 820,
+          "y": 780
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 1000,
+          "id": "wall_left",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 1000,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 940,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_top_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 370,
+          "x": 60,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_top_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 370,
+          "x": 570,
+          "y": 0
+        },
+        {
+          "height": 100,
+          "id": "wall_bottom_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 370,
+          "x": 60,
+          "y": 900
+        },
+        {
+          "height": 100,
+          "id": "wall_bottom_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 370,
+          "x": 570,
+          "y": 900
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "blightwood_grove_grove",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "grove_gate",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "grove_gate_floor",
+            "prefabRevision": "grove-gate-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Grove Gate",
+      "objects": [
+        {
+          "anchorId": "world_exit",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "blightwood_grove_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Return to world",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Return to world",
+          "opacity": 0,
+          "portalId": "blightwood_grove_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_path_object",
+          "initialState": "closed",
+          "interactionLabel": "Follow the Path",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Follow the Path",
+          "opacity": 0,
+          "portalId": "gate_to_path",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_small_chest_gate_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-small-chest-gate",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "grove_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "gate_west_trees",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 130,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1407919,
+          "shape": {
+            "height": 200,
+            "id": "gate_west_trees_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 130,
+            "x": 110,
+            "y": 200
+          }
+        },
+        {
+          "id": "gate_east_trees",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 130,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1415838,
+          "shape": {
+            "height": 200,
+            "id": "gate_east_trees_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 130,
+            "x": 780,
+            "y": 200
+          }
+        },
+        {
+          "id": "gate_south_herbs",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "flax_fiber",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1423757,
+          "shape": {
+            "height": 130,
+            "id": "gate_south_herbs_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 150,
+            "x": 120,
+            "y": 720
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "blightwood_grove-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 130,
+          "y": 335
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 335
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 100,
+          "y": 335
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 130,
+          "y": 335
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 350
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1500,
+          "y": 350
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1470,
+          "y": 350
+        },
+        {
+          "id": "path_blight_rot_wolf_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 600
+        },
+        {
+          "id": "path_blight_rot_wolf_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 650
+        },
+        {
+          "id": "path_blight_rot_wolf_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 600
+        },
+        {
+          "id": "path_blight_sap_crawler_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 400,
+          "y": 340
+        },
+        {
+          "id": "path_blight_sap_crawler_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 360
+        },
+        {
+          "id": "path_blight_sap_crawler_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1200,
+          "y": 350
+        },
+        {
+          "id": "grove_small_chest_path_e_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1480,
+          "y": 670
+        },
+        {
+          "id": "grove_small_chest_path_w_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 130,
+          "y": 650
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 55,
+          "id": "wall_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 80,
+          "id": "wall_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 720
+        },
+        {
+          "height": 270,
+          "id": "wall_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 40,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 400,
+          "id": "wall_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 40,
+          "x": 0,
+          "y": 400
+        },
+        {
+          "height": 290,
+          "id": "wall_right_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 40,
+          "x": 1560,
+          "y": 0
+        },
+        {
+          "height": 390,
+          "id": "wall_right_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 40,
+          "x": 1560,
+          "y": 410
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "blighted_path_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "blighted_path",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "blighted_path_floor",
+            "prefabRevision": "blighted-path-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "path_blight_rot_wolf_w1_anchor",
+          "archetype": "rot_wolf",
+          "encounterId": "path_blight",
+          "facing": 3.141592653589793,
+          "id": "path_blight_rot_wolf_w1",
+          "leashZoneId": "path_leash",
+          "retired": false,
+          "spawnGroupId": "path_blight_wave1_rot_wolf",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "path_blight_rot_wolf_w1_2_anchor",
+          "archetype": "rot_wolf",
+          "encounterId": "path_blight",
+          "facing": 3.141592653589793,
+          "id": "path_blight_rot_wolf_w1_2",
+          "leashZoneId": "path_leash",
+          "retired": false,
+          "spawnGroupId": "path_blight_wave1_rot_wolf",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "path_blight_rot_wolf_w1_3_anchor",
+          "archetype": "rot_wolf",
+          "encounterId": "path_blight",
+          "facing": 3.141592653589793,
+          "id": "path_blight_rot_wolf_w1_3",
+          "leashZoneId": "path_leash",
+          "retired": false,
+          "spawnGroupId": "path_blight_wave1_rot_wolf",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "path_blight_sap_crawler_w1_anchor",
+          "archetype": "sap_crawler",
+          "encounterId": "path_blight",
+          "facing": 3.141592653589793,
+          "id": "path_blight_sap_crawler_w1",
+          "leashZoneId": "path_leash",
+          "retired": false,
+          "spawnGroupId": "path_blight_wave1_sap_crawler",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "path_blight_sap_crawler_w1_2_anchor",
+          "archetype": "sap_crawler",
+          "encounterId": "path_blight",
+          "facing": 3.141592653589793,
+          "id": "path_blight_sap_crawler_w1_2",
+          "leashZoneId": "path_leash",
+          "retired": false,
+          "spawnGroupId": "path_blight_wave1_sap_crawler",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "path_blight_sap_crawler_w1_3_anchor",
+          "archetype": "sap_crawler",
+          "encounterId": "path_blight",
+          "facing": 3.141592653589793,
+          "id": "path_blight_sap_crawler_w1_3",
+          "leashZoneId": "path_leash",
+          "retired": false,
+          "spawnGroupId": "path_blight_wave1_sap_crawler",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Blighted Path",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_path_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Gate",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Gate",
+          "opacity": 0,
+          "portalId": "gate_to_path_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "path_to_clearing_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Clearing",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Enter the Clearing",
+          "opacity": 0,
+          "portalId": "path_to_clearing",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_small_chest_path_e_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-small-chest-path-e",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "grove_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_small_chest_path_w_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-small-chest-path-w",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "grove_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "path_north_trees_west",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 130,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1431676,
+          "shape": {
+            "height": 90,
+            "id": "path_north_trees_west_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 300,
+            "x": 250,
+            "y": 90
+          }
+        },
+        {
+          "id": "path_north_trees_east",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 130,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1439595,
+          "shape": {
+            "height": 90,
+            "id": "path_north_trees_east_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 320,
+            "x": 1000,
+            "y": 90
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "blightwood_grove-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 665,
+          "id": "path_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 55
+        },
+        {
+          "height": 740,
+          "id": "path_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 1060
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 1170
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 1090
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 1060
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 585,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 585,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 585,
+          "y": 140
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 575
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 575
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 575
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1170,
+          "y": 575
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1090,
+          "y": 575
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 575
+        },
+        {
+          "id": "grove_hermit",
+          "retired": false,
+          "role": "point",
+          "x": 340,
+          "y": 350
+        },
+        {
+          "id": "healing_spring",
+          "retired": false,
+          "role": "point",
+          "x": 330,
+          "y": 920
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 60,
+          "id": "wall_top_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 500,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_top_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 530,
+          "x": 670,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_bottom_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 510,
+          "x": 0,
+          "y": 1140
+        },
+        {
+          "height": 60,
+          "id": "wall_bottom_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 510,
+          "x": 690,
+          "y": 1140
+        },
+        {
+          "height": 500,
+          "id": "wall_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 550,
+          "id": "wall_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 650
+        },
+        {
+          "height": 500,
+          "id": "wall_right_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 1140,
+          "y": 0
+        },
+        {
+          "height": 550,
+          "id": "wall_right_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 1140,
+          "y": 650
+        },
+        {
+          "height": 190,
+          "id": "hermit_hut",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 210,
+          "x": 230,
+          "y": 110
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "hermit_clearing_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "hermit_clearing",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "hermit_clearing_floor",
+            "prefabRevision": "hermit-clearing-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 180,
+            "id": "healing_spring_prop",
+            "opacity": 1,
+            "prefabId": "grove_healing_spring",
+            "prefabRevision": "grove-healing-spring-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 180,
+            "x": 330,
+            "y": 920,
+            "zIndex": 5
+          }
+        ],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Hermit's Clearing",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "path_to_clearing_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Path",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Path",
+          "opacity": 0,
+          "portalId": "path_to_clearing_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "clearing_to_hollow_object",
+          "initialState": "closed",
+          "interactionLabel": "Go West",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go West",
+          "opacity": 0,
+          "portalId": "clearing_to_hollow",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "clearing_to_ring_object",
+          "initialState": "closed",
+          "interactionLabel": "Go East",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go East",
+          "opacity": 0,
+          "portalId": "clearing_to_ring",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "clearing_to_heartwood_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Heartwood",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Enter the Heartwood",
+          "opacity": 0,
+          "portalId": "clearing_to_heartwood",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_hermit",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-hermit",
+          "initialState": "idle",
+          "interactionLabel": "Offer 28 Elder Acorns",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Grove Hermit",
+          "opacity": 1,
+          "prefabId": "grove_hermit",
+          "prefabRevision": "grove-hermit-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "skillTurnIn": "grove_lore",
+          "type": "npc",
+          "zIndex": 10
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "clearing_northeast_grove",
+          "interactionRadius": 82,
+          "maxCount": 3,
+          "maxYield": 3,
+          "minCount": 2,
+          "minYield": 1,
+          "minimumSpacing": 130,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "balsam_resin",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1447514,
+          "shape": {
+            "height": 160,
+            "id": "clearing_northeast_grove_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 260,
+            "x": 800,
+            "y": 160
+          }
+        },
+        {
+          "id": "clearing_southeast_herbs",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 120,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1455433,
+          "shape": {
+            "height": 180,
+            "id": "clearing_southeast_herbs_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 230,
+            "x": 850,
+            "y": 830
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "blightwood_grove-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 1200,
+          "id": "clearing_safe",
+          "kind": "rectangle",
+          "purpose": "safe",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "healing_spring_zone",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 420,
+              "y": 920
+            },
+            {
+              "x": 407.94,
+              "y": 965
+            },
+            {
+              "x": 375,
+              "y": 997.94
+            },
+            {
+              "x": 330,
+              "y": 1010
+            },
+            {
+              "x": 285,
+              "y": 997.94
+            },
+            {
+              "x": 252.06,
+              "y": 965
+            },
+            {
+              "x": 240,
+              "y": 920
+            },
+            {
+              "x": 252.06,
+              "y": 875
+            },
+            {
+              "x": 285,
+              "y": 842.06
+            },
+            {
+              "x": 330,
+              "y": 830
+            },
+            {
+              "x": 375,
+              "y": 842.06
+            },
+            {
+              "x": 407.94,
+              "y": 875
+            }
+          ],
+          "purpose": "heal",
+          "retired": false
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1060,
+          "y": 485
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1170,
+          "y": 485
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1090,
+          "y": 485
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 485
+        },
+        {
+          "id": "hollow_fern_thornfern_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 380,
+          "y": 250
+        },
+        {
+          "id": "hollow_fern_thornfern_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 380,
+          "y": 650
+        },
+        {
+          "id": "hollow_fern_thornfern_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 820
+        },
+        {
+          "id": "hollow_fern_blighted_stag_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 300
+        },
+        {
+          "id": "hollow_fern_blighted_stag_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 750,
+          "y": 600
+        },
+        {
+          "id": "hollow_fern_frog_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 450
+        },
+        {
+          "id": "hollow_fern_frog_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 650,
+          "y": 700
+        },
+        {
+          "id": "hollow_fern_frog_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 850,
+          "y": 450
+        },
+        {
+          "id": "grove_small_chest_fern_ne_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 130
+        },
+        {
+          "id": "grove_small_chest_fern_se_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 860
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 60,
+          "id": "wall_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 100,
+          "id": "wall_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 900
+        },
+        {
+          "height": 1000,
+          "id": "wall_left",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 50,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 410,
+          "id": "wall_right_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 90,
+          "x": 1110,
+          "y": 0
+        },
+        {
+          "height": 440,
+          "id": "wall_right_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 90,
+          "x": 1110,
+          "y": 560
+        },
+        {
+          "id": "stream",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 85,
+              "y": 40
+            },
+            {
+              "x": 85,
+              "y": 96
+            },
+            {
+              "x": 145,
+              "y": 180
+            },
+            {
+              "x": 229,
+              "y": 270
+            },
+            {
+              "x": 247,
+              "y": 330
+            },
+            {
+              "x": 193,
+              "y": 384
+            },
+            {
+              "x": 163,
+              "y": 456
+            },
+            {
+              "x": 229,
+              "y": 540
+            },
+            {
+              "x": 229,
+              "y": 600
+            },
+            {
+              "x": 169,
+              "y": 678
+            },
+            {
+              "x": 139,
+              "y": 750
+            },
+            {
+              "x": 103,
+              "y": 852
+            },
+            {
+              "x": 97,
+              "y": 912
+            },
+            {
+              "x": 167,
+              "y": 912
+            },
+            {
+              "x": 173,
+              "y": 852
+            },
+            {
+              "x": 209,
+              "y": 750
+            },
+            {
+              "x": 239,
+              "y": 678
+            },
+            {
+              "x": 299,
+              "y": 600
+            },
+            {
+              "x": 299,
+              "y": 540
+            },
+            {
+              "x": 233,
+              "y": 456
+            },
+            {
+              "x": 263,
+              "y": 384
+            },
+            {
+              "x": 317,
+              "y": 330
+            },
+            {
+              "x": 299,
+              "y": 270
+            },
+            {
+              "x": 215,
+              "y": 180
+            },
+            {
+              "x": 155,
+              "y": 96
+            },
+            {
+              "x": 155,
+              "y": 40
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "fern_cluster_n",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 345,
+              "y": 100
+            },
+            {
+              "x": 338.97,
+              "y": 122.5
+            },
+            {
+              "x": 322.5,
+              "y": 138.97
+            },
+            {
+              "x": 300,
+              "y": 145
+            },
+            {
+              "x": 277.5,
+              "y": 138.97
+            },
+            {
+              "x": 261.03,
+              "y": 122.5
+            },
+            {
+              "x": 255,
+              "y": 100
+            },
+            {
+              "x": 261.03,
+              "y": 77.5
+            },
+            {
+              "x": 277.5,
+              "y": 61.03
+            },
+            {
+              "x": 300,
+              "y": 55
+            },
+            {
+              "x": 322.5,
+              "y": 61.03
+            },
+            {
+              "x": 338.97,
+              "y": 77.5
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "fern_cluster_s",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 345,
+              "y": 760
+            },
+            {
+              "x": 338.97,
+              "y": 782.5
+            },
+            {
+              "x": 322.5,
+              "y": 798.97
+            },
+            {
+              "x": 300,
+              "y": 805
+            },
+            {
+              "x": 277.5,
+              "y": 798.97
+            },
+            {
+              "x": 261.03,
+              "y": 782.5
+            },
+            {
+              "x": 255,
+              "y": 760
+            },
+            {
+              "x": 261.03,
+              "y": 737.5
+            },
+            {
+              "x": 277.5,
+              "y": 721.03
+            },
+            {
+              "x": 300,
+              "y": 715
+            },
+            {
+              "x": 322.5,
+              "y": 721.03
+            },
+            {
+              "x": 338.97,
+              "y": 737.5
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "fern_hollow_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "fern_hollow",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "fern_hollow_floor",
+            "prefabRevision": "fern-hollow-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "hollow_fern_thornfern_w1_anchor",
+          "archetype": "thornfern",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_thornfern_w1",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_thornfern",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_fern_thornfern_w1_2_anchor",
+          "archetype": "thornfern",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_thornfern_w1_2",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_thornfern",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_fern_thornfern_w1_3_anchor",
+          "archetype": "thornfern",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_thornfern_w1_3",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_thornfern",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_fern_blighted_stag_w1_anchor",
+          "archetype": "blighted_stag",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_blighted_stag_w1",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_blighted_stag",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_fern_blighted_stag_w1_2_anchor",
+          "archetype": "blighted_stag",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_blighted_stag_w1_2",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_blighted_stag",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_fern_frog_w1_anchor",
+          "archetype": "frog",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_frog_w1",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_frog",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_fern_frog_w1_2_anchor",
+          "archetype": "frog",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_frog_w1_2",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_frog",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_fern_frog_w1_3_anchor",
+          "archetype": "frog",
+          "encounterId": "hollow_fern",
+          "facing": 3.141592653589793,
+          "id": "hollow_fern_frog_w1_3",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_fern_wave1_frog",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Fern Hollow",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "clearing_to_hollow_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Clearing",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Clearing",
+          "opacity": 0,
+          "portalId": "clearing_to_hollow_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_small_chest_fern_ne_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-small-chest-fern-ne",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "grove_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_small_chest_fern_se_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-small-chest-fern-se",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "grove_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "hollow_north_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "flax_fiber",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1463352,
+          "shape": {
+            "height": 90,
+            "id": "hollow_north_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 250,
+            "x": 450,
+            "y": 100
+          }
+        },
+        {
+          "id": "hollow_south_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 120,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1471271,
+          "shape": {
+            "height": 60,
+            "id": "hollow_south_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 230,
+            "x": 700,
+            "y": 800
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "blightwood_grove-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 840,
+          "id": "hollow_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1060,
+          "x": 50,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "hollow_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 580
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 580
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 580
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 580
+        },
+        {
+          "id": "ring_treants_blight_treant_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 410,
+          "y": 350
+        },
+        {
+          "id": "ring_treants_blight_treant_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 788,
+          "y": 359
+        },
+        {
+          "id": "ring_treants_blight_treant_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 832,
+          "y": 787
+        },
+        {
+          "id": "ring_treants_blight_treant_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 372,
+          "y": 762
+        },
+        {
+          "id": "ring_treants_rot_wolf_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 260
+        },
+        {
+          "id": "ring_treants_rot_wolf_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 921,
+          "y": 562
+        },
+        {
+          "id": "ring_treants_rot_wolf_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 860
+        },
+        {
+          "id": "grove_small_chest_ring_sw_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 1040
+        },
+        {
+          "id": "grove_small_chest_ring_e_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1090,
+          "y": 400
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 60,
+          "id": "wall_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 90,
+          "id": "wall_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 1110
+        },
+        {
+          "height": 510,
+          "id": "wall_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 550,
+          "id": "wall_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 650
+        },
+        {
+          "height": 1200,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 70,
+          "x": 1130,
+          "y": 0
+        },
+        {
+          "id": "standing_stone_1",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 405,
+              "y": 270
+            },
+            {
+              "x": 397.63,
+              "y": 297.5
+            },
+            {
+              "x": 377.5,
+              "y": 317.63
+            },
+            {
+              "x": 350,
+              "y": 325
+            },
+            {
+              "x": 322.5,
+              "y": 317.63
+            },
+            {
+              "x": 302.37,
+              "y": 297.5
+            },
+            {
+              "x": 295,
+              "y": 270
+            },
+            {
+              "x": 302.37,
+              "y": 242.5
+            },
+            {
+              "x": 322.5,
+              "y": 222.37
+            },
+            {
+              "x": 350,
+              "y": 215
+            },
+            {
+              "x": 377.5,
+              "y": 222.37
+            },
+            {
+              "x": 397.63,
+              "y": 242.5
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "standing_stone_2",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 655,
+              "y": 160
+            },
+            {
+              "x": 647.63,
+              "y": 187.5
+            },
+            {
+              "x": 627.5,
+              "y": 207.63
+            },
+            {
+              "x": 600,
+              "y": 215
+            },
+            {
+              "x": 572.5,
+              "y": 207.63
+            },
+            {
+              "x": 552.37,
+              "y": 187.5
+            },
+            {
+              "x": 545,
+              "y": 160
+            },
+            {
+              "x": 552.37,
+              "y": 132.5
+            },
+            {
+              "x": 572.5,
+              "y": 112.37
+            },
+            {
+              "x": 600,
+              "y": 105
+            },
+            {
+              "x": 627.5,
+              "y": 112.37
+            },
+            {
+              "x": 647.63,
+              "y": 132.5
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "standing_stone_3",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 905,
+              "y": 280
+            },
+            {
+              "x": 897.63,
+              "y": 307.5
+            },
+            {
+              "x": 877.5,
+              "y": 327.63
+            },
+            {
+              "x": 850,
+              "y": 335
+            },
+            {
+              "x": 822.5,
+              "y": 327.63
+            },
+            {
+              "x": 802.37,
+              "y": 307.5
+            },
+            {
+              "x": 795,
+              "y": 280
+            },
+            {
+              "x": 802.37,
+              "y": 252.5
+            },
+            {
+              "x": 822.5,
+              "y": 232.37
+            },
+            {
+              "x": 850,
+              "y": 225
+            },
+            {
+              "x": 877.5,
+              "y": 232.37
+            },
+            {
+              "x": 897.63,
+              "y": 252.5
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "standing_stone_4",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 1075,
+              "y": 550
+            },
+            {
+              "x": 1067.63,
+              "y": 577.5
+            },
+            {
+              "x": 1047.5,
+              "y": 597.63
+            },
+            {
+              "x": 1020,
+              "y": 605
+            },
+            {
+              "x": 992.5,
+              "y": 597.63
+            },
+            {
+              "x": 972.37,
+              "y": 577.5
+            },
+            {
+              "x": 965,
+              "y": 550
+            },
+            {
+              "x": 972.37,
+              "y": 522.5
+            },
+            {
+              "x": 992.5,
+              "y": 502.37
+            },
+            {
+              "x": 1020,
+              "y": 495
+            },
+            {
+              "x": 1047.5,
+              "y": 502.37
+            },
+            {
+              "x": 1067.63,
+              "y": 522.5
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "standing_stone_5",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 965,
+              "y": 850
+            },
+            {
+              "x": 957.63,
+              "y": 877.5
+            },
+            {
+              "x": 937.5,
+              "y": 897.63
+            },
+            {
+              "x": 910,
+              "y": 905
+            },
+            {
+              "x": 882.5,
+              "y": 897.63
+            },
+            {
+              "x": 862.37,
+              "y": 877.5
+            },
+            {
+              "x": 855,
+              "y": 850
+            },
+            {
+              "x": 862.37,
+              "y": 822.5
+            },
+            {
+              "x": 882.5,
+              "y": 802.37
+            },
+            {
+              "x": 910,
+              "y": 795
+            },
+            {
+              "x": 937.5,
+              "y": 802.37
+            },
+            {
+              "x": 957.63,
+              "y": 822.5
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "standing_stone_6",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 655,
+              "y": 960
+            },
+            {
+              "x": 647.63,
+              "y": 987.5
+            },
+            {
+              "x": 627.5,
+              "y": 1007.63
+            },
+            {
+              "x": 600,
+              "y": 1015
+            },
+            {
+              "x": 572.5,
+              "y": 1007.63
+            },
+            {
+              "x": 552.37,
+              "y": 987.5
+            },
+            {
+              "x": 545,
+              "y": 960
+            },
+            {
+              "x": 552.37,
+              "y": 932.5
+            },
+            {
+              "x": 572.5,
+              "y": 912.37
+            },
+            {
+              "x": 600,
+              "y": 905
+            },
+            {
+              "x": 627.5,
+              "y": 912.37
+            },
+            {
+              "x": 647.63,
+              "y": 932.5
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "standing_stone_7",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 345,
+              "y": 820
+            },
+            {
+              "x": 337.63,
+              "y": 847.5
+            },
+            {
+              "x": 317.5,
+              "y": 867.63
+            },
+            {
+              "x": 290,
+              "y": 875
+            },
+            {
+              "x": 262.5,
+              "y": 867.63
+            },
+            {
+              "x": 242.37,
+              "y": 847.5
+            },
+            {
+              "x": 235,
+              "y": 820
+            },
+            {
+              "x": 242.37,
+              "y": 792.5
+            },
+            {
+              "x": 262.5,
+              "y": 772.37
+            },
+            {
+              "x": 290,
+              "y": 765
+            },
+            {
+              "x": 317.5,
+              "y": 772.37
+            },
+            {
+              "x": 337.63,
+              "y": 792.5
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "treant_ring_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "treant_ring",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "treant_ring_floor",
+            "prefabRevision": "treant-ring-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "ring_treants_blight_treant_w1_anchor",
+          "archetype": "blight_treant",
+          "encounterId": "ring_treants",
+          "facing": 3.141592653589793,
+          "id": "ring_treants_blight_treant_w1",
+          "leashZoneId": "ring_leash",
+          "retired": false,
+          "spawnGroupId": "ring_treants_wave1_blight_treant",
+          "visualScale": 1.25,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ring_treants_blight_treant_w1_2_anchor",
+          "archetype": "blight_treant",
+          "encounterId": "ring_treants",
+          "facing": 3.141592653589793,
+          "id": "ring_treants_blight_treant_w1_2",
+          "leashZoneId": "ring_leash",
+          "retired": false,
+          "spawnGroupId": "ring_treants_wave1_blight_treant",
+          "visualScale": 1.25,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ring_treants_blight_treant_w1_3_anchor",
+          "archetype": "blight_treant",
+          "encounterId": "ring_treants",
+          "facing": 3.141592653589793,
+          "id": "ring_treants_blight_treant_w1_3",
+          "leashZoneId": "ring_leash",
+          "retired": false,
+          "spawnGroupId": "ring_treants_wave1_blight_treant",
+          "visualScale": 1.25,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ring_treants_blight_treant_w1_4_anchor",
+          "archetype": "blight_treant",
+          "encounterId": "ring_treants",
+          "facing": 3.141592653589793,
+          "id": "ring_treants_blight_treant_w1_4",
+          "leashZoneId": "ring_leash",
+          "retired": false,
+          "spawnGroupId": "ring_treants_wave1_blight_treant",
+          "visualScale": 1.25,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ring_treants_rot_wolf_w1_anchor",
+          "archetype": "rot_wolf",
+          "encounterId": "ring_treants",
+          "facing": 3.141592653589793,
+          "id": "ring_treants_rot_wolf_w1",
+          "leashZoneId": "ring_leash",
+          "retired": false,
+          "spawnGroupId": "ring_treants_wave1_rot_wolf",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ring_treants_rot_wolf_w1_2_anchor",
+          "archetype": "rot_wolf",
+          "encounterId": "ring_treants",
+          "facing": 3.141592653589793,
+          "id": "ring_treants_rot_wolf_w1_2",
+          "leashZoneId": "ring_leash",
+          "retired": false,
+          "spawnGroupId": "ring_treants_wave1_rot_wolf",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ring_treants_rot_wolf_w1_3_anchor",
+          "archetype": "rot_wolf",
+          "encounterId": "ring_treants",
+          "facing": 3.141592653589793,
+          "id": "ring_treants_rot_wolf_w1_3",
+          "leashZoneId": "ring_leash",
+          "retired": false,
+          "spawnGroupId": "ring_treants_wave1_rot_wolf",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Treant Ring",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "clearing_to_ring_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Clearing",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Clearing",
+          "opacity": 0,
+          "portalId": "clearing_to_ring_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_small_chest_ring_sw_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-small-chest-ring-sw",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "grove_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "grove_small_chest_ring_e_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "grove-small-chest-ring-e",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "grove_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "ring_nw_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 120,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1479190,
+          "shape": {
+            "height": 80,
+            "id": "ring_nw_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 200,
+            "x": 120,
+            "y": 110
+          }
+        },
+        {
+          "id": "ring_ne_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 120,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1487109,
+          "shape": {
+            "height": 80,
+            "id": "ring_ne_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 200,
+            "x": 880,
+            "y": 110
+          }
+        },
+        {
+          "id": "ring_se_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 120,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1495028,
+          "shape": {
+            "height": 80,
+            "id": "ring_se_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 200,
+            "x": 880,
+            "y": 1000
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "blightwood_grove-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 1050,
+          "id": "ring_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1070,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1140,
+          "id": "ring_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 695,
+          "y": 1230
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 695,
+          "y": 1370
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 695,
+          "y": 1290
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 695,
+          "y": 1230
+        },
+        {
+          "id": "heart_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1150,
+          "y": 1150
+        },
+        {
+          "id": "hollow_elder_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 640
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_90_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 300,
+          "y": 300
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_90_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 300
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_70_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 250,
+          "y": 640
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_70_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1150,
+          "y": 640
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_70_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 250
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_50_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 350,
+          "y": 950
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_50_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1050,
+          "y": 950
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_50_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 1000
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_35_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 200,
+          "y": 450
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_35_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1200,
+          "y": 450
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_35_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 850
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_20_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 450,
+          "y": 200
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_20_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 950,
+          "y": 200
+        },
+        {
+          "id": "hollow_elder_blight_sprite_w1_20_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 1100
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 700
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 30,
+          "id": "wall_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1400,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 1400,
+          "id": "wall_left",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 40,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 1400,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 40,
+          "x": 1360,
+          "y": 0
+        },
+        {
+          "height": 80,
+          "id": "wall_bottom_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 610,
+          "x": 0,
+          "y": 1320
+        },
+        {
+          "height": 80,
+          "id": "wall_bottom_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 620,
+          "x": 780,
+          "y": 1320
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "heartwood_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 1376
+            },
+            {
+              "x": 24,
+              "y": 1376
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1400,
+      "id": "heartwood",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "heartwood_floor",
+            "prefabRevision": "heartwood-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "hollow_elder_boss_anchor",
+          "archetype": "hollow_elder",
+          "encounterId": "hollow_elder",
+          "facing": 1.5707963267948966,
+          "id": "hollow_elder_boss",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_group",
+          "visualScale": 1.7,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_90_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_90",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_90",
+          "summonAtHealthPercent": 90,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_90_2_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_90_2",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_90",
+          "summonAtHealthPercent": 90,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_70_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_70",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_70",
+          "summonAtHealthPercent": 70,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_70_2_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_70_2",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_70",
+          "summonAtHealthPercent": 70,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_70_3_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_70_3",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_70",
+          "summonAtHealthPercent": 70,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_50_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_50",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_50_2_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_50_2",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_50_3_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_50_3",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_35_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_35",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_35",
+          "summonAtHealthPercent": 35,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_35_2_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_35_2",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_35",
+          "summonAtHealthPercent": 35,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_35_3_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_35_3",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_35",
+          "summonAtHealthPercent": 35,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_20_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_20",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_20",
+          "summonAtHealthPercent": 20,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_20_2_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_20_2",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_20",
+          "summonAtHealthPercent": 20,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_elder_blight_sprite_w1_20_3_anchor",
+          "archetype": "blight_sprite",
+          "encounterId": "hollow_elder",
+          "facing": 3.141592653589793,
+          "id": "hollow_elder_blight_sprite_w1_20_3",
+          "leashZoneId": "heart_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_elder_sprites_20",
+          "summonAtHealthPercent": 20,
+          "summonedByMobSpawnId": "hollow_elder_boss",
+          "visualScale": 0.8,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Heartwood",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "clearing_to_heartwood_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Clearing",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Clearing",
+          "opacity": 0,
+          "portalId": "clearing_to_heartwood_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "heart_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "heart_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Hollow Elder's Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "blightwood_grove_heart_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "heartwood_sw_roots",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 120,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "balsam_resin"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1502947,
+          "shape": {
+            "height": 150,
+            "id": "heartwood_sw_roots_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 180,
+            "x": 80,
+            "y": 1100
+          }
+        },
+        {
+          "id": "heartwood_ne_roots",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "balsam_resin",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1510866,
+          "shape": {
+            "height": 120,
+            "id": "heartwood_ne_roots_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 140,
+            "x": 1180,
+            "y": 90
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "blightwood_grove-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 1290,
+          "id": "heart_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1320,
+          "x": 40,
+          "y": 30
+        },
+        {
+          "height": 1340,
+          "id": "heart_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1360,
+          "x": 20,
+          "y": 20
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

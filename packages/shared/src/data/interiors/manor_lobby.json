@@ -1,0 +1,4490 @@
+{
+  "catalogRevision": 7,
+  "defaultRoomId": "manor_lobby_room",
+  "description": "The shared starting template for Manor interior authoring.",
+  "doorVisual": null,
+  "environment": {
+    "ambienceAssetKey": null,
+    "backgroundColor": "#071116",
+    "environmentId": "default",
+    "floorAssetKey": "apps/client/src/assets/manors/timber/lobby.png",
+    "floorColor": "#182a2d",
+    "musicAssetKey": null,
+    "wallColor": "#405052"
+  },
+  "id": "manor_lobby",
+  "instancePolicy": "owner_persistent",
+  "kind": "manor",
+  "modules": {
+    "decoration": {
+      "definitions": [
+        {
+          "assetKey": "apps/client/public/assets/manor/simpledoublebed.png",
+          "collision": false,
+          "footprint": [
+            {
+              "x": 0.8356412832387882,
+              "y": 0.1318049721054324
+            },
+            {
+              "x": 0.8379541062267398,
+              "y": 0.8534368019237453
+            },
+            {
+              "x": 0.1556420713782255,
+              "y": 0.8511238500661779
+            },
+            {
+              "x": 0.15795502323579286,
+              "y": 0.1294920202478651
+            }
+          ],
+          "id": "simple_double_bed",
+          "itemId": null,
+          "layer": "in_front",
+          "mirrorX": false,
+          "name": "SimpleDoubleBed",
+          "placementMode": "movable",
+          "retired": false,
+          "roomId": "manor_lobby_room",
+          "surfaceId": "floor_surface",
+          "transform": {
+            "anchorX": 0.5,
+            "anchorY": 0.5,
+            "height": 120,
+            "rotationDeg": 0,
+            "scaleX": 3.5,
+            "scaleY": 3.5,
+            "width": 120,
+            "x": 223.57480384772185,
+            "y": 365
+          },
+          "zIndex": 0
+        }
+      ],
+      "playerPlacement": {
+        "enabled": true
+      }
+    },
+    "manor": {
+      "exteriorAssetKey": "apps/client/src/assets/manors/timber/exterior.png"
+    }
+  },
+  "name": "Timber Manor",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "destinationArrivalAnchorId": "return_to_manor",
+      "enabled": true,
+      "id": "manor_lobby_room-anchor",
+      "interactionLabel": "Upstairs",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_hallway-return_to_manor",
+      "retired": false,
+      "source": {
+        "anchorId": "anchor",
+        "kind": "room",
+        "roomId": "manor_lobby_room"
+      },
+      "sourceApproachAnchorId": "anchor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "return_to_manor",
+      "enabled": true,
+      "id": "manor_lobby_room-anchor-basement_hallway",
+      "interactionLabel": "Basement",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-return_to_manor",
+      "retired": false,
+      "source": {
+        "anchorId": "anchor",
+        "kind": "room",
+        "roomId": "manor_lobby_room"
+      },
+      "sourceApproachAnchorId": "anchor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "manor_lobby_room-world_exit",
+      "interactionLabel": "Leave Manor",
+      "presentation": "door",
+      "retired": false,
+      "source": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "manor_lobby_room"
+      },
+      "sourceApproachAnchorId": "world_exit"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "anchor",
+        "kind": "room",
+        "roomId": "manor_lobby_room"
+      },
+      "destinationArrivalAnchorId": "anchor",
+      "enabled": true,
+      "id": "upstairs_hallway-return_to_manor",
+      "interactionLabel": "Lobby",
+      "presentation": "door",
+      "reciprocalPortalId": "manor_lobby_room-anchor",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "sourceApproachAnchorId": "return_to_manor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_1"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "upstairs_hallway-room_1",
+      "interactionLabel": "Private Room 1",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_room_1-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_1",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "sourceApproachAnchorId": "room_1"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_1",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "destinationArrivalAnchorId": "room_1",
+      "enabled": true,
+      "id": "upstairs_room_1-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_hallway-room_1",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_1"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_2"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "upstairs_hallway-room_2",
+      "interactionLabel": "Private Room 2",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_room_2-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_2",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "sourceApproachAnchorId": "room_2"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_2",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "destinationArrivalAnchorId": "room_2",
+      "enabled": true,
+      "id": "upstairs_room_2-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_hallway-room_2",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_2"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_3"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "upstairs_hallway-room_3",
+      "interactionLabel": "Private Room 3",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_room_3-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_3",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "sourceApproachAnchorId": "room_3"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_3",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "destinationArrivalAnchorId": "room_3",
+      "enabled": true,
+      "id": "upstairs_room_3-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_hallway-room_3",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_3"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_4"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "upstairs_hallway-room_4",
+      "interactionLabel": "Private Room 4",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_room_4-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_4",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "sourceApproachAnchorId": "room_4"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_4",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "destinationArrivalAnchorId": "room_4",
+      "enabled": true,
+      "id": "upstairs_room_4-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_hallway-room_4",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_4"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_5"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "upstairs_hallway-room_5",
+      "interactionLabel": "Private Room 5",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_room_5-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_5",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "sourceApproachAnchorId": "room_5"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_5",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "destinationArrivalAnchorId": "room_5",
+      "enabled": true,
+      "id": "upstairs_room_5-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_hallway-room_5",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_5"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_6"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "upstairs_hallway-room_6",
+      "interactionLabel": "Private Room 6",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_room_6-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_6",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "sourceApproachAnchorId": "room_6"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_6",
+        "kind": "room",
+        "roomId": "upstairs_hallway"
+      },
+      "destinationArrivalAnchorId": "room_6",
+      "enabled": true,
+      "id": "upstairs_room_6-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "upstairs_hallway-room_6",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "upstairs_room_6"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "anchor",
+        "kind": "room",
+        "roomId": "manor_lobby_room"
+      },
+      "destinationArrivalAnchorId": "anchor",
+      "enabled": true,
+      "id": "basement_hallway-return_to_manor",
+      "interactionLabel": "Lobby",
+      "presentation": "door",
+      "reciprocalPortalId": "manor_lobby_room-anchor-basement_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "sourceApproachAnchorId": "return_to_manor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "return_to_manor",
+      "enabled": true,
+      "id": "manor_lobby_room-anchor_2",
+      "interactionLabel": "Basement",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-return_to_manor",
+      "retired": true,
+      "source": {
+        "anchorId": "anchor_2",
+        "kind": "room",
+        "roomId": "manor_lobby_room"
+      },
+      "sourceApproachAnchorId": "anchor_2"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_1"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "basement_hallway-room_1",
+      "interactionLabel": "Basement Room 1",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_room_1-return_to_hallway",
+      "retired": true,
+      "source": {
+        "anchorId": "room_1",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "sourceApproachAnchorId": "room_1"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_2"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "basement_hallway-room_2",
+      "interactionLabel": "Basement Room 2",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_room_2-return_to_hallway",
+      "retired": true,
+      "source": {
+        "anchorId": "room_2",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "sourceApproachAnchorId": "room_2"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_3"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "basement_hallway-room_3",
+      "interactionLabel": "Basement Room 3",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_room_3-return_to_hallway",
+      "retired": true,
+      "source": {
+        "anchorId": "room_3",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "sourceApproachAnchorId": "room_3"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_4"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "basement_hallway-room_4",
+      "interactionLabel": "Basement Room 4",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_room_4-return_to_hallway",
+      "retired": true,
+      "source": {
+        "anchorId": "room_4",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "sourceApproachAnchorId": "room_4"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_5"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "basement_hallway-room_5",
+      "interactionLabel": "Basement Room 5",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_room_5-return_to_hallway",
+      "retired": true,
+      "source": {
+        "anchorId": "room_5",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "sourceApproachAnchorId": "room_5"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_6"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": false,
+      "id": "basement_hallway-room_6",
+      "interactionLabel": "Basement Room 6",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_room_6-return_to_hallway",
+      "retired": true,
+      "source": {
+        "anchorId": "room_6",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "sourceApproachAnchorId": "room_6"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_1",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "room_1",
+      "enabled": true,
+      "id": "basement_room_1-return_to_hallway",
+      "interactionLabel": "Return to Basement Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-room_1",
+      "retired": true,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_1"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_2",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "room_2",
+      "enabled": true,
+      "id": "basement_room_2-return_to_hallway",
+      "interactionLabel": "Return to Basement Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-room_2",
+      "retired": true,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_2"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_3",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "room_3",
+      "enabled": true,
+      "id": "basement_room_3-return_to_hallway",
+      "interactionLabel": "Return to Basement Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-room_3",
+      "retired": true,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_3"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_4",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "room_4",
+      "enabled": true,
+      "id": "basement_room_4-return_to_hallway",
+      "interactionLabel": "Return to Basement Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-room_4",
+      "retired": true,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_4"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_5",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "room_5",
+      "enabled": true,
+      "id": "basement_room_5-return_to_hallway",
+      "interactionLabel": "Return to Basement Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-room_5",
+      "retired": true,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_5"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_6",
+        "kind": "room",
+        "roomId": "basement_hallway"
+      },
+      "destinationArrivalAnchorId": "room_6",
+      "enabled": true,
+      "id": "basement_room_6-return_to_hallway",
+      "interactionLabel": "Return to Basement Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "basement_hallway-room_6",
+      "retired": true,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "basement_room_6"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    }
+  ],
+  "publishedRevisionId": "manor_lobby-r102",
+  "retired": false,
+  "revision": "manor_lobby-v102",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [
+        "manor_main_room"
+      ],
+      "anchors": [
+        {
+          "facing": -1.5707963267948966,
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1075,
+          "y": 1043
+        },
+        {
+          "facing": 0,
+          "id": "upstairs_door",
+          "message": "Upstairs Floor Currently In Construction",
+          "retired": true,
+          "role": "message",
+          "x": 627,
+          "y": 150
+        },
+        {
+          "id": "anchor",
+          "name": "Left door",
+          "retired": false,
+          "role": "portal",
+          "x": 96,
+          "y": 1050
+        },
+        {
+          "id": "anchor_2",
+          "retired": true,
+          "role": "portal",
+          "x": 1179.1081644353153,
+          "y": 1086.5514880228275
+        },
+        {
+          "id": "station_smith",
+          "retired": false,
+          "role": "point",
+          "x": 1009.47,
+          "y": 307.23
+        },
+        {
+          "id": "station_jewel",
+          "retired": false,
+          "role": "point",
+          "x": 1128.6,
+          "y": 307.23
+        },
+        {
+          "id": "station_breeder",
+          "retired": false,
+          "role": "point",
+          "x": 1009.47,
+          "y": 213.18
+        },
+        {
+          "id": "world_exit",
+          "name": "Exit",
+          "retired": false,
+          "role": "portal",
+          "x": 1161,
+          "y": 1043
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "upstairs_door_click_area",
+          "interactionLabel": "Upstairs door",
+          "polygon": [
+            {
+              "x": 577,
+              "y": 120
+            },
+            {
+              "x": 677,
+              "y": 120
+            },
+            {
+              "x": 677,
+              "y": 180
+            },
+            {
+              "x": 577,
+              "y": 180
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "upstairs_door"
+          }
+        },
+        {
+          "id": "manor_smith_click_area",
+          "interactionLabel": "Manor Smith",
+          "polygon": [
+            {
+              "x": 946.77,
+              "y": 244.53
+            },
+            {
+              "x": 1072.17,
+              "y": 244.53
+            },
+            {
+              "x": 1072.17,
+              "y": 369.93
+            },
+            {
+              "x": 946.77,
+              "y": 369.93
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "manor_smith"
+          }
+        },
+        {
+          "id": "manor_jewel_click_area",
+          "interactionLabel": "Manor Jeweler",
+          "polygon": [
+            {
+              "x": 1072.17,
+              "y": 244.53
+            },
+            {
+              "x": 1185.03,
+              "y": 244.53
+            },
+            {
+              "x": 1185.03,
+              "y": 369.93
+            },
+            {
+              "x": 1072.17,
+              "y": 369.93
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "manor_jewel"
+          }
+        },
+        {
+          "id": "manor_breeder_click_area",
+          "interactionLabel": "Manor Breeder",
+          "polygon": [
+            {
+              "x": 940.5,
+              "y": 156.75
+            },
+            {
+              "x": 1078.44,
+              "y": 156.75
+            },
+            {
+              "x": 1078.44,
+              "y": 263.34
+            },
+            {
+              "x": 940.5,
+              "y": 263.34
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "manor_breeder"
+          }
+        },
+        {
+          "id": "portal_hotspot_2",
+          "interactionLabel": "Basement",
+          "polygon": [
+            {
+              "x": 1157.6302556724338,
+              "y": 1169.4604196415075
+            },
+            {
+              "x": 1157.6302556724338,
+              "y": 976.6937403842044
+            },
+            {
+              "x": 1254,
+              "y": 967.9883129329145
+            },
+            {
+              "x": 1254,
+              "y": 1183.1408126214271
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "anchor_2"
+          }
+        },
+        {
+          "id": "portal_hotspot",
+          "interactionLabel": "Door",
+          "polygon": [
+            {
+              "x": 25,
+              "y": 925
+            },
+            {
+              "x": 92,
+              "y": 925
+            },
+            {
+              "x": 92,
+              "y": 1175
+            },
+            {
+              "x": 25,
+              "y": 1175
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "anchor"
+          }
+        },
+        {
+          "id": "world_exit_click_area",
+          "interactionLabel": "Front Door",
+          "polygon": [
+            {
+              "x": 1165,
+              "y": 915
+            },
+            {
+              "x": 1232,
+              "y": 915
+            },
+            {
+              "x": 1232,
+              "y": 1170
+            },
+            {
+              "x": 1165,
+              "y": 1170
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "world_exit"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "lobby_floor_surface",
+          "polygon": [
+            {
+              "x": 120,
+              "y": 180
+            },
+            {
+              "x": 1134,
+              "y": 180
+            },
+            {
+              "x": 1134,
+              "y": 1120
+            },
+            {
+              "x": 120,
+              "y": 1120
+            }
+          ],
+          "retired": true
+        },
+        {
+          "id": "floor_surface",
+          "polygon": [
+            {
+              "x": 72,
+              "y": 198
+            },
+            {
+              "x": 1185,
+              "y": 198
+            },
+            {
+              "x": 1185,
+              "y": 1254
+            },
+            {
+              "x": 72,
+              "y": 1254
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "manor_lobby_room",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "manor_lobby_room_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_lobby",
+            "prefabRevision": "timber_manor_floor_lobby-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Lobby",
+      "objects": [
+        {
+          "anchorId": "station_smith",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "manor_smith",
+          "initialState": "idle",
+          "interactionRadius": 130,
+          "layerId": "actors",
+          "name": "Manor Smith",
+          "opacity": 1,
+          "retired": false,
+          "rotationDeg": 0,
+          "stationKind": "smith",
+          "type": "station",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "station_jewel",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "manor_jewel",
+          "initialState": "idle",
+          "interactionRadius": 130,
+          "layerId": "actors",
+          "name": "Manor Jeweler",
+          "opacity": 1,
+          "retired": false,
+          "rotationDeg": 0,
+          "stationKind": "jewel",
+          "type": "station",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "station_breeder",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "manor_breeder",
+          "initialState": "idle",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Manor Breeder",
+          "opacity": 1,
+          "retired": false,
+          "rotationDeg": 0,
+          "stationKind": "breeder",
+          "type": "station",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "manor_lobby_room-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "lobby_back_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0.14
+            },
+            {
+              "u": 0,
+              "v": 0.14
+            }
+          ],
+          "kind": "back_wall",
+          "retired": true,
+          "roomPolygon": [
+            {
+              "x": 121.24367208908382,
+              "y": 118.75632791091635
+            },
+            {
+              "x": 1135.2436720890837,
+              "y": 118.75632791091635
+            },
+            {
+              "x": 1135.2436720890837,
+              "y": 178.75632791091635
+            },
+            {
+              "x": 121.24367208908382,
+              "y": 178.75632791091635
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "lobby_left_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": true,
+          "roomPolygon": [
+            {
+              "x": 60,
+              "y": 180
+            },
+            {
+              "x": 120,
+              "y": 180
+            },
+            {
+              "x": 120,
+              "y": 1120
+            },
+            {
+              "x": 60,
+              "y": 1120
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "lobby_right_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": true,
+          "roomPolygon": [
+            {
+              "x": 1134,
+              "y": 180
+            },
+            {
+              "x": 1194,
+              "y": 180
+            },
+            {
+              "x": 1194,
+              "y": 1120
+            },
+            {
+              "x": 1134,
+              "y": 1120
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "back_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 72,
+              "y": 198
+            },
+            {
+              "x": 72,
+              "y": 1254
+            },
+            {
+              "x": 0,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1185,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1254
+            },
+            {
+              "x": 1185,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 628,
+          "y": 1035
+        },
+        {
+          "id": "return_to_manor",
+          "name": "Stairs",
+          "retired": false,
+          "role": "portal",
+          "x": 628,
+          "y": 1083
+        },
+        {
+          "id": "room_1",
+          "name": "Door 1",
+          "retired": false,
+          "role": "portal",
+          "x": 829,
+          "y": 393
+        },
+        {
+          "id": "room_2",
+          "name": "Door 2",
+          "retired": false,
+          "role": "portal",
+          "x": 829,
+          "y": 700
+        },
+        {
+          "id": "room_3",
+          "name": "Door 3",
+          "retired": false,
+          "role": "portal",
+          "x": 829,
+          "y": 983
+        },
+        {
+          "id": "room_4",
+          "name": "Door 4",
+          "retired": false,
+          "role": "portal",
+          "x": 426,
+          "y": 393
+        },
+        {
+          "id": "room_5",
+          "name": "Door 5",
+          "retired": false,
+          "role": "portal",
+          "x": 426,
+          "y": 700
+        },
+        {
+          "id": "room_6",
+          "name": "Door 6",
+          "retired": false,
+          "role": "portal",
+          "x": 426,
+          "y": 983
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_manor_door",
+          "interactionLabel": "Stairs",
+          "polygon": [
+            {
+              "x": 505,
+              "y": 1105
+            },
+            {
+              "x": 750,
+              "y": 1105
+            },
+            {
+              "x": 750,
+              "y": 1254
+            },
+            {
+              "x": 505,
+              "y": 1254
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_manor"
+          }
+        },
+        {
+          "id": "room_1_door",
+          "interactionLabel": "Private Room 1",
+          "polygon": [
+            {
+              "x": 835,
+              "y": 300
+            },
+            {
+              "x": 897,
+              "y": 300
+            },
+            {
+              "x": 897,
+              "y": 485
+            },
+            {
+              "x": 835,
+              "y": 485
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_1"
+          }
+        },
+        {
+          "id": "room_2_door",
+          "interactionLabel": "Private Room 2",
+          "polygon": [
+            {
+              "x": 835,
+              "y": 610
+            },
+            {
+              "x": 897,
+              "y": 610
+            },
+            {
+              "x": 897,
+              "y": 790
+            },
+            {
+              "x": 835,
+              "y": 790
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_2"
+          }
+        },
+        {
+          "id": "room_3_door",
+          "interactionLabel": "Private Room 3",
+          "polygon": [
+            {
+              "x": 835,
+              "y": 890
+            },
+            {
+              "x": 897,
+              "y": 890
+            },
+            {
+              "x": 897,
+              "y": 1075
+            },
+            {
+              "x": 835,
+              "y": 1075
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_3"
+          }
+        },
+        {
+          "id": "room_4_door",
+          "interactionLabel": "Private Room 4",
+          "polygon": [
+            {
+              "x": 358,
+              "y": 300
+            },
+            {
+              "x": 420,
+              "y": 300
+            },
+            {
+              "x": 420,
+              "y": 485
+            },
+            {
+              "x": 358,
+              "y": 485
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_4"
+          }
+        },
+        {
+          "id": "room_5_door",
+          "interactionLabel": "Private Room 5",
+          "polygon": [
+            {
+              "x": 358,
+              "y": 610
+            },
+            {
+              "x": 420,
+              "y": 610
+            },
+            {
+              "x": 420,
+              "y": 790
+            },
+            {
+              "x": 358,
+              "y": 790
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_5"
+          }
+        },
+        {
+          "id": "room_6_door",
+          "interactionLabel": "Private Room 6",
+          "polygon": [
+            {
+              "x": 358,
+              "y": 890
+            },
+            {
+              "x": 420,
+              "y": 890
+            },
+            {
+              "x": 420,
+              "y": 1075
+            },
+            {
+              "x": 358,
+              "y": 1075
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_6"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 402,
+              "y": 205
+            },
+            {
+              "x": 853,
+              "y": 205
+            },
+            {
+              "x": 853,
+              "y": 1254
+            },
+            {
+              "x": 750,
+              "y": 1254
+            },
+            {
+              "x": 750,
+              "y": 1105
+            },
+            {
+              "x": 505,
+              "y": 1105
+            },
+            {
+              "x": 505,
+              "y": 1254
+            },
+            {
+              "x": 402,
+              "y": 1254
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "upstairs_hallway",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "upstairs_hallway_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_hall",
+            "prefabRevision": "timber_manor_floor_hall-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Upstairs Hallway",
+      "objects": [],
+      "retired": false,
+      "revision": "upstairs_hallway-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 357,
+              "y": 0
+            },
+            {
+              "x": 898,
+              "y": 0
+            },
+            {
+              "x": 898,
+              "y": 205
+            },
+            {
+              "x": 357,
+              "y": 205
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 357,
+              "y": 205
+            },
+            {
+              "x": 402,
+              "y": 205
+            },
+            {
+              "x": 402,
+              "y": 1254
+            },
+            {
+              "x": 357,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 853,
+              "y": 205
+            },
+            {
+              "x": 898,
+              "y": 205
+            },
+            {
+              "x": 898,
+              "y": 1254
+            },
+            {
+              "x": 853,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 194,
+          "y": 1075
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 98,
+          "y": 1075
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 22,
+              "y": 995
+            },
+            {
+              "x": 94,
+              "y": 995
+            },
+            {
+              "x": 94,
+              "y": 1155
+            },
+            {
+              "x": 22,
+              "y": 1155
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            },
+            {
+              "x": 74,
+              "y": 1219
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "upstairs_room_1",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "upstairs_room_1_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_room",
+            "prefabRevision": "timber_manor_floor_room-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 1",
+      "objects": [],
+      "retired": false,
+      "revision": "upstairs_room_1-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 1219
+            },
+            {
+              "x": 0,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1219
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 194,
+          "y": 1075
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 98,
+          "y": 1075
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 22,
+              "y": 995
+            },
+            {
+              "x": 94,
+              "y": 995
+            },
+            {
+              "x": 94,
+              "y": 1155
+            },
+            {
+              "x": 22,
+              "y": 1155
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            },
+            {
+              "x": 74,
+              "y": 1219
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "upstairs_room_2",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "upstairs_room_2_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_room",
+            "prefabRevision": "timber_manor_floor_room-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 2",
+      "objects": [],
+      "retired": false,
+      "revision": "upstairs_room_2-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 1219
+            },
+            {
+              "x": 0,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1219
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 194,
+          "y": 1075
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 98,
+          "y": 1075
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 22,
+              "y": 995
+            },
+            {
+              "x": 94,
+              "y": 995
+            },
+            {
+              "x": 94,
+              "y": 1155
+            },
+            {
+              "x": 22,
+              "y": 1155
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            },
+            {
+              "x": 74,
+              "y": 1219
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "upstairs_room_3",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "upstairs_room_3_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_room",
+            "prefabRevision": "timber_manor_floor_room-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 3",
+      "objects": [],
+      "retired": false,
+      "revision": "upstairs_room_3-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 1219
+            },
+            {
+              "x": 0,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1219
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1063,
+          "y": 1075
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 1159,
+          "y": 1075
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 1163,
+              "y": 995
+            },
+            {
+              "x": 1232,
+              "y": 995
+            },
+            {
+              "x": 1232,
+              "y": 1155
+            },
+            {
+              "x": 1163,
+              "y": 1155
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            },
+            {
+              "x": 74,
+              "y": 1219
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "upstairs_room_4",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "upstairs_room_4_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_room_left",
+            "prefabRevision": "timber_manor_floor_room_left-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 4",
+      "objects": [],
+      "retired": false,
+      "revision": "upstairs_room_4-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 1219
+            },
+            {
+              "x": 0,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1219
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1063,
+          "y": 1075
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 1159,
+          "y": 1075
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 1163,
+              "y": 995
+            },
+            {
+              "x": 1232,
+              "y": 995
+            },
+            {
+              "x": 1232,
+              "y": 1155
+            },
+            {
+              "x": 1163,
+              "y": 1155
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            },
+            {
+              "x": 74,
+              "y": 1219
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "upstairs_room_5",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "upstairs_room_5_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_room_left",
+            "prefabRevision": "timber_manor_floor_room_left-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 5",
+      "objects": [],
+      "retired": false,
+      "revision": "upstairs_room_5-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 1219
+            },
+            {
+              "x": 0,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1219
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1063,
+          "y": 1075
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 1159,
+          "y": 1075
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 1163,
+              "y": 995
+            },
+            {
+              "x": 1232,
+              "y": 995
+            },
+            {
+              "x": 1232,
+              "y": 1155
+            },
+            {
+              "x": 1163,
+              "y": 1155
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            },
+            {
+              "x": 74,
+              "y": 1219
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "upstairs_room_6",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "upstairs_room_6_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_room_left",
+            "prefabRevision": "timber_manor_floor_room_left-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 6",
+      "objects": [],
+      "retired": false,
+      "revision": "upstairs_room_6-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 198
+            },
+            {
+              "x": 74,
+              "y": 1219
+            },
+            {
+              "x": 0,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1183,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1219
+            },
+            {
+              "x": 1183,
+              "y": 1219
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 201,
+          "y": 905
+        },
+        {
+          "id": "return_to_manor",
+          "name": "Stairs",
+          "retired": false,
+          "role": "portal",
+          "x": 161,
+          "y": 963
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_manor_door",
+          "interactionLabel": "Stairs",
+          "polygon": [
+            {
+              "x": 55,
+              "y": 985
+            },
+            {
+              "x": 252,
+              "y": 985
+            },
+            {
+              "x": 252,
+              "y": 1254
+            },
+            {
+              "x": 55,
+              "y": 1254
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_manor"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 70,
+              "y": 198
+            },
+            {
+              "x": 1185,
+              "y": 198
+            },
+            {
+              "x": 1185,
+              "y": 1254
+            },
+            {
+              "x": 252,
+              "y": 1254
+            },
+            {
+              "x": 252,
+              "y": 985
+            },
+            {
+              "x": 70,
+              "y": 985
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "basement_hallway",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "basement_hallway_floor_art",
+            "opacity": 1,
+            "prefabId": "timber_manor_floor_lower",
+            "prefabRevision": "timber_manor_floor_lower-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Basement",
+      "objects": [],
+      "retired": false,
+      "revision": "basement_hallway-v3",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 0,
+              "y": 198
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 198
+            },
+            {
+              "x": 70,
+              "y": 198
+            },
+            {
+              "x": 70,
+              "y": 1254
+            },
+            {
+              "x": 0,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1185,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 198
+            },
+            {
+              "x": 1254,
+              "y": 1254
+            },
+            {
+              "x": 1185,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": false,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 627,
+          "y": 627
+        },
+        {
+          "id": "return_to_hallway",
+          "retired": true,
+          "role": "portal",
+          "x": 627,
+          "y": 1065.8999999999999
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Return to Basement Hallway",
+          "polygon": [
+            {
+              "x": 592,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1100.8999999999999
+            },
+            {
+              "x": 592,
+              "y": 1100.8999999999999
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 1234
+            },
+            {
+              "x": 20,
+              "y": 1234
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "basement_room_1",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Basement Room 1",
+      "objects": [],
+      "retired": true,
+      "revision": "basement_room_1-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": false,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 627,
+          "y": 627
+        },
+        {
+          "id": "return_to_hallway",
+          "retired": true,
+          "role": "portal",
+          "x": 627,
+          "y": 1065.8999999999999
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Return to Basement Hallway",
+          "polygon": [
+            {
+              "x": 592,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1100.8999999999999
+            },
+            {
+              "x": 592,
+              "y": 1100.8999999999999
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 1234
+            },
+            {
+              "x": 20,
+              "y": 1234
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "basement_room_2",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Basement Room 2",
+      "objects": [],
+      "retired": true,
+      "revision": "basement_room_2-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": false,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 627,
+          "y": 627
+        },
+        {
+          "id": "return_to_hallway",
+          "retired": true,
+          "role": "portal",
+          "x": 627,
+          "y": 1065.8999999999999
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Return to Basement Hallway",
+          "polygon": [
+            {
+              "x": 592,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1100.8999999999999
+            },
+            {
+              "x": 592,
+              "y": 1100.8999999999999
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 1234
+            },
+            {
+              "x": 20,
+              "y": 1234
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "basement_room_3",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Basement Room 3",
+      "objects": [],
+      "retired": true,
+      "revision": "basement_room_3-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": false,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 627,
+          "y": 627
+        },
+        {
+          "id": "return_to_hallway",
+          "retired": true,
+          "role": "portal",
+          "x": 627,
+          "y": 1065.8999999999999
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Return to Basement Hallway",
+          "polygon": [
+            {
+              "x": 592,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1100.8999999999999
+            },
+            {
+              "x": 592,
+              "y": 1100.8999999999999
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 1234
+            },
+            {
+              "x": 20,
+              "y": 1234
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "basement_room_4",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Basement Room 4",
+      "objects": [],
+      "retired": true,
+      "revision": "basement_room_4-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": false,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 627,
+          "y": 627
+        },
+        {
+          "id": "return_to_hallway",
+          "retired": true,
+          "role": "portal",
+          "x": 627,
+          "y": 1065.8999999999999
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Return to Basement Hallway",
+          "polygon": [
+            {
+              "x": 592,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1100.8999999999999
+            },
+            {
+              "x": 592,
+              "y": 1100.8999999999999
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 1234
+            },
+            {
+              "x": 20,
+              "y": 1234
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "basement_room_5",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Basement Room 5",
+      "objects": [],
+      "retired": true,
+      "revision": "basement_room_5-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": false,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 627,
+          "y": 627
+        },
+        {
+          "id": "return_to_hallway",
+          "retired": true,
+          "role": "portal",
+          "x": 627,
+          "y": 1065.8999999999999
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Return to Basement Hallway",
+          "polygon": [
+            {
+              "x": 592,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1030.8999999999999
+            },
+            {
+              "x": 662,
+              "y": 1100.8999999999999
+            },
+            {
+              "x": 592,
+              "y": 1100.8999999999999
+            }
+          ],
+          "retired": true,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 20
+            },
+            {
+              "x": 1234,
+              "y": 1234
+            },
+            {
+              "x": 20,
+              "y": 1234
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "basement_room_6",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Basement Room 6",
+      "objects": [],
+      "retired": true,
+      "revision": "basement_room_6-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1254,
+      "zones": []
+    }
+  ],
+  "spatialProfileId": "standard_indoor"
+}

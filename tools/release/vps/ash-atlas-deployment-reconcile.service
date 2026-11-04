@@ -1,0 +1,12 @@
+[Unit]
+Description=Ash Atlas deployment receipt/status reconciler
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0027
+ExecStart=/home/debian/ops/ash-atlas-server/deploy-control.sh reconcile-all
+TimeoutStartSec=90s
+KillMode=control-group

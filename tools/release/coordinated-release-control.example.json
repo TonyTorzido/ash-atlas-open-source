@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "kind": "ash-atlas-coordinated-release-control-config",
+  "status": "ACTION_REQUIRED_PROVISION_PRIVATE_CONTROL_REPOSITORY",
+  "repository": "example-org/game",
+  "request_surface": "tools/release/request-coordinated-release.sh",
+  "trusted_controller": {
+    "control_repository": "REPLACE_WITH_PRIVATE_CONTROL_REPOSITORY",
+    "runner_label": "ash-atlas-coordinated-release",
+    "runner_account": "AshAtlasCoordinatedReleaseRunner",
+    "state_root": "C:\\ProgramData\\AshAtlas\\CoordinatedRelease",
+    "state_root_acl": "Only AshAtlasCoordinatedReleaseRunner, SYSTEM, and local Administrators may read or write",
+    "source_checkout_root": "C:\\Users\\AshAtlasCoordinatedReleaseRunner\\Documents\\game",
+    "integration_worktree_root": "C:\\Users\\AshAtlasCoordinatedReleaseRunner\\Documents\\worktrees\\integration-test",
+    "tooling_checkout_root": "C:\\ProgramData\\AshAtlas\\CoordinatedRelease\\tooling",
+    "controller_script": "C:\\ProgramData\\AshAtlas\\CoordinatedRelease\\tooling\\tools\\release\\coordinated-release-controller.ps1"
+  },
+  "source_policy": {
+    "integration_ref": "origin/integration/test",
+    "required_generation_tag": "test/tNNN",
+    "pin_generation_before_mobile_prepare": true,
+    "reject_unique_master_hotfix": true,
+    "allowed_tooling_sha": "PIN_AT_CONTROL_REPOSITORY_PROVISIONING"
+  },
+  "batch_admission": {
+    "request_schema": "ash-atlas-batch-request/v1",
+    "validator_contract": "ash-atlas-isolated-uncredentialed-vm/v1",
+    "validator_adapter_path": "C:\\ProgramData\\AshAtlas\\CoordinatedRelease\\validator\\isolated-batch-validator-supervisor.ps1",
+    "validator_hmac_key_env": "ASH_ATLAS_BATCH_VALIDATOR_HMAC_KEY",
+    "validator_hmac_key_id_env": "ASH_ATLAS_BATCH_VALIDATOR_HMAC_KEY_ID",
+    "status": "ACTION_REQUIRED_PROVISION_ISOLATED_VALIDATOR",
+    "request_fields": ["branch", "sha", "player_patch_note"],
+    "source_data": "controller resolves registered clean worktrees and exact origin refs before canonical admission; Git bundles are passed to the uncredentialed VM"
+  },
+  "server": {
+    "canonical_script": "C:\\ProgramData\\AshAtlas\\CoordinatedRelease\\tooling\\tools\\release\\accept-and-publish-test-server.ps1",
+    "public_status_uri": "https://playashatlas.com/play/release.json",
+    "health_evidence": {
+      "schema": "ash-atlas-coordinated-server-evidence/v1",
+      "hmac_algorithm": "HMAC-SHA256",
+      "hmac_key_env": "COORDINATED_SERVER_EVIDENCE_HMAC_KEY",
+      "hmac_key_encoding": "base64, minimum 32 bytes",
+      "hmac_key_id_env": "COORDINATED_SERVER_EVIDENCE_HMAC_KEY_ID"
+    }
+  },
+  "mobile": {
+    "transport": "github-actions-artifact",
+    "control_repository": "example-org/release-control",
+    "source_repository": "example-org/game",
+    "bootstrap_script": "C:\\ProgramData\\AshAtlas\\CoordinatedRelease\\tooling\\tools\\release\\coordinated-mobile-bootstrap-transport.example.ps1",
+    "workflow": "coordinated-mobile-bootstrap.yml",
+    "workflow_ref": "refs/tags/REPLACE_WITH_IMMUTABLE_CONTROL_WORKFLOW_REF",
+    "workflow_sha": "REPLACE_WITH_IMMUTABLE_CONTROL_WORKFLOW_SHA",
+    "tooling_sha": "REPLACE_WITH_IMMUTABLE_PRIVATE_CONTROL_TOOLING_SHA",
+    "registry_remote": "https://github.com/example-org/game.git",
+    "server_evidence_file": "REPLACE_WITH_LOCAL_TRUSTED_EVIDENCE_PATH",
+    "bootstrap_contract": "dispatches the private control workflow with the game source SHA as data, the immutable control ref/SHA, and the private tooling SHA; polls exact control runs, downloads one result artifact, and materializes the seed locally with the canonical bootstrap helper"
+  },
+  "bootstrap_contract": {
+    "operation_id": "controller-generated-and-persisted",
+    "accepted_generation": "controller-resolves-exactly-one-tag-at-integration/test",
+    "mobile_seed": "controller invokes both mobile children with the pinned generation and source SHA",
+    "manifest_path": "derived only under state_root; never accepted from workflow input",
+    "receipt_path": "derived only under state_root; never accepted from workflow input",
+    "resume_schedule": "controller-owned bounded schedule or webhook; only active operations are resumed",
+    "post_health_action": "post-health",
+    "post_health_evidence_input": "server_evidence_base64 and server_evidence_sha256 carry the authenticated envelope from the local Windows server_evidence_file to the Mac durable handoff root",
+    "post_health_evidence_hash_input": "the envelope carries hmac_sha256 and receipt_sha256; the Windows transport journals both the canonical receipt hash and exact UTF-8 transport hash",
+    "post_health_artifact": "ash-atlas-private-mobile-<operation_id>/coordinated-result.json",
+    "post_health_receipt": "the result artifact is receipt-only; the exact seed remains durable from the initial child operation"
+  },
+  "credential_policy": {
+    "game_repository_workflow_secrets": false,
+    "quality_runner_allowed": false,
+    "store_and_vps_credentials": "private-control-repository-only"
+  }
+}

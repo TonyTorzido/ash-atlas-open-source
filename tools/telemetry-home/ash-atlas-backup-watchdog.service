@@ -1,0 +1,26 @@
+[Unit]
+Description=Observe Ash Atlas backup storage, freshness and proof health
+# No mount condition: missing disks must produce a durable problem report.
+After=local-fs.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/telemetry-home.env
+ExecStart=/usr/local/sbin/ash-atlas-backup-watchdog
+StateDirectory=ash-atlas/backup-watchdog
+StateDirectoryMode=0700
+TimeoutStartSec=8min
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true

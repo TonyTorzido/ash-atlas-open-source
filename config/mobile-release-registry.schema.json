@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ash Atlas mobile release registry",
+  "type": "object",
+  "required": ["schemaVersion", "buildFloor", "nextBuild", "releases"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "buildFloor": {
+      "type": "object",
+      "required": ["ios", "android"],
+      "properties": {
+        "ios": { "type": "integer", "minimum": 1 },
+        "android": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "nextBuild": {
+      "type": "object",
+      "required": ["ios", "android"],
+      "properties": {
+        "ios": { "type": "integer", "minimum": 1 },
+        "android": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "activationIntent": { "$ref": "#/$defs/activationIntent" },
+    "resolvedIntent": {
+      "$ref": "#/$defs/resolvedIntentReceipt",
+      "deprecated": true
+    },
+    "resolvedIntents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resolvedIntentReceipt" }
+    },
+    "releases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/release" }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "activationIntent": {
+      "type": "object",
+      "required": ["schemaVersion", "intentId", "serverSha", "candidateComponentSha", "preparedReceiptSha", "preSwitchEnvSha", "serverProtocol", "hardMinimum", "createdAt"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "intentId": { "type": "string", "pattern": "^[A-Za-z0-9._:-]{3,128}$" },
+        "serverSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "candidateComponentSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "preparedReceiptSha": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "preSwitchEnvSha": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "serverProtocol": {
+          "type": "object",
+          "required": ["min", "max"],
+          "properties": {
+            "min": { "type": "integer", "minimum": 1 },
+            "max": { "type": "integer", "minimum": 1 }
+          },
+          "additionalProperties": false
+        },
+        "hardMinimum": {
+          "type": "object",
+          "required": ["ios", "android"],
+          "properties": {
+            "ios": { "$ref": "#/$defs/minimum" },
+            "android": { "$ref": "#/$defs/minimum" }
+          },
+          "additionalProperties": false
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "resolvedIntentReceipt": {
+      "type": "object",
+      "required": ["schemaVersion", "intent", "resolvedAt"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "intent": { "$ref": "#/$defs/activationIntent" },
+        "resolvedAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "release": {
+      "type": "object",
+      "required": [
+        "reservationId", "releaseId", "platform", "marketingVersion", "build", "generation",
+        "sourceSha", "protocol", "reservedAt", "uploadAttempted", "uploaded", "processed",
+        "internal", "externalApproved", "open", "downloadTested", "supported",
+        "compatibilityProtected",
+        "artifactSha256", "storeBuildId", "receiptUrl"
+      ],
+      "properties": {
+        "reservationId": { "type": "string", "minLength": 3 },
+        "releaseId": { "type": "string", "minLength": 1 },
+        "platform": { "enum": ["ios", "android"] },
+        "marketingVersion": { "type": "string" },
+        "build": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+        "generation": { "type": "string", "pattern": "^t[0-9]{3,4}$" },
+        "sourceSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "protocol": {
+          "type": "object",
+          "required": ["min", "max"],
+          "properties": {
+            "min": { "type": "integer", "minimum": 1 },
+            "max": { "type": "integer", "minimum": 1 }
+          },
+          "additionalProperties": false
+        },
+        "reservedAt": { "type": "string", "format": "date-time" },
+        "uploadAttempted": { "type": "boolean" },
+        "uploaded": { "type": "boolean" },
+        "processed": { "type": "boolean" },
+        "internal": { "type": "boolean" },
+        "externalApproved": { "type": "boolean" },
+        "open": { "type": "boolean" },
+        "downloadTested": { "type": "boolean" },
+        "supported": { "type": "boolean" },
+        "compatibilityProtected": { "type": "boolean" },
+        "availabilityPending": {
+          "type": ["object", "null"],
+          "required": ["schemaVersion", "reservationId", "releaseId", "platform", "sourceSha", "marketingVersion", "build", "protocol", "artifactSha256", "preparedAt"],
+          "properties": {
+            "schemaVersion": { "const": 1 },
+            "reservationId": { "type": "string", "minLength": 3 },
+            "releaseId": { "type": "string", "minLength": 1 },
+            "platform": { "enum": ["ios", "android"] },
+            "sourceSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+            "marketingVersion": { "type": "string" },
+            "build": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+            "protocol": {
+              "type": "object",
+              "required": ["min", "max"],
+              "properties": {
+                "min": { "type": "integer", "minimum": 1 },
+                "max": { "type": "integer", "minimum": 1 }
+              },
+              "additionalProperties": false
+            },
+            "artifactSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            "preparedAt": { "type": "string", "format": "date-time" }
+          },
+          "additionalProperties": false
+        },
+        "artifactSha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "storeBuildId": { "type": ["string", "null"] },
+        "receiptUrl": { "type": ["string", "null"] },
+        "serverCompatibility": {
+          "type": "object",
+          "required": ["schemaVersion", "platform", "sourceSha", "marketingVersion", "build", "protocol", "serverUrl", "serverSha", "serverProtocol", "hardMinimum", "status", "observedAt"],
+          "properties": {
+            "schemaVersion": { "const": 1 },
+            "platform": { "enum": ["ios", "android"] },
+            "sourceSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+            "marketingVersion": { "type": "string" },
+            "build": { "type": "integer", "minimum": 1 },
+            "protocol": {
+              "type": "object",
+              "required": ["min", "max"],
+              "properties": { "min": { "type": "integer", "minimum": 1 }, "max": { "type": "integer", "minimum": 1 } },
+              "additionalProperties": false
+            },
+            "serverUrl": { "type": "string", "pattern": "^https://" },
+            "serverSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+            "serverProtocol": {
+              "type": "object",
+              "required": ["min", "max"],
+              "properties": { "min": { "type": "integer", "minimum": 1 }, "max": { "type": "integer", "minimum": 1 } },
+              "additionalProperties": false
+            },
+            "hardMinimum": {
+              "type": "object",
+              "required": ["version", "build"],
+              "properties": { "version": { "type": "string" }, "build": { "type": "integer", "minimum": 0 } },
+              "additionalProperties": false
+            },
+            "status": { "enum": ["supported", "recommended"] },
+            "observedAt": { "type": "string", "format": "date-time" }
+          },
+          "additionalProperties": false
+        },
+        "releaseMode": { "enum": ["internal", "open-beta"] },
+        "externalGroupId": { "type": "string", "minLength": 1 },
+        "publicLink": { "type": "string", "pattern": "^https://testflight\\.apple\\.com/join/[A-Za-z0-9]+$" },
+        "milestones": {
+          "type": "object",
+          "propertyNames": { "enum": ["reserved", "built", "uploaded", "internal_verified", "google_open_submitted", "google_open_verified", "ios_beta_review_submitted", "ios_beta_review_pending", "ios_external_verified", "open_beta_complete"] },
+          "additionalProperties": { "const": true }
+        }
+      },
+      "additionalProperties": false
+    },
+    "minimum": {
+      "type": "object",
+      "required": ["version", "build"],
+      "properties": {
+        "version": { "type": "string" },
+        "build": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

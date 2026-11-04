@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "owner_label": "ash-atlas-dev-runtime",
+  "permanent_checkout": "C:\\Users\\dev\\Documents\\game",
+  "feature_worktree_root": "C:\\Users\\dev\\Documents\\worktrees",
+  "feature_launcher_root": "C:\\Users\\dev\\Documents\\Ash Atlas Feature Launchers",
+  "map_repository": "C:\\Users\\dev\\Documents\\world-pipeline",
+  "release_root": "C:\\Users\\dev\\Documents\\world-pipeline\\data\\intermediate\\global-packages\\world-packages-v1",
+  "water_name_index_root": "C:\\Users\\dev\\Documents\\water-names-v1",
+  "main": {
+    "branch": "master",
+    "runtime_id": "main",
+    "compose_project": "ash-atlas",
+    "postgres_container": "ash-atlas-postgis",
+    "network": "ash-atlas-main",
+    "ports": {
+      "frontend": 5270,
+      "backend": 3000,
+      "world_api": 8765,
+      "postgres": 35432
+    },
+    "database": {
+      "name": "ash_atlas_game",
+      "user": "ash_atlas",
+      "password": "ash_atlas",
+      "volume": "ash-atlas_ash_atlas_game_postgres",
+      "retained": true
+    }
+  },
+  "feature": {
+    "lifecycle": {
+      "max_running_features": 4,
+      "mutex_wait_seconds": 45,
+      "shutdown_wait_seconds": 30,
+      "poll_milliseconds": 250
+    },
+    "port_pool": {
+      "start": 41000,
+      "end": 41899,
+      "ports_per_runtime": 3
+    },
+    "world_api_group_port_pool": {
+      "start": 41900,
+      "end": 42199
+    },
+    "database_prefix": "ash_atlas_stability",
+    "resource_prefix": "ash-atlas"
+  }
+}

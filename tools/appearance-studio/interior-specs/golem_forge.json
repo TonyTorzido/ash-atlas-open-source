@@ -1,0 +1,2159 @@
+{
+  "dungeon": {
+    "id": "golem_forge",
+    "name": "The Golem Forge",
+    "description": "A dwarf-scale foundry of black iron and grey granite. Clear the Quarry and Conduit wings from the Crucible, then climb to the Forgemaster. Level 37 raid.",
+    "instancePolicy": "shared_persistent",
+    "resetPolicy": "manual",
+    "despawnAfterSeconds": 900,
+    "access": {
+      "minimumLevel": 37,
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6
+    },
+    "tier": {
+      "id": "t35"
+    },
+    "theme": {
+      "id": "forge",
+      "backgroundColor": "#100c0a",
+      "floorColor": "#3a3433",
+      "wallColor": "#2a2423",
+      "accentColor": "#e0793a"
+    }
+  },
+  "entranceRoom": "gf_forge_gate",
+  "rooms": [
+    {
+      "id": "gf_forge_gate",
+      "name": "Forge Gate",
+      "width": 1000,
+      "height": 1000,
+      "anchors": {
+        "door_n": {
+          "x": 500,
+          "y": 30
+        }
+      },
+      "spawn": {
+        "x": 500,
+        "y": 800
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 150,
+            "y": 200,
+            "width": 300,
+            "height": 600
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 550,
+            "y": 200,
+            "width": 300,
+            "height": 600
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_slag_yard",
+      "name": "Slag Yard",
+      "width": 1400,
+      "height": 1000,
+      "anchors": {
+        "door_s": {
+          "x": 700,
+          "y": 970
+        },
+        "door_n": {
+          "x": 700,
+          "y": 30
+        },
+        "door_w": {
+          "x": 30,
+          "y": 500
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 210,
+            "y": 200,
+            "width": 420,
+            "height": 600
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 770,
+            "y": 200,
+            "width": 420,
+            "height": 600
+          }
+        }
+      ],
+      "objects": [
+        {
+          "id": "cracked_wall",
+          "type": "switch",
+          "prefab": "golem_forge_cracked_wall",
+          "at": {
+            "x": 110,
+            "y": 330
+          },
+          "name": "Cracked Wall",
+          "initialState": "off",
+          "interactionLabel": "Break the cracked wall"
+        }
+      ]
+    },
+    {
+      "id": "gf_slag_vault",
+      "name": "Slag Vault",
+      "width": 800,
+      "height": 800,
+      "anchors": {
+        "door_e": {
+          "x": 770,
+          "y": 400
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 120,
+            "y": 160,
+            "width": 240,
+            "height": 480
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 440,
+            "y": 160,
+            "width": 240,
+            "height": 480
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "slag_vault_chest",
+          "name": "Slag Vault Hoard",
+          "at": {
+            "x": 220,
+            "y": 400
+          },
+          "reward": {
+            "gold": 3000,
+            "items": [
+              {
+                "itemId": "forge_spark",
+                "quantity": 6
+              },
+              {
+                "itemId": "shard_grit",
+                "quantity": 10
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_bellows_hall",
+      "name": "Bellows Hall",
+      "width": 1600,
+      "height": 800,
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 770
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 240,
+            "y": 160,
+            "width": 480,
+            "height": 480
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 880,
+            "y": 160,
+            "width": 480,
+            "height": 480
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "bellows_hall_chest",
+          "name": "Forge Cache",
+          "at": {
+            "x": 1400,
+            "y": 400
+          },
+          "reward": {
+            "gold": 600,
+            "items": [
+              {
+                "itemId": "shard_grit",
+                "quantity": 5
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_crucible",
+      "name": "The Crucible",
+      "width": 1600,
+      "height": 1600,
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 1570
+        },
+        "door_w": {
+          "x": 30,
+          "y": 800
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 800
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        },
+        "lift_w": {
+          "x": 330,
+          "y": 800
+        },
+        "lift_e": {
+          "x": 1270,
+          "y": 800
+        },
+        "lift_n": {
+          "x": 800,
+          "y": 330
+        }
+      },
+      "spawn": {
+        "x": 800,
+        "y": 1350
+      },
+      "zones": [
+        {
+          "id": "crucible_safe",
+          "purpose": "safe",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1600,
+            "height": 1600
+          }
+        }
+      ],
+      "shrines": [
+        {
+          "id": "spark_forge",
+          "name": "Spark Forge",
+          "at": {
+            "x": 800,
+            "y": 800
+          },
+          "skillTurnIn": "field_engineering",
+          "interactionLabel": "Offer 175 Forge Sparks"
+        }
+      ],
+      "objects": [
+        {
+          "id": "quarry_sigil",
+          "type": "decoration",
+          "prefab": "golem_forge_wing_sigil_lit",
+          "at": {
+            "x": 690,
+            "y": 170
+          },
+          "name": "Quarry Sigil",
+          "hidden": true
+        },
+        {
+          "id": "conduit_sigil",
+          "type": "decoration",
+          "prefab": "golem_forge_wing_sigil_lit",
+          "at": {
+            "x": 910,
+            "y": 170
+          },
+          "name": "Conduit Sigil",
+          "hidden": true
+        },
+        {
+          "id": "forge_door_sealed",
+          "type": "decoration",
+          "prefab": "golem_forge_door_sealed",
+          "at": {
+            "x": 800,
+            "y": 110
+          },
+          "name": "Sealed Forge Door"
+        },
+        {
+          "id": "forge_door_open",
+          "type": "decoration",
+          "prefab": "golem_forge_door_open",
+          "at": {
+            "x": 800,
+            "y": 110
+          },
+          "name": "Open Forge Door",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "gf_cutting_floor",
+      "name": "Cutting Floor",
+      "width": 1400,
+      "height": 1000,
+      "anchors": {
+        "door_e": {
+          "x": 1370,
+          "y": 500
+        },
+        "door_w": {
+          "x": 30,
+          "y": 500
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 210,
+            "y": 200,
+            "width": 420,
+            "height": 600
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 770,
+            "y": 200,
+            "width": 420,
+            "height": 600
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_sentinel_walk",
+      "name": "Sentinel Walk",
+      "width": 1600,
+      "height": 700,
+      "anchors": {
+        "door_e": {
+          "x": 1570,
+          "y": 350
+        },
+        "door_w": {
+          "x": 30,
+          "y": 350
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 240,
+            "y": 140,
+            "width": 480,
+            "height": 420
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 880,
+            "y": 140,
+            "width": 480,
+            "height": 420
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "sentinel_walk_chest",
+          "name": "Forge Cache",
+          "at": {
+            "x": 1400,
+            "y": 350
+          },
+          "reward": {
+            "gold": 600,
+            "items": [
+              {
+                "itemId": "shard_grit",
+                "quantity": 5
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_monolith_gallery",
+      "name": "Monolith Gallery",
+      "width": 1200,
+      "height": 1200,
+      "anchors": {
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "door_w": {
+          "x": 30,
+          "y": 600
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 180,
+            "y": 240,
+            "width": 360,
+            "height": 720
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 660,
+            "y": 240,
+            "width": 360,
+            "height": 720
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_bull_pen",
+      "name": "Bull Pen",
+      "width": 1400,
+      "height": 1400,
+      "anchors": {
+        "door_e": {
+          "x": 1370,
+          "y": 700
+        },
+        "lift": {
+          "x": 700,
+          "y": 1250
+        }
+      },
+      "chests": [
+        {
+          "id": "quarry_chest",
+          "name": "Granite Hoard",
+          "at": {
+            "x": 700,
+            "y": 1095
+          },
+          "reward": {
+            "gold": 2500,
+            "items": [
+              {
+                "itemId": "forge_spark",
+                "quantity": 12
+              }
+            ],
+            "chanceItems": [
+              {
+                "itemId": "amulet_clasp",
+                "minQuantity": 1,
+                "maxQuantity": 1,
+                "chancePct": 10
+              }
+            ]
+          }
+        }
+      ],
+      "objects": [
+        {
+          "id": "healer_monolith_nw",
+          "type": "decoration",
+          "prefab": "golem_forge_healer_monolith",
+          "at": {
+            "x": 250,
+            "y": 237
+          },
+          "name": "Healer Monolith",
+          "initialState": "intact"
+        },
+        {
+          "id": "healer_monolith_ne",
+          "type": "decoration",
+          "prefab": "golem_forge_healer_monolith",
+          "at": {
+            "x": 1150,
+            "y": 237
+          },
+          "name": "Healer Monolith",
+          "initialState": "intact"
+        },
+        {
+          "id": "healer_monolith_sw",
+          "type": "decoration",
+          "prefab": "golem_forge_healer_monolith",
+          "at": {
+            "x": 250,
+            "y": 1137
+          },
+          "name": "Healer Monolith",
+          "initialState": "intact"
+        }
+      ]
+    },
+    {
+      "id": "gf_coil_works",
+      "name": "Coil Works",
+      "width": 1400,
+      "height": 1000,
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 500
+        },
+        "door_e": {
+          "x": 1370,
+          "y": 500
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 210,
+            "y": 200,
+            "width": 420,
+            "height": 600
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 770,
+            "y": 200,
+            "width": 420,
+            "height": 600
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_gem_vault",
+      "name": "Gem Vault",
+      "width": 1600,
+      "height": 700,
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 350
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 350
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 240,
+            "y": 140,
+            "width": 480,
+            "height": 420
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 880,
+            "y": 140,
+            "width": 480,
+            "height": 420
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "gem_vault_chest",
+          "name": "Forge Cache",
+          "at": {
+            "x": 1400,
+            "y": 350
+          },
+          "reward": {
+            "gold": 600,
+            "items": [
+              {
+                "itemId": "shard_grit",
+                "quantity": 5
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_husk_foundry",
+      "name": "Husk Foundry",
+      "width": 1200,
+      "height": 1200,
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 180,
+            "y": 240,
+            "width": 360,
+            "height": 720
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 660,
+            "y": 240,
+            "width": 360,
+            "height": 720
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_containment",
+      "name": "Containment",
+      "width": 1400,
+      "height": 1400,
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 700
+        },
+        "lift": {
+          "x": 700,
+          "y": 1250
+        },
+        "husk_nw": {
+          "x": 265,
+          "y": 258
+        },
+        "husk_ne": {
+          "x": 1130,
+          "y": 258
+        },
+        "husk_sw": {
+          "x": 265,
+          "y": 1105
+        },
+        "husk_se": {
+          "x": 1130,
+          "y": 1105
+        }
+      },
+      "chests": [
+        {
+          "id": "conduit_chest",
+          "name": "Core Hoard",
+          "at": {
+            "x": 700,
+            "y": 1078
+          },
+          "reward": {
+            "gold": 2500,
+            "items": [
+              {
+                "itemId": "forge_spark",
+                "quantity": 31
+              }
+            ],
+            "chanceItems": [
+              {
+                "itemId": "amulet_clasp",
+                "minQuantity": 1,
+                "maxQuantity": 1,
+                "chancePct": 10
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_anvil_stair",
+      "name": "Anvil Stair",
+      "width": 1600,
+      "height": 800,
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 770
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 240,
+            "y": 160,
+            "width": 480,
+            "height": 480
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 880,
+            "y": 160,
+            "width": 480,
+            "height": 480
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_cooling_hall",
+      "name": "Cooling Hall",
+      "width": 1200,
+      "height": 1000,
+      "anchors": {
+        "door_s": {
+          "x": 600,
+          "y": 970
+        },
+        "door_n": {
+          "x": 600,
+          "y": 30
+        }
+      },
+      "zones": [
+        {
+          "id": "spawn_a",
+          "purpose": "trigger",
+          "rect": {
+            "x": 180,
+            "y": 200,
+            "width": 360,
+            "height": 600
+          }
+        },
+        {
+          "id": "spawn_b",
+          "purpose": "trigger",
+          "rect": {
+            "x": 660,
+            "y": 200,
+            "width": 360,
+            "height": 600
+          }
+        }
+      ],
+      "chests": [
+        {
+          "id": "cooling_hall_chest",
+          "name": "Forge Cache",
+          "at": {
+            "x": 1000,
+            "y": 500
+          },
+          "reward": {
+            "gold": 600,
+            "items": [
+              {
+                "itemId": "shard_grit",
+                "quantity": 5
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gf_great_forge",
+      "name": "Great Forge",
+      "width": 1600,
+      "height": 1600,
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 1570
+        },
+        "lift": {
+          "x": 800,
+          "y": 1450
+        },
+        "hammer_spawn_s": {
+          "x": 560,
+          "y": 1500
+        },
+        "hammer_spawn_e": {
+          "x": 1500,
+          "y": 800
+        },
+        "hammer_spawn_w": {
+          "x": 100,
+          "y": 800
+        }
+      },
+      "chests": [
+        {
+          "id": "forgemaster_chest",
+          "name": "Forgemaster Hoard",
+          "at": {
+            "x": 800,
+            "y": 1100
+          },
+          "reward": {
+            "gold": 5000,
+            "items": [
+              {
+                "itemId": "forge_spark",
+                "quantity": 43
+              }
+            ],
+            "chanceItems": [
+              {
+                "itemId": "amulet_clasp",
+                "minQuantity": 2,
+                "maxQuantity": 2,
+                "chancePct": 10
+              }
+            ]
+          }
+        }
+      ],
+      "objects": [
+        {
+          "id": "great_anvil",
+          "type": "decoration",
+          "prefab": "golem_forge_great_anvil",
+          "at": {
+            "x": 800,
+            "y": 260
+          },
+          "name": "Great Anvil",
+          "initialState": "idle"
+        }
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "id": "gate_to_yard",
+      "from": {
+        "room": "gf_forge_gate",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "gf_slag_yard",
+        "anchor": "door_s"
+      },
+      "label": "Into the Slag Yard",
+      "reverseLabel": "Back to the Forge Gate"
+    },
+    {
+      "id": "yard_to_bellows",
+      "from": {
+        "room": "gf_slag_yard",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "gf_bellows_hall",
+        "anchor": "door_s"
+      },
+      "label": "Into the Bellows Hall",
+      "reverseLabel": "Back to the Slag Yard"
+    },
+    {
+      "id": "bellows_to_crucible",
+      "from": {
+        "room": "gf_bellows_hall",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "gf_crucible",
+        "anchor": "door_s"
+      },
+      "label": "Up to the Crucible",
+      "reverseLabel": "Back to the Bellows Hall"
+    },
+    {
+      "id": "yard_to_vault",
+      "from": {
+        "room": "gf_slag_yard",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "gf_slag_vault",
+        "anchor": "door_e"
+      },
+      "label": "Through the broken wall",
+      "reverseLabel": "Back to the Slag Yard",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "slag_wall_broken",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "quarry_0_in",
+      "from": {
+        "room": "gf_crucible",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "gf_cutting_floor",
+        "anchor": "door_e"
+      },
+      "label": "Into the Cutting Floor",
+      "reverseLabel": "Back to the Crucible"
+    },
+    {
+      "id": "quarry_1_in",
+      "from": {
+        "room": "gf_cutting_floor",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "gf_sentinel_walk",
+        "anchor": "door_e"
+      },
+      "label": "Into the Sentinel Walk",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "quarry_2_in",
+      "from": {
+        "room": "gf_sentinel_walk",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "gf_monolith_gallery",
+        "anchor": "door_e"
+      },
+      "label": "Into the Monolith Gallery",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "quarry_to_boss",
+      "from": {
+        "room": "gf_monolith_gallery",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "gf_bull_pen",
+        "anchor": "door_e"
+      },
+      "label": "Face what waits",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "quarry_lift",
+      "from": {
+        "room": "gf_bull_pen",
+        "anchor": "lift"
+      },
+      "to": {
+        "room": "gf_crucible",
+        "anchor": "lift_w"
+      },
+      "oneWay": true,
+      "label": "Ride the lift to the Crucible",
+      "presentation": "hatch",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "quarry_done",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "conduit_0_in",
+      "from": {
+        "room": "gf_crucible",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "gf_coil_works",
+        "anchor": "door_w"
+      },
+      "label": "Into the Coil Works",
+      "reverseLabel": "Back to the Crucible"
+    },
+    {
+      "id": "conduit_1_in",
+      "from": {
+        "room": "gf_coil_works",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "gf_gem_vault",
+        "anchor": "door_w"
+      },
+      "label": "Into the Gem Vault",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "conduit_2_in",
+      "from": {
+        "room": "gf_gem_vault",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "gf_husk_foundry",
+        "anchor": "door_w"
+      },
+      "label": "Into the Husk Foundry",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "conduit_to_boss",
+      "from": {
+        "room": "gf_husk_foundry",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "gf_containment",
+        "anchor": "door_w"
+      },
+      "label": "Face what waits",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "conduit_lift",
+      "from": {
+        "room": "gf_containment",
+        "anchor": "lift"
+      },
+      "to": {
+        "room": "gf_crucible",
+        "anchor": "lift_e"
+      },
+      "oneWay": true,
+      "label": "Ride the lift to the Crucible",
+      "presentation": "hatch",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "conduit_done",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "crucible_to_anvil",
+      "from": {
+        "room": "gf_crucible",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "gf_anvil_stair",
+        "anchor": "door_s"
+      },
+      "label": "Climb the Anvil Stair",
+      "reverseLabel": "Back to the Crucible",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "quarry_done",
+          "value": true
+        },
+        {
+          "type": "dungeon_flag",
+          "flagId": "conduit_done",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "anvil_to_cooling",
+      "from": {
+        "room": "gf_anvil_stair",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "gf_cooling_hall",
+        "anchor": "door_s"
+      },
+      "label": "Into the Cooling Hall",
+      "reverseLabel": "Back to the Anvil Stair"
+    },
+    {
+      "id": "cooling_to_forge",
+      "from": {
+        "room": "gf_cooling_hall",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "gf_great_forge",
+        "anchor": "door_s"
+      },
+      "label": "Face the Forgemaster",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "forge_lift",
+      "from": {
+        "room": "gf_great_forge",
+        "anchor": "lift"
+      },
+      "to": {
+        "room": "gf_crucible",
+        "anchor": "lift_n"
+      },
+      "oneWay": true,
+      "label": "Ride the lift to the Crucible",
+      "presentation": "hatch",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "forge_done",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "gate_golems",
+      "name": "Forge Gate",
+      "room": "gf_forge_gate",
+      "startOn": "room_enter",
+      "lockDoors": false,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 3,
+            "min": 1
+          },
+          {
+            "archetype": "slag_crawler_gf",
+            "cost": 1,
+            "weight": 2
+          },
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 1
+          }
+        ],
+        "budget": {
+          "min": 17,
+          "max": 17
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "yard_slag",
+      "name": "Slag Yard",
+      "room": "gf_slag_yard",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "slag_crawler_gf",
+            "cost": 1,
+            "weight": 4
+          },
+          {
+            "archetype": "golem_smith_gf",
+            "cost": 1,
+            "weight": 2,
+            "max": 4
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 1,
+            "max": 3
+          }
+        ],
+        "budget": {
+          "min": 22,
+          "max": 22
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "vault_guard",
+      "name": "Slag Vault",
+      "room": "gf_slag_vault",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "geode_golem_gf",
+            "cost": 3,
+            "weight": 3,
+            "min": 2,
+            "max": 2
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 1,
+            "max": 2
+          },
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 1
+          }
+        ],
+        "budget": {
+          "min": 12,
+          "max": 12
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "bellows_wisps",
+      "name": "Bellows Hall",
+      "room": "gf_bellows_hall",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 5
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 1,
+            "max": 3
+          },
+          {
+            "archetype": "slag_crawler_gf",
+            "cost": 1,
+            "weight": 1
+          }
+        ],
+        "budget": {
+          "min": 24,
+          "max": 24
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "cutting_golems",
+      "name": "Cutting Floor",
+      "room": "gf_cutting_floor",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "stone_golem_gf",
+            "cost": 2,
+            "weight": 3
+          },
+          {
+            "archetype": "mender_golem_gf",
+            "cost": 1,
+            "weight": 2,
+            "max": 4
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 1
+          }
+        ],
+        "budget": {
+          "min": 22,
+          "max": 22
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "sentinel_walk",
+      "name": "Sentinel Walk",
+      "room": "gf_sentinel_walk",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "sentinel_statue_gf",
+            "cost": 2,
+            "weight": 3,
+            "min": 2
+          },
+          {
+            "archetype": "stone_golem_gf",
+            "cost": 2,
+            "weight": 1,
+            "max": 3
+          },
+          {
+            "archetype": "mender_golem_gf",
+            "cost": 1,
+            "weight": 2,
+            "max": 3
+          }
+        ],
+        "budget": {
+          "min": 19,
+          "max": 19
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "gallery_golems",
+      "name": "Monolith Gallery",
+      "room": "gf_monolith_gallery",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "stone_golem_gf",
+            "cost": 2,
+            "weight": 3,
+            "min": 1
+          },
+          {
+            "archetype": "mender_golem_gf",
+            "cost": 1,
+            "weight": 2,
+            "max": 3
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 1,
+            "max": 2
+          }
+        ],
+        "budget": {
+          "min": 17,
+          "max": 17
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "quarry_boss",
+      "name": "Granite Bull",
+      "room": "gf_bull_pen",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boss": {
+        "template": "granite_bull",
+        "name": "Granite Bull",
+        "at": {
+          "x": 700,
+          "y": 600
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "quarry_chest"
+        },
+        {
+          "setFlag": "quarry_done"
+        },
+        {
+          "message": "Granite Bull falls. A lift to the Crucible is ready."
+        }
+      ]
+    },
+    {
+      "id": "coil_works",
+      "name": "Coil Works",
+      "room": "gf_coil_works",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 4
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 2,
+            "max": 4
+          },
+          {
+            "archetype": "golem_smith_gf",
+            "cost": 1,
+            "weight": 1,
+            "max": 2
+          }
+        ],
+        "budget": {
+          "min": 22,
+          "max": 22
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "gem_vault",
+      "name": "Gem Vault",
+      "room": "gf_gem_vault",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "geode_golem_gf",
+            "cost": 3,
+            "weight": 2,
+            "max": 4
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 2,
+            "max": 3
+          },
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 3
+          }
+        ],
+        "budget": {
+          "min": 19,
+          "max": 19
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "husk_foundry",
+      "name": "Husk Foundry",
+      "room": "gf_husk_foundry",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "golem_smith_gf",
+            "cost": 1,
+            "weight": 3,
+            "max": 4
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 2
+          },
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 2
+          },
+          {
+            "archetype": "mender_golem_gf",
+            "cost": 1,
+            "weight": 1,
+            "max": 2
+          }
+        ],
+        "budget": {
+          "min": 19,
+          "max": 19
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "conduit_boss",
+      "name": "The Corrupted Core",
+      "room": "gf_containment",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boss": {
+        "template": "corrupted_core",
+        "name": "The Corrupted Core",
+        "at": {
+          "x": 700,
+          "y": 700
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "conduit_chest"
+        },
+        {
+          "setFlag": "conduit_done"
+        },
+        {
+          "message": "The Corrupted Core falls. A lift to the Crucible is ready."
+        }
+      ]
+    },
+    {
+      "id": "anvil_stair",
+      "name": "Anvil Stair",
+      "room": "gf_anvil_stair",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "sentinel_statue_gf",
+            "cost": 2,
+            "weight": 2,
+            "max": 4
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 3
+          },
+          {
+            "archetype": "stone_golem_gf",
+            "cost": 2,
+            "weight": 2
+          },
+          {
+            "archetype": "geode_golem_gf",
+            "cost": 3,
+            "weight": 1,
+            "max": 2
+          },
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 2
+          },
+          {
+            "archetype": "mender_golem_gf",
+            "cost": 1,
+            "weight": 1,
+            "max": 2
+          }
+        ],
+        "budget": {
+          "min": 34,
+          "max": 34
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "cooling_hall",
+      "name": "Cooling Hall",
+      "room": "gf_cooling_hall",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "roll": {
+        "pool": [
+          {
+            "archetype": "slag_crawler_gf",
+            "cost": 1,
+            "weight": 4
+          },
+          {
+            "archetype": "spark_wisp_gf",
+            "cost": 1,
+            "weight": 2
+          },
+          {
+            "archetype": "iron_golem_gf",
+            "cost": 2,
+            "weight": 1,
+            "max": 2
+          }
+        ],
+        "budget": {
+          "min": 17,
+          "max": 17
+        },
+        "waves": {
+          "min": 3,
+          "max": 4,
+          "delayMs": 2500
+        },
+        "spawn": {
+          "zoneIds": [
+            "spawn_a",
+            "spawn_b"
+          ]
+        },
+        "formations": [
+          "scatter",
+          "wedge",
+          "circle"
+        ],
+        "elite": {
+          "chancePct": 20,
+          "maxPerEncounter": 5,
+          "modifierPool": [
+            "hardy",
+            "swift",
+            "shielded",
+            "enraged",
+            "splitting",
+            "healer_aura"
+          ]
+        }
+      }
+    },
+    {
+      "id": "forgemaster",
+      "name": "The Forgemaster",
+      "room": "gf_great_forge",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boss": {
+        "template": "forgemaster",
+        "name": "The Forgemaster",
+        "at": {
+          "x": 800,
+          "y": 500
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "forgemaster_chest"
+        },
+        {
+          "setFlag": "forge_done"
+        },
+        {
+          "completeDungeon": true
+        },
+        {
+          "message": "The Forgemaster falls. The Golem Forge goes cold."
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "cracked_wall_broken",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "object_state",
+        "roomId": "gf_slag_yard",
+        "objectId": "cracked_wall",
+        "state": "on"
+      },
+      "actions": [
+        {
+          "type": "set_dungeon_flag",
+          "flagId": "slag_wall_broken",
+          "value": true
+        },
+        {
+          "type": "show_message",
+          "text": "The wall cracks open onto a hidden vault.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "scope": "instance",
+      "repetition": "once",
+      "id": "quarry_sigil_lit",
+      "event": {
+        "type": "encounter_state",
+        "encounterId": "quarry_boss",
+        "state": "completed"
+      },
+      "conditions": {
+        "mode": "all",
+        "items": []
+      },
+      "actions": [
+        {
+          "type": "set_object_available",
+          "roomId": "gf_crucible",
+          "objectId": "quarry_sigil",
+          "available": true
+        }
+      ]
+    },
+    {
+      "scope": "instance",
+      "repetition": "once",
+      "id": "conduit_sigil_lit",
+      "event": {
+        "type": "encounter_state",
+        "encounterId": "conduit_boss",
+        "state": "completed"
+      },
+      "conditions": {
+        "mode": "all",
+        "items": []
+      },
+      "actions": [
+        {
+          "type": "set_object_available",
+          "roomId": "gf_crucible",
+          "objectId": "conduit_sigil",
+          "available": true
+        }
+      ]
+    },
+    {
+      "scope": "instance",
+      "repetition": "once",
+      "id": "forge_door_opens_quarry",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "quarry_done",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "conduit_done",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_available",
+          "roomId": "gf_crucible",
+          "objectId": "forge_door_sealed",
+          "available": false
+        },
+        {
+          "type": "set_object_available",
+          "roomId": "gf_crucible",
+          "objectId": "forge_door_open",
+          "available": true
+        }
+      ]
+    },
+    {
+      "scope": "instance",
+      "repetition": "once",
+      "id": "forge_door_opens_conduit",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "conduit_done",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "quarry_done",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_available",
+          "roomId": "gf_crucible",
+          "objectId": "forge_door_sealed",
+          "available": false
+        },
+        {
+          "type": "set_object_available",
+          "roomId": "gf_crucible",
+          "objectId": "forge_door_open",
+          "available": true
+        }
+      ]
+    }
+  ]
+}

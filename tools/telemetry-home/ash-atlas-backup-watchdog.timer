@@ -1,0 +1,11 @@
+[Unit]
+Description=Check Ash Atlas backup health every fifteen minutes
+
+[Timer]
+OnBootSec=2min
+OnCalendar=*-*-* *:00/15:00
+AccuracySec=20s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

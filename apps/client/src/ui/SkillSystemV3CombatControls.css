@@ -1,0 +1,188 @@
+.skill-v3-combat-controls {
+  width: min(300px, 42cqw);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--aa-ui-space-2);
+  padding: var(--aa-ui-space-3);
+  border: var(--aa-ui-border-width) solid var(--aa-ui-border);
+  border-radius: var(--aa-ui-radius-panel);
+  color: var(--aa-ui-text);
+  background: var(--aa-ui-material-leather);
+  box-shadow: var(--aa-ui-shadow);
+}
+
+.ui-standards-skill-preview {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  padding: var(--aa-ui-space-5);
+  border: var(--aa-ui-border-width) solid var(--aa-ui-border-muted);
+  border-radius: var(--aa-ui-radius-panel);
+  background: var(--aa-ui-ink-950);
+}
+
+.ui-standards-skill-preview .skill-v3-combat-controls {
+  position: relative;
+  inset: auto;
+  width: min(300px, 100%);
+  max-height: none;
+  transform: none;
+}
+
+.skill-v3-combat-controls > .skill-v3-basic-slot,
+.skill-v3-combat-controls > .skill-v3-normal-slots,
+.skill-v3-combat-controls > .skill-v3-class-technique-slot {
+  grid-column: 1;
+}
+
+.skill-v3-combat-controls .skill-v3-normal-slots {
+  display: grid;
+  gap: var(--aa-ui-space-2);
+  padding: 0;
+}
+
+.skill-v3-combat-controls .warrior-quick-slot {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--aa-ui-space-3);
+  overflow: hidden;
+  padding: var(--aa-ui-space-2);
+  border: var(--aa-ui-border-width) solid var(--aa-ui-border-muted);
+  border-radius: var(--aa-ui-radius-control);
+  color: var(--aa-ui-text);
+  background: var(--aa-ui-material-ink);
+  box-shadow: inset 0 1px var(--aa-ui-highlight), var(--aa-ui-shadow-shallow);
+  text-align: left;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.skill-v3-combat-controls .warrior-quick-slot:not(:disabled):hover,
+.skill-v3-combat-controls .warrior-quick-slot:not(:disabled):focus-visible {
+  border-color: var(--aa-ui-active-bronze);
+}
+
+.skill-v3-combat-controls .warrior-quick-slot:focus-visible {
+  outline: 2px solid var(--aa-ui-parchment-100);
+  outline-offset: 2px;
+}
+
+.skill-v3-combat-controls .warrior-quick-slot:disabled,
+.skill-v3-combat-controls .warrior-quick-slot[aria-disabled="true"] {
+  border-color: var(--aa-ui-border-muted);
+  color: var(--aa-ui-disabled-text);
+  background: var(--aa-ui-disabled-surface);
+  cursor: default;
+}
+
+.skill-v3-combat-controls .skill-v3-class-technique-slot {
+  border-color: var(--aa-ui-active-bronze);
+}
+
+.skill-v3-combat-controls .skill-v3-basic-slot[aria-disabled="true"] {
+  border-color: var(--aa-ui-border);
+  color: var(--aa-ui-parchment-200);
+}
+
+.skill-v3-slot-label {
+  color: var(--aa-ui-active-bronze);
+  font: 800 9px/1.1 var(--aa-ui-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skill-v3-combat-controls .ability-slot-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.skill-v3-combat-controls .ability-slot-copy strong,
+.skill-v3-combat-controls .ability-slot-copy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skill-v3-combat-controls .ability-slot-copy strong {
+  color: var(--aa-ui-parchment-100);
+  font: 700 14px/1.15 var(--aa-ui-font-display);
+}
+
+.skill-v3-combat-controls .ability-slot-copy small {
+  color: var(--aa-ui-text-muted);
+  font: 11px/1.2 var(--aa-ui-font-body);
+}
+
+.skill-v3-combat-controls .ability-hotkey {
+  top: var(--aa-ui-space-2);
+  right: var(--aa-ui-space-2);
+  min-width: 18px;
+  padding: 2px 4px;
+  border: var(--aa-ui-border-width) solid var(--aa-ui-border-muted);
+  border-radius: var(--aa-ui-radius-frame);
+  color: var(--aa-ui-parchment-200);
+  background: var(--aa-ui-ink-950);
+  font: 800 9px/1.1 var(--aa-ui-font-body);
+  text-align: center;
+}
+
+.skill-v3-combat-controls .ability-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: grid;
+  place-items: center;
+  border: var(--aa-ui-border-width) solid var(--aa-ui-border-muted);
+  border-radius: var(--aa-ui-radius-control);
+  color: var(--aa-ui-parchment-100);
+  background: var(--aa-ui-leather-800);
+}
+
+.skill-v3-combat-controls .cooldown-overlay {
+  color: var(--aa-ui-parchment-100);
+  text-shadow: 0 1px 3px var(--aa-ui-ink-950);
+}
+
+html[data-ui-profile="phone"] .legacy-controls-right .skill-v3-general-slot,
+html[data-ui-profile="phone"] .legacy-controls-right .skill-v3-class-technique-slot {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: var(--aa-ui-space-1);
+  border-color: var(--aa-ui-border);
+  border-radius: var(--aa-ui-radius-control);
+  color: var(--aa-ui-parchment-100);
+  background: var(--aa-ui-material-leather);
+  box-shadow: var(--aa-ui-shadow-shallow);
+}
+
+html[data-ui-profile="phone"] .legacy-controls-right .skill-v3-class-technique-slot {
+  border-color: var(--aa-ui-active-bronze);
+}
+
+html[data-ui-profile="phone"] .skill-v3-general-slot .ability-hotkey,
+html[data-ui-profile="phone"] .skill-v3-general-slot .ability-slot-copy,
+html[data-ui-profile="phone"] .skill-v3-class-technique-slot .ability-hotkey,
+html[data-ui-profile="phone"] .skill-v3-class-technique-slot .ability-slot-copy {
+  display: none;
+}
+
+html[data-ui-profile="phone"] .legacy-controls-right .skill-v3-general-slot .ability-icon,
+html[data-ui-profile="phone"] .legacy-controls-right .skill-v3-class-technique-slot .ability-icon {
+  width: 28px;
+  height: 28px;
+  flex-basis: 28px;
+  border: 0;
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-v3-combat-controls * { transition: none; }
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Retry the configured Ash Atlas Seagate mount after outages
+
+[Timer]
+OnBootSec=45s
+OnUnitInactiveSec=5min
+AccuracySec=20s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

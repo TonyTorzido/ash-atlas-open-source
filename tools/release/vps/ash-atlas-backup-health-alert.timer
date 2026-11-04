@@ -1,0 +1,12 @@
+[Unit]
+Description=Check Ash Atlas backup health hourly and alert on problems
+
+[Timer]
+# A calendar schedule always has a next run; OnUnitActiveSec alone never fires
+# until the service has been activated by this timer once.
+OnCalendar=hourly
+RandomizedDelaySec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,2 @@
+app_identifier(ENV.fetch("ASH_ATLAS_IOS_BUNDLE_ID", "com.ashatlas.game"))
+package_name(ENV.fetch("ASH_ATLAS_ANDROID_PACKAGE", "com.ashatlas.game"))

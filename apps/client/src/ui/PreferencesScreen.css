@@ -1,0 +1,189 @@
+/* First-time preferences. Uses the live menu tokens, so picking a color scheme
+ * repaints this screen immediately. */
+.preferences-screen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  color: var(--aa-menu-text);
+}
+
+.preferences-screen::-webkit-scrollbar { display: none; }
+
+.preferences-card {
+  width: min(460px, 100%);
+  padding: 26px 24px 20px;
+  border: 1px solid var(--aa-plaque-edge);
+  border-radius: 6px;
+  background: var(--aa-grain), var(--aa-menu-paper);
+  box-shadow: 0 0 0 3px var(--aa-menu-paper), 0 0 0 4px var(--aa-brass-soft), 0 18px 40px var(--aa-vignette);
+}
+
+.preferences-head { text-align: center; }
+
+.preferences-logo {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--aa-plaque-edge);
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px var(--aa-menu-paper), 0 0 0 3px var(--aa-brass-soft);
+}
+
+.preferences-head h1 {
+  margin: 12px 0 4px;
+  color: var(--aa-menu-text);
+  font-family: var(--aa-ui-font-display);
+  font-variant: small-caps;
+  letter-spacing: .04em;
+  font-size: 26px;
+}
+
+/* Brass rule with a centre diamond under the heading. */
+.preferences-head h1::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 6px;
+  margin: 10px auto 0;
+  background:
+    linear-gradient(var(--aa-brass), var(--aa-brass)) 0 50% / calc(50% - 8px) 1px no-repeat,
+    linear-gradient(var(--aa-brass), var(--aa-brass)) 100% 50% / calc(50% - 8px) 1px no-repeat,
+    linear-gradient(var(--aa-brass), var(--aa-brass)) 50% 50% / 5px 5px no-repeat;
+}
+
+.preferences-head p {
+  margin: 10px 0 0;
+  color: var(--aa-menu-muted);
+  font-family: var(--aa-ui-font-body);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.preferences-group {
+  margin: 20px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.preferences-group legend {
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--aa-menu-accent);
+  font-family: var(--aa-ui-font-display);
+  font-variant: small-caps;
+  letter-spacing: .06em;
+  font-size: 15px;
+}
+
+.preferences-hint,
+.preferences-status {
+  margin: 8px 0 0;
+  color: var(--aa-menu-muted);
+  font-family: var(--aa-ui-font-body);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.preferences-group legend + .preferences-hint { margin: 0 0 10px; }
+
+/* Theme cards: a miniature page swatch of each scheme. */
+.preferences-themes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.preferences-theme {
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--aa-brass-soft);
+  border-radius: 6px;
+  background: var(--aa-menu-raised);
+  color: var(--aa-menu-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.preferences-theme[aria-pressed="true"] {
+  border-color: var(--aa-brass);
+  box-shadow: 0 0 0 2px var(--aa-brass);
+}
+
+.preferences-theme__swatch {
+  position: relative;
+  display: block;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--swatch-page);
+  border: 1px solid var(--swatch-edge);
+}
+
+.preferences-theme__swatch i { position: absolute; display: block; border-radius: 2px; }
+.preferences-theme__swatch i:nth-child(1) { inset: 10px 12px 10px 12px; background: var(--swatch-paper); border: 1px solid var(--swatch-edge); }
+.preferences-theme__swatch i:nth-child(2) { top: 20px; left: 22px; width: 46%; height: 6px; background: var(--swatch-accent); }
+.preferences-theme__swatch i:nth-child(3) { top: 32px; left: 22px; width: 62%; height: 4px; background: var(--swatch-text); opacity: .55; box-shadow: 0 8px 0 var(--swatch-text); }
+
+.preferences-theme[data-theme-preview="light"] { --swatch-page: #e7d8b9; --swatch-paper: #f0e4cb; --swatch-edge: #9a7443; --swatch-accent: #94692c; --swatch-text: #37291f; }
+.preferences-theme[data-theme-preview="dark"] { --swatch-page: #281f1a; --swatch-paper: #34271f; --swatch-edge: #7e6040; --swatch-accent: #c89a52; --swatch-text: #eee3ca; }
+
+.preferences-theme__label {
+  font-family: var(--aa-ui-font-display);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.preferences-theme__label { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 0 2px; }
+
+.preferences-theme small {
+  color: var(--aa-menu-muted);
+  font-family: var(--aa-ui-font-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .02em;
+}
+
+.preferences-secondary,
+.preferences-continue {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--aa-plaque-edge);
+  border-radius: 4px;
+  font-family: var(--aa-ui-font-display);
+  cursor: pointer;
+}
+
+.preferences-secondary {
+  background: var(--aa-menu-raised);
+  color: var(--aa-menu-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.preferences-secondary:disabled { cursor: default; opacity: .6; }
+
+.preferences-continue {
+  margin-top: 26px;
+  min-height: 48px;
+  color: var(--aa-menu-text);
+  background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom));
+  box-shadow: inset 0 1px var(--aa-plaque-hi), inset 0 -2px var(--aa-plaque-lo), 0 0 0 3px var(--aa-menu-paper), 0 0 0 4px var(--aa-brass-soft);
+  font-size: 18px;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: .08em;
+}
+
+.preferences-foot {
+  margin: 12px 0 0;
+  color: var(--aa-menu-muted);
+  font-family: var(--aa-ui-font-body);
+  font-size: 12px;
+  text-align: center;
+}
+
+.preferences-screen button:focus-visible { outline: 2px solid var(--aa-menu-text); outline-offset: 2px; }

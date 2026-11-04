@@ -1,0 +1,3 @@
+DROP TRIGGER IF EXISTS city_memberships_organization_exclusive ON city_memberships;
+DROP TRIGGER IF EXISTS kingdom_memberships_organization_exclusive ON kingdom_memberships;
+DROP FUNCTION IF EXISTS enforce_organization_membership_exclusivity();

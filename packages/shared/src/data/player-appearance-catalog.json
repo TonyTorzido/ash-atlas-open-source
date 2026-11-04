@@ -1,0 +1,3104 @@
+{
+  "appearances": [
+    {
+      "appearanceId": "hair-1",
+      "assetKey": "armor/head/hair2-ce98952e.png",
+      "cosmetic": true,
+      "displayName": "Hair 1",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": 0.1,
+          "offsetY": 1.83,
+          "scaleX": 0.045,
+          "scaleY": 0.045
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 10,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "hair-2",
+      "assetKey": "armor/head/hair1-5c706a2a.png",
+      "cosmetic": true,
+      "displayName": "Hair 2",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 2.33,
+          "scaleX": 0.045,
+          "scaleY": 0.045
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 20,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "hair-3",
+      "assetKey": "armor/head/hair4.png",
+      "cosmetic": true,
+      "displayName": "Hair 3",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 2.73,
+          "pivotY": 0.49,
+          "scaleX": 0.05,
+          "scaleY": 0.055
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 30,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "hair-4",
+      "assetKey": "armor/head/hair4-9426da25.png",
+      "cosmetic": true,
+      "displayName": "Hair 4",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 5.36,
+          "scaleX": 0.055,
+          "scaleY": 0.055
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 40,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "sword",
+      "assetKey": "weapons/sword2.png",
+      "cosmetic": false,
+      "displayName": "Sword",
+      "equipmentDefinitionId": "starter_sword",
+      "familyId": "one_handed_sword",
+      "placements": {
+        "attack_action": {
+          "layer": "front_hand",
+          "rotationDegrees": -70
+        },
+        "idle": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 2.08,
+          "offsetY": 4.16,
+          "pivotX": 0.499,
+          "pivotY": 0.6433,
+          "rotationDegrees": -25,
+          "scaleX": 0.045,
+          "scaleY": 0.035
+        }
+      }
+    },
+    {
+      "appearanceId": "double_axe",
+      "assetKey": "weapons/double-axe.png",
+      "cosmetic": false,
+      "displayName": "Double Axe",
+      "equipmentDefinitionId": "double_axe",
+      "familyId": "one_handed_axe",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -70
+        },
+        "idle": {
+          "offsetX": 2.5,
+          "offsetY": 4.68,
+          "pivotX": 0.496,
+          "pivotY": 0.648,
+          "rotationDegrees": -27,
+          "scaleX": 0.03,
+          "scaleY": 0.04
+        }
+      }
+    },
+    {
+      "appearanceId": "breast_plate",
+      "assetKey": "armor/chest/00000000-0000-4000-8000-000000900015.png",
+      "cosmetic": false,
+      "displayName": "Breastplate",
+      "equipmentDefinitionId": "breast_plate",
+      "familyId": "chest_breastplate",
+      "placements": {
+        "idle": {
+          "offsetX": -0.11,
+          "offsetY": 1.31,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "scaleX": 0.026,
+          "scaleY": 0.028
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "hammer",
+      "assetKey": "weapons/hammer.png",
+      "cosmetic": false,
+      "displayName": "Hammer",
+      "equipmentDefinitionId": "hammer",
+      "familyId": "staff",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -60
+        },
+        "idle": {
+          "offsetX": -0.43,
+          "offsetY": 0.9,
+          "pivotX": 0.4955,
+          "pivotY": 0.7101,
+          "rotationDegrees": -27,
+          "scaleX": 0.04,
+          "scaleY": 0.04
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "leather_armor",
+      "assetKey": "armor/chest/00000000-0000-4000-8000-000000900016.png",
+      "cosmetic": false,
+      "displayName": "Leather Armor",
+      "equipmentDefinitionId": "leather_armor",
+      "familyId": "chest_leather",
+      "placements": {
+        "idle": {
+          "offsetX": 0.19,
+          "offsetY": 0.82,
+          "pivotX": 0.5087,
+          "pivotY": 0.4786,
+          "scaleX": 0.027,
+          "scaleY": 0.03
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "padded_tunic",
+      "assetKey": "armor/chest/00000000-0000-4000-8000-000000900014.png",
+      "cosmetic": false,
+      "displayName": "Tunic",
+      "equipmentDefinitionId": "padded_tunic",
+      "familyId": "chest_tunic",
+      "placements": {
+        "idle": {
+          "offsetX": 0.23,
+          "offsetY": 0.32,
+          "pivotX": 0.5087,
+          "pivotY": 0.4786,
+          "rotationDegrees": 0,
+          "scaleX": 0.029,
+          "scaleY": 0.03
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "mask-1",
+      "assetKey": "masks/mask1.png",
+      "cosmetic": true,
+      "displayName": "Mask 1",
+      "familyId": "mask",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 2.47,
+          "scaleX": 0.063,
+          "scaleY": 0.055
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 10,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "mask-2",
+      "assetKey": "masks/mask2.png",
+      "cosmetic": true,
+      "displayName": "Mask 2",
+      "familyId": "mask",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 1.7,
+          "scaleX": 0.055,
+          "scaleY": 0.05
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 20,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "mask-3",
+      "assetKey": "masks/mask3.png",
+      "cosmetic": true,
+      "displayName": "Mask 3",
+      "familyId": "mask",
+      "placements": {
+        "idle": {
+          "offsetY": 2.8,
+          "scaleX": 0.058,
+          "scaleY": 0.05
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 30,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "starter-bow",
+      "assetKey": "weapons/bow1.png",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_bow"
+      ],
+      "cosmetic": false,
+      "displayName": "Bow",
+      "familyId": "bow",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": 13.5
+        },
+        "combat_ready": {
+          "rotationDegrees": 0
+        },
+        "idle": {
+          "offsetX": 1.78,
+          "offsetY": 5.1,
+          "rotationDegrees": 0,
+          "scaleX": 0.03,
+          "scaleY": 0.025
+        }
+      },
+      "projectileAssetKey": "projectiles/arrow1.png",
+      "projectileTransform": {
+        "impactX": 0.4959,
+        "impactY": 0.1169,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.04,
+        "tailX": 0.4901,
+        "tailY": 0.9207
+      }
+    },
+    {
+      "appearanceId": "starter-shuriken",
+      "assetKey": "weapons/shuriken-61578ac4.png",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_shuriken"
+      ],
+      "cosmetic": false,
+      "displayName": "Shuriken",
+      "familyId": "shuriken",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -25
+        },
+        "combat_ready": {
+          "rotationDegrees": 0
+        },
+        "idle": {
+          "offsetX": 2.22,
+          "offsetY": 4.55,
+          "rotationDegrees": 0,
+          "scaleX": 0.01,
+          "scaleY": 0.01
+        }
+      },
+      "projectileAssetKey": "projectiles/shuriken.png",
+      "projectileTransform": {
+        "impactX": 0.5,
+        "impactY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.0125,
+        "scaleY": 0.0125,
+        "tailX": 0,
+        "tailY": 0.5
+      }
+    },
+    {
+      "appearanceId": "starter_wand",
+      "assetKey": "weapons/wand.png",
+      "cosmetic": false,
+      "displayName": "Wand",
+      "equipmentDefinitionId": "starter_wand",
+      "familyId": "wand",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -50
+        },
+        "idle": {
+          "offsetX": 2.21,
+          "offsetY": 4.24,
+          "pivotX": 0.5018,
+          "pivotY": 0.7658,
+          "rotationDegrees": -14,
+          "scaleX": 0.03,
+          "scaleY": 0.02
+        }
+      },
+      "projectileAssetKey": "projectiles/wandprojectile.png",
+      "projectileTransform": {
+        "impactX": 0.6505,
+        "impactY": 0.5003,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.05,
+        "tailX": 0.2817,
+        "tailY": 0.4938
+      }
+    },
+    {
+      "appearanceId": "starter-staff",
+      "assetKey": "weapons/staff.png",
+      "cosmetic": false,
+      "displayName": "Staff",
+      "equipmentDefinitionId": "starter_staff",
+      "familyId": "staff",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -55
+        },
+        "idle": {
+          "offsetX": 1.69,
+          "offsetY": 4.27,
+          "pivotX": 0.4966,
+          "pivotY": 0.5098,
+          "rotationDegrees": -10,
+          "scaleX": 0.045,
+          "scaleY": 0.03
+        }
+      }
+    },
+    {
+      "appearanceId": "training_scepter",
+      "assetKey": "weapons/scepter.png",
+      "cosmetic": false,
+      "displayName": "Scepter",
+      "equipmentDefinitionId": "training_scepter",
+      "familyId": "staff",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -55
+        },
+        "idle": {
+          "offsetX": 1.69,
+          "offsetY": 4.27,
+          "pivotX": 0.4966,
+          "pivotY": 0.62,
+          "rotationDegrees": -10,
+          "scaleX": 0.045,
+          "scaleY": 0.03
+        }
+      }
+    },
+    {
+      "appearanceId": "brown-eyes-1",
+      "assetKey": "eyes/browneyesidle1.png",
+      "cosmetic": true,
+      "displayName": "Brown Eyes 1",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 3.9,
+          "scaleX": 0.015,
+          "scaleY": 0.015
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "blue-eyes-1",
+      "assetKey": "eyes/blueeyes1.png",
+      "cosmetic": true,
+      "displayName": "Blue Eyes 1",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 3.9,
+          "rotationDegrees": 0,
+          "scaleX": 0.015,
+          "scaleY": 0.015
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "blonde-hair-1",
+      "assetKey": "hair/blondefemale1.png",
+      "cosmetic": true,
+      "displayName": "Blonde Hair 1",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -1.6,
+          "offsetY": 5.22,
+          "pivotX": 0.5,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "brunette-hair-1",
+      "assetKey": "hair/brownfemale1.png",
+      "cosmetic": true,
+      "displayName": "Brunette Hair 1",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -1.77,
+          "offsetY": 3.07,
+          "scaleX": 0.025,
+          "scaleY": 0.03
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "cloth-pants-black",
+      "assetKey": "cosmetics/sweatsblack.png",
+      "cosmetic": true,
+      "displayName": "Cloth Pants Black",
+      "familyId": "legs",
+      "placements": {
+        "idle": {
+          "anchorId": "legs",
+          "offsetX": 0,
+          "offsetY": 11.94,
+          "pivotX": 0.5,
+          "scaleX": 0.03,
+          "scaleY": 0.026
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "cloth-armor-grey",
+      "assetKey": "armor/chest/clotharmor.png",
+      "compatibleEquipmentDefinitionIds": [
+        "padded_tunic"
+      ],
+      "cosmetic": false,
+      "displayName": "Cloth Armor Grey",
+      "familyId": "chest_tunic",
+      "placements": {
+        "idle": {
+          "offsetX": -0.15,
+          "offsetY": -1.3,
+          "scaleX": 0.021,
+          "scaleY": 0.02
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "leather-armor-",
+      "assetKey": "armor/chest/leatherarmor.png",
+      "compatibleEquipmentDefinitionIds": [
+        "leather_armor"
+      ],
+      "cosmetic": false,
+      "displayName": "Leather Armor",
+      "familyId": "chest_leather",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": -1.39,
+          "scaleX": 0.02105,
+          "scaleY": 0.02
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "breastplate-armor",
+      "assetKey": "armor/chest/breastplatearmor.png",
+      "compatibleEquipmentDefinitionIds": [
+        "breast_plate"
+      ],
+      "cosmetic": false,
+      "displayName": "Breastplate Armor",
+      "familyId": "chest_breastplate",
+      "placements": {
+        "idle": {
+          "offsetX": -0.1,
+          "offsetY": -1.96,
+          "scaleX": 0.02,
+          "scaleY": 0.0187
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "black-split-hair-1",
+      "assetKey": "hair/blackmale1.png",
+      "cosmetic": true,
+      "displayName": "Black Hair 1",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.8,
+          "offsetY": -0.6,
+          "scaleX": 0.022,
+          "scaleY": 0.025
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "cloth-pants-white",
+      "assetKey": "cosmetics/sweatswhite.png",
+      "cosmetic": false,
+      "displayName": "Cloth Pants White",
+      "familyId": "legs",
+      "placements": {
+        "idle": {
+          "offsetX": 0.14,
+          "offsetY": 11.85,
+          "scaleX": 0.021,
+          "scaleY": 0.019
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "cloth-pants-brown",
+      "assetKey": "cosmetics/sweatsbrown.png",
+      "cosmetic": false,
+      "displayName": "Cloth Pants Brown",
+      "familyId": "legs",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 11.62,
+          "scaleX": 0.0295,
+          "scaleY": 0.025
+        }
+      },
+      "retired": true
+    },
+    {
+      "appearanceId": "ginger-hair-1",
+      "assetKey": "hair/redfemale1.png",
+      "cosmetic": true,
+      "displayName": "Ginger Hair 1",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.8,
+          "offsetY": 2.08,
+          "scaleX": 0.0255,
+          "scaleY": 0.03
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "green-eyes-1",
+      "assetKey": "eyes/greeneyes1.png",
+      "cosmetic": true,
+      "displayName": "Green Eyes 1",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetY": 3.9,
+          "scaleX": 0.015,
+          "scaleY": 0.015
+        }
+      },
+      "retired": true,
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "retired"
+      }
+    },
+    {
+      "appearanceId": "brown-eyes",
+      "assetKey": "eyes/browneyes.png",
+      "cosmetic": true,
+      "displayName": "Brown",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 13,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "viking-hair",
+      "assetKey": "hair/vikinghairmale.png",
+      "cosmetic": true,
+      "displayName": "Viking",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.69,
+          "offsetY": 9.04,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "spikey-hair",
+      "assetKey": "hair/spikeyhairmale.png",
+      "cosmetic": true,
+      "displayName": "Spikey",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.91,
+          "offsetY": 9.6,
+          "scaleX": 0.035,
+          "scaleY": 0.035
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "soldier-crop-hair",
+      "assetKey": "hair/soldiercrophairmale.png",
+      "cosmetic": true,
+      "displayName": "Soldier Crop",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.91,
+          "offsetY": 12.72,
+          "scaleX": 0.04,
+          "scaleY": 0.04
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "long-knight-hair",
+      "assetKey": "hair/shoulderlengthknightshairmale.png",
+      "cosmetic": true,
+      "displayName": "Long Knight",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.99,
+          "offsetY": 11.67,
+          "scaleX": 0.035,
+          "scaleY": 0.035
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "page-cut-hair",
+      "assetKey": "hair/pagecuthairmale.png",
+      "cosmetic": true,
+      "displayName": "Page Cut",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.05,
+          "offsetY": 11.14,
+          "scaleX": 0.035,
+          "scaleY": 0.035
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "bottom-bun",
+      "assetKey": "hair/bottombunhairmale.png",
+      "cosmetic": true,
+      "displayName": "Bottom Bun",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": 0.68,
+          "offsetY": 9.56,
+          "scaleX": 0.03,
+          "scaleY": 0.033
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "braided-village-maiden",
+      "assetKey": "hair/braidedvillagemadienhairfemale.png",
+      "cosmetic": true,
+      "displayName": "Braided Village Maiden",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -1.38,
+          "offsetY": 11.64,
+          "scaleX": 0.035,
+          "scaleY": 0.035
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "crown-braided-noble-hair",
+      "assetKey": "hair/crownbraidednoblewomanhairfemale.png",
+      "cosmetic": true,
+      "displayName": "Crown Braided Noble",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.4,
+          "offsetY": 9.5,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "half-up-courtly-waves-hair",
+      "assetKey": "hair/halfupcourtlywaveshairfemale.png",
+      "cosmetic": true,
+      "displayName": "Half Up Courtly Waves",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -2.24,
+          "offsetY": 12.47,
+          "scaleX": 0.037,
+          "scaleY": 0.035
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "long-loose-wave",
+      "assetKey": "hair/longloosemedievalwaveshairfemale.png",
+      "cosmetic": true,
+      "displayName": "Long Loose Wave",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -0.48,
+          "offsetY": 16.02,
+          "scaleX": 0.04,
+          "scaleY": 0.04
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "low-bun-artisan-hair",
+      "assetKey": "hair/lowbunartisanhairfemale.png",
+      "cosmetic": true,
+      "displayName": "Low Bun Artisan",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": 0.07,
+          "offsetY": 9.9,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "modern-layer-bob-hair",
+      "assetKey": "hair/modernlayeredbobhairfemale.png",
+      "cosmetic": true,
+      "displayName": "Modern Layer Bob",
+      "familyId": "hair",
+      "placements": {
+        "idle": {
+          "offsetX": -1.32,
+          "offsetY": 9.09,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "white-beard",
+      "assetKey": "cosmetics/whitebeardmale.png",
+      "cosmetic": false,
+      "displayName": "White Beard",
+      "familyId": "beard",
+      "placements": {
+        "idle": {
+          "offsetX": -0.1,
+          "offsetY": 14.51,
+          "scaleX": 0.027,
+          "scaleY": 0.02
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 10,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "black-beard",
+      "assetKey": "cosmetics/blackbeardmale.png",
+      "cosmetic": false,
+      "displayName": "Black Beard",
+      "familyId": "beard",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 14.51,
+          "scaleX": 0.027,
+          "scaleY": 0.02
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 20,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "brown-beard",
+      "assetKey": "cosmetics/brownbeardmale.png",
+      "cosmetic": false,
+      "displayName": "Brown Beard",
+      "familyId": "beard",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 14.51,
+          "scaleX": 0.027,
+          "scaleY": 0.02
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 30,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "black-pants",
+      "assetKey": "cosmetics/pantsblack.png",
+      "cosmetic": false,
+      "displayName": "Black Pants",
+      "familyId": "legs",
+      "placements": {
+        "idle": {
+          "offsetX": 0.08,
+          "offsetY": 12.75,
+          "scaleX": 0.038,
+          "scaleY": 0.038
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 10,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "non-swag-cloth",
+      "assetKey": "armor/chest/nonswagcloth.png",
+      "compatibleEquipmentDefinitionIds": [
+        "padded_tunic"
+      ],
+      "cosmetic": false,
+      "displayName": "Non-swag Cloth",
+      "familyId": "chest_tunic",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 1.27,
+          "scaleX": 0.048,
+          "scaleY": 0.048
+        }
+      }
+    },
+    {
+      "appearanceId": "non-swag-leather",
+      "assetKey": "armor/chest/nonswagleather.png",
+      "compatibleEquipmentDefinitionIds": [
+        "leather_armor"
+      ],
+      "cosmetic": false,
+      "displayName": "Non-swag Leather",
+      "familyId": "chest_leather",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 1.19,
+          "scaleX": 0.048,
+          "scaleY": 0.048
+        }
+      }
+    },
+    {
+      "appearanceId": "non-swag-breastplate",
+      "assetKey": "armor/chest/nonswagbreastplate.png",
+      "compatibleEquipmentDefinitionIds": [
+        "breast_plate"
+      ],
+      "cosmetic": false,
+      "displayName": "Non-swag Breastplate",
+      "familyId": "chest_breastplate",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 1.53,
+          "scaleX": 0.048,
+          "scaleY": 0.048
+        }
+      }
+    },
+    {
+      "appearanceId": "hockey-mask",
+      "assetKey": "masks/hockeymask.png",
+      "cosmetic": true,
+      "displayName": "Hockey Mask",
+      "familyId": "mask",
+      "placements": {
+        "idle": {
+          "offsetX": 1,
+          "offsetY": 8.18,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "scaleX": 0.05,
+          "scaleY": 0.05
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "sortOrder": 40,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "blue-eyes",
+      "assetKey": "eyes/blueeyes.png",
+      "cosmetic": true,
+      "displayName": "Blue",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetY": 13,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "green-eyes",
+      "assetKey": "eyes/greeneyes.png",
+      "cosmetic": true,
+      "displayName": "Green",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetY": 13,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "grey-eyes",
+      "assetKey": "eyes/greyeyes.png",
+      "cosmetic": true,
+      "displayName": "Grey",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetY": 13,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "hazel-eyes",
+      "assetKey": "eyes/hazeleyes.png",
+      "cosmetic": true,
+      "displayName": "Hazel",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetY": 13,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "purple-eyes",
+      "assetKey": "eyes/purpleeyes.png",
+      "cosmetic": true,
+      "displayName": "Purple",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetY": 13,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "red-eyes",
+      "assetKey": "eyes/redeyes.png",
+      "cosmetic": true,
+      "displayName": "Red",
+      "familyId": "eyes",
+      "placements": {
+        "idle": {
+          "offsetY": 13,
+          "scaleX": 0.03,
+          "scaleY": 0.03
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "non-swag-chainmail",
+      "assetKey": "armor/chest/nonswagchaimail.png",
+      "compatibleEquipmentDefinitionIds": [
+        "chain_armor"
+      ],
+      "cosmetic": false,
+      "displayName": "Non-swag Chainmail",
+      "familyId": "chest_chain_mail",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 1.71,
+          "scaleX": 0.049,
+          "scaleY": 0.049
+        }
+      }
+    },
+    {
+      "appearanceId": "blonde-beard",
+      "assetKey": "cosmetics/beard-blonde-exact-pixels.png",
+      "cosmetic": true,
+      "displayName": "Blond Beard",
+      "familyId": "beard",
+      "placements": {
+        "idle": {
+          "offsetX": -0.1,
+          "offsetY": 14.51,
+          "scaleX": 0.027,
+          "scaleY": 0.02
+        }
+      },
+      "salon": {
+        "accessType": "free",
+        "gameCreditPrice": 0,
+        "productId": null,
+        "state": "selectable"
+      }
+    },
+    {
+      "appearanceId": "kitsune-mask",
+      "assetKey": "masks/kitsunemask.png",
+      "cosmetic": true,
+      "displayName": "Kitsune Mask",
+      "familyId": "mask",
+      "placements": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 6.28,
+          "scaleX": 0.0615,
+          "scaleY": 0.064
+        }
+      }
+    },
+    {
+      "appearanceId": "legion_gladius",
+      "assetKey": "weapons/swag/legion-gladius.png",
+      "cosmetic": false,
+      "displayName": "Legion Gladius",
+      "equipmentDefinitionId": "legion_gladius",
+      "familyId": "one_handed_sword",
+      "inheritAppearanceId": "sword",
+      "placements": {}
+    },
+    {
+      "appearanceId": "barrow_blade",
+      "assetKey": "weapons/swag/barrow-blade.png",
+      "cosmetic": false,
+      "displayName": "Barrow Blade",
+      "equipmentDefinitionId": "barrow_blade",
+      "familyId": "one_handed_sword",
+      "inheritAppearanceId": "sword",
+      "placements": {}
+    },
+    {
+      "appearanceId": "tidefang_sabre",
+      "assetKey": "weapons/swag/tidefang-sabre.png",
+      "cosmetic": false,
+      "displayName": "Tidefang Sabre",
+      "equipmentDefinitionId": "tidefang_sabre",
+      "familyId": "one_handed_sword",
+      "inheritAppearanceId": "sword",
+      "placements": {}
+    },
+    {
+      "appearanceId": "troll_cleaver",
+      "assetKey": "weapons/swag/troll-cleaver.png",
+      "cosmetic": false,
+      "displayName": "Troll Cleaver",
+      "equipmentDefinitionId": "troll_cleaver",
+      "familyId": "one_handed_axe",
+      "inheritAppearanceId": "double_axe",
+      "placements": {}
+    },
+    {
+      "appearanceId": "rimebeard_axe",
+      "assetKey": "weapons/swag/rimebeard-axe.png",
+      "cosmetic": false,
+      "displayName": "Rimebeard Axe",
+      "equipmentDefinitionId": "rimebeard_axe",
+      "familyId": "one_handed_axe",
+      "inheritAppearanceId": "double_axe",
+      "placements": {}
+    },
+    {
+      "appearanceId": "packfang_axe",
+      "assetKey": "weapons/swag/packfang-axe.png",
+      "cosmetic": false,
+      "displayName": "Packfang Axe",
+      "equipmentDefinitionId": "packfang_axe",
+      "familyId": "one_handed_axe",
+      "inheritAppearanceId": "double_axe",
+      "placements": {}
+    },
+    {
+      "appearanceId": "owlfeather_longbow",
+      "assetKey": "weapons/swag/owlfeather-longbow.png",
+      "cosmetic": false,
+      "displayName": "Owlfeather Longbow",
+      "equipmentDefinitionId": "owlfeather_longbow",
+      "familyId": "bow",
+      "inheritAppearanceId": "starter-bow",
+      "placements": {},
+      "projectileAssetKey": "projectiles/arrow1.png",
+      "projectileTransform": {
+        "impactX": 0.4959,
+        "impactY": 0.1169,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.04,
+        "tailX": 0.4901,
+        "tailY": 0.9207
+      }
+    },
+    {
+      "appearanceId": "grovewood_bow",
+      "assetKey": "weapons/swag/grovewood-bow.png",
+      "cosmetic": false,
+      "displayName": "Grovewood Bow",
+      "equipmentDefinitionId": "grovewood_bow",
+      "familyId": "bow",
+      "inheritAppearanceId": "starter-bow",
+      "placements": {},
+      "projectileAssetKey": "projectiles/arrow1.png",
+      "projectileTransform": {
+        "impactX": 0.4959,
+        "impactY": 0.1169,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.04,
+        "tailX": 0.4901,
+        "tailY": 0.9207
+      }
+    },
+    {
+      "appearanceId": "steppe_horn_bow",
+      "assetKey": "weapons/swag/steppe-horn-bow.png",
+      "cosmetic": false,
+      "displayName": "Steppe Horn Bow",
+      "equipmentDefinitionId": "steppe_horn_bow",
+      "familyId": "bow",
+      "inheritAppearanceId": "starter-bow",
+      "placements": {},
+      "projectileAssetKey": "projectiles/arrow1.png",
+      "projectileTransform": {
+        "impactX": 0.4959,
+        "impactY": 0.1169,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.04,
+        "tailX": 0.4901,
+        "tailY": 0.9207
+      }
+    },
+    {
+      "appearanceId": "kappa_shell_crossbow",
+      "assetKey": "weapons/swag/kappa-shell-crossbow.png",
+      "cosmetic": false,
+      "displayName": "Kappa Shell Crossbow",
+      "equipmentDefinitionId": "kappa_shell_crossbow",
+      "familyId": "bow",
+      "inheritAppearanceId": "starter-bow",
+      "placements": {},
+      "projectileAssetKey": "projectiles/arrow1.png",
+      "projectileTransform": {
+        "impactX": 0.4959,
+        "impactY": 0.1169,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.04,
+        "tailX": 0.4901,
+        "tailY": 0.9207
+      }
+    },
+    {
+      "appearanceId": "scrap_iron_arbalest",
+      "assetKey": "weapons/swag/scrap-iron-arbalest.png",
+      "cosmetic": false,
+      "displayName": "Scrap-Iron Arbalest",
+      "equipmentDefinitionId": "scrap_iron_arbalest",
+      "familyId": "bow",
+      "inheritAppearanceId": "starter-bow",
+      "placements": {},
+      "projectileAssetKey": "projectiles/arrow1.png",
+      "projectileTransform": {
+        "impactX": 0.4959,
+        "impactY": 0.1169,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.04,
+        "tailX": 0.4901,
+        "tailY": 0.9207
+      }
+    },
+    {
+      "appearanceId": "stormlatch_crossbow",
+      "assetKey": "weapons/swag/stormlatch-crossbow.png",
+      "cosmetic": false,
+      "displayName": "Stormlatch Crossbow",
+      "equipmentDefinitionId": "stormlatch_crossbow",
+      "familyId": "bow",
+      "inheritAppearanceId": "starter-bow",
+      "placements": {},
+      "projectileAssetKey": "projectiles/arrow1.png",
+      "projectileTransform": {
+        "impactX": 0.4959,
+        "impactY": 0.1169,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.04,
+        "scaleY": 0.04,
+        "tailX": 0.4901,
+        "tailY": 0.9207
+      }
+    },
+    {
+      "appearanceId": "merfolk_trident",
+      "assetKey": "weapons/swag/merfolk-trident.png",
+      "cosmetic": false,
+      "displayName": "Merfolk Trident",
+      "equipmentDefinitionId": "merfolk_trident",
+      "familyId": "staff",
+      "inheritAppearanceId": "starter-staff",
+      "placements": {}
+    },
+    {
+      "appearanceId": "centaur_lance",
+      "assetKey": "weapons/swag/centaur-lance.png",
+      "cosmetic": false,
+      "displayName": "Centaur Lance",
+      "equipmentDefinitionId": "centaur_lance",
+      "familyId": "staff",
+      "inheritAppearanceId": "starter-staff",
+      "placements": {}
+    },
+    {
+      "appearanceId": "reefspear",
+      "assetKey": "weapons/swag/reefspear.png",
+      "cosmetic": false,
+      "displayName": "Reefspear",
+      "equipmentDefinitionId": "reefspear",
+      "familyId": "staff",
+      "inheritAppearanceId": "starter-staff",
+      "placements": {}
+    },
+    {
+      "appearanceId": "livingwood_staff",
+      "assetKey": "weapons/swag/livingwood-staff.png",
+      "cosmetic": false,
+      "displayName": "Livingwood Staff",
+      "equipmentDefinitionId": "livingwood_staff",
+      "familyId": "staff",
+      "inheritAppearanceId": "starter-staff",
+      "placements": {}
+    },
+    {
+      "appearanceId": "hexwood_crook",
+      "assetKey": "weapons/swag/hexwood-crook.png",
+      "cosmetic": false,
+      "displayName": "Hexwood Crook",
+      "equipmentDefinitionId": "hexwood_crook",
+      "familyId": "staff",
+      "inheritAppearanceId": "starter-staff",
+      "placements": {}
+    },
+    {
+      "appearanceId": "pilgrim_staff",
+      "assetKey": "weapons/swag/pilgrim-staff.png",
+      "cosmetic": false,
+      "displayName": "Highland Pilgrim Staff",
+      "equipmentDefinitionId": "pilgrim_staff",
+      "familyId": "staff",
+      "inheritAppearanceId": "starter-staff",
+      "placements": {}
+    },
+    {
+      "appearanceId": "pantherclaw_stars",
+      "assetKey": "weapons/swag/pantherclaw-stars.png",
+      "cosmetic": false,
+      "displayName": "Pantherclaw Stars",
+      "equipmentDefinitionId": "pantherclaw_stars",
+      "familyId": "shuriken",
+      "inheritAppearanceId": "starter-shuriken",
+      "placements": {},
+      "projectileAssetKey": "projectiles/shuriken.png",
+      "projectileTransform": {
+        "impactX": 0.5,
+        "impactY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.0125,
+        "scaleY": 0.0125,
+        "tailX": 0,
+        "tailY": 0.5
+      }
+    },
+    {
+      "appearanceId": "runestar",
+      "assetKey": "weapons/swag/runestar.png",
+      "cosmetic": false,
+      "displayName": "Runestar",
+      "equipmentDefinitionId": "runestar",
+      "familyId": "shuriken",
+      "inheritAppearanceId": "starter-shuriken",
+      "placements": {},
+      "projectileAssetKey": "projectiles/shuriken.png",
+      "projectileTransform": {
+        "impactX": 0.5,
+        "impactY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.0125,
+        "scaleY": 0.0125,
+        "tailX": 0,
+        "tailY": 0.5
+      }
+    },
+    {
+      "appearanceId": "viper_stars",
+      "assetKey": "weapons/swag/viper-stars.png",
+      "cosmetic": false,
+      "displayName": "Viper Stars",
+      "equipmentDefinitionId": "viper_stars",
+      "familyId": "shuriken",
+      "inheritAppearanceId": "starter-shuriken",
+      "placements": {},
+      "projectileAssetKey": "projectiles/shuriken.png",
+      "projectileTransform": {
+        "impactX": 0.5,
+        "impactY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.0125,
+        "scaleY": 0.0125,
+        "tailX": 0,
+        "tailY": 0.5
+      }
+    },
+    {
+      "appearanceId": "riverhide_sling",
+      "assetKey": "weapons/swag/riverhide-sling.png",
+      "cosmetic": false,
+      "displayName": "Riverhide Sling",
+      "equipmentDefinitionId": "riverhide_sling",
+      "familyId": "shuriken",
+      "inheritAppearanceId": "starter-shuriken",
+      "placements": {},
+      "projectileAssetKey": "projectiles/shuriken.png",
+      "projectileTransform": {
+        "impactX": 0.5,
+        "impactY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.0125,
+        "scaleY": 0.0125,
+        "tailX": 0,
+        "tailY": 0.5
+      }
+    },
+    {
+      "appearanceId": "steppe_sling",
+      "assetKey": "weapons/swag/steppe-sling.png",
+      "cosmetic": false,
+      "displayName": "Steppe Sling",
+      "equipmentDefinitionId": "steppe_sling",
+      "familyId": "shuriken",
+      "inheritAppearanceId": "starter-shuriken",
+      "placements": {},
+      "projectileAssetKey": "projectiles/shuriken.png",
+      "projectileTransform": {
+        "impactX": 0.5,
+        "impactY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.0125,
+        "scaleY": 0.0125,
+        "tailX": 0,
+        "tailY": 0.5
+      }
+    },
+    {
+      "appearanceId": "nixie_sling",
+      "assetKey": "weapons/swag/nixie-sling.png",
+      "cosmetic": false,
+      "displayName": "Nixie Sling",
+      "equipmentDefinitionId": "nixie_sling",
+      "familyId": "shuriken",
+      "inheritAppearanceId": "starter-shuriken",
+      "placements": {},
+      "projectileAssetKey": "projectiles/shuriken.png",
+      "projectileTransform": {
+        "impactX": 0.5,
+        "impactY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotationDegrees": 0,
+        "scaleX": 0.0125,
+        "scaleY": 0.0125,
+        "tailX": 0,
+        "tailY": 0.5
+      }
+    },
+    {
+      "appearanceId": "wooden_axe",
+      "assetKey": "tools/wooden-axe.png",
+      "cosmetic": false,
+      "displayName": "Wooden Hatchet",
+      "equipmentDefinitionId": "wooden_axe",
+      "familyId": "chopping_tool",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -70
+        },
+        "idle": {
+          "offsetX": 2.5,
+          "offsetY": 4.68,
+          "pivotX": 0.496,
+          "pivotY": 0.648,
+          "rotationDegrees": -27,
+          "scaleX": 0.03,
+          "scaleY": 0.04
+        }
+      }
+    },
+    {
+      "appearanceId": "stone_axe",
+      "assetKey": "tools/stone-axe.png",
+      "cosmetic": false,
+      "displayName": "Stone Hatchet",
+      "equipmentDefinitionId": "stone_axe",
+      "familyId": "chopping_tool",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -70
+        },
+        "idle": {
+          "offsetX": 2.5,
+          "offsetY": 4.68,
+          "pivotX": 0.496,
+          "pivotY": 0.648,
+          "rotationDegrees": -27,
+          "scaleX": 0.03,
+          "scaleY": 0.04
+        }
+      }
+    },
+    {
+      "appearanceId": "wooden_pickaxe",
+      "assetKey": "tools/wooden-pickaxe.png",
+      "cosmetic": false,
+      "displayName": "Wooden Pickaxe",
+      "equipmentDefinitionId": "wooden_pickaxe",
+      "familyId": "mining_tool",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -60
+        },
+        "idle": {
+          "offsetX": 2.5,
+          "offsetY": 4.68,
+          "pivotX": 0.496,
+          "pivotY": 0.648,
+          "rotationDegrees": -27,
+          "scaleX": 0.03,
+          "scaleY": 0.04
+        }
+      }
+    },
+    {
+      "appearanceId": "stone_pickaxe",
+      "assetKey": "tools/stone-pickaxe.png",
+      "cosmetic": false,
+      "displayName": "Stone Pickaxe",
+      "equipmentDefinitionId": "stone_pickaxe",
+      "familyId": "mining_tool",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -60
+        },
+        "idle": {
+          "offsetX": 2.5,
+          "offsetY": 4.68,
+          "pivotX": 0.496,
+          "pivotY": 0.648,
+          "rotationDegrees": -27,
+          "scaleX": 0.03,
+          "scaleY": 0.04
+        }
+      }
+    },
+    {
+      "appearanceId": "starter_fishing_pole",
+      "assetKey": "tools/starter-fishing-pole.png",
+      "cosmetic": false,
+      "displayName": "Starter Fishing Pole",
+      "equipmentDefinitionId": "starter_fishing_pole",
+      "familyId": "fishing_tool",
+      "placements": {
+        "attack_action": {
+          "rotationDegrees": -55
+        },
+        "idle": {
+          "offsetX": 1.69,
+          "offsetY": 4.27,
+          "pivotX": 0.4966,
+          "pivotY": 0.5098,
+          "rotationDegrees": -10,
+          "scaleX": 0.06,
+          "scaleY": 0.06
+        }
+      }
+    }
+  ],
+  "bodyVariants": [
+    {
+      "bodyAssetKeys": {
+        "idle": "bodies/template7-clean.png"
+      },
+      "bodyTransforms": {
+        "idle": {
+          "offsetX": 0,
+          "offsetY": 32,
+          "scale": 1.65
+        }
+      },
+      "bodyVariantId": "default",
+      "displayName": "Player",
+      "mainAnchor": {
+        "x": 0,
+        "y": 23.04032156808036
+      },
+      "overallScale": 1.3,
+      "poses": [
+        {
+          "anchors": {
+            "chest": {
+              "x": 0,
+              "y": 0
+            },
+            "face": {
+              "x": 0,
+              "y": -23.086414155505963
+            },
+            "left_foot": {
+              "x": -5.561723012772813,
+              "y": 14.836858355809843
+            },
+            "left_hand": {
+              "x": -12.169317336309515,
+              "y": 2.6860593765500678
+            },
+            "legs": {
+              "x": 0,
+              "y": 0
+            },
+            "right_foot": {
+              "x": 5.561723012772813,
+              "y": 14.836858355809843
+            },
+            "right_hand": {
+              "x": 12.169317336309515,
+              "y": 2.6860593765500678
+            }
+          },
+          "poseId": "idle"
+        },
+        {
+          "anchors": {
+            "chest": {
+              "x": 0,
+              "y": 0
+            },
+            "face": {
+              "x": 0,
+              "y": -23.086414155505963
+            },
+            "left_foot": {
+              "x": -5.561723012772813,
+              "y": 14.836858355809843
+            },
+            "left_hand": {
+              "x": -12.169317336309515,
+              "y": 2.6860593765500678
+            },
+            "legs": {
+              "x": 0,
+              "y": 0
+            },
+            "right_foot": {
+              "x": 5.561723012772813,
+              "y": 14.836858355809843
+            },
+            "right_hand": {
+              "x": 12.169317336309515,
+              "y": 2.6860593765500678
+            }
+          },
+          "poseId": "combat_ready"
+        },
+        {
+          "anchors": {
+            "chest": {
+              "x": 0,
+              "y": 0
+            },
+            "face": {
+              "x": 0,
+              "y": -23.086414155505963
+            },
+            "left_foot": {
+              "x": -5.561723012772813,
+              "y": 14.836858355809843
+            },
+            "left_hand": {
+              "x": -12.169317336309515,
+              "y": 2.6860593765500678
+            },
+            "legs": {
+              "x": 0,
+              "y": 0
+            },
+            "right_foot": {
+              "x": 5.561723012772813,
+              "y": 14.836858355809843
+            },
+            "right_hand": {
+              "x": 12.169317336309515,
+              "y": 2.6860593765500678
+            }
+          },
+          "poseId": "attack_action"
+        }
+      ],
+      "skinToneAssetKeys": {
+        "dark": "bodies/template7c-clean.png",
+        "light": null,
+        "medium": "bodies/template7b-clean.png"
+      }
+    }
+  ],
+  "catalogRevision": 128,
+  "enhancementPresentation": {
+    "coreHues": {
+      "venomsteel": "#58b86f"
+    },
+    "gemSizePx": 3,
+    "gemstoneAssetKeys": {
+      "amethyst": "enhancements/gems/amethyst.png",
+      "diamond": "enhancements/gems/diamond.png",
+      "emerald": "enhancements/gems/emerald.png",
+      "onyx": "enhancements/gems/onyx.png",
+      "opal": "enhancements/gems/opal.png",
+      "ruby": "enhancements/gems/ruby.png",
+      "sapphire": "enhancements/gems/sapphire.png",
+      "topaz": "enhancements/gems/topaz.png"
+    }
+  },
+  "families": [
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_sword",
+        "god_sword",
+        "training_dagger",
+        "training_knuckles",
+        "legion_gladius",
+        "barrow_blade",
+        "tidefang_sabre"
+      ],
+      "displayName": "One-handed sword",
+      "familyId": "one_handed_sword",
+      "placements": {
+        "attack_action": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 5,
+          "offsetY": -1,
+          "pivotX": 0.18,
+          "pivotY": 0.86,
+          "rotationDegrees": 55,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -2,
+          "pivotX": 0.18,
+          "pivotY": 0.86,
+          "rotationDegrees": -55,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5002,
+          "pivotY": 0.2866,
+          "rotationDegrees": 135,
+          "scaleX": 0.035,
+          "scaleY": 0.035,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "training_axe",
+        "double_axe",
+        "troll_cleaver",
+        "rimebeard_axe",
+        "packfang_axe"
+      ],
+      "displayName": "One-handed axe",
+      "familyId": "one_handed_axe",
+      "placements": {
+        "attack_action": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 5,
+          "offsetY": -1,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": 65,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -2,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": -50,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -3,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": -16,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_bow",
+        "training_crossbow",
+        "owlfeather_longbow",
+        "grovewood_bow",
+        "steppe_horn_bow",
+        "kappa_shell_crossbow",
+        "scrap_iron_arbalest",
+        "stormlatch_crossbow"
+      ],
+      "displayName": "Bow",
+      "familyId": "bow",
+      "placements": {
+        "attack_action": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": 1,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": -72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": -1,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": -90,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 3,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_shuriken",
+        "training_sling",
+        "pantherclaw_stars",
+        "runestar",
+        "viper_stars",
+        "riverhide_sling",
+        "steppe_sling",
+        "nixie_sling"
+      ],
+      "displayName": "Shuriken",
+      "familyId": "shuriken",
+      "placements": {
+        "attack_action": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": 1,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": -72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": -1,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": -90,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 3,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_wand",
+        "training_blowdart"
+      ],
+      "displayName": "Wand",
+      "familyId": "wand",
+      "placements": {
+        "attack_action": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 5,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": 25,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -2,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": -35,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 2,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": -10,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_staff",
+        "training_scepter",
+        "training_spear",
+        "merfolk_trident",
+        "centaur_lance",
+        "reefspear",
+        "livingwood_staff",
+        "hexwood_crook",
+        "pilgrim_staff"
+      ],
+      "displayName": "Staff",
+      "familyId": "staff",
+      "placements": {
+        "attack_action": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 5,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": 25,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -2,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": -35,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "left_hand",
+          "layer": "front_hand",
+          "offsetX": 2,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": -10,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "shield",
+      "categoryId": "shield",
+      "compatibleEquipmentDefinitionIds": [
+        "training_shield",
+        "ranged_shield"
+      ],
+      "displayName": "Shield",
+      "familyId": "shield",
+      "placements": {
+        "attack_action": {
+          "anchorId": "right_hand",
+          "layer": "shield",
+          "offsetX": -2,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": -16,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "right_hand",
+          "layer": "shield",
+          "offsetX": -1,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": -10,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "right_hand",
+          "layer": "shield",
+          "offsetX": -1,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "shield"
+    },
+    {
+      "authoringLayer": "hair",
+      "categoryId": "hair",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Hair",
+      "familyId": "hair",
+      "placements": {
+        "attack_action": {
+          "anchorId": "face",
+          "layer": "hair",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "face",
+          "layer": "hair",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "face",
+          "layer": "hair",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "hair"
+    },
+    {
+      "authoringLayer": "eyes",
+      "categoryId": "eyes",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Eyes",
+      "familyId": "eyes",
+      "featureArea": {
+        "defaultPoint": {
+          "x": 0,
+          "y": 8.4
+        },
+        "polygon": [
+          {
+            "x": -3,
+            "y": 6
+          },
+          {
+            "x": 3,
+            "y": 6
+          },
+          {
+            "x": 3,
+            "y": 11
+          },
+          {
+            "x": -3,
+            "y": 11
+          }
+        ]
+      },
+      "placements": {
+        "attack_action": {
+          "anchorId": "face",
+          "layer": "eyes",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "face",
+          "layer": "eyes",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "face",
+          "layer": "eyes",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "face"
+    },
+    {
+      "authoringLayer": "nose_mouth",
+      "categoryId": "nose",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Nose",
+      "familyId": "nose",
+      "featureArea": {
+        "defaultPoint": {
+          "x": 0,
+          "y": 12.2
+        },
+        "polygon": [
+          {
+            "x": -2,
+            "y": 10.5
+          },
+          {
+            "x": 2,
+            "y": 10.5
+          },
+          {
+            "x": 2,
+            "y": 13.5
+          },
+          {
+            "x": -2,
+            "y": 13.5
+          }
+        ]
+      },
+      "placements": {
+        "attack_action": {
+          "anchorId": "face",
+          "layer": "nose_mouth",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "face",
+          "layer": "nose_mouth",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "face",
+          "layer": "nose_mouth",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "face"
+    },
+    {
+      "authoringLayer": "nose_mouth",
+      "categoryId": "mouth",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Mouth",
+      "familyId": "mouth",
+      "featureArea": {
+        "defaultPoint": {
+          "x": 0,
+          "y": 14.1
+        },
+        "polygon": [
+          {
+            "x": -2.5,
+            "y": 13
+          },
+          {
+            "x": 2.5,
+            "y": 13
+          },
+          {
+            "x": 2.5,
+            "y": 16
+          },
+          {
+            "x": -2.5,
+            "y": 16
+          }
+        ]
+      },
+      "placements": {
+        "attack_action": {
+          "anchorId": "face",
+          "layer": "nose_mouth",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "face",
+          "layer": "nose_mouth",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "face",
+          "layer": "nose_mouth",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "face"
+    },
+    {
+      "authoringLayer": "face",
+      "categoryId": "nose_mouth",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Beard",
+      "familyId": "beard",
+      "placements": {
+        "attack_action": {
+          "anchorId": "face",
+          "layer": "face_accessory",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "face",
+          "layer": "face_accessory",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "face",
+          "layer": "face_accessory",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "beard"
+    },
+    {
+      "authoringLayer": "mask",
+      "categoryId": "mask",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Mask",
+      "familyId": "mask",
+      "placements": {
+        "attack_action": {
+          "anchorId": "face",
+          "layer": "mask",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "face",
+          "layer": "mask",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "face",
+          "layer": "mask",
+          "offsetX": 0,
+          "offsetY": 2.8,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 0.018,
+          "scaleY": 0.025,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "mask"
+    },
+    {
+      "authoringLayer": "body",
+      "categoryId": "body_armor",
+      "compatibleEquipmentDefinitionIds": [
+        "padded_tunic"
+      ],
+      "displayName": "Tunic",
+      "familyId": "chest_tunic",
+      "placements": {
+        "attack_action": {
+          "anchorId": "chest",
+          "layer": "chest_armor",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "chest",
+          "layer": "chest_armor",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "chest",
+          "layer": "chest_armor",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "chest"
+    },
+    {
+      "authoringLayer": "body",
+      "categoryId": "body_armor",
+      "compatibleEquipmentDefinitionIds": [
+        "leather_armor"
+      ],
+      "displayName": "Leather Armor",
+      "familyId": "chest_leather",
+      "inheritsFamilyId": "chest_tunic",
+      "placements": {
+        "attack_action": {},
+        "combat_ready": {},
+        "idle": {}
+      },
+      "playerOverlaySlot": "chest"
+    },
+    {
+      "authoringLayer": "body",
+      "categoryId": "body_armor",
+      "compatibleEquipmentDefinitionIds": [
+        "chain_armor"
+      ],
+      "displayName": "Chainmail Armor",
+      "familyId": "chest_chain_mail",
+      "inheritsFamilyId": "chest_tunic",
+      "placements": {
+        "attack_action": {},
+        "combat_ready": {},
+        "idle": {}
+      },
+      "playerOverlaySlot": "chest"
+    },
+    {
+      "authoringLayer": "body",
+      "categoryId": "body_armor",
+      "compatibleEquipmentDefinitionIds": [
+        "breast_plate"
+      ],
+      "displayName": "Breastplate",
+      "familyId": "chest_breastplate",
+      "inheritsFamilyId": "chest_tunic",
+      "placements": {
+        "attack_action": {},
+        "combat_ready": {},
+        "idle": {}
+      },
+      "playerOverlaySlot": "chest"
+    },
+    {
+      "authoringLayer": "gloves",
+      "categoryId": "gloves",
+      "compatibleEquipmentDefinitionIds": [
+        "training_heavy_gloves",
+        "training_light_gloves"
+      ],
+      "displayName": "Gloves",
+      "familyId": "gloves",
+      "placements": {
+        "attack_action": {
+          "anchorId": "chest",
+          "layer": "hands",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "chest",
+          "layer": "hands",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "chest",
+          "layer": "hands",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "hands"
+    },
+    {
+      "authoringLayer": "boots",
+      "categoryId": "boots",
+      "compatibleEquipmentDefinitionIds": [
+        "training_heavy_boots",
+        "training_light_boots"
+      ],
+      "displayName": "Boots",
+      "familyId": "boots",
+      "placements": {
+        "attack_action": {
+          "anchorId": "left_foot",
+          "layer": "feet",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 1,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "left_foot",
+          "layer": "feet",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 1,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "left_foot",
+          "layer": "feet",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 1,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": "feet"
+    },
+    {
+      "authoringLayer": "hair",
+      "categoryId": "body_armor",
+      "compatibleEquipmentDefinitionIds": [
+        "training_heavy_helm",
+        "training_light_hood"
+      ],
+      "displayName": "Head Armor",
+      "familyId": "head_armor",
+      "inheritsFamilyId": "hair",
+      "placements": {
+        "attack_action": {},
+        "combat_ready": {},
+        "idle": {}
+      },
+      "playerOverlaySlot": "hair"
+    },
+    {
+      "authoringLayer": "legs",
+      "categoryId": "body_armor",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Legs",
+      "familyId": "legs",
+      "placements": {
+        "attack_action": {
+          "anchorId": "legs",
+          "layer": "legs"
+        },
+        "combat_ready": {
+          "anchorId": "legs",
+          "layer": "legs"
+        },
+        "idle": {
+          "anchorId": "legs",
+          "layer": "legs"
+        }
+      },
+      "playerOverlaySlot": "legs"
+    },
+    {
+      "authoringLayer": "body",
+      "categoryId": "body_armor",
+      "compatibleEquipmentDefinitionIds": [],
+      "displayName": "Back item",
+      "familyId": "back_item",
+      "placements": {
+        "attack_action": {
+          "anchorId": "chest",
+          "layer": "back_accessory",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "chest",
+          "layer": "back_accessory",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "chest",
+          "layer": "back_accessory",
+          "offsetX": 0,
+          "offsetY": 0,
+          "pivotX": 0.5,
+          "pivotY": 0.5,
+          "rotationDegrees": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "wooden_axe",
+        "stone_axe"
+      ],
+      "displayName": "Chopping tool",
+      "familyId": "chopping_tool",
+      "placements": {
+        "attack_action": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 5,
+          "offsetY": -1,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": 65,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -2,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": -50,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -3,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": -16,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "wooden_pickaxe",
+        "stone_pickaxe"
+      ],
+      "displayName": "Mining tool",
+      "familyId": "mining_tool",
+      "placements": {
+        "attack_action": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 5,
+          "offsetY": -1,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": 65,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -2,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": -50,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -3,
+          "pivotX": 0.25,
+          "pivotY": 0.82,
+          "rotationDegrees": -16,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    },
+    {
+      "authoringLayer": "primary_weapon",
+      "categoryId": "weapon",
+      "compatibleEquipmentDefinitionIds": [
+        "starter_fishing_pole"
+      ],
+      "displayName": "Fishing tool",
+      "familyId": "fishing_tool",
+      "placements": {
+        "attack_action": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 5,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": 25,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "combat_ready": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 1,
+          "offsetY": -2,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": -35,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        },
+        "idle": {
+          "anchorId": "right_hand",
+          "layer": "front_hand",
+          "offsetX": 2,
+          "offsetY": -1,
+          "pivotX": 0.5,
+          "pivotY": 0.78,
+          "rotationDegrees": -10,
+          "scaleX": 1,
+          "scaleY": 1,
+          "visible": true
+        }
+      },
+      "playerOverlaySlot": null
+    }
+  ],
+  "schemaVersion": 2
+}

@@ -1,0 +1,251 @@
+{
+  "revision": 3,
+  "schemaVersion": 1,
+  "transforms": {
+    "class:artificer": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:assassin": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:druid": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:knight": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:legionnaire": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:mercenary": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:merchant": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:monk": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:ninja": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:ranger": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:rogue": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:ronin": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:sentinel": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:voyager": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "class:warrior": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:archery": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:blight_strike": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:calm_mind": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:cleanse": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:cleave": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:companion_bond": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:concentration": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:deathburst": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:delvers_lore": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:heroism": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:huntsmans_edge": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:martial_arts": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:perfect_strike": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:pierce_armor": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:provoke": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:pursuit": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:quarry_sense": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:ricochet": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:scavenge": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:second_wind": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:shield_charge": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:tactics": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:taunt": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "general:war_standard": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession-skill:alchemy": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession-skill:blacksmithing": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession-skill:cartography": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession-skill:leatherworking": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession-skill:tradecraft": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession:builder": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession:miner": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession:metallurgy": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession:oil_worker": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    },
+    "profession:woodcutter": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "scale": 1
+    }
+  }
+}

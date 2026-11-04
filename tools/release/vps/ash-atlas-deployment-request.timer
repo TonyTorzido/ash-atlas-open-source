@@ -1,0 +1,12 @@
+[Unit]
+Description=Poll Ash Atlas protected deployment request ref
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=20s
+RandomizedDelaySec=5s
+Persistent=true
+Unit=ash-atlas-deployment-request.service
+
+[Install]
+WantedBy=timers.target

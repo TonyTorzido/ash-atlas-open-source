@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 2,
+  "variants": [
+    {
+      "appearanceId": "double_axe",
+      "definitionId": "double_axe",
+      "displayName": "Double Axe",
+      "familyId": "axe",
+      "marketTradable": true,
+      "role": "stock"
+    },
+    {
+      "appearanceId": "breast_plate",
+      "definitionId": "breast_plate",
+      "displayName": "Breastplate",
+      "familyId": "breastplate",
+      "marketTradable": true,
+      "retired": true,
+      "role": "stock"
+    },
+    {
+      "appearanceId": "hammer",
+      "definitionId": "hammer",
+      "displayName": "Hammer",
+      "familyId": "hammer",
+      "marketTradable": true,
+      "role": "stock"
+    },
+    {
+      "appearanceId": "leather_armor",
+      "definitionId": "leather_armor",
+      "displayName": "Leather Armor",
+      "familyId": "leather",
+      "marketTradable": true,
+      "retired": true,
+      "role": "stock"
+    },
+    {
+      "appearanceId": "cloth-armor-grey",
+      "definitionId": "cloth-armor-grey",
+      "displayName": "Cloth Armor Grey",
+      "familyId": "tunic",
+      "retired": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "leather-armor-",
+      "definitionId": "leather-armor-",
+      "displayName": "Leather Armor",
+      "familyId": "leather",
+      "retired": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "breastplate-armor",
+      "definitionId": "breastplate-armor",
+      "displayName": "Breastplate Armor",
+      "familyId": "breastplate",
+      "retired": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "non-swag-cloth",
+      "definitionId": "non-swag-cloth",
+      "displayName": "Non-swag Cloth",
+      "familyId": "tunic",
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "non-swag-leather",
+      "definitionId": "non-swag-leather",
+      "displayName": "Non-swag Leather",
+      "familyId": "leather",
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "non-swag-breastplate",
+      "definitionId": "non-swag-breastplate",
+      "displayName": "Non-swag Breastplate",
+      "familyId": "breastplate",
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "non-swag-chainmail",
+      "definitionId": "non-swag-chainmail",
+      "displayName": "Non-swag Chainmail",
+      "familyId": "chain_mail",
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "legion_gladius",
+      "definitionId": "legion_gladius",
+      "displayName": "Legion Gladius",
+      "familyId": "sword",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "barrow_blade",
+      "definitionId": "barrow_blade",
+      "displayName": "Barrow Blade",
+      "familyId": "sword",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "tidefang_sabre",
+      "definitionId": "tidefang_sabre",
+      "displayName": "Tidefang Sabre",
+      "familyId": "sword",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "troll_cleaver",
+      "definitionId": "troll_cleaver",
+      "displayName": "Troll Cleaver",
+      "familyId": "axe",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "rimebeard_axe",
+      "definitionId": "rimebeard_axe",
+      "displayName": "Rimebeard Axe",
+      "familyId": "axe",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "packfang_axe",
+      "definitionId": "packfang_axe",
+      "displayName": "Packfang Axe",
+      "familyId": "axe",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "owlfeather_longbow",
+      "definitionId": "owlfeather_longbow",
+      "displayName": "Owlfeather Longbow",
+      "familyId": "bow",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "grovewood_bow",
+      "definitionId": "grovewood_bow",
+      "displayName": "Grovewood Bow",
+      "familyId": "bow",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "steppe_horn_bow",
+      "definitionId": "steppe_horn_bow",
+      "displayName": "Steppe Horn Bow",
+      "familyId": "bow",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "kappa_shell_crossbow",
+      "definitionId": "kappa_shell_crossbow",
+      "displayName": "Kappa Shell Crossbow",
+      "familyId": "crossbow",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "scrap_iron_arbalest",
+      "definitionId": "scrap_iron_arbalest",
+      "displayName": "Scrap-Iron Arbalest",
+      "familyId": "crossbow",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "stormlatch_crossbow",
+      "definitionId": "stormlatch_crossbow",
+      "displayName": "Stormlatch Crossbow",
+      "familyId": "crossbow",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "merfolk_trident",
+      "definitionId": "merfolk_trident",
+      "displayName": "Merfolk Trident",
+      "familyId": "spear",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "centaur_lance",
+      "definitionId": "centaur_lance",
+      "displayName": "Centaur Lance",
+      "familyId": "spear",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "reefspear",
+      "definitionId": "reefspear",
+      "displayName": "Reefspear",
+      "familyId": "spear",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "livingwood_staff",
+      "definitionId": "livingwood_staff",
+      "displayName": "Livingwood Staff",
+      "familyId": "staff",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "hexwood_crook",
+      "definitionId": "hexwood_crook",
+      "displayName": "Hexwood Crook",
+      "familyId": "staff",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "pilgrim_staff",
+      "definitionId": "pilgrim_staff",
+      "displayName": "Highland Pilgrim Staff",
+      "familyId": "staff",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "pantherclaw_stars",
+      "definitionId": "pantherclaw_stars",
+      "displayName": "Pantherclaw Stars",
+      "familyId": "shuriken",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "runestar",
+      "definitionId": "runestar",
+      "displayName": "Runestar",
+      "familyId": "shuriken",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "viper_stars",
+      "definitionId": "viper_stars",
+      "displayName": "Viper Stars",
+      "familyId": "shuriken",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "riverhide_sling",
+      "definitionId": "riverhide_sling",
+      "displayName": "Riverhide Sling",
+      "familyId": "sling",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "steppe_sling",
+      "definitionId": "steppe_sling",
+      "displayName": "Steppe Sling",
+      "familyId": "sling",
+      "marketTradable": true,
+      "role": "cosmetic"
+    },
+    {
+      "appearanceId": "nixie_sling",
+      "definitionId": "nixie_sling",
+      "displayName": "Nixie Sling",
+      "familyId": "sling",
+      "marketTradable": true,
+      "role": "cosmetic"
+    }
+  ]
+}

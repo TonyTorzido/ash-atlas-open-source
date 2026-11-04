@@ -1,0 +1,62 @@
+.dash-fx-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Above the map canvas, below the HUD (HUD sits at --hud-z, 45). */
+  z-index: 30;
+}
+
+.dash-fx,
+.dash-fx-puff,
+.dash-fx-streak,
+.dash-fx-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+.dash-fx-puff span {
+  position: absolute;
+  left: -9px;
+  top: -6px;
+  width: 18px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(214, 196, 160, 0.85);
+  box-shadow: 0 0 0 1px rgba(96, 78, 52, 0.35);
+  opacity: 0;
+  animation: dash-fx-mote 460ms ease-out forwards;
+}
+
+@keyframes dash-fx-mote {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 0.95; }
+  100% { transform: translate(calc(var(--dx) * 1.6), calc(var(--dy) * 1.6)) scale(1.9); opacity: 0; }
+}
+
+.dash-fx-streak {
+  height: 22px;
+  margin-top: -30px;
+  transform-origin: 0 50%;
+  border-radius: 11px;
+  background: linear-gradient(90deg, rgba(120, 170, 255, 0) 0%, rgba(150, 195, 255, 0.55) 45%, rgba(255, 255, 255, 0.95) 100%);
+  box-shadow: 0 0 10px rgba(150, 195, 255, 0.6);
+}
+
+/* A rough character silhouette (head + body) in pale blue: reads as an afterimage, not a new sprite. */
+.dash-fx-ghost {
+  width: 30px;
+  height: 46px;
+  margin-left: -15px;
+  margin-top: -50px;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(225, 238, 255, 0.95) 0 9px, transparent 10px),
+    radial-gradient(ellipse 13px 17px at 50% 66%, rgba(170, 205, 255, 0.85) 0 100%, transparent 101%);
+  filter: drop-shadow(0 0 4px rgba(120, 170, 255, 0.85));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash-fx-puff span { animation-duration: 200ms; }
+}

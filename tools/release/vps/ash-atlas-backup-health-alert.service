@@ -1,0 +1,17 @@
+[Unit]
+Description=Alert privately when Ash Atlas backups need attention
+After=ash-atlas-database-retention.service
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+# Run through bash so the alert never depends on the deployed file mode.
+ExecStart=/bin/bash /opt/ash-atlas/current/tools/release/vps/backup-health-alert.sh
+Nice=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+# strict would remount /mnt read-only here and fail the health read/write check.
+ProtectSystem=full
+ReadWritePaths=/var/lib/ash-atlas

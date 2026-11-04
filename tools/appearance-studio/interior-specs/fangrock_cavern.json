@@ -1,0 +1,146 @@
+{
+  "dungeon": {
+    "id": "fangrock_cavern",
+    "name": "Fangrock Cavern",
+    "description": "A raptor-infested cave system under Fangrock. Fight through the den and pit to the Raptor Chieftain's throne. Recommended level 6.",
+    "instancePolicy": "party_ephemeral",
+    "theme": { "id": "cave", "backgroundColor": "#0d0b09", "floorColor": "#3a3228", "wallColor": "#4a4036", "accentColor": "#c8a45a" }
+  },
+  "entranceRoom": "cave_mouth",
+  "rooms": [
+    {
+      "id": "cave_mouth", "name": "Cave Mouth", "width": 1000, "height": 1000, "spawn": { "x": 500, "y": 760 },
+      "anchors": {
+        "door_n": { "x": 500, "y": 40 }, "approach_n": { "x": 500, "y": 120 }, "arrive_n": { "x": 500, "y": 150 }
+      }
+    },
+    {
+      "id": "the_fork", "name": "The Fork", "width": 1000, "height": 1000, "spawn": { "x": 480, "y": 860 },
+      "anchors": {
+        "door_s": { "x": 480, "y": 970 }, "approach_s": { "x": 480, "y": 890 }, "arrive_s": { "x": 480, "y": 860 },
+        "door_n": { "x": 485, "y": 30 }, "approach_n": { "x": 485, "y": 110 }, "arrive_n": { "x": 485, "y": 140 },
+        "door_w": { "x": 30, "y": 465 }, "approach_w": { "x": 110, "y": 465 }, "arrive_w": { "x": 140, "y": 465 },
+        "door_e": { "x": 970, "y": 480 }, "approach_e": { "x": 890, "y": 480 }, "arrive_e": { "x": 860, "y": 480 }
+      },
+      "zones": [
+        { "id": "fork_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 880, "height": 870 } },
+        { "id": "fork_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 940, "height": 940 } }
+      ]
+    },
+    {
+      "id": "raptor_den", "name": "Raptor Den", "width": 1000, "height": 800, "spawn": { "x": 860, "y": 400 },
+      "anchors": {
+        "door_e": { "x": 970, "y": 400 }, "approach_e": { "x": 890, "y": 400 }, "arrive_e": { "x": 860, "y": 400 }
+      },
+      "zones": [
+        { "id": "den_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 870, "height": 660 } },
+        { "id": "den_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 940, "height": 740 } }
+      ],
+      "chests": [
+        { "id": "den_chest", "name": "Egg Nest Chest", "at": { "x": 150, "y": 650 } }
+      ],
+      "resourceNodes": [
+        { "id": "den_gold_vein", "type": "ore", "at": { "x": 580, "y": 110 }, "yield": { "min": 1, "max": 3 } }
+      ]
+    },
+    {
+      "id": "mushroom_grotto", "name": "Mushroom Grotto", "width": 1200, "height": 1000, "spawn": { "x": 140, "y": 400 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 400 }, "approach_w": { "x": 110, "y": 400 }, "arrive_w": { "x": 140, "y": 400 }
+      },
+      "zones": [
+        { "id": "grotto_boundary", "purpose": "encounter_boundary", "rect": { "x": 70, "y": 80, "width": 1050, "height": 810 } },
+        { "id": "grotto_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1140, "height": 920 } }
+      ],
+      "resourceNodes": [
+        { "id": "grotto_ore_1", "type": "ore", "at": { "x": 960, "y": 300 } },
+        { "id": "grotto_ore_2", "type": "ore", "at": { "x": 955, "y": 500 } },
+        { "id": "grotto_crystal", "type": "stone", "at": { "x": 350, "y": 840 } }
+      ]
+    },
+    {
+      "id": "narrow_pass", "name": "Narrow Pass", "width": 1600, "height": 700, "spawn": { "x": 140, "y": 350 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 350 }, "approach_w": { "x": 110, "y": 350 }, "arrive_w": { "x": 140, "y": 350 },
+        "door_e": { "x": 1570, "y": 350 }, "approach_e": { "x": 1490, "y": 350 }, "arrive_e": { "x": 1460, "y": 350 }
+      },
+      "zones": [
+        { "id": "pass_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 260, "width": 1480, "height": 170 } },
+        { "id": "pass_leash", "purpose": "leash", "rect": { "x": 30, "y": 200, "width": 1540, "height": 290 } }
+      ]
+    },
+    {
+      "id": "bone_pit", "name": "Bone Pit", "width": 1200, "height": 1200, "spawn": { "x": 150, "y": 575 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 575 }, "approach_w": { "x": 110, "y": 575 }, "arrive_w": { "x": 150, "y": 575 },
+        "door_n": { "x": 585, "y": 30 }, "approach_n": { "x": 585, "y": 110 }, "arrive_n": { "x": 585, "y": 160 }
+      },
+      "zones": [
+        { "id": "pit_boundary", "purpose": "encounter_boundary", "rect": { "x": 80, "y": 80, "width": 1040, "height": 1040 } },
+        { "id": "pit_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1140, "height": 1140 } }
+      ]
+    },
+    {
+      "id": "chieftain_throne", "name": "Chieftain's Throne", "width": 1400, "height": 1400, "spawn": { "x": 700, "y": 1150 },
+      "anchors": {
+        "door_s": { "x": 700, "y": 1370 }, "approach_s": { "x": 700, "y": 1290 }, "arrive_s": { "x": 700, "y": 1150 },
+        "scale_shrine": { "x": 1180, "y": 1080 }
+      },
+      "zones": [
+        { "id": "throne_boundary", "purpose": "encounter_boundary", "rect": { "x": 90, "y": 90, "width": 1220, "height": 1120 } },
+        { "id": "throne_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1340, "height": 1260 } }
+      ],
+      "chests": [
+        { "id": "throne_chest", "name": "Chieftain's Hoard", "at": { "x": 400, "y": 1050 }, "reward": { "gold": 250, "items": [{ "itemId": "coal", "quantity": 5 }] } }
+      ]
+    }
+  ],
+  "doors": [
+    { "id": "mouth_to_fork", "from": { "room": "cave_mouth", "anchor": "door_n" }, "to": { "room": "the_fork", "anchor": "door_s" }, "label": "Go North", "reverseLabel": "Go South" },
+    { "id": "fork_to_den", "from": { "room": "the_fork", "anchor": "door_w" }, "to": { "room": "raptor_den", "anchor": "door_e" }, "label": "Go West", "reverseLabel": "Go East" },
+    { "id": "fork_to_grotto", "from": { "room": "the_fork", "anchor": "door_e" }, "to": { "room": "mushroom_grotto", "anchor": "door_w" }, "label": "Go East", "reverseLabel": "Go West" },
+    { "id": "fork_to_pass", "from": { "room": "the_fork", "anchor": "door_n" }, "to": { "room": "narrow_pass", "anchor": "door_w" }, "label": "Go North", "reverseLabel": "Go South" },
+    { "id": "pass_to_pit", "from": { "room": "narrow_pass", "anchor": "door_e" }, "to": { "room": "bone_pit", "anchor": "door_w" }, "label": "Go East", "reverseLabel": "Go West" },
+    { "id": "pit_to_throne", "from": { "room": "bone_pit", "anchor": "door_n" }, "to": { "room": "chieftain_throne", "anchor": "door_s" }, "label": "Climb the ramp", "reverseLabel": "Go Back Down" }
+  ],
+  "encounters": [
+    {
+      "id": "fork_pack", "name": "Raptor Pack", "room": "the_fork", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [{ "archetype": "wolf", "at": [{ "x": 420, "y": 440 }, { "x": 580, "y": 440 }, { "x": 420, "y": 580 }, { "x": 580, "y": 580 }] }] }],
+      "boundary": "fork_boundary", "leash": "fork_leash"
+    },
+    {
+      "id": "den_runts", "name": "Raptor Runts", "room": "raptor_den", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [{ "archetype": "dune_tick", "at": [{ "x": 200, "y": 260 }, { "x": 190, "y": 420 }, { "x": 260, "y": 560 }] }, { "archetype": "wolf", "at": [{ "x": 320, "y": 400 }] }] }],
+      "boundary": "den_boundary", "leash": "den_leash"
+    },
+    {
+      "id": "grotto_miners", "name": "Goblin Miners", "room": "mushroom_grotto", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [{ "archetype": "goblin", "at": [{ "x": 700, "y": 300 }, { "x": 700, "y": 520 }, { "x": 560, "y": 700 }] }, { "archetype": "dune_tick", "at": [{ "x": 500, "y": 250 }, { "x": 820, "y": 700 }] }] }],
+      "boundary": "grotto_boundary", "leash": "grotto_leash"
+    },
+    {
+      "id": "pass_bats", "name": "Bridge Ambush", "room": "narrow_pass", "startOn": "room_enter", "lockDoors": true,
+      "waves": [
+        { "mobs": [{ "archetype": "dune_tick", "at": [{ "x": 780, "y": 345 }, { "x": 700, "y": 345 }, { "x": 900, "y": 345 }] }] },
+        { "delayMs": 1500, "mobs": [{ "archetype": "wolf", "at": [{ "x": 1300, "y": 320 }, { "x": 1300, "y": 390 }] }] }
+      ],
+      "boundary": "pass_boundary", "leash": "pass_leash"
+    },
+    {
+      "id": "pit_ambush", "name": "Bone Pit Ambush", "room": "bone_pit", "startOn": "room_enter", "lockDoors": true,
+      "waves": [
+        { "mobs": [{ "archetype": "wolf", "at": [{ "x": 500, "y": 600 }, { "x": 780, "y": 600 }, { "x": 640, "y": 800 }] }] },
+        { "delayMs": 2000, "mobs": [{ "archetype": "goblin", "at": [{ "x": 300, "y": 300 }, { "x": 950, "y": 300 }] }] }
+      ],
+      "boundary": "pit_boundary", "leash": "pit_leash"
+    },
+    {
+      "id": "raptor_chieftain", "name": "Raptor Chieftain", "room": "chieftain_throne", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [{ "archetype": "wolf", "at": [{ "x": 500, "y": 500 }, { "x": 940, "y": 500 }] }] }],
+      "boss": { "template": "dungeon_ogre", "name": "Raptor Chieftain", "at": { "x": 720, "y": 330 } },
+      "boundary": "throne_boundary", "leash": "throne_leash",
+      "onComplete": [{ "revealChest": "throne_chest" }, { "completeDungeon": true }, { "message": "The Raptor Chieftain falls. A hoard is revealed." }]
+    }
+  ]
+}

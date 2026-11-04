@@ -1,0 +1,71 @@
+.organization-wars {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.organization-wars-list,
+.organization-wars-targets {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.organization-wars-item,
+.organization-wars-targets li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 10px;
+  min-width: 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.organization-wars-item span {
+  opacity: 0.8;
+  font-size: 0.85em;
+}
+
+.organization-wars-declare {
+  display: grid;
+  gap: 6px;
+}
+
+.organization-wars-declare label {
+  display: grid;
+  gap: 4px;
+}
+
+.organization-wars-declare input {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.organization-wars-error {
+  color: #f87171;
+}
+
+.organization-wars-notice,
+.organization-wars-empty {
+  opacity: 0.85;
+}
+
+.organization-wars-item .organization-wars-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  opacity: 1;
+  font-size: 1em;
+}
+
+/* No browser clear glyph on the target search (game UI never shows an X). */
+.organization-wars-declare input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}

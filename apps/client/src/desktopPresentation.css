@@ -1,0 +1,360 @@
+/* Presentation is resolved by uiEnvironment, never by user-agent or CSS width alone.
+ * The existing playable stage and safe-area tokens remain the geometry authority. */
+/* Desktop HUD: the map fills the window and the HUD sits on its corners, like a
+ * PC game rather than a stretched phone dock:
+ *   top-left     - unit frame: portrait medallion + level (opens Loadout) over the
+ *                  HP/EXP/Hunger ledger (tap centres, hold = World Map);
+ *   top-centre   - chat plaque instead of a full-width strip;
+ *   bottom-centre- command bar: every destination in one row;
+ *   bottom-right - pack frame: state, carry and gold ledger;
+ *   left/right   - quick slots as compact action buttons with key hints.
+ * The ledger rows share the touch dock grammar (phoneBottomDock.css). */
+html[data-ui-profile="phone"][data-presentation="desktop"] {
+  --hud-bottom-content-height: 92px;
+  --hud-menu-width: 0px;
+  --desktop-edge: 16px;
+  --desktop-unit-width: 312px;
+  --desktop-unit-top: calc(var(--hud-safe-top) + 12px);
+  --desktop-unit-card-height: 66px;
+  --desktop-unit-ledger-height: 80px;
+  --desktop-unit-bottom: calc(var(--desktop-unit-top) + var(--desktop-unit-card-height) + var(--desktop-unit-ledger-height));
+  --desktop-pack-width: 252px;
+  --desktop-command-size: 56px;
+  --desktop-trim: color-mix(in srgb, var(--aa-ui-bronze-500) 55%, var(--aa-ui-border));
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-bar {
+  /* Centred bar; on narrow windows it slides left rather than under the pack. */
+  grid-template-columns: minmax(0, 1fr) auto minmax(var(--desktop-pack-width), 1fr);
+  grid-template-rows: auto;
+  gap: 0 16px;
+  width: 100%;
+  inset-inline: 0;
+  margin-inline: auto;
+  padding: 0 max(var(--desktop-edge), var(--hud-safe-right)) calc(12px + var(--hud-safe-bottom)) max(var(--desktop-edge), var(--hud-safe-left));
+  align-items: end;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+/* Shared parchment frame surface: folio paper, a bronze hairline trim set just
+ * inside the edge, and a soft drop shadow onto the map. */
+html[data-ui-profile="phone"][data-presentation="desktop"] :is(.desktop-adventurer-card, .phone-bottom-status, .phone-bottom-economy-compartment, .desktop-command-menu) {
+  border: 1px solid var(--aa-ui-border);
+  background:
+    linear-gradient(180deg, var(--aa-ui-highlight), transparent 3px),
+    var(--aa-ui-material-folio);
+  box-shadow:
+    inset 0 0 0 3px color-mix(in srgb, var(--aa-ui-material-folio, #efe4cc) 60%, transparent),
+    inset 0 0 0 4px color-mix(in srgb, var(--desktop-trim) 45%, transparent),
+    0 10px 24px rgb(39 26 15 / 24%), 0 1px 3px rgb(39 26 15 / 18%);
+  pointer-events: auto;
+}
+
+/* Unit frame (top-left): the portrait card and the vitals ledger read as one card. */
+.desktop-adventurer-card {
+  position: fixed; z-index: 3;
+  top: var(--desktop-unit-top); left: max(var(--desktop-edge), var(--hud-safe-left));
+  width: var(--desktop-unit-width); height: var(--desktop-unit-card-height); min-width: 0;
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 14px 6px 10px;
+  border-bottom: 0 !important; border-radius: 6px 6px 0 0;
+  color: var(--aa-ui-text); text-align: left; cursor: pointer;
+}
+.desktop-adventurer-card > span:last-child { display: grid; gap: 3px; min-width: 0; }
+.desktop-adventurer-card strong { font: 700 18px/1.1 var(--aa-ui-font-display); letter-spacing: .01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.desktop-adventurer-card small { color: var(--aa-ui-text-muted); font: 600 11px/1.2 var(--aa-ui-font-body); letter-spacing: .04em; text-transform: uppercase; }
+.desktop-adventurer-card:focus-visible { outline: 2px solid var(--aa-ui-active-bronze); outline-offset: -3px; }
+.desktop-adventurer-card:hover { background: linear-gradient(180deg, var(--aa-ui-highlight), transparent 3px), var(--aa-menu-raised); }
+.desktop-adventurer-medallion { position: relative; flex: 0 0 52px; width: 52px; height: 52px; }
+.desktop-adventurer-portrait {
+  position: relative; display: block; width: 52px; height: 52px; overflow: hidden;
+  border: 2px solid var(--aa-ui-active-bronze); border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, var(--aa-ui-highlight, #fff8e8), var(--aa-menu-raised) 70%);
+  box-shadow: 0 0 0 2px var(--aa-ui-material-folio, #efe4cc), 0 0 0 3px var(--desktop-trim), 0 3px 8px rgb(39 26 15 / 28%);
+}
+.desktop-adventurer-portrait > svg { width: 34px; height: 38px; margin: 5px auto 0; display: block; }
+.desktop-adventurer-portrait > div { width: 100%; height: 100%; min-height: 0; }
+.desktop-adventurer-level {
+  position: absolute; right: -6px; bottom: -4px; min-width: 22px; height: 22px; padding: 0 5px;
+  display: grid; place-items: center; box-sizing: border-box;
+  border: 1.5px solid var(--aa-ui-material-folio, #efe4cc); border-radius: 11px;
+  background: var(--aa-ui-active-bronze); color: var(--aa-ui-parchment-100, #f7efdc);
+  font: 800 11px/1 var(--aa-ui-font-body); font-variant-numeric: tabular-nums;
+  box-shadow: 0 1px 3px rgb(39 26 15 / 35%);
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-status {
+  position: fixed; z-index: 2;
+  top: calc(var(--desktop-unit-top) + var(--desktop-unit-card-height)); left: max(var(--desktop-edge), var(--hud-safe-left));
+  width: var(--desktop-unit-width); height: var(--desktop-unit-ledger-height); max-width: none;
+  padding: 8px 14px 12px;
+  border-top: 1px solid color-mix(in srgb, var(--aa-ui-text) 12%, transparent) !important;
+  border-radius: 0 0 6px 6px;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-status .status-bar-health > .status-bar-track { height: 10px; border-radius: 5px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-status .status-bar-compact-value { font-size: 12px; }
+
+/* Party roster and invitations stack under the unit frame, as in most PC RPGs. */
+html[data-ui-profile="phone"][data-presentation="desktop"] :is(.party-combat-hud, .party-combat-hud.is-collapsed) {
+  top: calc(var(--desktop-unit-bottom) + 12px);
+  left: max(var(--desktop-edge), var(--hud-safe-left));
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .party-invite-banner {
+  top: calc(var(--desktop-unit-bottom) + 12px);
+}
+
+/* Chat plaque (top-centre): a bounded strip between the corner frames. */
+html[data-ui-profile="phone"][data-presentation="desktop"] .chat-top-bar {
+  top: calc(var(--hud-safe-top) + 12px);
+  left: 50%; right: auto;
+  width: min(720px, calc(100% - 2 * (var(--desktop-unit-width) + var(--desktop-edge) + 24px)));
+  transform: translateX(-50%);
+  border-radius: 12px;
+}
+
+/* Pack frame (bottom-right). */
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-economy-compartment {
+  grid-column: 3; grid-row: 1; justify-self: end;
+  width: var(--desktop-pack-width); height: 78px; max-width: none; padding: 9px 14px 11px;
+  border-radius: 6px;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-status .player-status-hud-phone-dock,
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-economy { height: 100%; }
+
+html[data-presentation="desktop"] .app-presentation { display: block; background: var(--aa-menu-page); }
+html[data-presentation="desktop"] .mobile-app-stage {
+  width: 100%; height: 100%; border-radius: 0; outline: 0; box-shadow: none;
+}
+html[data-presentation="desktop"] .desktop-shell-branding { display: none; }
+
+/* Command bar: one row of every destination, icon over label. */
+.desktop-command-menu {
+  position: relative; z-index: 1;
+  grid-column: 2; grid-row: 1 / -1; align-self: end; justify-self: center;
+  display: flex; align-items: stretch; justify-content: center; gap: 2px;
+  max-width: 100%; min-width: 0; padding: 6px 12px;
+  border-radius: 6px;
+}
+.desktop-command-menu button {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  min-width: 0; min-height: 56px; padding: 6px 4px 5px;
+  border: 1px solid transparent; border-radius: 11px;
+  background: transparent; color: var(--aa-ui-text); box-shadow: none;
+  pointer-events: auto; font: 700 11px/1.15 var(--aa-ui-font-body); cursor: pointer;
+  transition: background-color .12s ease, transform .12s ease;
+}
+.desktop-command-menu button:hover:not(:disabled) { background: var(--aa-menu-raised); border-color: var(--aa-ui-border); transform: translateY(-2px); }
+.desktop-command-menu button:active:not(:disabled) { transform: translateY(0); }
+.desktop-command-menu button:focus-visible { outline: 2px solid var(--aa-ui-active-bronze); outline-offset: -2px; }
+.desktop-command-menu button:disabled { color: var(--aa-ui-text-muted); cursor: not-allowed; }
+.desktop-command-menu svg { width: 22px; height: 22px; flex: 0 0 auto; }
+.desktop-command-menu small { color: var(--aa-menu-danger-text); }
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-root { flex: 1; display: contents; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-primary-grid { display: contents; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-item {
+  flex: 0 1 auto; width: auto; min-width: var(--desktop-command-size); max-width: 88px; min-height: 58px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  padding: 6px 7px 5px; border: 1px solid transparent; border-radius: 11px; background: transparent;
+  box-shadow: none; color: var(--aa-ui-text); font: 700 11px/1.15 var(--aa-ui-font-body);
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-item:hover { background: var(--aa-menu-raised); border-color: var(--aa-ui-border); }
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-label { max-width: 100%; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-label-text {
+  display: -webkit-box; max-width: 100%; overflow: hidden; font: inherit; text-align: center;
+  white-space: normal; text-wrap: balance; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-item > svg { width: 22px; height: 22px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu .phone-menu-disabled-reason { display: none; }
+/* Utilities after the destinations sit behind a hairline divider. */
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu > .phone-menu-item:first-of-type { position: relative; margin-left: 9px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .desktop-command-menu > .phone-menu-item:first-of-type::before {
+  position: absolute; top: 10px; bottom: 10px; left: -6px; width: 1px;
+  background: var(--aa-ui-border); content: "";
+}
+/* Width tiers come from the interface-size scaled width (ui/uiScale.ts), not the
+ * raw viewport, so a larger interface drops labels as soon as they cannot fit. */
+html[data-ui-profile="phone"][data-presentation="desktop"]:is([data-desktop-width="medium"], [data-desktop-width="narrow"]) {
+  --desktop-pack-width: 216px;
+  --desktop-command-size: 50px;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"]:is([data-desktop-width="medium"], [data-desktop-width="narrow"]) .desktop-command-menu .phone-menu-item { font-size: 10px; }
+/* Narrow desktop windows keep every command but drop the visible label text;
+ * names stay in the accessible name and hover title, and badges stay on the icon. */
+html[data-ui-profile="phone"][data-presentation="desktop"][data-desktop-width="narrow"] { --desktop-command-size: 46px; }
+html[data-ui-profile="phone"][data-presentation="desktop"][data-desktop-width="narrow"] .desktop-command-menu .phone-menu-item { position: relative; min-height: 46px; padding: 4px; }
+html[data-ui-profile="phone"][data-presentation="desktop"][data-desktop-width="narrow"] .desktop-command-menu .phone-menu-label-text {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"][data-desktop-width="narrow"] .desktop-command-menu .phone-menu-unread-badge { position: absolute; top: 3px; right: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .desktop-command-menu button { transition: none; }
+  .desktop-command-menu button:hover:not(:disabled) { transform: none; }
+}
+.desktop-inbox-action-detail { min-width: 0; overflow-y: auto; padding: 20px; }
+.desktop-inbox-action-detail .mobile-inbox-entry { width: 100%; }
+/* Keep menu navigation and world visible around desktop app windows. */
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-layer,
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-destination-shell:not(.desktop-chat-window) {
+  position: fixed; inset: 28px 32px auto; width: calc(100% - 64px);
+  height: min(760px, calc(100% - 56px)); min-height: 0; max-height: none;
+  transform: none;
+  padding: 0; border: 1px solid var(--aa-ui-border); border-radius: 8px;
+  box-shadow: var(--aa-ui-shadow); background: var(--aa-ui-material-folio);
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .destination-shell-scrim .desktop-destination-shell {
+  position: relative; inset: auto; width: min(1120px, 100%);
+  height: min(760px, calc(100cqh - 68px)); min-height: 0;
+  max-height: calc(100cqh - 68px);
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-scroll[data-mobile-menu-profile="true"] {
+  display: grid; grid-template-columns: minmax(240px, .8fr) minmax(0, 2fr);
+  gap: 24px; padding: 24px; align-items: start; align-content: start;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-root { min-width: 0; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-primary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-root-item { min-height: 76px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-profile { margin: 0; }
+/* Only the root directory is content-sized. Routed phone-backed destinations
+ * (including Inventory and Settings) must retain the bounded height above. */
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-layer:not(.phone-destination-shell, .desktop-floating-window) {
+  inset: 50% 32px auto; height: auto; max-height: calc(100% - 56px); transform: translateY(-50%);
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-scroll { min-height: 0; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-menu-trigger strong { font-size: 12px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-bottom-status .status-bar-compact-label .sr-only { font-size: 11px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-economy-label { font-size: 10px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-economy-row strong { font-size: 12px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-destination-body,
+html[data-ui-profile="phone"][data-presentation="desktop"] .game-app-body { padding: 20px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-party-layer .game-app-body { padding: 0; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .phone-settings-app .game-app-section { max-width: 900px; width: 100%; margin-inline: auto; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .game-shell[data-mobile-menu-view] .phone-bottom-bar {
+  visibility: visible; pointer-events: none;
+}
+/* The top chat plaque stays visible and usable while apps are open; windows are
+ * clamped below it (DesktopWindow). Phone still hides it behind full-screen apps. */
+html[data-ui-profile="phone"][data-presentation="desktop"] .game-shell:not([data-mobile-menu-view="gameplay"]) .chat-top-bar {
+  visibility: visible; pointer-events: auto;
+}
+/* Floating chat uses the existing conversations, composer and minimize actions.
+ * No viewport protection layer, body scroll lock, drag or transport is introduced. */
+html[data-ui-profile="phone"] .desktop-chat-window {
+  position: absolute; z-index: 110; inset: auto 20px calc(var(--hud-bottom-bar-height) + 16px) auto;
+  width: min(680px, calc(100% - 40px)); height: min(580px, calc(100% - var(--hud-bottom-bar-height) - 72px));
+  min-width: 0; min-height: 240px; max-height: none;
+  display: grid; grid-template-rows: auto minmax(0, 1fr);
+  margin: 0; padding: 0; border: 1px solid var(--aa-ui-border); border-radius: 8px;
+  color: var(--aa-ui-text); background: var(--aa-ui-material-folio);
+  box-shadow: var(--aa-ui-shadow); overflow: hidden; pointer-events: auto;
+}
+html[data-ui-profile="phone"] .desktop-chat-window.chat-panel {
+  inset-inline: 20px auto; width: min(520px, calc(100% - 40px));
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+html[data-ui-profile="phone"] .desktop-chat-window.direct-messages-panel--minimized {
+  width: 320px; height: auto; min-height: 0; grid-template-rows: auto;
+}
+html[data-ui-profile="phone"] .desktop-chat-window .direct-messages-content { min-height: 0; }
+html[data-ui-profile="phone"] .desktop-chat-window .chat-messages { min-height: 0; overflow-y: auto; }
+html[data-ui-profile="phone"] .desktop-chat-window .desktop-window-drag {
+  display: flex !important; align-items: center; gap: 7px; min-height: 36px; padding: 4px 6px;
+  border: 1px solid transparent; background: transparent; box-shadow: none; color: var(--aa-ui-text);
+  font: 700 15px/1.2 var(--aa-ui-font-display); cursor: grab; touch-action: none; user-select: none;
+}
+html[data-ui-profile="phone"] .desktop-chat-window .desktop-window-drag:active { cursor: grabbing; }
+html[data-ui-profile="phone"] .desktop-chat-window .desktop-window-drag:focus-visible { outline: 2px solid var(--aa-ui-active-bronze); }
+html[data-ui-profile="phone"] .desktop-chat-window .chat-composer { padding-right: 30px; }
+html[data-ui-profile="phone"] .desktop-chat-window .direct-messages-content { grid-template-columns: minmax(150px, .38fr) minmax(0, 1fr); }
+
+/* One frame overrides the historical fixed/modal geometry of every adopter. */
+html[data-presentation="desktop"] .desktop-floating-window.desktop-floating-window {
+  position: fixed; inset: auto; margin: 0; transform: none;
+  min-width: 0; min-height: 0; max-width: none; max-height: none;
+  display: flex; flex-direction: column; padding: 0;
+  border: 1px solid var(--aa-ui-border); border-radius: 8px;
+  background: var(--aa-ui-material-folio); color: var(--aa-ui-text);
+  box-shadow: var(--aa-ui-shadow); overflow: clip; pointer-events: auto;
+  container-type: inline-size;
+}
+html[data-presentation="desktop"] .desktop-floating-window > :is(.game-app-header, .phone-menu-header, .chat-panel-header, .direct-messages-titlebar, .game-compact-heading) {
+  flex: 0 0 auto; min-width: 0; cursor: grab; touch-action: none; user-select: none;
+}
+html[data-presentation="desktop"] .desktop-floating-window :is(.game-app-header, .phone-menu-header) { padding: 10px 14px; gap: 12px; }
+html[data-presentation="desktop"] .desktop-floating-window :is(.game-app-header, .phone-menu-header) > div { min-width: 0; }
+html[data-presentation="desktop"] .desktop-floating-window :is(.game-app-header h2, .phone-menu-header h1) { font-size: 20px; overflow-wrap: anywhere; }
+html[data-presentation="desktop"] .desktop-floating-window > :is(.game-app-body, .phone-destination-body, .chat-message-list, .direct-messages-content) { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+html[data-presentation="desktop"] .desktop-floating-window > :is(.chat-room-tab-strip, .chat-state-slot) { flex: 0 0 auto; }
+html[data-presentation="desktop"] .desktop-floating-window > :is(.game-app-footer, .phone-menu-footer, .chat-composer) { flex: 0 0 auto; position: relative; inset: auto; }
+html[data-presentation="desktop"] .desktop-floating-window .desktop-window-drag {
+  display: inline-flex !important; align-items: center; gap: 7px; min-height: 24px; padding: 0;
+  border: 0; background: transparent; box-shadow: none; color: inherit;
+  font: inherit; letter-spacing: inherit; text-transform: none; cursor: grab; touch-action: none; user-select: none;
+}
+html[data-presentation="desktop"] .desktop-floating-window .desktop-window-drag:focus-visible { outline: 2px solid var(--aa-menu-accent); outline-offset: 3px; }
+html[data-presentation="desktop"] .desktop-floating-window .desktop-window-move-glyph { font: 700 13px/1 var(--aa-ui-font-body); color: var(--aa-menu-muted); letter-spacing: 0; }
+html[data-presentation="desktop"] .desktop-floating-window > .phone-menu-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+html[data-presentation="desktop"] .game-shell:has(.desktop-floating-window:not(.desktop-game-directory)) .desktop-game-directory { visibility: hidden; pointer-events: none; }
+/* Invisible corner targets reset inherited app-button chrome in every state.
+ * Triangular hit areas leave adjacent title-bar and footer controls reachable. */
+html[data-ui-profile][data-presentation="desktop"] .desktop-floating-window > button.desktop-window-resize.desktop-window-resize {
+  all: unset; box-sizing: border-box; display: block; position: absolute; z-index: 4;
+  width: 24px; height: 24px; inset: var(--window-resize-inset); clip-path: var(--window-resize-clip);
+  cursor: var(--window-resize-cursor, nwse-resize); touch-action: none;
+}
+html[data-presentation="desktop"] .desktop-window-resize[data-resize-corner="top-left"] { --window-resize-inset: 0 auto auto 0; --window-resize-clip: polygon(0 0, 100% 0, 0 100%); }
+html[data-presentation="desktop"] .desktop-window-resize[data-resize-corner="top-right"] { --window-resize-inset: 0 0 auto auto; --window-resize-cursor: nesw-resize; --window-resize-clip: polygon(0 0, 100% 0, 100% 100%); }
+html[data-presentation="desktop"] .desktop-window-resize[data-resize-corner="bottom-left"] { --window-resize-inset: auto auto 0 0; --window-resize-cursor: nesw-resize; --window-resize-clip: polygon(0 0, 100% 100%, 0 100%); }
+html[data-presentation="desktop"] .desktop-window-resize[data-resize-corner="bottom-right"] { --window-resize-inset: auto 0 0 auto; --window-resize-clip: polygon(100% 0, 100% 100%, 0 100%); }
+html[data-ui-profile][data-presentation="desktop"] .desktop-floating-window > button.desktop-window-resize.desktop-window-resize:focus-visible { outline: 2px solid var(--aa-menu-accent); outline-offset: -4px; }
+html[data-presentation="desktop"] .desktop-floating-window-compact.desktop-floating-window-compact { padding: 10px 12px 14px; gap: 8px; overflow-y: auto; }
+html[data-presentation="desktop"] .desktop-floating-window-compact.desktop-floating-window-compact.game-compact-prompt {
+  padding: 10px 12px 12px; gap: 10px;
+  border: 1px solid var(--aa-plaque-edge); border-radius: 6px; background: var(--aa-grain), var(--aa-prompt-surface);
+  -webkit-backdrop-filter: blur(3px) saturate(1.2); backdrop-filter: blur(3px) saturate(1.2);
+  box-shadow: inset 0 0 22px var(--aa-vignette), inset 0 1px var(--aa-prompt-sheen), var(--aa-prompt-shadow);
+}
+html[data-presentation="desktop"] .desktop-floating-window-compact > .game-compact-actions { margin-top: auto; flex: 0 0 auto; }
+@container (max-width: 560px) {
+  .desktop-floating-window .game-app-card-grid { grid-template-columns: minmax(0, 1fr); }
+  .desktop-floating-window .direct-messages-content { grid-template-columns: minmax(130px, .4fr) minmax(0, 1fr) !important; }
+  .desktop-floating-window :is(.game-app-header, .phone-menu-header) { flex-wrap: wrap; }
+}
+
+/* Quick slots on desktop: compact square action buttons floated off the window
+ * edge, each showing its keyboard key. Same slots, callbacks and row anchors as
+ * touch; the track starts under the unit frame instead of under the chat strip. */
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar {
+  top: calc(var(--desktop-unit-bottom) + 16px);
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-rail-left { left: max(var(--desktop-edge), var(--hud-safe-left)); }
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-rail-right { right: max(var(--desktop-edge), var(--hud-safe-right)); }
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot {
+  width: 52px; min-height: 52px; padding: 8px;
+  border: 1px solid color-mix(in srgb, var(--aa-ui-bronze-500) 70%, transparent);
+  border-radius: 10px !important;
+  background:
+    radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--aa-ui-parchment-100) 12%, transparent), transparent 70%),
+    color-mix(in srgb, var(--aa-ui-leather-800) 92%, transparent);
+  box-shadow: inset 0 0 0 1px rgb(13 11 8 / 45%), inset 0 1px color-mix(in srgb, var(--aa-ui-parchment-100) 14%, transparent), 0 4px 12px rgb(13 11 8 / 38%);
+  transition: transform .12s ease, border-color .12s ease;
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot:hover:not(.locked) { border-color: var(--aa-ui-active-bronze); transform: translateY(-1px); }
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot.locked { opacity: .32; box-shadow: inset 0 0 0 1px rgb(13 11 8 / 45%); }
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot :is(.item-artwork, .ash-hotbar-empty-glyph, .ash-hotbar-reserved-glyph, .ash-hotbar-action-glyph, .ash-hotbar-locked-glyph) { width: 30px; height: 30px; }
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot kbd {
+  display: block; top: 3px; right: auto; left: 5px; min-width: 0;
+  color: var(--aa-ui-parchment-200, #e6d8b8); font: 700 10px/1 var(--aa-ui-font-body);
+  text-shadow: 0 1px 1px rgb(0 0 0 / 70%);
+}
+html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot.locked kbd { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot { transition: none; }
+  html[data-ui-profile="phone"][data-presentation="desktop"] .ash-hotbar-slot:hover:not(.locked) { transform: none; }
+}
+
+/* Interface size (Settings & Support › Appearance). Every HUD surface and window
+ * shares one zoom, so their pixel offsets from the window edges scale together
+ * while percentages still track the real viewport. The map is never scaled. */
+html[data-ui-profile="phone"][data-presentation="desktop"] :is(.phone-bottom-bar, .chat-top-bar, .ash-hotbar, .party-combat-hud, .party-invite-banner, .hud-notice-lane, .hud-loot-feed),
+html[data-presentation="desktop"] .desktop-floating-window.desktop-floating-window {
+  zoom: var(--ui-scale, 1);
+}

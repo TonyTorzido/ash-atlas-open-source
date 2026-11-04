@@ -1,0 +1,122 @@
+/* Shared production presentation. Studio imports the same rules. */
+.boss-telegraph {
+  fill: var(--aa-ui-danger);
+  fill-opacity: .24;
+  stroke: var(--aa-ui-danger);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.boss-telegraph-shape {
+  fill: var(--aa-ui-danger);
+  fill-opacity: .24;
+  stroke: var(--aa-ui-danger);
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+}
+.boss-telegraph-line { fill: none; stroke-linecap: round; }
+/* Corrupted Core chain arc: a crackling violet ring on the target and a jagged beam from the last point. */
+.boss-telegraph[data-ability-id="corrupted_core_arc_ring"] { fill: #b58cff; fill-opacity: .22; stroke: #d9c2ff; stroke-width: 2.5; stroke-dasharray: 6 4; animation: core-arc-crackle 240ms steps(2) infinite; }
+.boss-telegraph[data-ability-id="corrupted_core_arc_beam"] { fill: #d9c2ff; fill-opacity: .55; stroke: #fff; stroke-width: 1.5; filter: drop-shadow(0 0 4px #b58cff); animation: core-arc-crackle 160ms steps(2) infinite; }
+@keyframes core-arc-crackle { 50% { stroke-opacity: .35; fill-opacity: .1; } }
+.boss-telegraph-layer {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.boss-telegraph-world {
+  position: absolute;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  pointer-events: none;
+}
+.dungeon-zone { display: grid; grid-template-rows: minmax(0, 1fr); color: var(--aa-ui-text); background: #000; }
+.dungeon-stage-shell { position: relative; min-width: 0; min-height: 0; overflow: clip; background: #000; touch-action: none; }
+.dungeon-stage-frame { position: absolute; inset: var(--dungeon-fit-padding, 0px); }
+.dungeon-stage { position: relative; min-height: 0; overflow: hidden; touch-action: none; background: var(--dungeon-background-color, #071116); box-shadow: inset 0 0 0 1px var(--dungeon-wall-color, #405052); user-select: none; -webkit-user-select: none; }
+.dungeon-authored-layer { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+.dungeon-authored-layer-background { background: var(--dungeon-floor-color, #182a2d); }
+.dungeon-authored-placement { position: absolute; display: block; box-sizing: border-box; pointer-events: none; }
+.dungeon-authored-placement-sprite { object-fit: contain; }
+.dungeon-authored-placement-stretch { object-fit: fill; }
+.dungeon-authored-placement-tile { background-repeat: repeat; }
+.dungeon-debug-overlay { position: absolute; z-index: 11; left: 10px; bottom: 10px; display: grid; gap: 2px; padding: 7px 9px; border: 1px solid var(--aa-ui-border); border-radius: var(--aa-ui-radius-control); color: var(--aa-ui-text-muted); background: var(--aa-ui-material-ink); font-size: 11px; pointer-events: none; }
+.dungeon-debug-overlay strong { color: var(--aa-ui-text); }
+.dungeon-ability-target-range,
+.dungeon-ability-target-preview {
+  position: absolute;
+  z-index: 7;
+  box-sizing: border-box;
+  border: 1px dashed var(--aa-ui-active-bronze);
+  border-radius: 50%;
+  background: rgb(201 164 94 / 6%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.dungeon-ability-target-preview {
+  display: grid;
+  place-items: center;
+  border-style: solid;
+  border-width: 2px;
+  background: rgb(201 164 94 / 16%);
+}
+.dungeon-ability-target-preview > span { width: 7px; height: 7px; border-radius: 50%; background: var(--aa-ui-parchment-100); }
+.dungeon-entity-layer { position: absolute; z-index: 50; inset: 0; pointer-events: none; }
+.dungeon-entity-canvas { width: 100%; height: 100%; }
+.dungeon-enemy-layer { position: absolute; z-index: 40; inset: 0; pointer-events: none; }
+.dungeon-enemy-target { position: absolute; transform: translate(-50%, -82%); border: 0; padding: 0; min-width: 0; min-height: 0; background: transparent; pointer-events: auto; cursor: pointer; transition: left 120ms linear, top 120ms linear; }
+.dungeon-enemy-target::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
+.dungeon-enemy-target:focus-visible { outline: 2px solid var(--aa-ui-border); outline-offset: 2px; }
+.dungeon-enemy-target .dungeon-enemy { pointer-events: none; }
+.dungeon-enemy-presentation { position: absolute; pointer-events: none; transition: left 120ms linear, top 120ms linear; }
+.dungeon-enemy { position: absolute; width: auto; max-width: none; object-fit: contain; transform: translate(-50%, -82%); transform-origin: 50% 82%; filter: drop-shadow(0 3px 4px rgb(0 0 0 / 70%)); transition: left 120ms linear, top 120ms linear; }
+.dungeon-enemy-generic { border: 2px solid currentColor; border-radius: 50%; background: rgb(201 164 94 / 24%); }
+.dungeon-enemy-defeated, .dungeon-enemy-respawning { opacity: .35; filter: grayscale(1) drop-shadow(0 3px 4px rgb(0 0 0 / 70%)); }
+.dungeon-enemy-health { position: absolute; left: 50%; bottom: -14px; width: 70%; min-width: 42px; height: 7px; transform: translateX(-50%); pointer-events: none; }
+.dungeon-enemy-health .hp-bar-recess { border-radius: 3px; }
+.dungeon-enemy-status { position: relative; display: inline-block; width: 10px; height: 10px; margin: 2px; border: 1px solid var(--aa-ui-border); border-radius: 50%; background: var(--aa-ui-active-bronze); }
+.dungeon-enemy-buff { position: absolute; left: 50%; top: -18px; transform: translateX(-50%); padding: 1px 6px; border: 1px solid var(--aa-ui-border); border-radius: 8px; background: color-mix(in srgb, var(--aa-ui-active-bronze) 70%, transparent); color: var(--aa-ui-text, #f5ecd7); font-size: 10px; line-height: 1.3; white-space: nowrap; pointer-events: none; }
+.dungeon-enemy-elite { position: absolute; left: 50%; top: -36px; transform: translateX(-50%); display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; max-width: 180px; pointer-events: none; }
+.dungeon-enemy-elite-name { padding: 0 6px; color: var(--aa-ui-parchment-100); font: 800 11px/1.3 Georgia, Inter, system-ui, sans-serif; text-shadow: 0 1px 3px #000; white-space: nowrap; }
+.dungeon-enemy-elite-badge { padding: 0 5px; border: 1px solid var(--aa-ui-border); border-radius: 8px; background: rgb(20 14 8 / 80%); color: var(--aa-ui-active-bronze); font: 700 9px/1.4 Inter, system-ui, sans-serif; white-space: nowrap; }
+/* Corrupted Core: faint while it possesses a husk (untargetable), glowing while it is thrown out and exposed. */
+.dungeon-enemy-core-possessing .dungeon-enemy { opacity: .28; filter: grayscale(.4) drop-shadow(0 0 8px #b58cff); }
+.dungeon-enemy-core-exposed .dungeon-enemy { filter: drop-shadow(0 0 10px #ffd36e) drop-shadow(0 0 4px #fff); animation: core-exposed-pulse 700ms ease-in-out infinite alternate; }
+@keyframes core-exposed-pulse { from { filter: drop-shadow(0 0 4px #ffd36e) drop-shadow(0 0 2px #fff); } to { filter: drop-shadow(0 0 14px #ffd36e) drop-shadow(0 0 6px #fff); } }
+.dungeon-enemy-shielded .dungeon-enemy { filter: drop-shadow(0 0 6px #8fd3ff) drop-shadow(0 0 2px #fff); }
+.dungeon-enemy-shielded .dungeon-enemy-elite-badge[data-elite-modifier="shielded"] { border-color: #8fd3ff; color: #cfeeff; }
+.dungeon-combat-feedback { position: absolute; z-index: 90; inset: 0; overflow: visible; pointer-events: none; }
+.dungeon-combat-floater { position: absolute; display: block; padding: 2px 5px; color: var(--aa-ui-parchment-100); font: 800 13px/1.1 Georgia, Inter, system-ui, sans-serif; text-shadow: 0 1px 3px #000, 0 0 2px #000; white-space: nowrap; transform-origin: center bottom; }
+.dungeon-combat-floater-damage_dealt { color: #f7d37c; }
+.dungeon-combat-floater-damage_taken { color: #ff8a79; }
+.dungeon-combat-floater-healing { color: var(--aa-ui-success); }
+.dungeon-combat-projectile { position: absolute; display: block; width: max-content; height: max-content; overflow: visible; pointer-events: none; }
+.dungeon-combat-projectile img { display: block; width: auto; height: auto; max-width: none; max-height: none; object-fit: contain; }
+@keyframes dungeon-enemy-attack-action {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30%, 40% {
+    transform: translate(
+      calc(var(--dungeon-attack-direction-x, 0) * 6px),
+      calc(var(--dungeon-attack-direction-y, -1) * 6px)
+    ) rotate(0deg);
+  }
+}
+.dungeon-enemy-pose-attack_action { animation: dungeon-enemy-attack-action 450ms cubic-bezier(.333333, 0, .666667, 1); }
+.dungeon-enemy-pose-downed { filter: grayscale(1) drop-shadow(0 3px 4px rgb(0 0 0 / 70%)); opacity: .35; }
+.dungeon-object, .dungeon-ground-loot { position: absolute; border: 0; background: transparent; }
+.dungeon-object { display: grid; min-width: 0; min-height: 0; padding: 0; border: 1px solid transparent; border-radius: var(--aa-ui-radius-control); color: var(--aa-ui-parchment-200); cursor: pointer; text-shadow: 0 1px 3px #000; pointer-events: auto; }
+.dungeon-object::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, var(--aa-ui-dungeon-object-min-hit-frame)); height: max(100%, var(--aa-ui-dungeon-object-min-hit-frame)); transform: translate(-50%, -50%); }
+.dungeon-object img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.dungeon-object[data-object-available="false"] { opacity: .48 !important; filter: grayscale(.75); }
+.dungeon-object:hover { border-color: var(--dungeon-accent-color, var(--aa-ui-border)); background: var(--aa-ui-material-leather); }
+.dungeon-resource { color: var(--dungeon-accent-color, var(--aa-ui-active-bronze)); font-size: 26px; filter: drop-shadow(0 2px 3px rgb(0 0 0 / 65%)); }
+.dungeon-resource:hover, .dungeon-resource:focus-visible { outline: 2px solid var(--aa-ui-parchment-200); outline-offset: 2px; }
+.dungeon-object > span { font-size: 28px; }
+.dungeon-ground-loot { z-index: 60; min-width: 0; min-height: 0; padding: 0; cursor: pointer; filter: drop-shadow(0 3px 4px rgb(0 0 0 / 70%)); transform: translate(-50%, -50%); pointer-events: auto; overflow: visible; }
+.dungeon-ground-visual-frame { position: absolute; left: 50%; top: 50%; display: block; transform: translate(-50%, -50%); pointer-events: none; }
+.dungeon-ground-visual-frame .item-artwork { width: 100%; height: 100%; object-fit: contain; }
+.dungeon-ground-loot:hover, .dungeon-ground-loot:focus-visible { outline: 2px solid var(--aa-ui-parchment-200); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .dungeon-enemy, .dungeon-enemy-target { transition: none; } .dungeon-enemy-pose-attack_action { animation: none; } }

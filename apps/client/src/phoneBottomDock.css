@@ -1,0 +1,1762 @@
+/* Phone HUD structure, shared vitals and safe-area ownership. Floating controls
+ * leave the map visible between targets; desktop composition lives separately. */
+.phone-bottom-bar { display: none; }
+
+html[data-ui-profile="phone"] {
+  --hud-bottom-content-height: 57.6px;
+  --hud-menu-width: 64px;
+  --hud-bottom-home-clearance: var(--hud-safe-bottom);
+  --hud-bottom-bar-height: calc(var(--hud-bottom-content-height) + var(--hud-bottom-home-clearance));
+  --hud-menu-bottom-gap: 4px;
+  --phone-status-label-width: 20px;
+  --phone-dock-resource-track-height: 12px;
+  --phone-dock-secondary-track-height: 10px;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-bar {
+  position: fixed;
+  isolation: isolate;
+  z-index: var(--hud-z);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--hud-bottom-bar-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--hud-menu-width) minmax(0, 1fr);
+  grid-template-rows: var(--hud-bottom-content-height) var(--hud-bottom-home-clearance);
+  gap: 0;
+  padding: 0 var(--hud-safe-right) 0 var(--hud-safe-left);
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  color: var(--aa-ui-text);
+  background: var(--aa-ui-leather-900);
+  box-shadow: 0 -2px 8px rgb(0 0 0 / 28%);
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-bar-menu-hidden,
+html[data-ui-profile="phone"] .phone-bottom-bar-chat-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* The dock owns the entire bottom edge. Ordinary inset-aware surfaces reserve
+ * a passive home-indicator row; installed Safari and native iOS use one row. */
+html[data-ui-profile="phone"] .phone-bottom-bar::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-top: 1px solid var(--aa-ui-bronze-500);
+  background:
+    linear-gradient(180deg, var(--aa-ui-highlight), transparent 2px),
+    var(--aa-ui-material-leather);
+  content: "";
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .legacy-controls-left {
+  position: fixed;
+  z-index: calc(var(--hud-z) + 1);
+  left: max(8px, var(--hud-safe-left));
+  bottom: calc(var(--hud-bottom-bar-height) + 8px);
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .legacy-controls-left.planning-tools {
+  display: grid;
+  grid-template-columns: repeat(2, 44px);
+  grid-template-rows: repeat(2, 44px);
+  gap: 8px;
+}
+
+html[data-ui-profile="phone"] .legacy-controls-right {
+  position: fixed;
+  z-index: calc(var(--hud-z) + 1);
+  right: max(8px, var(--hud-safe-right));
+  bottom: calc(var(--hud-bottom-bar-height) + 8px);
+  display: grid;
+  grid-template-areas:
+    "status status"
+    ". ultimate"
+    ". skill-two"
+    ". skill-one"
+    "taunt heal";
+  grid-template-columns: repeat(2, 44px);
+  grid-template-rows: auto repeat(4, 44px);
+  gap: 8px;
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .legacy-control-button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  border: 1px solid var(--aa-ui-bronze-500);
+  border-radius: 8px;
+  color: var(--aa-ui-parchment-100);
+  background:
+    linear-gradient(180deg, rgb(231 220 194 / 9%), transparent 48%),
+    var(--aa-ui-leather-800);
+  box-shadow: 0 5px 16px rgb(0 0 0 / 52%), inset 0 0 0 1px rgb(13 11 8 / 52%);
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.legacy-flag-button {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  opacity: 1;
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.ruler-active {
+  border-color: #e06a5f;
+  color: #fff0ea;
+  background: var(--aa-ui-danger, #6b2622);
+  box-shadow: 0 5px 16px rgb(0 0 0 / 52%), inset 0 0 0 2px rgb(224 106 95 / 45%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-ui-profile="phone"] .legacy-control-button.ruler-active { transition: none; animation: none; }
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.party-hud-launcher {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.party-hud-launcher.is-panel-open {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 8px 0 0;
+  box-shadow: none;
+}
+
+html[data-ui-profile="phone"] .legacy-skill-one-button {
+  grid-area: skill-one;
+}
+
+html[data-ui-profile="phone"] .legacy-skill-two-button {
+  grid-area: skill-two;
+}
+
+html[data-ui-profile="phone"] .phone-class-status-indicators {
+  grid-area: status;
+  display: flex;
+  max-width: 190px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+  color: var(--aa-ui-parchment-100);
+  font: 700 10px/1.2 system-ui, sans-serif;
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-class-status-indicators > span {
+  padding: 3px 5px;
+  border: 1px solid var(--aa-ui-bronze-500);
+  border-radius: 4px;
+  background: var(--aa-ui-ink-900);
+}
+
+html[data-ui-profile="phone"] .legacy-taunt-button {
+  grid-area: taunt;
+}
+
+html[data-ui-profile="phone"] .legacy-skill-button,
+html[data-ui-profile="phone"] .legacy-taunt-button {
+  overflow: hidden;
+  padding: 8px;
+  font: 900 20px/1 ui-monospace, monospace;
+}
+
+html[data-ui-profile="phone"] .legacy-skill-glyph {
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+html[data-ui-profile="phone"] .legacy-empty-skill {
+  color: var(--aa-ui-parchment-300);
+  font: 500 21px/1 system-ui, sans-serif;
+}
+
+html[data-ui-profile="phone"] .legacy-cooldown-overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--aa-ui-parchment-100);
+  background: transparent;
+  box-shadow: none;
+  font: 900 13px/1 ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px var(--aa-ui-ink-950), 0 0 5px var(--aa-ui-ink-950);
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.queued {
+  border-color: var(--aa-ui-active-bronze);
+  color: #fff0bd;
+  box-shadow:
+    0 5px 16px rgb(0 0 0 / 52%),
+    inset 0 0 0 2px rgb(212 163 75 / 72%);
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.is-friendly-targeted {
+  border-color: var(--aa-ui-active-bronze);
+  color: #fff0bd;
+  box-shadow:
+    0 5px 16px rgb(0 0 0 / 52%),
+    0 0 0 1px rgb(196 154 89 / 58%),
+    0 0 14px rgb(218 178 102 / 48%),
+    inset 0 0 0 2px rgb(212 163 75 / 52%);
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.missing-materials {
+  border-color: #d95b50;
+  color: #ffe2dc;
+  background:
+    linear-gradient(180deg, rgb(255 226 220 / 10%), transparent 48%),
+    #54201d;
+  box-shadow:
+    0 5px 16px rgb(0 0 0 / 52%),
+    inset 0 0 0 2px rgb(217 91 80 / 48%),
+    0 0 10px rgb(166 45 38 / 28%);
+}
+
+html[data-ui-profile="phone"] .legacy-control-button svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+html[data-ui-profile="phone"] .legacy-control-button .legacy-resource-perimeter {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 44px;
+  height: 44px;
+  overflow: visible;
+  fill: none;
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .legacy-resource-track,
+html[data-ui-profile="phone"] .legacy-resource-fill {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+html[data-ui-profile="phone"] .legacy-resource-track {
+  stroke: rgb(74 27 24 / 62%);
+}
+
+html[data-ui-profile="phone"] .legacy-resource-fill {
+  stroke: #c93831;
+  filter: drop-shadow(0 0 1.5px rgb(225 51 43 / 72%));
+  transition: stroke-dashoffset 150ms ease-out;
+}
+
+html[data-ui-profile="phone"] .legacy-resource-perimeter.ready .legacy-resource-fill {
+  stroke: #f04a3f;
+  filter:
+    drop-shadow(0 0 1px rgb(255 94 79 / 96%))
+    drop-shadow(0 0 3px rgb(194 34 28 / 82%));
+}
+
+html[data-ui-profile="phone"] .legacy-control-button:disabled,
+html[data-ui-profile="phone"] .legacy-control-button[aria-disabled="true"] {
+  color: var(--hud-muted-iron);
+  border-color: var(--aa-ui-border-muted);
+  background:
+    linear-gradient(180deg, rgb(231 220 194 / 5%), transparent 48%),
+    var(--aa-ui-leather-800);
+  box-shadow: 0 5px 16px rgb(0 0 0 / 42%), inset 0 0 0 1px rgb(13 11 8 / 52%);
+}
+
+html[data-ui-profile="phone"] .legacy-control-button.queued[aria-disabled="true"] {
+  border-color: var(--aa-ui-active-bronze);
+  color: #fff0bd;
+  box-shadow:
+    0 5px 16px rgb(0 0 0 / 52%),
+    inset 0 0 0 2px rgb(212 163 75 / 72%);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status,
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment,
+html[data-ui-profile="phone"] .phone-bottom-economy-compartment {
+  position: relative;
+  z-index: 1;
+  grid-row: 1 / -1;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: visible;
+  color: var(--aa-ui-parchment-100);
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status {
+  grid-column: 1;
+  display: flex;
+  align-items: stretch;
+  padding: 3px 8px var(--hud-bottom-home-clearance);
+  background: transparent;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment {
+  grid-column: 2;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--hud-bottom-home-clearance);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-economy-compartment {
+  grid-column: 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 3px 8px var(--hud-bottom-home-clearance);
+}
+
+/* The center latch keeps its own raised surface. The side ledgers stay open so
+ * the dock's shared material remains visible around their individual tracks. */
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment::before {
+  position: absolute;
+  z-index: -1;
+  top: 8px;
+  right: 0;
+  bottom: calc(var(--hud-bottom-home-clearance) + var(--hud-menu-bottom-gap));
+  left: 0;
+  border: 1px solid var(--aa-ui-bronze-500);
+  border-radius: 3px 3px 7px 7px;
+  background: linear-gradient(180deg, var(--aa-ui-ink-900), var(--aa-ui-leather-900));
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 45%);
+  content: "";
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment.expanded::before {
+  background: var(--aa-ui-wood-700);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment:has(.phone-menu-trigger:active)::before {
+  background: var(--aa-ui-leather-900);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status,
+html[data-ui-profile="phone"] .phone-bottom-economy,
+html[data-ui-profile="phone"] .phone-menu-trigger {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+html[data-ui-profile="phone"] .phone-menu-trigger,
+html[data-ui-profile="phone"] .phone-bottom-economy {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: var(--hud-bottom-content-height);
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: visible;
+  color: var(--aa-ui-parchment-100);
+  pointer-events: auto;
+}
+
+/* The shells above are passive. Only the two real buttons receive pointer
+ * input; the lower clearance band therefore falls through to the map. */
+html[data-ui-profile="phone"] .phone-menu-trigger,
+html[data-ui-profile="phone"] .phone-bottom-economy {
+  touch-action: manipulation;
+  /* Tap and hold must not flash a highlight, select text, or open a callout. */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keep status content inside the dock shell. The ordinary safe-area row is
+ * passive; installed Safari and native iOS use the whole band. */
+html[data-ui-profile="phone"] .phone-bottom-status .player-status-hud-phone-dock {
+  height: 100%;
+}
+
+/* Legacy selectors remain scoped to the compact button itself. */
+html[data-ui-profile="phone"] .phone-bottom-economy,
+html[data-ui-profile="phone"] .phone-menu-trigger {
+  color: var(--aa-ui-parchment-100);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .player-status-hud-phone-dock {
+  --status-experience: var(--aa-ui-active-bronze);
+  --status-hunger: var(--aa-ui-warning);
+  position: static;
+  z-index: auto;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  height: calc(var(--hud-bottom-content-height) - 6px);
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  color: var(--aa-ui-text);
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  transform: none;
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .player-status-heading { display: none; }
+html[data-ui-profile="phone"] .phone-bottom-status .weapon-combat-status {
+  margin: 0 0 2px;
+  text-align: center;
+  font-size: 12px;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns:
+    var(--phone-status-label-width)
+    minmax(0, 1fr);
+  align-items: center;
+  gap: 0 4px;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-label,
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-value {
+  font: 600 10px/1 var(--aa-ui-font-body);
+  white-space: nowrap;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-label {
+  color: var(--aa-ui-parchment-300);
+  letter-spacing: .02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-value {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+  justify-self: auto;
+  color: var(--aa-ui-parchment-100);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.025em;
+  text-align: center;
+  text-shadow: 0 1px 2px var(--aa-ui-ink-950), 0 0 2px var(--aa-ui-ink-950);
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-maximum {
+  color: inherit;
+  font-weight: inherit;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-rage .status-bar-compact-value {
+  color: #c98951;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-track,
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-thin .status-bar-track {
+  position: relative;
+  width: 100%;
+  height: var(--phone-dock-resource-track-height);
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--aa-ui-border-muted);
+  border-radius: 1px;
+  background: var(--aa-ui-ink-950);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 45%);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-track-fill {
+  display: block;
+  height: 100%;
+  box-shadow: inset 0 1px rgb(255 255 255 / 16%);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-icon {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  color: var(--aa-ui-parchment-200);
+  stroke-width: 1.9;
+  vector-effect: non-scaling-stroke;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health .status-bar-compact-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--aa-health-fill-top);
+  fill: color-mix(in srgb, currentColor 28%, transparent);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-hunger .status-bar-compact-icon {
+  color: var(--status-hunger);
+  fill: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-experience .status-bar-compact-icon {
+  color: var(--aa-ui-active-bronze);
+  fill: color-mix(in srgb, currentColor 22%, transparent);
+  transform: translateX(2px);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health .hp-bar-track {
+  border-color: var(--aa-health-frame-border);
+  background: var(--aa-health-frame);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 45%);
+  clip-path: none;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health .hp-bar-recess {
+  inset: 0;
+  background: var(--aa-health-track);
+  box-shadow: none;
+  clip-path: none;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health .hp-bar-fill {
+  background: linear-gradient(180deg, var(--aa-health-fill-top), var(--aa-health-fill-bottom));
+  box-shadow:
+    inset 0 1px var(--aa-health-fill-highlight),
+    inset 0 -1px rgb(4 42 18 / 42%);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health .status-bar-track {
+  height: var(--phone-dock-resource-track-height);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health .status-bar-compact-value {
+  color: var(--aa-ui-text-bright);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-experience .status-bar-compact-value {
+  color: var(--aa-ui-text-bright);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-hunger .status-bar-compact-value {
+  color: var(--aa-ui-text-bright);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-hunger .status-bar-track > .status-bar-track-fill {
+  background: var(--status-hunger);
+  box-shadow: inset 0 1px var(--aa-ui-highlight);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-hunger .status-bar-track {
+  height: var(--phone-dock-secondary-track-height);
+  border-color: var(--aa-ui-border-muted);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-experience .status-bar-track > .status-bar-track-fill {
+  background: var(--status-experience);
+  box-shadow: inset 0 1px var(--aa-ui-highlight);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-experience .status-bar-track {
+  height: var(--phone-dock-secondary-track-height);
+}
+
+html[data-ui-profile="phone"] .phone-menu-trigger {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  height: calc(var(--hud-bottom-content-height) - var(--hud-menu-bottom-gap));
+  margin: 0 0 var(--hud-menu-bottom-gap);
+  padding: 4px 5px;
+  border: 1px solid var(--aa-ui-bronze-500);
+  border-radius: 4px 4px 7px 7px;
+  border-bottom-color: var(--aa-ui-bronze-500);
+  color: var(--aa-ui-parchment-100);
+  background:
+    linear-gradient(180deg, var(--aa-ui-highlight), transparent 48%),
+    var(--aa-ui-leather-800);
+  box-shadow:
+    inset 0 3px var(--aa-ui-active-bronze),
+    inset 0 0 0 1px rgb(13 11 8 / 52%),
+    0 1px 2px rgb(0 0 0 / 36%);
+  transform: none;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+html[data-ui-profile="phone"] .phone-menu-trigger[aria-expanded="true"] {
+  color: var(--aa-ui-parchment-100);
+  background: var(--aa-ui-wood-700);
+  box-shadow: inset 0 3px var(--aa-ui-parchment-200);
+}
+
+@media (hover: hover) {
+  html[data-ui-profile="phone"] .phone-menu-trigger:hover {
+    background: var(--aa-ui-wood-800);
+  }
+}
+
+html[data-ui-profile="phone"] .phone-menu-trigger:active {
+  background: var(--aa-ui-leather-900);
+  box-shadow: inset 0 2px var(--aa-ui-active-bronze);
+}
+
+html[data-ui-profile="phone"] .phone-menu-trigger:focus-visible {
+  outline: 2px solid var(--aa-ui-parchment-100);
+  outline-offset: -4px;
+}
+
+html[data-ui-profile="phone"] .phone-menu-trigger svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+}
+
+html[data-ui-profile="phone"] .phone-menu-trigger strong {
+  font: 800 9px/1 var(--aa-ui-font-body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-economy {
+  --phone-economy-value-width: clamp(52px, 18vw, 76px);
+  appearance: none;
+  -webkit-appearance: none;
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  align-content: stretch;
+  padding: 3px 8px 3px 0;
+  cursor: pointer;
+  text-align: inherit;
+  font: inherit;
+  touch-action: manipulation;
+}
+
+html[data-ui-profile="phone"] .phone-bottom-economy-compartment.inventory-full .phone-economy-storage {
+  color: var(--aa-ui-danger);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-economy:active {
+  box-shadow:
+    inset 0 1px 5px rgb(0 0 0 / 58%),
+    inset 0 0 0 1px rgb(151 112 61 / 36%);
+}
+
+html[data-ui-profile="phone"] .phone-bottom-economy:focus-visible {
+  outline: 2px solid var(--hud-focus-parchment);
+  outline-offset: -3px;
+}
+
+html[data-ui-profile="phone"] .phone-economy-row {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: var(--phone-status-label-width) minmax(0, 1fr);
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  box-shadow: none;
+  font: 600 10px/1 var(--aa-ui-font-body);
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-economy-row span {
+  min-width: 0;
+  color: var(--aa-ui-parchment-300);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+html[data-ui-profile="phone"] .phone-economy-row-icon {
+  width: 14px;
+  height: 14px;
+  justify-self: center;
+  color: var(--aa-ui-parchment-200);
+  stroke-width: 1.9;
+  fill: color-mix(in srgb, currentColor 18%, transparent);
+  vector-effect: non-scaling-stroke;
+}
+
+html[data-ui-profile="phone"] .phone-economy-storage .phone-economy-row-icon {
+  color: var(--aa-ui-text-bright);
+  fill: color-mix(in srgb, currentColor 18%, transparent);
+}
+
+html[data-ui-profile="phone"] .phone-economy-gold .phone-economy-row-icon {
+  color: var(--aa-ui-active-bronze);
+}
+
+html[data-ui-profile="phone"] .phone-economy-row strong {
+  min-width: 0;
+  overflow: visible;
+  color: var(--aa-ui-text-bright);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px var(--aa-ui-ink-950), 0 0 2px var(--aa-ui-ink-950);
+}
+
+html[data-ui-profile="phone"] .phone-economy-state {
+  grid-template-columns: var(--phone-status-label-width) var(--phone-economy-value-width) minmax(0, 1fr);
+  gap: 3px;
+  border-top: 0;
+}
+
+html[data-ui-profile="phone"] .phone-economy-storage {
+  grid-template-columns: var(--phone-status-label-width) minmax(0, 1fr);
+  gap: 3px;
+  border-top: 0;
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-copy {
+  grid-column: 3;
+  grid-row: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-track {
+  display: block;
+  width: 100%;
+  height: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--aa-ui-border-muted);
+  border-radius: 1px;
+  background: var(--aa-ui-ink-950);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 45%);
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: width 120ms linear;
+  background: currentColor;
+  box-shadow: inset 0 1px rgb(255 255 255 / 16%);
+}
+
+html[data-ui-profile="phone"] .phone-player-state-glyph {
+  width: 14px;
+  height: 14px;
+  justify-self: center;
+  color: currentColor;
+  stroke-width: 1.9;
+  vector-effect: non-scaling-stroke;
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-aggression {
+  color: color-mix(in srgb, var(--aa-ui-danger) 78%, var(--aa-ui-parchment-100));
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-protection {
+  color: var(--aa-ui-active-bronze);
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-none {
+  color: var(--aa-ui-text-bright);
+  background: transparent;
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-none .phone-economy-state-track {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0;
+}
+
+html[data-ui-profile="phone"] .phone-economy-state span {
+  color: inherit;
+}
+
+html[data-ui-profile="phone"] .phone-economy-state strong {
+  color: var(--aa-ui-text-bright);
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-value {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Capacity is a real resource, not another timer. Match the resource-track height. */
+html[data-ui-profile="phone"] .phone-economy-storage-track {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  width: 100%;
+  height: var(--phone-dock-resource-track-height);
+  box-sizing: border-box;
+  border: 1px solid var(--aa-ui-border-muted);
+  border-radius: 1px;
+  background: var(--aa-ui-leather-900);
+  overflow: hidden;
+}
+
+html[data-ui-profile="phone"] .phone-economy-storage-value {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+  color: var(--aa-ui-text-bright);
+  font: 600 10px/1 var(--aa-ui-font-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.025em;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px var(--aa-ui-ink-950), 0 0 2px var(--aa-ui-ink-950);
+  pointer-events: none;
+}
+
+html[data-ui-profile="phone"] .phone-economy-storage-fill {
+  display: block;
+  height: 100%;
+  background: var(--aa-ui-bronze-500);
+  box-shadow: inset 0 1px var(--aa-ui-highlight);
+}
+
+html[data-ui-profile="phone"] .inventory-full .phone-economy-storage-fill {
+  background: var(--aa-ui-danger);
+}
+
+html[data-ui-profile="phone"] .phone-economy-storage-track[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+html[data-ui-profile="phone"] .phone-economy-state-none .phone-economy-state-value {
+  visibility: hidden;
+}
+
+/* A wide case has room for three balanced readouts instead of long empty rows. */
+@media (min-width: 720px) {
+  html[data-ui-profile="phone"] .phone-bottom-economy {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  html[data-ui-profile="phone"] .phone-economy-row {
+    position: relative;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 18px 14px 8px;
+    align-content: center;
+    justify-items: center;
+    gap: 2px;
+    padding: 0 8px;
+  }
+
+  html[data-ui-profile="phone"] .phone-economy-row > svg {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  html[data-ui-profile="phone"] .phone-economy-row > strong {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  html[data-ui-profile="phone"] .phone-economy-state-copy,
+  html[data-ui-profile="phone"] .phone-economy-storage-track {
+    grid-column: 1;
+    grid-row: 3;
+    width: 100%;
+  }
+
+  html[data-ui-profile="phone"] .phone-economy-gold::before,
+  html[data-ui-profile="phone"] .phone-economy-storage::before {
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 0;
+    border-left: 1px solid var(--aa-ui-border-muted);
+    content: "";
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 359px) {
+  html[data-ui-profile="phone"] {
+    --hud-menu-width: 56px;
+  }
+
+  html[data-ui-profile="phone"] .phone-bottom-status {
+    padding-inline: 6px;
+  }
+
+  html[data-ui-profile="phone"] .phone-bottom-economy {
+    padding-inline: 0 6px;
+  }
+
+  html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-value,
+  html[data-ui-profile="phone"] .phone-economy-row {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-ui-profile="phone"] .phone-economy-state-fill { transition: none; }
+}
+
+/* Root HUD variables follow the physical viewport, not a descendant container. */
+@media (orientation: landscape) and (max-height: 520px) {
+  html[data-ui-profile="phone"] {
+    --hud-bottom-content-height: 50.4px;
+    --hud-menu-width: 60px;
+  }
+
+  html[data-ui-profile="phone"] .phone-menu-trigger svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  html[data-ui-profile="phone"] .phone-bottom-status,
+  html[data-ui-profile="phone"] .phone-bottom-economy {
+    padding-block: 3px;
+  }
+
+  html[data-ui-profile="phone"] .phone-bottom-status .player-status-hud-phone-dock {
+    height: calc(var(--hud-bottom-content-height) - 6px);
+  }
+
+  html[data-ui-profile="phone"] .phone-bottom-economy {
+    padding-block: 3px;
+  }
+
+  html[data-ui-profile="phone"] .phone-bottom-status .status-bar-compact-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  html[data-ui-profile="phone"] .phone-economy-row-icon,
+  html[data-ui-profile="phone"] .phone-player-state-glyph {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Floating field controls. Only the readouts and individual targets paint paper;
+ * the footer, navigation gaps and home-indicator space remain map-transparent. */
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) {
+  --hud-bottom-content-height: 108px;
+  --hud-bottom-home-clearance: var(--hud-safe-bottom);
+  --hud-bottom-bar-height: calc(var(--hud-bottom-content-height) + var(--hud-safe-bottom));
+}
+html[data-ui-profile="phone"] .phone-bottom-bar {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 32px 18px 50px;
+  padding: 0 max(8px, var(--hud-safe-right)) calc(8px + var(--hud-safe-bottom)) max(8px, var(--hud-safe-left));
+  overflow: visible; background: transparent; box-shadow: none;
+}
+html[data-ui-profile="phone"] .phone-bottom-bar::before,
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment::before { content: none; }
+html[data-ui-profile="phone"] .phone-bottom-status,
+html[data-ui-profile="phone"] .phone-bottom-economy-compartment {
+  grid-column: 1; width: 100%; max-width: 620px; justify-self: center;
+  background: var(--aa-ui-material-folio); border: 1px solid var(--aa-ui-border);
+}
+html[data-ui-profile="phone"] .phone-bottom-status {
+  grid-row: 1; height: 32px; padding: 4px 8px 0; border-bottom: 0; border-radius: 6px 6px 0 0;
+}
+html[data-ui-profile="phone"] .phone-bottom-economy-compartment {
+  grid-row: 2; height: 18px; padding: 0 8px 1px; border-top: 0; border-radius: 0 0 6px 6px;
+  box-shadow: 0 3px 8px rgb(39 26 15 / 16%);
+}
+html[data-ui-profile="phone"] .phone-bottom-status .player-status-hud-phone-dock {
+  height: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr);
+  gap: 8px; align-items: start; overflow: visible;
+}
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock {
+  grid-template-columns: 14px minmax(0, 1fr); grid-template-rows: 16px 3px;
+  gap: 3px 4px; padding: 0; align-items: center;
+}
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock > .status-bar-compact-label { grid-column: 1; grid-row: 1; }
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock .status-bar-compact-icon { width: 14px; height: 14px; transform: none; }
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock > .status-bar-compact-value {
+  position: static; grid-column: 2; grid-row: 1; display: flex; justify-content: flex-start;
+  width: auto; padding: 0; color: var(--aa-ui-text); background: transparent; text-shadow: none;
+  font: 750 12px/16px var(--aa-ui-font-body); font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+}
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health > .status-bar-compact-value { font-size: 14px; }
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock .status-bar-compact-maximum { color: var(--aa-ui-text-muted); font-size: 10px; font-weight: 500; }
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock > .status-bar-track {
+  grid-column: 1 / -1; grid-row: 2; height: 3px; min-height: 0; border: 0; border-radius: 1px;
+  background: var(--aa-ui-border-muted); box-shadow: none;
+}
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-phone-dock :is(.status-bar-track-fill, .hp-bar-damage-trail) { opacity: .8; box-shadow: none; }
+html[data-ui-profile="phone"] .phone-bottom-status .status-bar-health .hp-bar-recess { background: transparent; }
+html[data-ui-profile="phone"] .phone-bottom-economy {
+  height: 16px; padding: 0; display: grid; grid-template-columns: minmax(62px, .7fr) minmax(0, 1.6fr) minmax(44px, .7fr);
+  grid-template-rows: 1fr; gap: 8px; background: transparent; box-shadow: none;
+}
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-row {
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 0; font: 600 10px/14px var(--aa-ui-font-body);
+}
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-row::before { content: none; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-row > svg { width: 12px; height: 12px; flex: 0 0 12px; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-label { display: none; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-state-none .phone-economy-label { display: inline; color: var(--aa-ui-text-muted); text-transform: none; letter-spacing: 0; white-space: nowrap; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-state-none .phone-economy-state-value { display: none; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-row strong { width: auto; color: var(--aa-ui-text); font: 650 11px/14px var(--aa-ui-font-body); font-variant-numeric: tabular-nums; text-shadow: none; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-storage-track { width: auto; height: 16px; border: 0; background: transparent; overflow: visible; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-storage-value { position: static; justify-content: start; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-storage-fill { position: absolute; bottom: 0; height: 2px; box-shadow: none; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-state-copy { position: absolute; inset: auto 0 0; height: 2px; }
+html[data-ui-profile="phone"] .phone-bottom-economy .phone-economy-state-track { height: 2px; border: 0; box-shadow: none; background: transparent; }
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment {
+  grid-column: 1; grid-row: 3; width: auto; height: 50px; padding: 6px 0 0;
+  justify-self: center; align-items: end; gap: 6px; background: transparent;
+}
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment .phone-menu-trigger {
+  width: 44px; height: 44px; min-width: 44px; min-height: 44px; margin: 0;
+  border: 1px solid var(--aa-ui-border); border-radius: 6px; background: var(--aa-ui-material-folio);
+  color: var(--aa-ui-text); box-shadow: inset 0 1px var(--aa-ui-highlight), 0 3px 8px rgb(39 26 15 / 20%);
+}
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment .phone-menu-trigger { padding: 4px 2px; gap: 2px; }
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment .phone-menu-trigger svg { width: 20px; height: 20px; }
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment .phone-menu-trigger strong { font: 700 9px/10px var(--aa-ui-font-body); letter-spacing: 0; text-transform: none; }
+html[data-ui-profile="phone"] .phone-bottom-menu-compartment .phone-menu-trigger:hover { background: var(--aa-menu-raised); }
+/* Touch dock: a parchment tray with a ledger of vitals on the left, a raised
+ * Menu medallion in the middle, and the carry/state/gold ledger on the right.
+ * The bar box owns the bottom edge; ::before paints the tray so each platform
+ * only changes the tray's insets, edges and corners:
+ *   phones (browser, Android) - edge to edge through the bottom safe area,
+ *                               never leaving a gap beneath the footer;
+ *   iOS (app, installed, Safari) - the tray hugs the display and its lower
+ *                               corners follow the screen's curve;
+ *   wider touch screens       - a bounded tray floating above the edge. */
+html[data-ui-profile="phone"][data-presentation="touch"] {
+  --hud-bottom-content-height: 52px;
+  --hud-menu-width: 66px;
+  --dock-max-width: 100%;
+  --dock-inset-x: 0px;
+  --dock-tray-bottom: 0px;
+  --dock-bottom-space: max(6px, var(--hud-safe-bottom));
+  --dock-side-border: 0px;
+  --dock-radius-top: 20px;
+  --dock-radius-bottom: 0px;
+  --dock-medallion-size: 54px;
+  --dock-medallion-rise: 8px;
+  --hud-bottom-bar-height: calc(var(--hud-bottom-content-height) + var(--dock-bottom-space));
+}
+@media (min-width: 701px) {
+  html[data-ui-profile="phone"][data-presentation="touch"] {
+    --dock-max-width: 680px;
+    --dock-inset-x: 10px;
+    --dock-tray-bottom: max(10px, var(--hud-safe-bottom));
+    --dock-bottom-space: var(--dock-tray-bottom);
+    --dock-side-border: 1px;
+    --dock-radius-top: 18px;
+    --dock-radius-bottom: 18px;
+  }
+}
+/* iOS: the native app, the installed web app and Safari (the only engine with
+ * -webkit-touch-callout) run the dock edge to edge and curve its lower corners
+ * with the screen (inset 0, so the dock's radius is the display radius). */
+@media (max-width: 700px) {
+  html[data-ui-profile="phone"][data-presentation="touch"]:is([data-native-platform="ios"], [data-ios-standalone="true"]) {
+    --dock-inset-x: 0px;
+    --dock-tray-bottom: 0px;
+    --dock-bottom-space: max(12px, calc(var(--hud-safe-bottom) - 18px));
+    --dock-side-border: 0px;
+    --dock-pad-x: 20px;
+    --dock-radius-top: 22px;
+    /* Readouts may sit 18px into the 34pt home-indicator area. The dock is full-bleed
+     * (inset 0), so its lower corners are the display radius itself. */
+    --dock-radius-bottom: var(--aa-ios-display-radius, 50px);
+  }
+}
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 700px) {
+    html[data-ui-profile="phone"][data-presentation="touch"]:not([data-native-platform="android"]) {
+      --dock-inset-x: 0px;
+      --dock-tray-bottom: 0px;
+      --dock-bottom-space: max(12px, calc(var(--hud-safe-bottom) - 18px));
+      --dock-side-border: 0px;
+      --dock-pad-x: 20px;
+      --dock-radius-top: 22px;
+      --dock-radius-bottom: var(--aa-ios-display-radius, 50px);
+    }
+  }
+}
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-bar {
+  width: min(var(--dock-max-width), 100%);
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr) var(--hud-menu-width) minmax(0, 1fr);
+  grid-template-rows: var(--hud-bottom-content-height);
+  column-gap: 4px;
+  padding: 0 calc(var(--dock-inset-x) + var(--dock-pad-x, 12px) + var(--hud-safe-right)) var(--dock-bottom-space) calc(var(--dock-inset-x) + var(--dock-pad-x, 12px) + var(--hud-safe-left));
+  justify-content: stretch;
+  align-items: center;
+}
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-bar::before {
+  content: "";
+  inset: 0 var(--dock-inset-x) var(--dock-tray-bottom);
+  border: 1px solid var(--aa-ui-border);
+  border-width: 1px var(--dock-side-border) var(--dock-side-border);
+  border-top-color: var(--aa-ui-bronze-500);
+  border-radius: var(--dock-radius-top) var(--dock-radius-top) var(--dock-radius-bottom) var(--dock-radius-bottom);
+  background:
+    linear-gradient(180deg, var(--aa-ui-highlight), transparent 3px),
+    var(--aa-ui-material-folio);
+  box-shadow:
+    inset 0 -1px rgb(39 26 15 / 8%),
+    0 -2px 6px rgb(39 26 15 / 10%),
+    0 10px 24px rgb(39 26 15 / 22%);
+}
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-status,
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-economy-compartment {
+  grid-row: 1;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--aa-ui-text);
+  background: transparent;
+  box-shadow: none;
+}
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-status { grid-column: 1; }
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-economy-compartment { grid-column: 3; }
+
+/* One ledger grammar on both sides, shared by touch and desktop:
+ * icon | recessed meter | value. */
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .player-status-hud-phone-dock {
+  height: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  align-items: center;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-phone-dock {
+  grid-template-columns: 14px minmax(18px, 1fr) auto;
+  grid-template-rows: 14px;
+  gap: 0 7px;
+  align-items: center;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-phone-dock .status-bar-compact-icon { width: 14px; height: 14px; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-phone-dock > .status-bar-compact-value {
+  grid-column: 3;
+  grid-row: 1;
+  justify-content: flex-end;
+  min-width: 5.2em;
+  padding: 0;
+  font: 750 12px/14px var(--aa-ui-font-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-health > .status-bar-compact-value { font-size: 13px; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-phone-dock .status-bar-compact-maximum {
+  color: var(--aa-ui-text-muted);
+  font-size: .86em;
+  font-weight: 550;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-phone-dock > .status-bar-track,
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy :is(.phone-economy-state-track, .phone-economy-storage-track)::before {
+  height: 5px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--aa-ui-text) 14%, transparent);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 22%), 0 1px 0 var(--aa-ui-highlight);
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-phone-dock > .status-bar-track {
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-status .status-bar-phone-dock :is(.status-bar-track-fill, .hp-bar-damage-trail) {
+  border-radius: 3px;
+  opacity: 1;
+  box-shadow: inset 0 1px rgb(255 255 255 / 28%);
+}
+
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy {
+  width: 100%;
+  height: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  align-items: center;
+  border-radius: 8px;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-row {
+  display: grid;
+  grid-template-columns: 14px minmax(18px, 1fr) auto;
+  grid-template-rows: 14px;
+  align-items: center;
+  gap: 0 7px;
+  padding: 0;
+  font: 650 12px/14px var(--aa-ui-font-body);
+}
+/* Wide-layout rules stack these children; the ledger keeps one line. */
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-row { justify-content: stretch; justify-items: stretch; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-row > * { grid-row: 1; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-row > svg { grid-column: 1; width: 14px; height: 14px; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-row strong {
+  grid-column: 3;
+  min-width: 0;
+  margin: 0;
+  color: var(--aa-ui-text);
+  font: 750 12px/14px var(--aa-ui-font-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+  text-align: right;
+  white-space: nowrap;
+}
+/* The state row is a pure aggro/protection meter: no "At ease" text. At rest the
+ * groove sits empty across the row; aggression drains red, protection drains white. */
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-none .phone-economy-label { display: none; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-copy {
+  position: relative;
+  inset: auto;
+  grid-column: 2;
+  height: 5px;
+  left: auto;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-none .phone-economy-state-copy { display: block; grid-column: 2 / -1; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-none .phone-economy-state-track { opacity: 1; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-track {
+  position: relative;
+  display: block;
+  height: 5px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  box-shadow: none;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-track::before { position: absolute; inset: 0; content: ""; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-fill { position: relative; display: block; height: 100%; border-radius: 3px; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-state-protection .phone-economy-state-fill {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgb(39 26 15 / 18%), 0 0 6px rgb(255 255 255 / 85%);
+}
+
+/* Carry: the value lives inside the track element, so the track is its own
+ * two-column grid; the groove and fill share the first column. */
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-storage-track {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: minmax(18px, 1fr) auto;
+  align-items: center;
+  column-gap: 7px;
+  width: auto;
+  height: 14px;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-storage-track::before { grid-area: 1 / 1; content: ""; }
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-storage-fill {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  grid-area: 1 / 1;
+  justify-self: start;
+  max-width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  box-shadow: inset 0 1px rgb(255 255 255 / 28%);
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-storage-track > .phone-economy-storage-value {
+  position: static;
+  grid-area: 1 / 2;
+  display: block;
+  justify-content: flex-end;
+  text-transform: none;
+}
+/* Gold has no meter; a faint rule keeps its value on the ledger line. */
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .phone-bottom-economy .phone-economy-gold::after {
+  position: static;
+  width: auto;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  height: 0;
+  border-top: 1px dotted color-mix(in srgb, var(--aa-ui-text) 30%, transparent);
+  content: "";
+}
+
+/* The Menu medallion rises out of the tray; its paper ring reads as a cut-out. */
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-menu-compartment {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: var(--hud-bottom-content-height);
+  display: grid;
+  place-items: start center;
+  padding: 0;
+  overflow: visible;
+}
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-menu-compartment .phone-menu-trigger {
+  width: var(--dock-medallion-size);
+  height: var(--dock-medallion-size);
+  min-width: var(--dock-medallion-size);
+  margin-top: calc(var(--dock-medallion-rise) * -1);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1px;
+  padding: 0;
+  border: 2px solid var(--aa-ui-active-bronze);
+  border-radius: 50%;
+  color: var(--aa-ui-text);
+  background:
+    radial-gradient(circle at 50% 30%, var(--aa-ui-highlight), transparent 62%),
+    var(--aa-menu-raised);
+  box-shadow:
+    0 0 0 4px var(--aa-menu-paper, var(--aa-menu-raised)),
+    0 0 0 5px var(--aa-ui-bronze-500),
+    0 6px 14px rgb(39 26 15 / 30%);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-menu-compartment .phone-menu-trigger svg { width: 18px; height: 18px; }
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-menu-compartment .phone-menu-trigger strong {
+  font: 800 9px/10px var(--aa-ui-font-body);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-menu-compartment .phone-menu-trigger:active { transform: translateY(1px) scale(.97); }
+html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-menu-compartment .phone-menu-trigger[aria-expanded="true"] { background: var(--aa-menu-paper, var(--aa-menu-raised)); }
+html[data-ui-profile="phone"][data-presentation="touch"] :is(.phone-menu-trigger, .phone-bottom-economy):focus-visible {
+  outline: 2px solid var(--aa-ui-active-bronze);
+  outline-offset: 3px;
+}
+@media (max-width: 380px) {
+  html[data-ui-profile="phone"][data-presentation="touch"] {
+    --hud-menu-width: 60px;
+    --dock-medallion-size: 50px;
+  }
+  html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-bar {
+    padding-inline: calc(var(--dock-inset-x) + var(--dock-pad-x, 8px) + var(--hud-safe-left)) calc(var(--dock-inset-x) + var(--dock-pad-x, 8px) + var(--hud-safe-right));
+  }
+  html[data-ui-profile="phone"][data-presentation="touch"] :is(.phone-bottom-status .status-bar-phone-dock, .phone-bottom-economy .phone-economy-row) { column-gap: 5px; }
+  html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-status .status-bar-phone-dock > .status-bar-compact-value,
+  html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-economy .phone-economy-row strong { min-width: 0; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-ui-profile="phone"][data-presentation="touch"] .phone-bottom-menu-compartment .phone-menu-trigger { transition: none; }
+}
+
+/* Activity timers and the build watermark share one bottom-center slot right above
+ * the Menu medallion (touch) or command bar (desktop), vertically centred on the
+ * 44px row of side controls. The watermark steps aside while a timer is showing. */
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) .gameplay-status-stack {
+  top: auto;
+  bottom: calc(var(--hud-bottom-bar-height) + 10px);
+  min-height: 44px;
+  align-content: center;
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) body:not(:has(.auth-screen)) .version-watermark {
+  top: auto;
+  right: auto;
+  bottom: calc(var(--hud-bottom-bar-height) + 23px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) body:not(:has(.auth-screen)) .version-watermark__copy {
+  min-height: 0;
+  padding: 3px 6px;
+  background: transparent;
+  color: color-mix(in srgb, var(--aa-ui-text) 32%, transparent);
+  font-size: 9px;
+  text-shadow: 0 0 2px rgb(255 255 255 / 35%);
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) body:not(:has(.auth-screen)) .version-watermark[data-mismatch="true"] .version-watermark__copy {
+  color: rgb(220 60 60 / 70%);
+}
+html[data-ui-profile="phone"]:is([data-presentation="touch"], [data-presentation="desktop"]) body:has(.gameplay-status-stack > *) .version-watermark { visibility: hidden; }
+
+/* Quick slots: icon-only tabs flush against the screen edges, about two thirds of
+ * the former width, so the middle of the map stays open. Names, counts and key
+ * hints stay in each slot's accessible name. */
+/* Flag/buoy build and Heal moved into quick slots, so the row track no longer
+ * reserves room above the dock for floating buttons: rows can sit just above
+ * the dock. Save status reads above the track instead of over the medallion. */
+.ash-hotbar {
+  --ash-hotbar-status-clearance: 0px;
+  --ash-hotbar-bottom-lift: 0px;
+  bottom: calc(var(--hud-bottom-bar-height, 0px) + 6px);
+}
+.ash-hotbar-status { top: auto; bottom: calc(100% + 2px); }
+.ash-hotbar-rail-left { left: var(--hud-safe-left, 0px); }
+.ash-hotbar-rail-right { right: var(--hud-safe-right, 0px); }
+.ash-hotbar-slot {
+  width: clamp(48px, 5.5vw, 66px);
+  min-height: 52px;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  gap: 0;
+  padding: 6px;
+  border: 0;
+  background: color-mix(in srgb, var(--aa-ui-leather-800) 90%, transparent);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--aa-ui-ink-950) 38%, transparent);
+}
+.ash-hotbar-rail-left .ash-hotbar-slot { border-radius: 0 10px 10px 0; }
+.ash-hotbar-rail-right .ash-hotbar-slot { border-radius: 10px 0 0 10px; }
+.ash-hotbar-slot .ash-hotbar-copy,
+.ash-hotbar-slot kbd { display: none; }
+.ash-hotbar-action-glyph { display: grid; width: 32px; height: 32px; place-items: center; color: var(--aa-ui-text); pointer-events: none; }
+.ash-hotbar-action-glyph svg { width: 100%; height: 100%; }
+.ash-hotbar-slot .item-artwork,
+.ash-hotbar-slot .ash-hotbar-empty-glyph,
+.ash-hotbar-slot .ash-hotbar-reserved-glyph,
+.ash-hotbar-slot .ash-hotbar-action-glyph,
+.ash-hotbar-slot .ash-hotbar-locked-glyph { width: 32px; height: 32px; }
+.ash-hotbar-slot:focus-visible { outline-offset: -3px; }
+/* The + and lock are drawn icons centred in their box, so no font metrics can
+ * push them off the middle of the tab. */
+.ash-hotbar-slot :is(.ash-hotbar-empty-glyph, .ash-hotbar-locked-glyph) { display: grid; place-items: center; line-height: 1; }
+.ash-hotbar-empty-glyph svg { width: 70%; height: 70%; }
+/* While any popup other than the slot's own picker is open, the quick slots blur
+ * back and stop taking taps so the popup owns attention. */
+.ash-hotbar-rail { transition: filter 420ms cubic-bezier(.2, .7, .2, 1), opacity 420ms cubic-bezier(.2, .7, .2, 1); }
+html:has(.game-compact-prompt:not(.ash-hotbar-picker)) .ash-hotbar-rail {
+  filter: blur(6px);
+  opacity: .5;
+}
+html:has(.game-compact-prompt:not(.ash-hotbar-picker)) .ash-hotbar-rail .ash-hotbar-slot { pointer-events: none; }
+.ash-hotbar-slot.ready { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--aa-ui-bronze-500) 60%, transparent), 0 2px 8px color-mix(in srgb, var(--aa-ui-ink-950) 38%, transparent); }
+@media (max-width: 700px) {
+  .ash-hotbar-slot { width: 46px; min-height: 44px; padding: 4px; }
+  .ash-hotbar-slot .item-artwork,
+  .ash-hotbar-slot .ash-hotbar-empty-glyph,
+  .ash-hotbar-slot .ash-hotbar-reserved-glyph,
+  .ash-hotbar-slot .ash-hotbar-action-glyph,
+  .ash-hotbar-slot .ash-hotbar-locked-glyph { width: 26px; height: 26px; }
+}
+
+/* Gear slot: touch-down opens a sideways fan of sets; slide and release to equip.
+ * Set 1 always sits nearest the slot so flick distance becomes muscle memory. */
+.ash-gear-slot { position: relative; width: fit-content; pointer-events: none; }
+.ash-hotbar-rail-right .ash-gear-slot { margin-inline-start: auto; }
+.ash-gear-slot-button { pointer-events: auto; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.ash-gear-slot-button.is-flashing { animation: ash-gear-flash 320ms ease-out; }
+@keyframes ash-gear-flash {
+  0% { transform: scale(1.14); box-shadow: 0 0 0 3px var(--aa-ui-active-bronze); }
+  100% { transform: scale(1); }
+}
+.ash-gear-fan {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: flex;
+  gap: 6px;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+.ash-gear-slot-left .ash-gear-fan { left: calc(100% + 8px); }
+.ash-gear-slot-right .ash-gear-fan { right: calc(100% + 8px); flex-direction: row-reverse; }
+.ash-gear-fan-entry {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--aa-ui-bronze-500) 55%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--aa-ui-leather-800) 92%, transparent);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--aa-ui-ink-950) 40%, transparent);
+  color: var(--aa-ui-text);
+  transition: transform 70ms ease-out;
+  animation: ash-gear-fan-in 90ms ease-out both;
+}
+.ash-gear-fan-entry:nth-child(2) { animation-delay: 15ms; }
+.ash-gear-fan-entry:nth-child(3) { animation-delay: 30ms; }
+@keyframes ash-gear-fan-in { from { opacity: 0; transform: scale(.7); } }
+.ash-gear-fan-entry.is-current { box-shadow: inset 0 0 0 2px var(--aa-ui-active-bronze), 0 3px 10px color-mix(in srgb, var(--aa-ui-ink-950) 40%, transparent); }
+.ash-gear-fan-entry.is-hovered { transform: scale(1.16); border-color: var(--aa-ui-active-bronze); }
+.ash-gear-fan-label {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--aa-ui-ink-950, #1b140d);
+  color: #fff;
+  font: 700 11px/14px var(--aa-ui-font-body);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.ash-gear-glyph { position: relative; display: grid; width: 30px; height: 30px; place-items: center; color: var(--aa-ui-text); }
+.ash-gear-glyph svg { width: 100%; height: 100%; }
+.ash-gear-glyph b {
+  position: absolute;
+  right: -4px;
+  bottom: -3px;
+  min-width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background: var(--aa-ui-ink-950, #1b140d);
+  color: #fff;
+  font: 700 9px/14px var(--aa-ui-font-body);
+  text-align: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ash-gear-fan-entry, .ash-gear-slot-button.is-flashing { animation: none; transition: none; }
+}
+
+/* Menu-hold shortcut picker and the one-time dock gesture hint. */
+.menu-shortcut-choices { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 6px; }
+.menu-shortcut-choice { min-height: 44px; display: flex; align-items: center; gap: 8px; padding: 6px 10px; text-align: left; }
+.menu-shortcut-choice svg { width: 20px; height: 20px; flex: 0 0 auto; }
+/* Tap recenters, hold opens the World Map. The gesture lives on a transparent
+ * button covering the vitals: phones cancel long presses on plain content, and
+ * nothing may select, call out, or flash a tap highlight. */
+.phone-bottom-status-actionable {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.phone-bottom-status-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.phone-bottom-status-hit:focus-visible { outline: 2px solid var(--aa-ui-active-bronze); outline-offset: 2px; }
+/* After a dock hold fires, nothing reacts (or looks pressed) under the still-held
+ * finger; PhoneHud clears this when that finger lifts. */
+html[data-dock-hold-active] body * { pointer-events: none !important; }
+/* On touch the dock's vitals and bag show no focus ring or pressed box: iOS
+ * keeps focus on the tapped button and would draw the keyboard ring. */
+html[data-ui-profile="phone"][data-presentation="touch"] :is(.phone-bottom-economy, .phone-bottom-status-hit):is(:focus, :focus-visible, :active) {
+  outline: none;
+  box-shadow: none;
+}
+.dock-gesture-hint {
+  position: fixed; z-index: 45; left: 50%; bottom: calc(var(--hud-bottom-bar-height) + 64px); transform: translateX(-50%);
+  width: min(320px, calc(100vw - 32px)); display: grid; gap: 6px; padding: 10px 12px;
+  border: 1px solid var(--aa-ui-border); border-radius: 12px; color: var(--aa-ui-text);
+  background: var(--aa-ui-material-folio); box-shadow: 0 8px 20px rgb(39 26 15 / 25%); pointer-events: auto;
+  font: 600 12px/1.4 var(--aa-ui-font-body);
+}
+.dock-gesture-hint p { margin: 0; }
+.dock-gesture-hint button { justify-self: end; min-height: 36px; padding: 0 14px; }
+
+/* Quick-slot buttons: complete, fully framed glass buttons (never half-clipped at the screen edge), the same frosted
+ * parchment and bronze rim as the movement stick. They sit --cc-rail-edge from the safe-area edge. */
+html[data-ui-profile="phone"][data-presentation] .ash-hotbar .ash-hotbar-rail-left { left: calc(var(--hud-safe-left, 0px) + var(--cc-rail-edge, 6px)); }
+html[data-ui-profile="phone"][data-presentation] .ash-hotbar .ash-hotbar-rail-right { right: calc(var(--hud-safe-right, 0px) + var(--cc-rail-edge, 6px)); }
+html[data-ui-profile="phone"] .ash-hotbar-rail .ash-hotbar-slot.ash-hotbar-slot.ash-hotbar-slot {
+  box-sizing: border-box;
+  padding: 3px;
+  clip-path: none;
+  border-radius: 12px !important;
+  color: var(--aa-ui-text);
+}
+html[data-ui-profile="phone"] .ash-hotbar-rail .ash-hotbar-slot.ash-hotbar-slot.ash-hotbar-slot::before {
+  inset: 0;
+  border: 1.5px solid var(--cc-glass-rim, rgb(139 105 60 / 60%));
+  border-radius: 12px;
+  outline: 1px solid color-mix(in srgb, var(--aa-ui-bronze-500) 24%, transparent);
+  outline-offset: -4px;
+  background:
+    linear-gradient(180deg, var(--aa-ui-highlight, rgb(255 255 255 / 40%)), transparent 55%),
+    var(--cc-glass-fill, rgb(233 223 198 / 52%));
+  box-shadow: 0 3px 9px rgb(39 26 15 / 20%);
+  opacity: 1;
+}
+html[data-ui-profile="phone"] .ash-hotbar-rail .ash-hotbar-slot.ash-hotbar-slot.ash-hotbar-slot::after { display: none; }
+
+/* Twin-thumb combat controls (JoystickMovement sets data-combat-controls). The slot rails own the outer 44px
+ * strips; the stick and attack cluster sit just inside them. Landscape narrows the dock to the space between
+ * the two clusters and shrinks the slot stack so it fits the short screen. */
+/* Forced minimum: every hotbar row on both rails sits entirely above the touch zones of the stick (left) and the
+ * attack cluster (right), with a 10px gap. The tallest zone sets the line. If the four rows do not fit between
+ * the chat bar and that line the slots shrink (down to 34px tall, tighter gaps) instead of overlapping a zone or the
+ * chat bar. */
+html[data-ui-profile="phone"][data-combat-controls] {
+  --cc-zones-top: max(
+    calc(var(--cc-stick-bottom) + var(--cc-stick) + var(--cc-stick-pad-t)),
+    calc(var(--cc-bottom) + var(--cc-attack) + var(--cc-az-t))
+  );
+  --cc-rail-clear: 8px;
+  --cc-rail-row-gap: 6px;
+  --cc-rail-edge: 6px;
+  --cc-rail-slot-w: clamp(40px, 11.5vmin, 50px);
+  --cc-rail-top: calc(var(--hud-safe-top) + var(--hud-chat-height) + 66px);
+  /* Four rows stack upward from the zones line (flex, bottom aligned), so the slot height is whatever fits. */
+  --cc-rail-slot-h: clamp(34px, calc((100dvh - var(--cc-zones-top) - var(--cc-rail-clear) - var(--cc-rail-top) - 3 * var(--cc-rail-row-gap)) / 4), 48px);
+}
+html[data-ui-profile="phone"][data-combat-controls] .ash-hotbar {
+  --ash-hotbar-status-clearance: 0px;
+  --ash-hotbar-bottom-lift: 0px;
+  top: var(--cc-rail-top);
+  bottom: calc(var(--cc-zones-top) + var(--cc-rail-clear));
+}
+html[data-ui-profile="phone"][data-combat-controls] .ash-hotbar .ash-hotbar-rail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--cc-rail-row-gap);
+  width: var(--cc-rail-slot-w);
+}
+html[data-ui-profile="phone"][data-combat-controls] .ash-hotbar .ash-hotbar-row {
+  position: static;
+  display: flex;
+  width: 100%;
+}
+html[data-ui-profile="phone"][data-combat-controls] .ash-hotbar .ash-hotbar-slot.ash-hotbar-slot {
+  width: var(--cc-rail-slot-w);
+  height: var(--cc-rail-slot-h);
+  min-height: var(--cc-rail-slot-h);
+}
+html[data-ui-profile="phone"][data-combat-controls] .dock-gesture-hint {
+  top: calc(var(--hud-safe-top) + var(--hud-chat-height) + 76px);
+  bottom: auto;
+  width: min(320px, calc(100vw - 2 * (var(--cc-rail-inset) + 8px)));
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  html[data-ui-profile="phone"][data-combat-controls] {
+    --cc-rail-top: calc(var(--hud-safe-top) + var(--hud-chat-height) + 10px);
+    --dock-max-width: calc(100vw - 2 * (var(--cc-rail-inset) + var(--cc-stick) + 12px + max(var(--hud-safe-left), var(--hud-safe-right))));
+    --dock-inset-x: 0px;
+    /* Compact strip hugging its content: 40px of readouts, a 46px medallion rising 6px, 128px ledgers. */
+    --hud-bottom-content-height: 40px;
+    --hud-menu-width: 50px;
+    --dock-medallion-size: 46px;
+    --dock-medallion-rise: 6px;
+    --dock-pad-x: 12px;
+    --dock-radius-top: 14px;
+    --dock-ledger-width: clamp(112px, 15vw, 150px);
+    /* Dock hugs the bottom edge (only the safe-area inset stays clear); the Menu medallion still rises above it. */
+    --dock-tray-bottom: 0px;
+    --dock-bottom-space: var(--hud-safe-bottom);
+    --dock-radius-bottom: 0px;
+  }
+  html[data-ui-profile="phone"][data-presentation="touch"][data-combat-controls] .phone-bottom-bar {
+    width: fit-content;
+    max-width: var(--dock-max-width);
+    column-gap: 8px;
+    padding-inline: var(--dock-pad-x);
+    grid-template-columns: var(--dock-ledger-width) var(--hud-menu-width) var(--dock-ledger-width);
+  }
+  html[data-ui-profile="phone"][data-presentation="touch"][data-combat-controls] :is(.phone-bottom-status, .phone-bottom-economy-compartment) { height: 36px; }
+  html[data-ui-profile="phone"][data-presentation="touch"][data-combat-controls] .phone-bottom-bar :is(.player-status-hud-phone-dock, .phone-bottom-economy) {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+  /* Compact chat pill, top left, instead of a full-width bar. */
+  html[data-ui-profile="phone"][data-combat-controls] .chat-top-bar {
+    right: auto;
+    width: min(46vw, 420px);
+  }
+  html[data-ui-profile="phone"][data-combat-controls] .dock-gesture-hint {
+    top: calc(var(--hud-safe-top) + var(--hud-chat-height) + 8px);
+    width: min(420px, calc(100vw - 2 * (var(--cc-rail-inset) + 8px)));
+    padding: 6px 12px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 2px;
+  }
+  html[data-ui-profile="phone"][data-combat-controls] .dock-gesture-hint button { grid-column: 2; grid-row: 1 / span 2; }
+  html[data-ui-profile="phone"][data-combat-controls] .dock-gesture-hint p { font-size: 11px; line-height: 1.3; }
+  html[data-ui-profile="phone"][data-combat-controls] .dock-gesture-hint button { min-height: 32px; }
+}
+html[data-ui-profile="phone"] .dock-gesture-hint button {
+  min-width: 84px;
+  border: 1.5px solid var(--aa-ui-bronze-500);
+  border-radius: 7px;
+  color: var(--aa-ui-text);
+  background: linear-gradient(180deg, var(--aa-ui-highlight, rgb(255 255 255 / 40%)), transparent 55%), var(--aa-ui-material-folio);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--aa-ui-bronze-500) 18%, transparent), 0 2px 5px rgb(39 26 15 / 22%);
+  font: 800 12px/1 var(--aa-ui-font-body);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+html[data-ui-profile="phone"] .dock-gesture-hint button:active { background: var(--aa-ui-leather-900, #d9ccab); box-shadow: inset 0 2px 3px rgb(39 26 15 / 30%); }

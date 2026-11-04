@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Wooden manor floor">
+  <defs>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9783c"/><stop offset=".55" stop-color="#8f542d"/><stop offset="1" stop-color="#6d3d24"/></linearGradient>
+    <pattern id="boards" width="1000" height="92" patternUnits="userSpaceOnUse">
+      <rect width="1000" height="92" fill="url(#wood)"/>
+      <path d="M0 90h1000M170 0v90M610 0v90" stroke="#4d2a1b" stroke-width="5" opacity=".62"/>
+      <path d="M12 18c125 34 230-27 360 10s235-24 390 10 170-9 226 3" fill="none" stroke="#e0a765" stroke-width="4" opacity=".23"/>
+    </pattern>
+  </defs>
+  <rect x="8" y="8" width="984" height="984" rx="18" fill="url(#boards)" stroke="#3b2118" stroke-width="16"/>
+  <rect x="29" y="29" width="942" height="942" rx="10" fill="none" stroke="#e8b975" stroke-width="4" opacity=".34"/>
+</svg>

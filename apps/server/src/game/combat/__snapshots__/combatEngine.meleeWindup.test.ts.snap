@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`action combat melee windup > with the flag off: no telegraphs and the pre-windup event sequence 1`] = `
+[
+  "-- direct",
+  "1 ATTACK_LANDED wolf>p1 14",
+  "1 DAMAGE wolf>p1 14",
+  "29 ATTACK_LANDED wolf>p1 14",
+  "29 DAMAGE wolf>p1 14",
+  "57 ATTACK_LANDED wolf>p1 14",
+  "57 DAMAGE wolf>p1 14",
+  "85 ATTACK_LANDED wolf>p1 14",
+  "85 DAMAGE wolf>p1 14",
+  "-- session",
+  "1 ATTACK_LANDED p1>wolf 1",
+  "1 DAMAGE p1>wolf 1",
+  "15 ATTACK_LANDED wolf>p1 14",
+  "15 DAMAGE wolf>p1 14",
+  "29 ATTACK_LANDED p1>wolf 1",
+  "29 DAMAGE p1>wolf 1",
+  "43 ATTACK_LANDED wolf>p1 14",
+  "43 DAMAGE wolf>p1 14",
+  "57 ATTACK_LANDED p1>wolf 1",
+  "57 DAMAGE p1>wolf 1",
+  "71 ATTACK_LANDED wolf>p1 14",
+  "71 DAMAGE wolf>p1 14",
+  "85 ATTACK_LANDED p1>wolf 1",
+  "85 DAMAGE p1>wolf 1",
+  "99 ATTACK_LANDED wolf>p1 14",
+  "99 DAMAGE wolf>p1 14",
+]
+`;

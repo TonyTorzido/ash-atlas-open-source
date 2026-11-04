@@ -1,0 +1,37 @@
+name: ${ASH_ATLAS_COMPOSE_PROJECT:?Set by tools/dev/run-main.ps1 from config/dev-runtime.defaults.json}
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: ${ASH_ATLAS_POSTGRES_CONTAINER:?Set by the Ash Atlas runtime supervisor}
+    labels:
+      com.ash-atlas.owner: ${ASH_ATLAS_OWNER_LABEL:?Missing Ash Atlas owner label}
+      com.ash-atlas.runtime-id: ${ASH_ATLAS_RUNTIME_ID:?Missing runtime ID}
+      com.ash-atlas.runtime-mode: ${ASH_ATLAS_RUNTIME_MODE:?Missing runtime mode}
+      com.ash-atlas.worktree: ${ASH_ATLAS_RUNTIME_WORKTREE:?Missing runtime worktree}
+      com.ash-atlas.database-disposition: ${ASH_ATLAS_DATABASE_DISPOSITION:?Missing database disposition}
+    environment:
+      POSTGRES_DB: ${ASH_ATLAS_DATABASE_NAME:?Missing database name}
+      POSTGRES_USER: ${ASH_ATLAS_DATABASE_USER:?Missing database user}
+      POSTGRES_PASSWORD: ${ASH_ATLAS_DATABASE_PASSWORD:?Missing database password}
+    ports:
+      - "127.0.0.1:${ASH_ATLAS_POSTGRES_PORT:?Missing PostgreSQL host port}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - runtime
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${ASH_ATLAS_DATABASE_USER:?Missing database user} -d ${ASH_ATLAS_DATABASE_NAME:?Missing database name}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres_data:
+    name: ${ASH_ATLAS_POSTGRES_VOLUME:?Missing PostgreSQL volume identity}
+    external: true
+
+networks:
+  runtime:
+    name: ${ASH_ATLAS_NETWORK_NAME:?Missing runtime network identity}
+    external: true

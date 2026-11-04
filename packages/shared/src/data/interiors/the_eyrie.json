@@ -1,0 +1,3239 @@
+{
+  "defaultRoomId": "cliff_base",
+  "description": "A windswept mountain nest above Fangrock. Cross the cliffs and the rope bridge to challenge Thunderwing. Recommended level 11.",
+  "environment": {
+    "accentColor": "#9fc4e8",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#0b1118",
+    "environmentId": "eyrie",
+    "floorColor": "#4a4a44",
+    "musicAssetKey": null,
+    "wallColor": "#5a5750"
+  },
+  "id": "the_eyrie",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "access": {
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6,
+      "minimumLevel": 11
+    },
+    "bossTemplateIds": [
+      "thunderwing"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "cliff_base"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "ledge_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "ledge_ambush",
+        "leashZoneId": "ledge_leash",
+        "lockPortalIds": [
+          "base_to_ledge_back",
+          "ledge_to_hollow"
+        ],
+        "name": "Ledge Ambush",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "switchback_ledge",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "ledge_ambush_dune_tick_w1",
+              "ledge_ambush_dune_tick_w1_2",
+              "ledge_ambush_dune_tick_w1_3",
+              "ledge_ambush_dune_tick_w1_4"
+            ]
+          },
+          {
+            "delayMs": 1500,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "ledge_ambush_cliff_hawk_w2",
+              "ledge_ambush_cliff_hawk_w2_2",
+              "ledge_ambush_cliff_hawk_w2_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "hollow_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "hollow_swarm",
+        "leashZoneId": "hollow_leash",
+        "lockPortalIds": [
+          "ledge_to_hollow_back",
+          "hollow_to_bridge"
+        ],
+        "name": "Nest Mice Swarm",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "scrap_hollow",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "hollow_swarm_nest_mouse_w1",
+              "hollow_swarm_nest_mouse_w1_2",
+              "hollow_swarm_nest_mouse_w1_3"
+            ]
+          },
+          {
+            "delayMs": 1500,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "hollow_swarm_nest_mouse_w2",
+              "hollow_swarm_nest_mouse_w2_2",
+              "hollow_swarm_nest_mouse_w2_3"
+            ]
+          },
+          {
+            "delayMs": 1500,
+            "id": "wave_3",
+            "mobSpawnIds": [
+              "hollow_swarm_carrion_chick_w3",
+              "hollow_swarm_carrion_chick_w3_2"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "bridge_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "bridge_dive",
+        "leashZoneId": "bridge_leash",
+        "lockPortalIds": [
+          "hollow_to_bridge_back",
+          "bridge_to_crown"
+        ],
+        "name": "Bridge Dive",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "wind_bridge",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "bridge_dive_cliff_hawk_w1",
+              "bridge_dive_cliff_hawk_w1_2",
+              "bridge_dive_cliff_hawk_w1_3",
+              "bridge_dive_carrion_chick_w1",
+              "bridge_dive_carrion_chick_w1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "thunderwing",
+        "boundaryZoneId": "crown_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "thunderwing",
+        "leashZoneId": "crown_leash",
+        "lockPortalIds": [
+          "bridge_to_crown_back"
+        ],
+        "name": "Thunderwing",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "nest_crown",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "thunderwing_boss",
+              "thunderwing_carrion_chick_w1_50",
+              "thunderwing_carrion_chick_w1_50_2",
+              "thunderwing_cliff_hawk_w1_50",
+              "thunderwing_cliff_hawk_w1_50_2"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "world_entry_arrival",
+      "portalId": "the_eyrie_world_to_entrance",
+      "roomId": "cliff_base"
+    },
+    "escape": {
+      "portalId": "the_eyrie_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "the_eyrie-v2"
+    },
+    "rewardTableIds": [
+      "the_eyrie_crown_chest_reward",
+      "the_eyrie_baby_chest",
+      "the_eyrie_completion_reward"
+    ],
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "the_eyrie_crown_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "crown_chest",
+          "roomId": "nest_crown",
+          "type": "object_interact"
+        },
+        "id": "crown_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "ledge_ambush",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "switchback_ledge",
+          "type": "room_enter"
+        },
+        "id": "start_ledge_ambush",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "hollow_swarm",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "scrap_hollow",
+          "type": "room_enter"
+        },
+        "id": "start_hollow_swarm",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "bridge_dive",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "wind_bridge",
+          "type": "room_enter"
+        },
+        "id": "start_bridge_dive",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "thunderwing",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "nest_crown",
+          "type": "room_enter"
+        },
+        "id": "start_thunderwing",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "crown_chest",
+            "roomId": "nest_crown",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          },
+          {
+            "text": "Thunderwing falls. A hoard is revealed.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "thunderwing",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "thunderwing_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "the_eyrie_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "eyrie-small-chest-cliff",
+          "roomId": "cliff_base",
+          "type": "object_interact"
+        },
+        "id": "eyrie-small-chest-cliff-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "the_eyrie_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "eyrie-small-chest-ledge",
+          "roomId": "switchback_ledge",
+          "type": "object_interact"
+        },
+        "id": "eyrie-small-chest-ledge-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "the_eyrie_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "eyrie-small-chest-hollow-sw",
+          "roomId": "scrap_hollow",
+          "type": "object_interact"
+        },
+        "id": "eyrie-small-chest-hollow-sw-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "the_eyrie_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "eyrie-small-chest-hollow-ne",
+          "roomId": "scrap_hollow",
+          "type": "object_interact"
+        },
+        "id": "eyrie-small-chest-hollow-ne-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "the_eyrie_baby_chest",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "eyrie-small-chest-hollow-nw",
+          "roomId": "scrap_hollow",
+          "type": "object_interact"
+        },
+        "id": "eyrie-small-chest-hollow-nw-reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "recipients": "present",
+            "rewardTableId": "the_eyrie_completion_reward",
+            "type": "grant_run_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "thunderwing",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "thunderwing_completion_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      }
+    ]
+  },
+  "name": "The Eyrie",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "cliff_base"
+      },
+      "destinationArrivalAnchorId": "world_entry_arrival",
+      "enabled": false,
+      "id": "the_eyrie_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for the_eyrie",
+      "presentation": "door",
+      "reciprocalPortalId": "the_eyrie_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "the_eyrie_entrance_to_world",
+      "interactionLabel": "Descend the Mountain",
+      "presentation": "cave",
+      "reciprocalPortalId": "the_eyrie_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "cliff_base"
+      },
+      "sourceApproachAnchorId": "world_approach",
+      "sourceThresholdAnchorId": "world_exit"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "switchback_ledge"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "base_to_ledge",
+      "interactionLabel": "Climb the Steps",
+      "preloadSceneKey": "the_eyrie/switchback_ledge",
+      "presentation": "door",
+      "reciprocalPortalId": "base_to_ledge_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "cliff_base"
+      },
+      "sourceApproachAnchorId": "approach_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "cliff_base"
+      },
+      "destinationArrivalAnchorId": "arrive_n",
+      "enabled": true,
+      "id": "base_to_ledge_back",
+      "interactionLabel": "Descend to the Base",
+      "preloadSceneKey": "the_eyrie/cliff_base",
+      "presentation": "door",
+      "reciprocalPortalId": "base_to_ledge",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "switchback_ledge"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "scrap_hollow"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "ledge_to_hollow",
+      "interactionLabel": "Enter the Hollow",
+      "preloadSceneKey": "the_eyrie/scrap_hollow",
+      "presentation": "door",
+      "reciprocalPortalId": "ledge_to_hollow_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "switchback_ledge"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "switchback_ledge"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "ledge_to_hollow_back",
+      "interactionLabel": "Back to the Ledge",
+      "preloadSceneKey": "the_eyrie/switchback_ledge",
+      "presentation": "door",
+      "reciprocalPortalId": "ledge_to_hollow",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "scrap_hollow"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "wind_bridge"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "hollow_to_bridge",
+      "interactionLabel": "Climb to the Bridge",
+      "preloadSceneKey": "the_eyrie/wind_bridge",
+      "presentation": "door",
+      "reciprocalPortalId": "hollow_to_bridge_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "scrap_hollow"
+      },
+      "sourceApproachAnchorId": "approach_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "scrap_hollow"
+      },
+      "destinationArrivalAnchorId": "arrive_n",
+      "enabled": true,
+      "id": "hollow_to_bridge_back",
+      "interactionLabel": "Back to the Hollow",
+      "preloadSceneKey": "the_eyrie/scrap_hollow",
+      "presentation": "door",
+      "reciprocalPortalId": "hollow_to_bridge",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "wind_bridge"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "nest_crown"
+      },
+      "destinationArrivalAnchorId": "arrive_w",
+      "enabled": true,
+      "id": "bridge_to_crown",
+      "interactionLabel": "Go to the Nest Crown",
+      "preloadSceneKey": "the_eyrie/nest_crown",
+      "presentation": "door",
+      "reciprocalPortalId": "bridge_to_crown_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "wind_bridge"
+      },
+      "sourceApproachAnchorId": "approach_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "wind_bridge"
+      },
+      "destinationArrivalAnchorId": "arrive_e",
+      "enabled": true,
+      "id": "bridge_to_crown_back",
+      "interactionLabel": "Back to the Bridge",
+      "preloadSceneKey": "the_eyrie/wind_bridge",
+      "presentation": "door",
+      "reciprocalPortalId": "bridge_to_crown",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "nest_crown"
+      },
+      "sourceApproachAnchorId": "approach_w",
+      "sourceThresholdAnchorId": "door_w"
+    }
+  ],
+  "retired": false,
+  "revision": "the_eyrie-v2",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 800
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "world_exit",
+          "retired": false,
+          "role": "portal",
+          "x": 505,
+          "y": 960
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 140
+        },
+        {
+          "id": "world_approach",
+          "retired": false,
+          "role": "point",
+          "x": 505,
+          "y": 880
+        },
+        {
+          "id": "world_entry_arrival",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 800
+        },
+        {
+          "id": "eyrie_small_chest_cliff_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 870,
+          "y": 800
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 1000,
+          "id": "wall_left",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 1000,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 940,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_top_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 380,
+          "x": 60,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_top_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 380,
+          "x": 560,
+          "y": 0
+        },
+        {
+          "height": 100,
+          "id": "wall_bottom_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 380,
+          "x": 60,
+          "y": 900
+        },
+        {
+          "height": 100,
+          "id": "wall_bottom_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 370,
+          "x": 570,
+          "y": 900
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "the_eyrie_eyrie",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "cliff_base",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "cliff_base_floor",
+            "prefabRevision": "cliff-base-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Cliff Base",
+      "objects": [
+        {
+          "anchorId": "world_exit",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "the_eyrie_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Return to world",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Return to world",
+          "opacity": 0,
+          "portalId": "the_eyrie_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "base_to_ledge_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb the Steps",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Climb the Steps",
+          "opacity": 0,
+          "portalId": "base_to_ledge",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "eyrie_small_chest_cliff_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "eyrie-small-chest-cliff",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "the_eyrie_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "eyrie_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "cliff_scrub_west",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1307919,
+          "shape": {
+            "height": 130,
+            "id": "cliff_scrub_west_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 170,
+            "x": 100,
+            "y": 150
+          }
+        },
+        {
+          "id": "cliff_scrub_east",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1315838,
+          "shape": {
+            "height": 130,
+            "id": "cliff_scrub_east_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 170,
+            "x": 730,
+            "y": 150
+          }
+        },
+        {
+          "id": "cliff_scrub_southwest",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 90,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "stone",
+            "flax_fiber"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1323757,
+          "shape": {
+            "height": 120,
+            "id": "cliff_scrub_southwest_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 150,
+            "x": 110,
+            "y": 720
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "the_eyrie-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 130,
+          "y": 360
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 360
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 100,
+          "y": 360
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 130,
+          "y": 360
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 360
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1500,
+          "y": 360
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1470,
+          "y": 360
+        },
+        {
+          "id": "ledge_ambush_dune_tick_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 340
+        },
+        {
+          "id": "ledge_ambush_dune_tick_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 380
+        },
+        {
+          "id": "ledge_ambush_dune_tick_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 340
+        },
+        {
+          "id": "ledge_ambush_dune_tick_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 380
+        },
+        {
+          "id": "ledge_ambush_cliff_hawk_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 400,
+          "y": 520
+        },
+        {
+          "id": "ledge_ambush_cliff_hawk_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 520
+        },
+        {
+          "id": "ledge_ambush_cliff_hawk_w2_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1200,
+          "y": 520
+        },
+        {
+          "id": "eyrie_small_chest_ledge_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1480,
+          "y": 110
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 30,
+          "id": "rim_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 300,
+          "id": "rim_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 30,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 140,
+          "id": "rim_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 30,
+          "x": 0,
+          "y": 420
+        },
+        {
+          "height": 300,
+          "id": "rim_right_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 30,
+          "x": 1570,
+          "y": 0
+        },
+        {
+          "height": 140,
+          "id": "rim_right_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 30,
+          "x": 1570,
+          "y": 420
+        },
+        {
+          "id": "sky_below_lip",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 0,
+              "y": 800
+            },
+            {
+              "x": 0,
+              "y": 562
+            },
+            {
+              "x": 200,
+              "y": 552
+            },
+            {
+              "x": 400,
+              "y": 566
+            },
+            {
+              "x": 600,
+              "y": 556
+            },
+            {
+              "x": 800,
+              "y": 570
+            },
+            {
+              "x": 1000,
+              "y": 558
+            },
+            {
+              "x": 1200,
+              "y": 568
+            },
+            {
+              "x": 1400,
+              "y": 555
+            },
+            {
+              "x": 1600,
+              "y": 562
+            },
+            {
+              "x": 1600,
+              "y": 800
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "switchback_ledge_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "switchback_ledge",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "switchback_ledge_floor",
+            "prefabRevision": "switchback-ledge-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "ledge_ambush_dune_tick_w1_anchor",
+          "archetype": "dune_tick",
+          "encounterId": "ledge_ambush",
+          "facing": 3.141592653589793,
+          "id": "ledge_ambush_dune_tick_w1",
+          "leashZoneId": "ledge_leash",
+          "retired": false,
+          "spawnGroupId": "ledge_ambush_wave1_dune_tick",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ledge_ambush_dune_tick_w1_2_anchor",
+          "archetype": "dune_tick",
+          "encounterId": "ledge_ambush",
+          "facing": 3.141592653589793,
+          "id": "ledge_ambush_dune_tick_w1_2",
+          "leashZoneId": "ledge_leash",
+          "retired": false,
+          "spawnGroupId": "ledge_ambush_wave1_dune_tick",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ledge_ambush_dune_tick_w1_3_anchor",
+          "archetype": "dune_tick",
+          "encounterId": "ledge_ambush",
+          "facing": 3.141592653589793,
+          "id": "ledge_ambush_dune_tick_w1_3",
+          "leashZoneId": "ledge_leash",
+          "retired": false,
+          "spawnGroupId": "ledge_ambush_wave1_dune_tick",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ledge_ambush_dune_tick_w1_4_anchor",
+          "archetype": "dune_tick",
+          "encounterId": "ledge_ambush",
+          "facing": 3.141592653589793,
+          "id": "ledge_ambush_dune_tick_w1_4",
+          "leashZoneId": "ledge_leash",
+          "retired": false,
+          "spawnGroupId": "ledge_ambush_wave1_dune_tick",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "ledge_ambush_cliff_hawk_w2_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "ledge_ambush",
+          "facing": 3.141592653589793,
+          "id": "ledge_ambush_cliff_hawk_w2",
+          "leashZoneId": "ledge_leash",
+          "retired": false,
+          "spawnGroupId": "ledge_ambush_wave2_cliff_hawk",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "ledge_ambush_cliff_hawk_w2_2_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "ledge_ambush",
+          "facing": 3.141592653589793,
+          "id": "ledge_ambush_cliff_hawk_w2_2",
+          "leashZoneId": "ledge_leash",
+          "retired": false,
+          "spawnGroupId": "ledge_ambush_wave2_cliff_hawk",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "ledge_ambush_cliff_hawk_w2_3_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "ledge_ambush",
+          "facing": 3.141592653589793,
+          "id": "ledge_ambush_cliff_hawk_w2_3",
+          "leashZoneId": "ledge_leash",
+          "retired": false,
+          "spawnGroupId": "ledge_ambush_wave2_cliff_hawk",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Switchback Ledge",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "base_to_ledge_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Descend to the Base",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Descend to the Base",
+          "opacity": 0,
+          "portalId": "base_to_ledge_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "ledge_to_hollow_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Hollow",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Enter the Hollow",
+          "opacity": 0,
+          "portalId": "ledge_to_hollow",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "eyrie_small_chest_ledge_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "eyrie-small-chest-ledge",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "the_eyrie_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "eyrie_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "ledge_north_scrub_west",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 110,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "flax_fiber",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1331676,
+          "shape": {
+            "height": 80,
+            "id": "ledge_north_scrub_west_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 300,
+            "x": 250,
+            "y": 70
+          }
+        },
+        {
+          "id": "ledge_north_scrub_east",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 110,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "wood",
+            "flax_fiber",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1339595,
+          "shape": {
+            "height": 80,
+            "id": "ledge_north_scrub_east_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 320,
+            "x": 950,
+            "y": 70
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "the_eyrie-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 520,
+          "id": "ledge_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 600,
+          "id": "ledge_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 450
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 450
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 450
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 450
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 140
+        },
+        {
+          "id": "hollow_swarm_nest_mouse_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 240,
+          "y": 100
+        },
+        {
+          "id": "hollow_swarm_nest_mouse_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1040,
+          "y": 100
+        },
+        {
+          "id": "hollow_swarm_nest_mouse_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 560
+        },
+        {
+          "id": "hollow_swarm_nest_mouse_w2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 240,
+          "y": 100
+        },
+        {
+          "id": "hollow_swarm_nest_mouse_w2_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1040,
+          "y": 100
+        },
+        {
+          "id": "hollow_swarm_nest_mouse_w2_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 560
+        },
+        {
+          "id": "hollow_swarm_carrion_chick_w3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "id": "hollow_swarm_carrion_chick_w3_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 700
+        },
+        {
+          "id": "eyrie_small_chest_hollow_sw_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 120,
+          "y": 880
+        },
+        {
+          "id": "eyrie_small_chest_hollow_ne_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1080,
+          "y": 230
+        },
+        {
+          "id": "eyrie_small_chest_hollow_nw_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 130,
+          "y": 170
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 60,
+          "id": "wall_top_l",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 520,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_top_r",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 520,
+          "x": 680,
+          "y": 0
+        },
+        {
+          "height": 60,
+          "id": "wall_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 1200,
+          "x": 0,
+          "y": 940
+        },
+        {
+          "height": 400,
+          "id": "wall_left_n",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "height": 500,
+          "id": "wall_left_s",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 0,
+          "y": 500
+        },
+        {
+          "height": 1000,
+          "id": "wall_right",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 60,
+          "x": 1140,
+          "y": 0
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "scrap_hollow_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "scrap_hollow",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "scrap_hollow_floor",
+            "prefabRevision": "scrap-hollow-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "hollow_swarm_nest_mouse_w1_anchor",
+          "archetype": "nest_mouse",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_nest_mouse_w1",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave1_nest_mouse",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_swarm_nest_mouse_w1_2_anchor",
+          "archetype": "nest_mouse",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_nest_mouse_w1_2",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave1_nest_mouse",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_swarm_nest_mouse_w1_3_anchor",
+          "archetype": "nest_mouse",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_nest_mouse_w1_3",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave1_nest_mouse",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "hollow_swarm_nest_mouse_w2_anchor",
+          "archetype": "nest_mouse",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_nest_mouse_w2",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave2_nest_mouse",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "hollow_swarm_nest_mouse_w2_2_anchor",
+          "archetype": "nest_mouse",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_nest_mouse_w2_2",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave2_nest_mouse",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "hollow_swarm_nest_mouse_w2_3_anchor",
+          "archetype": "nest_mouse",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_nest_mouse_w2_3",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave2_nest_mouse",
+          "visualScale": 1,
+          "waveIndex": 2
+        },
+        {
+          "anchorId": "hollow_swarm_carrion_chick_w3_anchor",
+          "archetype": "carrion_chick",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_carrion_chick_w3",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave3_carrion_chick",
+          "visualScale": 1,
+          "waveIndex": 3
+        },
+        {
+          "anchorId": "hollow_swarm_carrion_chick_w3_2_anchor",
+          "archetype": "carrion_chick",
+          "encounterId": "hollow_swarm",
+          "facing": 3.141592653589793,
+          "id": "hollow_swarm_carrion_chick_w3_2",
+          "leashZoneId": "hollow_leash",
+          "retired": false,
+          "spawnGroupId": "hollow_swarm_wave3_carrion_chick",
+          "visualScale": 1,
+          "waveIndex": 3
+        }
+      ],
+      "name": "Scrap Hollow",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "ledge_to_hollow_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Ledge",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Ledge",
+          "opacity": 0,
+          "portalId": "ledge_to_hollow_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hollow_to_bridge_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb to the Bridge",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Climb to the Bridge",
+          "opacity": 0,
+          "portalId": "hollow_to_bridge",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "eyrie_small_chest_hollow_sw_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "eyrie-small-chest-hollow-sw",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "the_eyrie_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "eyrie_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "eyrie_small_chest_hollow_ne_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "eyrie-small-chest-hollow-ne",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "the_eyrie_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "eyrie_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "eyrie_small_chest_hollow_nw_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "eyrie-small-chest-hollow-nw",
+          "initialState": "closed",
+          "interactionRadius": 70,
+          "layerId": "actors",
+          "name": "Small Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_baby_chest",
+          "prefabRevision": "dungeon-baby-chest-v2",
+          "retired": false,
+          "rewardTableId": "the_eyrie_baby_chest",
+          "rotationDeg": 0,
+          "spawnGroup": {
+            "id": "eyrie_small_chests",
+            "max": 3,
+            "min": 1
+          },
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "hollow_south_west",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "stone",
+            "wood"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1347514,
+          "shape": {
+            "height": 120,
+            "id": "hollow_south_west_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 200,
+            "x": 200,
+            "y": 720
+          }
+        },
+        {
+          "id": "hollow_south_east",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "flax_fiber",
+            "stone"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1355433,
+          "shape": {
+            "height": 120,
+            "id": "hollow_south_east_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 220,
+            "x": 800,
+            "y": 740
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "the_eyrie-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 880,
+          "id": "hollow_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1080,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "hollow_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 330
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 310
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 100,
+          "y": 310
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 330
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 310
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1500,
+          "y": 310
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1460,
+          "y": 330
+        },
+        {
+          "id": "bridge_dive_cliff_hawk_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 330
+        },
+        {
+          "id": "bridge_dive_cliff_hawk_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 330
+        },
+        {
+          "id": "bridge_dive_cliff_hawk_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 330
+        },
+        {
+          "id": "bridge_dive_carrion_chick_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1400,
+          "y": 290
+        },
+        {
+          "id": "bridge_dive_carrion_chick_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1400,
+          "y": 380
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 350
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "height": 275,
+          "id": "sky_mid_top",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 990,
+          "x": 300,
+          "y": 0
+        },
+        {
+          "height": 310,
+          "id": "sky_mid_bottom",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 990,
+          "x": 300,
+          "y": 390
+        },
+        {
+          "id": "sky_w_top",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 300,
+              "y": 0
+            },
+            {
+              "x": 300,
+              "y": 220
+            },
+            {
+              "x": 200,
+              "y": 140
+            },
+            {
+              "x": 60,
+              "y": 150
+            },
+            {
+              "x": 0,
+              "y": 230
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "sky_w_bottom",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 0,
+              "y": 400
+            },
+            {
+              "x": 80,
+              "y": 520
+            },
+            {
+              "x": 200,
+              "y": 520
+            },
+            {
+              "x": 300,
+              "y": 430
+            },
+            {
+              "x": 300,
+              "y": 700
+            },
+            {
+              "x": 0,
+              "y": 700
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "sky_e_top",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 1290,
+              "y": 0
+            },
+            {
+              "x": 1600,
+              "y": 0
+            },
+            {
+              "x": 1600,
+              "y": 230
+            },
+            {
+              "x": 1520,
+              "y": 150
+            },
+            {
+              "x": 1360,
+              "y": 150
+            },
+            {
+              "x": 1290,
+              "y": 220
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "sky_e_bottom",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 1290,
+              "y": 430
+            },
+            {
+              "x": 1360,
+              "y": 520
+            },
+            {
+              "x": 1500,
+              "y": 520
+            },
+            {
+              "x": 1600,
+              "y": 400
+            },
+            {
+              "x": 1600,
+              "y": 700
+            },
+            {
+              "x": 1290,
+              "y": 700
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "wind_bridge_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 676
+            },
+            {
+              "x": 24,
+              "y": 676
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 700,
+      "id": "wind_bridge",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 700,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "wind_bridge_floor",
+            "prefabRevision": "wind-bridge-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "bridge_dive_cliff_hawk_w1_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "bridge_dive",
+          "facing": 3.141592653589793,
+          "id": "bridge_dive_cliff_hawk_w1",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bridge_dive_wave1_cliff_hawk",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bridge_dive_cliff_hawk_w1_2_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "bridge_dive",
+          "facing": 3.141592653589793,
+          "id": "bridge_dive_cliff_hawk_w1_2",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bridge_dive_wave1_cliff_hawk",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bridge_dive_cliff_hawk_w1_3_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "bridge_dive",
+          "facing": 3.141592653589793,
+          "id": "bridge_dive_cliff_hawk_w1_3",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bridge_dive_wave1_cliff_hawk",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bridge_dive_carrion_chick_w1_anchor",
+          "archetype": "carrion_chick",
+          "encounterId": "bridge_dive",
+          "facing": 3.141592653589793,
+          "id": "bridge_dive_carrion_chick_w1",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bridge_dive_wave1_carrion_chick",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bridge_dive_carrion_chick_w1_2_anchor",
+          "archetype": "carrion_chick",
+          "encounterId": "bridge_dive",
+          "facing": 3.141592653589793,
+          "id": "bridge_dive_carrion_chick_w1_2",
+          "leashZoneId": "bridge_leash",
+          "retired": false,
+          "spawnGroupId": "bridge_dive_wave1_carrion_chick",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Wind Bridge",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "hollow_to_bridge_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Hollow",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Hollow",
+          "opacity": 0,
+          "portalId": "hollow_to_bridge_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bridge_to_crown_object",
+          "initialState": "closed",
+          "interactionLabel": "Go to the Nest Crown",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Go to the Nest Crown",
+          "opacity": 0,
+          "portalId": "bridge_to_crown",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "the_eyrie-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 370,
+          "id": "bridge_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 150
+        },
+        {
+          "height": 470,
+          "id": "bridge_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 200,
+          "y": 685
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 685
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 100,
+          "y": 685
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 200,
+          "y": 685
+        },
+        {
+          "id": "crown_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1050,
+          "y": 950
+        },
+        {
+          "id": "egg_nest",
+          "retired": false,
+          "role": "point",
+          "x": 790,
+          "y": 480
+        },
+        {
+          "id": "thunderwing_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 780,
+          "y": 700
+        },
+        {
+          "id": "thunderwing_carrion_chick_w1_50_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 560,
+          "y": 560
+        },
+        {
+          "id": "thunderwing_carrion_chick_w1_50_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 950,
+          "y": 820
+        },
+        {
+          "id": "thunderwing_cliff_hawk_w1_50_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 950,
+          "y": 540
+        },
+        {
+          "id": "thunderwing_cliff_hawk_w1_50_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 560,
+          "y": 830
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 700
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [
+        {
+          "id": "sky_upper",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1400,
+              "y": 0
+            },
+            {
+              "x": 1400,
+              "y": 690
+            },
+            {
+              "x": 1220,
+              "y": 690
+            },
+            {
+              "x": 1217.64,
+              "y": 641.97
+            },
+            {
+              "x": 1210.58,
+              "y": 594.41
+            },
+            {
+              "x": 1198.9,
+              "y": 547.76
+            },
+            {
+              "x": 1182.7,
+              "y": 502.49
+            },
+            {
+              "x": 1162.14,
+              "y": 459.02
+            },
+            {
+              "x": 1137.42,
+              "y": 417.77
+            },
+            {
+              "x": 1108.78,
+              "y": 379.15
+            },
+            {
+              "x": 1076.48,
+              "y": 343.52
+            },
+            {
+              "x": 1040.85,
+              "y": 311.22
+            },
+            {
+              "x": 1002.23,
+              "y": 282.58
+            },
+            {
+              "x": 960.98,
+              "y": 257.86
+            },
+            {
+              "x": 917.51,
+              "y": 237.3
+            },
+            {
+              "x": 872.24,
+              "y": 221.1
+            },
+            {
+              "x": 825.59,
+              "y": 209.42
+            },
+            {
+              "x": 778.03,
+              "y": 202.36
+            },
+            {
+              "x": 730,
+              "y": 200
+            },
+            {
+              "x": 681.97,
+              "y": 202.36
+            },
+            {
+              "x": 634.41,
+              "y": 209.42
+            },
+            {
+              "x": 587.76,
+              "y": 221.1
+            },
+            {
+              "x": 542.49,
+              "y": 237.3
+            },
+            {
+              "x": 499.02,
+              "y": 257.86
+            },
+            {
+              "x": 457.77,
+              "y": 282.58
+            },
+            {
+              "x": 419.15,
+              "y": 311.22
+            },
+            {
+              "x": 383.52,
+              "y": 343.52
+            },
+            {
+              "x": 351.22,
+              "y": 379.15
+            },
+            {
+              "x": 322.58,
+              "y": 417.77
+            },
+            {
+              "x": 297.86,
+              "y": 459.02
+            },
+            {
+              "x": 277.3,
+              "y": 502.49
+            },
+            {
+              "x": 261.1,
+              "y": 547.76
+            },
+            {
+              "x": 249.42,
+              "y": 594.41
+            },
+            {
+              "x": 245.62,
+              "y": 620
+            },
+            {
+              "x": 0,
+              "y": 620
+            }
+          ],
+          "retired": false
+        },
+        {
+          "id": "sky_lower",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 0,
+              "y": 1400
+            },
+            {
+              "x": 1400,
+              "y": 1400
+            },
+            {
+              "x": 1400,
+              "y": 690
+            },
+            {
+              "x": 1220,
+              "y": 690
+            },
+            {
+              "x": 1217.64,
+              "y": 738.03
+            },
+            {
+              "x": 1210.58,
+              "y": 785.59
+            },
+            {
+              "x": 1198.9,
+              "y": 832.24
+            },
+            {
+              "x": 1182.7,
+              "y": 877.51
+            },
+            {
+              "x": 1162.14,
+              "y": 920.98
+            },
+            {
+              "x": 1137.42,
+              "y": 962.23
+            },
+            {
+              "x": 1108.78,
+              "y": 1000.85
+            },
+            {
+              "x": 1076.48,
+              "y": 1036.48
+            },
+            {
+              "x": 1040.85,
+              "y": 1068.78
+            },
+            {
+              "x": 1002.23,
+              "y": 1097.42
+            },
+            {
+              "x": 960.98,
+              "y": 1122.14
+            },
+            {
+              "x": 917.51,
+              "y": 1142.7
+            },
+            {
+              "x": 872.24,
+              "y": 1158.9
+            },
+            {
+              "x": 825.59,
+              "y": 1170.58
+            },
+            {
+              "x": 778.03,
+              "y": 1177.64
+            },
+            {
+              "x": 730,
+              "y": 1180
+            },
+            {
+              "x": 681.97,
+              "y": 1177.64
+            },
+            {
+              "x": 634.41,
+              "y": 1170.58
+            },
+            {
+              "x": 587.76,
+              "y": 1158.9
+            },
+            {
+              "x": 542.49,
+              "y": 1142.7
+            },
+            {
+              "x": 499.02,
+              "y": 1122.14
+            },
+            {
+              "x": 457.77,
+              "y": 1097.42
+            },
+            {
+              "x": 419.15,
+              "y": 1068.78
+            },
+            {
+              "x": 383.52,
+              "y": 1036.48
+            },
+            {
+              "x": 351.22,
+              "y": 1000.85
+            },
+            {
+              "x": 322.58,
+              "y": 962.23
+            },
+            {
+              "x": 297.86,
+              "y": 920.98
+            },
+            {
+              "x": 277.3,
+              "y": 877.51
+            },
+            {
+              "x": 261.1,
+              "y": 832.24
+            },
+            {
+              "x": 249.42,
+              "y": 785.59
+            },
+            {
+              "x": 244.14,
+              "y": 750
+            },
+            {
+              "x": 0,
+              "y": 750
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "nest_crown_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 1376
+            },
+            {
+              "x": 24,
+              "y": 1376
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1400,
+      "id": "nest_crown",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "nest_crown_floor",
+            "prefabRevision": "nest-crown-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "thunderwing_boss_anchor",
+          "archetype": "thunderwing",
+          "encounterId": "thunderwing",
+          "facing": 1.5707963267948966,
+          "id": "thunderwing_boss",
+          "leashZoneId": "crown_leash",
+          "retired": false,
+          "spawnGroupId": "thunderwing_group",
+          "visualScale": 1.6,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "thunderwing_carrion_chick_w1_50_anchor",
+          "archetype": "carrion_chick",
+          "encounterId": "thunderwing",
+          "facing": 3.141592653589793,
+          "id": "thunderwing_carrion_chick_w1_50",
+          "leashZoneId": "crown_leash",
+          "retired": false,
+          "spawnGroupId": "thunderwing_chicks_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "thunderwing_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "thunderwing_carrion_chick_w1_50_2_anchor",
+          "archetype": "carrion_chick",
+          "encounterId": "thunderwing",
+          "facing": 3.141592653589793,
+          "id": "thunderwing_carrion_chick_w1_50_2",
+          "leashZoneId": "crown_leash",
+          "retired": false,
+          "spawnGroupId": "thunderwing_chicks_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "thunderwing_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "thunderwing_cliff_hawk_w1_50_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "thunderwing",
+          "facing": 3.141592653589793,
+          "id": "thunderwing_cliff_hawk_w1_50",
+          "leashZoneId": "crown_leash",
+          "retired": false,
+          "spawnGroupId": "thunderwing_hawks_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "thunderwing_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "thunderwing_cliff_hawk_w1_50_2_anchor",
+          "archetype": "cliff_hawk",
+          "encounterId": "thunderwing",
+          "facing": 3.141592653589793,
+          "id": "thunderwing_cliff_hawk_w1_50_2",
+          "leashZoneId": "crown_leash",
+          "retired": false,
+          "spawnGroupId": "thunderwing_hawks_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "thunderwing_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Nest Crown",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bridge_to_crown_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Bridge",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Back to the Bridge",
+          "opacity": 0,
+          "portalId": "bridge_to_crown_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "crown_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "crown_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Thunderwing's Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "the_eyrie_crown_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "egg_nest",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "egg-nest",
+          "initialState": "idle",
+          "interactionLabel": "Offer 6 Giant Eggs",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Giant Egg Nest",
+          "opacity": 0,
+          "prefabId": "eyrie_egg_nest",
+          "prefabRevision": "eyrie-egg-nest-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "skillTurnIn": "wildkin_lore",
+          "type": "shrine",
+          "zIndex": 10
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "crown_south_edge",
+          "interactionRadius": 82,
+          "maxCount": 2,
+          "maxYield": 3,
+          "minCount": 1,
+          "minYield": 1,
+          "minimumSpacing": 100,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "stone",
+            "wood"
+          ],
+          "respawnSeconds": null,
+          "retired": false,
+          "seed": 1363352,
+          "shape": {
+            "height": 70,
+            "id": "crown_south_edge_shape",
+            "kind": "rectangle",
+            "retired": false,
+            "width": 240,
+            "x": 500,
+            "y": 1020
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "the_eyrie-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 940,
+          "id": "crown_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 940,
+          "x": 260,
+          "y": 220
+        },
+        {
+          "height": 1060,
+          "id": "crown_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1060,
+          "x": 200,
+          "y": 160
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

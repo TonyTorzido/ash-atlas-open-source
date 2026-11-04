@@ -1,0 +1,167 @@
+.legend-journal {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--aa-ui-space-3);
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  flex: 1 1 0;
+}
+.legend-journal-scroll {
+  display: grid;
+  align-content: start;
+  gap: var(--aa-ui-space-4);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden auto;
+  overscroll-behavior-y: contain;
+  padding: 2px 4px var(--aa-ui-space-4) 2px;
+}
+.legend-journal > .skill-v3-summary { grid-column: 1 / -1; grid-row: 1; }
+.legend-journal > .legend-journal-scroll { grid-row: 2; grid-column: 1; }
+.legend-journal > .legend-journal-scroll:only-child { grid-row: 1 / -1; }
+/* Desktop docks the goal sheet beside the journal; phone overlays it (SkillTreeV3Panel.css). */
+.legend-journal[data-layout="desktop"].has-sheet { grid-template-columns: minmax(0, 1fr) minmax(300px, 38%); }
+.skill-v3-app[data-layout="desktop"] .legend-journal.has-sheet > .skill-v3-sheet { grid-row: 2; grid-column: 2; }
+.achievements-journal-body { min-height: 0; overflow: hidden; }
+.legend-journal-overview,
+.legend-journal-detail,
+.legend-journal-next-rank,
+.legend-journal-objectives,
+.legend-journal-objectives > li {
+  display: grid;
+  gap: var(--aa-ui-space-3);
+  min-width: 0;
+}
+.legend-journal-copy,
+.legend-journal-notice,
+.legend-journal-sync p,
+.legend-journal-detail p,
+.legend-journal-empty p {
+  margin: 0;
+  color: var(--aa-ui-text-muted);
+  font: 500 13px/1.5 var(--aa-ui-font-body);
+  overflow-wrap: anywhere;
+}
+.legend-journal-totals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--aa-ui-space-3);
+  margin: 0;
+}
+.legend-journal-totals dt,
+.legend-journal small { color: var(--aa-ui-text-muted); font: 500 12px/1.4 var(--aa-ui-font-body); }
+.legend-journal-totals dd {
+  margin: var(--aa-ui-space-1) 0 0;
+  color: var(--aa-ui-parchment-100);
+  font: 700 26px/1.2 var(--aa-ui-font-display);
+}
+.legend-journal-next-rank p,
+.legend-journal-objectives > li > div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--aa-ui-space-2);
+  margin: 0;
+  font-size: 13px;
+}
+.legend-journal-next-rank p > span { color: var(--aa-ui-text-muted); }
+.legend-journal-sync {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--aa-ui-space-3);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--aa-ui-space-3);
+}
+.legend-journal-sync > div:first-child { flex: 1 1 180px; min-width: 0; }
+/* One compact search row: search, difficulty, status, and Clear when filtering. */
+.legend-journal-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 150px) minmax(0, 140px) auto;
+  align-items: center;
+  gap: var(--aa-ui-space-2);
+}
+.legend-journal-filters label { display: block; min-width: 0; }
+.legend-journal-filters input,
+.legend-journal-filters select {
+  width: 100%; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 0 12px;
+  border: 1px solid var(--aa-ui-border-muted); border-radius: 999px;
+  color: var(--aa-ui-text); background: var(--aa-menu-raised, var(--aa-ui-leather-900));
+  font: 600 13px/1.2 var(--aa-ui-font-body);
+}
+.legend-journal-filters input::placeholder { color: var(--aa-ui-text-muted); }
+.legend-journal-filters input:focus-visible, .legend-journal-filters select:focus-visible { outline: 2px solid var(--aa-ui-active-bronze); outline-offset: 1px; }
+.legend-journal-clear { min-height: 44px; padding: 0 14px; border-radius: 999px; }
+.legend-journal-list { display: grid; gap: var(--aa-ui-space-2); min-width: 0; }
+.legend-journal-list > header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--aa-ui-space-2); }
+.legend-journal-list > header > h3 { flex: 1 1 auto; }
+.legend-journal-section-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 12px; }
+.legend-journal-section-header h3 { margin: 0; color: var(--aa-ui-parchment-100); font: 700 22px/1.15 var(--aa-ui-font-display); }
+.legend-journal-section-header > span { color: var(--aa-ui-text-muted); font: 700 12px/1.2 var(--aa-ui-font-body); }
+.legend-journal-section-header > .achievement-progress { grid-column: 1 / -1; }
+.legend-journal-category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); gap: var(--aa-ui-space-2); }
+.legend-journal-category {
+  min-width: 0; min-height: 76px; display: grid; align-content: center; gap: 5px; padding: 10px 12px;
+  border: 1px solid var(--aa-ui-border-muted); border-radius: var(--aa-ui-radius-panel);
+  color: var(--aa-ui-text); background: var(--aa-ui-material-wood); text-align: left;
+}
+.legend-journal-category:hover, .legend-journal-category:focus-visible { border-color: var(--aa-ui-active-bronze); background: var(--aa-ui-material-wood-raised); }
+.legend-journal-category strong { color: var(--aa-ui-parchment-100); font: 700 16px/1.15 var(--aa-ui-font-display); }
+.legend-journal-category[data-section="Quest journeys"] { border-color: var(--aa-ui-active-bronze); }
+.legend-journal-records { display: grid; min-width: 0; border: 1px solid var(--aa-ui-border-muted); border-radius: var(--aa-ui-radius-panel); background: var(--aa-ui-material-wood); overflow: hidden; }
+.legend-journal-record { display: grid; gap: 6px; padding: 8px 12px 10px; }
+.legend-journal-record + .legend-journal-record { border-top: var(--aa-ui-border-width) solid var(--aa-ui-border-muted); }
+.legend-journal-record[data-selected="true"] { background: var(--aa-ui-material-wood-raised); box-shadow: inset 3px 0 var(--aa-ui-active-bronze); }
+.legend-journal-record-open {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--aa-ui-space-3);
+  width: 100%; min-height: 44px; padding: 0; border: 0; color: var(--aa-ui-text); background: transparent; text-align: left; cursor: pointer;
+}
+.skill-v3-shell .skill-v3-app .legend-journal-record > button.legend-journal-record-open:not(:disabled) { border: 0; background: transparent; box-shadow: none; }
+.legend-journal-record-open:focus-visible { outline: 2px solid var(--aa-ui-active-bronze); outline-offset: 2px; }
+.legend-journal-record-open::after { content: "›"; flex: 0 0 auto; color: var(--aa-ui-active-bronze); font-size: 20px; }
+.legend-journal-record .achievement-progress { height: 4px; }
+.legend-journal-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.legend-journal-tag { padding: 1px 7px; border: 1px solid var(--aa-ui-border-muted); border-radius: 999px; color: var(--aa-ui-text); font: 800 10px/1.4 var(--aa-ui-font-body); letter-spacing: .04em; text-transform: uppercase; }
+.legend-journal-record-heading { display: grid; gap: var(--aa-ui-space-1); flex: 1 1 0; min-width: 0; }
+.legend-journal-record-heading strong { color: var(--aa-ui-parchment-100); font: 700 16px/1.25 var(--aa-ui-font-display); overflow-wrap: anywhere; }
+.legend-journal-record-state { display: grid; gap: var(--aa-ui-space-1); flex: 0 0 auto; max-width: 40%; margin-left: auto; color: var(--aa-ui-text-muted); font: 700 12px/1.3 var(--aa-ui-font-body); text-align: right; }
+.legend-journal-record[data-state="completed"] .legend-journal-record-state { color: var(--aa-ui-active-bronze); }
+.legend-journal-detail { padding-bottom: var(--aa-ui-space-4); }
+.legend-journal-chapter-number { white-space: nowrap; }
+.legend-journal-lock { padding-left: var(--aa-ui-space-3); border-left: 2px solid var(--aa-ui-active-bronze); }
+.legend-journal-objectives { margin: 0; padding: 0; list-style: none; }
+.legend-journal-objectives > li { gap: var(--aa-ui-space-2); padding: var(--aa-ui-space-2) 0; }
+.legend-journal-objectives > li > div > strong { color: var(--aa-ui-parchment-100); }
+.legend-journal-objectives > li > div > span { color: var(--aa-ui-text-muted); white-space: nowrap; }
+.legend-journal-honors { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.legend-journal-honors li { padding: 3px 10px; border: 1px solid var(--aa-ui-active-bronze); border-radius: 999px; color: var(--aa-ui-active-bronze); font: 800 11px/1.3 var(--aa-ui-font-body); }
+.legend-journal-empty { display: grid; gap: var(--aa-ui-space-3); }
+@media (max-width: 560px) {
+  .legend-journal-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .legend-journal-filters .legend-journal-search { grid-column: 1 / -1; }
+  .legend-journal-clear { grid-column: 1 / -1; }
+  .legend-journal-totals { gap: var(--aa-ui-space-2); }
+  .legend-journal-totals dd { font-size: 23px; }
+  .legend-journal-record-heading strong { font-size: 15px; }
+  .legend-journal-record-state { font-size: 11px; }
+}
+
+/* Awards, in the Progression house style: plaque rows and cards, square tags, no accent bars, no pills. */
+.legend-journal-records { gap: 6px; border: 0; border-radius: 0; background: none; overflow: visible; }
+.legend-journal-record { padding: 6px 12px 8px; }
+.legend-journal-record + .legend-journal-record { border-top: 1px solid var(--aa-plaque-edge); }
+html .skill-v3-shell .legend-journal-record[data-selected="true"] { border-color: var(--aa-brass); box-shadow: inset 0 0 0 2px var(--aa-menu-paper), inset 0 0 0 3px var(--aa-brass-soft); }
+html .skill-v3-shell .legend-journal-category { min-height: 70px; }
+.legend-journal-category strong, .legend-journal-record-heading strong { font-variant: small-caps; letter-spacing: .03em; }
+.legend-journal-category[data-section="Quest journeys"] { border-color: var(--aa-plaque-edge); }
+.legend-journal-tag, .legend-journal-honors li { border-radius: 3px; border-color: var(--aa-brass-soft); }
+.legend-journal-honors li { padding: 2px 8px; }
+.legend-journal-filters input, .legend-journal-filters select { border: 1px solid var(--aa-plaque-edge); border-radius: 4px; background: var(--aa-menu-paper); box-shadow: inset 0 1px 3px rgb(40 26 14 / 18%); }
+.legend-journal-clear { border-radius: 4px; }
+.legend-journal-lock { padding-left: 0; border-left: 0; }
+/* Content scrolling under the strip fades in instead of showing cut-off card edges. */
+.legend-journal > .legend-journal-scroll { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 18px); mask-image: linear-gradient(180deg, transparent 0, #000 18px); }

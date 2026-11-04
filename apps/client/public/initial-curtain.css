@@ -1,0 +1,260 @@
+/* One boot surface for the whole entry path: the static first frame, update
+ * checks and downloads, session checks, and world preparation all render this
+ * same layout so launching reads as a single calm loading screen. Dark is the
+ * warm near-black that matches the native launch screen and theme-color; light
+ * follows the device (prefers-color-scheme) with the parchment values of the
+ * canonical menu palette in menuAppearance.css, which cannot load this early.
+ * An explicit Dark walnut choice (html[data-menu-theme="dark"]) keeps dark. */
+:root {
+  /* Dark walnut values of the canonical menu tokens (menuAppearance.css). */
+  --cur-bg: #281f1a;
+  --cur-paper: #34271f;
+  --cur-glow: rgb(200 154 82 / 12%);
+  --cur-vignette: rgb(0 0 0 / 34%);
+  --cur-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .02 0 0 0 0 .01 0 0 0 0 0 0 0 0 .8 -.22'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --cur-text: #eee3ca;
+  --cur-wordmark: #d1af73;
+  --cur-muted: #c3b297;
+  --cur-track: #2c2019;
+  --cur-brass: #c89a52;
+  --cur-brass-soft: rgb(200 154 82 / 38%);
+  --cur-fill: #c89a52;
+  --cur-edge: #7e6040;
+  --cur-plaque-top: #4d3a2c;
+  --cur-plaque-bottom: #36281f;
+  --cur-plaque-hi: rgb(255 228 180 / 10%);
+  --cur-plaque-lo: rgb(0 0 0 / 38%);
+  --cur-error: #edb0a1;
+  --cur-focus: #eee3ca;
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-menu-theme="dark"]) {
+    /* Light parchment values of the same tokens. */
+    --cur-bg: #e7d8b9;
+    --cur-paper: #f0e4cb;
+    --cur-glow: rgb(255 248 230 / 45%);
+    --cur-vignette: rgb(122 84 40 / 16%);
+    --cur-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .24 0 0 0 0 .11 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --cur-text: #37291f;
+    --cur-wordmark: #6c481f;
+    --cur-muted: #5d4935;
+    --cur-track: #d8c196;
+    --cur-brass: #94692c;
+    --cur-brass-soft: rgb(148 105 44 / 45%);
+    --cur-fill: #94692c;
+    --cur-edge: #9a7443;
+    --cur-plaque-top: #f4e9cf;
+    --cur-plaque-bottom: #e0c998;
+    --cur-plaque-hi: rgb(255 251 238 / 75%);
+    --cur-plaque-lo: rgb(112 76 34 / 30%);
+    --cur-error: #8a352d;
+    --cur-focus: #37291f;
+  }
+}
+html, body, #root { min-height: 100%; margin: 0; background: var(--cur-grain), var(--cur-bg); }
+
+.initial-curtain {
+  position: fixed;
+  z-index: 5000;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    max(24px, env(safe-area-inset-left));
+  color: var(--cur-text);
+  background:
+    var(--cur-grain),
+    radial-gradient(ellipse 70% 45% at 50% 42%, var(--cur-glow), transparent 70%),
+    var(--cur-bg);
+  text-align: center;
+  font: 15px/1.45 Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* A gilded page border: a brass hairline and soft aged edge, like a ledger leaf. */
+.initial-curtain::before {
+  content: "";
+  position: absolute;
+  inset: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  border: 1px solid var(--cur-brass-soft);
+  border-radius: 6px;
+  box-shadow: inset 0 0 40px var(--cur-vignette);
+  pointer-events: none;
+}
+
+/* An available update sits above every in-game overlay: play is blocked. */
+.initial-curtain[role="alertdialog"] { z-index: 8000; }
+
+.initial-curtain.initial-curtain--embedded {
+  position: relative;
+  z-index: auto;
+  inset: auto;
+  min-height: 420px;
+  border-radius: 6px;
+}
+
+.initial-curtain__logo {
+  width: 96px;
+  height: 96px;
+  padding: 4px;
+  border: 1px solid var(--cur-edge);
+  border-radius: 6px;
+  background: var(--cur-paper);
+  box-shadow: 0 0 0 3px var(--cur-paper), 0 0 0 4px var(--cur-brass-soft), 0 10px 26px var(--cur-vignette);
+  object-fit: cover;
+}
+
+.initial-curtain__wordmark {
+  margin-top: 4px;
+  color: var(--cur-wordmark);
+  font: 700 15px/1 Georgia, "Times New Roman", serif;
+  font-variant: small-caps;
+  letter-spacing: 0.24em;
+}
+/* Brass rule under the wordmark. */
+.initial-curtain__wordmark::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 6px;
+  margin: 9px auto 0;
+  background:
+    linear-gradient(var(--cur-brass), var(--cur-brass)) 0 50% / calc(50% - 8px) 1px no-repeat,
+    linear-gradient(var(--cur-brass), var(--cur-brass)) 100% 50% / calc(50% - 8px) 1px no-repeat,
+    linear-gradient(var(--cur-brass), var(--cur-brass)) 50% 50% / 5px 5px no-repeat;
+}
+
+.initial-curtain__status {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: min(320px, calc(100vw - 48px));
+  min-height: 58px;
+  margin-top: 18px;
+}
+
+.initial-curtain__status strong {
+  font: 700 19px/1.25 Georgia, "Times New Roman", serif;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+
+.initial-curtain__status span { color: var(--cur-muted); font-size: 14px; }
+
+.initial-curtain__bar {
+  position: relative;
+  overflow: hidden;
+  width: min(240px, calc(100vw - 48px));
+  height: 8px;
+  border: 1px solid var(--cur-edge);
+  border-radius: 4px;
+  background: var(--cur-track);
+  box-shadow: inset 0 1px 2px var(--cur-plaque-lo);
+}
+
+.initial-curtain__bar > i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 36%;
+  border-radius: 2px;
+  background: var(--cur-fill);
+  box-shadow: inset 0 1px var(--cur-plaque-hi);
+  animation: initial-curtain-sweep 1.3s ease-in-out infinite;
+}
+
+.initial-curtain__bar[data-determinate] > i {
+  animation: none;
+  transition: width 240ms linear;
+}
+
+.initial-curtain__update {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: min(340px, calc(100vw - 48px));
+  margin-top: 4px;
+}
+
+.initial-curtain__facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.initial-curtain__facts li {
+  padding: 5px 11px;
+  border: 1px solid var(--cur-brass-soft);
+  border-radius: 4px;
+  color: var(--cur-text);
+  background: var(--cur-grain), var(--cur-paper);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.initial-curtain__update small {
+  color: var(--cur-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.initial-curtain button {
+  min-width: min(240px, 100%);
+  min-height: 46px;
+  padding: 10px 22px;
+  border: 1px solid var(--cur-edge);
+  border-radius: 4px;
+  color: var(--cur-text);
+  background: var(--cur-grain), linear-gradient(180deg, var(--cur-plaque-top), var(--cur-plaque-bottom));
+  box-shadow: inset 0 1px var(--cur-plaque-hi), inset 0 -2px var(--cur-plaque-lo), 0 1px 2px var(--cur-vignette);
+  font: 700 15px/1.2 Georgia, "Times New Roman", serif;
+  cursor: pointer;
+}
+
+/* Recovery actions stay quiet: a compact outlined plaque, not a primary bar. */
+.initial-curtain button:is(.initial-curtain__action, .initial-curtain__secondary) {
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 22px;
+  border: 1px solid var(--cur-brass-soft);
+  border-radius: 4px;
+  color: var(--cur-text);
+  background: var(--cur-grain), var(--cur-paper);
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.initial-curtain button.initial-curtain__secondary {
+  border-color: transparent;
+  color: var(--cur-muted);
+  background: transparent;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+}
+
+.initial-curtain__update .initial-curtain__error {
+  max-width: 300px;
+  color: var(--cur-error);
+  font: 12px/1.4 Inter, ui-sans-serif, system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.initial-curtain button:focus-visible { outline: 2px solid var(--cur-focus); outline-offset: 3px; }
+.initial-curtain button:disabled { cursor: default; opacity: 0.7; }
+
+@keyframes initial-curtain-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(280%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .initial-curtain__bar > i { animation: none; width: 100%; opacity: 0.45; }
+}

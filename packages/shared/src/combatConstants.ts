@@ -1,0 +1,4 @@
+export const BASIC_ATTACK_INTERVAL_MS = 1_400;
+export const MELEE_ATTACK_RANGE_M = 100;
+export const RANGED_ATTACK_RANGE_M = 300;
+export const PLAYER_RESPAWN_DELAY_MS = 10_000;

@@ -1,0 +1,5951 @@
+{
+  "bossTemplateIds": [
+    "sewer-rat-miniboss",
+    "brood-matriarch",
+    "raptor-chieftain",
+    "thunderwing",
+    "hollow-elder",
+    "dungeon_ogre",
+    "centurion",
+    "brood_matron",
+    "trifang_warden",
+    "the_watcher",
+    "tidemaw",
+    "drowned_admiral",
+    "abyssal_one",
+    "granite_bull",
+    "corrupted_core",
+    "forgemaster",
+    "grandmaster",
+    "elder_dragon"
+  ],
+  "bossTemplates": [
+    {
+      "appearanceId": "sewer_rat_miniboss",
+      "bossDefinitionId": "sewer_rat_miniboss",
+      "controllerId": "sewer_rat_miniboss",
+      "displayName": "Sewer Rat Miniboss",
+      "id": "sewer-rat-miniboss",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "sewer_rat_miniboss"
+    },
+    {
+      "appearanceId": "brood_matriarch",
+      "bossDefinitionId": "brood_matriarch",
+      "controllerId": "brood_matriarch",
+      "displayName": "Brood Matriarch",
+      "id": "brood-matriarch",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "brood_matriarch"
+    },
+    {
+      "appearanceId": "raptor_chieftain",
+      "bossDefinitionId": "raptor_chieftain",
+      "controllerId": "raptor_chieftain",
+      "displayName": "Raptor Chieftain",
+      "id": "raptor-chieftain",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "raptor_chieftain"
+    },
+    {
+      "appearanceId": "thunderwing",
+      "bossDefinitionId": "thunderwing",
+      "controllerId": "thunderwing",
+      "displayName": "Thunderwing",
+      "id": "thunderwing",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "thunderwing"
+    },
+    {
+      "appearanceId": "hollow_elder",
+      "bossDefinitionId": "hollow_elder",
+      "controllerId": "hollow_elder",
+      "displayName": "Hollow Elder",
+      "id": "hollow-elder",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "hollow_elder"
+    },
+    {
+      "bossDefinitionId": "dungeon_ogre",
+      "controllerId": "dungeon",
+      "displayName": "Ogre",
+      "id": "dungeon_ogre",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "dungeon_mob_standard"
+    },
+    {
+      "bossDefinitionId": "centurion",
+      "controllerId": "fallen_prison_centurion",
+      "displayName": "The Cohort Marshal",
+      "id": "centurion",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "centurion"
+    },
+    {
+      "bossDefinitionId": "brood_matron",
+      "controllerId": "fallen_prison_brood_matron",
+      "displayName": "The Brood Matron",
+      "id": "brood_matron",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "brood_matron"
+    },
+    {
+      "bossDefinitionId": "trifang_warden",
+      "controllerId": "fallen_prison_trifang_warden",
+      "displayName": "Trifang Warden",
+      "id": "trifang_warden",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "trifang_warden"
+    },
+    {
+      "bossDefinitionId": "the_watcher",
+      "controllerId": "drowned_city_the_watcher",
+      "displayName": "The Watcher",
+      "id": "the_watcher",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "the_watcher"
+    },
+    {
+      "bossDefinitionId": "tidemaw",
+      "controllerId": "drowned_city_tidemaw_standin",
+      "displayName": "Tidemaw",
+      "id": "tidemaw",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "tidemaw"
+    },
+    {
+      "bossDefinitionId": "drowned_admiral",
+      "controllerId": "drowned_city_drowned_admiral",
+      "displayName": "The Drowned Admiral",
+      "id": "drowned_admiral",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "drowned_admiral"
+    },
+    {
+      "bossDefinitionId": "abyssal_one",
+      "controllerId": "drowned_city_abyssal_one_standin",
+      "displayName": "The Abyssal One",
+      "id": "abyssal_one",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "abyssal_one"
+    },
+    {
+      "bossDefinitionId": "granite_bull",
+      "controllerId": "dungeon",
+      "displayName": "Granite Bull",
+      "id": "granite_bull",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "granite_bull"
+    },
+    {
+      "bossDefinitionId": "corrupted_core",
+      "controllerId": "dungeon",
+      "displayName": "The Corrupted Core",
+      "id": "corrupted_core",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "corrupted_core"
+    },
+    {
+      "bossDefinitionId": "forgemaster",
+      "controllerId": "dungeon",
+      "displayName": "The Forgemaster",
+      "id": "forgemaster",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "forgemaster"
+    },
+    {
+      "appearanceId": "grandmaster",
+      "bossDefinitionId": "grandmaster",
+      "controllerId": "grandmaster",
+      "displayName": "The Grandmaster",
+      "id": "grandmaster",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "grandmaster"
+    },
+    {
+      "appearanceId": "elder_dragon",
+      "bossDefinitionId": "elder_dragon",
+      "controllerId": "elder_dragon",
+      "displayName": "Elder Dragon",
+      "id": "elder_dragon",
+      "retired": false,
+      "revision": "1",
+      "rewardPolicyId": "elder_dragon"
+    }
+  ],
+  "catalogRevision": 29,
+  "entrances": [
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/entrance.png",
+      "description": "Entrance to Cistern Warrens.",
+      "dungeonId": "cistern_warrens",
+      "footprintRadiusM": 35,
+      "id": "cistern_warrens_world_entrance",
+      "interactionLabel": "Enter Cistern Warrens",
+      "interactionRadiusM": 95,
+      "lat": 61.6667,
+      "lon": -114.0,
+      "name": "Cistern Warrens Entrance",
+      "portalId": "world-to-entrance",
+      "portalRevision": "world-to-entrance-v1",
+      "preloadSceneKey": "cistern_warrens/hatch_landing",
+      "presentation": "cave",
+      "retired": false,
+      "revision": "cistern_warrens_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/shared/orc-cave-entrance.png",
+      "description": "Authoring example only. Explicitly bind a copy for a game test; replace stock and missing artwork with your PNGs.",
+      "dungeonId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name",
+      "footprintRadiusM": 35,
+      "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_world_entrance",
+      "interactionLabel": "Enter Example Slime Dungeon",
+      "interactionRadiusM": 95,
+      "lat": 40,
+      "lon": -105,
+      "name": "Example Slime Dungeon Entrance",
+      "portalId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_world_to_entrance",
+      "portalRevision": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_world_to_entrance-v2",
+      "preloadSceneKey": "readiness_tomorrow_slime_2026_09_20_long_accepted_name/readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+      "presentation": "cave",
+      "retired": true,
+      "revision": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_world_entrance-v2"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/entrance.png",
+      "description": "Entrance to Fangrock Cavern.",
+      "dungeonId": "fangrock_cavern",
+      "footprintRadiusM": 35,
+      "id": "fangrock_cavern_world_entrance",
+      "interactionLabel": "Enter Fangrock Cavern",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "Fangrock Cavern Entrance",
+      "portalId": "fangrock_cavern_world_to_entrance",
+      "portalRevision": "fangrock_cavern_world_to_entrance-v1",
+      "preloadSceneKey": "fangrock_cavern/cave_mouth",
+      "presentation": "cave",
+      "retired": true,
+      "revision": "fangrock_cavern_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/the_eyrie/entrance.png",
+      "description": "Entrance to The Eyrie.",
+      "dungeonId": "the_eyrie",
+      "footprintRadiusM": 35,
+      "id": "the_eyrie_world_entrance",
+      "interactionLabel": "Enter The Eyrie",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "The Eyrie Entrance",
+      "portalId": "the_eyrie_world_to_entrance",
+      "portalRevision": "the_eyrie_world_to_entrance-v1",
+      "preloadSceneKey": "the_eyrie/cliff_base",
+      "presentation": "cave",
+      "retired": true,
+      "revision": "the_eyrie_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/entrance.png",
+      "description": "Entrance to Blightwood Grove.",
+      "dungeonId": "blightwood_grove",
+      "footprintRadiusM": 35,
+      "id": "blightwood_grove_world_entrance",
+      "interactionLabel": "Enter Blightwood Grove",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "Blightwood Grove Entrance",
+      "portalId": "blightwood_grove_world_to_entrance",
+      "portalRevision": "blightwood_grove_world_to_entrance-v1",
+      "preloadSceneKey": "blightwood_grove/grove_gate",
+      "presentation": "cave",
+      "retired": true,
+      "revision": "blightwood_grove_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/entrance.png",
+      "description": "A broken spire breaks the waves; steps lead down into the drowned streets. Level 32, entered afloat, no re-entry.",
+      "dungeonId": "drowned_city",
+      "footprintRadiusM": 35,
+      "id": "drowned_city_world_entrance",
+      "interactionLabel": "Enter the Drowned City",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "The Drowned City",
+      "portalId": "drowned_city_world_to_entrance",
+      "portalRevision": "drowned_city_world_to_entrance-v1",
+      "preloadSceneKey": "drowned_city/dc_sunken_stair",
+      "presentation": "stairs",
+      "retired": true,
+      "revision": "drowned_city_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/entrance.png",
+      "description": "A foundry tower of black iron on a rocky hill, its door glowing. Level 37 raid, shared by everyone who finds it; entry gets cheaper as its bosses fall.",
+      "dungeonId": "golem_forge",
+      "footprintRadiusM": 35,
+      "id": "golem_forge_world_entrance",
+      "interactionLabel": "Enter the Golem Forge",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "The Golem Forge",
+      "portalId": "golem_forge_world_to_entrance",
+      "portalRevision": "golem_forge_world_to_entrance-v1",
+      "preloadSceneKey": "golem_forge/gf_forge_gate",
+      "presentation": "door",
+      "retired": true,
+      "revision": "golem_forge_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/entrance.png",
+      "description": "Entrance to the Monastery of the Still Hand.",
+      "dungeonId": "still_hand_monastery",
+      "footprintRadiusM": 35,
+      "id": "still_hand_monastery_world_entrance",
+      "interactionLabel": "Enter the Monastery",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "Monastery of the Still Hand Entrance",
+      "portalId": "still_hand_monastery_world_to_entrance",
+      "portalRevision": "still_hand_monastery_world_to_entrance-v1",
+      "preloadSceneKey": "still_hand_monastery/mountain_gate",
+      "presentation": "cave",
+      "retired": true,
+      "revision": "still_hand_monastery_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/entrance.png",
+      "description": "Entrance to the Wyrm Hollow.",
+      "dungeonId": "wyrm_hollow",
+      "footprintRadiusM": 35,
+      "id": "wyrm_hollow_world_entrance",
+      "interactionLabel": "Enter the Wyrm Hollow",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "Wyrm Hollow Entrance",
+      "portalId": "wyrm_hollow_world_to_entrance",
+      "portalRevision": "wyrm_hollow_world_to_entrance-v1",
+      "preloadSceneKey": "wyrm_hollow/lair_mouth",
+      "presentation": "cave",
+      "retired": true,
+      "revision": "wyrm_hollow_world_entrance-v1"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fallen_prison/entrance.png",
+      "description": "The wreck of the Fallen Prison, crashed out of the sky. Level 40; the crash site stays open for a day.",
+      "dungeonId": "fallen_prison",
+      "footprintRadiusM": 35,
+      "id": "fallen_prison_world_entrance",
+      "interactionLabel": "Enter the Fallen Prison",
+      "interactionRadiusM": 95,
+      "lat": 0,
+      "lon": 0,
+      "name": "The Fallen Prison",
+      "portalId": "fallen_prison_world_to_entrance",
+      "portalRevision": "fallen_prison_world_to_entrance-v1",
+      "preloadSceneKey": "fallen_prison/wreck_gate",
+      "presentation": "door",
+      "retired": true,
+      "revision": "fallen_prison_world_entrance-v1"
+    }
+  ],
+  "prefabs": [
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/sewer-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 256,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 256,
+      "id": "sewer_floor",
+      "name": "Sewer Floor",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "tile",
+      "retired": false,
+      "revision": "sewer-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/sewer-door.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 96,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 64,
+      "id": "sewer_door",
+      "interactionRadius": 95,
+      "name": "Sewer Door",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "sewer-door-v1",
+      "stateAssets": [],
+      "type": "portal"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/exit-ladder.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 90,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 90,
+      "id": "sewer_exit_ladder",
+      "interactionRadius": 95,
+      "name": "Sewer Exit Ladder",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "sewer-exit-ladder-v1",
+      "stateAssets": [],
+      "type": "portal"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/shared/chest-closed.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 74,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 92,
+      "id": "dungeon_chest",
+      "interactionRadius": 82,
+      "name": "Treasure Chest",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dungeon-chest-v2",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/shared/chest-open.png",
+          "stateId": "looted"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/shared/vault-chest-closed.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 85,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 106,
+      "id": "dungeon_vault_chest",
+      "interactionRadius": 82,
+      "name": "Vault Chest",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dungeon-vault-chest-v1",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/shared/vault-chest-open.png",
+          "stateId": "looted"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/shared/lever-off.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 78,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 54,
+      "id": "dungeon_lever",
+      "interactionRadius": 72,
+      "name": "Lever",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dungeon-lever-v2",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/shared/lever-on.png",
+          "stateId": "pressed"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/shared/pressure-plate-released.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 84,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 84,
+      "id": "dungeon_pressure_plate",
+      "interactionRadius": 64,
+      "name": "Pressure Plate",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dungeon-pressure-plate-v2",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/shared/pressure-plate-pressed.png",
+          "stateId": "pressed"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/hatch-landing-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "hatch_landing_floor",
+      "name": "Hatch Landing Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "hatch-landing-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/overflow-channel-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "overflow_channel_floor",
+      "name": "Overflow Channel Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "overflow-channel-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/turtle-cistern-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "turtle_cistern_floor",
+      "name": "Turtle Cistern Floor",
+      "nativeHeight": 2400,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "turtle-cistern-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/warden-junction-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "warden_junction_floor",
+      "name": "Warden Junction Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "warden-junction-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/webbed-tunnels-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "webbed_tunnels_floor",
+      "name": "Webbed Tunnels Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "webbed-tunnels-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/cistern_warrens/brood-chamber-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "brood_chamber_floor",
+      "name": "Brood Chamber Floor",
+      "nativeHeight": 2800,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "brood-chamber-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/cave-mouth-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "cave_mouth_floor",
+      "name": "Cave Mouth Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "cave-mouth-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/the-fork-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "the_fork_floor",
+      "name": "The Fork Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "the-fork-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/raptor-den-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "raptor_den_floor",
+      "name": "Raptor Den Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "raptor-den-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/mushroom-grotto-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "mushroom_grotto_floor",
+      "name": "Mushroom Grotto Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "mushroom-grotto-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/narrow-pass-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 700,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "narrow_pass_floor",
+      "name": "Narrow Pass Floor",
+      "nativeHeight": 1400,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "narrow-pass-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/bone-pit-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "bone_pit_floor",
+      "name": "Bone Pit Floor",
+      "nativeHeight": 2400,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "bone-pit-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/chieftain-throne-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "chieftain_throne_floor",
+      "name": "Chieftain's Throne Floor",
+      "nativeHeight": 2800,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "chieftain-throne-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/fangrock_cavern/scale-shrine.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 128,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 128,
+      "id": "fangrock_scale_shrine",
+      "interactionRadius": 110,
+      "name": "Scale Shrine",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "fangrock-scale-shrine-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/the_eyrie/cliff-base-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "cliff_base_floor",
+      "name": "Cliff Base Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "cliff-base-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/the_eyrie/switchback-ledge-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "switchback_ledge_floor",
+      "name": "Switchback Ledge Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "switchback-ledge-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/the_eyrie/scrap-hollow-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "scrap_hollow_floor",
+      "name": "Scrap Hollow Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "scrap-hollow-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/the_eyrie/wind-bridge-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 700,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "wind_bridge_floor",
+      "name": "Wind Bridge Floor",
+      "nativeHeight": 1400,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "wind-bridge-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/the_eyrie/nest-crown-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "nest_crown_floor",
+      "name": "Nest Crown Floor",
+      "nativeHeight": 2800,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "nest-crown-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/grove-gate-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "grove_gate_floor",
+      "name": "Grove Gate Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "grove-gate-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/blighted-path-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "blighted_path_floor",
+      "name": "Blighted Path Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "blighted-path-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/hermit-clearing-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "hermit_clearing_floor",
+      "name": "Hermit's Clearing Floor",
+      "nativeHeight": 2400,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "hermit-clearing-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/fern-hollow-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "fern_hollow_floor",
+      "name": "Fern Hollow Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "fern-hollow-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/treant-ring-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "treant_ring_floor",
+      "name": "Treant Ring Floor",
+      "nativeHeight": 2400,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "treant-ring-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/heartwood-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "heartwood_floor",
+      "name": "Heartwood Floor",
+      "nativeHeight": 2800,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "heartwood-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/healing-spring.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 180,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 180,
+      "id": "grove_healing_spring",
+      "name": "Healing Spring",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "grove-healing-spring-v1",
+      "stateAssets": [],
+      "type": "decoration"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/the_eyrie/giant-egg.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 96,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 96,
+      "id": "eyrie_egg_nest",
+      "interactionRadius": 110,
+      "name": "Giant Egg Nest",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "eyrie-egg-nest-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/blightwood_grove/grove-hermit.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 112,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 112,
+      "id": "grove_hermit",
+      "interactionRadius": 110,
+      "name": "Grove Hermit",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "grove-hermit-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/shared/chest-closed.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 51,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 64,
+      "id": "dungeon_baby_chest",
+      "interactionRadius": 70,
+      "name": "Small Chest",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dungeon-baby-chest-v2",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/shared/chest-open.png",
+          "stateId": "looted"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/shared/pressure-plate-released.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 70,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 70,
+      "id": "fangrock_rune_sign",
+      "interactionRadius": 80,
+      "name": "Rune Carving",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "fangrock-rune-sign-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/sunken-stair-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "dc_sunken_stair_floor",
+      "name": "Sunken Stair Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_sunken_stair_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/drowned-causeway-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "dc_drowned_causeway_floor",
+      "name": "Drowned Causeway Floor",
+      "nativeHeight": 1024,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_drowned_causeway_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/flooded-plaza-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_flooded_plaza_floor",
+      "name": "Flooded Plaza Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_flooded_plaza_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/circle-of-tides-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1600,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "dc_circle_of_tides_floor",
+      "name": "Circle of Tides Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_circle_of_tides_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/obs-street-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "dc_obs_street_floor",
+      "name": "Observatory Street Floor",
+      "nativeHeight": 1024,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_obs_street_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/obs-square-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_obs_square_floor",
+      "name": "Observatory Square Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_obs_square_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/obs-warden-hall-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_obs_warden_hall_floor",
+      "name": "Observatory Warden Hall Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_obs_warden_hall_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/obs-boss-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "dc_obs_boss_floor",
+      "name": "Observatory Boss Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_obs_boss_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/kelp-street-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "dc_kelp_street_floor",
+      "name": "Kelp Street Floor",
+      "nativeHeight": 1024,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_kelp_street_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/kelp-square-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_kelp_square_floor",
+      "name": "Kelp Square Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_kelp_square_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/kelp-warden-hall-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_kelp_warden_hall_floor",
+      "name": "Kelp Warden Hall Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_kelp_warden_hall_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/kelp-boss-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "dc_kelp_boss_floor",
+      "name": "Kelp Boss Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_kelp_boss_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/harbor-street-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "dc_harbor_street_floor",
+      "name": "Harbor Street Floor",
+      "nativeHeight": 1024,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_harbor_street_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/harbor-square-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_harbor_square_floor",
+      "name": "Harbor Square Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_harbor_square_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/harbor-warden-hall-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_harbor_warden_hall_floor",
+      "name": "Harbor Warden Hall Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_harbor_warden_hall_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/harbor-boss-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "dc_harbor_boss_floor",
+      "name": "Harbor Boss Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_harbor_boss_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/past-street-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "dc_past_street_floor",
+      "name": "Past Street Floor",
+      "nativeHeight": 1024,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_past_street_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/past-square-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "dc_past_square_floor",
+      "name": "Past Square Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_past_square_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/abyssal-sanctum-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1600,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "dc_abyssal_sanctum_floor",
+      "name": "Abyssal Sanctum Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "dc_abyssal_sanctum_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/floodgate-closed.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 230,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 230,
+      "id": "dc_floodgate",
+      "name": "Floodgate",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_floodgate-v1",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/drowned_city/floodgate-open.png",
+          "stateId": "open"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/time-rift-dormant.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 260,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 260,
+      "id": "dc_time_rift",
+      "name": "Time Rift",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_time_rift-v1",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/drowned_city/time-rift-open.png",
+          "stateId": "open"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/return-rift.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 260,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 260,
+      "id": "dc_return_rift",
+      "name": "Return Rift",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_return_rift-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/tide-switch-off.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 170,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 170,
+      "id": "dc_tide_switch",
+      "interactionRadius": 110,
+      "name": "Tide Switch",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_tide_switch-v1",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/drowned_city/tide-switch-on.png",
+          "stateId": "on"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/abyssal-gate-sealed.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 300,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 300,
+      "id": "dc_abyssal_gate",
+      "name": "Abyssal Gate",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_abyssal_gate-v1",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/drowned_city/abyssal-gate-open.png",
+          "stateId": "open"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/tidecraft-altar.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 190,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 190,
+      "id": "dc_tidecraft_altar",
+      "interactionRadius": 110,
+      "name": "Tidecraft Altar",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_tidecraft_altar-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/tide-bomb.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 150,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 150,
+      "id": "dc_tide_bomb",
+      "interactionRadius": 110,
+      "name": "Tide Bomb",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_tide_bomb-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/abyssal-arm-intact.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 300,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 300,
+      "id": "dc_abyssal_arm",
+      "interactionRadius": 140,
+      "name": "Abyssal Arm",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_abyssal_arm-v1",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/drowned_city/abyssal-arm-bombed.png",
+          "stateId": "destroyed"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/drowned-citizen.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 112,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 112,
+      "id": "dc_drowned_citizen",
+      "interactionRadius": 110,
+      "name": "Drowned Citizen",
+      "nativeHeight": 1024,
+      "nativeWidth": 1024,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_drowned_citizen-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/circle-segment-west-lit.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 600,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 600,
+      "id": "dc_circle_segment_west",
+      "name": "Lit Tide Circle (west)",
+      "nativeHeight": 1200,
+      "nativeWidth": 1200,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_circle_segment_west-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/circle-segment-north-lit.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 600,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 600,
+      "id": "dc_circle_segment_north",
+      "name": "Lit Tide Circle (north)",
+      "nativeHeight": 1200,
+      "nativeWidth": 1200,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_circle_segment_north-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/drowned_city/circle-segment-east-lit.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 600,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 600,
+      "id": "dc_circle_segment_east",
+      "name": "Lit Tide Circle (east)",
+      "nativeHeight": 1200,
+      "nativeWidth": 1200,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "dc_circle_segment_east-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/crucible-hub-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1600,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "gf_crucible_floor",
+      "name": "The Crucible Floor",
+      "nativeHeight": 3200,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_crucible_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/forge-gate-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "gf_forge_gate_floor",
+      "name": "Forge Gate Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_forge_gate_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/slag-yard-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "gf_slag_yard_floor",
+      "name": "Slag Yard Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_slag_yard_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/slag-vault-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 800,
+      "id": "gf_slag_vault_floor",
+      "name": "Slag Vault Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 1600,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_slag_vault_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/bellows-hall-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "gf_bellows_hall_floor",
+      "name": "Bellows Hall Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_bellows_hall_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/cutting-floor-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "gf_cutting_floor_floor",
+      "name": "Cutting Floor Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_cutting_floor_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/sentinel-walk-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 700,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "gf_sentinel_walk_floor",
+      "name": "Sentinel Walk Floor",
+      "nativeHeight": 1400,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_sentinel_walk_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/monolith-gallery-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "gf_monolith_gallery_floor",
+      "name": "Monolith Gallery Floor",
+      "nativeHeight": 2400,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_monolith_gallery_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/bull-pen-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "gf_bull_pen_floor",
+      "name": "Bull Pen Floor",
+      "nativeHeight": 2800,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_bull_pen_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/coil-works-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "gf_coil_works_floor",
+      "name": "Coil Works Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_coil_works_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/gem-vault-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 700,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "gf_gem_vault_floor",
+      "name": "Gem Vault Floor",
+      "nativeHeight": 1400,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_gem_vault_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/husk-foundry-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "gf_husk_foundry_floor",
+      "name": "Husk Foundry Floor",
+      "nativeHeight": 2400,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_husk_foundry_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/containment-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "gf_containment_floor",
+      "name": "Containment Floor",
+      "nativeHeight": 2800,
+      "nativeWidth": 2800,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_containment_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/anvil-stair-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "gf_anvil_stair_floor",
+      "name": "Anvil Stair Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_anvil_stair_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/cooling-hall-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "gf_cooling_hall_floor",
+      "name": "Cooling Hall Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_cooling_hall_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/great-forge-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1600,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "gf_great_forge_floor",
+      "name": "Great Forge Floor",
+      "nativeHeight": 3200,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "gf_great_forge_floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/spark-forge.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 340,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 340,
+      "id": "golem_forge_spark_forge",
+      "interactionRadius": 110,
+      "name": "Spark Forge",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.75,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "golem-forge-spark-forge-v2",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/healer-monolith.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 210,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 210,
+      "id": "golem_forge_healer_monolith",
+      "interactionRadius": 1,
+      "name": "Healer Monolith",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.86,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "golem-forge-healer-monolith-v2",
+      "stateAssets": [
+        {
+          "assetKey": "apps/client/public/assets/dungeons/golem_forge/healer-monolith-broken.png",
+          "stateId": "destroyed"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/cracked-wall.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 190,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 190,
+      "id": "golem_forge_cracked_wall",
+      "interactionRadius": 90,
+      "name": "Cracked Wall",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "golem-forge-cracked-wall-v2",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/great-anvil-lit.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 250,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 250,
+      "id": "golem_forge_great_anvil",
+      "interactionRadius": 1,
+      "name": "Great Anvil",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.84,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "golem-forge-great-anvil-v2",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/wing-sigil-lit.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 110,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 110,
+      "id": "golem_forge_wing_sigil_lit",
+      "interactionRadius": 1,
+      "name": "Wing Sigil (lit)",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.88,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "golem-forge-wing-sigil-lit-v2",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/forge-door-sealed.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 180,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 180,
+      "id": "golem_forge_door_sealed",
+      "interactionRadius": 1,
+      "name": "Forge Door (sealed)",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "golem-forge-door-sealed-v2",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/golem_forge/forge-door-open.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 180,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 180,
+      "id": "golem_forge_door_open",
+      "interactionRadius": 1,
+      "name": "Forge Door (open)",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "golem-forge-door-open-v2",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/mountain-gate-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "mountain_gate_floor",
+      "name": "Mountain Gate Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "mountain-gate-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/training-courtyard-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "training_courtyard_floor",
+      "name": "Training Courtyard Floor",
+      "nativeHeight": 1463,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "training-courtyard-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/bell-hall-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "bell_hall_floor",
+      "name": "Bell Hall Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "bell-hall-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/still-garden-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "still_garden_floor",
+      "name": "Garden of Stillness Floor",
+      "nativeHeight": 1707,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "still-garden-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/statue-hall-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "statue_hall_floor",
+      "name": "Hall of Statues Floor",
+      "nativeHeight": 1024,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "statue-hall-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/grandmaster-sanctum-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1400,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1400,
+      "id": "grandmaster_sanctum_floor",
+      "name": "Grandmaster's Sanctum Floor",
+      "nativeHeight": 2048,
+      "nativeWidth": 2048,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "grandmaster-sanctum-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/still_hand_monastery/zephyr-altar.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 140,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 140,
+      "id": "monastery_zephyr_altar",
+      "interactionRadius": 110,
+      "name": "Zephyr Altar",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "monastery-zephyr-altar-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/lair-mouth-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1000,
+      "id": "lair_mouth_floor",
+      "name": "Lair Mouth Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2000,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "lair-mouth-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/ember-tunnels-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "ember_tunnels_floor",
+      "name": "Ember Tunnels Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "ember-tunnels-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/salamander-pools-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1200,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "salamander_pools_floor",
+      "name": "Salamander Pools Floor",
+      "nativeHeight": 2400,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "salamander-pools-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/bone-bridge-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 700,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "bone_bridge_floor",
+      "name": "Bone Bridge Floor",
+      "nativeHeight": 1400,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "bone-bridge-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/hatchery-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1000,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1200,
+      "id": "hatchery_floor",
+      "name": "Hatchery Floor",
+      "nativeHeight": 2000,
+      "nativeWidth": 2400,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "hatchery-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/hoard-vault-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 800,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 800,
+      "id": "hoard_vault_floor",
+      "name": "Hoard Vault Floor",
+      "nativeHeight": 1600,
+      "nativeWidth": 1600,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "hoard-vault-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/hoard-chamber-floor.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1600,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1600,
+      "id": "hoard_chamber_floor",
+      "name": "Hoard Chamber Floor",
+      "nativeHeight": 3200,
+      "nativeWidth": 3200,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "hoard-chamber-floor-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/public/assets/dungeons/wyrm_hollow/wyrm-nest.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 140,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 140,
+      "id": "wyrm_hollow_nest",
+      "interactionRadius": 120,
+      "name": "Wyrm Nest",
+      "nativeHeight": 512,
+      "nativeWidth": 512,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "wyrm-hollow-nest-v1",
+      "stateAssets": [],
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/src/assets/structures/greenhouse-pot.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 175,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 175,
+      "footprint": [
+        {
+          "x": -70,
+          "y": -70
+        },
+        {
+          "x": 70,
+          "y": -70
+        },
+        {
+          "x": 70,
+          "y": 70
+        },
+        {
+          "x": -70,
+          "y": 70
+        }
+      ],
+      "id": "greenhouse_pot",
+      "interactionRadius": 113.13708498984761,
+      "name": "Greenhouse pot",
+      "nativeHeight": 175,
+      "nativeWidth": 175,
+      "pivotX": 0.501,
+      "pivotY": 0.502,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "greenhouse-r6",
+      "stateAssets": [],
+      "touchArea": {
+        "kind": "polygon",
+        "points": [
+          {
+            "x": -80,
+            "y": -80
+          },
+          {
+            "x": 80,
+            "y": -80
+          },
+          {
+            "x": 80,
+            "y": 80
+          },
+          {
+            "x": -80,
+            "y": 80
+          }
+        ]
+      },
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/src/assets/structures/greenhouse-water-tank.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 350,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 350,
+      "footprint": [
+        {
+          "x": -102.5,
+          "y": -102.5
+        },
+        {
+          "x": 102.5,
+          "y": -102.5
+        },
+        {
+          "x": 102.5,
+          "y": 102.5
+        },
+        {
+          "x": -102.5,
+          "y": 102.5
+        }
+      ],
+      "id": "greenhouse_water_tank",
+      "interactionRadius": 162.63455967290594,
+      "name": "Greenhouse water tank",
+      "nativeHeight": 350,
+      "nativeWidth": 350,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "greenhouse-r6",
+      "stateAssets": [],
+      "touchArea": {
+        "kind": "polygon",
+        "points": [
+          {
+            "x": -115,
+            "y": -115
+          },
+          {
+            "x": 115,
+            "y": -115
+          },
+          {
+            "x": 115,
+            "y": 115
+          },
+          {
+            "x": -115,
+            "y": 115
+          }
+        ]
+      },
+      "type": "object"
+    },
+    {
+      "assetKey": "apps/client/src/assets/structures/greenhouse-water-tank.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 160,
+      "defaultLayerId": "actors",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 160,
+      "id": "greenhouse_water_tank_art",
+      "name": "Greenhouse water tank art",
+      "nativeHeight": 160,
+      "nativeWidth": 160,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "greenhouse-r6",
+      "stateAssets": [],
+      "type": "decoration"
+    },
+    {
+      "assetKey": "apps/client/src/assets/structures/greenhouse-door.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 144,
+      "defaultLayerId": "below_player",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 144,
+      "id": "greenhouse_door",
+      "name": "Greenhouse door",
+      "nativeHeight": 144,
+      "nativeWidth": 144,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "sprite",
+      "retired": false,
+      "revision": "greenhouse-r6",
+      "stateAssets": [],
+      "type": "decoration"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/timber/lobby.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "manor_lobby_theme_floor",
+      "name": "Lobby floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "manor_lobby-v100",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/timber/lobby.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "timber_manor_floor_lobby",
+      "name": "Timber Manor lobby floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "timber_manor_floor_lobby-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/timber/hall.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "timber_manor_floor_hall",
+      "name": "Timber Manor hall floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "timber_manor_floor_hall-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/timber/room.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "timber_manor_floor_room",
+      "name": "Timber Manor room floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "timber_manor_floor_room-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/timber/room-left.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "timber_manor_floor_room_left",
+      "name": "Timber Manor room left floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "timber_manor_floor_room_left-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/timber/lower.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "timber_manor_floor_lower",
+      "name": "Timber Manor lower floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "timber_manor_floor_lower-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/samurai/lobby.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "samurai_manor_floor_lobby",
+      "name": "Samurai Manor lobby floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "samurai_manor_floor_lobby-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/samurai/hall.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "samurai_manor_floor_hall",
+      "name": "Samurai Manor hall floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "samurai_manor_floor_hall-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/samurai/room.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "samurai_manor_floor_room",
+      "name": "Samurai Manor room floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "samurai_manor_floor_room-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/samurai/room-left.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "samurai_manor_floor_room_left",
+      "name": "Samurai Manor room left floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "samurai_manor_floor_room_left-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/samurai/lower.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "samurai_manor_floor_lower",
+      "name": "Samurai Manor lower floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "samurai_manor_floor_lower-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/haunted/lobby.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "haunted_manor_floor_lobby",
+      "name": "Haunted Manor lobby floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "haunted_manor_floor_lobby-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/haunted/hall.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "haunted_manor_floor_hall",
+      "name": "Haunted Manor hall floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "haunted_manor_floor_hall-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/haunted/room.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "haunted_manor_floor_room",
+      "name": "Haunted Manor room floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "haunted_manor_floor_room-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/haunted/room-left.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "haunted_manor_floor_room_left",
+      "name": "Haunted Manor room left floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "haunted_manor_floor_room_left-v1",
+      "stateAssets": [],
+      "type": "surface"
+    },
+    {
+      "assetKey": "apps/client/src/assets/manors/haunted/lower.png",
+      "defaultColliders": [],
+      "defaultFlipX": false,
+      "defaultFlipY": false,
+      "defaultHeight": 1254,
+      "defaultLayerId": "background",
+      "defaultOpacity": 1,
+      "defaultRotationDeg": 0,
+      "defaultWidth": 1254,
+      "id": "haunted_manor_floor_lower",
+      "name": "Haunted Manor lower floor",
+      "nativeHeight": 1254,
+      "nativeWidth": 1254,
+      "pivotX": 0,
+      "pivotY": 0,
+      "renderMode": "stretch",
+      "retired": false,
+      "revision": "haunted_manor_floor_lower-v1",
+      "stateAssets": [],
+      "type": "surface"
+    }
+  ],
+  "rewardTableIds": [
+    "basic_dungeon_chest",
+    "readiness_tomorrow_slime_2026_09_20_long_accepted_name_dungeon_chest_1_loot",
+    "ashen_crypt_crypt_chest_reward",
+    "fangrock_cavern_throne_chest_reward",
+    "the_eyrie_crown_chest_reward",
+    "blightwood_grove_heart_chest_reward",
+    "cistern_warrens_baby_chest",
+    "fangrock_cavern_baby_chest",
+    "the_eyrie_baby_chest",
+    "blightwood_grove_baby_chest",
+    "cistern_warrens_alcove_chest_reward",
+    "cistern_warrens_brood_chest_reward",
+    "fangrock_cavern_den_chest_reward",
+    "cistern_warrens_completion_reward",
+    "fangrock_cavern_completion_reward",
+    "the_eyrie_completion_reward",
+    "blightwood_grove_completion_reward",
+    "fangrock_cavern_vault_chest_reward",
+    "fallen_prison_centurion_hoard_reward",
+    "fallen_prison_mother_clutch_reward",
+    "fallen_prison_vault_chest_a_reward",
+    "fallen_prison_vault_chest_b_reward",
+    "fallen_prison_hound_hoard_reward",
+    "drowned_city_obs_chest_reward",
+    "drowned_city_kelp_chest_reward",
+    "drowned_city_harbor_chest_reward",
+    "drowned_city_sanctum_chest_reward",
+    "golem_forge_slag_vault_chest_reward",
+    "golem_forge_bellows_hall_chest_reward",
+    "golem_forge_sentinel_walk_chest_reward",
+    "golem_forge_quarry_chest_reward",
+    "golem_forge_gem_vault_chest_reward",
+    "golem_forge_conduit_chest_reward",
+    "golem_forge_cooling_hall_chest_reward",
+    "golem_forge_forgemaster_chest_reward",
+    "still_hand_monastery_sanctum_chest_reward",
+    "wyrm_hollow_vault_chest_reward",
+    "wyrm_hollow_hoard_chest_reward"
+  ],
+  "rewardTables": [
+    {
+      "gold": 20,
+      "id": "basic_dungeon_chest",
+      "items": [
+        {
+          "itemId": "coal",
+          "quantity": 4
+        }
+      ],
+      "retired": false,
+      "revision": "basic-dungeon-chest-v1"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 63,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 1
+          },
+          {
+            "chance": 23,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 2
+          },
+          {
+            "chance": 9,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 4,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 3
+          },
+          {
+            "chance": 4,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 4
+          },
+          {
+            "chance": 1,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 5
+          }
+        ]
+      },
+      "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_dungeon_chest_1_loot",
+      "items": [],
+      "retired": false,
+      "revision": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_dungeon_chest_1_loot-v1"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 93,
+            "loot": [
+              {
+                "itemId": "edict_seal",
+                "maxQuantity": 30,
+                "minQuantity": 15,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 1
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "edict_seal",
+                "maxQuantity": 28,
+                "minQuantity": 16,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 1
+          },
+          {
+            "chance": 4,
+            "loot": [
+              {
+                "itemId": "bonewrought_blade",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 1
+          },
+          {
+            "chance": 3,
+            "loot": [
+              {
+                "itemId": "bonewrought_mail",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 1
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "bonewrought_blade",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "bonewrought_mail",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 2
+          }
+        ]
+      },
+      "gold": 240,
+      "id": "ashen_crypt_crypt_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "2"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 83,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 4
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 3
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "crude_oil",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "slag",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 2
+          },
+          {
+            "chance": 17,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "crude_oil",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "crude_oil",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "rare",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "crude_oil",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "epic",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "crude_oil",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 3
+          }
+        ]
+      },
+      "gold": 10,
+      "id": "cistern_warrens_baby_chest",
+      "items": [],
+      "retired": false,
+      "revision": "cistern-warrens-baby-chest-v1"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 83,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 3
+              },
+              {
+                "itemId": "stone",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "leather",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 2
+          },
+          {
+            "chance": 17,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 4,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 4,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 3
+          }
+        ]
+      },
+      "gold": 25,
+      "id": "fangrock_cavern_baby_chest",
+      "items": [],
+      "retired": false,
+      "revision": "fangrock-cavern-baby-chest-v1"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 83,
+            "loot": [
+              {
+                "itemId": "stone",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "wood",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "cloth",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "chitin",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 2
+          },
+          {
+            "chance": 17,
+            "loot": [
+              {
+                "itemId": "wood",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "cloth",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "wood",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "cloth",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "wood",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "cloth",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "wood",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "cloth",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 3
+          }
+        ]
+      },
+      "gold": 55,
+      "id": "the_eyrie_baby_chest",
+      "items": [],
+      "retired": false,
+      "revision": "the-eyrie-baby-chest-v1"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 83,
+            "loot": [
+              {
+                "itemId": "wood",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "fertilizer",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 2
+          },
+          {
+            "chance": 17,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "wood",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "wood",
+                "maxQuantity": 7,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "wood",
+                "maxQuantity": 7,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 3
+          },
+          {
+            "chance": 0,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "wood",
+                "maxQuantity": 7,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 3
+          }
+        ]
+      },
+      "gold": 85,
+      "id": "blightwood_grove_baby_chest",
+      "items": [],
+      "retired": false,
+      "revision": "blightwood-grove-baby-chest-v1"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 43,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 4,
+                "minQuantity": 1,
+                "weight": 4
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "crude_oil",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 3
+          },
+          {
+            "chance": 35,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 5,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 4
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 4
+          },
+          {
+            "chance": 16,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 3
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 4
+          },
+          {
+            "chance": 5,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 4
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "epic",
+            "slots": 5
+          },
+          {
+            "chance": 1,
+            "loot": [
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 9,
+                "minQuantity": 5,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 6
+          }
+        ]
+      },
+      "gold": 15,
+      "id": "cistern_warrens_alcove_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "cistern-warrens-alcove-chest-reward-v2"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 45,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "crude_oil",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "slag",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 3
+          },
+          {
+            "chance": 35,
+            "loot": [
+              {
+                "itemId": "coal",
+                "maxQuantity": 7,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 3
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 4
+          },
+          {
+            "chance": 14,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 7,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "sulfur",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "rare",
+            "slots": 4
+          },
+          {
+            "chance": 5,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 8,
+                "minQuantity": 6,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              }
+            ],
+            "rarity": "epic",
+            "slots": 5
+          },
+          {
+            "chance": 1,
+            "loot": [
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 4,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 12,
+                "minQuantity": 6,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 6
+          }
+        ]
+      },
+      "gold": 55,
+      "id": "cistern_warrens_brood_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "cistern-warrens-brood-chest-reward-v2",
+      "torchBonusSlots": true
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 45,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "stone",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 1
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "leather",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 3
+          },
+          {
+            "chance": 36,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 4
+          },
+          {
+            "chance": 13,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "ore",
+                "maxQuantity": 6,
+                "minQuantity": 5,
+                "weight": 3
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "rare",
+            "slots": 4
+          },
+          {
+            "chance": 5,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 9,
+                "minQuantity": 6,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              }
+            ],
+            "rarity": "epic",
+            "slots": 5
+          },
+          {
+            "chance": 1,
+            "loot": [
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 4,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "ore",
+                "maxQuantity": 10,
+                "minQuantity": 7,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 6
+          }
+        ]
+      },
+      "gold": 55,
+      "id": "fangrock_cavern_den_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "fangrock-cavern-den-chest-reward-v2"
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 44,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "stone",
+                "maxQuantity": 7,
+                "minQuantity": 5,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 5,
+                "minQuantity": 4,
+                "weight": 1
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "leather",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 3
+          },
+          {
+            "chance": 37,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 7,
+                "minQuantity": 5,
+                "weight": 3
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 7,
+                "minQuantity": 4,
+                "weight": 4
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 6,
+                "minQuantity": 5,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 4
+          },
+          {
+            "chance": 13,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 9,
+                "minQuantity": 7,
+                "weight": 4
+              },
+              {
+                "itemId": "ore",
+                "maxQuantity": 11,
+                "minQuantity": 7,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "cave_lichen",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 4
+          },
+          {
+            "chance": 5,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 14,
+                "minQuantity": 8,
+                "weight": 4
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 4,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "cave_lichen",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 5
+          },
+          {
+            "chance": 1,
+            "loot": [
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 7,
+                "minQuantity": 4,
+                "weight": 4
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 4,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "ore",
+                "maxQuantity": 14,
+                "minQuantity": 11,
+                "weight": 2
+              },
+              {
+                "itemId": "cave_lichen",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 6
+          }
+        ]
+      },
+      "gold": 260,
+      "id": "fangrock_cavern_throne_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "fangrock-cavern-throne-chest-reward-v3",
+      "torchBonusSlots": true
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 48,
+            "loot": [
+              {
+                "itemId": "stone",
+                "maxQuantity": 7,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "wood",
+                "maxQuantity": 8,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 7,
+                "minQuantity": 5,
+                "weight": 2
+              },
+              {
+                "itemId": "cloth",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "chitin",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 3
+          },
+          {
+            "chance": 33,
+            "loot": [
+              {
+                "itemId": "wood",
+                "maxQuantity": 9,
+                "minQuantity": 5,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 9,
+                "minQuantity": 6,
+                "weight": 3
+              },
+              {
+                "itemId": "cloth",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 4
+          },
+          {
+            "chance": 13,
+            "loot": [
+              {
+                "itemId": "cloth",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "gale_plume",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 4
+          },
+          {
+            "chance": 5,
+            "loot": [
+              {
+                "itemId": "cloth",
+                "maxQuantity": 7,
+                "minQuantity": 5,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "gale_plume",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 5
+          },
+          {
+            "chance": 1,
+            "loot": [
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 5,
+                "minQuantity": 4,
+                "weight": 3
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "gale_plume",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 6
+          }
+        ]
+      },
+      "gold": 350,
+      "id": "the_eyrie_crown_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "the-eyrie-crown-chest-reward-v4",
+      "torchBonusSlots": true
+    },
+    {
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 43,
+            "loot": [
+              {
+                "itemId": "wood",
+                "maxQuantity": 9,
+                "minQuantity": 5,
+                "weight": 2
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 7,
+                "minQuantity": 5,
+                "weight": 2
+              },
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "fertilizer",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 3
+          },
+          {
+            "chance": 36,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "wood",
+                "maxQuantity": 12,
+                "minQuantity": 6,
+                "weight": 1
+              },
+              {
+                "itemId": "flax_fiber",
+                "maxQuantity": 9,
+                "minQuantity": 6,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 4
+          },
+          {
+            "chance": 15,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 7,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 3
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "heartsap",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "rare",
+            "slots": 4
+          },
+          {
+            "chance": 5,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 9,
+                "minQuantity": 6,
+                "weight": 2
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "hearty_ration",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 5,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "heartsap",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "epic",
+            "slots": 5
+          },
+          {
+            "chance": 1,
+            "loot": [
+              {
+                "itemId": "balsam_resin",
+                "maxQuantity": 12,
+                "minQuantity": 9,
+                "weight": 3
+              },
+              {
+                "itemId": "giving_berry",
+                "maxQuantity": 7,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 5,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "heartsap",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 6
+          }
+        ]
+      },
+      "gold": 520,
+      "id": "blightwood_grove_heart_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "blightwood-grove-heart-chest-reward-v3",
+      "torchBonusSlots": true
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 35,
+          "itemId": "brood_silk",
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "torchScaling": true
+        }
+      ],
+      "id": "cistern_warrens_completion_reward",
+      "items": [],
+      "retired": false,
+      "revision": "cistern-warrens-completion-reward-v2"
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 30,
+          "itemId": "raptor_scale",
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "torchScaling": true
+        }
+      ],
+      "gold": 900,
+      "id": "fangrock_cavern_completion_reward",
+      "items": [],
+      "retired": false,
+      "revision": "fangrock-cavern-completion-reward-v3"
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 25,
+          "itemId": "giant_egg",
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "torchScaling": true
+        }
+      ],
+      "id": "the_eyrie_completion_reward",
+      "items": [],
+      "retired": false,
+      "revision": "the-eyrie-completion-reward-v2"
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 35,
+          "itemId": "elder_acorn",
+          "maxQuantity": 3,
+          "minQuantity": 1,
+          "torchScaling": true
+        }
+      ],
+      "id": "blightwood_grove_completion_reward",
+      "items": [],
+      "retired": false,
+      "revision": "blightwood-grove-completion-reward-v2"
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 10,
+          "itemId": "raptor_scale",
+          "maxQuantity": 1,
+          "minQuantity": 1
+        }
+      ],
+      "chestLoot": {
+        "rarities": [
+          {
+            "chance": 12,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 9,
+                "minQuantity": 5,
+                "weight": 2
+              },
+              {
+                "itemId": "stone",
+                "maxQuantity": 8,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "coal",
+                "maxQuantity": 7,
+                "minQuantity": 3,
+                "weight": 1
+              },
+              {
+                "itemId": "leather",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 1
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 1,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "common",
+            "slots": 4
+          },
+          {
+            "chance": 33,
+            "loot": [
+              {
+                "itemId": "ore",
+                "maxQuantity": 10,
+                "minQuantity": 6,
+                "weight": 2
+              },
+              {
+                "itemId": "iron",
+                "maxQuantity": 9,
+                "minQuantity": 6,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              },
+              {
+                "itemId": "cave_lichen",
+                "maxQuantity": 2,
+                "minQuantity": 1,
+                "weight": 1
+              }
+            ],
+            "rarity": "uncommon",
+            "slots": 5
+          },
+          {
+            "chance": 33,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 13,
+                "minQuantity": 9,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 3,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              },
+              {
+                "itemId": "cave_lichen",
+                "maxQuantity": 3,
+                "minQuantity": 1,
+                "weight": 2
+              }
+            ],
+            "rarity": "rare",
+            "slots": 5
+          },
+          {
+            "chance": 17,
+            "loot": [
+              {
+                "itemId": "iron",
+                "maxQuantity": 18,
+                "minQuantity": 11,
+                "weight": 2
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 4,
+                "minQuantity": 3,
+                "weight": 2
+              },
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 7,
+                "minQuantity": 3,
+                "weight": 3
+              },
+              {
+                "itemId": "cave_lichen",
+                "maxQuantity": 4,
+                "minQuantity": 2,
+                "weight": 2
+              }
+            ],
+            "rarity": "epic",
+            "slots": 6
+          },
+          {
+            "chance": 5,
+            "loot": [
+              {
+                "itemId": "iron_bar",
+                "maxQuantity": 11,
+                "minQuantity": 7,
+                "weight": 3
+              },
+              {
+                "itemId": "repair_kit",
+                "maxQuantity": 6,
+                "minQuantity": 4,
+                "weight": 2
+              },
+              {
+                "itemId": "ore",
+                "maxQuantity": 19,
+                "minQuantity": 15,
+                "weight": 2
+              },
+              {
+                "itemId": "cave_lichen",
+                "maxQuantity": 6,
+                "minQuantity": 3,
+                "weight": 2
+              }
+            ],
+            "rarity": "legendary",
+            "slots": 7
+          }
+        ]
+      },
+      "gold": 370,
+      "id": "fangrock_cavern_vault_chest_reward",
+      "items": [],
+      "retired": false,
+      "revision": "fangrock-cavern-vault-chest-reward-v2"
+    },
+    {
+      "gold": 260,
+      "id": "fallen_prison_centurion_hoard_reward",
+      "items": [
+        {
+          "itemId": "edict_seal",
+          "quantity": 13
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 430,
+      "id": "fallen_prison_mother_clutch_reward",
+      "items": [
+        {
+          "itemId": "edict_seal",
+          "quantity": 27
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 340,
+      "id": "fallen_prison_vault_chest_a_reward",
+      "items": [
+        {
+          "itemId": "hearty_ration",
+          "quantity": 4
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 620,
+      "id": "fallen_prison_vault_chest_b_reward",
+      "items": [
+        {
+          "itemId": "repair_kit",
+          "quantity": 4
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 950,
+      "id": "fallen_prison_hound_hoard_reward",
+      "items": [
+        {
+          "itemId": "edict_seal",
+          "quantity": 44
+        },
+        {
+          "itemId": "prison_key_fragment",
+          "quantity": 1
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 1500,
+      "id": "drowned_city_obs_chest_reward",
+      "items": [
+        {
+          "itemId": "abyssal_orb",
+          "quantity": 2
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 1500,
+      "id": "drowned_city_kelp_chest_reward",
+      "items": [
+        {
+          "itemId": "abyssal_orb",
+          "quantity": 2
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 1500,
+      "id": "drowned_city_harbor_chest_reward",
+      "items": [
+        {
+          "itemId": "abyssal_orb",
+          "quantity": 2
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 3000,
+      "id": "drowned_city_sanctum_chest_reward",
+      "items": [
+        {
+          "itemId": "abyssal_orb",
+          "quantity": 4
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 2650,
+      "id": "golem_forge_slag_vault_chest_reward",
+      "items": [
+        {
+          "itemId": "forge_spark",
+          "quantity": 6
+        },
+        {
+          "itemId": "shard_grit",
+          "quantity": 11
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 590,
+      "id": "golem_forge_bellows_hall_chest_reward",
+      "items": [
+        {
+          "itemId": "shard_grit",
+          "quantity": 6
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 500,
+      "id": "golem_forge_sentinel_walk_chest_reward",
+      "items": [
+        {
+          "itemId": "shard_grit",
+          "quantity": 6
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 10,
+          "itemId": "amulet_clasp",
+          "maxQuantity": 1,
+          "minQuantity": 1
+        }
+      ],
+      "gold": 2550,
+      "id": "golem_forge_quarry_chest_reward",
+      "items": [
+        {
+          "itemId": "forge_spark",
+          "quantity": 12
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 610,
+      "id": "golem_forge_gem_vault_chest_reward",
+      "items": [
+        {
+          "itemId": "shard_grit",
+          "quantity": 6
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 10,
+          "itemId": "amulet_clasp",
+          "maxQuantity": 1,
+          "minQuantity": 1
+        }
+      ],
+      "gold": 2550,
+      "id": "golem_forge_conduit_chest_reward",
+      "items": [
+        {
+          "itemId": "forge_spark",
+          "quantity": 31
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 570,
+      "id": "golem_forge_cooling_hall_chest_reward",
+      "items": [
+        {
+          "itemId": "shard_grit",
+          "quantity": 6
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "chanceItems": [
+        {
+          "chancePct": 10,
+          "itemId": "amulet_clasp",
+          "maxQuantity": 2,
+          "minQuantity": 2
+        }
+      ],
+      "gold": 4950,
+      "id": "golem_forge_forgemaster_chest_reward",
+      "items": [
+        {
+          "itemId": "forge_spark",
+          "quantity": 43
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 620,
+      "id": "still_hand_monastery_sanctum_chest_reward",
+      "items": [
+        {
+          "itemId": "zephyr",
+          "quantity": 1
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 290,
+      "id": "wyrm_hollow_vault_chest_reward",
+      "items": [
+        {
+          "itemId": "sulfur",
+          "quantity": 11
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    },
+    {
+      "gold": 670,
+      "id": "wyrm_hollow_hoard_chest_reward",
+      "items": [
+        {
+          "itemId": "coal",
+          "quantity": 17
+        }
+      ],
+      "retired": false,
+      "revision": "1"
+    }
+  ],
+  "schemaVersion": 1
+}

@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    "browser-tests",
+    "full-app-tests",
+    "playwright/index.ts",
+    "playwright-ct.config.ts",
+    "playwright-full-app.config.ts",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
+}
+

@@ -1,0 +1,22 @@
+{
+  "name": "@ash-atlas/player-renderer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./asset-registry": "./src/assetRegistry.ts"
+  },
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@ash-atlas/shared": "workspace:*",
+    "pixi.js": "^8.10.1"
+  },
+  "devDependencies": {
+    "vite": "^7.0.4"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}

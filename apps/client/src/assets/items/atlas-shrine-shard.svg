@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="crystal" x1="30" y1="18" x2="91" y2="111" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e0fbff"/>
+      <stop offset=".42" stop-color="#42d9ef"/>
+      <stop offset="1" stop-color="#146b9d"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+  <ellipse cx="64" cy="66" rx="38" ry="43" fill="#39dff2" opacity=".28" filter="url(#glow)"/>
+  <path d="M64 8 99 43 78 113 49 118 28 52Z" fill="url(#crystal)" stroke="#e7fdff" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m64 8 4 76-40-32 36-44Z" fill="#9bf4ff" opacity=".55"/>
+  <path d="m68 84 31-41-21 70-10-29Z" fill="#075985" opacity=".65"/>
+  <path d="M49 118 68 84 28 52Z" fill="#1fa7cc" opacity=".72"/>
+  <path d="M48 53 64 36l16 17-7 9 7 9-16 18-16-18 7-9Z" fill="none" stroke="#fff4b8" stroke-width="4" stroke-linejoin="round"/>
+</svg>

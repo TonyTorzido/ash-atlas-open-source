@@ -1,0 +1,157 @@
+.dungeon-topology {
+  --topology-graph: var(--panel);
+  --topology-card: var(--panel);
+  --topology-inspector: var(--panel-2);
+  --topology-control: var(--panel-2);
+  --topology-selection: color-mix(in srgb, var(--gold) 18%, var(--topology-control));
+  --topology-paper: var(--topology-card);
+  --topology-raised: var(--topology-inspector);
+  --topology-pressed: var(--topology-selection);
+  --topology-text: inherit;
+  --topology-muted: var(--muted);
+  --topology-rule: var(--line);
+  --topology-accent: var(--gold);
+  --topology-danger: var(--danger);
+  color: var(--topology-text);
+  background: var(--topology-card);
+  border: 1px solid var(--topology-rule);
+  border-radius: 10px;
+  min-width: 0;
+  overflow: hidden;
+}
+.dungeon-topology-toolbar, .dungeon-topology-flowbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--topology-rule);
+  background: var(--topology-raised);
+}
+.dungeon-topology-toolbar { justify-content: space-between; }
+.dungeon-topology-toolbar > div:first-child { display: grid; gap: 3px; }
+.dungeon-topology-toolbar strong { font-size: 16px; }
+.dungeon-topology-toolbar span, .dungeon-topology-help, .dungeon-topology-muted { font-size: 12px; color: var(--topology-muted); }
+.dungeon-topology-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.dungeon-topology-actions output { min-width: 42px; text-align: center; font-variant-numeric: tabular-nums; font-size: 12px; }
+.dungeon-topology-flowbar { font-size: 12px; padding-block: 8px; }
+.dungeon-topology label { display: grid; gap: 5px; font-size: 12px; color: var(--topology-muted); }
+.dungeon-topology select { min-width: 0; width: 100%; min-height: 36px; }
+.dungeon-topology .game-app-button,
+.dungeon-topology select,
+.dungeon-topology-connection-list button,
+.dungeon-topology-endpoint-detail button {
+  color: var(--topology-text);
+  background: var(--topology-control);
+  border-color: var(--topology-rule);
+}
+/* Studio's global hover is dark blue; every graph control keeps its theme's paired surface and ink. */
+.dungeon-topology button:hover:not(:disabled) {
+  color: var(--topology-text);
+  background: var(--topology-pressed);
+  border-color: var(--topology-accent);
+}
+.dungeon-topology button:active:not(:disabled) {
+  color: var(--topology-text);
+  background: var(--topology-control);
+  border-color: var(--topology-accent);
+}
+.dungeon-topology-flowbar > label:first-child { display: flex; align-items: center; }
+.dungeon-topology-flowbar > label:first-child select { width: auto; max-width: 220px; }
+.dungeon-topology-route-status { flex: 1; min-width: 140px; }
+.dungeon-topology label.dungeon-topology-toggle { display: flex; align-items: center; gap: 6px; }
+.dungeon-topology-toggle input { width: 16px; height: 16px; accent-color: var(--topology-accent); }
+.dungeon-topology-flowbar a { color: var(--topology-accent); white-space: nowrap; }
+.dungeon-topology-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 294px; min-width: 0; }
+.dungeon-topology-viewport {
+  position: relative;
+  height: clamp(440px, 68vh, 900px);
+  min-width: 0;
+  overflow: hidden;
+  background-color: var(--topology-graph);
+  background-image: radial-gradient(circle, var(--topology-rule) 0.8px, transparent 1px);
+  background-size: 22px 22px;
+  touch-action: none;
+  cursor: grab;
+  isolation: isolate;
+}
+.dungeon-topology-viewport:active { cursor: grabbing; }
+.dungeon-topology-plane { position: absolute; width: 1px; height: 1px; transform-origin: 0 0; }
+.dungeon-topology-connections { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: visible; }
+.dungeon-topology-edge { cursor: pointer; color: var(--topology-muted); outline: none; }
+.dungeon-topology-edge-line { fill: none; stroke: currentColor; stroke-width: 2; }
+.dungeon-topology-edge-hit { stroke: transparent; stroke-width: 18; fill: none; pointer-events: stroke; }
+.dungeon-topology-edge.route { color: var(--topology-accent); }
+.dungeon-topology-edge.route .dungeon-topology-edge-line { stroke-width: 3.5; }
+.dungeon-topology-edge.invalid { color: var(--topology-danger); }
+.dungeon-topology-edge.invalid .dungeon-topology-edge-line, .dungeon-topology-edge.disabled .dungeon-topology-edge-line { stroke-dasharray: 6 5; }
+.dungeon-topology-edge.selected .dungeon-topology-edge-line, .dungeon-topology-edge:focus-visible .dungeon-topology-edge-line { stroke-width: 5; }
+.dungeon-topology-edge-label, .dungeon-topology-world { font: 600 11px system-ui; fill: currentColor; paint-order: stroke; stroke: var(--topology-paper); stroke-width: 5px; stroke-linejoin: round; }
+.dungeon-topology-world { fill: var(--topology-muted); }
+.dungeon-topology-node { position: absolute; border: 1px solid var(--topology-rule); border-radius: 9px; background: var(--topology-paper); box-shadow: 0 4px 12px rgb(0 0 0 / 16%); overflow: visible; }
+.dungeon-topology-node.selected { border-color: var(--topology-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--topology-accent) 50%, transparent), 0 4px 12px rgb(0 0 0 / 16%); }
+.dungeon-topology-node.disconnected { border-style: dashed; }
+.dungeon-topology-node.has-errors { border-color: var(--topology-danger); }
+.dungeon-topology-node.on-route:before { content: ""; position: absolute; top: -1px; left: 24px; right: 24px; height: 3px; background: var(--topology-accent); border-radius: 2px; }
+.dungeon-topology-node-heading { display: grid; align-content: center; gap: 4px; width: 100%; height: var(--topology-node-header-height); padding: 10px 12px; text-align: left; cursor: move; border: 0; border-bottom: 1px solid var(--topology-rule); border-radius: 8px 8px 0 0; background: var(--topology-raised); color: inherit; touch-action: none; }
+.dungeon-topology-node-heading:active { transform: none; }
+.dungeon-topology .dungeon-topology-node-heading[aria-pressed="true"] {
+  color: var(--topology-text);
+  background: var(--topology-pressed);
+  border-bottom-color: var(--topology-accent);
+}
+.dungeon-topology-node-heading strong { font-size: 14px; line-height: 18px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.dungeon-topology-node-meta { color: var(--topology-muted); font-size: 11px; }
+.dungeon-topology-badges { display: flex; gap: 5px; align-items: center; min-height: 14px; flex-wrap: wrap; }
+.dungeon-topology-badges span { font-size: 9px; letter-spacing: .08em; font-weight: 800; color: var(--topology-accent); }
+.dungeon-topology-node.disconnected .dungeon-topology-badges span:last-child { color: var(--topology-danger); }
+.dungeon-topology-node-counts { height: var(--topology-node-meta-height); display: flex; align-items: center; justify-content: space-between; padding: 0 12px; color: var(--topology-muted); font-size: 10px; border-bottom: 1px solid var(--topology-rule); }
+.dungeon-topology-node-counts button { height: var(--topology-node-meta-height); border: 0; background: transparent; padding: 2px; font: inherit; color: var(--topology-danger); }
+.dungeon-topology .dungeon-topology-port { position: relative; width: 100%; min-height: var(--topology-port-height); height: var(--topology-port-height); display: flex; align-items: center; justify-content: space-between; gap: 5px; color: inherit; background: var(--topology-paper); border: 0; border-radius: 0; padding: 0; text-align: left; font-size: 11px; }
+.dungeon-topology-port > span:nth-child(2) { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dungeon-topology-port-dot { flex: 0 0 9px; height: 9px; border-radius: 50%; background: var(--topology-paper); border: 2px solid var(--topology-muted); margin-inline: -5px; }
+.dungeon-topology-port > span:nth-child(2) { padding-inline: 9px; }
+.dungeon-topology-port.selected, .dungeon-topology-port.connection-source, .dungeon-topology-port.connection-destination { background: var(--topology-selection); color: var(--topology-accent); font-weight: 700; }
+.dungeon-topology-port.selected .dungeon-topology-port-dot, .dungeon-topology-port.connection-source .dungeon-topology-port-dot, .dungeon-topology-port.connection-destination .dungeon-topology-port-dot { border-color: var(--topology-accent); background: var(--topology-accent); }
+.dungeon-topology-port.invalid .dungeon-topology-port-dot { border-color: var(--topology-danger); }
+.dungeon-topology .dungeon-topology-more { display: block; width: 100%; min-height: var(--topology-more-height); height: var(--topology-more-height); padding: 4px 12px; border: 0; border-radius: 0 0 8px 8px; background: var(--topology-raised); color: var(--topology-muted); font-size: 10px; text-align: left; }
+.dungeon-topology-inspector { padding: 16px; border-left: 1px solid var(--topology-rule); height: clamp(440px, 68vh, 900px); overflow: auto; overscroll-behavior: contain; min-width: 0; background: var(--topology-inspector); }
+.dungeon-topology-inspector h3 { font-size: 15px; margin: 0 0 10px; color: inherit; }
+.dungeon-topology-inspector h4 { font-size: 12px; margin: 18px 0 8px; }
+.dungeon-topology-inspector p, .dungeon-topology-inspector li { font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.dungeon-topology-inspector dl { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 6px; font-size: 12px; }
+.dungeon-topology-inspector dt { color: var(--topology-muted); }
+.dungeon-topology-inspector dd { margin: 0; overflow-wrap: anywhere; }
+.dungeon-topology-inspector details { font-size: 11px; margin-top: 16px; }
+.dungeon-topology-inspector summary { cursor: pointer; color: var(--topology-muted); }
+.dungeon-topology-inspector code { display: block; margin-top: 8px; overflow-wrap: anywhere; }
+.dungeon-topology-connect > label, .dungeon-topology-endpoint-picker { margin-bottom: 12px; }
+.dungeon-topology-endpoint-picker { display: grid; gap: 8px; }
+.dungeon-topology-connection-list, .dungeon-topology-endpoint-detail { display: grid; gap: 6px; margin-bottom: 12px; }
+.dungeon-topology-endpoint-detail > span { font-size: 10px; color: var(--topology-muted); text-transform: uppercase; letter-spacing: .07em; }
+.dungeon-topology-connection-list button, .dungeon-topology-endpoint-detail button { text-align: left; font-size: 12px; overflow-wrap: anywhere; }
+.dungeon-topology-inspector small { display: block; font-size: 10px; margin-top: 4px; color: var(--topology-muted); }
+.dungeon-topology-validation { border-top: 1px solid var(--topology-rule); margin-top: 20px; padding-top: 16px; }
+.dungeon-topology-validation-heading { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.dungeon-topology-validation-heading > span { color: var(--topology-muted); font-size: 11px; }
+.dungeon-topology-validation ul { list-style: none; padding: 0; margin: 10px 0 0; }
+.dungeon-topology-issue { margin-top: 6px; border-left: 3px solid var(--topology-rule); }
+.dungeon-topology-issue.error { border-left-color: var(--topology-danger); }
+.dungeon-topology-issue.warning { border-left-color: var(--topology-accent); }
+.dungeon-topology-issue button { width: 100%; padding: 8px 10px; text-align: left; background: transparent; color: inherit; border: 0; border-radius: 0; font-size: 11px; line-height: 1.4; }
+.dungeon-topology-issue button:disabled { opacity: 1; cursor: default; }
+.dungeon-topology-issue button > span { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; color: var(--topology-muted); }
+.dungeon-topology-error-text { color: var(--topology-danger) !important; }
+.dungeon-topology-warning-text { color: var(--topology-accent); }
+.dungeon-topology-notice { padding: 10px; background: var(--topology-raised); border-radius: 6px; }
+.dungeon-topology-help { margin: 0; padding: 10px 16px; border-top: 1px solid var(--topology-rule); }
+.dungeon-topology-empty { padding: 32px; color: var(--topology-muted); }
+.dungeon-topology :is(button, select, a, summary):focus-visible, .dungeon-topology-viewport:focus-visible { outline: 2px solid var(--topology-accent); outline-offset: 3px; }
+@media (max-width: 900px) {
+  .dungeon-topology-workspace { grid-template-columns: 1fr; }
+  .dungeon-topology-inspector { height: auto; max-height: 440px; border-left: 0; border-top: 1px solid var(--topology-rule); }
+  .dungeon-topology-viewport { height: 480px; }
+  .dungeon-topology-toolbar, .dungeon-topology-flowbar { padding: 10px; }
+  .dungeon-topology-actions button, .dungeon-topology-inspector button, .dungeon-topology select { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { .dungeon-topology button { transition: none; } }

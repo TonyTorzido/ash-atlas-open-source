@@ -1,0 +1,12 @@
+[Unit]
+Description=Sample Ash Atlas host telemetry every ten seconds
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=10s
+AccuracySec=1s
+RandomizedDelaySec=1s
+Persistent=false
+
+[Install]
+WantedBy=timers.target

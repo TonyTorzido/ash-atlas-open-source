@@ -1,0 +1,128 @@
+{
+  "dungeon": {
+    "id": "still_hand_monastery",
+    "name": "Monastery of the Still Hand",
+    "description": "A mountaintop monastery above the clouds. Weapons are useless here: fight unarmed through the courtyard, the bell hall, the garden and the hall of statues to face the Grandmaster. Recommended level 22.",
+    "instancePolicy": "party_ephemeral",
+    "theme": { "id": "monastery", "backgroundColor": "#10131a", "floorColor": "#6b5a45", "wallColor": "#7a2a22", "accentColor": "#e8c46a" }
+  },
+  "entranceRoom": "mountain_gate",
+  "rooms": [
+    {
+      "id": "mountain_gate", "name": "Mountain Gate", "width": 1000, "height": 1000, "spawn": { "x": 500, "y": 800 },
+      "anchors": {
+        "door_n": { "x": 500, "y": 30 }, "approach_n": { "x": 500, "y": 110 }, "arrive_n": { "x": 500, "y": 140 },
+        "zephyr_altar": { "x": 780, "y": 320 }
+      }
+    },
+    {
+      "id": "training_courtyard", "name": "Training Courtyard", "width": 1400, "height": 1000, "spawn": { "x": 700, "y": 860 },
+      "anchors": {
+        "door_s": { "x": 700, "y": 970 }, "approach_s": { "x": 700, "y": 890 }, "arrive_s": { "x": 700, "y": 860 },
+        "door_n": { "x": 700, "y": 30 }, "approach_n": { "x": 700, "y": 110 }, "arrive_n": { "x": 700, "y": 140 }
+      },
+      "zones": [
+        { "id": "courtyard_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 1280, "height": 880 } },
+        { "id": "courtyard_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1340, "height": 940 } }
+      ]
+    },
+    {
+      "id": "bell_hall", "name": "Bell Hall", "width": 1200, "height": 1200, "spawn": { "x": 600, "y": 1060 },
+      "anchors": {
+        "door_s": { "x": 600, "y": 1170 }, "approach_s": { "x": 600, "y": 1090 }, "arrive_s": { "x": 600, "y": 1060 },
+        "door_e": { "x": 1170, "y": 600 }, "approach_e": { "x": 1090, "y": 600 }, "arrive_e": { "x": 1060, "y": 600 }
+      },
+      "zones": [
+        { "id": "bell_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 1080, "height": 1080 } },
+        { "id": "bell_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1140, "height": 1140 } }
+      ]
+    },
+    {
+      "id": "still_garden", "name": "Garden of Stillness", "width": 1200, "height": 1000, "spawn": { "x": 140, "y": 500 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 500 }, "approach_w": { "x": 110, "y": 500 }, "arrive_w": { "x": 140, "y": 500 },
+        "door_n": { "x": 600, "y": 30 }, "approach_n": { "x": 600, "y": 110 }, "arrive_n": { "x": 600, "y": 140 }
+      },
+      "zones": [
+        { "id": "garden_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 1080, "height": 880 } },
+        { "id": "garden_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1140, "height": 940 } }
+      ]
+    },
+    {
+      "id": "statue_hall", "name": "Hall of Statues", "width": 1600, "height": 800, "spawn": { "x": 800, "y": 660 },
+      "anchors": {
+        "door_s": { "x": 800, "y": 770 }, "approach_s": { "x": 800, "y": 690 }, "arrive_s": { "x": 800, "y": 660 },
+        "door_e": { "x": 1570, "y": 400 }, "approach_e": { "x": 1490, "y": 400 }, "arrive_e": { "x": 1460, "y": 400 }
+      },
+      "zones": [
+        { "id": "statue_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 1480, "height": 680 } },
+        { "id": "statue_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1540, "height": 740 } }
+      ]
+    },
+    {
+      "id": "grandmaster_sanctum", "name": "Grandmaster's Sanctum", "width": 1400, "height": 1400, "spawn": { "x": 140, "y": 700 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 700 }, "approach_w": { "x": 110, "y": 700 }, "arrive_w": { "x": 140, "y": 700 }
+      },
+      "zones": [
+        { "id": "sanctum_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 1280, "height": 1280 } },
+        { "id": "sanctum_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1340, "height": 1340 } }
+      ],
+      "chests": [
+        { "id": "sanctum_chest", "name": "Grandmaster's Offering", "at": { "x": 700, "y": 260 }, "reward": { "gold": 700, "items": [{ "itemId": "zephyr", "quantity": 1 }] } }
+      ]
+    }
+  ],
+  "doors": [
+    { "id": "gate_to_courtyard", "from": { "room": "mountain_gate", "anchor": "door_n" }, "to": { "room": "training_courtyard", "anchor": "door_s" }, "label": "Climb to the Courtyard", "reverseLabel": "Back to the Gate" },
+    { "id": "courtyard_to_bell_hall", "from": { "room": "training_courtyard", "anchor": "door_n" }, "to": { "room": "bell_hall", "anchor": "door_s" }, "label": "Enter the Bell Hall", "reverseLabel": "Back to the Courtyard" },
+    { "id": "bell_hall_to_garden", "from": { "room": "bell_hall", "anchor": "door_e" }, "to": { "room": "still_garden", "anchor": "door_w" }, "label": "Enter the Garden", "reverseLabel": "Back to the Bell Hall" },
+    { "id": "garden_to_statue_hall", "from": { "room": "still_garden", "anchor": "door_n" }, "to": { "room": "statue_hall", "anchor": "door_s" }, "label": "Enter the Hall of Statues", "reverseLabel": "Back to the Garden" },
+    { "id": "statue_hall_to_sanctum", "from": { "room": "statue_hall", "anchor": "door_e" }, "to": { "room": "grandmaster_sanctum", "anchor": "door_w" }, "label": "Enter the Sanctum", "reverseLabel": "Back to the Hall of Statues" }
+  ],
+  "encounters": [
+    {
+      "id": "courtyard_training", "name": "Training Courtyard", "room": "training_courtyard", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "training_dummy", "at": [{ "x": 330, "y": 300 }, { "x": 1070, "y": 300 }] },
+        { "archetype": "initiate_monk", "at": [{ "x": 500, "y": 420 }, { "x": 700, "y": 360 }, { "x": 900, "y": 420 }] }
+      ] }],
+      "boundary": "courtyard_boundary", "leash": "courtyard_leash",
+      "onComplete": [{ "message": "The initiates bow out. The Bell Hall opens." }]
+    },
+    {
+      "id": "bell_hall_toll", "name": "Bell Hall", "room": "bell_hall", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "initiate_monk", "at": [{ "x": 420, "y": 760 }, { "x": 780, "y": 760 }] },
+        { "archetype": "bell_spirit", "at": [{ "x": 380, "y": 420 }, { "x": 820, "y": 420 }] }
+      ] }],
+      "boundary": "bell_boundary", "leash": "bell_leash",
+      "onComplete": [{ "message": "The bell falls silent." }]
+    },
+    {
+      "id": "garden_shadows", "name": "Garden of Stillness", "room": "still_garden", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "shadow_acrobat", "at": [{ "x": 520, "y": 300 }, { "x": 820, "y": 520 }, { "x": 520, "y": 760 }] },
+        { "archetype": "staff_adept", "at": [{ "x": 760, "y": 260 }, { "x": 940, "y": 760 }] }
+      ] }],
+      "boundary": "garden_boundary", "leash": "garden_leash",
+      "onComplete": [{ "message": "The garden is still again." }]
+    },
+    {
+      "id": "statue_guardians", "name": "Hall of Statues", "room": "statue_hall", "startOn": "room_enter", "lockDoors": true,
+      "waves": [{ "mobs": [
+        { "archetype": "iron_statue", "at": [{ "x": 420, "y": 150 }, { "x": 820, "y": 150 }, { "x": 1220, "y": 150 }, { "x": 620, "y": 560 }, { "x": 1020, "y": 560 }] },
+        { "archetype": "shadow_acrobat", "at": [{ "x": 1300, "y": 400 }] },
+        { "archetype": "bell_spirit", "at": [{ "x": 1100, "y": 380 }] }
+      ] }],
+      "boundary": "statue_boundary", "leash": "statue_leash",
+      "onComplete": [{ "message": "The statues fall dormant. The Sanctum waits." }]
+    },
+    {
+      "id": "grandmaster", "name": "The Grandmaster", "room": "grandmaster_sanctum", "startOn": "room_enter", "lockDoors": true,
+      "boss": { "template": "grandmaster", "at": { "x": 700, "y": 600 }, "visualScale": 1 },
+      "boundary": "sanctum_boundary", "leash": "sanctum_leash",
+      "onComplete": [{ "revealChest": "sanctum_chest" }, { "completeDungeon": true }, { "message": "The Grandmaster bows. His offering is revealed." }]
+    }
+  ]
+}

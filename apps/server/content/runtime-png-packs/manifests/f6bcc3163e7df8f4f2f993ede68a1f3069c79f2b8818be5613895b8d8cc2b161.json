@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "packId": "f6bcc3163e7df8f4f2f993ede68a1f3069c79f2b8818be5613895b8d8cc2b161",
+  "totalByteLength": 108239,
+  "assets": [
+    {
+      "registrationId": "chat-crest-lion",
+      "relativeFile": "apps/client/src/assets/chat-crests/lion.png",
+      "sha256": "c37fde334335969243a98f3bf70af574fca0fb40f91b548b2fba903b0d1c6554",
+      "byteLength": 108239
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 130" role="img" aria-label="Manor storage chest">
+  <defs><linearGradient id="lid" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#df9344"/><stop offset="1" stop-color="#8d4b24"/></linearGradient></defs>
+  <ellipse cx="80" cy="119" rx="68" ry="9" fill="#000" opacity=".35"/>
+  <path d="M18 54C18 20 42 8 80 8s62 12 62 46v18H18z" fill="url(#lid)" stroke="#321d16" stroke-width="7"/>
+  <rect x="13" y="62" width="134" height="55" rx="9" fill="#a85d2b" stroke="#321d16" stroke-width="7"/>
+  <path d="M29 17v98M131 17v98M16 66h128" fill="none" stroke="#f2c36d" stroke-width="8" opacity=".75"/>
+  <rect x="68" y="57" width="24" height="34" rx="5" fill="#f6cf5a" stroke="#4a3014" stroke-width="5"/>
+</svg>

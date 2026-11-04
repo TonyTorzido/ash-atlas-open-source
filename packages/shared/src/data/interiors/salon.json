@@ -1,0 +1,217 @@
+{
+  "defaultRoomId": "salon_main_room",
+  "description": "The hair and beard salon.",
+  "environment": {
+    "ambienceAssetKey": null,
+    "environmentId": "salon",
+    "musicAssetKey": null
+  },
+  "id": "salon",
+  "instancePolicy": "shared_persistent",
+  "kind": "salon",
+  "modules": {
+    "salon": {}
+  },
+  "name": "Salon",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "salon_main_room-world_exit",
+      "interactionLabel": "Exit Salon",
+      "presentation": "door",
+      "retired": false,
+      "source": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "salon_main_room"
+      },
+      "sourceApproachAnchorId": "world_exit"
+    }
+  ],
+  "retired": false,
+  "revision": "salon-v1",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 790
+        },
+        {
+          "id": "chair",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 170
+        },
+        {
+          "id": "chair_approach",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 255
+        },
+        {
+          "id": "world_exit",
+          "retired": false,
+          "role": "portal",
+          "x": 830,
+          "y": 830
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "salon_chair_click_area",
+          "interactionLabel": "Salon chair",
+          "polygon": [
+            {
+              "x": 435,
+              "y": 125
+            },
+            {
+              "x": 565,
+              "y": 125
+            },
+            {
+              "x": 565,
+              "y": 215
+            },
+            {
+              "x": 435,
+              "y": 215
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "salon_chair"
+          }
+        },
+        {
+          "id": "world_exit_click_area",
+          "interactionLabel": "Leave Salon",
+          "polygon": [
+            {
+              "x": 770,
+              "y": 770
+            },
+            {
+              "x": 890,
+              "y": 770
+            },
+            {
+              "x": 890,
+              "y": 890
+            },
+            {
+              "x": 770,
+              "y": 890
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "world_exit"
+          }
+        }
+      ],
+      "colliders": [
+        {
+          "height": 90,
+          "id": "salon_chair",
+          "kind": "rectangle",
+          "retired": false,
+          "width": 130,
+          "x": 435,
+          "y": 125
+        }
+      ],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "salon",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "salon_main_room",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Salon",
+      "objects": [
+        {
+          "anchorId": "chair",
+          "approachAnchorId": "chair_approach",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "salon_chair",
+          "initialState": "idle",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Salon chair",
+          "opacity": 1,
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "salon_chair",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "salon-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": []
+    }
+  ],
+  "spatialProfileId": "standard_indoor"
+}

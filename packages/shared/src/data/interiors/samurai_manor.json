@@ -1,0 +1,3435 @@
+{
+  "catalogRevision": 2,
+  "defaultRoomId": "samurai_manor_lobby",
+  "description": "A samurai-style manor: lobby, upstairs hallway with six private rooms, and a lower room.",
+  "doorVisual": null,
+  "environment": {
+    "ambienceAssetKey": null,
+    "backgroundColor": "#071116",
+    "environmentId": "default",
+    "floorAssetKey": "apps/client/src/assets/manors/samurai/lobby.png",
+    "floorColor": "#182a2d",
+    "musicAssetKey": null,
+    "wallColor": "#405052"
+  },
+  "id": "samurai_manor",
+  "instancePolicy": "owner_persistent",
+  "kind": "manor",
+  "modules": {
+    "decoration": {
+      "definitions": [],
+      "playerPlacement": {
+        "enabled": true
+      }
+    },
+    "manor": {
+      "exteriorAssetKey": "apps/client/src/assets/manors/samurai/exterior.png"
+    }
+  },
+  "name": "Samurai Manor",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "destinationArrivalAnchorId": "return_to_manor",
+      "enabled": true,
+      "id": "samurai_manor_lobby-left_door",
+      "interactionLabel": "Upstairs",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_hallway-return_to_manor",
+      "retired": false,
+      "source": {
+        "anchorId": "left_door",
+        "kind": "room",
+        "roomId": "samurai_manor_lobby"
+      },
+      "sourceApproachAnchorId": "left_door"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "samurai_manor_lower_room"
+      },
+      "destinationArrivalAnchorId": "return_to_manor",
+      "enabled": true,
+      "id": "samurai_manor_lobby-left_door-samurai_manor_lower_room",
+      "interactionLabel": "Courtyard",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_lower_room-return_to_manor",
+      "retired": false,
+      "source": {
+        "anchorId": "left_door",
+        "kind": "room",
+        "roomId": "samurai_manor_lobby"
+      },
+      "sourceApproachAnchorId": "left_door"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "samurai_manor_lobby-world_exit",
+      "interactionLabel": "Leave Manor",
+      "presentation": "door",
+      "retired": false,
+      "source": {
+        "anchorId": "world_exit",
+        "kind": "room",
+        "roomId": "samurai_manor_lobby"
+      },
+      "sourceApproachAnchorId": "world_exit"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "left_door",
+        "kind": "room",
+        "roomId": "samurai_manor_lobby"
+      },
+      "destinationArrivalAnchorId": "left_door",
+      "enabled": true,
+      "id": "samurai_manor_hallway-return_to_manor",
+      "interactionLabel": "Lobby",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_lobby-left_door",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "sourceApproachAnchorId": "return_to_manor"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_1"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "samurai_manor_hallway-room_1",
+      "interactionLabel": "Private Room 1",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_room_1-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_1",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "sourceApproachAnchorId": "room_1"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_1",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "destinationArrivalAnchorId": "room_1",
+      "enabled": true,
+      "id": "samurai_manor_room_1-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_hallway-room_1",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_1"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_2"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "samurai_manor_hallway-room_2",
+      "interactionLabel": "Private Room 2",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_room_2-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_2",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "sourceApproachAnchorId": "room_2"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_2",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "destinationArrivalAnchorId": "room_2",
+      "enabled": true,
+      "id": "samurai_manor_room_2-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_hallway-room_2",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_2"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_3"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "samurai_manor_hallway-room_3",
+      "interactionLabel": "Private Room 3",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_room_3-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_3",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "sourceApproachAnchorId": "room_3"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_3",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "destinationArrivalAnchorId": "room_3",
+      "enabled": true,
+      "id": "samurai_manor_room_3-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_hallway-room_3",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_3"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_4"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "samurai_manor_hallway-room_4",
+      "interactionLabel": "Private Room 4",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_room_4-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_4",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "sourceApproachAnchorId": "room_4"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_4",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "destinationArrivalAnchorId": "room_4",
+      "enabled": true,
+      "id": "samurai_manor_room_4-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_hallway-room_4",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_4"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_5"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "samurai_manor_hallway-room_5",
+      "interactionLabel": "Private Room 5",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_room_5-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_5",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "sourceApproachAnchorId": "room_5"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_5",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "destinationArrivalAnchorId": "room_5",
+      "enabled": true,
+      "id": "samurai_manor_room_5-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_hallway-room_5",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_5"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_6"
+      },
+      "destinationArrivalAnchorId": "return_to_hallway",
+      "enabled": true,
+      "id": "samurai_manor_hallway-room_6",
+      "interactionLabel": "Private Room 6",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_room_6-return_to_hallway",
+      "retired": false,
+      "source": {
+        "anchorId": "room_6",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "sourceApproachAnchorId": "room_6"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "room_6",
+        "kind": "room",
+        "roomId": "samurai_manor_hallway"
+      },
+      "destinationArrivalAnchorId": "room_6",
+      "enabled": true,
+      "id": "samurai_manor_room_6-return_to_hallway",
+      "interactionLabel": "Hallway",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_hallway-room_6",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_hallway",
+        "kind": "room",
+        "roomId": "samurai_manor_room_6"
+      },
+      "sourceApproachAnchorId": "return_to_hallway"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "left_door",
+        "kind": "room",
+        "roomId": "samurai_manor_lobby"
+      },
+      "destinationArrivalAnchorId": "left_door",
+      "enabled": true,
+      "id": "samurai_manor_lower_room-return_to_manor",
+      "interactionLabel": "Lobby",
+      "presentation": "door",
+      "reciprocalPortalId": "samurai_manor_lobby-left_door-samurai_manor_lower_room",
+      "retired": false,
+      "source": {
+        "anchorId": "return_to_manor",
+        "kind": "room",
+        "roomId": "samurai_manor_lower_room"
+      },
+      "sourceApproachAnchorId": "return_to_manor"
+    }
+  ],
+  "publishedRevisionId": "samurai_manor-r2",
+  "retired": false,
+  "revision": "samurai_manor-v2",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "facing": -1.5707963267948966,
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1052,
+          "y": 940
+        },
+        {
+          "id": "station_smith",
+          "retired": false,
+          "role": "point",
+          "x": 1009.47,
+          "y": 307.23
+        },
+        {
+          "id": "station_jewel",
+          "retired": false,
+          "role": "point",
+          "x": 1128.6,
+          "y": 307.23
+        },
+        {
+          "id": "station_breeder",
+          "retired": false,
+          "role": "point",
+          "x": 1009.47,
+          "y": 213.18
+        },
+        {
+          "id": "left_door",
+          "name": "Left door",
+          "retired": false,
+          "role": "portal",
+          "x": 116,
+          "y": 940
+        },
+        {
+          "id": "world_exit",
+          "name": "Exit",
+          "retired": false,
+          "role": "portal",
+          "x": 1138,
+          "y": 940
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "manor_smith_click_area",
+          "interactionLabel": "Manor Smith",
+          "polygon": [
+            {
+              "x": 946.77,
+              "y": 244.53
+            },
+            {
+              "x": 1072.17,
+              "y": 244.53
+            },
+            {
+              "x": 1072.17,
+              "y": 369.93
+            },
+            {
+              "x": 946.77,
+              "y": 369.93
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "manor_smith"
+          }
+        },
+        {
+          "id": "manor_jewel_click_area",
+          "interactionLabel": "Manor Jeweler",
+          "polygon": [
+            {
+              "x": 1072.17,
+              "y": 244.53
+            },
+            {
+              "x": 1185.03,
+              "y": 244.53
+            },
+            {
+              "x": 1185.03,
+              "y": 369.93
+            },
+            {
+              "x": 1072.17,
+              "y": 369.93
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "manor_jewel"
+          }
+        },
+        {
+          "id": "manor_breeder_click_area",
+          "interactionLabel": "Manor Breeder",
+          "polygon": [
+            {
+              "x": 940.5,
+              "y": 156.75
+            },
+            {
+              "x": 1078.44,
+              "y": 156.75
+            },
+            {
+              "x": 1078.44,
+              "y": 263.34
+            },
+            {
+              "x": 940.5,
+              "y": 263.34
+            }
+          ],
+          "retired": false,
+          "target": {
+            "objectId": "manor_breeder"
+          }
+        },
+        {
+          "id": "left_door_click_area",
+          "interactionLabel": "Door",
+          "polygon": [
+            {
+              "x": 25,
+              "y": 815
+            },
+            {
+              "x": 112,
+              "y": 815
+            },
+            {
+              "x": 112,
+              "y": 1065
+            },
+            {
+              "x": 25,
+              "y": 1065
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "left_door"
+          }
+        },
+        {
+          "id": "world_exit_click_area",
+          "interactionLabel": "Front Door",
+          "polygon": [
+            {
+              "x": 1142,
+              "y": 815
+            },
+            {
+              "x": 1230,
+              "y": 815
+            },
+            {
+              "x": 1230,
+              "y": 1065
+            },
+            {
+              "x": 1142,
+              "y": 1065
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "world_exit"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "lobby_floor_surface",
+          "polygon": [
+            {
+              "x": 120,
+              "y": 180
+            },
+            {
+              "x": 1134,
+              "y": 180
+            },
+            {
+              "x": 1134,
+              "y": 1120
+            },
+            {
+              "x": 120,
+              "y": 1120
+            }
+          ],
+          "retired": true
+        },
+        {
+          "id": "floor_surface",
+          "polygon": [
+            {
+              "x": 92,
+              "y": 122
+            },
+            {
+              "x": 1162,
+              "y": 122
+            },
+            {
+              "x": 1162,
+              "y": 1254
+            },
+            {
+              "x": 92,
+              "y": 1254
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_lobby",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_lobby_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_lobby",
+            "prefabRevision": "samurai_manor_floor_lobby-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Lobby",
+      "objects": [
+        {
+          "anchorId": "station_smith",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "manor_smith",
+          "initialState": "idle",
+          "interactionRadius": 130,
+          "layerId": "actors",
+          "name": "Manor Smith",
+          "opacity": 1,
+          "retired": false,
+          "rotationDeg": 0,
+          "stationKind": "smith",
+          "type": "station",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "station_jewel",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "manor_jewel",
+          "initialState": "idle",
+          "interactionRadius": 130,
+          "layerId": "actors",
+          "name": "Manor Jeweler",
+          "opacity": 1,
+          "retired": false,
+          "rotationDeg": 0,
+          "stationKind": "jewel",
+          "type": "station",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "station_breeder",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "manor_breeder",
+          "initialState": "idle",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Manor Breeder",
+          "opacity": 1,
+          "retired": false,
+          "rotationDeg": 0,
+          "stationKind": "breeder",
+          "type": "station",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "lobby_back_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0.14
+            },
+            {
+              "u": 0,
+              "v": 0.14
+            }
+          ],
+          "kind": "back_wall",
+          "retired": true,
+          "roomPolygon": [
+            {
+              "x": 121.24367208908382,
+              "y": 118.75632791091635
+            },
+            {
+              "x": 1135.2436720890837,
+              "y": 118.75632791091635
+            },
+            {
+              "x": 1135.2436720890837,
+              "y": 178.75632791091635
+            },
+            {
+              "x": 121.24367208908382,
+              "y": 178.75632791091635
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "lobby_left_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": true,
+          "roomPolygon": [
+            {
+              "x": 60,
+              "y": 180
+            },
+            {
+              "x": 120,
+              "y": 180
+            },
+            {
+              "x": 120,
+              "y": 1120
+            },
+            {
+              "x": 60,
+              "y": 1120
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "lobby_right_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": true,
+          "roomPolygon": [
+            {
+              "x": 1134,
+              "y": 180
+            },
+            {
+              "x": 1194,
+              "y": 180
+            },
+            {
+              "x": 1194,
+              "y": 1120
+            },
+            {
+              "x": 1134,
+              "y": 1120
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "back_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 122
+            },
+            {
+              "x": 0,
+              "y": 122
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 122
+            },
+            {
+              "x": 92,
+              "y": 122
+            },
+            {
+              "x": 92,
+              "y": 1254
+            },
+            {
+              "x": 0,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall_surface",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1162,
+              "y": 122
+            },
+            {
+              "x": 1254,
+              "y": 122
+            },
+            {
+              "x": 1254,
+              "y": 1254
+            },
+            {
+              "x": 1162,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 628,
+          "y": 1015
+        },
+        {
+          "id": "return_to_manor",
+          "name": "Stairs",
+          "retired": false,
+          "role": "portal",
+          "x": 628,
+          "y": 1063
+        },
+        {
+          "id": "room_1",
+          "name": "Door 1",
+          "retired": false,
+          "role": "portal",
+          "x": 798,
+          "y": 300
+        },
+        {
+          "id": "room_2",
+          "name": "Door 2",
+          "retired": false,
+          "role": "portal",
+          "x": 798,
+          "y": 654
+        },
+        {
+          "id": "room_3",
+          "name": "Door 3",
+          "retired": false,
+          "role": "portal",
+          "x": 798,
+          "y": 1000
+        },
+        {
+          "id": "room_4",
+          "name": "Door 4",
+          "retired": false,
+          "role": "portal",
+          "x": 456,
+          "y": 300
+        },
+        {
+          "id": "room_5",
+          "name": "Door 5",
+          "retired": false,
+          "role": "portal",
+          "x": 456,
+          "y": 654
+        },
+        {
+          "id": "room_6",
+          "name": "Door 6",
+          "retired": false,
+          "role": "portal",
+          "x": 456,
+          "y": 1000
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_manor_door",
+          "interactionLabel": "Stairs",
+          "polygon": [
+            {
+              "x": 505,
+              "y": 1085
+            },
+            {
+              "x": 750,
+              "y": 1085
+            },
+            {
+              "x": 750,
+              "y": 1254
+            },
+            {
+              "x": 505,
+              "y": 1254
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_manor"
+          }
+        },
+        {
+          "id": "room_1_door",
+          "interactionLabel": "Private Room 1",
+          "polygon": [
+            {
+              "x": 804,
+              "y": 205
+            },
+            {
+              "x": 890,
+              "y": 205
+            },
+            {
+              "x": 890,
+              "y": 395
+            },
+            {
+              "x": 804,
+              "y": 395
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_1"
+          }
+        },
+        {
+          "id": "room_2_door",
+          "interactionLabel": "Private Room 2",
+          "polygon": [
+            {
+              "x": 804,
+              "y": 560
+            },
+            {
+              "x": 890,
+              "y": 560
+            },
+            {
+              "x": 890,
+              "y": 748
+            },
+            {
+              "x": 804,
+              "y": 748
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_2"
+          }
+        },
+        {
+          "id": "room_3_door",
+          "interactionLabel": "Private Room 3",
+          "polygon": [
+            {
+              "x": 804,
+              "y": 905
+            },
+            {
+              "x": 890,
+              "y": 905
+            },
+            {
+              "x": 890,
+              "y": 1095
+            },
+            {
+              "x": 804,
+              "y": 1095
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_3"
+          }
+        },
+        {
+          "id": "room_4_door",
+          "interactionLabel": "Private Room 4",
+          "polygon": [
+            {
+              "x": 365,
+              "y": 205
+            },
+            {
+              "x": 450,
+              "y": 205
+            },
+            {
+              "x": 450,
+              "y": 395
+            },
+            {
+              "x": 365,
+              "y": 395
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_4"
+          }
+        },
+        {
+          "id": "room_5_door",
+          "interactionLabel": "Private Room 5",
+          "polygon": [
+            {
+              "x": 365,
+              "y": 560
+            },
+            {
+              "x": 450,
+              "y": 560
+            },
+            {
+              "x": 450,
+              "y": 748
+            },
+            {
+              "x": 365,
+              "y": 748
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_5"
+          }
+        },
+        {
+          "id": "room_6_door",
+          "interactionLabel": "Private Room 6",
+          "polygon": [
+            {
+              "x": 365,
+              "y": 905
+            },
+            {
+              "x": 450,
+              "y": 905
+            },
+            {
+              "x": 450,
+              "y": 1095
+            },
+            {
+              "x": 365,
+              "y": 1095
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "room_6"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 432,
+              "y": 145
+            },
+            {
+              "x": 822,
+              "y": 145
+            },
+            {
+              "x": 822,
+              "y": 1254
+            },
+            {
+              "x": 750,
+              "y": 1254
+            },
+            {
+              "x": 750,
+              "y": 1085
+            },
+            {
+              "x": 505,
+              "y": 1085
+            },
+            {
+              "x": 505,
+              "y": 1254
+            },
+            {
+              "x": 432,
+              "y": 1254
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_hallway",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_hallway_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_hall",
+            "prefabRevision": "samurai_manor_floor_hall-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Upstairs Hallway",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 387,
+              "y": 0
+            },
+            {
+              "x": 867,
+              "y": 0
+            },
+            {
+              "x": 867,
+              "y": 145
+            },
+            {
+              "x": 387,
+              "y": 145
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 387,
+              "y": 145
+            },
+            {
+              "x": 432,
+              "y": 145
+            },
+            {
+              "x": 432,
+              "y": 1254
+            },
+            {
+              "x": 387,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 822,
+              "y": 145
+            },
+            {
+              "x": 867,
+              "y": 145
+            },
+            {
+              "x": 867,
+              "y": 1254
+            },
+            {
+              "x": 822,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 194,
+          "y": 995
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 98,
+          "y": 995
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 880
+            },
+            {
+              "x": 94,
+              "y": 880
+            },
+            {
+              "x": 94,
+              "y": 1110
+            },
+            {
+              "x": 20,
+              "y": 1110
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            },
+            {
+              "x": 74,
+              "y": 1190
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_room_1",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_room_1_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_room",
+            "prefabRevision": "samurai_manor_floor_room-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 1",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 0,
+              "y": 200
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 1190
+            },
+            {
+              "x": 0,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 1190
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 194,
+          "y": 995
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 98,
+          "y": 995
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 880
+            },
+            {
+              "x": 94,
+              "y": 880
+            },
+            {
+              "x": 94,
+              "y": 1110
+            },
+            {
+              "x": 20,
+              "y": 1110
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            },
+            {
+              "x": 74,
+              "y": 1190
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_room_2",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_room_2_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_room",
+            "prefabRevision": "samurai_manor_floor_room-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 2",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 0,
+              "y": 200
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 1190
+            },
+            {
+              "x": 0,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 1190
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 194,
+          "y": 995
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 98,
+          "y": 995
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 20,
+              "y": 880
+            },
+            {
+              "x": 94,
+              "y": 880
+            },
+            {
+              "x": 94,
+              "y": 1110
+            },
+            {
+              "x": 20,
+              "y": 1110
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            },
+            {
+              "x": 74,
+              "y": 1190
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_room_3",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_room_3_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_room",
+            "prefabRevision": "samurai_manor_floor_room-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 3",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 0,
+              "y": 200
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 1190
+            },
+            {
+              "x": 0,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 1190
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1068,
+          "y": 993
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 1164,
+          "y": 993
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 1168,
+              "y": 880
+            },
+            {
+              "x": 1240,
+              "y": 880
+            },
+            {
+              "x": 1240,
+              "y": 1105
+            },
+            {
+              "x": 1168,
+              "y": 1105
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            },
+            {
+              "x": 74,
+              "y": 1190
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_room_4",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_room_4_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_room_left",
+            "prefabRevision": "samurai_manor_floor_room_left-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 4",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 0,
+              "y": 200
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 1190
+            },
+            {
+              "x": 0,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 1190
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1068,
+          "y": 993
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 1164,
+          "y": 993
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 1168,
+              "y": 880
+            },
+            {
+              "x": 1240,
+              "y": 880
+            },
+            {
+              "x": 1240,
+              "y": 1105
+            },
+            {
+              "x": 1168,
+              "y": 1105
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            },
+            {
+              "x": 74,
+              "y": 1190
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_room_5",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_room_5_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_room_left",
+            "prefabRevision": "samurai_manor_floor_room_left-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 5",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 0,
+              "y": 200
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 1190
+            },
+            {
+              "x": 0,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 1190
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 1068,
+          "y": 993
+        },
+        {
+          "id": "return_to_hallway",
+          "name": "Door",
+          "retired": false,
+          "role": "portal",
+          "x": 1164,
+          "y": 993
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_hallway_door",
+          "interactionLabel": "Hallway",
+          "polygon": [
+            {
+              "x": 1168,
+              "y": 880
+            },
+            {
+              "x": 1240,
+              "y": 880
+            },
+            {
+              "x": 1240,
+              "y": 1105
+            },
+            {
+              "x": 1168,
+              "y": 1105
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_hallway"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            },
+            {
+              "x": 74,
+              "y": 1190
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_room_6",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_room_6_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_room_left",
+            "prefabRevision": "samurai_manor_floor_room_left-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Private Room 6",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 0,
+              "y": 200
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 200
+            },
+            {
+              "x": 74,
+              "y": 1190
+            },
+            {
+              "x": 0,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1188,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 200
+            },
+            {
+              "x": 1254,
+              "y": 1190
+            },
+            {
+              "x": 1188,
+              "y": 1190
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "name": "Spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 216,
+          "y": 885
+        },
+        {
+          "id": "return_to_manor",
+          "name": "Stairs",
+          "retired": false,
+          "role": "portal",
+          "x": 176,
+          "y": 943
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 627,
+          "y": 627
+        },
+        "defaultZoom": 1,
+        "fitPadding": 16,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [
+        {
+          "id": "return_to_manor_door",
+          "interactionLabel": "Stairs",
+          "polygon": [
+            {
+              "x": 40,
+              "y": 965
+            },
+            {
+              "x": 255,
+              "y": 965
+            },
+            {
+              "x": 255,
+              "y": 1254
+            },
+            {
+              "x": 40,
+              "y": 1254
+            }
+          ],
+          "retired": false,
+          "target": {
+            "anchorId": "return_to_manor"
+          }
+        }
+      ],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "default",
+        "musicAssetKey": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 97,
+              "y": 211
+            },
+            {
+              "x": 1163,
+              "y": 211
+            },
+            {
+              "x": 1163,
+              "y": 1254
+            },
+            {
+              "x": 255,
+              "y": 1254
+            },
+            {
+              "x": 255,
+              "y": 965
+            },
+            {
+              "x": 97,
+              "y": 965
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1254,
+      "id": "samurai_manor_lower_room",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1254,
+            "id": "samurai_manor_lower_room_floor_art",
+            "opacity": 1,
+            "prefabId": "samurai_manor_floor_lower",
+            "prefabRevision": "samurai_manor_floor_lower-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1254,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Courtyard",
+      "objects": [],
+      "retired": false,
+      "revision": "samurai_manor-v2",
+      "spawnAnchorId": "spawn",
+      "walls": [
+        {
+          "id": "back_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "back_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 0
+            },
+            {
+              "x": 1254,
+              "y": 211
+            },
+            {
+              "x": 0,
+              "y": 211
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "left_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "left_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 0,
+              "y": 211
+            },
+            {
+              "x": 97,
+              "y": 211
+            },
+            {
+              "x": 97,
+              "y": 1254
+            },
+            {
+              "x": 0,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        },
+        {
+          "id": "right_wall",
+          "imagePolygon": [
+            {
+              "u": 0,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 0
+            },
+            {
+              "u": 1,
+              "v": 1
+            },
+            {
+              "u": 0,
+              "v": 1
+            }
+          ],
+          "kind": "right_wall",
+          "retired": false,
+          "roomPolygon": [
+            {
+              "x": 1163,
+              "y": 211
+            },
+            {
+              "x": 1254,
+              "y": 211
+            },
+            {
+              "x": 1254,
+              "y": 1254
+            },
+            {
+              "x": 1163,
+              "y": 1254
+            }
+          ],
+          "transform": {
+            "offsetU": 0,
+            "offsetV": 0,
+            "rotationDeg": 0,
+            "scaleU": 1,
+            "scaleV": 1
+          }
+        }
+      ],
+      "width": 1254,
+      "zones": []
+    }
+  ],
+  "spatialProfileId": "standard_indoor"
+}

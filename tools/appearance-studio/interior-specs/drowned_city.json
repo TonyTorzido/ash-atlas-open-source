@@ -1,0 +1,3326 @@
+{
+  "dungeon": {
+    "id": "drowned_city",
+    "name": "The Drowned City",
+    "description": "A city swallowed by the sea. Fight through three drowned wings, light the Circle of Tides, and descend to the Abyssal One. Level 32, entered afloat; no re-entry.",
+    "instancePolicy": "party_ephemeral",
+    "resetPolicy": "when_empty",
+    "despawnAfterSeconds": 900,
+    "access": {
+      "minimumLevel": 32,
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6,
+      "requiresAfloat": true,
+      "noReentry": true
+    },
+    "theme": {
+      "id": "drowned",
+      "backgroundColor": "#06121a",
+      "floorColor": "#1f3a44",
+      "wallColor": "#2c4a52",
+      "accentColor": "#5fd0d6"
+    }
+  },
+  "entranceRoom": "dc_sunken_stair",
+  "rooms": [
+    {
+      "id": "dc_sunken_stair",
+      "name": "Sunken Stair",
+      "width": 1000,
+      "height": 1000,
+      "floor": "dc_sunken_stair_floor",
+      "anchors": {
+        "door_e": {
+          "x": 970,
+          "y": 500
+        }
+      },
+      "spawn": {
+        "x": 500,
+        "y": 820
+      }
+    },
+    {
+      "id": "dc_drowned_causeway",
+      "name": "Drowned Causeway",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_drowned_causeway_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 400
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        }
+      }
+    },
+    {
+      "id": "dc_flooded_plaza",
+      "name": "Flooded Plaza",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_flooded_plaza_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_n": {
+          "x": 600,
+          "y": 30
+        }
+      }
+    },
+    {
+      "id": "dc_circle_of_tides",
+      "name": "Circle of Tides",
+      "width": 1600,
+      "height": 1600,
+      "floor": "dc_circle_of_tides_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 800
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 800
+        },
+        "door_s": {
+          "x": 800,
+          "y": 1570
+        },
+        "abyssal_gate": {
+          "x": 800,
+          "y": 800
+        }
+      },
+      "spawn": {
+        "x": 800,
+        "y": 1350
+      },
+      "zones": [
+        {
+          "id": "tides_safe",
+          "purpose": "safe",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1600,
+            "height": 1600
+          }
+        }
+      ],
+      "objects": [
+        {
+          "id": "abyssal_gate_art",
+          "type": "decoration",
+          "prefab": "dc_abyssal_gate",
+          "at": {
+            "x": 800,
+            "y": 800
+          },
+          "name": "Abyssal Gate",
+          "initialState": "closed",
+          "layer": "below_player",
+          "zIndex": 5
+        },
+        {
+          "id": "tide_circle_west_lit",
+          "type": "decoration",
+          "prefab": "dc_circle_segment_west",
+          "at": {
+            "x": 800,
+            "y": 800
+          },
+          "name": "Lit Tide Circle",
+          "layer": "below_player",
+          "zIndex": 2,
+          "hidden": true
+        },
+        {
+          "id": "tide_circle_north_lit",
+          "type": "decoration",
+          "prefab": "dc_circle_segment_north",
+          "at": {
+            "x": 800,
+            "y": 800
+          },
+          "name": "Lit Tide Circle",
+          "layer": "below_player",
+          "zIndex": 2,
+          "hidden": true
+        },
+        {
+          "id": "tide_circle_east_lit",
+          "type": "decoration",
+          "prefab": "dc_circle_segment_east",
+          "at": {
+            "x": 800,
+            "y": 800
+          },
+          "name": "Lit Tide Circle",
+          "layer": "below_player",
+          "zIndex": 2,
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "dc_obs_street_1",
+      "name": "Observatory Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_obs_street_floor",
+      "anchors": {
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        },
+        "door_w": {
+          "x": 30,
+          "y": 400
+        }
+      }
+    },
+    {
+      "id": "dc_obs_square",
+      "name": "Observatory Square",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_obs_square_floor",
+      "anchors": {
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "door_w": {
+          "x": 30,
+          "y": 600
+        }
+      }
+    },
+    {
+      "id": "dc_obs_street_2",
+      "name": "Observatory Back Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_obs_street_floor",
+      "anchors": {
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        },
+        "door_w": {
+          "x": 30,
+          "y": 400
+        }
+      }
+    },
+    {
+      "id": "dc_obs_warden_hall",
+      "name": "Observatory Warden Hall",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_obs_warden_hall_floor",
+      "anchors": {
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "rift": {
+          "x": 600,
+          "y": 230
+        },
+        "rift_return": {
+          "x": 600,
+          "y": 380
+        }
+      },
+      "objects": [
+        {
+          "id": "obs_time_rift",
+          "type": "decoration",
+          "prefab": "dc_time_rift",
+          "at": {
+            "x": 600,
+            "y": 230
+          },
+          "name": "Time Rift",
+          "initialState": "closed",
+          "layer": "below_player",
+          "zIndex": 5
+        },
+        {
+          "id": "obs_floodgate",
+          "type": "decoration",
+          "prefab": "dc_floodgate",
+          "at": {
+            "x": 30,
+            "y": 600
+          },
+          "name": "Floodgate",
+          "initialState": "closed",
+          "layer": "below_player",
+          "zIndex": 5
+        }
+      ]
+    },
+    {
+      "id": "dc_obs_past_street",
+      "name": "The City Before",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_past_street_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 400
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        },
+        "rift_arrival": {
+          "x": 300,
+          "y": 400
+        }
+      },
+      "spawn": {
+        "x": 300,
+        "y": 400
+      },
+      "objects": [
+        {
+          "id": "obs_switch_1",
+          "type": "switch",
+          "prefab": "dc_tide_switch",
+          "at": {
+            "x": 1000,
+            "y": 230
+          },
+          "name": "Tide Switch",
+          "initialState": "off",
+          "interactionLabel": "Turn the Tide Switch"
+        },
+        {
+          "id": "obs_citizen_1",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 600,
+            "y": 600
+          },
+          "name": "Citizen"
+        },
+        {
+          "id": "obs_citizen_2",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 1250,
+            "y": 560
+          },
+          "name": "Citizen"
+        }
+      ]
+    },
+    {
+      "id": "dc_obs_past_square",
+      "name": "The Square Before",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_past_square_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "return_rift": {
+          "x": 900,
+          "y": 600
+        }
+      },
+      "objects": [
+        {
+          "id": "obs_switch_2",
+          "type": "switch",
+          "prefab": "dc_tide_switch",
+          "at": {
+            "x": 600,
+            "y": 300
+          },
+          "name": "Tide Switch",
+          "initialState": "off",
+          "interactionLabel": "Turn the Tide Switch"
+        },
+        {
+          "id": "obs_return_rift_art",
+          "type": "decoration",
+          "prefab": "dc_return_rift",
+          "at": {
+            "x": 900,
+            "y": 600
+          },
+          "name": "Return Rift",
+          "layer": "below_player",
+          "zIndex": 5
+        },
+        {
+          "id": "obs_citizen_3",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 350,
+            "y": 900
+          },
+          "name": "Citizen"
+        }
+      ]
+    },
+    {
+      "id": "dc_obs_lower_street",
+      "name": "Observatory Lower Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_obs_street_floor",
+      "anchors": {
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        },
+        "door_w": {
+          "x": 30,
+          "y": 400
+        }
+      }
+    },
+    {
+      "id": "dc_obs_antechamber",
+      "name": "Observatory Antechamber",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_obs_square_floor",
+      "anchors": {
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "door_w": {
+          "x": 30,
+          "y": 600
+        }
+      }
+    },
+    {
+      "id": "dc_obs_boss",
+      "name": "The Observatory",
+      "width": 1400,
+      "height": 1400,
+      "floor": "dc_obs_boss_floor",
+      "anchors": {
+        "door_e": {
+          "x": 1370,
+          "y": 700
+        },
+        "watcher_dais": {
+          "x": 500,
+          "y": 700
+        },
+        "watcher_wave_n": {
+          "x": 700,
+          "y": 330
+        },
+        "watcher_wave_s": {
+          "x": 700,
+          "y": 1070
+        },
+        "watcher_wave_w": {
+          "x": 260,
+          "y": 700
+        }
+      },
+      "chests": [
+        {
+          "id": "obs_chest",
+          "name": "Drowned Hoard",
+          "at": {
+            "x": 1050,
+            "y": 1100
+          },
+          "reward": {
+            "gold": 1500,
+            "items": [
+              {
+                "itemId": "abyssal_orb",
+                "quantity": 2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "dc_kelp_street_1",
+      "name": "Kelp Deeps Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_kelp_street_floor",
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 770
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        }
+      }
+    },
+    {
+      "id": "dc_kelp_square",
+      "name": "Kelp Deeps Square",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_kelp_square_floor",
+      "anchors": {
+        "door_s": {
+          "x": 600,
+          "y": 1170
+        },
+        "door_n": {
+          "x": 600,
+          "y": 30
+        }
+      }
+    },
+    {
+      "id": "dc_kelp_street_2",
+      "name": "Kelp Deeps Back Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_kelp_street_floor",
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 770
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        }
+      }
+    },
+    {
+      "id": "dc_kelp_warden_hall",
+      "name": "Kelp Deeps Warden Hall",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_kelp_warden_hall_floor",
+      "anchors": {
+        "door_s": {
+          "x": 600,
+          "y": 1170
+        },
+        "door_n": {
+          "x": 600,
+          "y": 30
+        },
+        "rift": {
+          "x": 230,
+          "y": 600
+        },
+        "rift_return": {
+          "x": 380,
+          "y": 600
+        }
+      },
+      "objects": [
+        {
+          "id": "kelp_time_rift",
+          "type": "decoration",
+          "prefab": "dc_time_rift",
+          "at": {
+            "x": 230,
+            "y": 600
+          },
+          "name": "Time Rift",
+          "initialState": "closed",
+          "layer": "below_player",
+          "zIndex": 5
+        },
+        {
+          "id": "kelp_floodgate",
+          "type": "decoration",
+          "prefab": "dc_floodgate",
+          "at": {
+            "x": 600,
+            "y": 30
+          },
+          "name": "Floodgate",
+          "initialState": "closed",
+          "layer": "below_player",
+          "zIndex": 5
+        }
+      ]
+    },
+    {
+      "id": "dc_kelp_past_street",
+      "name": "The City Before",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_past_street_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 400
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        },
+        "rift_arrival": {
+          "x": 300,
+          "y": 400
+        }
+      },
+      "spawn": {
+        "x": 300,
+        "y": 400
+      },
+      "objects": [
+        {
+          "id": "kelp_switch_1",
+          "type": "switch",
+          "prefab": "dc_tide_switch",
+          "at": {
+            "x": 1000,
+            "y": 230
+          },
+          "name": "Tide Switch",
+          "initialState": "off",
+          "interactionLabel": "Turn the Tide Switch"
+        },
+        {
+          "id": "kelp_citizen_1",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 600,
+            "y": 600
+          },
+          "name": "Citizen"
+        },
+        {
+          "id": "kelp_citizen_2",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 1250,
+            "y": 560
+          },
+          "name": "Citizen"
+        }
+      ]
+    },
+    {
+      "id": "dc_kelp_past_square",
+      "name": "The Square Before",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_past_square_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "return_rift": {
+          "x": 900,
+          "y": 600
+        }
+      },
+      "objects": [
+        {
+          "id": "kelp_switch_2",
+          "type": "switch",
+          "prefab": "dc_tide_switch",
+          "at": {
+            "x": 600,
+            "y": 300
+          },
+          "name": "Tide Switch",
+          "initialState": "off",
+          "interactionLabel": "Turn the Tide Switch"
+        },
+        {
+          "id": "kelp_return_rift_art",
+          "type": "decoration",
+          "prefab": "dc_return_rift",
+          "at": {
+            "x": 900,
+            "y": 600
+          },
+          "name": "Return Rift",
+          "layer": "below_player",
+          "zIndex": 5
+        },
+        {
+          "id": "kelp_citizen_3",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 350,
+            "y": 900
+          },
+          "name": "Citizen"
+        }
+      ]
+    },
+    {
+      "id": "dc_kelp_lower_street",
+      "name": "Kelp Deeps Lower Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_kelp_street_floor",
+      "anchors": {
+        "door_s": {
+          "x": 800,
+          "y": 770
+        },
+        "door_n": {
+          "x": 800,
+          "y": 30
+        }
+      }
+    },
+    {
+      "id": "dc_kelp_antechamber",
+      "name": "Kelp Deeps Antechamber",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_kelp_square_floor",
+      "anchors": {
+        "door_s": {
+          "x": 600,
+          "y": 1170
+        },
+        "door_n": {
+          "x": 600,
+          "y": 30
+        }
+      }
+    },
+    {
+      "id": "dc_kelp_boss",
+      "name": "Tidemaw's Pool",
+      "width": 1400,
+      "height": 1400,
+      "floor": "dc_kelp_boss_floor",
+      "anchors": {
+        "door_s": {
+          "x": 700,
+          "y": 1370
+        },
+        "tidemaw_pool_nw": {
+          "x": 301,
+          "y": 315
+        },
+        "tidemaw_pool_ne": {
+          "x": 1047,
+          "y": 315
+        },
+        "tidemaw_pool_sw": {
+          "x": 301,
+          "y": 917
+        },
+        "tidemaw_pool_se": {
+          "x": 1047,
+          "y": 917
+        }
+      },
+      "chests": [
+        {
+          "id": "kelp_chest",
+          "name": "Drowned Hoard",
+          "at": {
+            "x": 1150,
+            "y": 1150
+          },
+          "reward": {
+            "gold": 1500,
+            "items": [
+              {
+                "itemId": "abyssal_orb",
+                "quantity": 2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "dc_harbor_street_1",
+      "name": "Harbor Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_harbor_street_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 400
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        }
+      }
+    },
+    {
+      "id": "dc_harbor_square",
+      "name": "Harbor Square",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_harbor_square_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        }
+      }
+    },
+    {
+      "id": "dc_harbor_street_2",
+      "name": "Harbor Back Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_harbor_street_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 400
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        }
+      }
+    },
+    {
+      "id": "dc_harbor_warden_hall",
+      "name": "Harbor Warden Hall",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_harbor_warden_hall_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "rift": {
+          "x": 600,
+          "y": 970
+        },
+        "rift_return": {
+          "x": 600,
+          "y": 820
+        }
+      },
+      "objects": [
+        {
+          "id": "harbor_time_rift",
+          "type": "decoration",
+          "prefab": "dc_time_rift",
+          "at": {
+            "x": 600,
+            "y": 970
+          },
+          "name": "Time Rift",
+          "initialState": "closed",
+          "layer": "below_player",
+          "zIndex": 5
+        },
+        {
+          "id": "harbor_floodgate",
+          "type": "decoration",
+          "prefab": "dc_floodgate",
+          "at": {
+            "x": 1170,
+            "y": 600
+          },
+          "name": "Floodgate",
+          "initialState": "closed",
+          "layer": "below_player",
+          "zIndex": 5
+        }
+      ]
+    },
+    {
+      "id": "dc_harbor_past_street",
+      "name": "The City Before",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_past_street_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 400
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        },
+        "rift_arrival": {
+          "x": 300,
+          "y": 400
+        }
+      },
+      "spawn": {
+        "x": 300,
+        "y": 400
+      },
+      "objects": [
+        {
+          "id": "harbor_switch_1",
+          "type": "switch",
+          "prefab": "dc_tide_switch",
+          "at": {
+            "x": 1000,
+            "y": 230
+          },
+          "name": "Tide Switch",
+          "initialState": "off",
+          "interactionLabel": "Turn the Tide Switch"
+        },
+        {
+          "id": "harbor_citizen_1",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 600,
+            "y": 600
+          },
+          "name": "Citizen"
+        },
+        {
+          "id": "harbor_citizen_2",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 1250,
+            "y": 560
+          },
+          "name": "Citizen"
+        }
+      ]
+    },
+    {
+      "id": "dc_harbor_past_square",
+      "name": "The Square Before",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_past_square_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        },
+        "return_rift": {
+          "x": 900,
+          "y": 600
+        }
+      },
+      "objects": [
+        {
+          "id": "harbor_switch_2",
+          "type": "switch",
+          "prefab": "dc_tide_switch",
+          "at": {
+            "x": 600,
+            "y": 300
+          },
+          "name": "Tide Switch",
+          "initialState": "off",
+          "interactionLabel": "Turn the Tide Switch"
+        },
+        {
+          "id": "harbor_return_rift_art",
+          "type": "decoration",
+          "prefab": "dc_return_rift",
+          "at": {
+            "x": 900,
+            "y": 600
+          },
+          "name": "Return Rift",
+          "layer": "below_player",
+          "zIndex": 5
+        },
+        {
+          "id": "harbor_citizen_3",
+          "type": "npc",
+          "prefab": "dc_drowned_citizen",
+          "at": {
+            "x": 350,
+            "y": 900
+          },
+          "name": "Citizen"
+        }
+      ]
+    },
+    {
+      "id": "dc_harbor_lower_street",
+      "name": "Harbor Lower Street",
+      "width": 1600,
+      "height": 800,
+      "floor": "dc_harbor_street_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 400
+        },
+        "door_e": {
+          "x": 1570,
+          "y": 400
+        }
+      }
+    },
+    {
+      "id": "dc_harbor_antechamber",
+      "name": "Harbor Antechamber",
+      "width": 1200,
+      "height": 1200,
+      "floor": "dc_harbor_square_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 600
+        },
+        "door_e": {
+          "x": 1170,
+          "y": 600
+        }
+      }
+    },
+    {
+      "id": "dc_harbor_boss",
+      "name": "The Admiral's Deck",
+      "width": 1400,
+      "height": 1400,
+      "floor": "dc_harbor_boss_floor",
+      "anchors": {
+        "door_w": {
+          "x": 30,
+          "y": 700
+        }
+      },
+      "chests": [
+        {
+          "id": "harbor_chest",
+          "name": "Drowned Hoard",
+          "at": {
+            "x": 1150,
+            "y": 1150
+          },
+          "reward": {
+            "gold": 1500,
+            "items": [
+              {
+                "itemId": "abyssal_orb",
+                "quantity": 2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "dc_abyssal_sanctum",
+      "name": "Abyssal Sanctum",
+      "width": 1600,
+      "height": 1600,
+      "floor": "dc_abyssal_sanctum_floor",
+      "anchors": {
+        "gate_arrival": {
+          "x": 772,
+          "y": 1400
+        },
+        "abyssal_cultist_w": {
+          "x": 420,
+          "y": 732
+        },
+        "abyssal_cultist_e": {
+          "x": 1124,
+          "y": 732
+        }
+      },
+      "spawn": {
+        "x": 772,
+        "y": 1400
+      },
+      "chests": [
+        {
+          "id": "sanctum_chest",
+          "name": "Abyssal Hoard",
+          "at": {
+            "x": 560,
+            "y": 1260
+          },
+          "reward": {
+            "gold": 3000,
+            "items": [
+              {
+                "itemId": "abyssal_orb",
+                "quantity": 4
+              }
+            ]
+          }
+        }
+      ],
+      "shrines": [
+        {
+          "id": "tidecraft_altar",
+          "name": "Tidecraft Altar",
+          "at": {
+            "x": 1000,
+            "y": 1300
+          },
+          "prefab": "dc_tidecraft_altar",
+          "skillTurnIn": "tidecraft",
+          "interactionLabel": "Present 20 Abyssal Orbs"
+        }
+      ],
+      "objects": [
+        {
+          "id": "abyssal_arm_nw",
+          "type": "destructible",
+          "prefab": "dc_abyssal_arm",
+          "at": {
+            "x": 292,
+            "y": 292
+          },
+          "name": "Abyssal Arm",
+          "initialState": "intact",
+          "layer": "below_player",
+          "zIndex": 6,
+          "interactionLabel": "Plant the tide bomb"
+        },
+        {
+          "id": "abyssal_arm_ne",
+          "type": "destructible",
+          "prefab": "dc_abyssal_arm",
+          "at": {
+            "x": 1252,
+            "y": 292
+          },
+          "name": "Abyssal Arm",
+          "initialState": "intact",
+          "layer": "below_player",
+          "zIndex": 6,
+          "interactionLabel": "Plant the tide bomb"
+        },
+        {
+          "id": "abyssal_arm_sw",
+          "type": "destructible",
+          "prefab": "dc_abyssal_arm",
+          "at": {
+            "x": 292,
+            "y": 1188
+          },
+          "name": "Abyssal Arm",
+          "initialState": "intact",
+          "layer": "below_player",
+          "zIndex": 6,
+          "interactionLabel": "Plant the tide bomb"
+        },
+        {
+          "id": "abyssal_arm_se",
+          "type": "destructible",
+          "prefab": "dc_abyssal_arm",
+          "at": {
+            "x": 1252,
+            "y": 1188
+          },
+          "name": "Abyssal Arm",
+          "initialState": "intact",
+          "layer": "below_player",
+          "zIndex": 6,
+          "interactionLabel": "Plant the tide bomb"
+        },
+        {
+          "id": "tide_bomb_1",
+          "type": "decoration",
+          "prefab": "dc_tide_bomb",
+          "at": {
+            "x": 180,
+            "y": 720
+          },
+          "name": "Tide Bomb",
+          "hidden": true,
+          "zIndex": 12,
+          "interactionLabel": "Pick up the tide bomb"
+        },
+        {
+          "id": "tide_bomb_2",
+          "type": "decoration",
+          "prefab": "dc_tide_bomb",
+          "at": {
+            "x": 1380,
+            "y": 720
+          },
+          "name": "Tide Bomb",
+          "hidden": true,
+          "zIndex": 12,
+          "interactionLabel": "Pick up the tide bomb"
+        },
+        {
+          "id": "tide_bomb_3",
+          "type": "decoration",
+          "prefab": "dc_tide_bomb",
+          "at": {
+            "x": 772,
+            "y": 230
+          },
+          "name": "Tide Bomb",
+          "hidden": true,
+          "zIndex": 12,
+          "interactionLabel": "Pick up the tide bomb"
+        },
+        {
+          "id": "tide_bomb_4",
+          "type": "decoration",
+          "prefab": "dc_tide_bomb",
+          "at": {
+            "x": 980,
+            "y": 1400
+          },
+          "name": "Tide Bomb",
+          "hidden": true,
+          "zIndex": 12,
+          "interactionLabel": "Pick up the tide bomb"
+        }
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "id": "stair_to_causeway",
+      "from": {
+        "room": "dc_sunken_stair",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_drowned_causeway",
+        "anchor": "door_w"
+      },
+      "label": "Wade into the Causeway",
+      "reverseLabel": "Back to the Stair"
+    },
+    {
+      "id": "causeway_to_plaza",
+      "from": {
+        "room": "dc_drowned_causeway",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_flooded_plaza",
+        "anchor": "door_w"
+      },
+      "label": "Enter the Plaza",
+      "reverseLabel": "Back to the Causeway"
+    },
+    {
+      "id": "plaza_to_tides",
+      "from": {
+        "room": "dc_flooded_plaza",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_circle_of_tides",
+        "anchor": "door_s"
+      },
+      "label": "Climb to the Circle of Tides",
+      "reverseLabel": "Back to the Plaza"
+    },
+    {
+      "id": "tides_to_obs",
+      "from": {
+        "room": "dc_circle_of_tides",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "dc_obs_street_1",
+        "anchor": "door_e"
+      },
+      "label": "Enter the Observatory",
+      "reverseLabel": "Back to the Circle of Tides"
+    },
+    {
+      "id": "obs_street_to_square",
+      "from": {
+        "room": "dc_obs_street_1",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "dc_obs_square",
+        "anchor": "door_e"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "obs_square_to_street",
+      "from": {
+        "room": "dc_obs_square",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "dc_obs_street_2",
+        "anchor": "door_e"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "obs_street_to_hall",
+      "from": {
+        "room": "dc_obs_street_2",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "dc_obs_warden_hall",
+        "anchor": "door_e"
+      },
+      "label": "Enter the Warden Hall",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "obs_rift",
+      "from": {
+        "room": "dc_obs_warden_hall",
+        "anchor": "rift"
+      },
+      "to": {
+        "room": "dc_obs_past_street",
+        "anchor": "rift_arrival"
+      },
+      "oneWay": true,
+      "label": "Step through the Time Rift",
+      "presentation": "hatch",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "obs_rift_open",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "obs_past_street_to_square",
+      "from": {
+        "room": "dc_obs_past_street",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_obs_past_square",
+        "anchor": "door_w"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "obs_return_rift",
+      "from": {
+        "room": "dc_obs_past_square",
+        "anchor": "return_rift"
+      },
+      "to": {
+        "room": "dc_obs_warden_hall",
+        "anchor": "rift_return"
+      },
+      "oneWay": true,
+      "label": "Return to the present",
+      "presentation": "hatch"
+    },
+    {
+      "id": "obs_floodgate",
+      "from": {
+        "room": "dc_obs_warden_hall",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "dc_obs_lower_street",
+        "anchor": "door_e"
+      },
+      "label": "Through the Floodgate",
+      "reverseLabel": "Back to the Warden Hall",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "obs_switch_1",
+          "value": true
+        },
+        {
+          "type": "dungeon_flag",
+          "flagId": "obs_switch_2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "obs_lower_to_ante",
+      "from": {
+        "room": "dc_obs_lower_street",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "dc_obs_antechamber",
+        "anchor": "door_e"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "obs_ante_to_boss",
+      "from": {
+        "room": "dc_obs_antechamber",
+        "anchor": "door_w"
+      },
+      "to": {
+        "room": "dc_obs_boss",
+        "anchor": "door_e"
+      },
+      "label": "Face what waits",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "tides_to_kelp",
+      "from": {
+        "room": "dc_circle_of_tides",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_kelp_street_1",
+        "anchor": "door_s"
+      },
+      "label": "Enter the Kelp Deeps",
+      "reverseLabel": "Back to the Circle of Tides"
+    },
+    {
+      "id": "kelp_street_to_square",
+      "from": {
+        "room": "dc_kelp_street_1",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_kelp_square",
+        "anchor": "door_s"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "kelp_square_to_street",
+      "from": {
+        "room": "dc_kelp_square",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_kelp_street_2",
+        "anchor": "door_s"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "kelp_street_to_hall",
+      "from": {
+        "room": "dc_kelp_street_2",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_kelp_warden_hall",
+        "anchor": "door_s"
+      },
+      "label": "Enter the Warden Hall",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "kelp_rift",
+      "from": {
+        "room": "dc_kelp_warden_hall",
+        "anchor": "rift"
+      },
+      "to": {
+        "room": "dc_kelp_past_street",
+        "anchor": "rift_arrival"
+      },
+      "oneWay": true,
+      "label": "Step through the Time Rift",
+      "presentation": "hatch",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "kelp_rift_open",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "kelp_past_street_to_square",
+      "from": {
+        "room": "dc_kelp_past_street",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_kelp_past_square",
+        "anchor": "door_w"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "kelp_return_rift",
+      "from": {
+        "room": "dc_kelp_past_square",
+        "anchor": "return_rift"
+      },
+      "to": {
+        "room": "dc_kelp_warden_hall",
+        "anchor": "rift_return"
+      },
+      "oneWay": true,
+      "label": "Return to the present",
+      "presentation": "hatch"
+    },
+    {
+      "id": "kelp_floodgate",
+      "from": {
+        "room": "dc_kelp_warden_hall",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_kelp_lower_street",
+        "anchor": "door_s"
+      },
+      "label": "Through the Floodgate",
+      "reverseLabel": "Back to the Warden Hall",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "kelp_switch_1",
+          "value": true
+        },
+        {
+          "type": "dungeon_flag",
+          "flagId": "kelp_switch_2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "kelp_lower_to_ante",
+      "from": {
+        "room": "dc_kelp_lower_street",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_kelp_antechamber",
+        "anchor": "door_s"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "kelp_ante_to_boss",
+      "from": {
+        "room": "dc_kelp_antechamber",
+        "anchor": "door_n"
+      },
+      "to": {
+        "room": "dc_kelp_boss",
+        "anchor": "door_s"
+      },
+      "label": "Face what waits",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "tides_to_harbor",
+      "from": {
+        "room": "dc_circle_of_tides",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_street_1",
+        "anchor": "door_w"
+      },
+      "label": "Enter the Harbor",
+      "reverseLabel": "Back to the Circle of Tides"
+    },
+    {
+      "id": "harbor_street_to_square",
+      "from": {
+        "room": "dc_harbor_street_1",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_square",
+        "anchor": "door_w"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "harbor_square_to_street",
+      "from": {
+        "room": "dc_harbor_square",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_street_2",
+        "anchor": "door_w"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "harbor_street_to_hall",
+      "from": {
+        "room": "dc_harbor_street_2",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_warden_hall",
+        "anchor": "door_w"
+      },
+      "label": "Enter the Warden Hall",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "harbor_rift",
+      "from": {
+        "room": "dc_harbor_warden_hall",
+        "anchor": "rift"
+      },
+      "to": {
+        "room": "dc_harbor_past_street",
+        "anchor": "rift_arrival"
+      },
+      "oneWay": true,
+      "label": "Step through the Time Rift",
+      "presentation": "hatch",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "harbor_rift_open",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "harbor_past_street_to_square",
+      "from": {
+        "room": "dc_harbor_past_street",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_past_square",
+        "anchor": "door_w"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "harbor_return_rift",
+      "from": {
+        "room": "dc_harbor_past_square",
+        "anchor": "return_rift"
+      },
+      "to": {
+        "room": "dc_harbor_warden_hall",
+        "anchor": "rift_return"
+      },
+      "oneWay": true,
+      "label": "Return to the present",
+      "presentation": "hatch"
+    },
+    {
+      "id": "harbor_floodgate",
+      "from": {
+        "room": "dc_harbor_warden_hall",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_lower_street",
+        "anchor": "door_w"
+      },
+      "label": "Through the Floodgate",
+      "reverseLabel": "Back to the Warden Hall",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "harbor_switch_1",
+          "value": true
+        },
+        {
+          "type": "dungeon_flag",
+          "flagId": "harbor_switch_2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "harbor_lower_to_ante",
+      "from": {
+        "room": "dc_harbor_lower_street",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_antechamber",
+        "anchor": "door_w"
+      },
+      "label": "Go on",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "harbor_ante_to_boss",
+      "from": {
+        "room": "dc_harbor_antechamber",
+        "anchor": "door_e"
+      },
+      "to": {
+        "room": "dc_harbor_boss",
+        "anchor": "door_w"
+      },
+      "label": "Face what waits",
+      "reverseLabel": "Go back"
+    },
+    {
+      "id": "tides_to_sanctum",
+      "from": {
+        "room": "dc_circle_of_tides",
+        "anchor": "abyssal_gate"
+      },
+      "to": {
+        "room": "dc_abyssal_sanctum",
+        "anchor": "gate_arrival"
+      },
+      "label": "Descend through the Abyssal Gate",
+      "reverseLabel": "Climb back to the Circle of Tides",
+      "presentation": "hatch",
+      "gates": [
+        {
+          "type": "dungeon_flag",
+          "flagId": "obs_done",
+          "value": true
+        },
+        {
+          "type": "dungeon_flag",
+          "flagId": "kelp_done",
+          "value": true
+        },
+        {
+          "type": "dungeon_flag",
+          "flagId": "harbor_done",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "stair_darters",
+      "name": "Sunken Stair Darters",
+      "room": "dc_sunken_stair",
+      "startOn": "room_enter",
+      "lockDoors": false,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "darter_dc",
+              "at": [
+                {
+                  "x": 350,
+                  "y": 400
+                },
+                {
+                  "x": 650,
+                  "y": 400
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "causeway_wraiths",
+      "name": "Causeway Ambush",
+      "room": "dc_drowned_causeway",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "tide_wraith_dc",
+              "at": [
+                {
+                  "x": 700,
+                  "y": 300
+                },
+                {
+                  "x": 1100,
+                  "y": 500
+                }
+              ]
+            },
+            {
+              "archetype": "darter_dc",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 550
+                },
+                {
+                  "x": 900,
+                  "y": 250
+                },
+                {
+                  "x": 1300,
+                  "y": 400
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plaza_ink",
+      "name": "Flooded Plaza",
+      "room": "dc_flooded_plaza",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "ink_pool_dc",
+              "at": [
+                {
+                  "x": 450,
+                  "y": 450
+                },
+                {
+                  "x": 800,
+                  "y": 750
+                }
+              ]
+            },
+            {
+              "archetype": "darter_dc",
+              "at": [
+                {
+                  "x": 700,
+                  "y": 400
+                },
+                {
+                  "x": 400,
+                  "y": 800
+                }
+              ]
+            },
+            {
+              "archetype": "tide_wraith_dc",
+              "at": [
+                {
+                  "x": 800,
+                  "y": 450
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_street_fight",
+      "name": "Observatory Street",
+      "room": "dc_obs_street_1",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "drowned_cultist_dc",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 300
+                },
+                {
+                  "x": 800,
+                  "y": 500
+                },
+                {
+                  "x": 1100,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_square_fight",
+      "name": "Observatory Square",
+      "room": "dc_obs_square",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "void_wisp",
+              "at": [
+                {
+                  "x": 400,
+                  "y": 400
+                },
+                {
+                  "x": 800,
+                  "y": 800
+                }
+              ]
+            },
+            {
+              "archetype": "deep_crawler",
+              "at": [
+                {
+                  "x": 600,
+                  "y": 600
+                }
+              ]
+            },
+            {
+              "archetype": "drowned_cultist_dc",
+              "at": [
+                {
+                  "x": 400,
+                  "y": 800
+                },
+                {
+                  "x": 800,
+                  "y": 400
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_back_street_fight",
+      "name": "Observatory Back Street",
+      "room": "dc_obs_street_2",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "deep_crawler",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 400
+                },
+                {
+                  "x": 1100,
+                  "y": 400
+                }
+              ]
+            },
+            {
+              "archetype": "void_wisp",
+              "at": [
+                {
+                  "x": 800,
+                  "y": 250
+                },
+                {
+                  "x": 800,
+                  "y": 550
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_warden",
+      "name": "Gate Warden",
+      "room": "dc_obs_warden_hall",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "gate_warden_dc",
+              "at": [
+                {
+                  "x": 600,
+                  "y": 600
+                }
+              ]
+            },
+            {
+              "archetype": "drowned_cultist_dc",
+              "at": [
+                {
+                  "x": 450,
+                  "y": 750
+                },
+                {
+                  "x": 750,
+                  "y": 750
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "onComplete": [
+        {
+          "setFlag": "obs_rift_open"
+        },
+        {
+          "raw": {
+            "type": "set_object_state",
+            "roomId": "dc_obs_warden_hall",
+            "objectId": "obs_time_rift",
+            "state": "open"
+          }
+        },
+        {
+          "message": "The Gate Warden falls. Its rift tears open onto the city as it was."
+        }
+      ]
+    },
+    {
+      "id": "obs_past_wisps",
+      "name": "Chrono Wisps",
+      "room": "dc_obs_past_street",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "chrono_wisp",
+              "at": [
+                {
+                  "x": 700,
+                  "y": 300
+                },
+                {
+                  "x": 1000,
+                  "y": 500
+                },
+                {
+                  "x": 1300,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_past_square_wisps",
+      "name": "Chrono Wisps",
+      "room": "dc_obs_past_square",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "chrono_wisp",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 500
+                },
+                {
+                  "x": 700,
+                  "y": 700
+                },
+                {
+                  "x": 500,
+                  "y": 800
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_lower_fight",
+      "name": "Observatory Lower Street",
+      "room": "dc_obs_lower_street",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "void_wisp",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 300
+                },
+                {
+                  "x": 800,
+                  "y": 500
+                },
+                {
+                  "x": 1100,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_ante_fight",
+      "name": "Observatory Antechamber",
+      "room": "dc_obs_antechamber",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "deep_crawler",
+              "at": [
+                {
+                  "x": 450,
+                  "y": 450
+                },
+                {
+                  "x": 750,
+                  "y": 750
+                }
+              ]
+            },
+            {
+              "archetype": "drowned_cultist_dc",
+              "at": [
+                {
+                  "x": 450,
+                  "y": 750
+                },
+                {
+                  "x": 750,
+                  "y": 450
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obs_boss",
+      "name": "The Watcher",
+      "room": "dc_obs_boss",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boss": {
+        "template": "the_watcher",
+        "name": "The Watcher",
+        "at": {
+          "x": 500,
+          "y": 700
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "obs_chest"
+        },
+        {
+          "setFlag": "obs_done"
+        },
+        {
+          "raw": {
+            "type": "set_object_available",
+            "roomId": "dc_circle_of_tides",
+            "objectId": "tide_circle_west_lit",
+            "available": true
+          }
+        },
+        {
+          "message": "The Watcher falls. A third of the Circle of Tides lights up."
+        }
+      ]
+    },
+    {
+      "id": "kelp_street_fight",
+      "name": "Kelp Deeps Street",
+      "room": "dc_kelp_street_1",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "shellback_dc",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 400
+                },
+                {
+                  "x": 800,
+                  "y": 300
+                },
+                {
+                  "x": 1100,
+                  "y": 400
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kelp_square_fight",
+      "name": "Kelp Deeps Square",
+      "room": "dc_kelp_square",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "maw_lily",
+              "at": [
+                {
+                  "x": 400,
+                  "y": 400
+                },
+                {
+                  "x": 800,
+                  "y": 400
+                }
+              ]
+            },
+            {
+              "archetype": "darter_dc",
+              "at": [
+                {
+                  "x": 400,
+                  "y": 800
+                },
+                {
+                  "x": 600,
+                  "y": 600
+                },
+                {
+                  "x": 800,
+                  "y": 800
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kelp_back_street_fight",
+      "name": "Kelp Deeps Back Street",
+      "room": "dc_kelp_street_2",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "coral_golem_dc",
+              "at": [
+                {
+                  "x": 800,
+                  "y": 400
+                }
+              ]
+            },
+            {
+              "archetype": "shellback_dc",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 400
+                },
+                {
+                  "x": 1100,
+                  "y": 400
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kelp_warden",
+      "name": "Gate Warden",
+      "room": "dc_kelp_warden_hall",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "gate_warden_dc",
+              "at": [
+                {
+                  "x": 600,
+                  "y": 600
+                }
+              ]
+            },
+            {
+              "archetype": "maw_lily",
+              "at": [
+                {
+                  "x": 750,
+                  "y": 400
+                },
+                {
+                  "x": 750,
+                  "y": 800
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "onComplete": [
+        {
+          "setFlag": "kelp_rift_open"
+        },
+        {
+          "raw": {
+            "type": "set_object_state",
+            "roomId": "dc_kelp_warden_hall",
+            "objectId": "kelp_time_rift",
+            "state": "open"
+          }
+        },
+        {
+          "message": "The Gate Warden falls. Its rift tears open onto the city as it was."
+        }
+      ]
+    },
+    {
+      "id": "kelp_past_wisps",
+      "name": "Chrono Wisps",
+      "room": "dc_kelp_past_street",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "chrono_wisp",
+              "at": [
+                {
+                  "x": 700,
+                  "y": 300
+                },
+                {
+                  "x": 1000,
+                  "y": 500
+                },
+                {
+                  "x": 1300,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kelp_past_square_wisps",
+      "name": "Chrono Wisps",
+      "room": "dc_kelp_past_square",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "chrono_wisp",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 500
+                },
+                {
+                  "x": 700,
+                  "y": 700
+                },
+                {
+                  "x": 500,
+                  "y": 800
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kelp_lower_fight",
+      "name": "Kelp Deeps Lower Street",
+      "room": "dc_kelp_lower_street",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "darter_dc",
+              "at": [
+                {
+                  "x": 400,
+                  "y": 300
+                },
+                {
+                  "x": 700,
+                  "y": 500
+                },
+                {
+                  "x": 1000,
+                  "y": 300
+                },
+                {
+                  "x": 1300,
+                  "y": 500
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kelp_ante_fight",
+      "name": "Kelp Deeps Antechamber",
+      "room": "dc_kelp_antechamber",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "coral_golem_dc",
+              "at": [
+                {
+                  "x": 450,
+                  "y": 600
+                },
+                {
+                  "x": 750,
+                  "y": 600
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kelp_boss",
+      "name": "Tidemaw",
+      "room": "dc_kelp_boss",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boss": {
+        "template": "tidemaw",
+        "name": "Tidemaw",
+        "at": {
+          "x": 676,
+          "y": 602
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "kelp_chest"
+        },
+        {
+          "setFlag": "kelp_done"
+        },
+        {
+          "raw": {
+            "type": "set_object_available",
+            "roomId": "dc_circle_of_tides",
+            "objectId": "tide_circle_north_lit",
+            "available": true
+          }
+        },
+        {
+          "message": "Tidemaw falls. A third of the Circle of Tides lights up."
+        }
+      ]
+    },
+    {
+      "id": "harbor_street_fight",
+      "name": "Harbor Street",
+      "room": "dc_harbor_street_1",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "drowned_deckhand_dc",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 300
+                },
+                {
+                  "x": 800,
+                  "y": 500
+                },
+                {
+                  "x": 1100,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor_square_fight",
+      "name": "Harbor Square",
+      "room": "dc_harbor_square",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "phantom_lookout_dc",
+              "at": [
+                {
+                  "x": 400,
+                  "y": 400
+                },
+                {
+                  "x": 800,
+                  "y": 800
+                }
+              ]
+            },
+            {
+              "archetype": "drowned_deckhand_dc",
+              "at": [
+                {
+                  "x": 800,
+                  "y": 400
+                },
+                {
+                  "x": 400,
+                  "y": 800
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor_back_street_fight",
+      "name": "Harbor Back Street",
+      "room": "dc_harbor_street_2",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "merfolk_harpooner_dc",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 400
+                },
+                {
+                  "x": 1100,
+                  "y": 400
+                }
+              ]
+            },
+            {
+              "archetype": "phantom_lookout_dc",
+              "at": [
+                {
+                  "x": 800,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor_warden",
+      "name": "Gate Warden",
+      "room": "dc_harbor_warden_hall",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "gate_warden_dc",
+              "at": [
+                {
+                  "x": 600,
+                  "y": 600
+                }
+              ]
+            },
+            {
+              "archetype": "drowned_deckhand_dc",
+              "at": [
+                {
+                  "x": 450,
+                  "y": 450
+                },
+                {
+                  "x": 750,
+                  "y": 450
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "onComplete": [
+        {
+          "setFlag": "harbor_rift_open"
+        },
+        {
+          "raw": {
+            "type": "set_object_state",
+            "roomId": "dc_harbor_warden_hall",
+            "objectId": "harbor_time_rift",
+            "state": "open"
+          }
+        },
+        {
+          "message": "The Gate Warden falls. Its rift tears open onto the city as it was."
+        }
+      ]
+    },
+    {
+      "id": "harbor_past_wisps",
+      "name": "Chrono Wisps",
+      "room": "dc_harbor_past_street",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "chrono_wisp",
+              "at": [
+                {
+                  "x": 700,
+                  "y": 300
+                },
+                {
+                  "x": 1000,
+                  "y": 500
+                },
+                {
+                  "x": 1300,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor_past_square_wisps",
+      "name": "Chrono Wisps",
+      "room": "dc_harbor_past_square",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "chrono_wisp",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 500
+                },
+                {
+                  "x": 700,
+                  "y": 700
+                },
+                {
+                  "x": 500,
+                  "y": 800
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor_lower_fight",
+      "name": "Harbor Lower Street",
+      "room": "dc_harbor_lower_street",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "merfolk_harpooner_dc",
+              "at": [
+                {
+                  "x": 500,
+                  "y": 300
+                },
+                {
+                  "x": 800,
+                  "y": 500
+                },
+                {
+                  "x": 1100,
+                  "y": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor_ante_fight",
+      "name": "Harbor Antechamber",
+      "room": "dc_harbor_antechamber",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "waves": [
+        {
+          "mobs": [
+            {
+              "archetype": "phantom_lookout_dc",
+              "at": [
+                {
+                  "x": 450,
+                  "y": 450
+                },
+                {
+                  "x": 750,
+                  "y": 750
+                }
+              ]
+            },
+            {
+              "archetype": "merfolk_harpooner_dc",
+              "at": [
+                {
+                  "x": 600,
+                  "y": 600
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor_boss",
+      "name": "The Drowned Admiral",
+      "room": "dc_harbor_boss",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boss": {
+        "template": "drowned_admiral",
+        "name": "The Drowned Admiral",
+        "at": {
+          "x": 800,
+          "y": 700
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "harbor_chest"
+        },
+        {
+          "setFlag": "harbor_done"
+        },
+        {
+          "raw": {
+            "type": "set_object_available",
+            "roomId": "dc_circle_of_tides",
+            "objectId": "tide_circle_east_lit",
+            "available": true
+          }
+        },
+        {
+          "message": "The Drowned Admiral falls. A third of the Circle of Tides lights up."
+        }
+      ]
+    },
+    {
+      "id": "abyssal_one",
+      "name": "The Abyssal One",
+      "room": "dc_abyssal_sanctum",
+      "startOn": "room_enter",
+      "lockDoors": true,
+      "boss": {
+        "template": "abyssal_one",
+        "name": "The Abyssal One",
+        "at": {
+          "x": 772,
+          "y": 732
+        }
+      },
+      "onComplete": [
+        {
+          "revealChest": "sanctum_chest"
+        },
+        {
+          "revealShrine": "tidecraft_altar"
+        },
+        {
+          "completeDungeon": true
+        },
+        {
+          "message": "The Abyssal One sinks into the pit. The Drowned City is still."
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "obs_switch_1_on",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "object_state",
+        "roomId": "dc_obs_past_street",
+        "objectId": "obs_switch_1",
+        "state": "on"
+      },
+      "actions": [
+        {
+          "type": "set_dungeon_flag",
+          "flagId": "obs_switch_1",
+          "value": true
+        },
+        {
+          "type": "show_message",
+          "text": "Far away, a floodgate groans.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "id": "obs_switch_2_on",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "object_state",
+        "roomId": "dc_obs_past_square",
+        "objectId": "obs_switch_2",
+        "state": "on"
+      },
+      "actions": [
+        {
+          "type": "set_dungeon_flag",
+          "flagId": "obs_switch_2",
+          "value": true
+        },
+        {
+          "type": "show_message",
+          "text": "Far away, a floodgate groans.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "id": "obs_floodgate_opens_1",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "obs_switch_1",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "obs_switch_2",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_obs_warden_hall",
+          "objectId": "obs_floodgate",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Observatory floodgate rises.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "obs_floodgate_opens_2",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "obs_switch_2",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "obs_switch_1",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_obs_warden_hall",
+          "objectId": "obs_floodgate",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Observatory floodgate rises.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "kelp_switch_1_on",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "object_state",
+        "roomId": "dc_kelp_past_street",
+        "objectId": "kelp_switch_1",
+        "state": "on"
+      },
+      "actions": [
+        {
+          "type": "set_dungeon_flag",
+          "flagId": "kelp_switch_1",
+          "value": true
+        },
+        {
+          "type": "show_message",
+          "text": "Far away, a floodgate groans.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "id": "kelp_switch_2_on",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "object_state",
+        "roomId": "dc_kelp_past_square",
+        "objectId": "kelp_switch_2",
+        "state": "on"
+      },
+      "actions": [
+        {
+          "type": "set_dungeon_flag",
+          "flagId": "kelp_switch_2",
+          "value": true
+        },
+        {
+          "type": "show_message",
+          "text": "Far away, a floodgate groans.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "id": "kelp_floodgate_opens_1",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "kelp_switch_1",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "kelp_switch_2",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_kelp_warden_hall",
+          "objectId": "kelp_floodgate",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Kelp Deeps floodgate rises.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "kelp_floodgate_opens_2",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "kelp_switch_2",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "kelp_switch_1",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_kelp_warden_hall",
+          "objectId": "kelp_floodgate",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Kelp Deeps floodgate rises.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "harbor_switch_1_on",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "object_state",
+        "roomId": "dc_harbor_past_street",
+        "objectId": "harbor_switch_1",
+        "state": "on"
+      },
+      "actions": [
+        {
+          "type": "set_dungeon_flag",
+          "flagId": "harbor_switch_1",
+          "value": true
+        },
+        {
+          "type": "show_message",
+          "text": "Far away, a floodgate groans.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "id": "harbor_switch_2_on",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "object_state",
+        "roomId": "dc_harbor_past_square",
+        "objectId": "harbor_switch_2",
+        "state": "on"
+      },
+      "actions": [
+        {
+          "type": "set_dungeon_flag",
+          "flagId": "harbor_switch_2",
+          "value": true
+        },
+        {
+          "type": "show_message",
+          "text": "Far away, a floodgate groans.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "id": "harbor_floodgate_opens_1",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "harbor_switch_1",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "harbor_switch_2",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_harbor_warden_hall",
+          "objectId": "harbor_floodgate",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Harbor floodgate rises.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "harbor_floodgate_opens_2",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "harbor_switch_2",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "harbor_switch_1",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_harbor_warden_hall",
+          "objectId": "harbor_floodgate",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Harbor floodgate rises.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "abyssal_gate_opens_obs_done",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "obs_done",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "kelp_done",
+            "value": true
+          },
+          {
+            "type": "dungeon_flag",
+            "flagId": "harbor_done",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_circle_of_tides",
+          "objectId": "abyssal_gate_art",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Circle of Tides blazes. The Abyssal Gate opens.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "abyssal_gate_opens_kelp_done",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "kelp_done",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "obs_done",
+            "value": true
+          },
+          {
+            "type": "dungeon_flag",
+            "flagId": "harbor_done",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_circle_of_tides",
+          "objectId": "abyssal_gate_art",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Circle of Tides blazes. The Abyssal Gate opens.",
+          "tone": "success"
+        }
+      ]
+    },
+    {
+      "id": "abyssal_gate_opens_harbor_done",
+      "scope": "instance",
+      "repetition": "once",
+      "event": {
+        "type": "dungeon_flag",
+        "flagId": "harbor_done",
+        "value": true
+      },
+      "conditions": {
+        "mode": "all",
+        "items": [
+          {
+            "type": "dungeon_flag",
+            "flagId": "obs_done",
+            "value": true
+          },
+          {
+            "type": "dungeon_flag",
+            "flagId": "kelp_done",
+            "value": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_object_state",
+          "roomId": "dc_circle_of_tides",
+          "objectId": "abyssal_gate_art",
+          "state": "open"
+        },
+        {
+          "type": "show_message",
+          "text": "The Circle of Tides blazes. The Abyssal Gate opens.",
+          "tone": "success"
+        }
+      ]
+    }
+  ]
+}

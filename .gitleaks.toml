@@ -1,0 +1,10 @@
+title = "Ash Atlas gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic test PKI used by App Attest unit tests (not real credentials)"
+paths = [
+  '''apps/server/src/auth/trust/attestation/__fixtures__/appAttestFixtures\.json''',
+]

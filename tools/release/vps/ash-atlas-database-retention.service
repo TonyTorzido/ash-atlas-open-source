@@ -1,0 +1,19 @@
+[Unit]
+Description=Apply verified tiered Ash Atlas PostgreSQL backup retention
+After=ash-atlas-database-backup@hourly.service
+RequiresMountsFor=/mnt/ash-atlas-backups
+ConditionPathIsMountPoint=/mnt/ash-atlas-backups
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/database-backup.env
+ExecStart=/opt/ash-atlas/current/tools/release/vps/prune-database-backups.sh --apply
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/mnt/ash-atlas-backups /run/lock

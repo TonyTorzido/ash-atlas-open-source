@@ -1,0 +1,21 @@
+/* Rank ladder (RankLadder.tsx): rows separated by thin rules, like the Class sheet. Only the current rank is framed (gilded double frame); tags are square. */
+.rank-ladder { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; min-width: 0; }
+.rank-ladder-row { min-width: 0; display: grid; gap: 4px; padding: var(--aa-ui-space-2) 0; border: 0; border-bottom: 1px solid var(--aa-ui-border-muted); border-radius: 0; background: transparent; color: var(--aa-ui-text-muted); }
+.rank-ladder-row:last-child { border-bottom: 0; }
+.rank-ladder-row[data-state="earned"] { color: var(--aa-ui-parchment-200); }
+.rank-ladder-row[data-state="current"] { margin: 2px 0; padding: var(--aa-ui-space-2) var(--aa-ui-space-3); border: 1px solid var(--aa-brass); border-radius: 4px; background: var(--aa-grain), linear-gradient(180deg, var(--aa-plaque-top), var(--aa-plaque-bottom)); box-shadow: inset 0 0 0 2px var(--aa-menu-paper), inset 0 0 0 3px var(--aa-brass-soft); color: var(--aa-ui-parchment-200); }
+.rank-ladder-row[data-state="next"] { color: var(--aa-ui-text); }
+.rank-ladder-row > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--aa-ui-space-2); }
+.rank-ladder-row > header strong { color: var(--aa-ui-parchment-100); font: var(--aa-type-card); font-family: var(--aa-ui-font-display); font-variant: small-caps; letter-spacing: .03em; }
+.rank-ladder-row[data-state="upcoming"] > header strong { color: var(--aa-ui-text-muted); }
+.rank-ladder-row > header small { margin-left: auto; color: var(--aa-ui-active-bronze); font: var(--aa-type-meta); font-weight: 800; }
+.rank-ladder-badge { color: var(--aa-ui-active-bronze); font: var(--aa-type-label); font-family: var(--aa-ui-font-display); letter-spacing: .06em; text-transform: uppercase; }
+.rank-ladder-state { padding: 1px 5px; border: 1px solid var(--aa-brass-soft); border-radius: 3px; color: var(--aa-ui-text-muted); font: var(--aa-type-label); font-family: var(--aa-ui-font-display); letter-spacing: .08em; text-transform: uppercase; }
+.rank-ladder-row[data-state="current"] .rank-ladder-state { border-color: var(--aa-brass); background: var(--aa-brass); color: var(--aa-menu-paper); }
+.rank-ladder-row[data-state="next"] .rank-ladder-state { border-color: var(--aa-brass); color: var(--aa-ui-active-bronze); }
+.rank-ladder-row > h4 { margin: 0; color: var(--aa-ui-parchment-100); font: var(--aa-type-value); font-family: var(--aa-ui-font-display); overflow-wrap: anywhere; }
+.rank-ladder-row[data-state="upcoming"] > h4 { color: var(--aa-ui-text-muted); }
+.rank-ladder-row > ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font: var(--aa-type-meta); overflow-wrap: anywhere; }
+.rank-ladder-row > ul > li[data-live="false"] { opacity: .6; }
+.rank-ladder-row > ul > li > em { display: inline-block; margin-top: 2px; }
+.rank-ladder-note { color: var(--aa-ui-text-muted); font: italic var(--aa-type-meta); }

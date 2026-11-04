@@ -1,0 +1,92 @@
+.pet-panel-shell .game-app-body,
+.pet-panel,
+.pet-panel-list,
+.pet-panel-card,
+.pet-panel-card > div { min-width: 0; }
+.pet-panel { display: grid; gap: var(--aa-ui-space-3); }
+.pet-panel-intro, .pet-panel-notice, .pet-panel-error { margin: 0; font: var(--aa-type-meta); color: var(--aa-ui-text-muted); }
+.pet-panel-error { color: var(--aa-menu-danger-text); }
+.pet-panel-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: var(--aa-ui-space-3); align-content: start; }
+.pet-panel-card.is-out { border-color: var(--aa-brass); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--aa-brass) 28%, transparent); }
+.pet-panel-whistle { width: 48px; height: 48px; object-fit: contain; }
+.pet-panel-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--aa-ui-space-2); margin: 0; }
+.pet-panel-stats div { display: grid; gap: 2px; min-width: 0; }
+.pet-panel-stats dt { font: var(--aa-type-label); color: var(--aa-ui-text-muted); text-transform: uppercase; }
+.pet-panel-stats dd { margin: 0; font: var(--aa-type-value); overflow-wrap: anywhere; }
+.pet-panel-health { height: 8px; margin: var(--aa-ui-space-2) 0; overflow: hidden; border-radius: 99px; background: rgba(0, 0, 0, .55); }
+.pet-panel-health i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #806744, var(--aa-brass)); }
+.pet-panel-abilities, .pet-panel-eggs { display: grid; gap: var(--aa-ui-space-2); margin: 0 0 var(--aa-ui-space-3); padding: 0; list-style: none; }
+.pet-panel-abilities li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: var(--aa-ui-space-2); }
+.pet-panel-abilities li:not(.is-unlocked) img { filter: grayscale(1); opacity: .6; }
+.pet-panel-abilities img { width: 40px; height: 40px; }
+.pet-panel-abilities span { display: grid; gap: 2px; min-width: 0; }
+.pet-panel-abilities small { font: var(--aa-type-meta); color: var(--aa-ui-text-muted); }
+.pet-panel-abilities em { font: var(--aa-type-label); color: var(--aa-brass); font-style: normal; text-transform: uppercase; }
+.pet-panel-eggs li { display: flex; align-items: center; justify-content: space-between; gap: var(--aa-ui-space-2); }
+
+@media (max-width: 760px) {
+  .pet-panel-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+html[data-ui-profile="phone"] .pet-panel-shell .phone-destination-body {
+  min-width: 0;
+  overflow-x: hidden;
+  padding-inline: var(--aa-ui-space-3);
+  padding-bottom: var(--aa-ui-space-4);
+}
+
+html[data-ui-profile="phone"] .pet-panel-card .game-app-action-bar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+}
+
+html[data-ui-profile="phone"] .pet-panel-card .game-app-action-bar button { min-height: 44px; }
+
+/* Pet controls in the activity-status slot (gameplay-status-stack). */
+.gameplay-status-stack > .pet-hud-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--aa-ui-space-1);
+  padding: 4px 6px;
+  border: 1px solid color-mix(in srgb, var(--aa-brass) 45%, transparent);
+  border-radius: var(--aa-ui-radius-control);
+  background: color-mix(in srgb, var(--aa-ui-ink-950) 88%, transparent);
+  pointer-events: auto;
+}
+.pet-hud-bar-name { display: grid; padding: 0 4px; font: var(--aa-type-label); color: var(--aa-ui-text); white-space: nowrap; }
+.pet-hud-bar-name small { font: var(--aa-type-meta); color: var(--aa-ui-text-muted); }
+.pet-hud-bar-button { position: relative; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.pet-hud-bar-button img { width: 36px; height: 36px; pointer-events: none; -webkit-user-drag: none; }
+.pet-hud-bar-button:disabled { cursor: default; }
+.pet-hud-bar-button:disabled img { filter: grayscale(1); opacity: .55; }
+.pet-hud-bar-cooldown { position: absolute; inset: 0; display: grid; place-items: center; font: 700 13px/1 var(--aa-ui-font-body); color: var(--aa-ui-parchment-100); text-shadow: 0 1px 2px #000; }
+
+/* Pet abilities offered in an enemy's target menu. */
+.game-prompt-action-icon { width: 22px; height: 22px; margin-right: 6px; vertical-align: middle; }
+.combat-target-pet-actions { display: flex; flex-wrap: wrap; gap: var(--aa-ui-space-1); margin-top: var(--aa-ui-space-2); }
+.combat-target-pet-actions button { display: inline-flex; align-items: center; min-height: 36px; }
+.pet-hud-bar-button[aria-busy="true"] img { animation: pet-hud-searching 1.2s linear infinite; }
+@keyframes pet-hud-searching { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .pet-hud-bar-button[aria-busy="true"] img { animation: none; opacity: .6; } }
+.pet-panel-rest { margin: 0 0 var(--aa-ui-space-2); font: var(--aa-type-meta); color: var(--aa-ui-text-muted); }
+
+/* Drag-to-place Stay: arrow from the Stay/Follow button to the pointer, and the placed spot. */
+.pet-stay-placement { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 60; pointer-events: none; overflow: visible; }
+.pet-stay-placement line,
+.pet-stay-placement polyline { fill: none; stroke: var(--aa-ui-parchment-100); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 2px rgb(0 0 0 / .7)); }
+.pet-stay-placement circle { fill: color-mix(in srgb, var(--aa-brass) 22%, transparent); stroke: var(--aa-brass); stroke-width: 3; }
+.pet-stay-placement.cancelling line,
+.pet-stay-placement.cancelling polyline { opacity: .35; }
+.pet-stay-placement.cancelling circle { stroke: var(--aa-ui-text-muted); }
+.pet-hud-bar-button[data-placing="true"] { outline: 2px solid var(--aa-brass); outline-offset: 1px; }
+.pet-hud-bar-button { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.pet-stay-marker { width: 22px; height: 22px; border: 3px solid var(--aa-brass); border-radius: 50%; background: color-mix(in srgb, var(--aa-brass) 25%, transparent); box-shadow: 0 0 0 2px rgb(0 0 0 / .45); pointer-events: none; }
+.pet-stay-marker > span { display: block; width: 6px; height: 6px; margin: 5px auto 0; border-radius: 50%; background: var(--aa-ui-parchment-100); }
+
+/* Pets you don't have yet: greyed whistle and the steps to unlock. */
+.pet-panel-card.is-locked .pet-panel-whistle,
+.pet-panel-card.is-locked .pet-panel-abilities img { filter: grayscale(1) brightness(.7); opacity: .7; }
+.pet-panel-locked-how { margin: 0 0 var(--aa-ui-space-1); font: var(--aa-type-label); color: var(--aa-ui-text-muted); text-transform: uppercase; }
+.pet-panel-requirements { display: grid; gap: 4px; margin: 0 0 var(--aa-ui-space-3); padding-left: 1.1em; font: var(--aa-type-meta); color: var(--aa-ui-text); }
+.pet-panel-requirements li.is-met { color: var(--aa-brass); }

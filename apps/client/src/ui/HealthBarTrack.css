@@ -1,0 +1,60 @@
+/* Shared production presentation. Studio imports the same rules. */
+/* Keep the generic track before the equally specific HP frame, as in production. */
+.status-bar-track { height: 11px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 4px; background: rgba(2,6,12,.8); }
+.hp-bar-track {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--aa-health-frame-border);
+  border-radius: 1px;
+  background: var(--aa-health-frame);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 62%);
+  clip-path: polygon(2px 0, calc(100% - 2px) 0, 100% 2px, 100% calc(100% - 2px), calc(100% - 2px) 100%, 2px 100%, 0 calc(100% - 2px), 0 2px);
+}
+.hp-bar-recess {
+  position: absolute;
+  inset: 1px;
+  overflow: hidden;
+  background: var(--aa-health-track);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 88%), inset 0 -1px rgb(255 255 255 / 3%);
+  clip-path: polygon(1px 0, calc(100% - 1px) 0, 100% 1px, 100% calc(100% - 1px), calc(100% - 1px) 100%, 1px 100%, 0 calc(100% - 1px), 0 1px);
+}
+.hp-bar-damage-trail,
+.hp-bar-fill,
+.hp-bar-ward {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  display: block;
+}
+.hp-bar-damage-trail {
+  z-index: 0;
+  opacity: 0;
+  background: var(--aa-health-trail);
+}
+.hp-bar-damage-trail[data-active="true"] {
+  opacity: 1;
+  transition: width 400ms cubic-bezier(.22, .8, .3, 1) 325ms;
+}
+.hp-bar-fill {
+  z-index: 1;
+  background: linear-gradient(180deg, var(--aa-health-fill-top), var(--aa-health-fill-bottom));
+  box-shadow:
+    inset 0 1px var(--aa-health-fill-highlight),
+    inset 0 -1px rgb(4 42 18 / 42%);
+  transition: width 160ms cubic-bezier(.22, .8, .3, 1);
+}
+.hp-bar-ward {
+  z-index: 2;
+  min-width: 1px;
+  background: linear-gradient(180deg, var(--aa-ward-fill-top), var(--aa-ward-fill-bottom));
+  box-shadow: inset 0 1px var(--aa-ward-fill-highlight), inset 1px 0 rgb(219 234 254 / 72%);
+  transition: width 160ms cubic-bezier(.22, .8, .3, 1), left 160ms cubic-bezier(.22, .8, .3, 1);
+}
+.hp-bar-track.is-critical {
+  animation: hp-critical-frame 2.4s ease-in-out infinite;
+}
+@keyframes hp-critical-frame {
+  0%, 100% { border-color: var(--aa-health-frame-border); box-shadow: 0 1px 2px rgb(0 0 0 / 62%); }
+  50% { border-color: var(--aa-health-critical-frame); box-shadow: 0 0 0 1px rgb(166 83 71 / 24%), 0 1px 2px rgb(0 0 0 / 68%); }
+}

@@ -1,0 +1,20 @@
+[Unit]
+Description=Restore one recent Ash Atlas backup in an isolated bounded cluster
+RequiresMountsFor=__STORAGE_ROOT__
+ConditionPathIsMountPoint=__SEAGATE_MOUNT__
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/telemetry-home.env
+ExecStart=/usr/local/sbin/ash-atlas-backup-restore-check --latest
+TimeoutStartSec=3630
+KillMode=control-group
+Nice=10
+IOSchedulingClass=idle
+# The existing isolated checker mounts its fixed-size loop workspace and
+# runs PostgreSQL as postgres; its own path/cluster checks enforce isolation.
+ProtectHome=true
+ProtectSystem=full
+ReadWritePaths=/run /var/lib/ash-atlas

@@ -1,0 +1,102 @@
+{
+  "dungeon": {
+    "id": "the_eyrie",
+    "name": "The Eyrie",
+    "description": "A windswept mountain nest above Fangrock. Cross the cliffs and the rope bridge to challenge Thunderwing. Recommended level 11.",
+    "instancePolicy": "party_ephemeral",
+    "theme": { "id": "eyrie", "backgroundColor": "#0b1118", "floorColor": "#4a4a44", "wallColor": "#5a5750", "accentColor": "#9fc4e8" }
+  },
+  "entranceRoom": "cliff_base",
+  "rooms": [
+    {
+      "id": "cliff_base", "name": "Cliff Base", "width": 1000, "height": 1000, "spawn": { "x": 500, "y": 800 },
+      "anchors": {
+        "door_n": { "x": 500, "y": 30 }, "approach_n": { "x": 500, "y": 110 }, "arrive_n": { "x": 500, "y": 140 }
+      }
+    },
+    {
+      "id": "switchback_ledge", "name": "Switchback Ledge", "width": 1600, "height": 800, "spawn": { "x": 130, "y": 360 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 360 }, "approach_w": { "x": 100, "y": 360 }, "arrive_w": { "x": 130, "y": 360 },
+        "door_e": { "x": 1570, "y": 360 }, "approach_e": { "x": 1500, "y": 360 }, "arrive_e": { "x": 1470, "y": 360 }
+      },
+      "zones": [
+        { "id": "ledge_boundary", "purpose": "encounter_boundary", "rect": { "x": 30, "y": 30, "width": 1540, "height": 520 } },
+        { "id": "ledge_leash", "purpose": "leash", "rect": { "x": 0, "y": 0, "width": 1600, "height": 600 } }
+      ]
+    },
+    {
+      "id": "scrap_hollow", "name": "Scrap Hollow", "width": 1200, "height": 1000, "spawn": { "x": 140, "y": 450 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 450 }, "approach_w": { "x": 110, "y": 450 }, "arrive_w": { "x": 140, "y": 450 },
+        "door_n": { "x": 600, "y": 30 }, "approach_n": { "x": 600, "y": 110 }, "arrive_n": { "x": 600, "y": 140 }
+      },
+      "zones": [
+        { "id": "hollow_boundary", "purpose": "encounter_boundary", "rect": { "x": 60, "y": 60, "width": 1080, "height": 880 } },
+        { "id": "hollow_leash", "purpose": "leash", "rect": { "x": 30, "y": 30, "width": 1140, "height": 940 } }
+      ]
+    },
+    {
+      "id": "wind_bridge", "name": "Wind Bridge", "width": 1600, "height": 700, "spawn": { "x": 140, "y": 330 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 310 }, "approach_w": { "x": 100, "y": 310 }, "arrive_w": { "x": 140, "y": 330 },
+        "door_e": { "x": 1570, "y": 310 }, "approach_e": { "x": 1500, "y": 310 }, "arrive_e": { "x": 1460, "y": 330 }
+      },
+      "zones": [
+        { "id": "bridge_boundary", "purpose": "encounter_boundary", "rect": { "x": 30, "y": 150, "width": 1540, "height": 370 } },
+        { "id": "bridge_leash", "purpose": "leash", "rect": { "x": 0, "y": 100, "width": 1600, "height": 470 } }
+      ]
+    },
+    {
+      "id": "nest_crown", "name": "Nest Crown", "width": 1400, "height": 1400, "spawn": { "x": 200, "y": 685 },
+      "anchors": {
+        "door_w": { "x": 30, "y": 685 }, "approach_w": { "x": 100, "y": 685 }, "arrive_w": { "x": 200, "y": 685 }
+      },
+      "zones": [
+        { "id": "crown_boundary", "purpose": "encounter_boundary", "rect": { "x": 260, "y": 220, "width": 940, "height": 940 } },
+        { "id": "crown_leash", "purpose": "leash", "rect": { "x": 200, "y": 160, "width": 1060, "height": 1060 } }
+      ],
+      "chests": [
+        { "id": "crown_chest", "name": "Thunderwing's Hoard", "at": { "x": 1050, "y": 950 }, "reward": { "gold": 400, "items": [{ "itemId": "coal", "quantity": 8 }] } }
+      ]
+    }
+  ],
+  "doors": [
+    { "id": "base_to_ledge", "from": { "room": "cliff_base", "anchor": "door_n" }, "to": { "room": "switchback_ledge", "anchor": "door_w" }, "label": "Climb the Steps", "reverseLabel": "Descend to the Base" },
+    { "id": "ledge_to_hollow", "from": { "room": "switchback_ledge", "anchor": "door_e" }, "to": { "room": "scrap_hollow", "anchor": "door_w" }, "label": "Enter the Hollow", "reverseLabel": "Back to the Ledge" },
+    { "id": "hollow_to_bridge", "from": { "room": "scrap_hollow", "anchor": "door_n" }, "to": { "room": "wind_bridge", "anchor": "door_w" }, "label": "Climb to the Bridge", "reverseLabel": "Back to the Hollow" },
+    { "id": "bridge_to_crown", "from": { "room": "wind_bridge", "anchor": "door_e" }, "to": { "room": "nest_crown", "anchor": "door_w" }, "label": "Go to the Nest Crown", "reverseLabel": "Back to the Bridge" }
+  ],
+  "encounters": [
+    {
+      "id": "ledge_ambush", "name": "Ledge Ambush", "room": "switchback_ledge", "startOn": "room_enter", "lockDoors": true,
+      "waves": [
+        { "mobs": [{ "archetype": "dune_tick", "at": [{ "x": 500, "y": 340 }, { "x": 700, "y": 380 }, { "x": 900, "y": 340 }, { "x": 1100, "y": 380 }] }] },
+        { "delayMs": 1500, "mobs": [{ "archetype": "dune_tick", "at": [{ "x": 400, "y": 520 }, { "x": 800, "y": 520 }, { "x": 1200, "y": 520 }] }] }
+      ],
+      "boundary": "ledge_boundary", "leash": "ledge_leash"
+    },
+    {
+      "id": "hollow_swarm", "name": "Nest Mice Swarm", "room": "scrap_hollow", "startOn": "room_enter", "lockDoors": true,
+      "waves": [
+        { "mobs": [{ "archetype": "sewer_rat", "at": [{ "x": 240, "y": 100 }, { "x": 1040, "y": 100 }, { "x": 1100, "y": 560 }] }] },
+        { "delayMs": 2000, "mobs": [{ "archetype": "sewer_rat", "at": [{ "x": 240, "y": 100 }, { "x": 1040, "y": 100 }, { "x": 1100, "y": 560 }] }] },
+        { "delayMs": 2000, "mobs": [{ "archetype": "sap_crawler", "at": [{ "x": 500, "y": 700 }, { "x": 700, "y": 700 }] }] }
+      ],
+      "boundary": "hollow_boundary", "leash": "hollow_leash"
+    },
+    {
+      "id": "bridge_dive", "name": "Bridge Dive", "room": "wind_bridge", "startOn": "room_enter", "lockDoors": true,
+      "waves": [
+        { "mobs": [{ "archetype": "dune_tick", "at": [{ "x": 500, "y": 330 }, { "x": 800, "y": 330 }, { "x": 1100, "y": 330 }] }, { "archetype": "sap_crawler", "at": [{ "x": 1400, "y": 290 }, { "x": 1400, "y": 380 }] }] }
+      ],
+      "boundary": "bridge_boundary", "leash": "bridge_leash"
+    },
+    {
+      "id": "thunderwing", "name": "Thunderwing", "room": "nest_crown", "startOn": "room_enter", "lockDoors": true,
+      "boss": { "template": "dungeon_ogre", "name": "Thunderwing", "at": { "x": 780, "y": 700 } },
+      "boundary": "crown_boundary", "leash": "crown_leash",
+      "onComplete": [{ "revealChest": "crown_chest" }, { "completeDungeon": true }, { "message": "Thunderwing falls. A hoard is revealed." }]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+// Stable compatibility entry. Wire bodies and runtime ownership live in domain protocol modules.
+export * from "./protocol/clientMessages.js";
+export { LOCATION_FIX_REASONS, type LocationFixReason } from "./protocol/relocationSchemas.js";
+export * from "./protocol/serverMessages.js";
+export * from "./protocol/serverMessageParser.js";
+export * from "./protocol/serverMessageValidation.js";
+
+export * from "./protocol/combatEquipmentClientSchemas.js";
+export * from "./protocol/backpackSchemas.js";
+export * from "./protocol/combatEquipmentServerSchemas.js";
+export * from "./protocol/announcementServerSchemas.js";
+export * from "./protocol/developerSchemas.js";
+export * from "./protocol/dungeonSchemas.js";
+export * from "./protocol/flagSchemas.js";
+export * from "./protocol/harvestingSchemas.js";
+export * from "./protocol/manorSchemas.js";
+export * from "./protocol/salonSchemas.js";
+export * from "./protocol/partySchemas.js";
+export * from "./protocol/playerPackageServerSchemas.js";
+export * from "./protocol/playerGiftServerSchemas.js";
+export * from "./protocol/shopServerSchemas.js";
+export * from "./protocol/petSchemas.js";
+export * from "./protocol/portalSchemas.js";
+export * from "./protocol/sessionSchemas.js";
+export * from "./protocol/settlementSchemas.js";
+export * from "./protocol/socialSchemas.js";
+export * from "./protocol/worldSchemas.js";
+export * from "./protocol/skillSystemV3Schemas.js";
+
+export * from "./protocol/combatEquipmentMessages.js";
+export * from "./protocol/announcementMessages.js";
+export * from "./protocol/backpackMessages.js";
+export * from "./protocol/developerMessages.js";
+export * from "./protocol/dungeonMessages.js";
+export * from "./protocol/flagMessages.js";
+export * from "./protocol/harvestingMessages.js";
+export * from "./protocol/manorMessages.js";
+export * from "./protocol/salonMessages.js";
+export * from "./protocol/partyMessages.js";
+export * from "./protocol/playerPackageMessages.js";
+export * from "./protocol/playerGiftMessages.js";
+export * from "./protocol/shopMessages.js";
+export * from "./protocol/petMessages.js";
+export * from "./protocol/portalMessages.js";
+export * from "./protocol/sessionMessages.js";
+export * from "./protocol/settlementMessages.js";
+export * from "./protocol/socialMessages.js";
+export * from "./protocol/travelMessages.js";
+export * from "./protocol/worldMessages.js";
+export * from "./protocol/skillSystemV3Messages.js";
+export * from "./protocol/skillSystemV3ServerSchemas.js";
+
+export type { CitySnapshot, FlagSnapshot } from "./types.js"; export type { PlayerSnapshot } from "./playerSnapshotContracts.js";

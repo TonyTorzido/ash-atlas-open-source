@@ -1,0 +1,25 @@
+[Unit]
+Description=Bounded per-backup PostgreSQL Seagate proof
+After=ash-atlas-backup-mirror.service
+RequiresMountsFor=__STORAGE_ROOT__
+ConditionPathIsMountPoint=__SEAGATE_MOUNT__
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/telemetry-home.env
+ExecStart=/usr/local/sbin/ash-atlas-backup-prove --unproved 1
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+ReadWritePaths=/run/lock

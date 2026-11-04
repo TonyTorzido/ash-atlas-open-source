@@ -1,0 +1,11 @@
+[Unit]
+Description=Create daily Ash Atlas PostgreSQL recovery points
+
+[Timer]
+OnCalendar=*-*-* 03:20:00 UTC
+RandomizedDelaySec=5min
+Persistent=true
+Unit=ash-atlas-database-backup@daily.service
+
+[Install]
+WantedBy=timers.target

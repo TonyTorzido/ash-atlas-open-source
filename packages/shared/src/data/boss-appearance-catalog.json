@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 8,
+  "bosses": [
+    {
+      "bossId": "xoral",
+      "displayName": "The Xoral",
+      "archetypeKey": "xoral",
+      "bodyAssetKey": "xoral/body.png",
+      "presentation": {
+        "baseHeightPx": 168,
+        "minHeightPx": 42,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.9,
+        "hitRadiusPx": 70
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    },
+    {
+      "bossId": "sewer_rat_miniboss",
+      "displayName": "Sewer Rat Miniboss",
+      "archetypeKey": "sewer_rat_miniboss",
+      "bodyAssetKey": "sewer-rat-miniboss.png",
+      "presentation": {
+        "baseHeightPx": 150,
+        "minHeightPx": 37.5,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.9,
+        "hitRadiusPx": 65
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    },
+    {
+      "bossId": "brood_matriarch",
+      "displayName": "Brood Matriarch",
+      "archetypeKey": "brood_matriarch",
+      "bodyAssetKey": "brood-matriarch.png",
+      "presentation": {
+        "baseHeightPx": 170,
+        "minHeightPx": 42.5,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.9,
+        "hitRadiusPx": 75
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    },
+    {
+      "bossId": "raptor_chieftain",
+      "displayName": "Raptor Chieftain",
+      "archetypeKey": "raptor_chieftain",
+      "bodyAssetKey": "raptor-chieftain.png",
+      "presentation": {
+        "baseHeightPx": 170,
+        "minHeightPx": 42.5,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.9,
+        "hitRadiusPx": 75
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    },
+    {
+      "bossId": "thunderwing",
+      "displayName": "Thunderwing",
+      "archetypeKey": "thunderwing",
+      "bodyAssetKey": "thunderwing.png",
+      "presentation": {
+        "baseHeightPx": 170,
+        "minHeightPx": 42.5,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.9,
+        "hitRadiusPx": 75
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    },
+    {
+      "bossId": "hollow_elder",
+      "displayName": "Hollow Elder",
+      "archetypeKey": "hollow_elder",
+      "bodyAssetKey": "hollow-elder.png",
+      "presentation": {
+        "baseHeightPx": 170,
+        "minHeightPx": 42.5,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.9,
+        "hitRadiusPx": 75
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    },
+    {
+      "bossId": "grandmaster",
+      "displayName": "The Grandmaster",
+      "archetypeKey": "grandmaster",
+      "bodyAssetKey": "grandmaster.png",
+      "presentation": {
+        "baseHeightPx": 154.8,
+        "minHeightPx": 38.7,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.918,
+        "hitRadiusPx": 70
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    },
+    {
+      "bossId": "elder_dragon",
+      "displayName": "Elder Dragon",
+      "archetypeKey": "elder_dragon",
+      "bodyAssetKey": "elder-dragon.png",
+      "presentation": {
+        "baseHeightPx": 208,
+        "minHeightPx": 52,
+        "maxHeightPx": null,
+        "zoomStrength": 0.70389327891398,
+        "anchorX": 0.5,
+        "anchorY": 0.918,
+        "hitRadiusPx": 95
+      },
+      "weapon": {
+        "assetKey": null,
+        "placements": {
+          "idle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "rotationDegrees": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "visible": true
+          }
+        }
+      }
+    }
+  ]
+}

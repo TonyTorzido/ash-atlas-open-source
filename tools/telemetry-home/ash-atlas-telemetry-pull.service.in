@@ -1,0 +1,25 @@
+[Unit]
+Description=Pull verified Ash Atlas backups to the internal outage-safe intake
+Wants=network-online.target
+After=network-online.target
+RequiresMountsFor=__STORAGE_ROOT__
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/telemetry-home.env
+ExecStart=/usr/local/sbin/ash-atlas-telemetry-pull
+TimeoutStartSec=620
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+ReadWritePaths=/run/lock

@@ -1,0 +1,2604 @@
+{
+  "schemaVersion": 1,
+  "balanceVersion": 1,
+  "engine": "CombatEngine",
+  "tickRateHz": 20,
+  "matrix": [
+    {
+      "id": "character-00-warrior-00-gear-00",
+      "label": "Character 0 / Warrior 0 / gear 0",
+      "characterLevel": 0,
+      "warriorRank": 0,
+      "gearLevel": 0,
+      "affinity": "preferred"
+    },
+    {
+      "id": "character-15-warrior-09-gear-00",
+      "label": "Character 15 / Warrior 9 / gear 0",
+      "characterLevel": 15,
+      "warriorRank": 9,
+      "gearLevel": 0,
+      "affinity": "preferred"
+    },
+    {
+      "id": "character-15-warrior-09-gear-15",
+      "label": "Character 15 / Warrior 9 / gear 15",
+      "characterLevel": 15,
+      "warriorRank": 9,
+      "gearLevel": 15,
+      "affinity": "preferred"
+    },
+    {
+      "id": "character-20-warrior-12-gear-20",
+      "label": "Character 20 / Warrior 12 / gear 20",
+      "characterLevel": 20,
+      "warriorRank": 12,
+      "gearLevel": 20,
+      "affinity": "preferred"
+    },
+    {
+      "id": "character-25-warrior-15-gear-20",
+      "label": "Character 25 / Warrior 15 / gear 20",
+      "characterLevel": 25,
+      "warriorRank": 15,
+      "gearLevel": 20,
+      "affinity": "preferred"
+    },
+    {
+      "id": "character-25-warrior-15-gear-25-off-affinity",
+      "label": "Character 25 / Warrior 15 / gear 25 off-affinity",
+      "characterLevel": 25,
+      "warriorRank": 15,
+      "gearLevel": 25,
+      "affinity": "off_affinity"
+    },
+    {
+      "id": "character-25-warrior-15-gear-25-preferred",
+      "label": "Character 25 / Warrior 15 / gear 25 preferred",
+      "characterLevel": 25,
+      "warriorRank": 15,
+      "gearLevel": 25,
+      "affinity": "preferred"
+    }
+  ],
+  "profilePower": [
+    {
+      "profileId": "character-00-warrior-00-gear-00",
+      "power": {
+        "maximumHealth": 100,
+        "pvpOffense": 1.5,
+        "pvpGuard": 1.3499999999999999,
+        "effectiveWeaponLevel": 3,
+        "weightedArmorLevel": 2.6999999999999997,
+        "shieldLevel": null,
+        "shieldGuardBonus": 0,
+        "pveAttackPower": 12,
+        "pveDefense": 7,
+        "readiedWeaponSlot": "melee",
+        "readiedWeaponCategory": "axe"
+      }
+    },
+    {
+      "profileId": "character-15-warrior-09-gear-00",
+      "power": {
+        "maximumHealth": 100,
+        "pvpOffense": 9,
+        "pvpGuard": 8.85,
+        "effectiveWeaponLevel": 3,
+        "weightedArmorLevel": 2.6999999999999997,
+        "shieldLevel": null,
+        "shieldGuardBonus": 0,
+        "pveAttackPower": 15,
+        "pveDefense": 10,
+        "readiedWeaponSlot": "melee",
+        "readiedWeaponCategory": "axe"
+      }
+    },
+    {
+      "profileId": "character-15-warrior-09-gear-15",
+      "power": {
+        "maximumHealth": 100,
+        "pvpOffense": 16.5,
+        "pvpGuard": 16.35,
+        "effectiveWeaponLevel": 18,
+        "weightedArmorLevel": 17.7,
+        "shieldLevel": null,
+        "shieldGuardBonus": 0,
+        "pveAttackPower": 18,
+        "pveDefense": 17,
+        "readiedWeaponSlot": "melee",
+        "readiedWeaponCategory": "axe"
+      }
+    },
+    {
+      "profileId": "character-20-warrior-12-gear-20",
+      "power": {
+        "maximumHealth": 100,
+        "pvpOffense": 21.5,
+        "pvpGuard": 21.35,
+        "effectiveWeaponLevel": 23,
+        "weightedArmorLevel": 22.7,
+        "shieldLevel": null,
+        "shieldGuardBonus": 0,
+        "pveAttackPower": 20,
+        "pveDefense": 21,
+        "readiedWeaponSlot": "melee",
+        "readiedWeaponCategory": "axe"
+      }
+    },
+    {
+      "profileId": "character-25-warrior-15-gear-20",
+      "power": {
+        "maximumHealth": 100,
+        "pvpOffense": 24,
+        "pvpGuard": 23.85,
+        "effectiveWeaponLevel": 23,
+        "weightedArmorLevel": 22.7,
+        "shieldLevel": null,
+        "shieldGuardBonus": 0,
+        "pveAttackPower": 21,
+        "pveDefense": 22,
+        "readiedWeaponSlot": "melee",
+        "readiedWeaponCategory": "axe"
+      }
+    },
+    {
+      "profileId": "character-25-warrior-15-gear-25-off-affinity",
+      "power": {
+        "maximumHealth": 100,
+        "pvpOffense": 25,
+        "pvpGuard": 25,
+        "effectiveWeaponLevel": 25,
+        "weightedArmorLevel": 25,
+        "shieldLevel": null,
+        "shieldGuardBonus": 0,
+        "pveAttackPower": 21,
+        "pveDefense": 23,
+        "readiedWeaponSlot": "melee",
+        "readiedWeaponCategory": "sword"
+      }
+    },
+    {
+      "profileId": "character-25-warrior-15-gear-25-preferred",
+      "power": {
+        "maximumHealth": 100,
+        "pvpOffense": 26.5,
+        "pvpGuard": 26.35,
+        "effectiveWeaponLevel": 28,
+        "weightedArmorLevel": 27.7,
+        "shieldLevel": null,
+        "shieldGuardBonus": 0,
+        "pveAttackPower": 21,
+        "pveDefense": 24,
+        "readiedWeaponSlot": "melee",
+        "readiedWeaponCategory": "axe"
+      }
+    }
+  ],
+  "duels": [
+    {
+      "scenarioId": "mirror-character-00-warrior-00-gear-00",
+      "label": "Character 0 / Warrior 0 / gear 0 mirror",
+      "category": "matrix_mirror",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-00-warrior-00-gear-00",
+      "left": {
+        "profileId": "character-00-warrior-00-gear-00",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 1.5,
+          "pvpGuard": 1.3499999999999999,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 12,
+          "pveDefense": 7,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-00-warrior-00-gear-00",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 1.5,
+          "pvpGuard": 1.3499999999999999,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 12,
+          "pveDefense": 7,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "mirror-character-15-warrior-09-gear-00",
+      "label": "Character 15 / Warrior 9 / gear 0 mirror",
+      "category": "matrix_mirror",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-15-warrior-09-gear-00",
+      "left": {
+        "profileId": "character-15-warrior-09-gear-00",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 9,
+          "pvpGuard": 8.85,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 15,
+          "pveDefense": 10,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-15-warrior-09-gear-00",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 9,
+          "pvpGuard": 8.85,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 15,
+          "pveDefense": 10,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "mirror-character-15-warrior-09-gear-15",
+      "label": "Character 15 / Warrior 9 / gear 15 mirror",
+      "category": "matrix_mirror",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-15-warrior-09-gear-15",
+      "left": {
+        "profileId": "character-15-warrior-09-gear-15",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 16.5,
+          "pvpGuard": 16.35,
+          "effectiveWeaponLevel": 18,
+          "weightedArmorLevel": 17.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 18,
+          "pveDefense": 17,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-15-warrior-09-gear-15",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 16.5,
+          "pvpGuard": 16.35,
+          "effectiveWeaponLevel": 18,
+          "weightedArmorLevel": 17.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 18,
+          "pveDefense": 17,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "mirror-character-20-warrior-12-gear-20",
+      "label": "Character 20 / Warrior 12 / gear 20 mirror",
+      "category": "matrix_mirror",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-20-warrior-12-gear-20",
+      "left": {
+        "profileId": "character-20-warrior-12-gear-20",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 21.5,
+          "pvpGuard": 21.35,
+          "effectiveWeaponLevel": 23,
+          "weightedArmorLevel": 22.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 20,
+          "pveDefense": 21,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-20-warrior-12-gear-20",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 21.5,
+          "pvpGuard": 21.35,
+          "effectiveWeaponLevel": 23,
+          "weightedArmorLevel": 22.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 20,
+          "pveDefense": 21,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "mirror-character-25-warrior-15-gear-20",
+      "label": "Character 25 / Warrior 15 / gear 20 mirror",
+      "category": "matrix_mirror",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-25-warrior-15-gear-20",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-20",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 24,
+          "pvpGuard": 23.85,
+          "effectiveWeaponLevel": 23,
+          "weightedArmorLevel": 22.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 22,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-20",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 24,
+          "pvpGuard": 23.85,
+          "effectiveWeaponLevel": 23,
+          "weightedArmorLevel": 22.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 22,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "mirror-character-25-warrior-15-gear-25-off-affinity",
+      "label": "Character 25 / Warrior 15 / gear 25 off-affinity mirror",
+      "category": "matrix_mirror",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-25-warrior-15-gear-25-off-affinity",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      }
+    },
+    {
+      "scenarioId": "mirror-character-25-warrior-15-gear-25-preferred",
+      "label": "Character 25 / Warrior 15 / gear 25 preferred mirror",
+      "category": "matrix_mirror",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-gap-character-00-warrior-00-gear-00",
+      "label": "Character 0 / Warrior 0 / gear 0 versus maximum preferred",
+      "category": "maximum_gap",
+      "ticksElapsed": 129,
+      "durationMs": 6450,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-00-warrior-00-gear-00",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 4,
+        "damageDealt": 12,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97
+        ],
+        "hitDamage": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 1.5,
+          "pvpGuard": 1.3499999999999999,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 12,
+          "pveDefense": 7,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 88,
+        "successfulBasicAttacks": 4,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129
+        ],
+        "hitDamage": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-gap-character-15-warrior-09-gear-00",
+      "label": "Character 15 / Warrior 9 / gear 0 versus maximum preferred",
+      "category": "maximum_gap",
+      "ticksElapsed": 129,
+      "durationMs": 6450,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-15-warrior-09-gear-00",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 4,
+        "damageDealt": 12,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97
+        ],
+        "hitDamage": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 9,
+          "pvpGuard": 8.85,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 15,
+          "pveDefense": 10,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 88,
+        "successfulBasicAttacks": 4,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129
+        ],
+        "hitDamage": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-gap-character-15-warrior-09-gear-15",
+      "label": "Character 15 / Warrior 9 / gear 15 versus maximum preferred",
+      "category": "maximum_gap",
+      "ticksElapsed": 193,
+      "durationMs": 9650,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-15-warrior-09-gear-15",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 6,
+        "damageDealt": 30,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161
+        ],
+        "hitDamage": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 16.5,
+          "pvpGuard": 16.35,
+          "effectiveWeaponLevel": 18,
+          "weightedArmorLevel": 17.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 18,
+          "pveDefense": 17,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 70,
+        "successfulBasicAttacks": 6,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193
+        ],
+        "hitDamage": [
+          18,
+          18,
+          18,
+          18,
+          18,
+          10
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-gap-character-20-warrior-12-gear-20",
+      "label": "Character 20 / Warrior 12 / gear 20 versus maximum preferred",
+      "category": "maximum_gap",
+      "ticksElapsed": 257,
+      "durationMs": 12850,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-20-warrior-12-gear-20",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 8,
+        "damageDealt": 48,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225
+        ],
+        "hitDamage": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 21.5,
+          "pvpGuard": 21.35,
+          "effectiveWeaponLevel": 23,
+          "weightedArmorLevel": 22.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 20,
+          "pveDefense": 21,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 52,
+        "successfulBasicAttacks": 8,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257
+        ],
+        "hitDamage": [
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-gap-character-25-warrior-15-gear-20",
+      "label": "Character 25 / Warrior 15 / gear 20 versus maximum preferred",
+      "category": "maximum_gap",
+      "ticksElapsed": 321,
+      "durationMs": 16050,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-20",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 80,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 24,
+          "pvpGuard": 23.85,
+          "effectiveWeaponLevel": 23,
+          "weightedArmorLevel": 22.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 22,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 20,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321
+        ],
+        "hitDamage": [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-gap-character-25-warrior-15-gear-25-off-affinity",
+      "label": "Character 25 / Warrior 15 / gear 25 off-affinity versus maximum preferred",
+      "category": "maximum_gap",
+      "ticksElapsed": 321,
+      "durationMs": 16050,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 80,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 20,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321
+        ],
+        "hitDamage": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "level-zero-off-affinity-vs-level-zero-preferred",
+      "label": "Level 0 off-affinity versus level 0 preferred",
+      "category": "affinity_comparison",
+      "ticksElapsed": 321,
+      "durationMs": 16050,
+      "winnerSide": "right",
+      "winnerProfileId": "character-00-warrior-00-gear-00",
+      "left": {
+        "profileId": "character-00-warrior-00-gear-00-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 80,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 0,
+          "pvpGuard": 0,
+          "effectiveWeaponLevel": 0,
+          "weightedArmorLevel": 0,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 12,
+          "pveDefense": 6,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      },
+      "right": {
+        "profileId": "character-00-warrior-00-gear-00",
+        "finalHealth": 20,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321
+        ],
+        "hitDamage": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 1.5,
+          "pvpGuard": 1.3499999999999999,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 12,
+          "pveDefense": 7,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "level-one-vs-level-zero",
+      "label": "Level 1 preferred versus level 0 preferred",
+      "category": "level_comparison",
+      "ticksElapsed": 353,
+      "durationMs": 17650,
+      "winnerSide": "left",
+      "winnerProfileId": "character-00-warrior-00-gear-01-preferred",
+      "left": {
+        "profileId": "character-00-warrior-00-gear-01-preferred",
+        "finalHealth": 1,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 2,
+          "pvpGuard": 1.8500000000000003,
+          "effectiveWeaponLevel": 4,
+          "weightedArmorLevel": 3.7000000000000006,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 13,
+          "pveDefense": 8,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-00-warrior-00-gear-00",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 11,
+        "damageDealt": 99,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 1.5,
+          "pvpGuard": 1.3499999999999999,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 12,
+          "pveDefense": 7,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "level-zero-vs-level-25-equal-progression",
+      "label": "Level 0 versus level 25 at equal maximum character and Warrior progression",
+      "category": "level_comparison",
+      "ticksElapsed": 161,
+      "durationMs": 8050,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-00-preferred",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 5,
+        "damageDealt": 20,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129
+        ],
+        "hitDamage": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 14,
+          "pvpGuard": 13.85,
+          "effectiveWeaponLevel": 3,
+          "weightedArmorLevel": 2.6999999999999997,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 17,
+          "pveDefense": 12,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 80,
+        "successfulBasicAttacks": 5,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161
+        ],
+        "hitDamage": [
+          20,
+          20,
+          20,
+          20,
+          20
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-off-affinity-vs-maximum-preferred",
+      "label": "Maximum off-affinity versus maximum preferred",
+      "category": "affinity_comparison",
+      "ticksElapsed": 321,
+      "durationMs": 16050,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 80,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 20,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321
+        ],
+        "hitDamage": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "maximum-ranged-vs-maximum-shield",
+      "label": "Maximum ranged-secondary versus maximum shield",
+      "category": "secondary_comparison",
+      "ticksElapsed": 385,
+      "durationMs": 19250,
+      "winnerSide": "right",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 84,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353
+        ],
+        "hitDamage": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "secondary",
+          "readiedWeaponCategory": "bow"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 16,
+        "successfulBasicAttacks": 12,
+        "damageDealt": 100,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289,
+          321,
+          353,
+          385
+        ],
+        "hitDamage": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          1
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 29.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": 25,
+          "shieldGuardBonus": 3,
+          "pveAttackPower": 21,
+          "pveDefense": 27,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      }
+    },
+    {
+      "scenarioId": "independence-baseline",
+      "label": "7 inventory items / one valid kit",
+      "category": "independence_control",
+      "ticksElapsed": 289,
+      "durationMs": 14450,
+      "winnerSide": "left",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 28,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 9,
+        "damageDealt": 72,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      }
+    },
+    {
+      "scenarioId": "independence-large-inventory",
+      "label": "42 inventory items / one valid kit",
+      "category": "independence_control",
+      "ticksElapsed": 289,
+      "durationMs": 14450,
+      "winnerSide": "left",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 28,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "inventoryItemCount": 42,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 9,
+        "damageDealt": 72,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      }
+    },
+    {
+      "scenarioId": "independence-six-reused",
+      "label": "7 inventory items / six kits reusing the active items",
+      "category": "independence_control",
+      "ticksElapsed": 289,
+      "durationMs": 14450,
+      "winnerSide": "left",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 28,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 6,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 9,
+        "damageDealt": 72,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      }
+    },
+    {
+      "scenarioId": "independence-six-unique",
+      "label": "42 inventory items / six entirely unique kits",
+      "category": "independence_control",
+      "ticksElapsed": 289,
+      "durationMs": 14450,
+      "winnerSide": "left",
+      "winnerProfileId": "character-25-warrior-15-gear-25-preferred",
+      "left": {
+        "profileId": "character-25-warrior-15-gear-25-preferred",
+        "finalHealth": 28,
+        "successfulBasicAttacks": 10,
+        "damageDealt": 100,
+        "hitTicks": [
+          1,
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "inventoryItemCount": 42,
+        "validKitCount": 6,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 26.5,
+          "pvpGuard": 26.35,
+          "effectiveWeaponLevel": 28,
+          "weightedArmorLevel": 27.7,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 24,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "axe"
+        }
+      },
+      "right": {
+        "profileId": "character-25-warrior-15-gear-25-off-affinity",
+        "finalHealth": 0,
+        "successfulBasicAttacks": 9,
+        "damageDealt": 72,
+        "hitTicks": [
+          33,
+          65,
+          97,
+          129,
+          161,
+          193,
+          225,
+          257,
+          289
+        ],
+        "hitDamage": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "inventoryItemCount": 7,
+        "validKitCount": 1,
+        "power": {
+          "maximumHealth": 100,
+          "pvpOffense": 25,
+          "pvpGuard": 25,
+          "effectiveWeaponLevel": 25,
+          "weightedArmorLevel": 25,
+          "shieldLevel": null,
+          "shieldGuardBonus": 0,
+          "pveAttackPower": 21,
+          "pveDefense": 23,
+          "readiedWeaponSlot": "melee",
+          "readiedWeaponCategory": "sword"
+        }
+      }
+    }
+  ],
+  "switches": [
+    {
+      "scenarioId": "before_attack_tick",
+      "label": "Switch immediately before an attack tick",
+      "initialProfileId": "switch-gear-00-off-affinity",
+      "replacementProfileId": "switch-gear-25-preferred",
+      "stages": [
+        {
+          "requestId": "switch-before-first-hit",
+          "requestedAfterTick": 0,
+          "acceptedTick": 0,
+          "requestedProfileId": "switch-gear-25-preferred"
+        }
+      ],
+      "activationTicks": [
+        1
+      ],
+      "attackerHitTicks": [
+        1,
+        33,
+        65
+      ],
+      "attackerHitDamage": [
+        9,
+        9,
+        9
+      ],
+      "defenderHitTicks": [
+        33,
+        65
+      ],
+      "attackIntervalTicks": 32,
+      "cadencePreserved": true,
+      "extraAttackObserved": false
+    },
+    {
+      "scenarioId": "after_attack_tick",
+      "label": "Switch immediately after an attack tick",
+      "initialProfileId": "switch-gear-00-off-affinity",
+      "replacementProfileId": "switch-gear-25-preferred",
+      "stages": [
+        {
+          "requestId": "switch-after-first-hit",
+          "requestedAfterTick": 1,
+          "acceptedTick": 1,
+          "requestedProfileId": "switch-gear-25-preferred"
+        }
+      ],
+      "activationTicks": [
+        2
+      ],
+      "attackerHitTicks": [
+        1,
+        33,
+        65
+      ],
+      "attackerHitDamage": [
+        4,
+        9,
+        9
+      ],
+      "defenderHitTicks": [
+        33,
+        65
+      ],
+      "attackIntervalTicks": 32,
+      "cadencePreserved": true,
+      "extraAttackObserved": false
+    },
+    {
+      "scenarioId": "mid_fight",
+      "label": "Switch between scheduled attacks",
+      "initialProfileId": "switch-gear-00-off-affinity",
+      "replacementProfileId": "switch-gear-25-preferred",
+      "stages": [
+        {
+          "requestId": "switch-mid-fight",
+          "requestedAfterTick": 10,
+          "acceptedTick": 10,
+          "requestedProfileId": "switch-gear-25-preferred"
+        }
+      ],
+      "activationTicks": [
+        11
+      ],
+      "attackerHitTicks": [
+        1,
+        33,
+        65
+      ],
+      "attackerHitDamage": [
+        4,
+        9,
+        9
+      ],
+      "defenderHitTicks": [
+        33,
+        65
+      ],
+      "attackIntervalTicks": 32,
+      "cadencePreserved": true,
+      "extraAttackObserved": false
+    },
+    {
+      "scenarioId": "repeated_each_action",
+      "label": "Switch after every resolved action",
+      "initialProfileId": "switch-gear-25-preferred",
+      "replacementProfileId": "switch-gear-25-preferred",
+      "stages": [
+        {
+          "requestId": "switch-after-action-1",
+          "requestedAfterTick": 1,
+          "acceptedTick": 1,
+          "requestedProfileId": "switch-gear-25-off-affinity"
+        },
+        {
+          "requestId": "switch-after-action-2",
+          "requestedAfterTick": 33,
+          "acceptedTick": 33,
+          "requestedProfileId": "switch-gear-25-preferred"
+        },
+        {
+          "requestId": "switch-after-action-3",
+          "requestedAfterTick": 65,
+          "acceptedTick": 65,
+          "requestedProfileId": "switch-gear-25-off-affinity"
+        },
+        {
+          "requestId": "switch-after-action-4",
+          "requestedAfterTick": 97,
+          "acceptedTick": 97,
+          "requestedProfileId": "switch-gear-25-preferred"
+        },
+        {
+          "requestId": "switch-after-action-5",
+          "requestedAfterTick": 129,
+          "acceptedTick": 129,
+          "requestedProfileId": "switch-gear-25-off-affinity"
+        }
+      ],
+      "activationTicks": [
+        2,
+        34,
+        66,
+        98,
+        130
+      ],
+      "attackerHitTicks": [
+        1,
+        33,
+        65,
+        97,
+        129,
+        161
+      ],
+      "attackerHitDamage": [
+        9,
+        8,
+        9,
+        8,
+        9,
+        8
+      ],
+      "defenderHitTicks": [
+        33,
+        65,
+        97,
+        129,
+        161
+      ],
+      "attackIntervalTicks": 32,
+      "cadencePreserved": true,
+      "extraAttackObserved": false
+    }
+  ],
+  "reconnect": {
+    "scenarioId": "authority_handoff_mid_combat",
+    "label": "Replacement connection during active combat",
+    "reconnectAfterTick": 40,
+    "authorityRotated": true,
+    "oldAuthorityRejected": true,
+    "replacementAuthorityAccepted": true,
+    "healthBeforeReconnect": {
+      "attacker": 91,
+      "defender": 82
+    },
+    "healthAfterReconnect": {
+      "attacker": 91,
+      "defender": 82
+    },
+    "healthPreserved": true,
+    "targetPreserved": true,
+    "runtimeRestored": true,
+    "restoredEquipment": {
+      "activeKitIndex": 1,
+      "inventoryRevision": 7,
+      "activeRevision": 1,
+      "readiedWeaponSlot": "melee",
+      "pvpOffense": 26.5,
+      "pvpGuard": 26.35,
+      "maximumHealth": 100
+    },
+    "attackerHitTicks": [
+      1,
+      33,
+      65,
+      97
+    ],
+    "attackerHitDamage": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "defenderHitTicks": [
+      33,
+      65,
+      97
+    ],
+    "attackIntervalTicks": 32,
+    "cadencePreserved": true,
+    "damagePreserved": true
+  },
+  "gates": [
+    {
+      "id": "ordinary_maximum_health",
+      "passed": true,
+      "evidence": "Every simulated ordinary configuration resolves exactly 100 maximum HP."
+    },
+    {
+      "id": "maximum_mirror_ttk",
+      "passed": true,
+      "evidence": "12 successful basics; 9 first-hit damage."
+    },
+    {
+      "id": "required_progression_gaps",
+      "passed": true,
+      "evidence": "6/6 lower-progression initiators lost to maximum preferred."
+    },
+    {
+      "id": "level_one_is_measurably_stronger",
+      "passed": true,
+      "evidence": "Offense 1.5 -> 2; Guard 1.35 -> 1.85."
+    },
+    {
+      "id": "level_zero_overwhelmingly_disadvantaged",
+      "passed": true,
+      "evidence": "Maximum dealt 100 damage while level 0 dealt 20 before defeat."
+    },
+    {
+      "id": "preferred_affinity_advantage",
+      "passed": true,
+      "evidence": "Preferred Offense/Guard 26.5/26.35 versus 25/25."
+    },
+    {
+      "id": "inventory_size_independence",
+      "passed": true,
+      "evidence": "7-item and 42-item inventories produced identical combat traces."
+    },
+    {
+      "id": "saved_kit_count_independence",
+      "passed": true,
+      "evidence": "One valid kit, six reused kits, and six unique kits produced identical traces."
+    },
+    {
+      "id": "all_equipment_levels_monotonic",
+      "passed": true,
+      "evidence": "Levels 0 through 25 are strictly increasing in PvP power and nondecreasing in PvE stats."
+    },
+    {
+      "id": "pve_proficiency_neutral_in_pvp",
+      "passed": true,
+      "evidence": "A requested 2x PvE proficiency resolves to exactly 1x in PvP without changing power."
+    },
+    {
+      "id": "switch_tick_order",
+      "passed": true,
+      "evidence": "Before-switch applied tick 1; after-switch applied tick 2; first damages 9/4."
+    },
+    {
+      "id": "switch_preserves_attack_schedule",
+      "passed": true,
+      "evidence": "All traces remained on ticks 1 + n*32; repeated switching resolved six actions."
+    },
+    {
+      "id": "reconnect_preserves_live_combat_state",
+      "passed": true,
+      "evidence": "Authority rotated after tick 40; health 91/82 was preserved; attacks remained on ticks 1, 33, 65, 97 with active revision 1."
+    }
+  ]
+}

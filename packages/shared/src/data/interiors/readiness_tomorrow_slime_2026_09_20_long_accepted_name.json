@@ -1,0 +1,600 @@
+{
+  "defaultRoomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+  "description": "Authoring example: two waves, a Slime Miniboss summoning three random Slimes at 50% health, ore, and a completion chest. Duplicate and edit; add your own PNG art. Not production content.",
+  "environment": {
+    "accentColor": "#8fbc8f",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#071116",
+    "environmentId": "stone",
+    "floorColor": "#182a2d",
+    "musicAssetKey": null,
+    "wallColor": "#405052"
+  },
+  "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "bossTemplateIds": [],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "encounter_boundary_1",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+        "leashZoneId": "leash_1",
+        "lockPortalIds": [
+          "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_to_world"
+        ],
+        "name": "Miniboss and Slime Waves",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "slime_miniboss_1",
+              "slime_spawn",
+              "slime_spawn_2",
+              "slime_spawn_3"
+            ]
+          },
+          {
+            "delayMs": 0,
+            "id": "wave_2",
+            "mobSpawnIds": [
+              "slime_1"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "entrance_escape",
+      "portalId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_world_to_entrance",
+      "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance"
+    },
+    "escape": {
+      "portalId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "readiness_tomorrow_slime_2026_09_20_long_accepted_name-v1"
+    },
+    "rewardTableIds": [
+      "readiness_tomorrow_slime_2026_09_20_long_accepted_name_dungeon_chest_1_loot"
+    ],
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_dungeon_chest_1_loot",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "dungeon_chest_1",
+          "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+          "type": "object_interact"
+        },
+        "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_dungeon_chest_1_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "dungeon_chest_1",
+            "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "clear_readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_dungeon_chest_1",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+          "type": "room_enter"
+        },
+        "id": "one_room_readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_start",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "dungeon_chest_1",
+            "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+          "type": "room_clear"
+        },
+        "id": "one_room_readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_dungeon_chest_1_loot",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": false,
+        "event": {
+          "objectId": "dungeon_chest_1",
+          "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+          "type": "object_interact"
+        },
+        "id": "one_room_readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_reward",
+        "repetition": "once",
+        "retired": true,
+        "scope": "player"
+      }
+    ]
+  },
+  "name": "Example - Slime Dungeon Template",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance"
+      },
+      "destinationArrivalAnchorId": "entrance_escape",
+      "enabled": false,
+      "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for Example - Slime Dungeon Template",
+      "presentation": "door",
+      "reciprocalPortalId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_to_world",
+      "interactionLabel": "Return to world",
+      "presentation": "door",
+      "reciprocalPortalId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance"
+      },
+      "sourceApproachAnchorId": "entrance_escape",
+      "sourceThresholdAnchorId": "entrance_escape"
+    }
+  ],
+  "retired": false,
+  "revision": "example-slime-template-v1",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 500
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "entrance_escape",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 900
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 540
+        },
+        {
+          "id": "mob_anchor_1",
+          "retired": false,
+          "role": "point",
+          "x": 550,
+          "y": 400
+        },
+        {
+          "id": "slime_spawn_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 500
+        },
+        {
+          "id": "slime_spawn_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 500
+        },
+        {
+          "id": "slime_spawn_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 500
+        },
+        {
+          "id": "dungeon_chest_anchor_1",
+          "retired": false,
+          "role": "point",
+          "x": 675,
+          "y": 575
+        },
+        {
+          "id": "mob_anchor_2",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 375
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_stone",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "mob_anchor_1",
+          "archetype": "slime_miniboss",
+          "encounterId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+          "facing": 3.141592653589793,
+          "id": "slime_miniboss_1",
+          "leashZoneId": "leash_1",
+          "retired": false,
+          "spawnGroupId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "slime_spawn_anchor",
+          "archetype": "slime",
+          "encounterId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+          "facing": 3.141592653589793,
+          "id": "slime_spawn",
+          "leashZoneId": "leash_1",
+          "randomSpawnZoneId": "encounter_boundary_1",
+          "retired": false,
+          "spawnGroupId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_group_2",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "slime_miniboss_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "slime_spawn_2_anchor",
+          "archetype": "slime",
+          "encounterId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+          "facing": 3.141592653589793,
+          "id": "slime_spawn_2",
+          "leashZoneId": "leash_1",
+          "randomSpawnZoneId": "encounter_boundary_1",
+          "retired": false,
+          "spawnGroupId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_group_2",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "slime_miniboss_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "slime_spawn_3_anchor",
+          "archetype": "slime",
+          "encounterId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+          "facing": 3.141592653589793,
+          "id": "slime_spawn_3",
+          "leashZoneId": "leash_1",
+          "randomSpawnZoneId": "encounter_boundary_1",
+          "retired": false,
+          "spawnGroupId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_group_2",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "slime_miniboss_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "mob_anchor_2",
+          "archetype": "slime",
+          "encounterId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1",
+          "facing": 3.141592653589793,
+          "id": "slime_1",
+          "leashZoneId": "leash_1",
+          "retired": false,
+          "spawnGroupId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_encounter_1_group",
+          "visualScale": 1,
+          "waveIndex": 2
+        }
+      ],
+      "name": "Slime Chamber",
+      "objects": [
+        {
+          "anchorId": "entrance_escape",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Return to world",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Return to world",
+          "opacity": 1,
+          "portalId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "dungeon_chest_anchor_1",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "dungeon_chest_1",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Treasure Chest",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "readiness_tomorrow_slime_2026_09_20_long_accepted_name_dungeon_chest_1_loot",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "resourceSpawnZones": [
+        {
+          "id": "resource_zone_1",
+          "interactionRadius": 72,
+          "maxCount": 5,
+          "minCount": 2,
+          "minimumSpacing": 80,
+          "resetOnRun": true,
+          "resourceTypes": [
+            "ore"
+          ],
+          "respawnSeconds": 300,
+          "retired": false,
+          "seed": 0,
+          "shape": {
+            "id": "resource_zone_1",
+            "kind": "polygon",
+            "points": [
+              {
+                "x": 150,
+                "y": 625
+              },
+              {
+                "x": 350,
+                "y": 625
+              },
+              {
+                "x": 350,
+                "y": 850
+              },
+              {
+                "x": 150,
+                "y": 850
+              }
+            ],
+            "retired": false
+          }
+        }
+      ],
+      "retired": false,
+      "revision": "example-slime-template-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 960,
+          "id": "encounter_boundary_1",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 960,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 920,
+          "id": "leash_1",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 920,
+          "x": 40,
+          "y": 40
+        },
+        {
+          "id": "zone_polygon_1",
+          "kind": "polygon",
+          "points": [
+            {
+              "x": 150,
+              "y": 625
+            },
+            {
+              "x": 350,
+              "y": 625
+            },
+            {
+              "x": 350,
+              "y": 850
+            },
+            {
+              "x": 150,
+              "y": 850
+            }
+          ],
+          "purpose": "trigger",
+          "retired": false
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

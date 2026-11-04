@@ -1,0 +1,289 @@
+{
+  "defaultPackId": "stock",
+  "packs": {
+    "stock": {
+      "displayName": "Stock Flag Pack",
+      "structures": {
+        "atlas_shrine": {
+          "animation": "none",
+          "attachments": {
+            "burning": {
+              "scale": 1,
+              "x": 0,
+              "y": 0,
+              "zIndex": 2
+            },
+            "emblem": {
+              "scale": 1,
+              "x": 10,
+              "y": -14,
+              "zIndex": 3
+            }
+          },
+          "id": "stock.atlas_shrine",
+          "pieces": [
+            {
+              "anchorX": 0.45927573515307346,
+              "anchorY": 0.7709466959157933,
+              "asset": "apps/client/src/assets/structures/atlas-shrine.png",
+              "height": 44,
+              "id": "shrine",
+              "name": "Complete Atlas Shrine",
+              "offsetX": 0,
+              "offsetY": 0,
+              "role": "shrine",
+              "scale": 1,
+              "tint": "none",
+              "tintColor": "#ffffff",
+              "visible": true,
+              "width": 44,
+              "zIndex": 0
+            }
+          ],
+          "root": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "scale": 1
+          },
+          "structureType": "atlas_shrine"
+        },
+        "bastion_flag": {
+          "animation": "none",
+          "attachments": {
+            "burning": {
+              "scale": 1,
+              "x": 0,
+              "y": -13.8125,
+              "zIndex": 2
+            },
+            "emblem": {
+              "scale": 1,
+              "x": 10,
+              "y": -25.8125,
+              "zIndex": 3
+            }
+          },
+          "id": "stock.bastion_flag",
+          "pieces": [
+            {
+              "anchorX": 0.3840410081978178,
+              "anchorY": 0.9770897832817337,
+              "asset": "apps/client/src/assets/flags/bastion-hardware.png",
+              "height": 39.0625,
+              "id": "hardware",
+              "name": "Pole, fittings and stone base",
+              "offsetX": 0,
+              "offsetY": 0,
+              "role": "hardware",
+              "scale": 1,
+              "tint": "none",
+              "tintColor": "#ffffff",
+              "visible": true,
+              "width": 33.59375,
+              "zIndex": 0
+            },
+            {
+              "anchorX": 0.3840410081978178,
+              "anchorY": 0.9770897832817337,
+              "asset": "apps/client/src/assets/flags/bastion-cloth.png",
+              "height": 39.0625,
+              "id": "cloth",
+              "name": "Bastion flag cloth",
+              "offsetX": 0,
+              "offsetY": 0,
+              "role": "cloth",
+              "scale": 1,
+              "tint": "control",
+              "tintColor": "#ffffff",
+              "visible": true,
+              "width": 33.59375,
+              "zIndex": 1
+            }
+          ],
+          "root": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "scale": 0.7
+          },
+          "structureType": "bastion_flag"
+        },
+        "soft_flag": {
+          "animation": "none",
+          "attachments": {
+            "burning": {
+              "scale": 1,
+              "x": 0,
+              "y": -7.708984375,
+              "zIndex": 2
+            },
+            "emblem": {
+              "scale": 1,
+              "x": 10,
+              "y": -19.708984375,
+              "zIndex": 3
+            }
+          },
+          "id": "stock.soft_flag",
+          "pieces": [
+            {
+              "anchorX": 0.12078882497945768,
+              "anchorY": 0.9770897832817337,
+              "asset": "apps/client/src/assets/flags/default-hardware.png",
+              "height": 39.0625,
+              "id": "hardware",
+              "name": "Pole and fittings",
+              "offsetX": 0,
+              "offsetY": 0,
+              "role": "hardware",
+              "scale": 1,
+              "tint": "none",
+              "tintColor": "#ffffff",
+              "visible": true,
+              "width": 23.53515625,
+              "zIndex": 0
+            },
+            {
+              "anchorX": 0.12078882497945768,
+              "anchorY": 0.9770897832817337,
+              "asset": "apps/client/src/assets/flags/default-cloth.png",
+              "height": 39.0625,
+              "id": "cloth",
+              "name": "Soft flag cloth",
+              "offsetX": 0,
+              "offsetY": 0,
+              "role": "cloth",
+              "scale": 1,
+              "tint": "control",
+              "tintColor": "#ffffff",
+              "visible": true,
+              "width": 23.53515625,
+              "zIndex": 1
+            }
+          ],
+          "root": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "scale": 0.7
+          },
+          "structureType": "soft_flag"
+        },
+        "tower": {
+          "animation": "none",
+          "attachments": {
+            "burning": {
+              "scale": 1,
+              "x": 0,
+              "y": -35.8125,
+              "zIndex": 2
+            },
+            "emblem": {
+              "scale": 1,
+              "x": 10,
+              "y": -47.8125,
+              "zIndex": 3
+            }
+          },
+          "id": "stock.tower",
+          "pieces": [
+            {
+              "anchorX": 0.5,
+              "anchorY": 0.995,
+              "asset": "apps/client/src/assets/flags/tower-hardware.png",
+              "height": 58.59375,
+              "id": "hardware",
+              "name": "Tower and flagpole",
+              "offsetX": 0,
+              "offsetY": 0,
+              "role": "hardware",
+              "scale": 1,
+              "tint": "none",
+              "tintColor": "#ffffff",
+              "visible": true,
+              "width": 41.162109375,
+              "zIndex": 0
+            },
+            {
+              "anchorX": 0.5,
+              "anchorY": 0.995,
+              "asset": "apps/client/src/assets/flags/tower-cloth.png",
+              "height": 58.59375,
+              "id": "cloth",
+              "name": "Tower pennant cloth",
+              "offsetX": 0,
+              "offsetY": 0,
+              "role": "cloth",
+              "scale": 1,
+              "tint": "control",
+              "tintColor": "#ffffff",
+              "visible": true,
+              "width": 41.162109375,
+              "zIndex": 1
+            }
+          ],
+          "root": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "scale": 0.7
+          },
+          "structureType": "tower"
+        }
+      }
+    }
+  },
+  "revision": 3,
+  "schemaVersion": 2,
+  "structures": {
+    "atlas_shrine": {
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "displayName": "Atlas Shrine",
+      "interaction": {
+        "height": 36.6,
+        "offsetX": 2,
+        "offsetY": -11,
+        "width": 35.1
+      }
+    },
+    "bastion_flag": {
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "displayName": "Bastion Flag",
+      "interaction": {
+        "height": 30.1,
+        "offsetX": 2.5,
+        "offsetY": -13.5,
+        "width": 27.1
+      }
+    },
+    "soft_flag": {
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "displayName": "Soft Flag",
+      "interaction": {
+        "height": 26.6,
+        "offsetX": 5,
+        "offsetY": -10,
+        "width": 22.6
+      }
+    },
+    "tower": {
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "displayName": "Tower",
+      "interaction": {
+        "height": 46.1,
+        "offsetX": 0.5,
+        "offsetY": -20.5,
+        "width": 27.6
+      }
+    }
+  }
+}

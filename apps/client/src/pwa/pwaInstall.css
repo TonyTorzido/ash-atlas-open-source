@@ -1,0 +1,105 @@
+.pwa-install-prompt {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.pwa-install-page .auth-card {
+  width: min(440px, 100%);
+}
+
+.pwa-install-guide-copy {
+  display: grid;
+  gap: 10px;
+  color: var(--aa-ui-text, #33251b);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.pwa-install-guide-copy h2,
+.pwa-install-guide-copy p {
+  margin: 0;
+}
+
+.pwa-install-guide-copy h2 {
+  font-size: 18px;
+}
+
+.pwa-install-guide-copy p {
+  color: var(--aa-ui-text-muted, #594637);
+}
+
+.pwa-install-button,
+.pwa-install-continue {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.pwa-ios-install-hint {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 44px;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--aa-ui-border, #b5a282);
+  border-radius: var(--aa-ui-radius-control, 8px);
+  padding: 7px 8px;
+  background: var(--aa-menu-raised, #f1e8d5);
+  color: var(--aa-ui-text, #33251b);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.pwa-ios-install-hint > button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--aa-ui-radius-control, 8px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.pwa-ios-install-hint > button:focus-visible {
+  outline: 2px solid var(--aa-ui-active-bronze, #91672f);
+  outline-offset: 1px;
+}
+
+.pwa-install-prompt-game {
+  position: fixed;
+  z-index: 1400;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  left: 12px;
+  right: 12px;
+  width: min(560px, calc(100% - 24px));
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.pwa-install-prompt-game .pwa-ios-install-hint {
+  pointer-events: auto;
+  box-shadow: 0 4px 18px rgb(0 0 0 / 28%);
+}
+
+.pwa-share-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.pwa-install-status {
+  color: var(--aa-ui-text-muted, #594637);
+  font-size: 12px;
+}
+
+.pwa-install-continue {
+  margin-top: 8px;
+}

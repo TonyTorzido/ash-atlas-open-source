@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "buildFloor": {
+    "ios": 2,
+    "android": 2
+  },
+  "nextBuild": {
+    "ios": 2,
+    "android": 2
+  },
+  "releases": [
+    {
+      "reservationId": "legacy-ios-build-1:ios",
+      "releaseId": "legacy-ios-build-1",
+      "platform": "ios",
+      "marketingVersion": "1.0.0",
+      "build": 1,
+      "generation": "t1175",
+      "sourceSha": "a08fecd7f93556d60a5f71bad904ffb211914405",
+      "protocol": { "min": 3, "max": 3 },
+      "reservedAt": "2026-09-15T21:34:25-06:00",
+      "uploadAttempted": true,
+      "uploaded": false,
+      "processed": false,
+      "internal": false,
+      "externalApproved": false,
+      "open": false,
+      "downloadTested": false,
+      "supported": false,
+      "compatibilityProtected": true,
+      "artifactSha256": null,
+      "storeBuildId": null,
+      "receiptUrl": null
+    },
+    {
+      "reservationId": "legacy-android-build-1:android",
+      "releaseId": "legacy-android-build-1",
+      "platform": "android",
+      "marketingVersion": "1.0.0",
+      "build": 1,
+      "generation": "t1145",
+      "sourceSha": "751c81e6c1be4fe8f75743ce3bc675ff4135146b",
+      "protocol": { "min": 3, "max": 3 },
+      "reservedAt": "2026-09-14T18:17:55-06:00",
+      "uploadAttempted": true,
+      "uploaded": false,
+      "processed": false,
+      "internal": false,
+      "externalApproved": false,
+      "open": false,
+      "downloadTested": false,
+      "supported": false,
+      "compatibilityProtected": true,
+      "artifactSha256": null,
+      "storeBuildId": null,
+      "receiptUrl": null
+    }
+  ],
+  "notes": [
+    "Build number 1 on each platform predates this registry; exact historical store receipts were not fabricated.",
+    "Both legacy build-1 clients are compatibilityProtected so server activation cannot strand their testers.",
+    "Forced-update minimums are not managed by this registry or the upload workflow."
+  ]
+}

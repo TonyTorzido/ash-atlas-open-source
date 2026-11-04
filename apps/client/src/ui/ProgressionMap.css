@@ -1,0 +1,63 @@
+.progression-map { position: relative; min-width: 0; width: 100%; min-height: 500px; overflow: hidden; border: 0; border-radius: var(--aa-ui-radius-panel); background: var(--aa-ui-ink-950); }
+.progression-map-canvas { position: absolute; inset: 0; min-width: 100%; min-height: 100%; }
+.progression-map-interactive { position: relative; min-height: 0; height: 100%; }
+.progression-map-stage { position: absolute; inset: 0; }
+.progression-map-interactive .progression-map-canvas { inset: 0 auto auto 0; width: var(--progression-canvas-width); height: var(--progression-canvas-height); min-width: 0; min-height: 0; transform: translate3d(var(--progression-map-pan-x), var(--progression-map-pan-y), 0) scale(var(--progression-map-zoom)); transform-origin: top left; will-change: transform; }
+.progression-map-viewport { position: absolute; inset: 0; min-width: 0; min-height: 0; overflow: hidden; cursor: grab; touch-action: none; }
+.progression-map-viewport[data-panning="true"] { cursor: grabbing; user-select: none; }
+.progression-map-edges { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.progression-map-edge { vector-effect: non-scaling-stroke; stroke: var(--aa-ui-iron-500); stroke-width: 1.5; }
+.progression-map-edge[data-coordinate-set="phone"] { display: none; }
+.progression-map-edge[data-edge-state="available"] { stroke: var(--aa-ui-bronze-500); stroke-width: 2; }
+.progression-map-edge[data-edge-state="earned"] { stroke: var(--aa-ui-active-bronze); stroke-width: 2.5; }
+.progression-map-edge[data-highlighted="true"] { stroke: var(--aa-ui-active-bronze); stroke-width: 3; }
+.progression-map-nodes { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.progression-map-nodes > li { position: absolute; left: calc(var(--progression-x) * 1%); top: calc(var(--progression-y) * 1%); width: 128px; transform: translateX(-50%); }
+.progression-map-node { --progression-node-anchor-y: 36px; width: 100%; min-height: 44px; display: grid; justify-items: center; gap: 2px; padding: 2px; border: 0; color: var(--aa-ui-text); background: transparent; text-align: center; cursor: pointer; transform: translateY(calc(0px - var(--progression-node-anchor-y))); }
+.progression-map .progression-map-nodes button.progression-map-node,
+.progression-map .progression-map-nodes button.progression-map-node:hover:not(:disabled),
+.progression-map .progression-map-nodes button.progression-map-node:focus-visible,
+.progression-map .progression-map-nodes button.progression-map-node:active:not(:disabled),
+.progression-map .progression-map-nodes button.progression-map-node[aria-pressed="true"] { padding: 2px; border: 0; border-radius: 0; background: transparent; box-shadow: none; transform: translateY(calc(0px - var(--progression-node-anchor-y))); }
+html[data-ui-profile="phone"] .phone-destination-shell .progression-map .progression-map-nodes button.progression-map-node,
+html[data-ui-profile="phone"] .phone-destination-shell .progression-map .progression-map-nodes button.progression-map-node:hover:not(:disabled),
+html[data-ui-profile="phone"] .phone-destination-shell .progression-map .progression-map-nodes button.progression-map-node:focus-visible,
+html[data-ui-profile="phone"] .phone-destination-shell .progression-map .progression-map-nodes button.progression-map-node:active:not(:disabled),
+html[data-ui-profile="phone"] .phone-destination-shell .progression-map .progression-map-nodes button.progression-map-node[aria-pressed="true"] { padding: 2px; border: 0; border-radius: 0; background: transparent; box-shadow: none; transform: translateY(calc(0px - var(--progression-node-anchor-y))); }
+.progression-map-node:focus { outline: 0; }
+.progression-map-node:focus-visible .progression-map-medallion, .progression-map-node[data-inspection="selected"] .progression-map-medallion { outline: 2px solid var(--aa-ui-parchment-100); outline-offset: 4px; }
+.progression-map-medallion { position: relative; width: 68px; height: 68px; display: grid; place-items: center; border: 2px solid var(--aa-ui-bronze-700); border-radius: 50%; background: var(--aa-ui-wood-700); box-shadow: var(--aa-ui-shadow-shallow); }
+.progression-map-node[data-progress="partial"] .progression-map-medallion::before, .progression-map-node[data-progress="maxed"] .progression-map-medallion::before { content: ""; position: absolute; inset: -9px; border: 2px solid var(--aa-ui-active-bronze); border-radius: inherit; pointer-events: none; }
+.progression-map-node[data-progress="maxed"] .progression-map-medallion::before { border-width: 3px; box-shadow: 0 0 0 1px var(--aa-ui-bronze-500); }
+.progression-map-node[data-node-type="class"] { --progression-node-anchor-y: 40px; }
+.progression-map-node[data-node-type="class"] .progression-map-medallion { width: 76px; height: 76px; border-radius: 38% 38% 50% 50% / 28% 28% 70% 70%; }
+.progression-map-node[data-node-type="class"] .progression-map-medallion::after { content: ""; position: absolute; inset: -5px; border: 2px solid var(--aa-ui-bronze-500); border-radius: 38% 38% 50% 50% / 28% 28% 70% 70%; pointer-events: none; }
+.progression-map-node[data-node-type="destination"] { --progression-node-anchor-y: 46px; }
+.progression-map-node[data-node-type="destination"] .progression-map-medallion { width: 88px; height: 88px; border-color: var(--aa-ui-active-bronze); }
+.progression-map-medallion .progression-icon { border: 0; border-radius: 0; background: transparent; }
+.progression-map-lock-cue { position: absolute; right: -3px; bottom: -2px; width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid var(--aa-ui-iron-500); border-radius: 50%; color: var(--aa-ui-parchment-200); background: var(--aa-ui-ink-950); }
+.progression-map-lock-cue .protection-lock-icon { width: 14px; height: 14px; }
+.progression-map-node[data-emphasis="true"] { --progression-node-anchor-y: 44px; }
+.progression-map-node[data-emphasis="true"] .progression-map-medallion { width: 84px; height: 84px; border-color: var(--aa-ui-active-bronze); }
+.progression-map-node[data-path="true"] .progression-map-medallion { box-shadow: 0 0 0 3px var(--aa-ui-bronze-700), var(--aa-ui-shadow-shallow); }
+.progression-map-node[data-eligibility="purchasable"] .progression-map-medallion, .progression-map-node[data-progress="partial"] .progression-map-medallion, .progression-map-node[data-progress="maxed"] .progression-map-medallion { border-color: var(--aa-ui-active-bronze); }
+.progression-map-node[data-application="equipped"] .progression-map-medallion, .progression-map-node[data-application="active"] .progression-map-medallion { box-shadow: inset 0 0 0 2px var(--aa-ui-parchment-200), var(--aa-ui-shadow-shallow); }
+.progression-map-node[data-eligibility="locked"] .progression-map-medallion, .progression-map-node[data-eligibility="unavailable"][data-progress="untrained"] .progression-map-medallion { border-color: var(--aa-ui-iron-500); }
+.progression-map-node[data-node-type="destination"] .progression-map-medallion { border-color: var(--aa-ui-active-bronze); }
+.progression-map-node strong { max-width: 100%; padding-inline: 3px; color: var(--aa-ui-parchment-100); background: var(--aa-ui-ink-950); font: 700 13px/1.15 Georgia, serif; overflow-wrap: anywhere; }
+.progression-map-category { padding-inline: 3px; color: var(--aa-ui-active-bronze); background: var(--aa-ui-ink-950); font-size: 9px; font-weight: 800; line-height: 1.2; letter-spacing: 0.09em; text-transform: uppercase; }
+.progression-map-icon-group { display: grid; grid-template-columns: repeat(2, auto); place-items: center; gap: 2px; color: var(--aa-ui-parchment-100); }
+.progression-map-rank { padding-inline: 3px; color: var(--aa-ui-text-muted); background: var(--aa-ui-ink-950); font-size: 9px; line-height: 1.2; overflow-wrap: anywhere; }
+.progression-map-node[data-progress="maxed"] strong, .progression-map-node[data-progress="maxed"] .progression-map-category, .progression-map-node[data-progress="maxed"] .progression-map-icon-group, .progression-map-node[data-progress="maxed"] .progression-map-rank { color: var(--aa-ui-active-bronze); }
+.progression-map-dots { display: flex; gap: 3px; }
+.progression-map-dots i { width: 5px; height: 5px; border: 1px solid var(--aa-ui-active-bronze); border-radius: 50%; }
+.progression-map-dots i[data-filled="true"] { border-color: var(--aa-ui-active-bronze); background: var(--aa-ui-active-bronze); }
+.progression-map-node[data-progress="maxed"] .progression-map-dots i { border-color: var(--aa-ui-active-bronze); background: var(--aa-ui-active-bronze); }
+.progression-map-badge { padding: 1px 4px; border: 1px solid var(--aa-ui-active-bronze); border-radius: var(--aa-ui-radius-control); color: var(--aa-ui-parchment-100); background: var(--aa-ui-leather-800); font-size: 9px; text-transform: uppercase; }
+html[data-layout-mode="compact"] .progression-map { min-height: 780px; }
+html[data-layout-mode="compact"] .progression-map-interactive { min-height: 0; }
+html[data-layout-mode="compact"] .progression-map-interactive .progression-map-canvas { width: var(--progression-phone-canvas-width); height: var(--progression-phone-canvas-height); }
+html[data-layout-mode="compact"] .progression-map-nodes > li { left: calc(var(--progression-phone-x) * 1%); top: calc(var(--progression-phone-y) * 1%); width: 96px; }
+html[data-layout-mode="compact"] .progression-map-edge[data-coordinate-set="desktop"] { display: none; }
+html[data-layout-mode="compact"] .progression-map-edge[data-coordinate-set="phone"] { display: inline; }
+@media (prefers-reduced-motion: reduce) { .progression-map * { transition: none; } }

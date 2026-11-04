@@ -1,0 +1,1070 @@
+{
+  "worldEnvironmentOverlayVersion": 1,
+  "projection": "EPSG:3857",
+  "bounds": [
+    [
+      -180,
+      85.05112878
+    ],
+    [
+      180,
+      85.05112878
+    ],
+    [
+      180,
+      -85.05112878
+    ],
+    [
+      -180,
+      -85.05112878
+    ]
+  ],
+  "width": 2048,
+  "height": 2048,
+  "defaultOpacity": 0.38,
+  "approximateSourceResolution": {
+    "environment": "RESOLVE Ecoregions 2017 polygons rasterized to the output canvas",
+    "elevation": "GMTED2010 30 arc-second mean elevation resampled to the output canvas",
+    "terrain": "GMTED2010 elevation plus adjacent cells on a 4096 Web Mercator sampling canvas; broad ruggedness only, while exact World lookups retain native-source local relief",
+    "oceanDepth": "Natural Earth 10m nested bathymetry polygons",
+    "water": "Canonical river-surface-v1 and lake-surface-v1 125 m row spans rasterized directly to a 2048 x 2048 Web Mercator image; broad visual travel guides only, with no proximity buffers or gameplay authority"
+  },
+  "sourceIdentity": {
+    "pipelineSha": "d2efd6b4966e25646f41f988ece6b6ef1c882bc5",
+    "worldReleaseId": "world-packages-v1",
+    "profileSetFingerprint": "36dc3eb8bd36e32f7dc92084f1520d3180e6ce1a6c4f06354f7c1b34d6014553",
+    "buildContractFingerprint": "db08e6eb96caa4755f58780f952588efc90c3e644f867d77c87b2955b51d38bd",
+    "sourceFiles": {
+      "resolve_ecoregions_2017": "be36d6209e443038d02e309f0447c6e7f2a62f5fe60c605ffe90d064952f2a60",
+      "gmted2010_mean_elevation_30s": "dfd0d6c6486f4da22109be6107c93a70ef9917a5b6f954cd82d87cf8b920149d",
+      "natural_earth_bathymetry_4_1_0": "9c5ea31402e5eb322a49f56136bfdc2732ab4e60c85720a4f83606f08088e5c2"
+    },
+    "waterSurfaceReleases": {
+      "rivers": {
+        "releaseId": "river-surface-v1",
+        "manifestSha256": "c605631193ff786e33182fb8b6d7cfa3ab868b35d0a47fec5e1aa717ace447d5"
+      },
+      "lakes": {
+        "releaseId": "lake-surface-v1",
+        "manifestSha256": "d0c25c2b6a4e9349091a5f483a294fac7988cd098a1f77e354343cb2f27f42b9"
+      }
+    },
+    "overlaySourceFingerprint": "cc57ec034375fa32992c62b5495444b1db3c228c21044563d3ab7320dd584bd2"
+  },
+  "normalization": {
+    "elevationThresholdsM": {
+      "moderate": 500,
+      "high": 1500,
+      "extreme": 2500,
+      "summit": 5000
+    },
+    "terrainThresholds": {
+      "flatMaxLocalReliefM": 220,
+      "hillyMinElevationM": 1800,
+      "mountainousMinElevationM": 2500,
+      "mountainousMinLocalReliefM": 700
+    },
+    "observedBiomeIds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "observedTerrainClasses": [
+      "flat",
+      "hilly",
+      "mountainous"
+    ],
+    "observedOceanDepthClasses": [
+      "abyssal",
+      "coastal_or_shallow",
+      "deep_ocean",
+      "shelf_or_slope"
+    ],
+    "waterSurfaceSourcePolicy": {
+      "rivers": "canonical river-surface-v1 row spans",
+      "lakes": "canonical lake-surface-v1 row spans"
+    },
+    "rockAndIceRule": "BIOME_NUM=11 and ECO_NAME=\"Rock and Ice\""
+  },
+  "audit": {
+    "landElevationSampleCount": 1600000,
+    "landElevationMinM": -264.657,
+    "landElevationMaxM": 6203.159,
+    "landElevationPercentilesM": {
+      "25": 303.963,
+      "50": 1034.058,
+      "75": 2441.697,
+      "90": 3329.621,
+      "95": 3596.663
+    },
+    "terrain": {
+      "sampleCanvasWidth": 4096,
+      "sampleCanvasHeight": 4096,
+      "samplePixelSizeAtEquatorM": 9783.94,
+      "approximation": "GMTED2010 elevation plus adjacent cells on a 4096 Web Mercator sampling canvas; broad ruggedness only, while exact World lookups retain native-source local relief",
+      "categoryPixelCounts": {
+        "flat": 845736,
+        "hilly": 347694,
+        "mountainous": 406010
+      }
+    },
+    "water": {
+      "outputCanvas": {
+        "width": 2048,
+        "height": 2048,
+        "projection": "EPSG:3857"
+      },
+      "outputPixelSizeAtEquatorM": 19567.879241,
+      "sourceCellSizeM": 125.0,
+      "approximation": "Canonical river-surface-v1 and lake-surface-v1 125 m row spans rasterized directly to a 2048 x 2048 Web Mercator image; broad visual travel guides only, with no proximity buffers or gameplay authority",
+      "generationSeconds": 79.344,
+      "authorities": {
+        "rivers": {
+          "releaseId": "river-surface-v1",
+          "schema": "river-surface-v1",
+          "policy": "osm-medium-plus-v1",
+          "manifestSha256": "c605631193ff786e33182fb8b6d7cfa3ab868b35d0a47fec5e1aa717ace447d5",
+          "packageCount": 11869,
+          "spanCount": 15508465,
+          "sourceCellCount": 100376268,
+          "outputPixelCount": 146682
+        },
+        "lakes": {
+          "releaseId": "lake-surface-v1",
+          "schema": "lake-surface-row-spans-v1",
+          "policy": "hydrolakes-center-membership-v1",
+          "manifestSha256": "d0c25c2b6a4e9349091a5f483a294fac7988cd098a1f77e354343cb2f27f42b9",
+          "packageCount": 11423,
+          "spanCount": 18044558,
+          "sourceCellCount": 477463775,
+          "outputPixelCount": 159345
+        }
+      }
+    }
+  },
+  "assets": [
+    {
+      "groupId": "environment",
+      "categoryId": "jungle",
+      "label": "Jungle",
+      "file": "environment--jungle.png",
+      "color": "#14803c",
+      "defaultEnabled": true,
+      "order": 0,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 65607,
+      "sha256": "6c1cc5f3b4a6f52812dfd9416d8a50c2b837207bfcdbe93746832f989725992e",
+      "fileSizeBytes": 15056
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "pinewild",
+      "label": "Pinewild",
+      "file": "environment--pinewild.png",
+      "color": "#2e5e4e",
+      "defaultEnabled": true,
+      "order": 1,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 23615,
+      "sha256": "7296b62f43abebb5d99cf46f83ec0db6b3474480932d7fbeaeb3f9adc41b1100",
+      "fileSizeBytes": 12297
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "greenwood",
+      "label": "Greenwood",
+      "file": "environment--greenwood.png",
+      "color": "#5ea34a",
+      "defaultEnabled": true,
+      "order": 2,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 67878,
+      "sha256": "84f5d5aa3f159b8677b30474782d0c4fb8fec54ba09df2ea7079185a654f56c3",
+      "fileSizeBytes": 14617
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "frostwood",
+      "label": "Frostwood",
+      "file": "environment--frostwood.png",
+      "color": "#4f8494",
+      "defaultEnabled": true,
+      "order": 3,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 170525,
+      "sha256": "758aca784149f1bb97539e23dbe87dd6b91b4c06bb7a3cb0bae3c58264716b54",
+      "fileSizeBytes": 16112
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "plains",
+      "label": "Plains",
+      "file": "environment--plains.png",
+      "color": "#b9c24d",
+      "defaultEnabled": true,
+      "order": 4,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 55125,
+      "sha256": "5e0238d0fc6982920f7f0868e0fbb2c23554c1ad10acc0e763c0e84f8038550e",
+      "fileSizeBytes": 11438
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "savanna",
+      "label": "Savanna",
+      "file": "environment--savanna.png",
+      "color": "#d6a23a",
+      "defaultEnabled": true,
+      "order": 5,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 60432,
+      "sha256": "06cd991b1509f7b511b9d778477cd330ea38512b3c8fa205317ae3019dd0bed9",
+      "fileSizeBytes": 11826
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "marsh",
+      "label": "Marsh",
+      "file": "environment--marsh.png",
+      "color": "#2f9d8f",
+      "defaultEnabled": true,
+      "order": 6,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 4840,
+      "sha256": "d11528df536d77a762cac51e61337c7e086f499453a63e0775d676b514fe661a",
+      "fileSizeBytes": 7946
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "highmeadow",
+      "label": "Highmeadow",
+      "file": "environment--highmeadow.png",
+      "color": "#8caa6c",
+      "defaultEnabled": true,
+      "order": 7,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 18465,
+      "sha256": "eab1567cd03f37890a2e0ab71d1bc27f5c4f0b3d5d82718fbf2c6a51ef480fc2",
+      "fileSizeBytes": 9660
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "scrubland",
+      "label": "Scrubland",
+      "file": "environment--scrubland.png",
+      "color": "#a8673a",
+      "defaultEnabled": true,
+      "order": 8,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 13216,
+      "sha256": "2550590835bcdfba5eba771d1c036c1aeb09686efe89b4391536a354fda21b61",
+      "fileSizeBytes": 8134
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "badlands",
+      "label": "Badlands",
+      "file": "environment--badlands.png",
+      "color": "#e2b57a",
+      "defaultEnabled": true,
+      "order": 9,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 65008,
+      "sha256": "b71439b3e1dd2a605d364b0d1e02dbb3ff89ed3b8f4db0a6c78a2c322b2b3326",
+      "fileSizeBytes": 10764
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "steppe",
+      "label": "Steppe",
+      "file": "environment--steppe.png",
+      "color": "#b39a66",
+      "defaultEnabled": true,
+      "order": 10,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 30176,
+      "sha256": "671e6950db8dd511ac908153d84b59448ab829be436c43148e8c8af05c7ee06d",
+      "fileSizeBytes": 7703
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "tundra",
+      "label": "Tundra",
+      "file": "environment--tundra.png",
+      "color": "#8fb1a9",
+      "defaultEnabled": true,
+      "order": 11,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 208653,
+      "sha256": "aa75f50dc66c708fdf3d0dae33ad77e66fba8ed00bbcdc7f7c27e992638136b4",
+      "fileSizeBytes": 36772
+    },
+    {
+      "groupId": "environment",
+      "categoryId": "frozen_waste",
+      "label": "Frozen Waste",
+      "file": "environment--frozen_waste.png",
+      "color": "#e4eef2",
+      "defaultEnabled": true,
+      "order": 12,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 816662,
+      "sha256": "acad3b62e52d252723d63c61e4fd4483482d967ccb9f840c4e512ece81405694",
+      "fileSizeBytes": 19201
+    },
+    {
+      "groupId": "elevation",
+      "categoryId": "low",
+      "label": "Low",
+      "file": "elevation--low.png",
+      "color": "#4a9a69",
+      "defaultEnabled": true,
+      "order": 0,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 568393,
+      "sha256": "2fa9ed1b9efe7892ebde69d61bf073df686f58b70a8344e597106da82c5dc0ea",
+      "fileSizeBytes": 59657
+    },
+    {
+      "groupId": "elevation",
+      "categoryId": "moderate",
+      "label": "Moderate",
+      "file": "elevation--moderate.png",
+      "color": "#b0a047",
+      "defaultEnabled": true,
+      "order": 1,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 377442,
+      "sha256": "bf940e4476d20891251af6cb46a520d83ce60cd46da7e8261951c2ebac69986e",
+      "fileSizeBytes": 46142
+    },
+    {
+      "groupId": "elevation",
+      "categoryId": "high",
+      "label": "High",
+      "file": "elevation--high.png",
+      "color": "#b36a3b",
+      "defaultEnabled": true,
+      "order": 2,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 272178,
+      "sha256": "8963cfa90d0c741e5bdaf52ff01b4b81f3ef3df95f86e8a155b76863b2495863",
+      "fileSizeBytes": 19711
+    },
+    {
+      "groupId": "elevation",
+      "categoryId": "extreme",
+      "label": "Alpine",
+      "file": "elevation--extreme.png",
+      "color": "#8d4e62",
+      "defaultEnabled": true,
+      "order": 3,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 379568,
+      "sha256": "5719020a690689865c1c7ffc38e6bd88c9a9d3dac18bce939b252e76f0073360",
+      "fileSizeBytes": 13118
+    },
+    {
+      "groupId": "elevation",
+      "categoryId": "summit",
+      "label": "Summit",
+      "file": "elevation--summit.png",
+      "color": "#161316",
+      "defaultEnabled": true,
+      "order": 4,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 2419,
+      "sha256": "383683a832d27b7db36ff11e9fad35177a0005811d768bfe7c56b1f9c34a754b",
+      "fileSizeBytes": 5929
+    },
+    {
+      "groupId": "terrain",
+      "categoryId": "flat",
+      "label": "Flat",
+      "file": "terrain--flat.png",
+      "color": "#6f9f72",
+      "defaultEnabled": true,
+      "order": 0,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 845736,
+      "sha256": "8fcd4e4a3798e876804ae0082ab95cd01b1a8e8f08b1c7c263d7de5df354bb1d",
+      "fileSizeBytes": 73333
+    },
+    {
+      "groupId": "terrain",
+      "categoryId": "hilly",
+      "label": "Hilly / Rolling",
+      "file": "terrain--hilly.png",
+      "color": "#a88450",
+      "defaultEnabled": true,
+      "order": 1,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 347694,
+      "sha256": "930ccd59056240852c81956223c787b06ee7aab663ac1e91051e9510ecf92e3a",
+      "fileSizeBytes": 64976
+    },
+    {
+      "groupId": "terrain",
+      "categoryId": "mountainous",
+      "label": "Mountainous / Rugged",
+      "file": "terrain--mountainous.png",
+      "color": "#765a55",
+      "defaultEnabled": true,
+      "order": 2,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 406010,
+      "sha256": "a3ae6d9ef92d3357998f8a03ac427a48d6bbad3a6f1625847b669d21be2af54d",
+      "fileSizeBytes": 20316
+    },
+    {
+      "groupId": "ocean_depth",
+      "categoryId": "nearshore",
+      "label": "Nearshore / Coastal",
+      "file": "ocean_depth--nearshore.png",
+      "color": "#4ea6aa",
+      "defaultEnabled": true,
+      "order": 0,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 706035,
+      "sha256": "5d50b6b5add1a29d168e6e5ea600ec4dacbdeb55440c79c93487c70ea3e64c08",
+      "fileSizeBytes": 56410
+    },
+    {
+      "groupId": "ocean_depth",
+      "categoryId": "shallow",
+      "label": "Shallow",
+      "file": "ocean_depth--shallow.png",
+      "color": "#347ca1",
+      "defaultEnabled": true,
+      "order": 1,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 1058046,
+      "sha256": "d62e122feb46a717b0bcd2c1a5776ae000eebca49b7f296abb896029b95a1e71",
+      "fileSizeBytes": 74034
+    },
+    {
+      "groupId": "ocean_depth",
+      "categoryId": "deep",
+      "label": "Deep",
+      "file": "ocean_depth--deep.png",
+      "color": "#31558d",
+      "defaultEnabled": true,
+      "order": 2,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 812035,
+      "sha256": "3ac8254a54e9f967a47dea83345bd4eebdc2b1dd66a9c8ac2f45c773bf20325e",
+      "fileSizeBytes": 58371
+    },
+    {
+      "groupId": "ocean_depth",
+      "categoryId": "abyssal",
+      "label": "Abyssal",
+      "file": "ocean_depth--abyssal.png",
+      "color": "#303b6f",
+      "defaultEnabled": true,
+      "order": 3,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 9106,
+      "sha256": "b16cdf9a441c5a25a1408d41800c719ab725bee42fb77366e0c8089e81d20ab4",
+      "fileSizeBytes": 5418
+    },
+    {
+      "groupId": "water",
+      "categoryId": "rivers",
+      "label": "Rivers",
+      "file": "water--rivers.png",
+      "color": "#4f9fae",
+      "defaultEnabled": true,
+      "order": 0,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 146682,
+      "sha256": "49985f45dffe8addbae1679cf2195c1c9b2038f67298456cd3e568b975b2e9f6",
+      "fileSizeBytes": 60104
+    },
+    {
+      "groupId": "water",
+      "categoryId": "lakes",
+      "label": "Lakes",
+      "file": "water--lakes.png",
+      "color": "#4c75ad",
+      "defaultEnabled": true,
+      "order": 1,
+      "bounds": [
+        [
+          -180,
+          85.05112878
+        ],
+        [
+          180,
+          85.05112878
+        ],
+        [
+          180,
+          -85.05112878
+        ],
+        [
+          -180,
+          -85.05112878
+        ]
+      ],
+      "width": 2048,
+      "height": 2048,
+      "pixelCount": 159345,
+      "sha256": "67df66fb31bd551bc20736126b91132b5e28a0b0c04e87c863a99c274646fd17",
+      "fileSizeBytes": 54707
+    }
+  ],
+  "defaultEnvironmentComposite": {
+    "groupId": "environment",
+    "categoryIds": [
+      "jungle",
+      "pinewild",
+      "greenwood",
+      "frostwood",
+      "plains",
+      "savanna",
+      "marsh",
+      "highmeadow",
+      "scrubland",
+      "badlands",
+      "steppe",
+      "tundra",
+      "frozen_waste"
+    ],
+    "file": "environment--all.png",
+    "bounds": [
+      [
+        -180,
+        85.05112878
+      ],
+      [
+        180,
+        85.05112878
+      ],
+      [
+        180,
+        -85.05112878
+      ],
+      [
+        -180,
+        -85.05112878
+      ]
+    ],
+    "width": 2048,
+    "height": 2048,
+    "sha256": "4438eafc348736de5208409a9b99f5c5af227975933052153aae94175138dc93",
+    "fileSizeBytes": 87625
+  },
+  "totalFileSizeBytes": 881377,
+  "textureMemoryEstimateBytes": 452984832,
+  "largestActiveGroupTextureMemoryEstimateBytes": 218103808,
+  "defaultEnvironmentTextureMemoryEstimateBytes": 16777216,
+  "waterGuideTextureMemoryEstimateBytesPerAsset": 16777216,
+  "waterGuidePairTextureMemoryEstimateBytes": 33554432,
+  "generationSeconds": 229.317
+}

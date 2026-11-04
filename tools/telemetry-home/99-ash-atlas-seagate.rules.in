@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="__SEAGATE_UUID__", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ash-atlas-seagate-mount.service"

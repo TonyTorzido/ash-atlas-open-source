@@ -1,0 +1,291 @@
+/* The welcome crawl shares the boot curtain's tokens (public/initial-curtain.css),
+ * so it reads as the same calm surface as "Preparing the world" that follows. */
+.welcome-crawl {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  color: var(--cur-text, #eee3ca);
+  background:
+    var(--cur-grain, none),
+    radial-gradient(ellipse 70% 50% at 50% 44%, var(--cur-glow, rgb(200 154 82 / 12%)), transparent 70%),
+    var(--cur-bg, #281f1a);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* The curtain's light values follow the device; here the player's chosen
+ * Light parchment wins as well (Dark walnut is already honored by the curtain). */
+html[data-menu-theme="light"] .welcome-crawl {
+  --cur-bg: #e7d8b9;
+  --cur-paper: #f0e4cb;
+  --cur-glow: rgb(255 248 230 / 45%);
+  --cur-vignette: rgb(122 84 40 / 16%);
+  --cur-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .24 0 0 0 0 .11 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --cur-text: #37291f;
+  --cur-wordmark: #6c481f;
+  --cur-muted: #5d4935;
+  --cur-track: #d8c196;
+  --cur-brass: #94692c;
+  --cur-brass-soft: rgb(148 105 44 / 45%);
+  --cur-fill: #94692c;
+  --cur-edge: #9a7443;
+  --cur-plaque-top: #f4e9cf;
+  --cur-plaque-bottom: #e0c998;
+  --cur-plaque-hi: rgb(255 251 238 / 75%);
+  --cur-plaque-lo: rgb(112 76 34 / 30%);
+  --cur-focus: #37291f;
+}
+
+/* Gilded page border, as on the boot curtain. */
+.welcome-crawl::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  border: 1px solid var(--cur-brass-soft, rgb(200 154 82 / 38%));
+  border-radius: 6px;
+  box-shadow: inset 0 0 60px var(--cur-vignette, rgb(0 0 0 / 34%));
+  pointer-events: none;
+}
+
+.welcome-crawl__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 4%, #000 20%, #000 72%, transparent 86%);
+  mask-image: linear-gradient(to bottom, transparent 4%, #000 20%, #000 72%, transparent 86%);
+}
+
+.welcome-crawl__viewport:active { cursor: grabbing; }
+
+.welcome-crawl__track {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: min(600px, calc(100vw - 56px));
+  margin-left: calc(min(600px, calc(100vw - 56px)) / -2);
+  text-align: center;
+  will-change: transform;
+}
+
+.welcome-crawl__title {
+  margin: 0;
+  color: var(--cur-wordmark, #d1af73);
+  font: 700 clamp(30px, 7vw, 50px)/1.15 Georgia, "Times New Roman", serif;
+  font-variant: small-caps;
+  letter-spacing: .05em;
+  text-shadow: 0 2px 14px var(--cur-vignette, rgb(0 0 0 / 34%));
+}
+
+/* Brass rule with a centre diamond, the curtain wordmark's ornament. */
+.welcome-crawl__rule {
+  display: block;
+  width: 150px;
+  height: 7px;
+  margin: 16px auto 52px;
+  background:
+    linear-gradient(var(--cur-brass, #c89a52), var(--cur-brass, #c89a52)) 0 50% / calc(50% - 10px) 1px no-repeat,
+    linear-gradient(var(--cur-brass, #c89a52), var(--cur-brass, #c89a52)) 100% 50% / calc(50% - 10px) 1px no-repeat;
+}
+
+.welcome-crawl__rule::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: 1px auto 0;
+  background: var(--cur-brass, #c89a52);
+  transform: rotate(45deg);
+}
+
+.welcome-crawl__rule--break {
+  width: 64px;
+  margin: 10px auto 40px;
+  opacity: .7;
+}
+
+.welcome-crawl__line {
+  margin: 0 0 28px;
+  color: var(--cur-text, #eee3ca);
+  font: clamp(17px, 3.5vw, 21px)/1.65 Georgia, "Times New Roman", serif;
+  text-wrap: pretty;
+}
+
+.welcome-crawl__line--strong {
+  color: var(--cur-wordmark, #d1af73);
+  font-weight: 700;
+  font-size: clamp(20px, 4.2vw, 26px);
+  letter-spacing: .01em;
+}
+
+.welcome-crawl__line--quiet {
+  padding: 0 6%;
+  color: var(--cur-muted, #c3b297);
+  font-style: italic;
+}
+
+.welcome-crawl__line--close {
+  margin: 40px 0 26px;
+  color: var(--cur-wordmark, #d1af73);
+  font-style: italic;
+  font-size: clamp(24px, 5.2vw, 32px);
+}
+
+.welcome-crawl__logo {
+  display: block;
+  width: clamp(120px, 28vw, 180px);
+  height: auto;
+  margin: 0 auto;
+  padding: 4px;
+  border: 1px solid var(--cur-edge, #7e6040);
+  border-radius: 6px;
+  background: var(--cur-paper, #34271f);
+  box-shadow: 0 0 0 3px var(--cur-paper, #34271f), 0 0 0 4px var(--cur-brass-soft, rgb(200 154 82 / 38%)), 0 12px 30px var(--cur-vignette, rgb(0 0 0 / 34%));
+  pointer-events: none;
+}
+
+/* A few slow ash flecks rising through the page. */
+.welcome-crawl__ash { position: absolute; inset: 0; pointer-events: none; }
+
+.welcome-crawl__ash i {
+  position: absolute;
+  bottom: -10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--cur-brass, #c89a52);
+  opacity: 0;
+  animation: welcome-crawl-ash 17s linear infinite;
+}
+
+.welcome-crawl__ash i:nth-child(1) { left: 8%; animation-delay: 0s; }
+.welcome-crawl__ash i:nth-child(2) { left: 17%; animation-delay: -6s; animation-duration: 21s; }
+.welcome-crawl__ash i:nth-child(3) { left: 26%; animation-delay: -11s; width: 2px; height: 2px; }
+.welcome-crawl__ash i:nth-child(4) { left: 34%; animation-delay: -3s; animation-duration: 23s; }
+.welcome-crawl__ash i:nth-child(5) { left: 43%; animation-delay: -14s; width: 2px; height: 2px; }
+.welcome-crawl__ash i:nth-child(6) { left: 51%; animation-delay: -8s; animation-duration: 19s; }
+.welcome-crawl__ash i:nth-child(7) { left: 59%; animation-delay: -1s; width: 4px; height: 4px; animation-duration: 25s; }
+.welcome-crawl__ash i:nth-child(8) { left: 66%; animation-delay: -12s; }
+.welcome-crawl__ash i:nth-child(9) { left: 73%; animation-delay: -5s; width: 2px; height: 2px; animation-duration: 20s; }
+.welcome-crawl__ash i:nth-child(10) { left: 80%; animation-delay: -16s; }
+.welcome-crawl__ash i:nth-child(11) { left: 87%; animation-delay: -9s; animation-duration: 22s; }
+.welcome-crawl__ash i:nth-child(12) { left: 93%; animation-delay: -2s; width: 2px; height: 2px; }
+.welcome-crawl__ash i:nth-child(13) { left: 12%; animation-delay: -18s; animation-duration: 26s; }
+.welcome-crawl__ash i:nth-child(14) { left: 47%; animation-delay: -20s; width: 4px; height: 4px; animation-duration: 24s; }
+
+@keyframes welcome-crawl-ash {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: .45; }
+  50% { transform: translate(18px, -50vh); }
+  85% { opacity: .3; }
+  100% { transform: translate(-10px, -105vh); opacity: 0; }
+}
+
+/* Bottom dock: Begin above a compact brass control plaque. */
+.welcome-crawl__dock {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: max(30px, calc(env(safe-area-inset-bottom) + 18px));
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  transform: translateX(-50%);
+}
+
+.welcome-crawl__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border: 1px solid var(--cur-edge, #7e6040);
+  border-radius: 6px;
+  background: var(--cur-grain, none), linear-gradient(180deg, var(--cur-plaque-top, #4d3a2c), var(--cur-plaque-bottom, #36281f));
+  box-shadow: inset 0 1px var(--cur-plaque-hi, rgb(255 228 180 / 10%)), inset 0 -2px var(--cur-plaque-lo, rgb(0 0 0 / 38%)), 0 6px 18px var(--cur-vignette, rgb(0 0 0 / 34%));
+}
+
+.welcome-crawl__control {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--cur-wordmark, #d1af73);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.welcome-crawl__control:hover:not(:disabled) { background: var(--cur-brass-soft, rgb(200 154 82 / 38%)); }
+.welcome-crawl__control:disabled { cursor: default; opacity: .4; }
+
+.welcome-crawl__control--on {
+  border-color: var(--cur-edge, #7e6040);
+  background: var(--cur-brass, #c89a52);
+  color: var(--cur-bg, #281f1a);
+}
+
+.welcome-crawl__control--on:hover:not(:disabled) { background: var(--cur-brass, #c89a52); }
+
+.welcome-crawl__control svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.welcome-crawl__control .welcome-crawl__icon-fill { fill: currentColor; stroke-width: 1.6; }
+
+.welcome-crawl__progress {
+  position: relative;
+  overflow: hidden;
+  width: clamp(90px, 26vw, 170px);
+  height: 6px;
+  border: 1px solid var(--cur-edge, #7e6040);
+  border-radius: 3px;
+  background: var(--cur-track, #2c2019);
+  box-shadow: inset 0 1px 2px var(--cur-plaque-lo, rgb(0 0 0 / 38%));
+}
+
+.welcome-crawl__progress > i {
+  position: absolute;
+  inset: 0;
+  background: var(--cur-fill, #c89a52);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.welcome-crawl__begin {
+  min-width: 200px;
+  min-height: 46px;
+  padding: 10px 30px;
+  border: 1px solid var(--cur-edge, #7e6040);
+  border-radius: 4px;
+  color: var(--cur-text, #eee3ca);
+  background: var(--cur-grain, none), linear-gradient(180deg, var(--cur-plaque-top, #4d3a2c), var(--cur-plaque-bottom, #36281f));
+  box-shadow: inset 0 1px var(--cur-plaque-hi, rgb(255 228 180 / 10%)), inset 0 -2px var(--cur-plaque-lo, rgb(0 0 0 / 38%)), 0 0 0 3px var(--cur-bg, #281f1a), 0 0 0 4px var(--cur-brass-soft, rgb(200 154 82 / 38%));
+  font: 700 17px/1.2 Georgia, "Times New Roman", serif;
+  font-variant: small-caps;
+  letter-spacing: .1em;
+  cursor: pointer;
+  animation: welcome-crawl-fade-in .8s ease-out both;
+}
+
+.welcome-crawl button:focus-visible { outline: 2px solid var(--cur-focus, #eee3ca); outline-offset: 3px; }
+
+@keyframes welcome-crawl-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-crawl__ash { display: none; }
+}

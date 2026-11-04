@@ -1,0 +1,2512 @@
+{
+  "defaultRoomId": "mountain_gate",
+  "description": "A mountaintop monastery above the clouds. Weapons are useless here: fight unarmed through the courtyard, the bell hall, the garden and the hall of statues to face the Grandmaster. Recommended level 22.",
+  "environment": {
+    "accentColor": "#e8c46a",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#10131a",
+    "environmentId": "monastery",
+    "floorColor": "#6b5a45",
+    "musicAssetKey": null,
+    "wallColor": "#7a2a22"
+  },
+  "id": "still_hand_monastery",
+  "instancePolicy": "party_ephemeral",
+  "kind": "dungeon",
+  "modules": {
+    "bossTemplateIds": [
+      "grandmaster"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "mountain_gate"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "courtyard_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "courtyard_training",
+        "leashZoneId": "courtyard_leash",
+        "lockPortalIds": [
+          "gate_to_courtyard_back",
+          "courtyard_to_bell_hall"
+        ],
+        "name": "Training Courtyard",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "training_courtyard",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "courtyard_training_training_dummy_w1",
+              "courtyard_training_training_dummy_w1_2",
+              "courtyard_training_initiate_monk_w1",
+              "courtyard_training_initiate_monk_w1_2",
+              "courtyard_training_initiate_monk_w1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "bell_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "bell_hall_toll",
+        "leashZoneId": "bell_leash",
+        "lockPortalIds": [
+          "courtyard_to_bell_hall_back",
+          "bell_hall_to_garden"
+        ],
+        "name": "Bell Hall",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "bell_hall",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "bell_hall_toll_initiate_monk_w1",
+              "bell_hall_toll_initiate_monk_w1_2",
+              "bell_hall_toll_bell_spirit_w1",
+              "bell_hall_toll_bell_spirit_w1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "garden_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "garden_shadows",
+        "leashZoneId": "garden_leash",
+        "lockPortalIds": [
+          "bell_hall_to_garden_back",
+          "garden_to_statue_hall"
+        ],
+        "name": "Garden of Stillness",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "still_garden",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "garden_shadows_shadow_acrobat_w1",
+              "garden_shadows_shadow_acrobat_w1_2",
+              "garden_shadows_shadow_acrobat_w1_3",
+              "garden_shadows_staff_adept_w1",
+              "garden_shadows_staff_adept_w1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "statue_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "statue_guardians",
+        "leashZoneId": "statue_leash",
+        "lockPortalIds": [
+          "garden_to_statue_hall_back",
+          "statue_hall_to_sanctum"
+        ],
+        "name": "Hall of Statues",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "statue_hall",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "statue_guardians_iron_statue_w1",
+              "statue_guardians_iron_statue_w1_2",
+              "statue_guardians_iron_statue_w1_3",
+              "statue_guardians_iron_statue_w1_4",
+              "statue_guardians_iron_statue_w1_5",
+              "statue_guardians_shadow_acrobat_w1",
+              "statue_guardians_bell_spirit_w1"
+            ]
+          }
+        ]
+      },
+      {
+        "bossTemplateId": "grandmaster",
+        "boundaryZoneId": "sanctum_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "grandmaster",
+        "leashZoneId": "sanctum_leash",
+        "lockPortalIds": [
+          "statue_hall_to_sanctum_back"
+        ],
+        "name": "The Grandmaster",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "grandmaster_sanctum",
+        "waves": [
+          {
+            "delayMs": 0,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "grandmaster_boss",
+              "grandmaster_clone_1",
+              "grandmaster_clone_2"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "world_entry_arrival",
+      "portalId": "still_hand_monastery_world_to_entrance",
+      "roomId": "mountain_gate"
+    },
+    "escape": {
+      "portalId": "still_hand_monastery_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": null,
+      "policy": "when_empty",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "still_hand_monastery-v1"
+    },
+    "rewardTableIds": [
+      "still_hand_monastery_sanctum_chest_reward"
+    ],
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "still_hand_monastery_sanctum_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "sanctum_chest",
+          "roomId": "grandmaster_sanctum",
+          "type": "object_interact"
+        },
+        "id": "sanctum_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "courtyard_training",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "training_courtyard",
+          "type": "room_enter"
+        },
+        "id": "start_courtyard_training",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The initiates bow out. The Bell Hall opens.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "courtyard_training",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "courtyard_training_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "bell_hall_toll",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "bell_hall",
+          "type": "room_enter"
+        },
+        "id": "start_bell_hall_toll",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The bell falls silent.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "bell_hall_toll",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "bell_hall_toll_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "garden_shadows",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "still_garden",
+          "type": "room_enter"
+        },
+        "id": "start_garden_shadows",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The garden is still again.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "garden_shadows",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "garden_shadows_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "statue_guardians",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "statue_hall",
+          "type": "room_enter"
+        },
+        "id": "start_statue_guardians",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "text": "The statues fall dormant. The Sanctum waits.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "statue_guardians",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "statue_guardians_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "grandmaster",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "grandmaster_sanctum",
+          "type": "room_enter"
+        },
+        "id": "start_grandmaster",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "sanctum_chest",
+            "roomId": "grandmaster_sanctum",
+            "type": "set_object_available"
+          },
+          {
+            "type": "complete_dungeon"
+          },
+          {
+            "text": "The Grandmaster bows. His offering is revealed.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "grandmaster",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "grandmaster_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      }
+    ],
+    "access": {
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6,
+      "minimumLevel": 22
+    }
+  },
+  "name": "Monastery of the Still Hand",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "mountain_gate"
+      },
+      "destinationArrivalAnchorId": "world_entry_arrival",
+      "enabled": false,
+      "id": "still_hand_monastery_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for still_hand_monastery",
+      "presentation": "door",
+      "reciprocalPortalId": "still_hand_monastery_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "still_hand_monastery_entrance_to_world",
+      "interactionLabel": "Leave the Monastery",
+      "presentation": "cave",
+      "reciprocalPortalId": "still_hand_monastery_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "mountain_gate"
+      },
+      "sourceApproachAnchorId": "world_approach",
+      "sourceThresholdAnchorId": "entrance_escape"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "training_courtyard"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "gate_to_courtyard",
+      "interactionLabel": "Climb to the Courtyard",
+      "preloadSceneKey": "still_hand_monastery/training_courtyard",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_courtyard_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "mountain_gate"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "mountain_gate"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "gate_to_courtyard_back",
+      "interactionLabel": "Back to the Gate",
+      "preloadSceneKey": "still_hand_monastery/mountain_gate",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_courtyard",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "training_courtyard"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "bell_hall"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "courtyard_to_bell_hall",
+      "interactionLabel": "Enter the Bell Hall",
+      "preloadSceneKey": "still_hand_monastery/bell_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "courtyard_to_bell_hall_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "training_courtyard"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "training_courtyard"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "courtyard_to_bell_hall_back",
+      "interactionLabel": "Back to the Courtyard",
+      "preloadSceneKey": "still_hand_monastery/training_courtyard",
+      "presentation": "door",
+      "reciprocalPortalId": "courtyard_to_bell_hall",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "bell_hall"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "still_garden"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "bell_hall_to_garden",
+      "interactionLabel": "Enter the Garden",
+      "preloadSceneKey": "still_hand_monastery/still_garden",
+      "presentation": "door",
+      "reciprocalPortalId": "bell_hall_to_garden_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "bell_hall"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "bell_hall"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "bell_hall_to_garden_back",
+      "interactionLabel": "Back to the Bell Hall",
+      "preloadSceneKey": "still_hand_monastery/bell_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "bell_hall_to_garden",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "still_garden"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "statue_hall"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "garden_to_statue_hall",
+      "interactionLabel": "Enter the Hall of Statues",
+      "preloadSceneKey": "still_hand_monastery/statue_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "garden_to_statue_hall_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "still_garden"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "still_garden"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "garden_to_statue_hall_back",
+      "interactionLabel": "Back to the Garden",
+      "preloadSceneKey": "still_hand_monastery/still_garden",
+      "presentation": "door",
+      "reciprocalPortalId": "garden_to_statue_hall",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "statue_hall"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "grandmaster_sanctum"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "statue_hall_to_sanctum",
+      "interactionLabel": "Enter the Sanctum",
+      "preloadSceneKey": "still_hand_monastery/grandmaster_sanctum",
+      "presentation": "door",
+      "reciprocalPortalId": "statue_hall_to_sanctum_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "statue_hall"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "statue_hall"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "statue_hall_to_sanctum_back",
+      "interactionLabel": "Back to the Hall of Statues",
+      "preloadSceneKey": "still_hand_monastery/statue_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "statue_hall_to_sanctum",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "grandmaster_sanctum"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    }
+  ],
+  "retired": false,
+  "revision": "still_hand_monastery-v1",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 800
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "entrance_escape",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 960
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 140
+        },
+        {
+          "id": "zephyr_altar",
+          "retired": false,
+          "role": "point",
+          "x": 780,
+          "y": 320
+        },
+        {
+          "id": "world_approach",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 880
+        },
+        {
+          "id": "world_entry_arrival",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 800
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "still_hand_monastery_monastery",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "mountain_gate",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "still_hand_monastery_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          },
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "mountain_gate_floor",
+            "prefabRevision": "mountain-gate-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 1
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Mountain Gate",
+      "objects": [
+        {
+          "anchorId": "entrance_escape",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "still_hand_monastery_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Leave the Monastery",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Leave the Monastery",
+          "opacity": 1,
+          "portalId": "still_hand_monastery_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_courtyard_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb to the Courtyard",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Climb to the Courtyard",
+          "opacity": 1,
+          "portalId": "gate_to_courtyard",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "zephyr_altar",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "zephyr-altar",
+          "initialState": "idle",
+          "interactionLabel": "Offer 6 Zephyr",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Zephyr Altar",
+          "opacity": 1,
+          "prefabId": "monastery_zephyr_altar",
+          "prefabRevision": "monastery-zephyr-altar-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "skillTurnIn": "perfect_strike",
+          "type": "shrine",
+          "zIndex": 10
+        }
+      ],
+      "retired": false,
+      "revision": "still_hand_monastery-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": []
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 700,
+          "y": 860
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 700,
+          "y": 970
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 890
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 860
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 700,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 140
+        },
+        {
+          "id": "courtyard_training_training_dummy_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 330,
+          "y": 300
+        },
+        {
+          "id": "courtyard_training_training_dummy_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1070,
+          "y": 300
+        },
+        {
+          "id": "courtyard_training_initiate_monk_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 420
+        },
+        {
+          "id": "courtyard_training_initiate_monk_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 360
+        },
+        {
+          "id": "courtyard_training_initiate_monk_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 900,
+          "y": 420
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "training_courtyard_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "training_courtyard",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "training_courtyard_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          },
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "training_courtyard_floor",
+            "prefabRevision": "training-courtyard-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 1
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "courtyard_training_training_dummy_w1_anchor",
+          "archetype": "training_dummy",
+          "encounterId": "courtyard_training",
+          "facing": 3.141592653589793,
+          "id": "courtyard_training_training_dummy_w1",
+          "leashZoneId": "courtyard_leash",
+          "retired": false,
+          "spawnGroupId": "courtyard_training_wave1_training_dummy_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "courtyard_training_training_dummy_w1_2_anchor",
+          "archetype": "training_dummy",
+          "encounterId": "courtyard_training",
+          "facing": 3.141592653589793,
+          "id": "courtyard_training_training_dummy_w1_2",
+          "leashZoneId": "courtyard_leash",
+          "retired": false,
+          "spawnGroupId": "courtyard_training_wave1_training_dummy_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "courtyard_training_initiate_monk_w1_anchor",
+          "archetype": "initiate_monk",
+          "encounterId": "courtyard_training",
+          "facing": 3.141592653589793,
+          "id": "courtyard_training_initiate_monk_w1",
+          "leashZoneId": "courtyard_leash",
+          "retired": false,
+          "spawnGroupId": "courtyard_training_wave1_initiate_monk_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "courtyard_training_initiate_monk_w1_2_anchor",
+          "archetype": "initiate_monk",
+          "encounterId": "courtyard_training",
+          "facing": 3.141592653589793,
+          "id": "courtyard_training_initiate_monk_w1_2",
+          "leashZoneId": "courtyard_leash",
+          "retired": false,
+          "spawnGroupId": "courtyard_training_wave1_initiate_monk_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "courtyard_training_initiate_monk_w1_3_anchor",
+          "archetype": "initiate_monk",
+          "encounterId": "courtyard_training",
+          "facing": 3.141592653589793,
+          "id": "courtyard_training_initiate_monk_w1_3",
+          "leashZoneId": "courtyard_leash",
+          "retired": false,
+          "spawnGroupId": "courtyard_training_wave1_initiate_monk_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Training Courtyard",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_courtyard_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Gate",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Gate",
+          "opacity": 1,
+          "portalId": "gate_to_courtyard_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "courtyard_to_bell_hall_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Bell Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Bell Hall",
+          "opacity": 1,
+          "portalId": "courtyard_to_bell_hall",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "still_hand_monastery-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 880,
+          "id": "courtyard_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1280,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "courtyard_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1340,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 1060
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 1170
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 1090
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 1060
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1170,
+          "y": 600
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1090,
+          "y": 600
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1060,
+          "y": 600
+        },
+        {
+          "id": "bell_hall_toll_initiate_monk_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 420,
+          "y": 760
+        },
+        {
+          "id": "bell_hall_toll_initiate_monk_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 780,
+          "y": 760
+        },
+        {
+          "id": "bell_hall_toll_bell_spirit_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 380,
+          "y": 420
+        },
+        {
+          "id": "bell_hall_toll_bell_spirit_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 820,
+          "y": 420
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "bell_hall_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "bell_hall",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "bell_hall_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          },
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "bell_hall_floor",
+            "prefabRevision": "bell-hall-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 1
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "bell_hall_toll_initiate_monk_w1_anchor",
+          "archetype": "initiate_monk",
+          "encounterId": "bell_hall_toll",
+          "facing": 3.141592653589793,
+          "id": "bell_hall_toll_initiate_monk_w1",
+          "leashZoneId": "bell_leash",
+          "retired": false,
+          "spawnGroupId": "bell_hall_toll_wave1_initiate_monk_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bell_hall_toll_initiate_monk_w1_2_anchor",
+          "archetype": "initiate_monk",
+          "encounterId": "bell_hall_toll",
+          "facing": 3.141592653589793,
+          "id": "bell_hall_toll_initiate_monk_w1_2",
+          "leashZoneId": "bell_leash",
+          "retired": false,
+          "spawnGroupId": "bell_hall_toll_wave1_initiate_monk_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bell_hall_toll_bell_spirit_w1_anchor",
+          "archetype": "bell_spirit",
+          "encounterId": "bell_hall_toll",
+          "facing": 3.141592653589793,
+          "id": "bell_hall_toll_bell_spirit_w1",
+          "leashZoneId": "bell_leash",
+          "retired": false,
+          "spawnGroupId": "bell_hall_toll_wave1_bell_spirit_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "bell_hall_toll_bell_spirit_w1_2_anchor",
+          "archetype": "bell_spirit",
+          "encounterId": "bell_hall_toll",
+          "facing": 3.141592653589793,
+          "id": "bell_hall_toll_bell_spirit_w1_2",
+          "leashZoneId": "bell_leash",
+          "retired": false,
+          "spawnGroupId": "bell_hall_toll_wave1_bell_spirit_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Bell Hall",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "courtyard_to_bell_hall_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Courtyard",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Courtyard",
+          "opacity": 1,
+          "portalId": "courtyard_to_bell_hall_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bell_hall_to_garden_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Garden",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Garden",
+          "opacity": 1,
+          "portalId": "bell_hall_to_garden",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "still_hand_monastery-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 1080,
+          "id": "bell_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1080,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1140,
+          "id": "bell_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 500
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 500
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 500
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 500
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 30
+        },
+        {
+          "id": "approach_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 110
+        },
+        {
+          "id": "arrive_n",
+          "retired": false,
+          "role": "point",
+          "x": 600,
+          "y": 140
+        },
+        {
+          "id": "garden_shadows_shadow_acrobat_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 520,
+          "y": 300
+        },
+        {
+          "id": "garden_shadows_shadow_acrobat_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 820,
+          "y": 520
+        },
+        {
+          "id": "garden_shadows_shadow_acrobat_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 520,
+          "y": 760
+        },
+        {
+          "id": "garden_shadows_staff_adept_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 760,
+          "y": 260
+        },
+        {
+          "id": "garden_shadows_staff_adept_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 940,
+          "y": 760
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "still_garden_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "still_garden",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "still_garden_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          },
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "still_garden_floor",
+            "prefabRevision": "still-garden-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 1
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "garden_shadows_shadow_acrobat_w1_anchor",
+          "archetype": "shadow_acrobat",
+          "encounterId": "garden_shadows",
+          "facing": 3.141592653589793,
+          "id": "garden_shadows_shadow_acrobat_w1",
+          "leashZoneId": "garden_leash",
+          "retired": false,
+          "spawnGroupId": "garden_shadows_wave1_shadow_acrobat_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "garden_shadows_shadow_acrobat_w1_2_anchor",
+          "archetype": "shadow_acrobat",
+          "encounterId": "garden_shadows",
+          "facing": 3.141592653589793,
+          "id": "garden_shadows_shadow_acrobat_w1_2",
+          "leashZoneId": "garden_leash",
+          "retired": false,
+          "spawnGroupId": "garden_shadows_wave1_shadow_acrobat_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "garden_shadows_shadow_acrobat_w1_3_anchor",
+          "archetype": "shadow_acrobat",
+          "encounterId": "garden_shadows",
+          "facing": 3.141592653589793,
+          "id": "garden_shadows_shadow_acrobat_w1_3",
+          "leashZoneId": "garden_leash",
+          "retired": false,
+          "spawnGroupId": "garden_shadows_wave1_shadow_acrobat_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "garden_shadows_staff_adept_w1_anchor",
+          "archetype": "staff_adept",
+          "encounterId": "garden_shadows",
+          "facing": 3.141592653589793,
+          "id": "garden_shadows_staff_adept_w1",
+          "leashZoneId": "garden_leash",
+          "retired": false,
+          "spawnGroupId": "garden_shadows_wave1_staff_adept_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "garden_shadows_staff_adept_w1_2_anchor",
+          "archetype": "staff_adept",
+          "encounterId": "garden_shadows",
+          "facing": 3.141592653589793,
+          "id": "garden_shadows_staff_adept_w1_2",
+          "leashZoneId": "garden_leash",
+          "retired": false,
+          "spawnGroupId": "garden_shadows_wave1_staff_adept_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Garden of Stillness",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bell_hall_to_garden_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Bell Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Bell Hall",
+          "opacity": 1,
+          "portalId": "bell_hall_to_garden_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "garden_to_statue_hall_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Hall of Statues",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Hall of Statues",
+          "opacity": 1,
+          "portalId": "garden_to_statue_hall",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "still_hand_monastery-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 880,
+          "id": "garden_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1080,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 940,
+          "id": "garden_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1140,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 660
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 770
+        },
+        {
+          "id": "approach_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 690
+        },
+        {
+          "id": "arrive_s",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 660
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 400
+        },
+        {
+          "id": "approach_e",
+          "retired": false,
+          "role": "point",
+          "x": 1490,
+          "y": 400
+        },
+        {
+          "id": "arrive_e",
+          "retired": false,
+          "role": "point",
+          "x": 1460,
+          "y": 400
+        },
+        {
+          "id": "statue_guardians_iron_statue_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 420,
+          "y": 150
+        },
+        {
+          "id": "statue_guardians_iron_statue_w1_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 820,
+          "y": 150
+        },
+        {
+          "id": "statue_guardians_iron_statue_w1_3_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1220,
+          "y": 150
+        },
+        {
+          "id": "statue_guardians_iron_statue_w1_4_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 620,
+          "y": 560
+        },
+        {
+          "id": "statue_guardians_iron_statue_w1_5_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1020,
+          "y": 560
+        },
+        {
+          "id": "statue_guardians_shadow_acrobat_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1300,
+          "y": 400
+        },
+        {
+          "id": "statue_guardians_bell_spirit_w1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1100,
+          "y": 380
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "statue_hall_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "statue_hall",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "statue_hall_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          },
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "statue_hall_floor",
+            "prefabRevision": "statue-hall-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 1
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "statue_guardians_iron_statue_w1_anchor",
+          "archetype": "iron_statue",
+          "encounterId": "statue_guardians",
+          "facing": 3.141592653589793,
+          "id": "statue_guardians_iron_statue_w1",
+          "leashZoneId": "statue_leash",
+          "retired": false,
+          "spawnGroupId": "statue_guardians_wave1_iron_statue_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "statue_guardians_iron_statue_w1_2_anchor",
+          "archetype": "iron_statue",
+          "encounterId": "statue_guardians",
+          "facing": 3.141592653589793,
+          "id": "statue_guardians_iron_statue_w1_2",
+          "leashZoneId": "statue_leash",
+          "retired": false,
+          "spawnGroupId": "statue_guardians_wave1_iron_statue_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "statue_guardians_iron_statue_w1_3_anchor",
+          "archetype": "iron_statue",
+          "encounterId": "statue_guardians",
+          "facing": 3.141592653589793,
+          "id": "statue_guardians_iron_statue_w1_3",
+          "leashZoneId": "statue_leash",
+          "retired": false,
+          "spawnGroupId": "statue_guardians_wave1_iron_statue_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "statue_guardians_iron_statue_w1_4_anchor",
+          "archetype": "iron_statue",
+          "encounterId": "statue_guardians",
+          "facing": 3.141592653589793,
+          "id": "statue_guardians_iron_statue_w1_4",
+          "leashZoneId": "statue_leash",
+          "retired": false,
+          "spawnGroupId": "statue_guardians_wave1_iron_statue_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "statue_guardians_iron_statue_w1_5_anchor",
+          "archetype": "iron_statue",
+          "encounterId": "statue_guardians",
+          "facing": 3.141592653589793,
+          "id": "statue_guardians_iron_statue_w1_5",
+          "leashZoneId": "statue_leash",
+          "retired": false,
+          "spawnGroupId": "statue_guardians_wave1_iron_statue_1",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "statue_guardians_shadow_acrobat_w1_anchor",
+          "archetype": "shadow_acrobat",
+          "encounterId": "statue_guardians",
+          "facing": 3.141592653589793,
+          "id": "statue_guardians_shadow_acrobat_w1",
+          "leashZoneId": "statue_leash",
+          "retired": false,
+          "spawnGroupId": "statue_guardians_wave1_shadow_acrobat_2",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "statue_guardians_bell_spirit_w1_anchor",
+          "archetype": "bell_spirit",
+          "encounterId": "statue_guardians",
+          "facing": 3.141592653589793,
+          "id": "statue_guardians_bell_spirit_w1",
+          "leashZoneId": "statue_leash",
+          "retired": false,
+          "spawnGroupId": "statue_guardians_wave1_bell_spirit_3",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Hall of Statues",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "garden_to_statue_hall_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Garden",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Garden",
+          "opacity": 1,
+          "portalId": "garden_to_statue_hall_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "statue_hall_to_sanctum_object",
+          "initialState": "closed",
+          "interactionLabel": "Enter the Sanctum",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Enter the Sanctum",
+          "opacity": 1,
+          "portalId": "statue_hall_to_sanctum",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "still_hand_monastery-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 680,
+          "id": "statue_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1480,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 740,
+          "id": "statue_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1540,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 140,
+          "y": 700
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 700
+        },
+        {
+          "id": "approach_w",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 700
+        },
+        {
+          "id": "arrive_w",
+          "retired": false,
+          "role": "point",
+          "x": 140,
+          "y": 700
+        },
+        {
+          "id": "sanctum_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 260
+        },
+        {
+          "id": "grandmaster_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 600
+        },
+        {
+          "id": "grandmaster_clone_1_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 520,
+          "y": 640
+        },
+        {
+          "id": "grandmaster_clone_2_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 880,
+          "y": 640
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 700
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "grandmaster_sanctum_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 1376
+            },
+            {
+              "x": 24,
+              "y": 1376
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1400,
+      "id": "grandmaster_sanctum",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "grandmaster_sanctum_initial_floor",
+            "opacity": 1,
+            "prefabId": "sewer_floor",
+            "prefabRevision": "sewer-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          },
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "floor",
+            "opacity": 1,
+            "prefabId": "grandmaster_sanctum_floor",
+            "prefabRevision": "grandmaster-sanctum-floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 1
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "grandmaster_boss_anchor",
+          "archetype": "grandmaster",
+          "encounterId": "grandmaster",
+          "facing": 3.141592653589793,
+          "id": "grandmaster_boss",
+          "leashZoneId": "sanctum_leash",
+          "retired": false,
+          "spawnGroupId": "grandmaster_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "grandmaster_clone_1_anchor",
+          "archetype": "grandmaster_clone",
+          "encounterId": "grandmaster",
+          "facing": 3.141592653589793,
+          "id": "grandmaster_clone_1",
+          "leashZoneId": "sanctum_leash",
+          "retired": false,
+          "spawnGroupId": "grandmaster_clones_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "grandmaster_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        },
+        {
+          "anchorId": "grandmaster_clone_2_anchor",
+          "archetype": "grandmaster_clone",
+          "encounterId": "grandmaster",
+          "facing": 3.141592653589793,
+          "id": "grandmaster_clone_2",
+          "leashZoneId": "sanctum_leash",
+          "retired": false,
+          "spawnGroupId": "grandmaster_clones_50",
+          "summonAtHealthPercent": 50,
+          "summonedByMobSpawnId": "grandmaster_boss",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Grandmaster's Sanctum",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "statue_hall_to_sanctum_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Hall of Statues",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Hall of Statues",
+          "opacity": 1,
+          "portalId": "statue_hall_to_sanctum_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "sanctum_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "sanctum_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Grandmaster's Offering",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "still_hand_monastery_sanctum_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "still_hand_monastery-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 1280,
+          "id": "sanctum_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1280,
+          "x": 60,
+          "y": 60
+        },
+        {
+          "height": 1340,
+          "id": "sanctum_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1340,
+          "x": 30,
+          "y": 30
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}

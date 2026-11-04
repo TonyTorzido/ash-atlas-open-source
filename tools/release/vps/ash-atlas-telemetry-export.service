@@ -1,0 +1,18 @@
+[Unit]
+Description=Export completed Ash Atlas telemetry segments
+After=network-online.target postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=/etc/ash-atlas/telemetry-export.env
+Environment=HOME=/var/lib/ash-atlas/duckdb
+ExecStart=/opt/ash-atlas/current/tools/release/vps/export-ready-telemetry-segments.sh
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/ash-atlas/telemetry-exports /var/lib/ash-atlas/duckdb /run/lock

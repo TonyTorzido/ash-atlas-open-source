@@ -1,0 +1,6335 @@
+{
+  "defaultRoomId": "gf_forge_gate",
+  "description": "A towering foundry of black iron and grey granite, worked by golems. Clear the Quarry and Conduit wings from the Crucible, then climb to the Forgemaster. Level 37 raid.",
+  "environment": {
+    "accentColor": "#e0793a",
+    "ambienceAssetKey": null,
+    "backgroundColor": "#100c0a",
+    "environmentId": "forge",
+    "floorColor": "#3a3433",
+    "musicAssetKey": null,
+    "wallColor": "#2a2423"
+  },
+  "id": "golem_forge",
+  "instancePolicy": "shared_persistent",
+  "kind": "dungeon",
+  "modules": {
+    "access": {
+      "entryCost": [
+        {
+          "itemId": "refined_oil",
+          "quantity": 18
+        },
+        {
+          "itemId": "wood",
+          "quantity": 1
+        }
+      ],
+      "lockoutDays": 6,
+      "minimumLevel": 37
+    },
+    "bossTemplateIds": [
+      "granite_bull",
+      "corrupted_core",
+      "forgemaster"
+    ],
+    "deathRecovery": {
+      "anchorId": "death_recovery",
+      "roomId": "gf_forge_gate"
+    },
+    "encounters": [
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "gate_golems",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [],
+        "name": "Forge Gate",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 17,
+            "min": 17
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "min": 1,
+              "weight": 3
+            },
+            {
+              "archetype": "slag_crawler_gf",
+              "cost": 1,
+              "weight": 2
+            },
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_forge_gate",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "yard_slag",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "gate_to_yard_back",
+          "yard_to_bellows",
+          "yard_to_vault"
+        ],
+        "name": "Slag Yard",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 22,
+            "min": 22
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "slag_crawler_gf",
+              "cost": 1,
+              "weight": 4
+            },
+            {
+              "archetype": "golem_smith_gf",
+              "cost": 1,
+              "max": 4,
+              "weight": 2
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "max": 3,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_slag_yard",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "vault_guard",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "yard_to_vault_back"
+        ],
+        "name": "Slag Vault",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 12,
+            "min": 12
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "geode_golem_gf",
+              "cost": 3,
+              "max": 2,
+              "min": 2,
+              "weight": 3
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "max": 2,
+              "weight": 1
+            },
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_slag_vault",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "bellows_wisps",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "yard_to_bellows_back",
+          "bellows_to_crucible"
+        ],
+        "name": "Bellows Hall",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 24,
+            "min": 24
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 5
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "max": 3,
+              "weight": 1
+            },
+            {
+              "archetype": "slag_crawler_gf",
+              "cost": 1,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_bellows_hall",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "cutting_golems",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "quarry_0_in_back",
+          "quarry_1_in"
+        ],
+        "name": "Cutting Floor",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 22,
+            "min": 22
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "stone_golem_gf",
+              "cost": 2,
+              "weight": 3
+            },
+            {
+              "archetype": "mender_golem_gf",
+              "cost": 1,
+              "max": 4,
+              "weight": 2
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_cutting_floor",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "sentinel_walk",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "quarry_1_in_back",
+          "quarry_2_in"
+        ],
+        "name": "Sentinel Walk",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 19,
+            "min": 19
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "sentinel_statue_gf",
+              "cost": 2,
+              "min": 2,
+              "weight": 3
+            },
+            {
+              "archetype": "stone_golem_gf",
+              "cost": 2,
+              "max": 3,
+              "weight": 1
+            },
+            {
+              "archetype": "mender_golem_gf",
+              "cost": 1,
+              "max": 3,
+              "weight": 2
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_sentinel_walk",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "gallery_golems",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "quarry_2_in_back",
+          "quarry_to_boss"
+        ],
+        "name": "Monolith Gallery",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 17,
+            "min": 17
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "stone_golem_gf",
+              "cost": 2,
+              "min": 1,
+              "weight": 3
+            },
+            {
+              "archetype": "mender_golem_gf",
+              "cost": 1,
+              "max": 3,
+              "weight": 2
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "max": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_monolith_gallery",
+        "waves": []
+      },
+      {
+        "bossTemplateId": "granite_bull",
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "quarry_boss",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "quarry_to_boss_back",
+          "quarry_lift",
+          "quarry_to_boss"
+        ],
+        "name": "Granite Bull",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "gf_bull_pen",
+        "waves": [
+          {
+            "delayMs": 9000,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "quarry_boss_boss"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "coil_works",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "conduit_0_in_back",
+          "conduit_1_in"
+        ],
+        "name": "Coil Works",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 22,
+            "min": 22
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 4
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "max": 4,
+              "weight": 2
+            },
+            {
+              "archetype": "golem_smith_gf",
+              "cost": 1,
+              "max": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_coil_works",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "gem_vault",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "conduit_1_in_back",
+          "conduit_2_in"
+        ],
+        "name": "Gem Vault",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 19,
+            "min": 19
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "geode_golem_gf",
+              "cost": 3,
+              "max": 4,
+              "weight": 2
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "max": 3,
+              "weight": 2
+            },
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 3
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_gem_vault",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "husk_foundry",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "conduit_2_in_back",
+          "conduit_to_boss"
+        ],
+        "name": "Husk Foundry",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 19,
+            "min": 19
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "golem_smith_gf",
+              "cost": 1,
+              "max": 4,
+              "weight": 3
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "weight": 2
+            },
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 2
+            },
+            {
+              "archetype": "mender_golem_gf",
+              "cost": 1,
+              "max": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_husk_foundry",
+        "waves": []
+      },
+      {
+        "bossTemplateId": "corrupted_core",
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "conduit_boss",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "conduit_to_boss_back",
+          "conduit_lift",
+          "conduit_to_boss"
+        ],
+        "name": "The Corrupted Core",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "gf_containment",
+        "waves": [
+          {
+            "delayMs": 9000,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "conduit_boss_boss"
+            ]
+          }
+        ]
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "anvil_stair",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "crucible_to_anvil_back",
+          "anvil_to_cooling"
+        ],
+        "name": "Anvil Stair",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 34,
+            "min": 34
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "sentinel_statue_gf",
+              "cost": 2,
+              "max": 4,
+              "weight": 2
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "weight": 3
+            },
+            {
+              "archetype": "stone_golem_gf",
+              "cost": 2,
+              "weight": 2
+            },
+            {
+              "archetype": "geode_golem_gf",
+              "cost": 3,
+              "max": 2,
+              "weight": 1
+            },
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 2
+            },
+            {
+              "archetype": "mender_golem_gf",
+              "cost": 1,
+              "max": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_anvil_stair",
+        "waves": []
+      },
+      {
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "cooling_hall",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "anvil_to_cooling_back",
+          "cooling_to_forge"
+        ],
+        "name": "Cooling Hall",
+        "reset": {
+          "delayMs": 1500,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roll": {
+          "budget": {
+            "max": 17,
+            "min": 17
+          },
+          "elite": {
+            "chancePct": 20,
+            "maxPerEncounter": 5,
+            "modifierPool": [
+              "hardy",
+              "swift",
+              "shielded",
+              "enraged",
+              "splitting",
+              "healer_aura"
+            ]
+          },
+          "formations": [
+            "scatter",
+            "wedge",
+            "circle"
+          ],
+          "pool": [
+            {
+              "archetype": "slag_crawler_gf",
+              "cost": 1,
+              "weight": 4
+            },
+            {
+              "archetype": "spark_wisp_gf",
+              "cost": 1,
+              "weight": 2
+            },
+            {
+              "archetype": "iron_golem_gf",
+              "cost": 2,
+              "max": 2,
+              "weight": 1
+            }
+          ],
+          "spawn": {
+            "zoneIds": [
+              "spawn_a",
+              "spawn_b"
+            ]
+          },
+          "waves": {
+            "delayMs": 2500,
+            "max": 4,
+            "min": 3
+          }
+        },
+        "roomId": "gf_cooling_hall",
+        "waves": []
+      },
+      {
+        "bossTemplateId": "forgemaster",
+        "boundaryZoneId": "encounter_boundary",
+        "completion": "all_spawned_mobs_defeated",
+        "id": "forgemaster",
+        "leashZoneId": "encounter_leash",
+        "lockPortalIds": [
+          "cooling_to_forge_back",
+          "forge_lift",
+          "cooling_to_forge"
+        ],
+        "name": "The Forgemaster",
+        "reset": {
+          "delayMs": 3000,
+          "onPartyWipe": true
+        },
+        "retired": false,
+        "retry": {
+          "allowed": true,
+          "maxAttempts": null
+        },
+        "roomId": "gf_great_forge",
+        "waves": [
+          {
+            "delayMs": 9000,
+            "id": "wave_1",
+            "mobSpawnIds": [
+              "forgemaster_boss"
+            ]
+          }
+        ]
+      }
+    ],
+    "entrance": {
+      "arrivalAnchorId": "entrance_escape",
+      "portalId": "golem_forge_world_to_entrance",
+      "roomId": "gf_forge_gate"
+    },
+    "escape": {
+      "portalId": "golem_forge_entrance_to_world"
+    },
+    "reset": {
+      "despawnAfterSeconds": 900,
+      "policy": "manual",
+      "resetBoss": true,
+      "resetDoors": true,
+      "resetEnemies": true,
+      "resetLoot": true,
+      "revision": "golem_forge-v1"
+    },
+    "rewardTableIds": [
+      "golem_forge_slag_vault_chest_reward",
+      "golem_forge_bellows_hall_chest_reward",
+      "golem_forge_sentinel_walk_chest_reward",
+      "golem_forge_quarry_chest_reward",
+      "golem_forge_gem_vault_chest_reward",
+      "golem_forge_conduit_chest_reward",
+      "golem_forge_cooling_hall_chest_reward",
+      "golem_forge_forgemaster_chest_reward"
+    ],
+    "tier": {
+      "id": "t35"
+    },
+    "triggers": [
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_slag_vault_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "slag_vault_chest",
+          "roomId": "gf_slag_vault",
+          "type": "object_interact"
+        },
+        "id": "slag_vault_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_bellows_hall_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "bellows_hall_chest",
+          "roomId": "gf_bellows_hall",
+          "type": "object_interact"
+        },
+        "id": "bellows_hall_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_sentinel_walk_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "sentinel_walk_chest",
+          "roomId": "gf_sentinel_walk",
+          "type": "object_interact"
+        },
+        "id": "sentinel_walk_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_quarry_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "quarry_chest",
+          "roomId": "gf_bull_pen",
+          "type": "object_interact"
+        },
+        "id": "quarry_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_gem_vault_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "gem_vault_chest",
+          "roomId": "gf_gem_vault",
+          "type": "object_interact"
+        },
+        "id": "gem_vault_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_conduit_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "conduit_chest",
+          "roomId": "gf_containment",
+          "type": "object_interact"
+        },
+        "id": "conduit_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_cooling_hall_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "cooling_hall_chest",
+          "roomId": "gf_cooling_hall",
+          "type": "object_interact"
+        },
+        "id": "cooling_hall_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "rewardTableId": "golem_forge_forgemaster_chest_reward",
+            "type": "grant_reward"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "forgemaster_chest",
+          "roomId": "gf_great_forge",
+          "type": "object_interact"
+        },
+        "id": "forgemaster_chest_reward",
+        "repetition": "once",
+        "retired": false,
+        "scope": "player"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "gate_golems",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_forge_gate",
+          "type": "room_enter"
+        },
+        "id": "start_gate_golems",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "yard_slag",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_slag_yard",
+          "type": "room_enter"
+        },
+        "id": "start_yard_slag",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "vault_guard",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_slag_vault",
+          "type": "room_enter"
+        },
+        "id": "start_vault_guard",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "bellows_wisps",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_bellows_hall",
+          "type": "room_enter"
+        },
+        "id": "start_bellows_wisps",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "cutting_golems",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_cutting_floor",
+          "type": "room_enter"
+        },
+        "id": "start_cutting_golems",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "sentinel_walk",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_sentinel_walk",
+          "type": "room_enter"
+        },
+        "id": "start_sentinel_walk",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "gallery_golems",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_monolith_gallery",
+          "type": "room_enter"
+        },
+        "id": "start_gallery_golems",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "quarry_boss",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_bull_pen",
+          "type": "room_enter"
+        },
+        "id": "start_quarry_boss",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "quarry_chest",
+            "roomId": "gf_bull_pen",
+            "type": "set_object_available"
+          },
+          {
+            "flagId": "quarry_done",
+            "type": "set_dungeon_flag",
+            "value": true
+          },
+          {
+            "text": "Granite Bull falls. A lift to the Crucible is ready.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "quarry_boss",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "quarry_boss_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "coil_works",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_coil_works",
+          "type": "room_enter"
+        },
+        "id": "start_coil_works",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "gem_vault",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_gem_vault",
+          "type": "room_enter"
+        },
+        "id": "start_gem_vault",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "husk_foundry",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_husk_foundry",
+          "type": "room_enter"
+        },
+        "id": "start_husk_foundry",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "conduit_boss",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_containment",
+          "type": "room_enter"
+        },
+        "id": "start_conduit_boss",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "conduit_chest",
+            "roomId": "gf_containment",
+            "type": "set_object_available"
+          },
+          {
+            "flagId": "conduit_done",
+            "type": "set_dungeon_flag",
+            "value": true
+          },
+          {
+            "text": "The Corrupted Core falls. A lift to the Crucible is ready.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "conduit_boss",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "conduit_boss_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "anvil_stair",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_anvil_stair",
+          "type": "room_enter"
+        },
+        "id": "start_anvil_stair",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "cooling_hall",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_cooling_hall",
+          "type": "room_enter"
+        },
+        "id": "start_cooling_hall",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "encounterId": "forgemaster",
+            "type": "start_encounter"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "roomId": "gf_great_forge",
+          "type": "room_enter"
+        },
+        "id": "start_forgemaster",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "available": true,
+            "objectId": "forgemaster_chest",
+            "roomId": "gf_great_forge",
+            "type": "set_object_available"
+          },
+          {
+            "flagId": "forge_done",
+            "type": "set_dungeon_flag",
+            "value": true
+          },
+          {
+            "type": "complete_dungeon"
+          },
+          {
+            "text": "The Forgemaster falls. The Golem Forge goes cold.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "encounterId": "forgemaster",
+          "state": "completed",
+          "type": "encounter_state"
+        },
+        "id": "forgemaster_complete",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "actions": [
+          {
+            "flagId": "slag_wall_broken",
+            "type": "set_dungeon_flag",
+            "value": true
+          },
+          {
+            "text": "The wall cracks open onto a hidden vault.",
+            "tone": "success",
+            "type": "show_message"
+          }
+        ],
+        "conditions": {
+          "items": [],
+          "mode": "all"
+        },
+        "cooldownMs": 0,
+        "enabled": true,
+        "event": {
+          "objectId": "cracked_wall",
+          "roomId": "gf_slag_yard",
+          "state": "on",
+          "type": "object_state"
+        },
+        "id": "cracked_wall_broken",
+        "repetition": "once",
+        "retired": false,
+        "scope": "instance"
+      },
+      {
+        "retired": false,
+        "enabled": true,
+        "scope": "instance",
+        "repetition": "once",
+        "cooldownMs": 0,
+        "id": "quarry_sigil_lit",
+        "event": {
+          "type": "encounter_state",
+          "encounterId": "quarry_boss",
+          "state": "completed"
+        },
+        "conditions": {
+          "mode": "all",
+          "items": []
+        },
+        "actions": [
+          {
+            "type": "set_object_available",
+            "roomId": "gf_crucible",
+            "objectId": "quarry_sigil",
+            "available": true
+          }
+        ]
+      },
+      {
+        "retired": false,
+        "enabled": true,
+        "scope": "instance",
+        "repetition": "once",
+        "cooldownMs": 0,
+        "id": "conduit_sigil_lit",
+        "event": {
+          "type": "encounter_state",
+          "encounterId": "conduit_boss",
+          "state": "completed"
+        },
+        "conditions": {
+          "mode": "all",
+          "items": []
+        },
+        "actions": [
+          {
+            "type": "set_object_available",
+            "roomId": "gf_crucible",
+            "objectId": "conduit_sigil",
+            "available": true
+          }
+        ]
+      },
+      {
+        "retired": false,
+        "enabled": true,
+        "scope": "instance",
+        "repetition": "once",
+        "cooldownMs": 0,
+        "id": "forge_door_opens_quarry",
+        "event": {
+          "type": "dungeon_flag",
+          "flagId": "quarry_done",
+          "value": true
+        },
+        "conditions": {
+          "mode": "all",
+          "items": [
+            {
+              "type": "dungeon_flag",
+              "flagId": "conduit_done",
+              "value": true
+            }
+          ]
+        },
+        "actions": [
+          {
+            "type": "set_object_available",
+            "roomId": "gf_crucible",
+            "objectId": "forge_door_sealed",
+            "available": false
+          },
+          {
+            "type": "set_object_available",
+            "roomId": "gf_crucible",
+            "objectId": "forge_door_open",
+            "available": true
+          }
+        ]
+      },
+      {
+        "retired": false,
+        "enabled": true,
+        "scope": "instance",
+        "repetition": "once",
+        "cooldownMs": 0,
+        "id": "forge_door_opens_conduit",
+        "event": {
+          "type": "dungeon_flag",
+          "flagId": "conduit_done",
+          "value": true
+        },
+        "conditions": {
+          "mode": "all",
+          "items": [
+            {
+              "type": "dungeon_flag",
+              "flagId": "quarry_done",
+              "value": true
+            }
+          ]
+        },
+        "actions": [
+          {
+            "type": "set_object_available",
+            "roomId": "gf_crucible",
+            "objectId": "forge_door_sealed",
+            "available": false
+          },
+          {
+            "type": "set_object_available",
+            "roomId": "gf_crucible",
+            "objectId": "forge_door_open",
+            "available": true
+          }
+        ]
+      }
+    ]
+  },
+  "name": "The Golem Forge",
+  "portals": [
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "gf_forge_gate"
+      },
+      "destinationArrivalAnchorId": "entrance_escape",
+      "enabled": false,
+      "id": "golem_forge_world_to_entrance",
+      "interactionLabel": "Draft — needs world entrance binding for golem_forge",
+      "presentation": "door",
+      "reciprocalPortalId": "golem_forge_entrance_to_world",
+      "retired": false,
+      "source": {
+        "kind": "world"
+      }
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "kind": "world"
+      },
+      "enabled": true,
+      "id": "golem_forge_entrance_to_world",
+      "interactionLabel": "Return to world",
+      "presentation": "door",
+      "reciprocalPortalId": "golem_forge_world_to_entrance",
+      "retired": false,
+      "source": {
+        "anchorId": "entrance_escape",
+        "kind": "room",
+        "roomId": "gf_forge_gate"
+      },
+      "sourceApproachAnchorId": "entrance_escape",
+      "sourceThresholdAnchorId": "entrance_escape"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_slag_yard"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "gate_to_yard",
+      "interactionLabel": "Into the Slag Yard",
+      "preloadSceneKey": "golem_forge/gf_slag_yard",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_yard_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_forge_gate"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_forge_gate"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "gate_to_yard_back",
+      "interactionLabel": "Back to the Forge Gate",
+      "preloadSceneKey": "golem_forge/gf_forge_gate",
+      "presentation": "door",
+      "reciprocalPortalId": "gate_to_yard",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_slag_yard"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_bellows_hall"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "yard_to_bellows",
+      "interactionLabel": "Into the Bellows Hall",
+      "preloadSceneKey": "golem_forge/gf_bellows_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "yard_to_bellows_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_slag_yard"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_slag_yard"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "yard_to_bellows_back",
+      "interactionLabel": "Back to the Slag Yard",
+      "preloadSceneKey": "golem_forge/gf_slag_yard",
+      "presentation": "door",
+      "reciprocalPortalId": "yard_to_bellows",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_bellows_hall"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "bellows_to_crucible",
+      "interactionLabel": "Up to the Crucible",
+      "preloadSceneKey": "golem_forge/gf_crucible",
+      "presentation": "door",
+      "reciprocalPortalId": "bellows_to_crucible_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_bellows_hall"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_bellows_hall"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "bellows_to_crucible_back",
+      "interactionLabel": "Back to the Bellows Hall",
+      "preloadSceneKey": "golem_forge/gf_bellows_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "bellows_to_crucible",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_slag_vault"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "slag_wall_broken",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "yard_to_vault",
+      "interactionLabel": "Through the broken wall",
+      "preloadSceneKey": "golem_forge/gf_slag_vault",
+      "presentation": "door",
+      "reciprocalPortalId": "yard_to_vault_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_slag_yard"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_slag_yard"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "slag_wall_broken",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "yard_to_vault_back",
+      "interactionLabel": "Back to the Slag Yard",
+      "preloadSceneKey": "golem_forge/gf_slag_yard",
+      "presentation": "door",
+      "reciprocalPortalId": "yard_to_vault",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_slag_vault"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_cutting_floor"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "quarry_0_in",
+      "interactionLabel": "Into the Cutting Floor",
+      "preloadSceneKey": "golem_forge/gf_cutting_floor",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_0_in_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "quarry_0_in_back",
+      "interactionLabel": "Back to the Crucible",
+      "preloadSceneKey": "golem_forge/gf_crucible",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_0_in",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_cutting_floor"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_sentinel_walk"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "quarry_1_in",
+      "interactionLabel": "Into the Sentinel Walk",
+      "preloadSceneKey": "golem_forge/gf_sentinel_walk",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_1_in_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_cutting_floor"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_cutting_floor"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "quarry_1_in_back",
+      "interactionLabel": "Go back",
+      "preloadSceneKey": "golem_forge/gf_cutting_floor",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_1_in",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_sentinel_walk"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_monolith_gallery"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "quarry_2_in",
+      "interactionLabel": "Into the Monolith Gallery",
+      "preloadSceneKey": "golem_forge/gf_monolith_gallery",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_2_in_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_sentinel_walk"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_sentinel_walk"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "quarry_2_in_back",
+      "interactionLabel": "Go back",
+      "preloadSceneKey": "golem_forge/gf_sentinel_walk",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_2_in",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_monolith_gallery"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_bull_pen"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "quarry_to_boss",
+      "interactionLabel": "Face what waits",
+      "preloadSceneKey": "golem_forge/gf_bull_pen",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_to_boss_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_monolith_gallery"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_monolith_gallery"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "quarry_to_boss_back",
+      "interactionLabel": "Go back",
+      "preloadSceneKey": "golem_forge/gf_monolith_gallery",
+      "presentation": "door",
+      "reciprocalPortalId": "quarry_to_boss",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_bull_pen"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "lift_w",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "destinationArrivalAnchorId": "lift_w",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "quarry_done",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "quarry_lift",
+      "interactionLabel": "Ride the lift to the Crucible",
+      "preloadSceneKey": "golem_forge/gf_crucible",
+      "presentation": "hatch",
+      "retired": false,
+      "source": {
+        "anchorId": "lift",
+        "kind": "room",
+        "roomId": "gf_bull_pen"
+      },
+      "sourceApproachAnchorId": "lift",
+      "sourceThresholdAnchorId": "lift"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_coil_works"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "conduit_0_in",
+      "interactionLabel": "Into the Coil Works",
+      "preloadSceneKey": "golem_forge/gf_coil_works",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_0_in_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "conduit_0_in_back",
+      "interactionLabel": "Back to the Crucible",
+      "preloadSceneKey": "golem_forge/gf_crucible",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_0_in",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_coil_works"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_gem_vault"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "conduit_1_in",
+      "interactionLabel": "Into the Gem Vault",
+      "preloadSceneKey": "golem_forge/gf_gem_vault",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_1_in_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_coil_works"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_coil_works"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "conduit_1_in_back",
+      "interactionLabel": "Go back",
+      "preloadSceneKey": "golem_forge/gf_coil_works",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_1_in",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_gem_vault"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_husk_foundry"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "conduit_2_in",
+      "interactionLabel": "Into the Husk Foundry",
+      "preloadSceneKey": "golem_forge/gf_husk_foundry",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_2_in_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_gem_vault"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_gem_vault"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "conduit_2_in_back",
+      "interactionLabel": "Go back",
+      "preloadSceneKey": "golem_forge/gf_gem_vault",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_2_in",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_husk_foundry"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_containment"
+      },
+      "destinationArrivalAnchorId": "door_w",
+      "enabled": true,
+      "id": "conduit_to_boss",
+      "interactionLabel": "Face what waits",
+      "preloadSceneKey": "golem_forge/gf_containment",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_to_boss_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_husk_foundry"
+      },
+      "sourceApproachAnchorId": "door_e",
+      "sourceThresholdAnchorId": "door_e"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_e",
+        "kind": "room",
+        "roomId": "gf_husk_foundry"
+      },
+      "destinationArrivalAnchorId": "door_e",
+      "enabled": true,
+      "id": "conduit_to_boss_back",
+      "interactionLabel": "Go back",
+      "preloadSceneKey": "golem_forge/gf_husk_foundry",
+      "presentation": "door",
+      "reciprocalPortalId": "conduit_to_boss",
+      "retired": false,
+      "source": {
+        "anchorId": "door_w",
+        "kind": "room",
+        "roomId": "gf_containment"
+      },
+      "sourceApproachAnchorId": "door_w",
+      "sourceThresholdAnchorId": "door_w"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "lift_e",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "destinationArrivalAnchorId": "lift_e",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "conduit_done",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "conduit_lift",
+      "interactionLabel": "Ride the lift to the Crucible",
+      "preloadSceneKey": "golem_forge/gf_crucible",
+      "presentation": "hatch",
+      "retired": false,
+      "source": {
+        "anchorId": "lift",
+        "kind": "room",
+        "roomId": "gf_containment"
+      },
+      "sourceApproachAnchorId": "lift",
+      "sourceThresholdAnchorId": "lift"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_anvil_stair"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "quarry_done",
+          "type": "dungeon_flag",
+          "value": true
+        },
+        {
+          "flagId": "conduit_done",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "crucible_to_anvil",
+      "interactionLabel": "Climb the Anvil Stair",
+      "preloadSceneKey": "golem_forge/gf_anvil_stair",
+      "presentation": "door",
+      "reciprocalPortalId": "crucible_to_anvil_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "quarry_done",
+          "type": "dungeon_flag",
+          "value": true
+        },
+        {
+          "flagId": "conduit_done",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "crucible_to_anvil_back",
+      "interactionLabel": "Back to the Crucible",
+      "preloadSceneKey": "golem_forge/gf_crucible",
+      "presentation": "door",
+      "reciprocalPortalId": "crucible_to_anvil",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_anvil_stair"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_cooling_hall"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "anvil_to_cooling",
+      "interactionLabel": "Into the Cooling Hall",
+      "preloadSceneKey": "golem_forge/gf_cooling_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "anvil_to_cooling_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_anvil_stair"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_anvil_stair"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "anvil_to_cooling_back",
+      "interactionLabel": "Back to the Anvil Stair",
+      "preloadSceneKey": "golem_forge/gf_anvil_stair",
+      "presentation": "door",
+      "reciprocalPortalId": "anvil_to_cooling",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_cooling_hall"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_great_forge"
+      },
+      "destinationArrivalAnchorId": "door_s",
+      "enabled": true,
+      "id": "cooling_to_forge",
+      "interactionLabel": "Face the Forgemaster",
+      "preloadSceneKey": "golem_forge/gf_great_forge",
+      "presentation": "door",
+      "reciprocalPortalId": "cooling_to_forge_back",
+      "retired": false,
+      "source": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_cooling_hall"
+      },
+      "sourceApproachAnchorId": "door_n",
+      "sourceThresholdAnchorId": "door_n"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "door_n",
+        "kind": "room",
+        "roomId": "gf_cooling_hall"
+      },
+      "destinationArrivalAnchorId": "door_n",
+      "enabled": true,
+      "id": "cooling_to_forge_back",
+      "interactionLabel": "Go back",
+      "preloadSceneKey": "golem_forge/gf_cooling_hall",
+      "presentation": "door",
+      "reciprocalPortalId": "cooling_to_forge",
+      "retired": false,
+      "source": {
+        "anchorId": "door_s",
+        "kind": "room",
+        "roomId": "gf_great_forge"
+      },
+      "sourceApproachAnchorId": "door_s",
+      "sourceThresholdAnchorId": "door_s"
+    },
+    {
+      "conditions": [
+        "always"
+      ],
+      "destination": {
+        "anchorId": "lift_n",
+        "kind": "room",
+        "roomId": "gf_crucible"
+      },
+      "destinationArrivalAnchorId": "lift_n",
+      "enabled": true,
+      "gates": [
+        {
+          "flagId": "forge_done",
+          "type": "dungeon_flag",
+          "value": true
+        }
+      ],
+      "id": "forge_lift",
+      "interactionLabel": "Ride the lift to the Crucible",
+      "preloadSceneKey": "golem_forge/gf_crucible",
+      "presentation": "hatch",
+      "retired": false,
+      "source": {
+        "anchorId": "lift",
+        "kind": "room",
+        "roomId": "gf_great_forge"
+      },
+      "sourceApproachAnchorId": "lift",
+      "sourceThresholdAnchorId": "lift"
+    }
+  ],
+  "retired": false,
+  "revision": "golem_forge-v1",
+  "rooms": [
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 500,
+          "y": 800
+        },
+        {
+          "facing": -1.5707963267948966,
+          "id": "entrance_escape",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 900
+        },
+        {
+          "id": "death_recovery",
+          "retired": false,
+          "role": "point",
+          "x": 500,
+          "y": 540
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 500,
+          "y": 30
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 500,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "golem_forge_forge",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 24
+            },
+            {
+              "x": 976,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "gf_forge_gate",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "golem_forge_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_forge_gate_floor",
+            "prefabRevision": "gf_forge_gate_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1000,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Forge Gate",
+      "objects": [
+        {
+          "anchorId": "entrance_escape",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "golem_forge_escape_portal_object",
+          "initialState": "closed",
+          "interactionLabel": "Return to world",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Return to world",
+          "opacity": 1,
+          "portalId": "golem_forge_entrance_to_world",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_yard_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Slag Yard",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Slag Yard",
+          "opacity": 1,
+          "portalId": "gate_to_yard",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1000,
+      "zones": [
+        {
+          "height": 600,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 300,
+          "x": 150,
+          "y": 200
+        },
+        {
+          "height": 600,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 300,
+          "x": 550,
+          "y": 200
+        },
+        {
+          "height": 960,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 960,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 920,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 920,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 700,
+          "y": 500
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 700,
+          "y": 970
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 700,
+          "y": 30
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 500
+        },
+        {
+          "id": "cracked_wall_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 110,
+          "y": 330
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_slag_yard_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "gf_slag_yard",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "gf_slag_yard_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_slag_yard_floor",
+            "prefabRevision": "gf_slag_yard_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Slag Yard",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gate_to_yard_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Forge Gate",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Forge Gate",
+          "opacity": 1,
+          "portalId": "gate_to_yard_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "yard_to_bellows_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Bellows Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Bellows Hall",
+          "opacity": 1,
+          "portalId": "yard_to_bellows",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "yard_to_vault_object",
+          "initialState": "closed",
+          "interactionLabel": "Through the broken wall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Through the broken wall",
+          "opacity": 1,
+          "portalId": "yard_to_vault",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "cracked_wall_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cracked_wall",
+          "initialState": "off",
+          "interactionLabel": "Break the cracked wall",
+          "interactionRadius": 90,
+          "layerId": "actors",
+          "name": "Cracked Wall",
+          "opacity": 1,
+          "prefabId": "golem_forge_cracked_wall",
+          "prefabRevision": "golem-forge-cracked-wall-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "switch",
+          "zIndex": 10,
+          "spawnChance": 35
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 600,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 420,
+          "x": 210,
+          "y": 200
+        },
+        {
+          "height": 600,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 420,
+          "x": 770,
+          "y": 200
+        },
+        {
+          "height": 960,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1360,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 920,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1320,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 400,
+          "y": 400
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 770,
+          "y": 400
+        },
+        {
+          "id": "slag_vault_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 220,
+          "y": 400
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 400,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_slag_vault_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 776,
+              "y": 24
+            },
+            {
+              "x": 776,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "gf_slag_vault",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "gf_slag_vault_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_slag_vault_floor",
+            "prefabRevision": "gf_slag_vault_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 800,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Slag Vault",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "yard_to_vault_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Slag Yard",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Slag Yard",
+          "opacity": 1,
+          "portalId": "yard_to_vault_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "slag_vault_chest_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "slag_vault_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Slag Vault Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_slag_vault_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 800,
+      "zones": [
+        {
+          "height": 480,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 240,
+          "x": 120,
+          "y": 160
+        },
+        {
+          "height": 480,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 240,
+          "x": 440,
+          "y": 160
+        },
+        {
+          "height": 760,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 760,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 720,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 720,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 400
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 770
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 30
+        },
+        {
+          "id": "bellows_hall_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1400,
+          "y": 400
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_bellows_hall_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "gf_bellows_hall",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "gf_bellows_hall_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_bellows_hall_floor",
+            "prefabRevision": "gf_bellows_hall_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Bellows Hall",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "yard_to_bellows_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Slag Yard",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Slag Yard",
+          "opacity": 1,
+          "portalId": "yard_to_bellows_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bellows_to_crucible_object",
+          "initialState": "closed",
+          "interactionLabel": "Up to the Crucible",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Up to the Crucible",
+          "opacity": 1,
+          "portalId": "bellows_to_crucible",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "bellows_hall_chest_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bellows_hall_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Forge Cache",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_bellows_hall_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 480,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 240,
+          "y": 160
+        },
+        {
+          "height": 480,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 880,
+          "y": 160
+        },
+        {
+          "height": 760,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1560,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 720,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 1350
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 1570
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 800
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 800
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 30
+        },
+        {
+          "id": "lift_w",
+          "retired": false,
+          "role": "portal",
+          "x": 330,
+          "y": 800
+        },
+        {
+          "id": "lift_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1270,
+          "y": 800
+        },
+        {
+          "id": "lift_n",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 330
+        },
+        {
+          "id": "spark_forge_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 800
+        },
+        {
+          "id": "quarry_sigil_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 690,
+          "y": 170
+        },
+        {
+          "id": "conduit_sigil_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 910,
+          "y": 170
+        },
+        {
+          "id": "forge_door_sealed_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 110
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 800
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_crucible_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 1576
+            },
+            {
+              "x": 24,
+              "y": 1576
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1600,
+      "id": "gf_crucible",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1600,
+            "id": "gf_crucible_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_crucible_floor",
+            "prefabRevision": "gf_crucible_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "The Crucible",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "bellows_to_crucible_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Bellows Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Bellows Hall",
+          "opacity": 1,
+          "portalId": "bellows_to_crucible_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_0_in_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Cutting Floor",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Cutting Floor",
+          "opacity": 1,
+          "portalId": "quarry_0_in",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_0_in_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Coil Works",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Coil Works",
+          "opacity": 1,
+          "portalId": "conduit_0_in",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "crucible_to_anvil_object",
+          "initialState": "closed",
+          "interactionLabel": "Climb the Anvil Stair",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Climb the Anvil Stair",
+          "opacity": 1,
+          "portalId": "crucible_to_anvil",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "spark_forge_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "spark_forge",
+          "initialState": "idle",
+          "interactionLabel": "Offer 175 Forge Sparks",
+          "interactionRadius": 110,
+          "layerId": "actors",
+          "name": "Spark Forge",
+          "opacity": 1,
+          "prefabId": "golem_forge_spark_forge",
+          "prefabRevision": "golem-forge-spark-forge-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "skillTurnIn": "field_engineering",
+          "type": "decoration",
+          "zIndex": 10
+        },
+        {
+          "anchorId": "quarry_sigil_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_sigil",
+          "initialState": "idle",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Quarry Sigil",
+          "opacity": 1,
+          "prefabId": "golem_forge_wing_sigil_lit",
+          "prefabRevision": "golem-forge-wing-sigil-lit-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 5
+        },
+        {
+          "anchorId": "conduit_sigil_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_sigil",
+          "initialState": "idle",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Conduit Sigil",
+          "opacity": 1,
+          "prefabId": "golem_forge_wing_sigil_lit",
+          "prefabRevision": "golem-forge-wing-sigil-lit-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 5
+        },
+        {
+          "anchorId": "forge_door_sealed_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "forge_door_sealed",
+          "initialState": "idle",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Sealed Forge Door",
+          "opacity": 1,
+          "prefabId": "golem_forge_door_sealed",
+          "prefabRevision": "golem-forge-door-sealed-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 5
+        },
+        {
+          "anchorId": "forge_door_sealed_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "forge_door_open",
+          "initialState": "idle",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Open Forge Door",
+          "opacity": 1,
+          "prefabId": "golem_forge_door_open",
+          "prefabRevision": "golem-forge-door-open-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 5
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 1600,
+          "id": "crucible_safe",
+          "kind": "rectangle",
+          "purpose": "safe",
+          "retired": false,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 700,
+          "y": 500
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1370,
+          "y": 500
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 500
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_cutting_floor_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "gf_cutting_floor",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "gf_cutting_floor_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_cutting_floor_floor",
+            "prefabRevision": "gf_cutting_floor_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Cutting Floor",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_0_in_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Crucible",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Crucible",
+          "opacity": 1,
+          "portalId": "quarry_0_in_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_1_in_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Sentinel Walk",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Sentinel Walk",
+          "opacity": 1,
+          "portalId": "quarry_1_in",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 600,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 420,
+          "x": 210,
+          "y": 200
+        },
+        {
+          "height": 600,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 420,
+          "x": 770,
+          "y": 200
+        },
+        {
+          "height": 960,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1360,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 920,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1320,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 350
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 350
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 350
+        },
+        {
+          "id": "sentinel_walk_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1400,
+          "y": 350
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 350
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_sentinel_walk_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 676
+            },
+            {
+              "x": 24,
+              "y": 676
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 700,
+      "id": "gf_sentinel_walk",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 700,
+            "id": "gf_sentinel_walk_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_sentinel_walk_floor",
+            "prefabRevision": "gf_sentinel_walk_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Sentinel Walk",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_1_in_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go back",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go back",
+          "opacity": 1,
+          "portalId": "quarry_1_in_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_2_in_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Monolith Gallery",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Monolith Gallery",
+          "opacity": 1,
+          "portalId": "quarry_2_in",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "sentinel_walk_chest_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "sentinel_walk_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Forge Cache",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_sentinel_walk_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 420,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 240,
+          "y": 140
+        },
+        {
+          "height": 420,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 880,
+          "y": 140
+        },
+        {
+          "height": 660,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1560,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 620,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 600
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1170,
+          "y": 600
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 600
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_monolith_gallery_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "gf_monolith_gallery",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "gf_monolith_gallery_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_monolith_gallery_floor",
+            "prefabRevision": "gf_monolith_gallery_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Monolith Gallery",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_2_in_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go back",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go back",
+          "opacity": 1,
+          "portalId": "quarry_2_in_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_to_boss_object",
+          "initialState": "closed",
+          "interactionLabel": "Face what waits",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Face what waits",
+          "opacity": 1,
+          "portalId": "quarry_to_boss",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 720,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 360,
+          "x": 180,
+          "y": 240
+        },
+        {
+          "height": 720,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 360,
+          "x": 660,
+          "y": 240
+        },
+        {
+          "height": 1160,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1160,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 1120,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1120,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 700,
+          "y": 700
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1370,
+          "y": 700
+        },
+        {
+          "id": "lift",
+          "retired": false,
+          "role": "portal",
+          "x": 700,
+          "y": 1250
+        },
+        {
+          "id": "quarry_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 1095
+        },
+        {
+          "id": "quarry_boss_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 600
+        },
+        {
+          "id": "monolith_nw_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 250,
+          "y": 237
+        },
+        {
+          "id": "monolith_ne_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1150,
+          "y": 237
+        },
+        {
+          "id": "monolith_sw_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 250,
+          "y": 1137
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 700
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_bull_pen_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 1376
+            },
+            {
+              "x": 24,
+              "y": 1376
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1400,
+      "id": "gf_bull_pen",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "gf_bull_pen_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_bull_pen_floor",
+            "prefabRevision": "gf_bull_pen_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "quarry_boss_boss_anchor",
+          "archetype": "granite_bull",
+          "encounterId": "quarry_boss",
+          "facing": 3.141592653589793,
+          "id": "quarry_boss_boss",
+          "leashZoneId": "encounter_leash",
+          "retired": false,
+          "spawnGroupId": "quarry_boss_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Bull Pen",
+      "objects": [
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_to_boss_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go back",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go back",
+          "opacity": 1,
+          "portalId": "quarry_to_boss_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "lift",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_lift_object",
+          "initialState": "closed",
+          "interactionLabel": "Ride the lift to the Crucible",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Ride the lift to the Crucible",
+          "opacity": 1,
+          "portalId": "quarry_lift",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "quarry_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "quarry_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Granite Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_quarry_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "monolith_nw_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "healer_monolith_nw",
+          "initialState": "intact",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Healer Monolith",
+          "opacity": 1,
+          "prefabId": "golem_forge_healer_monolith",
+          "prefabRevision": "golem-forge-healer-monolith-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "monolith_ne_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "healer_monolith_ne",
+          "initialState": "intact",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Healer Monolith",
+          "opacity": 1,
+          "prefabId": "golem_forge_healer_monolith",
+          "prefabRevision": "golem-forge-healer-monolith-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "monolith_sw_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "healer_monolith_sw",
+          "initialState": "intact",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Healer Monolith",
+          "opacity": 1,
+          "prefabId": "golem_forge_healer_monolith",
+          "prefabRevision": "golem-forge-healer-monolith-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 1360,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1360,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 1320,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1320,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 700,
+          "y": 500
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 500
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1370,
+          "y": 500
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_coil_works_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "gf_coil_works",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "gf_coil_works_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_coil_works_floor",
+            "prefabRevision": "gf_coil_works_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Coil Works",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_0_in_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Crucible",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Crucible",
+          "opacity": 1,
+          "portalId": "conduit_0_in_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_1_in_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Gem Vault",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Gem Vault",
+          "opacity": 1,
+          "portalId": "conduit_1_in",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 600,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 420,
+          "x": 210,
+          "y": 200
+        },
+        {
+          "height": 600,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 420,
+          "x": 770,
+          "y": 200
+        },
+        {
+          "height": 960,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1360,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 920,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1320,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 350
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 350
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1570,
+          "y": 350
+        },
+        {
+          "id": "gem_vault_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1400,
+          "y": 350
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 350
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_gem_vault_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 676
+            },
+            {
+              "x": 24,
+              "y": 676
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 700,
+      "id": "gf_gem_vault",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 700,
+            "id": "gf_gem_vault_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_gem_vault_floor",
+            "prefabRevision": "gf_gem_vault_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Gem Vault",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_1_in_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go back",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go back",
+          "opacity": 1,
+          "portalId": "conduit_1_in_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_2_in_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Husk Foundry",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Husk Foundry",
+          "opacity": 1,
+          "portalId": "conduit_2_in",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "gem_vault_chest_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "gem_vault_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Forge Cache",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_gem_vault_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 420,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 240,
+          "y": 140
+        },
+        {
+          "height": 420,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 880,
+          "y": 140
+        },
+        {
+          "height": 660,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1560,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 620,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 600
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 600
+        },
+        {
+          "id": "door_e",
+          "retired": false,
+          "role": "portal",
+          "x": 1170,
+          "y": 600
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 600
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_husk_foundry_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 1176
+            },
+            {
+              "x": 24,
+              "y": 1176
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1200,
+      "id": "gf_husk_foundry",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1200,
+            "id": "gf_husk_foundry_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_husk_foundry_floor",
+            "prefabRevision": "gf_husk_foundry_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Husk Foundry",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_2_in_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go back",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go back",
+          "opacity": 1,
+          "portalId": "conduit_2_in_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_e",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_to_boss_object",
+          "initialState": "closed",
+          "interactionLabel": "Face what waits",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Face what waits",
+          "opacity": 1,
+          "portalId": "conduit_to_boss",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 720,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 360,
+          "x": 180,
+          "y": 240
+        },
+        {
+          "height": 720,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 360,
+          "x": 660,
+          "y": 240
+        },
+        {
+          "height": 1160,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1160,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 1120,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1120,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 700,
+          "y": 700
+        },
+        {
+          "id": "door_w",
+          "retired": false,
+          "role": "portal",
+          "x": 30,
+          "y": 700
+        },
+        {
+          "id": "lift",
+          "retired": false,
+          "role": "portal",
+          "x": 700,
+          "y": 1250
+        },
+        {
+          "id": "conduit_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 1078
+        },
+        {
+          "id": "conduit_boss_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 700,
+          "y": 700
+        },
+        {
+          "id": "husk_nw",
+          "retired": false,
+          "role": "point",
+          "x": 265,
+          "y": 258
+        },
+        {
+          "id": "husk_ne",
+          "retired": false,
+          "role": "point",
+          "x": 1130,
+          "y": 258
+        },
+        {
+          "id": "husk_sw",
+          "retired": false,
+          "role": "point",
+          "x": 265,
+          "y": 1105
+        },
+        {
+          "id": "husk_se",
+          "retired": false,
+          "role": "point",
+          "x": 1130,
+          "y": 1105
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 700,
+          "y": 700
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_containment_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 24
+            },
+            {
+              "x": 1376,
+              "y": 1376
+            },
+            {
+              "x": 24,
+              "y": 1376
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1400,
+      "id": "gf_containment",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1400,
+            "id": "gf_containment_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_containment_floor",
+            "prefabRevision": "gf_containment_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1400,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "conduit_boss_boss_anchor",
+          "archetype": "corrupted_core",
+          "encounterId": "conduit_boss",
+          "facing": 3.141592653589793,
+          "id": "conduit_boss_boss",
+          "leashZoneId": "encounter_leash",
+          "retired": false,
+          "spawnGroupId": "conduit_boss_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Containment",
+      "objects": [
+        {
+          "anchorId": "door_w",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_to_boss_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go back",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go back",
+          "opacity": 1,
+          "portalId": "conduit_to_boss_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "lift",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_lift_object",
+          "initialState": "closed",
+          "interactionLabel": "Ride the lift to the Crucible",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Ride the lift to the Crucible",
+          "opacity": 1,
+          "portalId": "conduit_lift",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "conduit_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "conduit_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Core Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_conduit_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1400,
+      "zones": [
+        {
+          "height": 1360,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1360,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 1320,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1320,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 400
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 770
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 30
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 400
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_anvil_stair_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 776
+            },
+            {
+              "x": 24,
+              "y": 776
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 800,
+      "id": "gf_anvil_stair",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 800,
+            "id": "gf_anvil_stair_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_anvil_stair_floor",
+            "prefabRevision": "gf_anvil_stair_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Anvil Stair",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "crucible_to_anvil_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Crucible",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Crucible",
+          "opacity": 1,
+          "portalId": "crucible_to_anvil_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "anvil_to_cooling_object",
+          "initialState": "closed",
+          "interactionLabel": "Into the Cooling Hall",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Into the Cooling Hall",
+          "opacity": 1,
+          "portalId": "anvil_to_cooling",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 480,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 240,
+          "y": 160
+        },
+        {
+          "height": 480,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 480,
+          "x": 880,
+          "y": 160
+        },
+        {
+          "height": 760,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1560,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 720,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 600,
+          "y": 500
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 970
+        },
+        {
+          "id": "door_n",
+          "retired": false,
+          "role": "portal",
+          "x": 600,
+          "y": 30
+        },
+        {
+          "id": "cooling_hall_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 1000,
+          "y": 500
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 600,
+          "y": 500
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_cooling_hall_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 24
+            },
+            {
+              "x": 1176,
+              "y": 976
+            },
+            {
+              "x": 24,
+              "y": 976
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1000,
+      "id": "gf_cooling_hall",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1000,
+            "id": "gf_cooling_hall_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_cooling_hall_floor",
+            "prefabRevision": "gf_cooling_hall_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1200,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [],
+      "name": "Cooling Hall",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "anvil_to_cooling_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Back to the Anvil Stair",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Back to the Anvil Stair",
+          "opacity": 1,
+          "portalId": "anvil_to_cooling_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "door_n",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cooling_to_forge_object",
+          "initialState": "closed",
+          "interactionLabel": "Face the Forgemaster",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Face the Forgemaster",
+          "opacity": 1,
+          "portalId": "cooling_to_forge",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "cooling_hall_chest_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cooling_hall_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Forge Cache",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_cooling_hall_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1200,
+      "zones": [
+        {
+          "height": 600,
+          "id": "spawn_a",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 360,
+          "x": 180,
+          "y": 200
+        },
+        {
+          "height": 600,
+          "id": "spawn_b",
+          "kind": "rectangle",
+          "purpose": "trigger",
+          "retired": false,
+          "width": 360,
+          "x": 660,
+          "y": 200
+        },
+        {
+          "height": 960,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1160,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 920,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1120,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "active": true,
+      "aliases": [],
+      "anchors": [
+        {
+          "id": "spawn",
+          "retired": false,
+          "role": "spawn",
+          "x": 800,
+          "y": 800
+        },
+        {
+          "id": "door_s",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 1570
+        },
+        {
+          "id": "lift",
+          "retired": false,
+          "role": "portal",
+          "x": 800,
+          "y": 1450
+        },
+        {
+          "id": "forgemaster_chest_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 1100
+        },
+        {
+          "id": "forgemaster_boss_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 500
+        },
+        {
+          "id": "great_anvil_anchor",
+          "retired": false,
+          "role": "point",
+          "x": 800,
+          "y": 260
+        },
+        {
+          "id": "hammer_spawn_s",
+          "retired": false,
+          "role": "point",
+          "x": 560,
+          "y": 1500
+        },
+        {
+          "id": "hammer_spawn_e",
+          "retired": false,
+          "role": "point",
+          "x": 1500,
+          "y": 800
+        },
+        {
+          "id": "hammer_spawn_w",
+          "retired": false,
+          "role": "point",
+          "x": 100,
+          "y": 800
+        }
+      ],
+      "camera": {
+        "center": {
+          "x": 800,
+          "y": 800
+        },
+        "defaultZoom": 1,
+        "fitPadding": 0,
+        "maxZoom": 1.6,
+        "minZoom": 0.5,
+        "mode": "fixed_center"
+      },
+      "clickAreas": [],
+      "colliders": [],
+      "environment": {
+        "ambienceAssetKey": null,
+        "environmentId": "gf_great_forge_environment",
+        "musicAssetKey": null,
+        "visualTreatmentId": null
+      },
+      "floors": [
+        {
+          "id": "floor",
+          "polygon": [
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 24
+            },
+            {
+              "x": 1576,
+              "y": 1576
+            },
+            {
+              "x": 24,
+              "y": 1576
+            }
+          ],
+          "retired": false
+        }
+      ],
+      "height": 1600,
+      "id": "gf_great_forge",
+      "layers": {
+        "above_player": [],
+        "actors": [],
+        "background": [
+          {
+            "flipX": false,
+            "flipY": false,
+            "height": 1600,
+            "id": "gf_great_forge_initial_floor",
+            "opacity": 1,
+            "prefabId": "gf_great_forge_floor",
+            "prefabRevision": "gf_great_forge_floor-v1",
+            "retired": false,
+            "rotationDeg": 0,
+            "width": 1600,
+            "x": 0,
+            "y": 0,
+            "zIndex": 0
+          }
+        ],
+        "below_player": [],
+        "ceiling": []
+      },
+      "mobs": [
+        {
+          "anchorId": "forgemaster_boss_anchor",
+          "archetype": "forgemaster",
+          "encounterId": "forgemaster",
+          "facing": 3.141592653589793,
+          "id": "forgemaster_boss",
+          "leashZoneId": "encounter_leash",
+          "retired": false,
+          "spawnGroupId": "forgemaster_group",
+          "visualScale": 1,
+          "waveIndex": 1
+        }
+      ],
+      "name": "Great Forge",
+      "objects": [
+        {
+          "anchorId": "door_s",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "cooling_to_forge_back_object",
+          "initialState": "closed",
+          "interactionLabel": "Go back",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Go back",
+          "opacity": 1,
+          "portalId": "cooling_to_forge_back",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "lift",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "forge_lift_object",
+          "initialState": "closed",
+          "interactionLabel": "Ride the lift to the Crucible",
+          "interactionRadius": 95,
+          "layerId": "actors",
+          "name": "Ride the lift to the Crucible",
+          "opacity": 1,
+          "portalId": "forge_lift",
+          "prefabId": "sewer_door",
+          "prefabRevision": "sewer-door-v1",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "portal",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "forgemaster_chest_anchor",
+          "available": false,
+          "flipX": false,
+          "flipY": false,
+          "id": "forgemaster_chest",
+          "initialState": "closed",
+          "interactionRadius": 82,
+          "layerId": "actors",
+          "name": "Forgemaster Hoard",
+          "opacity": 1,
+          "prefabId": "dungeon_chest",
+          "prefabRevision": "dungeon-chest-v2",
+          "retired": false,
+          "rewardTableId": "golem_forge_forgemaster_chest_reward",
+          "rotationDeg": 0,
+          "spawnChance": 100,
+          "type": "chest",
+          "zIndex": 0
+        },
+        {
+          "anchorId": "great_anvil_anchor",
+          "available": true,
+          "flipX": false,
+          "flipY": false,
+          "id": "great_anvil",
+          "initialState": "idle",
+          "interactionRadius": 1,
+          "layerId": "actors",
+          "name": "Great Anvil",
+          "opacity": 1,
+          "prefabId": "golem_forge_great_anvil",
+          "prefabRevision": "golem-forge-great-anvil-v2",
+          "retired": false,
+          "rotationDeg": 0,
+          "type": "decoration",
+          "zIndex": 0
+        }
+      ],
+      "retired": false,
+      "revision": "golem_forge-v1",
+      "spawnAnchorId": "spawn",
+      "walls": [],
+      "width": 1600,
+      "zones": [
+        {
+          "height": 1560,
+          "id": "encounter_boundary",
+          "kind": "rectangle",
+          "purpose": "encounter_boundary",
+          "retired": false,
+          "width": 1560,
+          "x": 20,
+          "y": 20
+        },
+        {
+          "height": 1520,
+          "id": "encounter_leash",
+          "kind": "rectangle",
+          "purpose": "leash",
+          "retired": false,
+          "width": 1520,
+          "x": 40,
+          "y": 40
+        }
+      ]
+    }
+  ],
+  "spatialProfileId": "dungeon"
+}
